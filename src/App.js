@@ -10,7 +10,7 @@ import { ValidationForm } from "./components/ValidationForm";
 function App() {
   return (    
     <div className="App">
-      <BrowserRouter>
+      <BrowserRouter basename="shc-web-verifier">
         <nav >
           <ul>
             <li><Link to="/" className="nav-link">Home</Link></li>
