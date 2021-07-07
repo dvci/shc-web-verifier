@@ -1,6 +1,6 @@
 import './App.css';
 import {
-  BrowserRouter,
+  HashRouter,
   Switch,
   Route,
   Link
@@ -10,7 +10,7 @@ import { ValidationForm } from "./components/ValidationForm";
 function App() {
   return (    
     <div className="App">
-      <BrowserRouter basename="shc-web-verifier">
+      <HashRouter>
         <nav >
           <ul>
             <li><Link to="/" className="nav-link">Home</Link></li>
@@ -25,7 +25,7 @@ function App() {
             <ValidationForm action={'COVID-19-508'} />
           </Route>
         </Switch>
-        </BrowserRouter>
+        </HashRouter>
       </div>
   );
 }
