@@ -3,6 +3,14 @@ Web application for verifying SMART Health Cards
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Client-side CDC CDSi validator app
+
+Limited scope, CQL engine based, client-side validation app that executes the CDSi supporting data guidelines. Requires manual creation of a FHIR parameters file from the CDSi supporting data xml (this could be done programatically at some point).
+
+Currently only validates each series based on dose absMinAge, allowable vaccine codes (CVX only), and allowableInterval absMinInt fromPrevious.
+
+Does not support any other validation, including optional doses, recurrent doses, immunity or contradictions.
+
 ## Available Scripts
 
 In the project directory, you can run:
