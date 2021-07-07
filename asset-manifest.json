@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/shc-web-verifier/static/css/main.ea1455b2.chunk.css",
-    "main.js": "/shc-web-verifier/static/js/main.2a02968f.chunk.js",
-    "main.js.map": "/shc-web-verifier/static/js/main.2a02968f.chunk.js.map",
+    "main.js": "/shc-web-verifier/static/js/main.46050aa1.chunk.js",
+    "main.js.map": "/shc-web-verifier/static/js/main.46050aa1.chunk.js.map",
     "runtime-main.js": "/shc-web-verifier/static/js/runtime-main.e3194751.js",
     "runtime-main.js.map": "/shc-web-verifier/static/js/runtime-main.e3194751.js.map",
-    "static/js/2.1adfaae4.chunk.js": "/shc-web-verifier/static/js/2.1adfaae4.chunk.js",
-    "static/js/2.1adfaae4.chunk.js.map": "/shc-web-verifier/static/js/2.1adfaae4.chunk.js.map",
+    "static/js/2.890a5154.chunk.js": "/shc-web-verifier/static/js/2.890a5154.chunk.js",
+    "static/js/2.890a5154.chunk.js.map": "/shc-web-verifier/static/js/2.890a5154.chunk.js.map",
     "static/js/3.d108d9f9.chunk.js": "/shc-web-verifier/static/js/3.d108d9f9.chunk.js",
     "static/js/3.d108d9f9.chunk.js.map": "/shc-web-verifier/static/js/3.d108d9f9.chunk.js.map",
     "index.html": "/shc-web-verifier/index.html",
     "static/css/main.ea1455b2.chunk.css.map": "/shc-web-verifier/static/css/main.ea1455b2.chunk.css.map",
-    "static/js/2.1adfaae4.chunk.js.LICENSE.txt": "/shc-web-verifier/static/js/2.1adfaae4.chunk.js.LICENSE.txt"
+    "static/js/2.890a5154.chunk.js.LICENSE.txt": "/shc-web-verifier/static/js/2.890a5154.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.e3194751.js",
-    "static/js/2.1adfaae4.chunk.js",
+    "static/js/2.890a5154.chunk.js",
     "static/css/main.ea1455b2.chunk.css",
-    "static/js/main.2a02968f.chunk.js"
+    "static/js/main.46050aa1.chunk.js"
   ]
 }
