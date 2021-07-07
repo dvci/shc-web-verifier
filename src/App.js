@@ -2,22 +2,31 @@ import './App.css';
 import {
   BrowserRouter,
   Switch,
-  Route
+  Route,
+  Link
 } from "react-router-dom";
 import { ValidationForm } from "./components/ValidationForm";
 
 function App() {
   return (    
-    <BrowserRouter>
-      <Switch>
-        <Route exact path="/" >
-          <Home />
-        </Route>
-        <Route exact path="/validator">
-          <ValidationForm action={'COVID-19-508'} />
-        </Route>
-      </Switch>
-      </BrowserRouter>
+    <div className="App">
+      <BrowserRouter>
+        <nav >
+          <ul>
+            <li><Link to="/" className="nav-link">Home</Link></li>
+            <li><Link to="/validator" className="nav-link">Validator</Link></li>
+          </ul>
+        </nav>
+        <Switch>
+          <Route exact path="/" >
+            <Home />
+          </Route>
+          <Route exact path="/validator">
+            <ValidationForm action={'COVID-19-508'} />
+          </Route>
+        </Switch>
+        </BrowserRouter>
+      </div>
   );
 }
 
