@@ -1,0 +1,316 @@
+{
+    "resourceType": "Parameters",
+    "parameter": [
+        {
+            "name": "series",
+            "part": [
+                {
+                  "name": "seriesName",
+                  "valueString": "2-dose Pfizer series"
+                },
+                {
+                    "name": "seriesDose",
+                    "part": [
+                        {
+                            "name": "doseNumber",
+                            "valueString": "Dose 1"
+                        },
+                        {
+                            "name": "age",
+                            "part": [
+                                {
+                                    "name": "absMinAge",
+                                    "valueQuantity": {
+                                        "value": 0,
+                                        "unit": "d"
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "name": "allowableVaccine",
+                            "part": [
+                                {
+                                    "name": "cvx",
+                                    "valueString": "208"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "seriesDose",
+                    "part": [
+                        {
+                            "name": "doseNumber",
+                            "valueString": "Dose 2"
+                        },
+                        {
+                            "name": "age",
+                            "part": [
+                                {
+                                    "name": "absMinAge",
+                                    "valueQuantity": {
+                                        "value": 0,
+                                        "unit": "d"
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "name": "allowableInterval",
+                            "part": [
+                                {
+                                    "name": "fromPrevious",
+                                    "valueString": "Y"
+                                },
+                                {
+                                    "name": "absMinInt",
+                                    "valueQuantity": {
+                                        "value": 0,
+                                        "unit": "d"
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "name": "allowableVaccine",
+                            "part": [
+                                {
+                                    "name": "cvx",
+                                    "valueString": "208"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "series",
+            "part": [
+                {
+                  "name": "seriesName",
+                  "valueString": "2-dose Moderna series"
+                },
+                {
+                    "name": "seriesDose",
+                    "part": [
+                        {
+                            "name": "doseNumber",
+                            "valueString": "Dose 1"
+                        },
+                        {
+                            "name": "age",
+                            "part": [
+                                {
+                                    "name": "absMinAge",
+                                    "valueQuantity": {
+                                        "value": 0,
+                                        "unit": "d"
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "name": "allowableVaccine",
+                            "part": [
+                                {
+                                    "name": "cvx",
+                                    "valueString": "207"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "seriesDose",
+                    "part": [
+                        {
+                            "name": "doseNumber",
+                            "valueString": "Dose 2"
+                        },
+                        {
+                            "name": "age",
+                            "part": [
+                                {
+                                    "name": "absMinAge",
+                                    "valueQuantity": {
+                                        "value": 0,
+                                        "unit": "d"
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "name": "allowableInterval",
+                            "part": [
+                                {
+                                    "name": "fromPrevious",
+                                    "valueString": "Y"
+                                },
+                                {
+                                    "name": "absMinInt",
+                                    "valueQuantity": {
+                                        "value": 0,
+                                        "unit": "d"
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "name": "allowableVaccine",
+                            "part": [
+                                {
+                                    "name": "cvx",
+                                    "valueString": "207"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "series",
+            "part": [
+                {
+                  "name": "seriesName",
+                  "valueString": "1-dose Janssen series"
+                },
+                {
+                    "name": "seriesDose",
+                    "part": [
+                        {
+                            "name": "doseNumber",
+                            "valueString": "Dose 1"
+                        },
+                        {
+                            "name": "age",
+                            "part": [
+                                {
+                                    "name": "absMinAge",
+                                    "valueQuantity": {
+                                        "value": 0,
+                                        "unit": "d"
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "name": "allowableVaccine",
+                            "part": [
+                                {
+                                    "name": "cvx",
+                                    "valueString": "212"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+
+        {
+            "name": "series",
+            "part": [
+                {
+                  "name": "seriesName",
+                  "valueString": "2-dose mRNA series"
+                },
+                {
+                    "name": "seriesDose",
+                    "part": [
+                        {
+                            "name": "doseNumber",
+                            "valueString": "Dose 1"
+                        },
+                        {
+                            "name": "age",
+                            "part": [
+                                {
+                                    "name": "absMinAge",
+                                    "valueQuantity": {
+                                        "value": 0,
+                                        "unit": "d"
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "name": "allowableVaccine",
+                            "part": [
+                                {
+                                    "name": "cvx",
+                                    "valueString": "207"
+                                },
+                                {
+                                    "name": "cvx",
+                                    "valueString": "208"
+                                },
+                                {
+                                    "name": "cvx",
+                                    "valueString": "213"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "seriesDose",
+                    "part": [
+                        {
+                            "name": "doseNumber",
+                            "valueString": "Dose 2"
+                        },
+                        {
+                            "name": "age",
+                            "part": [
+                                {
+                                    "name": "absMinAge",
+                                    "valueQuantity": {
+                                        "value": 0,
+                                        "unit": "d"
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "name": "allowableInterval",
+                            "part": [
+                                {
+                                    "name": "fromPrevious",
+                                    "valueString": "Y"
+                                },
+                                {
+                                    "name": "absMinInt",
+                                    "valueQuantity": {
+                                        "value": 0,
+                                        "unit": "d"
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "name": "allowableVaccine",
+                            "part": [
+                                {
+                                    "name": "cvx",
+                                    "valueString": "207"
+                                },
+                                {
+                                    "name": "cvx",
+                                    "valueString": "208"
+                                },
+                                {
+                                    "name": "cvx",
+                                    "valueString": "213"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
