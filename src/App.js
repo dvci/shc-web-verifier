@@ -1,10 +1,13 @@
 import './App.css';
 import React, { useState } from 'react';
 
+import pako from 'pako';
 import jsQR from 'jsqr';
+import { Base64 } from 'js-base64';
 
 function App() {
   const [isScanning, setIsScanning] = useState(false);
+  const [qrData, setQrData] = useState(null);
 
   let video, canvasElement, canvas, loadingMessage, outputContainer, outputMessage, outputData;
 
@@ -23,11 +26,16 @@ function App() {
         inversionAttempts: "dontInvert",
       });
       if (code) {
-        debugger;
         outputMessage.hidden = true;
         outputData.parentElement.hidden = false;
-        outputData.innerText = code.data;
+        if(code.data.startsWith('shc:/')) {
+          stopScanning();
+          setQrData(decodeQr(code.data));
+        } else {
+          outputMessage.innerText = 'QR code does not contain a SMART Health Card';
+        }
       } else {
+        outputMessage.innerText = 'No QR code detected';
         outputMessage.hidden = false;
         outputData.parentElement.hidden = true;
       }
@@ -68,12 +76,24 @@ function App() {
   };
 
   const startButton = (
-    <button id="start" onClick={startScanning} disabled={isScanning}>Start</button>
+    <button id="start" onClick={startScanning} disabled={isScanning}>Scan</button>
   );
 
   const stopButton = (
     <button id="stop" onClick={stopScanning} disabled={!isScanning}>Stop</button>
   );
+
+  const decodeQr = qrString => {
+    const sliceIndex = qrString.lastIndexOf('/');
+    const rawPayload = qrString.slice(sliceIndex + 1);
+    const encodingChars = rawPayload.match(/\d\d/g);
+    const jwsString = encodingChars.map(charPair => String.fromCharCode(+charPair +45)).join('');
+    const dataString = jwsString.split('.')[1];
+    const decodedPayload = Base64.toUint8Array(dataString);
+    const inflatedPayload = pako.inflateRaw(decodedPayload);
+    const payload = new TextDecoder().decode(inflatedPayload);
+    return payload;
+  };
 
   return (
     <div className="App">
@@ -82,11 +102,11 @@ function App() {
       </header>
       {startButton}
       {stopButton}
-      <div id="loadingMessage">🎥 Unable to access video stream (please make sure you have a webcam enabled)</div>
+      <div id="loadingMessage"></div>
       <canvas id="canvas" hidden></canvas>
       <div id="output" hidden>
-      <div id="outputMessage">No QR code detected.</div>
-      <div hidden><b>Data:</b> <span id="outputData"></span></div>
+        <div id="outputMessage">No QR code detected.</div>
+        <div hidden><b>Data:</b> <span id="outputData">{qrData}</span></div>
       </div>
     </div>
   );
