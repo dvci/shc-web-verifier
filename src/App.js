@@ -1,22 +1,28 @@
 import './App.css';
-import React, { useState } from 'react';
 
-import pako from 'pako';
-import jsQR from 'jsqr';
+import React, { useState } from 'react';
 import { Base64 } from 'js-base64';
+import jsQR from 'jsqr';
+import pako from 'pako';
 
 function App() {
   const [isScanning, setIsScanning] = useState(false);
   const [qrData, setQrData] = useState(null);
 
-  let video, canvasElement, canvas, loadingMessage, outputContainer, outputMessage, outputData;
-
   function tick() {
-    loadingMessage.innerText = "⌛ Loading video...";
-    if (video.readyState === video.HAVE_ENOUGH_DATA) {
+    const video = document.getElementById("video");
+    if(!video) {
+      return;
+    }
+
+    if(video.readyState === video.HAVE_ENOUGH_DATA) {
+      const canvasElement = document.getElementById("canvas");
+      const canvas = canvasElement.getContext("2d");
+      const loadingMessage = document.getElementById("loadingMessage");
+      const statusMessage = document.getElementById("statusMessage");
+
       loadingMessage.hidden = true;
       canvasElement.hidden = false;
-      outputContainer.hidden = false;
 
       canvasElement.height = video.videoHeight;
       canvasElement.width = video.videoWidth;
@@ -25,19 +31,18 @@ function App() {
       var code = jsQR(imageData.data, imageData.width, imageData.height, {
         inversionAttempts: "dontInvert",
       });
-      if (code) {
-        outputMessage.hidden = true;
-        outputData.parentElement.hidden = false;
+      if(code) {
+        console.log(`QR code contents: ${code.data}`);
         if(code.data.startsWith('shc:/')) {
           stopScanning();
-          setQrData(decodeQr(code.data));
+          const decodedQr = decodeQr(code.data);
+          const patientData = extractPatientData(decodedQr);
+          setQrData(patientData);
         } else {
-          outputMessage.innerText = 'QR code does not contain a SMART Health Card';
+          statusMessage.innerText = 'QR code does not contain a SMART Health Card';
         }
       } else {
-        outputMessage.innerText = 'No QR code detected';
-        outputMessage.hidden = false;
-        outputData.parentElement.hidden = true;
+        statusMessage.innerText = 'No QR code detected';
       }
     }
 
@@ -45,18 +50,13 @@ function App() {
   }
 
   const startScanning = () => {
-    console.log('startScanning');
     setIsScanning(true);
-    video = document.createElement("video");
+    const video = document.createElement("video");
+    const loadingMessage = document.getElementById("loadingMessage");
     video.id = 'video';
     video.hidden = true;
     document.children[0].appendChild(video);
-    canvasElement = document.getElementById("canvas");
-    canvas = canvasElement.getContext("2d");
-    loadingMessage = document.getElementById("loadingMessage");
-    outputContainer = document.getElementById("output");
-    outputMessage = document.getElementById("outputMessage");
-    outputData = document.getElementById("outputData");
+    loadingMessage.hidden = false;
 
     navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } }).then(function(stream) {
       video.srcObject = stream;
@@ -67,8 +67,7 @@ function App() {
   };
 
   const stopScanning = () => {
-    console.log('stopScanning');
-    video = document.getElementById("video");
+    const video = document.getElementById("video");
     video.srcObject.getTracks().forEach(track => track.stop());
     video.remove();
     document.getElementById('canvas').hidden = true;
@@ -83,6 +82,37 @@ function App() {
     <button id="stop" onClick={stopScanning} disabled={!isScanning}>Stop</button>
   );
 
+  const healthCardDisplay = () => (
+    <div>
+      <div>
+        <span>{qrData.name}</span>
+      </div>
+      <div>
+        <span>{qrData.dateOfBirth}</span>
+      </div>
+      {immunizationsDisplay()}
+    </div>
+  );
+
+  const immunizationsDisplay = () => {
+    return qrData.immunizations.map((immunization, i) => {
+      return (
+        <div key={i}>
+          <span>{immunization.occurrenceDateTime}: </span>
+          {immunization.vaccineCode ? immunizationCodeDisplay(immunization.vaccineCode.coding) : ''}
+        </div>
+      );
+    });
+  };
+
+  const immunizationCodeDisplay = codings => {
+    return codings.map((coding, i) => {
+      return (
+        <span key={i}>{coding.system ? `${coding.system}#${coding.code}` : coding.code}</span>
+      );
+    });
+  };
+
   const decodeQr = qrString => {
     const sliceIndex = qrString.lastIndexOf('/');
     const rawPayload = qrString.slice(sliceIndex + 1);
@@ -95,19 +125,55 @@ function App() {
     return payload;
   };
 
+  const extractPatientData = card => {
+    const bundle = JSON.parse(card).vc.credentialSubject.fhirBundle;
+    const patient = bundle.entry.find(entry => entry.resource.resourceType === 'Patient').resource;
+
+    const name = extractPatientName(patient);
+    const dateOfBirth = patient.birthDate;
+    const immunizations = extractImmunizations(bundle);
+    return { name, dateOfBirth, immunizations };
+  };
+
+  const extractPatientName = patient => {
+    const nameElement = patient.name[0];
+
+    if(nameElement.text) {
+      return nameElement.text;
+    }
+
+    const prefix = nameElement.prefix ? nameElement.prefix.join(' ') : '';
+    const given = nameElement.given ? nameElement.given.join(' ') : '';
+    const family = nameElement.family ? nameElement.family : '';
+    const suffix = nameElement.suffix ? nameElement.suffix.join(' ') : '';
+
+    const name = [prefix, given, family, suffix].join(' ');
+    return name;
+  };
+
+  const extractImmunizations = bundle => {
+    const immunizationResources =
+      bundle
+        .entry
+        .filter(entry => entry.resource.resourceType === 'Immunization')
+        .map(entry => entry.resource);
+
+    return immunizationResources;
+  };
+
   return (
     <div className="App">
       <header className="App-header">
         <h1>SMART Health Cards Web Verifier</h1>
       </header>
-      {startButton}
-      {stopButton}
-      <div id="loadingMessage"></div>
-      <canvas id="canvas" hidden></canvas>
-      <div id="output" hidden>
-        <div id="outputMessage">No QR code detected.</div>
-        <div hidden><b>Data:</b> <span id="outputData">{qrData}</span></div>
+      <div>
+        {startButton}
+        {stopButton}
       </div>
+      <div id="loadingMessage" hidden>Loading...</div>
+      <canvas id="canvas" hidden={!isScanning}></canvas>
+      <div id="statusMessage" hidden={!isScanning}>No QR code detected.</div>
+      { qrData && !isScanning ? healthCardDisplay() : '' }
     </div>
   );
 }
