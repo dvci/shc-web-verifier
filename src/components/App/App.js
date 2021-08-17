@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { Base64 } from 'js-base64';
 import jsQR from 'jsqr';
 import pako from 'pako';
+import HealthCardDisplay from '../HealthCardDisplay/HealthCardDisplay';
 
 function App() {
   const [isScanning, setIsScanning] = useState(false);
@@ -51,6 +52,8 @@ function App() {
 
   const startScanning = () => {
     setIsScanning(true);
+    setQrData(null);
+
     const video = document.createElement("video");
     const loadingMessage = document.getElementById("loadingMessage");
     video.id = 'video';
@@ -71,6 +74,7 @@ function App() {
     video.srcObject.getTracks().forEach(track => track.stop());
     video.remove();
     document.getElementById('canvas').hidden = true;
+    document.getElementById("loadingMessage").hidden = true;
     setIsScanning(false);
   };
 
@@ -81,37 +85,6 @@ function App() {
   const stopButton = (
     <button id="stop" onClick={stopScanning} disabled={!isScanning}>Stop</button>
   );
-
-  const healthCardDisplay = () => (
-    <div>
-      <div>
-        <span>{qrData.name}</span>
-      </div>
-      <div>
-        <span>{qrData.dateOfBirth}</span>
-      </div>
-      {immunizationsDisplay()}
-    </div>
-  );
-
-  const immunizationsDisplay = () => {
-    return qrData.immunizations.map((immunization, i) => {
-      return (
-        <div key={i}>
-          <span>{immunization.occurrenceDateTime}: </span>
-          {immunization.vaccineCode ? immunizationCodeDisplay(immunization.vaccineCode.coding) : ''}
-        </div>
-      );
-    });
-  };
-
-  const immunizationCodeDisplay = codings => {
-    return codings.map((coding, i) => {
-      return (
-        <span key={i}>{coding.system ? `${coding.system}#${coding.code}` : coding.code}</span>
-      );
-    });
-  };
 
   const decodeQr = qrString => {
     const sliceIndex = qrString.lastIndexOf('/');
@@ -173,7 +146,7 @@ function App() {
       <div id="loadingMessage" hidden>Loading...</div>
       <canvas id="canvas" hidden={!isScanning}></canvas>
       <div id="statusMessage" hidden={!isScanning}>No QR code detected.</div>
-      { qrData && !isScanning ? healthCardDisplay() : '' }
+      { qrData && !isScanning ? <HealthCardDisplay patientData={qrData} /> : '' }
     </div>
   );
 }
