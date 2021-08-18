@@ -31,7 +31,7 @@ const HealthCardDisplay = ({ patientData }) => {
         container
         spacing={2}
         direction="row"
-        justify="flex-start"
+        justifyContent="flex-start"
         alignItems="flex-start"
       >
         {patientData.immunizations.map((immunization, i) =>
