@@ -64,7 +64,7 @@ function App() {
     navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } }).then(function(stream) {
       video.srcObject = stream;
       video.setAttribute("playsinline", true); // required to tell iOS safari we don't want fullscreen
-      video.play();
+      video.play().catch(() => { /* ignore error since it's caused by us stopping the scan */ });
       requestAnimationFrame(tick);
     });
   };
