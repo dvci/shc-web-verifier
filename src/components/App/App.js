@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { Base64 } from 'js-base64';
 import jsQR from 'jsqr';
 import pako from 'pako';
-import HealthCardDisplay from '../HealthCardDisplay/HealthCardDisplay';
+import HealthCardDisplay from 'components/HealthCardDisplay';
 
 function App() {
   const [isScanning, setIsScanning] = useState(false);
