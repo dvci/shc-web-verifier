@@ -1,17 +1,19 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Card, CardContent, CardHeader, Grid, Typography } from '@material-ui/core';
+import {
+  Card, CardContent, CardHeader, Grid, Typography
+} from '@material-ui/core';
 
 const useStyles = makeStyles({
   bold: {
-    fontWeight: 'bold',
+    fontWeight: 'bold'
   }
 });
 
 const HealthCardDisplay = ({ patientData }) => {
   const classes = useStyles();
 
-  const immunizationCode = codings => {
+  const immunizationCode = (codings) => {
     if (codings.length === 0) return '';
 
     const coding = codings[0];
@@ -21,10 +23,12 @@ const HealthCardDisplay = ({ patientData }) => {
   return (
     <div>
       <Typography gutterBottom>
-        <span className={classes.bold}>Name: </span><span>{patientData.name}</span>
+        <span className={classes.bold}>Name: </span>
+        <span>{patientData.name}</span>
       </Typography>
       <Typography gutterBottom>
-        <span className={classes.bold}>Date of Birth: </span><span>{patientData.dateOfBirth}</span>
+        <span className={classes.bold}>Date of Birth: </span>
+        <span>{patientData.dateOfBirth}</span>
       </Typography>
       <Typography variant="h4"> Immunizations </Typography>
       <Grid
@@ -34,26 +38,28 @@ const HealthCardDisplay = ({ patientData }) => {
         justifyContent="flex-start"
         alignItems="flex-start"
       >
-        {patientData.immunizations.map((immunization, i) =>
-          (
-            <Grid item key={i}>
-              <Card variant="outlined">
-                <CardHeader
-                  title={immunization.vaccineCode ? immunizationCode(immunization.vaccineCode.coding) : ''}
-                  classes={{ title: classes.bold }}
-                />
-                <CardContent>
-                  <Typography gutterBottom>
-                    <span className={classes.bold}>Date: </span><span>{immunization.occurrenceDateTime}</span>
-                  </Typography>
-                  <Typography gutterBottom>
-                    <span className={classes.bold}>Lot: </span><span>{immunization.lotNumber}</span>
-                  </Typography>
-                </CardContent>
-              </Card>
-            </Grid>
-          )
-        )}
+        {patientData.immunizations.map((immunization) => (
+          <Grid item key={`${immunization.lotNumber}`}>
+            <Card variant="outlined">
+              <CardHeader
+                title={
+                  immunization.vaccineCode ? immunizationCode(immunization.vaccineCode.coding) : ''
+                }
+                classes={{ title: classes.bold }}
+              />
+              <CardContent>
+                <Typography gutterBottom>
+                  <span className={classes.bold}>Date: </span>
+                  <span>{immunization.occurrenceDateTime}</span>
+                </Typography>
+                <Typography gutterBottom>
+                  <span className={classes.bold}>Lot: </span>
+                  <span>{immunization.lotNumber}</span>
+                </Typography>
+              </CardContent>
+            </Card>
+          </Grid>
+        ))}
       </Grid>
     </div>
   );
