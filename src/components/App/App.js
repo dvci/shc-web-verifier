@@ -41,7 +41,6 @@ function App() {
   const extractImmunizations = (bundle) => {
     const immunizationResources = bundle.entry
       .filter((entry) => entry.resource.resourceType === 'Immunization')
-      .map((entry) => entry.resource);
 
     return immunizationResources;
   };

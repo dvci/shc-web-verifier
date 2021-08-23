@@ -7,28 +7,31 @@ const patientData = {
   dateOfBirth: '1951-01-20',
   immunizations: [
     {
-      resourceType: 'Immunization',
-      status: 'completed',
-      vaccineCode: {
-        coding: [
+      fullUrl: 'resource:1',
+      resource: {
+        resourceType: 'Immunization',
+        status: 'completed',
+        vaccineCode: {
+          coding: [
+            {
+              system: 'http://hl7.org/fhir/sid/cvx',
+              code: '207'
+            }
+          ]
+        },
+        patient: {
+          reference: 'resource:0'
+        },
+        occurrenceDateTime: '2021-01-01',
+        performer: [
           {
-            system: 'http://hl7.org/fhir/sid/cvx',
-            code: '207'
+            actor: {
+              display: 'ABC General Hospital'
+            }
           }
-        ]
-      },
-      patient: {
-        reference: 'resource:0'
-      },
-      occurrenceDateTime: '2021-01-01',
-      performer: [
-        {
-          actor: {
-            display: 'ABC General Hospital'
-          }
-        }
-      ],
-      lotNumber: '0000001'
+        ],
+        lotNumber: '0000001'
+      }
     }
   ]
 };
