@@ -37,14 +37,18 @@ const HealthCardDisplay = ({ patientData }) => {
               <span className={classes.bold}>Date: </span>
               <span>{resource.occurrenceDateTime}</span>
             </Typography>
-            <Typography gutterBottom>
-              <span className={classes.bold}>Lot: </span>
-              <span>{resource.lotNumber}</span>
-            </Typography>
-            <Typography gutterBottom>
-              <span className={classes.bold}>Performer: </span>
-              <span>{resource.performer[0].actor.display}</span>
-            </Typography>
+            {resource.lotNumber && (
+              <Typography gutterBottom>
+                <span className={classes.bold}>Lot: </span>
+                <span>{resource.lotNumber}</span>
+              </Typography>
+            )}
+            {(resource.performer && resource.performer.length > 0) && (
+              <Typography gutterBottom>
+                <span className={classes.bold}>Performer: </span>
+                <span>{resource.performer[0].actor.display}</span>
+              </Typography>
+            )}
           </CardContent>
         </Card>
       </Grid>

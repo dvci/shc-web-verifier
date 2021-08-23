@@ -36,7 +36,17 @@ const patientData = {
   ]
 };
 
-test('renders learn react link', () => {
+test('renders health card', () => {
+  render(<HealthCardDisplay patientData={patientData} />);
+  const patientName = screen.getByText(/John B. Anyperson/i);
+  expect(patientName).toBeInTheDocument();
+  const immunizationDate = screen.getByText(/2021-01-01/i);
+  expect(immunizationDate).toBeInTheDocument();
+});
+
+test('renders health card without performer', () => {
+  // Remove performer from immunization
+  delete patientData.immunizations[0].resource.performer;
   render(<HealthCardDisplay patientData={patientData} />);
   const patientName = screen.getByText(/John B. Anyperson/i);
   expect(patientName).toBeInTheDocument();
