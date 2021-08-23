@@ -35,7 +35,8 @@ function App() {
     const suffix = nameElement.suffix ? nameElement.suffix.join(' ') : '';
 
     const name = [prefix, given, family, suffix].join(' ');
-    return name;
+
+    return name.trim();
   };
 
   const extractImmunizations = (bundle) => {
