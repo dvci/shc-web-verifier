@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { 
-  Card, CardContent, CardHeader, Grid, Typography 
+import {
+  Card, CardContent, CardHeader, Grid, Typography
 } from '@material-ui/core';
-import tradenames_xml from './iisstandards_tradename.xml';
 import axios from 'axios';
+import tradenamesXml from './iisstandards_tradename.xml';
 
 const useStyles = makeStyles({
   bold: {
@@ -19,28 +19,28 @@ const HealthCardDisplay = ({ patientData }) => {
 
   useEffect(() => {
     async function fetchTradenames() {
-      const response = await axios.get(tradenames_xml, {
-        "Accept": "application/xml"
+      const response = await axios.get(tradenamesXml, {
+        Accept: 'application/xml'
       });
-      var data = await response.data;
+      let data = await response.data;
       data = data.replace(/&/g, '&amp;')
-      .replace(/"/g, '&quot;')
-      .replace(/'/g, '&apos;');
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&apos;');
       const parser = new DOMParser();
-      const xmlDoc = parser.parseFromString(data, "application/xml");
-      if(xmlDoc.getElementsByTagName('parsererror').length > 0) {
+      const xmlDoc = parser.parseFromString(data, 'application/xml');
+      if (xmlDoc.getElementsByTagName('parsererror').length > 0) {
         throw new Error('Error parsing XML');
-    }
-      const prodInfos = xmlDoc.evaluate("//productnames/prodInfo", 
+      }
+      const prodInfos = xmlDoc.evaluate('//productnames/prodInfo',
         xmlDoc, null, XPathResult.ORDERED_NODE_ITERATOR_TYPE, null);
-      var prodInfo = null;
-      var tn = {};
+      let prodInfo = null;
+      const tn = {};
       while ((prodInfo = prodInfos.iterateNext())) {
-        if(tn[prodInfo.children[5].textContent.trim()]){
+        if (tn[prodInfo.children[5].textContent.trim()]) {
           tn[prodInfo.children[5].textContent.trim()] = prodInfo.children[3].textContent
-        }else{
+        } else {
           tn[prodInfo.children[5].textContent.trim()] = prodInfo.children[1].textContent
-        }        
+        }
       }
       setTradenames(tn);
     }
@@ -53,11 +53,10 @@ const HealthCardDisplay = ({ patientData }) => {
 
     const coding = codings[0];
 
-    if(!tradenames[coding.code]){
+    if (!tradenames[coding.code]) {
       return coding.system ? `${coding.system}#${coding.code}` : coding.code;
-    }else{
-      return tradenames[coding.code];
     }
+    return tradenames[coding.code];
   };
 
   const immunizationDisplay = (immunization) => {

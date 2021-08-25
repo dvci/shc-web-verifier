@@ -1,8 +1,8 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import HealthCardDisplay from './HealthCardDisplay';
 import axios from 'axios';
-import { act } from "react-dom/test-utils";
+import { act } from 'react-dom/test-utils';
+import HealthCardDisplay from './HealthCardDisplay';
 
 const patientData = {
   name: 'John B. Anyperson',
@@ -40,12 +40,12 @@ const patientData = {
 
 jest.mock('axios');
 
-beforeEach(()=>{
+beforeEach(() => {
   jest.clearAllMocks()
 })
 
 test('renders health card', () => {
-  axios.get.mockResolvedValue({data: tradenames});
+  axios.get.mockResolvedValue({ data: tradenames });
   render(<HealthCardDisplay patientData={patientData} />);
   const patientName = screen.getByText(/John B. Anyperson/i);
   expect(patientName).toBeInTheDocument();
@@ -54,7 +54,7 @@ test('renders health card', () => {
 });
 
 test('renders health card without performer', () => {
-  axios.get.mockResolvedValue({data: tradenames});
+  axios.get.mockResolvedValue({ data: tradenames });
   // Remove performer from immunization
   delete patientData.immunizations[0].resource.performer;
   render(<HealthCardDisplay patientData={patientData} />);
@@ -65,12 +65,12 @@ test('renders health card without performer', () => {
 });
 
 test('renders immunization display', async () => {
-    await act(async () => {
-      await axios.get.mockResolvedValue({data: tradenames});
-      render(<HealthCardDisplay patientData={patientData} />);  
-      expect(await screen.findAllByText("Pfizer-BioNTech COVID-19 Vaccine (Non-US COMIRNATY)", {}, { timeout: 3000 })).toHaveLength(1);
-      screen.debug();
-    });
+  await act(async () => {
+    await axios.get.mockResolvedValue({ data: tradenames });
+    render(<HealthCardDisplay patientData={patientData} />);
+    expect(await screen.findAllByText('Pfizer-BioNTech COVID-19 Vaccine (Non-US COMIRNATY)', {}, { timeout: 3000 })).toHaveLength(1);
+    screen.debug();
+  });
 });
 
 const tradenames = `<productnames>
