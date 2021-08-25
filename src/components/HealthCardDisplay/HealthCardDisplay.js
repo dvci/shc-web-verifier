@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Card, CardContent, CardHeader, Grid, Typography } from '@material-ui/core';
+import tradenames_xml from './iisstandards_tradename.xml';
+import axios from 'axios';
 
 const useStyles = makeStyles({
   bold: {
@@ -11,11 +13,49 @@ const useStyles = makeStyles({
 const HealthCardDisplay = ({ patientData }) => {
   const classes = useStyles();
 
-  const immunizationCode = codings => {
+  const [tradenames, setTradenames] = useState({});
+
+  useEffect(() => {
+    async function fetchTradenames() {
+      const response = await axios.get(tradenames_xml, {
+        "Accept": "application/xml"
+      });
+      var data = await response.data;
+      data = data.replace(/&/g, '&amp;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&apos;');
+      const parser = new DOMParser();
+      const xmlDoc = parser.parseFromString(data, "application/xml");
+      if(xmlDoc.getElementsByTagName('parsererror').length > 0) {
+        throw new Error('Error parsing XML');
+    }
+      const prodInfos = xmlDoc.evaluate("//productnames/prodInfo", 
+        xmlDoc, null, XPathResult.ORDERED_NODE_ITERATOR_TYPE, null);
+      var prodInfo = null;
+      var tn = {};
+      while ((prodInfo = prodInfos.iterateNext())) {
+        if(tn[prodInfo.children[5].textContent.trim()]){
+          tn[prodInfo.children[5].textContent.trim()] = prodInfo.children[3].textContent
+        }else{
+          tn[prodInfo.children[5].textContent.trim()] = prodInfo.children[1].textContent
+        }        
+      }
+      setTradenames(tn);
+    }
+
+    fetchTradenames();
+  }, []);
+
+  const immunizationDisplay = (codings) => {
     if (codings.length === 0) return '';
 
     const coding = codings[0];
-    return coding.system ? `${coding.system}#${coding.code}` : coding.code;
+
+    if(!tradenames[coding.code]){
+      return coding.system ? `${coding.system}#${coding.code}` : coding.code;
+    }else{
+      return tradenames[coding.code];
+    }
   };
 
   return (
@@ -39,7 +79,7 @@ const HealthCardDisplay = ({ patientData }) => {
             <Grid item key={i}>
               <Card variant="outlined">
                 <CardHeader
-                  title={immunization.vaccineCode ? immunizationCode(immunization.vaccineCode.coding) : ''}
+                  title={immunization.vaccineCode ? immunizationDisplay(immunization.vaccineCode.coding) : ''}
                   classes={{ title: classes.bold }}
                 />
                 <CardContent>
