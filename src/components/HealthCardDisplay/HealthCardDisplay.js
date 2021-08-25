@@ -33,14 +33,15 @@ const HealthCardDisplay = ({ patientData }) => {
       }
       const prodInfos = xmlDoc.evaluate('//productnames/prodInfo',
         xmlDoc, null, XPathResult.ORDERED_NODE_ITERATOR_TYPE, null);
-      let prodInfo = null;
+      let prodInfo = prodInfos.iterateNext();
       const tn = {};
-      while ((prodInfo = prodInfos.iterateNext())) {
+      while (prodInfo) {
         if (tn[prodInfo.children[5].textContent.trim()]) {
           tn[prodInfo.children[5].textContent.trim()] = prodInfo.children[3].textContent
         } else {
           tn[prodInfo.children[5].textContent.trim()] = prodInfo.children[1].textContent
         }
+        prodInfo = prodInfos.iterateNext();
       }
       setTradenames(tn);
     }
