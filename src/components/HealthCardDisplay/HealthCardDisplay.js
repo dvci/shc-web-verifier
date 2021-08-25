@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import {
   Card, CardContent, CardHeader, Grid, Typography
@@ -17,7 +17,7 @@ const HealthCardDisplay = ({ patientData }) => {
 
   const [tradenames, setTradenames] = useState({});
 
-  useEffect(() => {
+  React.useEffect(() => {
     async function fetchTradenames() {
       const response = await axios.get(tradenamesXml, {
         Accept: 'application/xml'

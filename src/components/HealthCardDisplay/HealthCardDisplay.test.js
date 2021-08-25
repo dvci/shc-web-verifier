@@ -38,41 +38,6 @@ const patientData = {
   ]
 };
 
-jest.mock('axios');
-
-beforeEach(() => {
-  jest.clearAllMocks()
-})
-
-test('renders health card', () => {
-  axios.get.mockResolvedValue({ data: tradenames });
-  render(<HealthCardDisplay patientData={patientData} />);
-  const patientName = screen.getByText(/John B. Anyperson/i);
-  expect(patientName).toBeInTheDocument();
-  const immunizationDate = screen.getByText(/2021-01-01/i);
-  expect(immunizationDate).toBeInTheDocument();
-});
-
-test('renders health card without performer', () => {
-  axios.get.mockResolvedValue({ data: tradenames });
-  // Remove performer from immunization
-  delete patientData.immunizations[0].resource.performer;
-  render(<HealthCardDisplay patientData={patientData} />);
-  const patientName = screen.getByText(/John B. Anyperson/i);
-  expect(patientName).toBeInTheDocument();
-  const immunizationDate = screen.getByText(/2021-01-01/i);
-  expect(immunizationDate).toBeInTheDocument();
-});
-
-test('renders immunization display', async () => {
-  await act(async () => {
-    await axios.get.mockResolvedValue({ data: tradenames });
-    render(<HealthCardDisplay patientData={patientData} />);
-    expect(await screen.findAllByText('Pfizer-BioNTech COVID-19 Vaccine (Non-US COMIRNATY)', {}, { timeout: 3000 })).toHaveLength(1);
-    screen.debug();
-  });
-});
-
 const tradenames = `<productnames>
 <prodInfo>
 <Name>CDC Product Name</Name>
@@ -111,3 +76,41 @@ const tradenames = `<productnames>
 <Value>7/12/2021</Value>
 </prodInfo>
 </productnames>`;
+
+jest.mock('axios');
+
+beforeAll(() => {
+  jest.spyOn(React, 'useEffect').mockImplementation((f) => f());
+});
+
+afterEach(() => {
+  jest.spyOn(React, 'useEffect').mockImplementation((f) => f());
+});
+
+test('renders health card', () => {
+  render(<HealthCardDisplay patientData={patientData} />);
+  const patientName = screen.getByText(/John B. Anyperson/i);
+  expect(patientName).toBeInTheDocument();
+  const immunizationDate = screen.getByText(/2021-01-01/i);
+  expect(immunizationDate).toBeInTheDocument();
+});
+
+test('renders health card without performer', () => {
+  // Remove performer from immunization
+  delete patientData.immunizations[0].resource.performer;
+  render(<HealthCardDisplay patientData={patientData} />);
+  const patientName = screen.getByText(/John B. Anyperson/i);
+  expect(patientName).toBeInTheDocument();
+  const immunizationDate = screen.getByText(/2021-01-01/i);
+  expect(immunizationDate).toBeInTheDocument();
+});
+
+test('renders immunization display', async () => {
+  React.useEffect.mockRestore();
+  await act(async () => {
+    render(<HealthCardDisplay patientData={patientData} />);
+    await axios.get.mockResolvedValue({ data: tradenames });
+    expect(await screen.findAllByText('Pfizer-BioNTech COVID-19 Vaccine (Non-US COMIRNATY)', {}, { timeout: 3000 })).toHaveLength(1);
+    screen.debug();
+  });
+});
