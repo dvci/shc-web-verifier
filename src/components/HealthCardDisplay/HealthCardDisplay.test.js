@@ -1,5 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
+import axios from 'axios';
+import { act } from 'react-dom/test-utils';
 import HealthCardDisplay from './HealthCardDisplay';
 
 const patientData = {
@@ -15,7 +17,7 @@ const patientData = {
           coding: [
             {
               system: 'http://hl7.org/fhir/sid/cvx',
-              code: '207'
+              code: '208'
             }
           ]
         },
@@ -36,6 +38,55 @@ const patientData = {
   ]
 };
 
+const tradenames = `<productnames>
+<prodInfo>
+<Name>CDC Product Name</Name>
+<Value>Moderna COVID-19 Vaccine (non-US Spikevax)</Value>
+<Name>Short Description</Name>
+<Value>COVID-19, mRNA, LNP-S, PF, 100 mcg/0.5 mL dose</Value>
+<Name>CVXCode</Name>
+<Value>207 </Value>
+<Name>Manufacturer</Name>
+<Value>Moderna US, Inc.</Value>
+<Name>MVX Code</Name>
+<Value>MOD </Value>
+<Name>MVX Status</Name>
+<Value>Active</Value>
+<Name>Product name Status</Name>
+<Value>Active</Value>
+<Name>Last Updated</Name>
+<Value>7/13/2021</Value>
+</prodInfo>
+<prodInfo>
+<Name>CDC Product Name</Name>
+<Value>Pfizer-BioNTech COVID-19 Vaccine (Non-US COMIRNATY)</Value>
+<Name>Short Description</Name>
+<Value>COVID-19, mRNA, LNP-S, PF, 30 mcg/0.3 mL dose</Value>
+<Name>CVXCode</Name>
+<Value>208 </Value>
+<Name>Manufacturer</Name>
+<Value>Pfizer, Inc</Value>
+<Name>MVX Code</Name>
+<Value>PFR </Value>
+<Name>MVX Status</Name>
+<Value>Active</Value>
+<Name>Product name Status</Name>
+<Value>Active</Value>
+<Name>Last Updated</Name>
+<Value>7/12/2021</Value>
+</prodInfo>
+</productnames>`;
+
+jest.mock('axios');
+
+beforeAll(() => {
+  jest.spyOn(React, 'useEffect').mockImplementation((f) => f());
+});
+
+afterEach(() => {
+  jest.spyOn(React, 'useEffect').mockImplementation((f) => f());
+});
+
 test('renders health card', () => {
   render(<HealthCardDisplay patientData={patientData} />);
   const patientName = screen.getByText(/John B. Anyperson/i);
@@ -52,4 +103,14 @@ test('renders health card without performer', () => {
   expect(patientName).toBeInTheDocument();
   const immunizationDate = screen.getByText(/2021-01-01/i);
   expect(immunizationDate).toBeInTheDocument();
+});
+
+test('renders immunization display', async () => {
+  React.useEffect.mockRestore();
+  await act(async () => {
+    render(<HealthCardDisplay patientData={patientData} />);
+    await axios.get.mockResolvedValue({ data: tradenames });
+    expect(await screen.findAllByText('Pfizer-BioNTech COVID-19 Vaccine (Non-US COMIRNATY)', {}, { timeout: 3000 })).toHaveLength(1);
+    screen.debug();
+  });
 });
