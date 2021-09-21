@@ -5,16 +5,21 @@ import { Base64 } from 'js-base64';
 import jsQR from 'jsqr';
 import pako from 'pako';
 import HealthCardDisplay from 'components/HealthCardDisplay';
+import HealthCardVerify from 'components/HealthCardVerify';
 
 function App() {
   const [isScanning, setIsScanning] = useState(false);
-  const [qrData, setQrData] = useState(null);
+  const [qrCode, setQrCode] = useState(null);
 
-  const decodeQr = (qrString) => {
+  const getJws = (qrString) => {
     const sliceIndex = qrString.lastIndexOf('/');
     const rawPayload = qrString.slice(sliceIndex + 1);
     const encodingChars = rawPayload.match(/\d\d/g);
-    const jwsString = encodingChars.map((charPair) => String.fromCharCode(+charPair + 45)).join('');
+    return encodingChars.map((charPair) => String.fromCharCode(+charPair + 45)).join('');
+  };
+
+  const getPayload = (qrString) => {
+    const jwsString = getJws(qrString)
     const dataString = jwsString.split('.')[1];
     const decodedPayload = Base64.toUint8Array(dataString);
     const inflatedPayload = pako.inflateRaw(decodedPayload);
@@ -92,9 +97,7 @@ function App() {
       if (code) {
         if (code.data.startsWith('shc:/')) {
           stopScanning();
-          const decodedQr = decodeQr(code.data);
-          const patientData = extractPatientData(decodedQr);
-          setQrData(patientData);
+          setQrCode(code.data);
         } else {
           statusMessage.innerText = 'QR code does not contain a SMART Health Card';
         }
@@ -108,7 +111,7 @@ function App() {
 
   const startScanning = () => {
     setIsScanning(true);
-    setQrData(null);
+    setQrCode(null);
 
     const video = document.createElement('video');
     const loadingMessage = document.getElementById('loadingMessage');
@@ -141,6 +144,17 @@ function App() {
     </button>
   );
 
+  const patientData = () => {
+    if (!qrCode) { return null; }
+    const decodedQr = getPayload(qrCode);
+    return extractPatientData(decodedQr);
+  };
+
+  const vc = () => {
+    if (!qrCode) { return null; }
+    return { jws: getJws(qrCode), payload: JSON.parse(getPayload(qrCode)) };
+  };
+
   return (
     <div className="App">
       <header className="App-header">
@@ -157,7 +171,8 @@ function App() {
       <div id="statusMessage" hidden={!isScanning}>
         No QR code detected.
       </div>
-      {qrData && !isScanning ? <HealthCardDisplay patientData={qrData} /> : ''}
+      {qrCode && !isScanning ? <HealthCardDisplay patientData={patientData()} /> : ''}
+      {qrCode && !isScanning ? <HealthCardVerify vc={vc()} /> : ''}
     </div>
   );
 }
