@@ -54,8 +54,14 @@ const HealthCardVerify = ({ vc }) => {
     }
 
     verify()
-      .then((status) => setVerified(status))
-      .catch((err) => setError(err.message));
+      .then((status) => {
+        setVerified(status);
+        setError();
+      })
+      .catch((err) => {
+        setError(err.message);
+        setVerified();
+      });
   }, [vc.jws, vc.payload.iss]);
 
   return (
