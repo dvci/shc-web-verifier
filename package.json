@@ -22,7 +22,6 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "test:coverage:unit": "react-scripts test --watchAll=false --coverage --testPathPattern=\".test.js\" --verbose",
     "eject": "react-scripts eject",
     "predeploy": "yarn run build",
     "deploy": "gh-pages -d build",
