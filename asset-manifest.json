@@ -1,22 +1,23 @@
 {
   "files": {
-    "main.css": "/shc-web-verifier/static/css/main.ea1455b2.chunk.css",
-    "main.js": "/shc-web-verifier/static/js/main.6abbaf55.chunk.js",
-    "main.js.map": "/shc-web-verifier/static/js/main.6abbaf55.chunk.js.map",
-    "runtime-main.js": "/shc-web-verifier/static/js/runtime-main.b4ec7920.js",
-    "runtime-main.js.map": "/shc-web-verifier/static/js/runtime-main.b4ec7920.js.map",
-    "static/js/2.68c34342.chunk.js": "/shc-web-verifier/static/js/2.68c34342.chunk.js",
-    "static/js/2.68c34342.chunk.js.map": "/shc-web-verifier/static/js/2.68c34342.chunk.js.map",
-    "static/js/3.99a67782.chunk.js": "/shc-web-verifier/static/js/3.99a67782.chunk.js",
-    "static/js/3.99a67782.chunk.js.map": "/shc-web-verifier/static/js/3.99a67782.chunk.js.map",
+    "main.css": "/shc-web-verifier/static/css/main.62ed830e.chunk.css",
+    "main.js": "/shc-web-verifier/static/js/main.0e3fb05f.chunk.js",
+    "main.js.map": "/shc-web-verifier/static/js/main.0e3fb05f.chunk.js.map",
+    "runtime-main.js": "/shc-web-verifier/static/js/runtime-main.54cf0ff2.js",
+    "runtime-main.js.map": "/shc-web-verifier/static/js/runtime-main.54cf0ff2.js.map",
+    "static/js/2.92adf14f.chunk.js": "/shc-web-verifier/static/js/2.92adf14f.chunk.js",
+    "static/js/2.92adf14f.chunk.js.map": "/shc-web-verifier/static/js/2.92adf14f.chunk.js.map",
+    "static/js/3.67810ce6.chunk.js": "/shc-web-verifier/static/js/3.67810ce6.chunk.js",
+    "static/js/3.67810ce6.chunk.js.map": "/shc-web-verifier/static/js/3.67810ce6.chunk.js.map",
     "index.html": "/shc-web-verifier/index.html",
-    "static/css/main.ea1455b2.chunk.css.map": "/shc-web-verifier/static/css/main.ea1455b2.chunk.css.map",
-    "static/js/2.68c34342.chunk.js.LICENSE.txt": "/shc-web-verifier/static/js/2.68c34342.chunk.js.LICENSE.txt"
+    "static/css/main.62ed830e.chunk.css.map": "/shc-web-verifier/static/css/main.62ed830e.chunk.css.map",
+    "static/js/2.92adf14f.chunk.js.LICENSE.txt": "/shc-web-verifier/static/js/2.92adf14f.chunk.js.LICENSE.txt",
+    "static/media/iisstandards_tradename.7e848362.xml": "/shc-web-verifier/static/media/iisstandards_tradename.7e848362.xml"
   },
   "entrypoints": [
-    "static/js/runtime-main.b4ec7920.js",
-    "static/js/2.68c34342.chunk.js",
-    "static/css/main.ea1455b2.chunk.css",
-    "static/js/main.6abbaf55.chunk.js"
+    "static/js/runtime-main.54cf0ff2.js",
+    "static/js/2.92adf14f.chunk.js",
+    "static/css/main.62ed830e.chunk.css",
+    "static/js/main.0e3fb05f.chunk.js"
   ]
 }
