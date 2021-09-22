@@ -19,12 +19,13 @@ jobs:
       with:
         node-version: '14.x'
 
-    - run: |
-        git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
-        git config --local user.name "GitHub Action Bot"   
-
     - run: yarn install
 
     - run: yarn build
 
-    - run: yarn deploy
+    - name: Deploy with gh-pages
+      run: |
+        git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
+        yarn run deploy -- -u "github-actions-bot <support+actions@github.com>"
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
