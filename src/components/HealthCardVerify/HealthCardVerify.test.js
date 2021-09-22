@@ -91,9 +91,20 @@ const vc = {
   }
 };
 
-axios.defaults.adapter = require('axios/lib/adapters/http');
+axios.defaults.adapter = require('axios/lib/adapters/http'); // xhr adapter causes network error
 
 const useEffectSpy = jest.spyOn(React, 'useEffect');
+let axiosSpy;
+
+beforeEach(() => {
+  useEffectSpy.mockImplementation((f) => f());
+  axiosSpy = jest.spyOn(axios, 'get'); // resetting spy mock alone insufficient, need to re-initiate
+});
+
+afterEach(() => {
+  axiosSpy.mockReset();
+  axiosSpy.mockRestore();
+});
 
 test('renders element', () => {
   useEffectSpy.mockImplementation(() => {});
@@ -103,31 +114,19 @@ test('renders element', () => {
   screen.debug();
 });
 
-test('verifies vc', async () => {
-  useEffectSpy.mockImplementation((f) => f());
-  const axiosSpy = jest.spyOn(axios, 'get');
-  axiosSpy.mockResolvedValueOnce(jwks);
+test('verifies vc true', async () => {
+  axiosSpy.mockResolvedValueOnce({ data: jwks });
   render(<HealthCardVerify vc={vc} />);
-  await waitFor(() => {
-    expect(axiosSpy).toHaveBeenCalledTimes(1);
-  });
+  await waitFor(() => expect(axiosSpy).toHaveBeenCalledTimes(1));
   expect(await screen.findAllByText('true', {}, { timeout: 3000 })).toHaveLength(1);
   screen.debug();
-  axiosSpy.mockReset();
-  axiosSpy.mockRestore();
 });
 
-test('verifies vc integration', async () => {
-  useEffectSpy.mockImplementation((f) => f());
-  const axiosSpy = jest.spyOn(axios, 'get');
+test('verifies vc true integration test', async () => {
   render(<HealthCardVerify vc={vc} />);
-  await waitFor(() => {
-    expect(axiosSpy).toHaveBeenCalledTimes(1);
-  });
+  await waitFor(() => expect(axiosSpy).toHaveBeenCalledTimes(1));
   expect(await screen.findAllByText('true', {}, { timeout: 3000 })).toHaveLength(1);
   screen.debug();
-  axiosSpy.mockReset();
-  axiosSpy.mockRestore();
 });
 
 test('verifies vc false', async () => {
@@ -135,22 +134,14 @@ test('verifies vc false', async () => {
     ...vc,
     jws: 'eyJ6aXAiOiJERUYiLCJhbGciOiJFUzI1NiIsImtpZCI6IjNLZmRnLVh3UC03Z1h5eXd0VWZVQUR3QnVtRE9QS01ReC1pRUxMMTFXOXMifQ.ZJNT8JAEIb_y3gt_UoA25voRU8mohfDYbsd6JrtttmPBiT9784uGIhIPNvbtO88874z3YMwBkporO1NmSSmRx6blmnbIJO2iTnTtUlwy9peoklI7VBDBKpaQ5nN8tt8VkyLWQQDh3IPdtcjlO8n3k_UzaGY-IIw13WSVRqNkxZWEXCNNSormHxx1Qdy62etG6HfUBvRKSiVkzIKrxZO1RJPZoB3UlKLl0VAFL0jh9ROHa9akoDmdE5zLFMSfBceoFiLBy1rhaQ2uFPE1CagNmJA5cM-dY2vFzGsRjJbCYrywKyfnRXTbJJmk_wcvTz4emZWkB0Yx-hXN9kPN8Yy60wI5I9h0S9wYJwLhfddHTS8q4XaBM9mZyy2x9vSihs5jzu9SfyOEiPqhA9bAvDQCXk6h3E1RtAfXRFM4xo1Kj_9fEck6jh3OnzyOZeiPSDykDXNLrM-tq1T4pOFK1wLnP_TwHnxZ-DVheD4m470fAE.EYlykJhkhPm0eQjmNYqTTkH9TheZ4bKdJS3nDP1jqty1FSV-py2KRRLhK1NOZdcH6WcllRp-RLhFxMhet_IIaQ',
   };
-  useEffectSpy.mockImplementation((f) => f());
-  const axiosSpy = jest.spyOn(axios, 'get');
-  axiosSpy.mockResolvedValueOnce(jwks);
+  axiosSpy.mockResolvedValueOnce({ data: jwks });
   render(<HealthCardVerify vc={falseVc} />);
-  await waitFor(() => {
-    expect(axiosSpy).toHaveBeenCalledTimes(1);
-  });
+  await waitFor(() => expect(axiosSpy).toHaveBeenCalledTimes(1));
   expect(await screen.findAllByText('false', {}, { timeout: 3000 })).toHaveLength(1);
   screen.debug();
-  axiosSpy.mockReset();
-  axiosSpy.mockRestore();
 });
 
-test('verifies vc error invalid issuer', async () => {
-  const axiosSpy = jest.spyOn(axios, 'get');
-  useEffectSpy.mockImplementation((f) => f());
+test('verifies vc error invalid issuer url', async () => {
   const falseVc = {
     ...vc,
     payload: {
@@ -162,27 +153,55 @@ test('verifies vc error invalid issuer', async () => {
   expect(axiosSpy).not.toHaveBeenCalled();
   expect(await screen.findAllByText('Invalid issuer.', {}, { timeout: 3000 })).toHaveLength(1);
   screen.debug();
-  axiosSpy.mockReset();
-  axiosSpy.mockRestore();
 });
 
-test('verifies vc error bad issuer', async () => {
+test('verifies vc error non-existent issuer key url', async () => {
   const falseVc = {
     ...vc,
     payload: {
       ...vc.payload,
-      iss: 'http://example.com'
+      iss: 'http://ww.example.com'
     }
   };
-  useEffectSpy.mockImplementation((f) => f());
-  const axiosSpy = jest.spyOn(axios, 'get');
-  axiosSpy.mockResolvedValueOnce(jwks);
+  axiosSpy.mockResolvedValueOnce({ data: jwks });
   render(<HealthCardVerify vc={falseVc} />);
-  await waitFor(() => {
-    expect(axiosSpy).toHaveBeenCalledTimes(1);
-  });
-  expect(await screen.findAllByText('Error retrieving issuer keys.', {}, { timeout: 3000 })).toHaveLength(1);
+  await waitFor(() => expect(axiosSpy).toHaveBeenCalledTimes(1));
+  expect(await screen.findAllByText('Error retrieving issuer key URL.', {}, { timeout: 3000 })).toHaveLength(1);
   screen.debug();
-  axiosSpy.mockReset();
-  axiosSpy.mockRestore();
+});
+
+test('verifies vc error 404 issuer key url', async () => {
+  const falseVc = {
+    ...vc,
+    payload: {
+      ...vc.payload,
+      iss: 'https://spec.smarthealth.cards/issuer/.well-known/jwks.json'
+    }
+  };
+  axiosSpy.mockResolvedValueOnce({ data: jwks });
+  render(<HealthCardVerify vc={falseVc} />);
+  await waitFor(() => expect(axiosSpy).toHaveBeenCalledTimes(1));
+  expect(await screen.findAllByText('Error retrieving issuer key URL.', {}, { timeout: 3000 })).toHaveLength(1);
+  screen.debug();
+});
+
+test('verifies vc error bad keystore', async () => {
+  const badJwks = {};
+  axiosSpy.mockResolvedValue({ data: badJwks });
+  render(<HealthCardVerify vc={vc} />);
+  await waitFor(() => expect(axiosSpy).toHaveBeenCalledTimes(1));
+  expect(await screen.findAllByText('Error processing issuer keys.', {}, { timeout: 3000 })).toHaveLength(1);
+  screen.debug();
+});
+
+test('verifies vc error validating signature', async () => {
+  const falseVc = {
+    ...vc,
+    jws: 3
+  };
+  axiosSpy.mockResolvedValue({ data: jwks });
+  render(<HealthCardVerify vc={falseVc} />);
+  await waitFor(() => expect(axiosSpy).toHaveBeenCalledTimes(1));
+  expect(await screen.findAllByText('Error validating signature.', {}, { timeout: 3000 })).toHaveLength(1);
+  screen.debug();
 });

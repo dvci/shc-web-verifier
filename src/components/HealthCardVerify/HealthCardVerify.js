@@ -25,7 +25,8 @@ const HealthCardVerify = ({ vc }) => {
     });
 
     async function verify() {
-      let keyStore;
+      let response;
+      let verifier;
 
       if (!vc.payload.iss || typeof vc.payload.iss !== 'string') {
         throw Error('Invalid issuer.');
@@ -33,18 +34,21 @@ const HealthCardVerify = ({ vc }) => {
 
       try {
         const jwkURL = `${vc.payload.iss}/.well-known/jwks.json`;
-        // https.globalAgent.options.rejectUnauthorized = false;
-
-        const response = await axios.get(jwkURL, { httpsAgent: agent });
-        const keySet = await response.data;
-        keyStore = await jose.JWK.asKeyStore(keySet)
-          .then((result) => result);
-      } catch (err) {
-        throw Error('Error retrieving issuer keys.');
+        response = await axios.get(jwkURL, { httpsAgent: agent });
+      } catch (err) { // network error, incorrect URL or status!=2xx
+        throw Error('Error retrieving issuer key URL.');
       }
 
       try {
-        const verifier = jose.JWS.createVerify(keyStore);
+        const keySet = await response.data;
+        const keyStore = await jose.JWK.asKeyStore(keySet)
+          .then((result) => result);
+        verifier = jose.JWS.createVerify(keyStore);
+      } catch (err) { // key format error
+        throw Error('Error processing issuer keys.');
+      }
+
+      try {
         return await verifier.verify(vc.jws)
           .then(() => true)
           .catch(() => false);
@@ -56,11 +60,11 @@ const HealthCardVerify = ({ vc }) => {
     verify()
       .then((status) => {
         setVerified(status);
-        setError();
+        setError(null);
       })
       .catch((err) => {
         setError(err.message);
-        setVerified();
+        setVerified(null);
       });
   }, [vc.jws, vc.payload.iss]);
 
