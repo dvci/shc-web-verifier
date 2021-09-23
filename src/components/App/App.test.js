@@ -32,5 +32,4 @@ test('renders qr code', () => {
   render(<App />);
   const titleElement = screen.getByText(/SMART Health Card/i);
   expect(titleElement).toBeInTheDocument();
-  screen.debug();
 });

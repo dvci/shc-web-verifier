@@ -150,11 +150,6 @@ function App() {
     return extractPatientData(decodedQr);
   };
 
-  const vc = () => {
-    if (!qrCode) { return null; }
-    return { jws: getJws(qrCode), payload: JSON.parse(getPayload(qrCode)) };
-  };
-
   return (
     <div className="App">
       <header className="App-header">
@@ -172,7 +167,7 @@ function App() {
         No QR code detected.
       </div>
       {qrCode && !isScanning ? <HealthCardDisplay patientData={patientData()} /> : ''}
-      {qrCode && !isScanning ? <HealthCardVerify vc={vc()} /> : ''}
+      {qrCode && !isScanning ? <HealthCardVerify jws={getJws(qrCode)} payload={JSON.parse(getPayload(qrCode))} /> : ''}
     </div>
   );
 }
