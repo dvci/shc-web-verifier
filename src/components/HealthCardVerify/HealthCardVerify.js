@@ -13,7 +13,7 @@ const useStyles = makeStyles({
   }
 });
 
-const HealthCardVerify = ({ jws, payload }) => {
+const HealthCardVerify = ({ jws, iss }) => {
   const classes = useStyles();
 
   const [verified, setVerified] = useState();
@@ -28,12 +28,12 @@ const HealthCardVerify = ({ jws, payload }) => {
       let response;
       let verifier;
 
-      if (!payload.iss || typeof payload.iss !== 'string') {
+      if (!iss || typeof iss !== 'string') {
         throw Error('Invalid issuer.');
       }
 
       try {
-        const jwkURL = `${payload.iss}/.well-known/jwks.json`;
+        const jwkURL = `${iss}/.well-known/jwks.json`;
         response = await axios.get(jwkURL, { httpsAgent: agent });
       } catch (err) { // network error, incorrect URL or status!=2xx
         throw Error('Error retrieving issuer key URL.');
@@ -66,7 +66,7 @@ const HealthCardVerify = ({ jws, payload }) => {
         setError(err.message);
         setVerified(null);
       });
-  }, [jws, payload.iss]);
+  }, [jws, iss]);
 
   return (
     <div className="HealthCardVerify">
