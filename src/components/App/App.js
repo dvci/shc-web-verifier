@@ -6,11 +6,21 @@ import jsQR from 'jsqr';
 import pako from 'pako';
 import HealthCardDisplay from 'components/HealthCardDisplay';
 import HealthCardVerify from 'components/HealthCardVerify';
-import IssuerVerify from 'components/IssuerVerify';
+import IssuerVerify, { IssuerDirectories } from 'components/IssuerVerify';
 
 function App() {
   const [isScanning, setIsScanning] = useState(false);
   const [qrCode, setQrCode] = useState(null);
+  const [issuerDirectories, setIssuerDirectories] = useState(null);
+
+  React.useEffect(() => {
+    IssuerDirectories.getIssuerDirectories()
+      .then((fetchedDirectories) => {
+        setIssuerDirectories(fetchedDirectories);
+      }).catch(() => {
+        setIssuerDirectories(null);
+      });
+  }, []);
 
   const getJws = (qrString) => {
     const sliceIndex = qrString.lastIndexOf('/');
@@ -175,7 +185,7 @@ function App() {
       </div>
       {qrCode && !isScanning ? <HealthCardDisplay patientData={patientData()} /> : ''}
       {qrCode && !isScanning ? <HealthCardVerify jws={getJws(qrCode)} iss={getIssuer()} /> : ''}
-      {qrCode && !isScanning ? <IssuerVerify iss={getIssuer()} /> : ''}
+      {qrCode && !isScanning ? <IssuerVerify iss={getIssuer()} issuerDirectories={issuerDirectories} /> : ''}
     </div>
   );
 }

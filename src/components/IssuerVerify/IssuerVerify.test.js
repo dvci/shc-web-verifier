@@ -4,6 +4,7 @@ import {
   render, screen, waitFor
 } from '@testing-library/react';
 import IssuerVerify from './IssuerVerify';
+import IssuerDirectories from './IssuerDirectories';
 
 const iss = 'https://spec.smarthealth.cards/examples/issuer';
 
@@ -33,22 +34,27 @@ afterEach(() => {
   axiosSpy.mockRestore();
 });
 
+const getIssuerDirectories = async () => IssuerDirectories.getIssuerDirectories();
+
 test('verifies issuer true', async () => {
   axiosSpy.mockResolvedValueOnce({ data: directory });
-  render(<IssuerVerify iss={iss} />);
+  const issuerDirectories = await getIssuerDirectories();
+  render(<IssuerVerify iss={iss} issuerDirectories={issuerDirectories} />);
   await waitFor(() => expect(axiosSpy).toHaveBeenCalledTimes(1));
   expect(await screen.findAllByText('true', {}, { timeout: 3000 })).toHaveLength(1);
 });
 
 test.skip('verifies issuer true integration test', async () => {
-  render(<IssuerVerify iss="https://myvaccinerecord.cdph.ca.gov/creds" />);
+  const issuerDirectories = await getIssuerDirectories();
+  render(<IssuerVerify iss="https://myvaccinerecord.cdph.ca.gov/creds" issuerDirectories={issuerDirectories} />);
   await waitFor(() => expect(axiosSpy).toHaveBeenCalledTimes(1));
   expect(await screen.findAllByText('true', {}, { timeout: 3000 })).toHaveLength(1);
 });
 
 test('verifies issuer false', async () => {
   axiosSpy.mockResolvedValueOnce({ data: directory });
-  render(<IssuerVerify iss="https://myvaccinerecord.cdph.ca.gov/creds" />);
+  const issuerDirectories = await getIssuerDirectories();
+  render(<IssuerVerify iss="https://myvaccinerecord.cdph.ca.gov/creds" issuerDirectories={issuerDirectories} />);
   await waitFor(() => expect(axiosSpy).toHaveBeenCalledTimes(1));
   expect(await screen.findAllByText('false', {}, { timeout: 3000 })).toHaveLength(1);
 });
@@ -56,14 +62,16 @@ test('verifies issuer false', async () => {
 test('verifies error bad directory format', async () => {
   const badDirectory = {};
   axiosSpy.mockResolvedValueOnce({ data: badDirectory });
-  render(<IssuerVerify iss={iss} />);
+  const issuerDirectories = await getIssuerDirectories();
+  render(<IssuerVerify iss={iss} issuerDirectories={issuerDirectories} />);
   await waitFor(() => expect(axiosSpy).toHaveBeenCalledTimes(1));
-  expect(await screen.findAllByText('Incorrect issuer directory format.', {}, { timeout: 3000 })).toHaveLength(1);
+  expect(await screen.findAllByText('VCI: Incorrect issuer directory format.', {}, { timeout: 3000 })).toHaveLength(1);
 });
 
 test('verifies error bad directory URL', async () => {
   axiosSpy.mockRejectedValueOnce(new Error('Bad URL'));
-  render(<IssuerVerify iss={iss} />);
+  const issuerDirectories = await getIssuerDirectories();
+  render(<IssuerVerify iss={iss} issuerDirectories={issuerDirectories} />);
   await waitFor(() => expect(axiosSpy).toHaveBeenCalledTimes(1));
-  expect(await screen.findAllByText('Error fetching issuer directory.', {}, { timeout: 3000 })).toHaveLength(1);
+  expect(await screen.findAllByText('VCI: Error fetching issuer directory.', {}, { timeout: 3000 })).toHaveLength(1);
 });

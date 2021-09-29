@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import axios from 'axios';
-import https from 'https';
 import {
   Typography
 } from '@material-ui/core';
@@ -12,61 +10,27 @@ const useStyles = makeStyles({
   }
 });
 
-const IssuerVerify = ({ iss }) => {
+const IssuerVerify = ({ iss, issuerDirectories }) => {
   const classes = useStyles();
 
-  const [issuerDirectories, setIssuerDirectories] = useState(null);
   const [verified, setVerified] = useState(null);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const defaultIssuerDirectories = [
-      {
-        name: 'VCI',
-        URL: 'https://raw.githubusercontent.com/the-commons-project/vci-directory/main/vci-issuers.json'
-      }
-    ]
-
-    const agent = new https.Agent({
-      rejectUnauthorized: false
-    });
-
-    async function fetchIssuerDirectories() {
-      return Promise.all(defaultIssuerDirectories.map(async (d) => {
-        const directory = d;
-        let response;
-        try {
-          response = await axios.get(d.URL, { httpsAgent: agent });
-        } catch (err) {
-          throw Error('Error fetching issuer directory.');
-        }
-
-        directory.issuers = await response.data;
-        if (!directory.issuers?.participating_issuers) {
-          throw Error('Incorrect issuer directory format.');
-        }
-        return directory;
-      }));
-    }
-
-    fetchIssuerDirectories()
-      .then((fetchedDirectories) => {
-        setIssuerDirectories(fetchedDirectories);
-        setError(null);
-      })
-      .catch((err) => {
-        setError(err.message);
-        setIssuerDirectories(null);
-      });
-  }, []);
+  const [errors, setErrors] = useState(null);
 
   useEffect(() => {
     if (!issuerDirectories) {
       return;
     }
 
+    const errorMessages = issuerDirectories.map((d) => {
+      if (d.error) {
+        return `${d.name}: ${d.error}`;
+      }
+      return null;
+    });
+    setErrors(errorMessages);
+
     const found = issuerDirectories.some((d) => {
-      if (d.issuers) {
+      if (d.issuers && !d.error) {
         const issName = d.issuers?.participating_issuers
           .filter((issuer) => issuer.iss === iss)
           .map((issuer) => issuer.name)[0];
@@ -88,7 +52,7 @@ const IssuerVerify = ({ iss }) => {
       <div id="errorMessage">
         <Typography>
           <span className={classes.bold}>Error: </span>
-          <span>{error}</span>
+          <span>{errors}</span>
         </Typography>
       </div>
     </div>

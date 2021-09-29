@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { render, screen } from '@testing-library/react';
 import { TextDecoder } from 'util'
 import App from './App';
@@ -19,8 +19,13 @@ jest.mock('../HealthCardVerify', () => ({
 
 jest.mock('../IssuerVerify', () => ({
   __esModule: true,
-  default: () => <div />
-}))
+  default: () => <div />,
+  IssuerDirectories: jest.fn().mockImplementation(() => ({ getIssuerDirectories: () => jest.fn() }))
+}));
+
+beforeAll(() => {
+  jest.spyOn(React, 'useEffect').mockImplementation(() => {});
+});
 
 test('renders title', () => {
   React.useState.mockImplementation(jest.requireActual('react').useState);
