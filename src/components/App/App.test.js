@@ -17,6 +17,11 @@ jest.mock('../HealthCardVerify', () => ({
   default: () => <div />
 }))
 
+jest.mock('../IssuerVerify', () => ({
+  __esModule: true,
+  default: () => <div />
+}))
+
 test('renders title', () => {
   React.useState.mockImplementation(jest.requireActual('react').useState);
   render(<App />);

@@ -6,6 +6,7 @@ import jsQR from 'jsqr';
 import pako from 'pako';
 import HealthCardDisplay from 'components/HealthCardDisplay';
 import HealthCardVerify from 'components/HealthCardVerify';
+import IssuerVerify from 'components/IssuerVerify';
 
 function App() {
   const [isScanning, setIsScanning] = useState(false);
@@ -174,6 +175,7 @@ function App() {
       </div>
       {qrCode && !isScanning ? <HealthCardDisplay patientData={patientData()} /> : ''}
       {qrCode && !isScanning ? <HealthCardVerify jws={getJws(qrCode)} iss={getIssuer()} /> : ''}
+      {qrCode && !isScanning ? <IssuerVerify iss={getIssuer()} /> : ''}
     </div>
   );
 }
