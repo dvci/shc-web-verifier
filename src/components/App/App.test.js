@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { TextDecoder } from 'util'
 import App from './App';
