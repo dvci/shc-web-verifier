@@ -9,7 +9,8 @@ global.TextDecoder = TextDecoder;
 
 jest.mock('react', () => ({
   ...jest.requireActual('react'),
-  useState: jest.fn()
+  useState: jest.fn(),
+  useEffect: jest.fn()
 }))
 
 jest.mock('../HealthCardVerify', () => ({
@@ -24,7 +25,7 @@ jest.mock('../IssuerVerify', () => ({
 }));
 
 beforeAll(() => {
-  jest.spyOn(React, 'useEffect').mockImplementation(() => {});
+  React.useEffect.mockImplementation(() => {});
 });
 
 test('renders title', () => {

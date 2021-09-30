@@ -1,6 +1,6 @@
 import './App.css';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Base64 } from 'js-base64';
 import jsQR from 'jsqr';
 import pako from 'pako';
@@ -13,7 +13,7 @@ function App() {
   const [qrCode, setQrCode] = useState(null);
   const [issuerDirectories, setIssuerDirectories] = useState(null);
 
-  React.useEffect(() => {
+  useEffect(() => {
     IssuerDirectories.getIssuerDirectories()
       .then((fetchedDirectories) => {
         setIssuerDirectories(fetchedDirectories);
