@@ -5,7 +5,7 @@ export interface IAntigens {
 }
 
 const antigens: IAntigens = {
-    'COVID-19-508': COVID
+    'COVID-19': COVID
 };
 
 export default antigens;

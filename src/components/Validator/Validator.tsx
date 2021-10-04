@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react';
-import cql from "../output-elm/CDSiSupportingData.json";
-import fhirhelpers from "../output-elm/FHIRHelpers-4.0.0.json";
-import antigens from '../supporting-data';
+import cql from "../../output-elm/CDSiSupportingData.json";
+import fhirhelpers from "../../output-elm/FHIRHelpers-4.0.0.json";
+import antigens from '../../supporting-data';
 const {
   Repository,
   CodeService,
@@ -23,7 +23,7 @@ export interface IValidationResult {
     ];
 }
 
-export interface IValidationResultProps {
+export interface IValidationResults {
     results: IValidationResult[];
 }
 
@@ -39,8 +39,8 @@ export class Validator {
    */
   public static execute(
     patientBundle: any,
-    valueSetMap: any,
     antigen: string,
+    valueSetMap: any,
     elmJSONs: any[] = [cql, fhirhelpers],
     libraryID: string = "CDSiSupportingData"
     ): [IValidationResult] {
@@ -73,21 +73,3 @@ export class Validator {
     return expr.execute(patient_ctx);
   }
 }
-
-export const Card: FunctionComponent<IValidationResultProps> = ({results}) => <aside>
-    <table>
-        <tbody>
-        {results.map((series) => {
-          return (
-            <tr>{series.seriesName}:
-            {series.complete.map(complete => 
-            <div>{complete.map(item => 
-                <div>{item.doseNumber}: {JSON.stringify(item.immunization)}</div>
-            )}
-            </div>)}
-            </tr>
-          );
-        })}
-        </tbody>
-    </table>
-</aside>
