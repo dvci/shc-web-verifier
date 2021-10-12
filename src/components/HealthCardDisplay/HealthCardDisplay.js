@@ -5,6 +5,7 @@ import {
 } from '@material-ui/core';
 import axios from 'axios';
 import tradenamesXml from './iisstandards_tradename.xml';
+import cvxXml from './iisstandards_cvx.xml';
 
 const useStyles = makeStyles({
   bold: {
@@ -16,21 +17,27 @@ const HealthCardDisplay = ({ patientData }) => {
   const classes = useStyles();
 
   const [tradenames, setTradenames] = useState({});
+  const [cvxCodes, setCvxCodes] = useState({});
+
+  async function fetchCdcXml(file) {
+    const response = await axios.get(file, {
+      Accept: 'application/xml'
+    });
+    let data = await response.data;
+    data = data.replace(/&/g, '&amp;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&apos;');
+    const parser = new DOMParser();
+    const xmlDoc = parser.parseFromString(data, 'application/xml');
+    if (xmlDoc.getElementsByTagName('parsererror').length > 0) {
+      throw new Error('Error parsing XML');
+    }
+    return xmlDoc;
+  }
 
   React.useEffect(() => {
     async function fetchTradenames() {
-      const response = await axios.get(tradenamesXml, {
-        Accept: 'application/xml'
-      });
-      let data = await response.data;
-      data = data.replace(/&/g, '&amp;')
-        .replace(/"/g, '&quot;')
-        .replace(/'/g, '&apos;');
-      const parser = new DOMParser();
-      const xmlDoc = parser.parseFromString(data, 'application/xml');
-      if (xmlDoc.getElementsByTagName('parsererror').length > 0) {
-        throw new Error('Error parsing XML');
-      }
+      const xmlDoc = await fetchCdcXml(tradenamesXml);
       const prodInfos = xmlDoc.evaluate('//productnames/prodInfo',
         xmlDoc, null, XPathResult.ORDERED_NODE_ITERATOR_TYPE, null);
       let prodInfo = prodInfos.iterateNext();
@@ -46,7 +53,21 @@ const HealthCardDisplay = ({ patientData }) => {
       setTradenames(tn);
     }
 
+    async function fetchCvx() {
+      const xmlDoc = await fetchCdcXml(cvxXml);
+      const prodInfos = xmlDoc.evaluate('//CVXCodes/CVXInfo',
+        xmlDoc, null, XPathResult.ORDERED_NODE_ITERATOR_TYPE, null);
+      let prodInfo = prodInfos.iterateNext();
+      const cvx = {};
+      while (prodInfo) {
+        cvx[prodInfo.getElementsByTagName('CVXCode')[0].textContent.trim()] = prodInfo.getElementsByTagName('ShortDescription')[0].textContent
+        prodInfo = prodInfos.iterateNext();
+      }
+      setCvxCodes(cvx);
+    }
+
     fetchTradenames();
+    fetchCvx();
   }, []);
 
   const immunizationDisplayName = (codings) => {
@@ -55,7 +76,10 @@ const HealthCardDisplay = ({ patientData }) => {
     const coding = codings[0];
 
     if (!tradenames[coding.code]) {
-      return coding.system ? `${coding.system}#${coding.code}` : coding.code;
+      if (!cvxCodes[coding.code]) {
+        return coding.system ? `${coding.system}#${coding.code}` : coding.code;
+      }
+      return cvxCodes[coding.code];
     }
     return tradenames[coding.code];
   };

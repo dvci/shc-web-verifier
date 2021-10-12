@@ -34,6 +34,25 @@ const patientData = {
         ],
         lotNumber: '0000001'
       }
+    },
+    {
+      fullUrl: 'resource:1',
+      resource: {
+        resourceType: 'Immunization',
+        status: 'completed',
+        vaccineCode: {
+          coding: [
+            {
+              system: 'http://hl7.org/fhir/sid/cvx',
+              code: '213'
+            }
+          ]
+        },
+        patient: {
+          reference: 'resource:0'
+        },
+        occurrenceDateTime: '2021-02-01'
+      }
     }
   ]
 };
@@ -77,6 +96,25 @@ const tradenames = `<productnames>
 </prodInfo>
 </productnames>`;
 
+const cvxCodes = `<CVXCodes>
+<CVXInfo>
+<ShortDescription>SARS-COV-2 (COVID-19) vaccine, UNSPECIFIED</ShortDescription>
+<FullVaccinename>SARS-COV-2 (COVID-19) vaccine, UNSPECIFIED</FullVaccinename>
+<CVXCode>213 </CVXCode>
+<Notes>Unspecified code for COVID-19 not to be used to record patient US administration. May be used to record historic US administration if product not known. CVX code 500 should be used to record Non-US vaccine where product is not known.</Notes>
+<Status>Inactive</Status>
+<LastUpdated>7/31/2021</LastUpdated>
+</CVXInfo>
+<CVXInfo>
+<ShortDescription>COVID-19, mRNA, LNP-S, PF, 30 mcg/0.3 mL dose</ShortDescription>
+<FullVaccinename>SARS-COV-2 (COVID-19) vaccine, mRNA, spike protein, LNP, preservative free, 30 mcg/0.3mL dose</FullVaccinename>
+<CVXCode>208 </CVXCode>
+<Notes>FDA BLA 08/23/2021 for adult dose (16+ years). Still under EUA for adolescent doses and presentations. EUA 12/11/2020, 2-dose vaccine. Used to record Pfizer vaccines administered in the US and in non-US locations (includes tradename Comirnaty)</Notes>
+<Status>Active</Status>
+<LastUpdated>9/10/2021</LastUpdated>
+</CVXInfo>
+</CVXCodes>`;
+
 jest.mock('axios');
 
 beforeAll(() => {
@@ -109,8 +147,14 @@ test('renders immunization display', async () => {
   React.useEffect.mockRestore();
   await act(async () => {
     render(<HealthCardDisplay patientData={patientData} />);
-    await axios.get.mockResolvedValue({ data: tradenames });
+    await axios.get.mockImplementation((url) => {
+      if (url === 'iisstandards_tradename.xml') {
+        return { data: tradenames };
+      }
+      return { data: cvxCodes };
+    });
     expect(await screen.findAllByText('Pfizer-BioNTech COVID-19 Vaccine (Non-US COMIRNATY)', {}, { timeout: 3000 })).toHaveLength(1);
+    expect(screen.getByText('SARS-COV-2 (COVID-19) vaccine, UNSPECIFIED')).toBeInTheDocument();
     screen.debug();
   });
 });
