@@ -183,9 +183,13 @@ function App() {
       <div id="statusMessage" hidden={!isScanning}>
         No QR code detected.
       </div>
-      {qrCode && !isScanning ? <HealthCardDisplay patientData={patientData()} /> : ''}
-      {qrCode && !isScanning ? <HealthCardVerify jws={getJws(qrCode)} iss={getIssuer()} /> : ''}
-      {qrCode && !isScanning ? <IssuerVerify iss={getIssuer()} issuerDirectories={issuerDirectories} /> : ''}
+      {qrCode && !isScanning ? (
+        <>
+          <HealthCardDisplay patientData={patientData()} />
+          <HealthCardVerify jws={getJws(qrCode)} iss={getIssuer()} />
+          <IssuerVerify iss={getIssuer()} issuerDirectories={issuerDirectories} />
+        </>
+      ) : ''}
     </div>
   );
 }
