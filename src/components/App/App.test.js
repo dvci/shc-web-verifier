@@ -9,13 +9,24 @@ global.TextDecoder = TextDecoder;
 
 jest.mock('react', () => ({
   ...jest.requireActual('react'),
-  useState: jest.fn()
+  useState: jest.fn(),
+  useEffect: jest.fn()
 }))
 
 jest.mock('../HealthCardVerify', () => ({
   __esModule: true,
   default: () => <div />
 }))
+
+jest.mock('../IssuerVerify', () => ({
+  __esModule: true,
+  default: () => <div />,
+  IssuerDirectories: jest.fn().mockImplementation(() => ({ getIssuerDirectories: () => jest.fn() }))
+}));
+
+beforeAll(() => {
+  React.useEffect.mockImplementation(() => {});
+});
 
 test('renders title', () => {
   React.useState.mockImplementation(jest.requireActual('react').useState);
