@@ -26,6 +26,7 @@
     "eject": "react-scripts eject",
     "predeploy": "yarn run build",
     "deploy": "gh-pages -d build",
+    "translate": "translate-cql",
     "lint": "eslint './src/**/*.{js,jsx}'",
     "lint:fix": "eslint './src/**/*.{js,jsx}' --fix",
     "translate": "translate-cql"
@@ -49,6 +50,9 @@
     ]
   },
   "devDependencies": {
+    "cql-exec-fhir": "^2.0.0",
+    "cql-execution": "^2.3.0",
+    "cql-testing-harness": "^0.0.4",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-jsx-a11y": "^6.4.1",
