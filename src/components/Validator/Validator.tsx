@@ -44,7 +44,6 @@ export class Validator {
     elmJSONs: any[] = [cql, fhirhelpers],
     libraryID: string = "CDSiSupportingData"
     ): [IValidationResult] {
-    // 'main' ELM is the mcode library
     const mainELM = elmJSONs.find((e) => e.library.identifier.id === libraryID);
     if (!mainELM) {
       throw Error(`Cannot find ELM library with library id ${libraryID}`);

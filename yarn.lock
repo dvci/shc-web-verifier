@@ -4669,7 +4669,7 @@ cql-exec-fhir@^2.0.0:
     "@babel/preset-env" "^7.11.5"
     xml2js "~0.4.19"
 
-cql-execution@^2.2.0, cql-execution@^2.3.0:
+cql-execution@^2.2.0, cql-execution@^2.3.2:
   version "2.3.2"
   resolved "https://registry.npmjs.org/cql-execution/-/cql-execution-2.3.2.tgz#e359d4b75a30e81c23398fb4e87c3531f6791423"
   integrity sha512-MEOjvsc5xPC4ILgiBXkgYnPDihIaxxLSErexlgIl5W/1w1K9RC2Qgkoso657uOwy6F9cL2lI8TMdCx298S1NhA==
