@@ -1,13 +1,14 @@
 import React, { FunctionComponent } from 'react';
-import cql from "../../output-elm/CDSiSupportingData.json";
-import fhirhelpers from "../../output-elm/FHIRHelpers-4.0.0.json";
+import cql from '../../output-elm/CDSiSupportingData.json';
+import fhirhelpers from '../../output-elm/FHIRHelpers-4.0.0.json';
 import antigens from '../../supporting-data';
+
 const {
   Repository,
   CodeService,
   PatientContext,
-} = require("cql-execution");
-const { PatientSource, FHIRWrapper } = require("cql-exec-fhir");
+} = require('cql-execution');
+const { PatientSource, FHIRWrapper } = require('cql-exec-fhir');
 
 export interface IValidationResult {
     seriesName: string;
@@ -42,8 +43,8 @@ export class Validator {
     antigen: string,
     valueSetMap: any,
     elmJSONs: any[] = [cql, fhirhelpers],
-    libraryID: string = "CDSiSupportingData"
-    ): [IValidationResult] {
+    libraryID: string = 'CDSiSupportingData'
+  ): [IValidationResult] {
     const mainELM = elmJSONs.find((e) => e.library.identifier.id === libraryID);
     if (!mainELM) {
       throw Error(`Cannot find ELM library with library id ${libraryID}`);
@@ -57,18 +58,18 @@ export class Validator {
 
     const codeService = new CodeService(valueSetMap);
     const fhirwrapper = new FHIRWrapper.FHIRv400();
-    const parameters = {SeriesDefinition: fhirwrapper.wrap(antigens[antigen])};
+    const parameters = { SeriesDefinition: fhirwrapper.wrap(antigens[antigen]) };
 
     // Load array of patient bundles
     const patientSource = new PatientSource.FHIRv400();
     patientSource.loadBundles([patientBundle]);
-    const expr = library.expressions["Run"];
-    const patient_ctx = new PatientContext(
+    const expr = library.expressions.Run;
+    const patientContext = new PatientContext(
       library,
       patientSource.currentPatient(),
       codeService,
       parameters
     );
-    return expr.execute(patient_ctx);
+    return expr.execute(patientContext);
   }
 }

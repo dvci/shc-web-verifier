@@ -29,7 +29,7 @@ define function "EvaluateSeriesDoses" (seriesDoses List<FHIR.Parameters.Paramete
                 let currentImmunizationIndex: Count(R),
 				eval: "EvaluateImmunizations"(seriesDoses, currentImmunizationIndex)
                  return(
-                    if Count(eval.where(validDose = true)) = Count(seriesDoses)
+                    if Count(eval.where(validDose = true or recommendedDose = false)) = Count(seriesDoses)
                     then Tuple {
                         startingImmunizationIndex: currentImmunizationIndex,                 
                         validSeries: true,
@@ -59,7 +59,8 @@ define function "EvaluateImmunizations" (seriesDoses List<FHIR.Parameters.Parame
                         doseIndex: null,
                         immunizationIndex: currentImmunizationIndex,   
 						immunization: "Immunizations"[currentImmunizationIndex],              
-                        validDose: false
+                        validDose: null,
+						recommendedDose: null
 					}
                     else
                         Tuple {
@@ -67,7 +68,8 @@ define function "EvaluateImmunizations" (seriesDoses List<FHIR.Parameters.Parame
                             doseIndex: currentDoseIndex,
                             immunizationIndex: currentImmunizationIndex,   
 							immunization: "Immunizations"[currentImmunizationIndex],              
-                            validDose: "ValidSeriesDose"(seriesDoses[currentDoseIndex], "Immunizations"[currentImmunizationIndex], "Immunizations"[previousValidImmunizationIndex])
+                            validDose: "ValidSeriesDose"(seriesDoses[currentDoseIndex], "Immunizations"[currentImmunizationIndex], "Immunizations"[previousValidImmunizationIndex]),
+							recommendedDose: "RecommendedSeriesDose"(seriesDoses[currentDoseIndex], "Immunizations"[currentImmunizationIndex], "Immunizations"[previousValidImmunizationIndex])
                         }
                 )
             }) 
@@ -106,16 +108,35 @@ define function "ValidAllowableInterval" (allowableInterval List<FHIR.Parameters
 				else null
 			end
 
-define function "ValidAllowableAge" (allowableAge List<FHIR.Parameters.Parameter>, 
+define function "ValidAllowableAge" (age List<FHIR.Parameters.Parameter>, 
 		immunization FHIR.Immunization):
-	if Count(allowableAge) = 0 
-		or allowableAge.part.where(name = 'absMinAge').first().value.value.value is null
+	if Count(age) = 0 
+		or age.part.where(name = 'absMinAge').first().value.value.value is null
 	then
 		true		
 	else
-		case allowableAge.part.where(name = 'absMinAge').first().value.unit.value
-			when 'd' then AgeInDaysAt(immunization.occurrence as FHIR.dateTime) >= allowableAge.part.where(name = 'absMinAge').first().value.value.value	
-			when 'mo' then AgeInMonthsAt(immunization.occurrence as FHIR.dateTime) >= allowableAge.part.where(name = 'absMinAge').first().value.value.value	
-			when 'a' then AgeInYearsAt(immunization.occurrence as FHIR.dateTime) >= allowableAge.part.where(name = 'absMinAge').first().value.value.value	
+		case age.part.where(name = 'absMinAge').first().value.unit.value
+			when 'd' then AgeInDaysAt(immunization.occurrence as FHIR.dateTime) >= age.part.where(name = 'absMinAge').first().value.value.value	
+			when 'mo' then AgeInMonthsAt(immunization.occurrence as FHIR.dateTime) >= age.part.where(name = 'absMinAge').first().value.value.value	
+			when 'a' then AgeInYearsAt(immunization.occurrence as FHIR.dateTime) >= age.part.where(name = 'absMinAge').first().value.value.value	
 			else null
 		end
+
+define function "RecommendedSeriesDose" (seriesDose List<FHIR.Parameters.Parameter>,
+		immunization FHIR.Immunization,
+		previousImmunization FHIR.Immunization):
+	"ValidEarliestRecAge"(seriesDose.part.where(name = 'age'), immunization)		 
+
+define function "ValidEarliestRecAge" (age List<FHIR.Parameters.Parameter>, 
+		immunization FHIR.Immunization):
+	if Count(age) = 0 
+		or age.part.where(name = 'earliestRecAge').first().value.value.value is null
+	then
+		true		
+	else
+		case age.part.where(name = 'earliestRecAge').first().value.unit.value
+			when 'd' then AgeInDaysAt(immunization.occurrence as FHIR.dateTime) >= age.part.where(name = 'earliestRecAge').first().value.value.value	
+			when 'mo' then AgeInMonthsAt(immunization.occurrence as FHIR.dateTime) >= age.part.where(name = 'earliestRecAge').first().value.value.value	
+			when 'a' then AgeInYearsAt(immunization.occurrence as FHIR.dateTime) >= age.part.where(name = 'earliestRecAge').first().value.value.value	
+			else null
+		end		
