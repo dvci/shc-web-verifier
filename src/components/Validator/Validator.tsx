@@ -1,31 +1,27 @@
-import React, { FunctionComponent } from 'react';
+/* eslint-disable import/no-extraneous-dependencies */
 import cql from '../../output-elm/CDSiSupportingData.json';
 import fhirhelpers from '../../output-elm/FHIRHelpers-4.0.0.json';
-import antigens from '../../supporting-data';
 
-const {
-  Repository,
-  CodeService,
-  PatientContext,
-} = require('cql-execution');
-const { PatientSource, FHIRWrapper } = require('cql-exec-fhir');
+const { Repository, CodeService, PatientContext } = require('cql-execution');
+const { PatientSource } = require('cql-exec-fhir');
+const { supportingData } = require('../../supporting-data');
 
 export interface IValidationResult {
-    seriesName: string;
-    complete: [
-        [
-            {
-                doseNumber: string,
-                doseIndex: number,
-                immunizationIndex: number,
-                immunization: any
-            }
-        ]
-    ];
+  seriesName: string;
+  complete: [
+    [
+      {
+        doseNumber: string,
+        doseIndex: number,
+        immunizationIndex: number,
+        immunization: any
+      },
+    ],
+  ];
 }
 
 export interface IValidationResults {
-    results: IValidationResult[];
+  results: IValidationResult[];
 }
 
 export class Validator {
@@ -43,7 +39,7 @@ export class Validator {
     antigen: string,
     valueSetMap: any,
     elmJSONs: any[] = [cql, fhirhelpers],
-    libraryID: string = 'CDSiSupportingData'
+    libraryID: string = 'CDSiSupportingData',
   ): [IValidationResult] {
     const mainELM = elmJSONs.find((e) => e.library.identifier.id === libraryID);
     if (!mainELM) {
@@ -57,8 +53,7 @@ export class Validator {
     );
 
     const codeService = new CodeService(valueSetMap);
-    const fhirwrapper = new FHIRWrapper.FHIRv400();
-    const parameters = { SeriesDefinition: fhirwrapper.wrap(antigens[antigen]) };
+    const parameters = { AntigenSupportingData: supportingData[antigen].antigenSupportingData };
 
     // Load array of patient bundles
     const patientSource = new PatientSource.FHIRv400();
@@ -68,7 +63,7 @@ export class Validator {
       library,
       patientSource.currentPatient(),
       codeService,
-      parameters
+      parameters,
     );
     return expr.execute(patientContext);
   }

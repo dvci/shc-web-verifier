@@ -89,5 +89,4 @@ test('renders title', () => {
   render(<ValidatorDisplay bundle={patientBundle} action="COVID-19" />);
   const titleElement = screen.getByText(/Validation/i);
   expect(titleElement).toBeInTheDocument();
-  screen.debug();
 });

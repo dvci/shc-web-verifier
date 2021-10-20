@@ -1,5 +1,5 @@
 const {
-  loadJSONFixture
+  loadJSONFixture,
 } = require('cql-testing-harness');
 const { Validator } = require('./Validator.tsx');
 

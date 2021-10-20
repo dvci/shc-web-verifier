@@ -1,11 +1,12 @@
-import COVID from './AntigenSupportingData- COVID-19-508.parameters.json';
+import COVID from './AntigenSupportingData-COVID-19.json';
 
-export interface IAntigens {
-    [antigen: string]: any;
+interface IAntigenSupportingData {
+  [antigen: string]: any;
 }
 
-const antigens: IAntigens = {
-    'COVID-19': COVID
-};
+const supportingData = {
+  'COVID-19': COVID,
+} as IAntigenSupportingData;
 
-export default antigens;
+export { supportingData };  
+export type { IAntigenSupportingData };
