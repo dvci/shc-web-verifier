@@ -4,11 +4,22 @@ import React, { useState, useEffect } from 'react';
 import { Base64 } from 'js-base64';
 import jsQR from 'jsqr';
 import pako from 'pako';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import {
+  Box, Button, CssBaseline, Link, Typography
+} from '@material-ui/core';
 import HealthCardDisplay from 'components/HealthCardDisplay';
 import HealthCardVerify from 'components/HealthCardVerify';
 import IssuerVerify, { IssuerDirectories } from 'components/IssuerVerify';
+import ThemeProvider from 'components/ThemeProvider';
+import Header from 'components/Header';
+import HeroBar from 'components/HeroBar';
+import qrIllustration from 'assets/qr-code-illustration.png';
+import qrIcon from 'assets/qr-vaccine-icon.png';
+import checkIcon from 'assets/check-icon.png';
+import scanIcon from 'assets/scan-icon.png';
 
-function App() {
+const App = () => {
   const [isScanning, setIsScanning] = useState(false);
   const [qrCode, setQrCode] = useState(null);
   const [issuerDirectories, setIssuerDirectories] = useState(null);
@@ -93,7 +104,6 @@ function App() {
       const canvasElement = document.getElementById('canvas');
       const canvas = canvasElement.getContext('2d');
       const loadingMessage = document.getElementById('loadingMessage');
-      const statusMessage = document.getElementById('statusMessage');
 
       loadingMessage.hidden = true;
       canvasElement.hidden = false;
@@ -109,11 +119,7 @@ function App() {
         if (code.data.startsWith('shc:/')) {
           stopScanning();
           setQrCode(code.data);
-        } else {
-          statusMessage.innerText = 'QR code does not contain a SMART Health Card';
         }
-      } else {
-        statusMessage.innerText = 'No QR code detected';
       }
     }
 
@@ -168,29 +174,120 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>SMART Health Cards Web Verifier</h1>
-      </header>
-      <div>
-        {startButton}
-        {stopButton}
-      </div>
+    <ThemeProvider>
+      <CssBaseline />
+      <Header />
+      <HeroBar />
+
+      {!qrCode && !isScanning && (
+        <Box display="flex" flexDirection="row" justifyContent="center">
+          <Box
+            mt={2}
+            ml={6}
+            display="flex"
+            flexDirection="column"
+            alignItems="center"
+          >
+            <img
+              src={qrIllustration}
+              alt="Scan QR Code"
+              style={{ width: '650px', height: '600px' }}
+            />
+          </Box>
+          <Box mt={11} mr={4} width="750px">
+            <Box>
+              <Box display="flex" flexDirection="row">
+                <img
+                  src={qrIcon}
+                  alt="QR Vaccine Icon"
+                  style={{ height: '5rem' }}
+                />
+                <Typography
+                  variant="h6"
+                  style={{ marginTop: '5px', marginLeft: '25px' }}
+                >
+                  Verify a&nbsp;
+                  <Link
+                    href="https://smarthealth.cards/"
+                    color="secondary"
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    SMART Health Card
+                  </Link>
+                  &nbsp;QR code in a safe and privacy-preserving way.
+                </Typography>
+              </Box>
+              <Box mt={10} mb={10}>
+                <Button
+                  type="button"
+                  fullWidth
+                  size="large"
+                  variant="contained"
+                  onClick={startScanning}
+                >
+                  <img
+                    src={scanIcon}
+                    alt="Scan Icon"
+                    style={{ height: '2rem', marginRight: '10px' }}
+                  />
+                  SCAN QR CODE
+                </Button>
+              </Box>
+              <Box>
+                <Typography variant="h6">
+                  What is a SMART Health Card?
+                </Typography>
+                <Typography>
+                  <img
+                    src={checkIcon}
+                    alt="Check Icon"
+                    style={{ height: '1rem', marginRight: '10px' }}
+                  />
+                  Holds important vaccination or lab report data.
+                </Typography>
+                <Typography>
+                  <img
+                    src={checkIcon}
+                    alt="Check Icon"
+                    style={{ height: '1rem', marginRight: '10px' }}
+                  />
+                  Can be scanned to verify that the information has not been
+                  tampered with.
+                </Typography>
+              </Box>
+              <Box mt={5}>
+                <Typography>
+                  For more information on SMART Health Cards, please visit
+                  <br />
+                  <Link
+                    href="https://smarthealth.cards/"
+                    color="secondary"
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    https://smarthealth.cards/
+                  </Link>
+                  .
+                </Typography>
+              </Box>
+            </Box>
+          </Box>
+        </Box>
+      )}
+
       <div id="loadingMessage" hidden>
         Loading...
       </div>
       <canvas id="canvas" hidden={!isScanning} />
-      <div id="statusMessage" hidden={!isScanning}>
-        No QR code detected.
-      </div>
-      {qrCode && !isScanning ? (
+      {qrCode && !isScanning && (
         <>
           <HealthCardDisplay patientData={patientData()} />
           <HealthCardVerify jws={getJws(qrCode)} iss={getIssuer()} />
           <IssuerVerify iss={getIssuer()} issuerDirectories={issuerDirectories} />
         </>
-      ) : ''}
-    </div>
+      )}
+    </ThemeProvider>
   );
 }
 
