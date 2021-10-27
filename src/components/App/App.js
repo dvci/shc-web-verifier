@@ -4,7 +4,6 @@ import React, { useState, useEffect } from 'react';
 import { Base64 } from 'js-base64';
 import jsQR from 'jsqr';
 import pako from 'pako';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import {
   Box, Button, CssBaseline, Link, Typography
 } from '@material-ui/core';
@@ -91,7 +90,6 @@ const App = () => {
     video.srcObject.getTracks().forEach((track) => track.stop());
     video.remove();
     document.getElementById('canvas').hidden = true;
-    document.getElementById('loadingMessage').hidden = true;
     setIsScanning(false);
   };
 
@@ -104,9 +102,6 @@ const App = () => {
     if (video.readyState === video.HAVE_ENOUGH_DATA) {
       const canvasElement = document.getElementById('canvas');
       const canvas = canvasElement.getContext('2d');
-      const loadingMessage = document.getElementById('loadingMessage');
-
-      loadingMessage.hidden = true;
       canvasElement.hidden = false;
 
       canvasElement.height = video.videoHeight;
@@ -132,11 +127,9 @@ const App = () => {
     setQrCode(null);
 
     const video = document.createElement('video');
-    const loadingMessage = document.getElementById('loadingMessage');
     video.id = 'video';
     video.hidden = true;
     document.children[0].appendChild(video);
-    loadingMessage.hidden = false;
 
     navigator.mediaDevices
       .getUserMedia({ video: { facingMode: 'environment' } })
@@ -266,9 +259,6 @@ const App = () => {
       )}
 
       <Box mt={10} display="flex" justifyContent="center" bgcolor="common.grayMedium">
-        <div id="loadingMessage" hidden>
-          Loading...
-        </div>
         <canvas
           id="canvas"
           hidden={!isScanning}
