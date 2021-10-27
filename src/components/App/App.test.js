@@ -31,7 +31,7 @@ beforeAll(() => {
 test('renders title', () => {
   React.useState.mockImplementation(jest.requireActual('react').useState);
   render(<App />);
-  const titleElement = screen.getByText(/SMART Health Card/i);
+  const titleElement = screen.getByText(/SMART Health Cards/i);
   expect(titleElement).toBeInTheDocument();
 });
 
@@ -41,6 +41,6 @@ test('renders qr code', () => {
     .mockImplementationOnce(() => [qrString, {}]);
   React.useState.mockImplementation(jest.requireActual('react').useState);
   render(<App />);
-  const titleElement = screen.getByText(/SMART Health Card/i);
+  const titleElement = screen.getByText(/Immunizations/i);
   expect(titleElement).toBeInTheDocument();
 });
