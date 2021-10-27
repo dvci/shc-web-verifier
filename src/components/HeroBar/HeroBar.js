@@ -36,7 +36,7 @@ const HeroBar = ({ isScanning, qrCode, home }) => {
         <Box
           display="flex"
           alignItems="center"
-          flexDirection="row"
+          flexDirection="column"
           pt={5}
           pb={4}
         >
