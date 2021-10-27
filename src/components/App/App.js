@@ -18,6 +18,7 @@ import qrIllustration from 'assets/qr-code-illustration.png';
 import qrIcon from 'assets/qr-vaccine-icon.png';
 import checkIcon from 'assets/check-icon.png';
 import scanIcon from 'assets/scan-icon.png';
+import frame from 'assets/frame.png';
 
 const App = () => {
   const [isScanning, setIsScanning] = useState(false);
@@ -149,18 +150,6 @@ const App = () => {
       });
   };
 
-  const startButton = (
-    <button type="button" id="start" onClick={startScanning} disabled={isScanning}>
-      Scan
-    </button>
-  );
-
-  const stopButton = (
-    <button type="button" id="stop" onClick={stopScanning} disabled={!isScanning}>
-      Stop
-    </button>
-  );
-
   const patientData = () => {
     if (!qrCode) { return null; }
     const decodedQr = getPayload(qrCode);
@@ -276,15 +265,36 @@ const App = () => {
         </Box>
       )}
 
-      <div id="loadingMessage" hidden>
-        Loading...
-      </div>
-      <canvas id="canvas" hidden={!isScanning} />
+      <Box mt={10} display="flex" justifyContent="center" bgcolor="common.grayMedium">
+        <div id="loadingMessage" hidden>
+          Loading...
+        </div>
+        <canvas
+          id="canvas"
+          hidden={!isScanning}
+          style={{
+            position: 'absolute',
+            marginTop: '20px',
+            height: '440px',
+            width: '570px',
+            zIndex: '1',
+          }}
+        />
+        <img
+          hidden={!isScanning}
+          src={frame}
+          alt="Scan Frame"
+          style={{ height: '480px', width: '640px', zIndex: '2' }}
+        />
+      </Box>
       {qrCode && !isScanning && (
         <>
           <HealthCardDisplay patientData={patientData()} />
           <HealthCardVerify jws={getJws(qrCode)} iss={getIssuer()} />
-          <IssuerVerify iss={getIssuer()} issuerDirectories={issuerDirectories} />
+          <IssuerVerify
+            iss={getIssuer()}
+            issuerDirectories={issuerDirectories}
+          />
         </>
       )}
     </ThemeProvider>
