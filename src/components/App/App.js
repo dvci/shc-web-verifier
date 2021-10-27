@@ -85,12 +85,15 @@ const App = () => {
     return { name, dateOfBirth, immunizations };
   };
 
-  const stopScanning = () => {
+  const home = () => {
     const video = document.getElementById('video');
-    video.srcObject.getTracks().forEach((track) => track.stop());
-    video.remove();
+    if (video) {
+      video.srcObject.getTracks().forEach((track) => track.stop());
+      video.remove();
+    }
     document.getElementById('canvas').hidden = true;
     setIsScanning(false);
+    setQrCode(false);
   };
 
   function tick() {
@@ -113,8 +116,10 @@ const App = () => {
       });
       if (code) {
         if (code.data.startsWith('shc:/')) {
-          stopScanning();
+          video.srcObject.getTracks().forEach((track) => track.stop());
+          video.remove();
           setQrCode(code.data);
+          setIsScanning(false);
         }
       }
     }
@@ -159,7 +164,7 @@ const App = () => {
     <ThemeProvider>
       <CssBaseline />
       <Header />
-      <HeroBar />
+      <HeroBar isScanning={isScanning} qrCode={qrCode} home={home} />
 
       {!qrCode && !isScanning && (
         <Box display="flex" flexDirection="row" justifyContent="center">
@@ -258,14 +263,19 @@ const App = () => {
         </Box>
       )}
 
-      <Box mt={10} display="flex" justifyContent="center" bgcolor="common.grayMedium">
+      <Box
+        mt={10}
+        display="flex"
+        justifyContent="center"
+        bgcolor="common.grayMedium"
+      >
         <canvas
           id="canvas"
           hidden={!isScanning}
           style={{
             position: 'absolute',
-            marginTop: '20px',
-            height: '440px',
+            marginTop: '4.5rem',
+            height: '500px',
             width: '570px',
             zIndex: '1',
           }}
@@ -274,7 +284,13 @@ const App = () => {
           hidden={!isScanning}
           src={frame}
           alt="Scan Frame"
-          style={{ height: '480px', width: '640px', zIndex: '2' }}
+          style={{
+            height: '550px',
+            width: '640px',
+            marginTop: '3rem',
+            marginBottom: '3rem',
+            zIndex: '2',
+          }}
         />
       </Box>
       {qrCode && !isScanning && (
