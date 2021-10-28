@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import {
   Box, Container, IconButton, Typography
 } from '@material-ui/core';
+import { Route, useHistory } from 'react-router-dom';
 import backIcon from 'assets/back-icon.png';
 
 const useStyles = makeStyles((theme) => ({
@@ -15,14 +16,15 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const HeroBar = ({ isScanning, qrCode, home }) => {
+const HeroBar = () => {
+  const history = useHistory();
   const classes = useStyles();
   return (
     <div className={classes.heroBar}>
-      {(isScanning || qrCode) && (
+      <Route path={['/qr-scan', '/display-results']}>
         <IconButton
           size="small"
-          onClick={home}
+          onClick={() => history.push('/shc-web-verifier')}
           style={{
             position: 'absolute',
             marginTop: '2.5rem',
@@ -31,7 +33,8 @@ const HeroBar = ({ isScanning, qrCode, home }) => {
         >
           <img src={backIcon} alt="Back icon" style={{ height: '3rem' }} />
         </IconButton>
-      )}
+      </Route>
+
       <Container maxWidth="md">
         <Box
           display="flex"
