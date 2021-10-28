@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@mui/styles';
 import axios from 'axios';
 import https from 'https';
 import jose from 'node-jose';
 import {
   Typography
-} from '@material-ui/core';
+} from '@mui/material';
 import { useQrDataContext } from 'components/QrDataProvider';
 import { getIssuer, getJws } from 'utils/qrHelpers';
 

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@mui/styles';
 import {
   Card, CardContent, CardHeader, Grid, Typography
-} from '@material-ui/core';
+} from '@mui/material';
 import axios from 'axios';
 import { useQrDataContext } from 'components/QrDataProvider';
 import { getPatientData } from 'utils/qrHelpers';

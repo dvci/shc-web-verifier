@@ -1,4 +1,4 @@
-import { createTheme } from '@material-ui/core/styles';
+import { createTheme, adaptV4Theme } from '@mui/material/styles';
 
 // https://material-ui.com/customization/palette/#adding-new-colors
 const colors = {
@@ -24,7 +24,7 @@ const paletteBase = {
   common: colors,
 };
 
-const lightTheme = createTheme({
+const lightTheme = createTheme(adaptV4Theme({
   palette: { ...paletteBase },
   typography: {
     h2: {
@@ -103,6 +103,6 @@ const lightTheme = createTheme({
       },
     },
   },
-});
+}));
 
 export default lightTheme;

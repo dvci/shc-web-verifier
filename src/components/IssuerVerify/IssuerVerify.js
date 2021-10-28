@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@mui/styles';
 import {
   Typography
-} from '@material-ui/core';
+} from '@mui/material';
 import { useQrDataContext } from 'components/QrDataProvider';
 import { getIssuer } from 'utils/qrHelpers';
 import IssuerDirectories from './IssuerDirectories';

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ThemeProvider as MuiThemeProvider } from '@material-ui/core';
+import { ThemeProvider as MuiThemeProvider } from '@mui/material';
 import lightTheme from 'styles/theme';
 
 const ThemeProvider = ({ children }) => (

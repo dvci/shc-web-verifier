@@ -1,8 +1,8 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@mui/styles';
 import {
   Box, Container, IconButton, Typography
-} from '@material-ui/core';
+} from '@mui/material';
 import { Route, useHistory } from 'react-router-dom';
 import backIcon from 'assets/back-icon.png';
 

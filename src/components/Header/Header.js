@@ -1,6 +1,6 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import { Box, Container, Typography } from '@material-ui/core';
+import { makeStyles } from '@mui/styles';
+import { Box, Container, Typography } from '@mui/material';
 import logo from 'assets/mitre-logo.svg';
 
 const useStyles = makeStyles((theme) => ({

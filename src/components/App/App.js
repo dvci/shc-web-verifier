@@ -1,7 +1,7 @@
 import './App.css';
 
 import React from 'react';
-import { CssBaseline } from '@material-ui/core';
+import { CssBaseline } from '@mui/material';
 import {
   BrowserRouter as Router, Redirect, Route, Switch
 } from 'react-router-dom';

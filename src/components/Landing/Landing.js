@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   Box, Button, Link, Typography
-} from '@material-ui/core';
+} from '@mui/material';
 import { useHistory } from 'react-router-dom';
 import checkIcon from 'assets/check-icon.png';
 import qrIllustration from 'assets/qr-code-illustration.png';

@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect } from 'react';
-import { Box } from '@material-ui/core';
+import { Box } from '@mui/material';
 import jsQR from 'jsqr';
 import { useHistory } from 'react-router-dom';
 import frame from 'assets/frame.png';
