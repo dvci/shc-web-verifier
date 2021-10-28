@@ -16,4 +16,4 @@ const QrDataProvider = ({ children }) => {
 
 const useQrDataContext = () => useContext(QrDataContext);
 
-export { QrDataProvider, useQrDataContext };
+export { QrDataContext, QrDataProvider, useQrDataContext };

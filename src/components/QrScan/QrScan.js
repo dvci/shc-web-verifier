@@ -3,9 +3,11 @@ import { Box } from '@material-ui/core';
 import jsQR from 'jsqr';
 import { useHistory } from 'react-router-dom';
 import frame from 'assets/frame.png';
+import { useQrDataContext } from 'components/QrDataProvider';
 
 const QrScan = () => {
   const history = useHistory();
+  const { setQrCode } = useQrDataContext();
 
   const tick = useCallback(() => {
     const video = document.getElementById('video');
@@ -28,12 +30,14 @@ const QrScan = () => {
         if (code.data.startsWith('shc:/')) {
           video.srcObject.getTracks().forEach((track) => track.stop());
           video.remove();
+          setQrCode(code.data);
+          history.push('/display-results');
         }
       }
     }
 
     requestAnimationFrame(tick);
-  }, []);
+  }, [history, setQrCode]);
 
   const startScanning = useCallback(() => {
     const video = document.createElement('video');

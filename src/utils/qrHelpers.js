@@ -53,7 +53,7 @@ const extractPatientData = (card) => {
   return { name, dateOfBirth, immunizations };
 };
 
-const patientData = (qrCode) => {
+const getPatientData = (qrCode) => {
   if (!qrCode) { return null; }
   const decodedQr = getPayload(qrCode);
   return extractPatientData(decodedQr);
@@ -71,6 +71,6 @@ export {
   extractPatientName,
   getIssuer,
   getJws,
-  getPayload,
-  patientData
+  getPatientData,
+  getPayload
 };

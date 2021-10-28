@@ -2,6 +2,8 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import axios from 'axios';
 import { act } from 'react-dom/test-utils';
+import { QrDataContext } from 'components/QrDataProvider';
+import * as qrHelpers from 'utils/qrHelpers';
 import HealthCardDisplay from './HealthCardDisplay';
 
 const patientData = {
@@ -36,7 +38,7 @@ const patientData = {
       }
     },
     {
-      fullUrl: 'resource:1',
+      fullUrl: 'resource:2',
       resource: {
         resourceType: 'Immunization',
         status: 'completed',
@@ -117,6 +119,15 @@ const cvxCodes = `<CVXCodes>
 
 jest.mock('axios');
 
+const renderHealthCardDisplay = () => {
+  qrHelpers.getPatientData = jest.fn().mockReturnValue(patientData);
+  return render(
+    <QrDataContext.Provider value={{ qrCode: '', setQrCode: jest.fn() }}>
+      <HealthCardDisplay />
+    </QrDataContext.Provider>
+  );
+}
+
 beforeAll(() => {
   jest.spyOn(React, 'useEffect').mockImplementation((f) => f());
 });
@@ -126,7 +137,7 @@ afterEach(() => {
 });
 
 test('renders health card', () => {
-  render(<HealthCardDisplay patientData={patientData} />);
+  renderHealthCardDisplay();
   const patientName = screen.getByText(/John B. Anyperson/i);
   expect(patientName).toBeInTheDocument();
   const immunizationDate = screen.getByText(/2021-01-01/i);
@@ -136,7 +147,7 @@ test('renders health card', () => {
 test('renders health card without performer', () => {
   // Remove performer from immunization
   delete patientData.immunizations[0].resource.performer;
-  render(<HealthCardDisplay patientData={patientData} />);
+  renderHealthCardDisplay();
   const patientName = screen.getByText(/John B. Anyperson/i);
   expect(patientName).toBeInTheDocument();
   const immunizationDate = screen.getByText(/2021-01-01/i);
@@ -146,7 +157,7 @@ test('renders health card without performer', () => {
 test('renders immunization display', async () => {
   React.useEffect.mockRestore();
   await act(async () => {
-    render(<HealthCardDisplay patientData={patientData} />);
+    renderHealthCardDisplay();
     await axios.get.mockImplementation((url) => {
       if (url === 'iisstandards_tradename.xml') {
         return { data: tradenames };
