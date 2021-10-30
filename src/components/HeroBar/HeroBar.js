@@ -20,21 +20,12 @@ const HeroBar = () => {
   const history = useHistory();
   const classes = useStyles();
 
-  const returnToLanding = () => {
-    const video = document.getElementById('video');
-    if (video) {
-      video.srcObject.getTracks().forEach((track) => track.stop());
-      video.remove();
-    }
-    history.push('/shc-web-verifier')
-  };
-
   return (
     <div className={classes.heroBar}>
       <Route path={['/qr-scan', '/display-results']}>
         <IconButton
           size="small"
-          onClick={returnToLanding}
+          onClick={() => history.push('/shc-web-verifier')}
           style={{
             position: 'absolute',
             marginTop: '2.5rem',

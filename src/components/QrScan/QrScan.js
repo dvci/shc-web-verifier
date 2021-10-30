@@ -28,8 +28,6 @@ const QrScan = () => {
       });
       if (code) {
         if (code.data.startsWith('shc:/')) {
-          video.srcObject.getTracks().forEach((track) => track.stop());
-          video.remove();
           setQrCode(code.data);
           history.push('/display-results');
         }
@@ -59,6 +57,15 @@ const QrScan = () => {
 
   useEffect(() => {
     startScanning();
+
+    // Remove video element when component unmounts
+    return () => {
+      const video = document.getElementById('video');
+      if (video) {
+        video.srcObject.getTracks().forEach((track) => track.stop());
+        video.remove();
+      }
+    };
   }, [startScanning]);
 
   return (
