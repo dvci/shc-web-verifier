@@ -60,12 +60,14 @@ const Landing = () => {
               fullWidth
               size="large"
               variant="contained"
+              color="secondary"
               onClick={handleScan}
+              style={{ fontSize: '150%' }}
             >
               <img
                 src={scanIcon}
                 alt="Scan Icon"
-                style={{ height: '2rem', marginRight: '10px' }}
+                style={{ height: '2.5rem', marginRight: '10px' }}
               />
               SCAN QR CODE
             </Button>
