@@ -10,6 +10,7 @@
   "rules": {
     "comma-dangle": "off",
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "react/no-array-index-key": "off",
     "react/prop-types": "off",
     "semi": "off"
   },
