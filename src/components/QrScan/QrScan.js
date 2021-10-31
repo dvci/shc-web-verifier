@@ -41,7 +41,7 @@ const healthCardPattern = /^shc:\/(?<multipleChunks>(?<chunkIndex>[0-9]+)\/(?<ch
 const QrScan = () => {
   const history = useHistory();
   const classes = useStyles();
-  const { setQrCode } = useQrDataContext();
+  const { setQrCodes } = useQrDataContext();
   const [scannedCodes, setScannedCodes] = useState([]);
 
   const handleScan = (data) => {
@@ -61,13 +61,13 @@ const QrScan = () => {
         }
 
         if (tempScannedCodes.every((code) => code)) {
-          setQrCode(data);
+          setQrCodes(tempScannedCodes);
           history.push('/display-results');
         }
 
         setScannedCodes(tempScannedCodes);
       } else {
-        setQrCode(data);
+        setQrCodes([data]);
         history.push('/display-results');
       }
     }

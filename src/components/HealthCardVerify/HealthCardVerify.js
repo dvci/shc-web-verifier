@@ -17,9 +17,9 @@ const useStyles = makeStyles({
 
 const HealthCardVerify = () => {
   const classes = useStyles();
-  const { qrCode } = useQrDataContext();
-  const jws = getJws(qrCode);
-  const iss = getIssuer(qrCode);
+  const { qrCodes } = useQrDataContext();
+  const jws = getJws(qrCodes);
+  const iss = getIssuer(qrCodes);
   const [verified, setVerified] = useState();
   const [error, setError] = useState(null);
 

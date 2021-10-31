@@ -119,15 +119,6 @@ const cvxCodes = `<CVXCodes>
 
 jest.mock('axios');
 
-const renderHealthCardDisplay = () => {
-  qrHelpers.getPatientData = jest.fn().mockReturnValue(patientData);
-  return render(
-    <QrDataContext.Provider value={{ qrCode: '', setQrCode: jest.fn() }}>
-      <HealthCardDisplay />
-    </QrDataContext.Provider>
-  );
-}
-
 beforeAll(() => {
   jest.spyOn(React, 'useEffect').mockImplementation((f) => f());
 });
@@ -135,6 +126,15 @@ beforeAll(() => {
 afterEach(() => {
   jest.spyOn(React, 'useEffect').mockImplementation((f) => f());
 });
+
+const renderHealthCardDisplay = () => {
+  qrHelpers.getPatientData = jest.fn().mockReturnValue(patientData);
+  return render(
+    <QrDataContext.Provider value={{ qrCodes: [], setQrCode: jest.fn() }}>
+      <HealthCardDisplay />
+    </QrDataContext.Provider>
+  );
+}
 
 test('renders health card', () => {
   renderHealthCardDisplay();

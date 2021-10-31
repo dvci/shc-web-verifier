@@ -38,7 +38,7 @@ afterEach(() => {
 const renderIssuerVerify = ({ issValue = iss }) => {
   qrHelpers.getIssuer = jest.fn().mockReturnValue(issValue);
   return render(
-    <QrDataContext.Provider value={{ qrCode: '', setQrCode: jest.fn() }}>
+    <QrDataContext.Provider value={{ qrCodes: [], setQrCode: jest.fn() }}>
       <IssuerVerify />
     </QrDataContext.Provider>
   );

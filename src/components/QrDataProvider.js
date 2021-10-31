@@ -3,11 +3,11 @@ import React, { createContext, useContext, useState } from 'react';
 const QrDataContext = createContext();
 
 const QrDataProvider = ({ children }) => {
-  const [qrCode, setQrCode] = useState(null);
+  const [qrCodes, setQrCodes] = useState(null);
 
   return (
     <QrDataContext.Provider
-      value={{ qrCode, setQrCode }}
+      value={{ qrCodes, setQrCodes }}
     >
       {children}
     </QrDataContext.Provider>
