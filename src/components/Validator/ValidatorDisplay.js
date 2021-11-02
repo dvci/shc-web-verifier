@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import {
-  Grid, Typography
-} from '@material-ui/core';
+import { Typography } from '@material-ui/core';
 import { Validator } from './Validator.tsx';
 
 const useStyles = makeStyles({
@@ -14,51 +12,24 @@ const useStyles = makeStyles({
 const ValidatorDisplay = ({ bundle, action }) => {
   const classes = useStyles();
 
-  const [validationResults, setValidationResults] = useState([]);
+  const [validPrimarySeries, setValidPrimarySeries] = useState(null);
 
   useEffect(() => {
-    setValidationResults(Validator.execute(
+    const validationResults = Validator.execute(
       bundle,
       action
-    ));
-  }, [action, bundle]);
-
-  const seriesDisplay = (series) => {
-    const { seriesName, complete } = series;
-
-    return (
-      <div>
-        <Typography>
-          {`${seriesName}: `}
-        </Typography>
-        {complete.map((c) => (
-          <div>
-            {c.doses.map((dose) => (
-              <div>
-                {`${dose.doseNumber}: `}
-                {JSON.stringify(dose.immunization)}
-              </div>
-            ))}
-          </div>
-        ))}
-      </div>
     );
-  }
+    setValidPrimarySeries(
+      validationResults.some((series) => series.complete.length > 0)
+    );
+  }, [action, bundle]);
 
   return (
     <div>
       <Typography>
-        <span className={classes.bold}>Validation</span>
+        <span className={classes.bold}>Primary series valid: </span>
+        <span>{String(validPrimarySeries)}</span>
       </Typography>
-      <Grid
-        container
-        spacing={2}
-        direction="row"
-        justifyContent="flex-start"
-        alignItems="flex-start"
-      >
-        {validationResults.map((series) => seriesDisplay(series))}
-      </Grid>
     </div>
   );
 };
