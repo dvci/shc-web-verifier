@@ -54,13 +54,13 @@ Script to convert CQL to ELM and write results to src/output-elm.
 
 `yarn translate`
 
-### Update CDSi supoprting data
+### Update CDSi supporting data
 
 Script to convert CDSi AntigenSupportingData XML format to json and write results to src/supporting-data.
 
 `node ./src/supporting-data/SupportingData.js '/path/to/CDC/Version x.xx - 508/XML/AntigenSupportingData- COVID-19-508.xml'`
 
-Primary vaccine series number of doses are defined separately in src/supporting-data/AncilarySupportingData-{antigen}.json
+Will need to be updated with each CDSi release. Primary vaccine series number of doses are defined separately in src/supporting-data/AncilarySupportingData-{antigen}.json
 
 ## Learn More
 
