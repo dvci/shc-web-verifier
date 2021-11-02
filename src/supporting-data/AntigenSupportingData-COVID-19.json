@@ -67,7 +67,7 @@
                 "seriesAdminGuidance": [
                     "COVID-19 vaccines and other vaccines may now be administered without regard to timing. This includes simultaneous administration of COVID-19 vaccines and other vaccines on the same day, as well as coadministration within 14 days. It is unknown whether reactogenicity of COVID-19 vaccine is increased with coadministration, including with other vaccines known to be more reactogenic, such as adjuvanted vaccines or live vaccines. When deciding whether to coadminister another vaccine(s) with COVID-19 vaccines, providers should consider whether the patient is behind or at risk of becoming behind on recommended vaccines, their risk of vaccine-preventable disease (e.g., during an outbreak or occupational exposures), and the reactogenicity profile of the vaccines.",
                     "Vaccination should be deferred until recovery from acute illness (if person had symptoms) and criteria have been met to discontinue isolation.",
-                    "Current evidence suggests that the risk of SARS-CoV-2 reinfection is low in the months after initial infection but may increase with time due to waning immunity. Thus, people with a history of MIS-C or MIS-A should consider delaying vaccination until they have recovered from illness and for 90 days after the date of diagnosis of MIS-C or MIS-A, recognizing that the risk of reinfection and, therefore, the benefit from vaccination, might increase with time following initial infection.",
+                    "Given the lack of data on the safety of COVID-19 vaccines in people with a history of MIS-C or MIS-A, a conversation between the patient, their guardian(s), and their clinical team or a specialist is strongly encouraged to assist with decisions about the use of COVID-19 vaccines.",
                     "Currently no data on safety or efficacy of COVID-19 vaccination in persons who received monoclonal antibodies or convalescent plasma as part of COVID-19 treatment. Vaccination should be deferred for at least 90 days to avoid interference of the treatment with vaccine-induced immune responses."
                 ],
                 "seriesType": "Standard",
@@ -102,20 +102,27 @@
                             "effectiveDate": "",
                             "cessationDate": ""
                         },
-                        "interval": {
-                            "fromPrevious": "N",
-                            "fromTargetDose": "",
-                            "fromMostRecent": "207; 210; 211; 212; 213",
-                            "fromRelevantObs": "",
-                            "absMinInt": "0 days",
-                            "minInt": "28 days",
-                            "earliestRecInt": "28 days",
-                            "latestRecInt": "",
-                            "intervalPriority": "",
-                            "effectiveDate": "",
-                            "cessationDate": ""
-                        },
-                        "allowableInterval": {},
+                        "interval": [
+                            {
+                                "fromPrevious": "N",
+                                "fromTargetDose": "",
+                                "fromMostRecent": "207; 210; 211; 212; 213",
+                                "fromRelevantObs": "",
+                                "absMinInt": "0 days",
+                                "minInt": "28 days",
+                                "earliestRecInt": {
+                                    "value": 28,
+                                    "unit": "d"
+                                },
+                                "latestRecInt": "",
+                                "intervalPriority": "",
+                                "effectiveDate": "",
+                                "cessationDate": ""
+                            }
+                        ],
+                        "allowableInterval": [
+                            {}
+                        ],
                         "preferableVaccine": {
                             "vaccineType": "COVID-19, mRNA, LNP-S, PF, 30 mcg/0.3 mL dose",
                             "cvx": "208",
@@ -135,7 +142,7 @@
                             }
                         ],
                         "inadvertentVaccine": "",
-                        "conditionalSkip": "",
+                        "conditionalSkip": {},
                         "recurringDose": "No",
                         "seasonalRecommendation": ""
                     },
@@ -164,7 +171,10 @@
                                 "fromRelevantObs": "",
                                 "absMinInt": "0 days",
                                 "minInt": "28 days",
-                                "earliestRecInt": "28 days",
+                                "earliestRecInt": {
+                                    "value": 28,
+                                    "unit": "d"
+                                },
                                 "latestRecInt": "",
                                 "intervalPriority": "",
                                 "effectiveDate": "",
@@ -177,23 +187,28 @@
                                 "fromRelevantObs": "",
                                 "absMinInt": "21 days - 4 days",
                                 "minInt": "21 days",
-                                "earliestRecInt": "21 days",
+                                "earliestRecInt": {
+                                    "value": 21,
+                                    "unit": "d"
+                                },
                                 "latestRecInt": "42 days",
                                 "intervalPriority": "",
                                 "effectiveDate": "",
                                 "cessationDate": ""
                             }
                         ],
-                        "allowableInterval": {
-                            "fromPrevious": "Y",
-                            "fromTargetDose": "",
-                            "absMinInt": {
-                                "value": 0,
-                                "unit": "d"
-                            },
-                            "effectiveDate": "",
-                            "cessationDate": ""
-                        },
+                        "allowableInterval": [
+                            {
+                                "fromPrevious": "Y",
+                                "fromTargetDose": "",
+                                "absMinInt": {
+                                    "value": 0,
+                                    "unit": "d"
+                                },
+                                "effectiveDate": "",
+                                "cessationDate": "20211024"
+                            }
+                        ],
                         "preferableVaccine": {
                             "vaccineType": "COVID-19, mRNA, LNP-S, PF, 30 mcg/0.3 mL dose",
                             "cvx": "208",
@@ -213,7 +228,7 @@
                             }
                         ],
                         "inadvertentVaccine": "",
-                        "conditionalSkip": "",
+                        "conditionalSkip": {},
                         "recurringDose": "No",
                         "seasonalRecommendation": ""
                     },
@@ -242,7 +257,10 @@
                                 "fromRelevantObs": "",
                                 "absMinInt": "0 days",
                                 "minInt": "28 days",
-                                "earliestRecInt": "28 days",
+                                "earliestRecInt": {
+                                    "value": 28,
+                                    "unit": "d"
+                                },
                                 "latestRecInt": "",
                                 "intervalPriority": "",
                                 "effectiveDate": "",
@@ -255,58 +273,102 @@
                                 "fromRelevantObs": "",
                                 "absMinInt": "6 months - 4 days",
                                 "minInt": "6 months",
-                                "earliestRecInt": "6 months",
+                                "earliestRecInt": {
+                                    "value": 6,
+                                    "unit": "mo"
+                                },
                                 "latestRecInt": "",
                                 "intervalPriority": "",
                                 "effectiveDate": "",
                                 "cessationDate": ""
                             }
                         ],
-                        "allowableInterval": {
-                            "fromPrevious": "Y",
-                            "fromTargetDose": "",
-                            "absMinInt": {
-                                "value": 0,
-                                "unit": "d"
+                        "allowableInterval": [
+                            {
+                                "fromPrevious": "Y",
+                                "fromTargetDose": "",
+                                "absMinInt": {
+                                    "value": 0,
+                                    "unit": "d"
+                                },
+                                "effectiveDate": "",
+                                "cessationDate": ""
+                            }
+                        ],
+                        "preferableVaccine": [
+                            {
+                                "vaccineType": "COVID-19, mRNA, LNP-S, PF, 100 mcg/0.5 mL dose",
+                                "cvx": "207",
+                                "beginAge": "18 years",
+                                "endAge": "",
+                                "tradeName": "",
+                                "mvx": "",
+                                "volume": "0.25",
+                                "forecastVaccineType": "N"
                             },
-                            "effectiveDate": "",
-                            "cessationDate": ""
-                        },
-                        "preferableVaccine": {
-                            "vaccineType": "COVID-19, mRNA, LNP-S, PF, 30 mcg/0.3 mL dose",
-                            "cvx": "208",
-                            "beginAge": "12 years",
-                            "endAge": "",
-                            "tradeName": "",
-                            "mvx": "",
-                            "volume": "0.3",
-                            "forecastVaccineType": "Y"
-                        },
+                            {
+                                "vaccineType": "COVID-19, mRNA, LNP-S, PF, 30 mcg/0.3 mL dose",
+                                "cvx": "208",
+                                "beginAge": "12 years",
+                                "endAge": "",
+                                "tradeName": "",
+                                "mvx": "",
+                                "volume": "0.3",
+                                "forecastVaccineType": "N"
+                            },
+                            {
+                                "vaccineType": "SARS-COV-2 (COVID-19) vaccine, vector non-replicating, recombinant spike protein-Ad26, preservative free, 0.5 mL",
+                                "cvx": "212",
+                                "beginAge": "18 years",
+                                "endAge": "",
+                                "tradeName": "",
+                                "mvx": "",
+                                "volume": "0.5",
+                                "forecastVaccineType": "N"
+                            }
+                        ],
                         "allowableVaccine": [
+                            {
+                                "vaccineType": "COVID-19, mRNA, LNP-S, PF, 100 mcg/0.5 mL dose",
+                                "cvx": "207",
+                                "beginAge": "0 days",
+                                "endAge": ""
+                            },
                             {
                                 "vaccineType": "COVID-19, mRNA, LNP-S, PF, 30 mcg/0.3 mL dose",
                                 "cvx": "208",
                                 "beginAge": "0 days",
                                 "endAge": ""
+                            },
+                            {
+                                "vaccineType": "SARS-COV-2 (COVID-19) vaccine, vector non-replicating, recombinant spike protein-Ad26, preservative free, 0.5 mL",
+                                "cvx": "212",
+                                "beginAge": "0 days",
+                                "endAge": ""
+                            },
+                            {
+                                "vaccineType": "SARS-COV-2 (COVID-19) vaccine, Unspecified Formulation",
+                                "cvx": "213",
+                                "beginAge": "0 days",
+                                "endAge": ""
                             }
                         ],
                         "inadvertentVaccine": "",
-                        "conditionalSkip": "",
+                        "conditionalSkip": {},
                         "recurringDose": "No",
                         "seasonalRecommendation": ""
                     }
                 ]
             },
             {
-                "seriesName": "2-dose Moderna series",
+                "seriesName": "3-dose Moderna series",
                 "targetDisease": "COVID-19",
                 "vaccineGroup": "COVID-19",
                 "seriesAdminGuidance": [
                     "COVID-19 vaccines and other vaccines may now be administered without regard to timing. This includes simultaneous administration of COVID-19 vaccines and other vaccines on the same day, as well as coadministration within 14 days. It is unknown whether reactogenicity of COVID-19 vaccine is increased with coadministration, including with other vaccines known to be more reactogenic, such as adjuvanted vaccines or live vaccines. When deciding whether to coadminister another vaccine(s) with COVID-19 vaccines, providers should consider whether the patient is behind or at risk of becoming behind on recommended vaccines, their risk of vaccine-preventable disease (e.g., during an outbreak or occupational exposures), and the reactogenicity profile of the vaccines.",
                     "Vaccination should be deferred until recovery from acute illness (if person had symptoms) and criteria have been met to discontinue isolation.",
-                    "Current evidence suggests that the risk of SARS-CoV-2 reinfection is low in the months after initial infection but may increase with time due to waning immunity. Thus, people with a history of MIS-C or MIS-A should consider delaying vaccination until they have recovered from illness and for 90 days after the date of diagnosis of MIS-C or MIS-A, recognizing that the risk of reinfection and, therefore, the benefit from vaccination, might increase with time following initial infection.",
-                    "Currently no data on safety or efficacy of COVID-19 vaccination in persons who received monoclonal antibodies or convalescent plasma as part of COVID-19 treatment. Vaccination should be deferred for at least 90 days to avoid interference of the treatment with vaccine-induced immune responses.",
-                    "If age 12 through 17 years and Moderna vaccine inadvertently administered instead of Pfizer-BioNTech as the first dose, may administer Moderna vaccine as the second dose (as off-label use, because Moderna vaccine is not authorized in this age group)."
+                    "Given the lack of data on the safety of COVID-19 vaccines in people with a history of MIS-C or MIS-A, a conversation between the patient, their guardian(s), and their clinical team or a specialist is strongly encouraged to assist with decisions about the use of COVID-19 vaccines.",
+                    "Currently no data on safety or efficacy of COVID-19 vaccination in persons who received monoclonal antibodies or convalescent plasma as part of COVID-19 treatment. Vaccination should be deferred for at least 90 days to avoid interference of the treatment with vaccine-induced immune responses."
                 ],
                 "seriesType": "Standard",
                 "equivalentSeriesGroups": "2; 3",
@@ -327,8 +389,8 @@
                         "doseNumber": "Dose 1",
                         "age": {
                             "absMinAge": {
-                                "value": 0,
-                                "unit": "d"
+                                "value": 18,
+                                "unit": "a"
                             },
                             "minAge": "18 years",
                             "earliestRecAge": {
@@ -340,20 +402,27 @@
                             "effectiveDate": "",
                             "cessationDate": ""
                         },
-                        "interval": {
-                            "fromPrevious": "N",
-                            "fromTargetDose": "",
-                            "fromMostRecent": "208; 210; 211; 212; 213",
-                            "fromRelevantObs": "",
-                            "absMinInt": "0 days",
-                            "minInt": "28 days",
-                            "earliestRecInt": "28 days",
-                            "latestRecInt": "",
-                            "intervalPriority": "",
-                            "effectiveDate": "",
-                            "cessationDate": ""
-                        },
-                        "allowableInterval": {},
+                        "interval": [
+                            {
+                                "fromPrevious": "N",
+                                "fromTargetDose": "",
+                                "fromMostRecent": "208; 210; 211; 212; 213",
+                                "fromRelevantObs": "",
+                                "absMinInt": "0 days",
+                                "minInt": "28 days",
+                                "earliestRecInt": {
+                                    "value": 28,
+                                    "unit": "d"
+                                },
+                                "latestRecInt": "",
+                                "intervalPriority": "",
+                                "effectiveDate": "",
+                                "cessationDate": ""
+                            }
+                        ],
+                        "allowableInterval": [
+                            {}
+                        ],
                         "preferableVaccine": {
                             "vaccineType": "COVID-19, mRNA, LNP-S, PF, 100 mcg/0.5 mL dose",
                             "cvx": "207",
@@ -373,7 +442,7 @@
                             }
                         ],
                         "inadvertentVaccine": "",
-                        "conditionalSkip": "",
+                        "conditionalSkip": {},
                         "recurringDose": "No",
                         "seasonalRecommendation": ""
                     },
@@ -381,12 +450,12 @@
                         "doseNumber": "Dose 2",
                         "age": {
                             "absMinAge": {
-                                "value": 0,
-                                "unit": "d"
+                                "value": 18,
+                                "unit": "a"
                             },
-                            "minAge": "12 years",
+                            "minAge": "18 years",
                             "earliestRecAge": {
-                                "value": 12,
+                                "value": 18,
                                 "unit": "a"
                             },
                             "latestRecAge": "",
@@ -402,7 +471,10 @@
                                 "fromRelevantObs": "",
                                 "absMinInt": "0 days",
                                 "minInt": "28 days",
-                                "earliestRecInt": "28 days",
+                                "earliestRecInt": {
+                                    "value": 28,
+                                    "unit": "d"
+                                },
                                 "latestRecInt": "",
                                 "intervalPriority": "",
                                 "effectiveDate": "",
@@ -415,23 +487,28 @@
                                 "fromRelevantObs": "",
                                 "absMinInt": "28 days - 4 days",
                                 "minInt": "28 days",
-                                "earliestRecInt": "28 days",
+                                "earliestRecInt": {
+                                    "value": 28,
+                                    "unit": "d"
+                                },
                                 "latestRecInt": "42 days",
                                 "intervalPriority": "",
                                 "effectiveDate": "",
                                 "cessationDate": ""
                             }
                         ],
-                        "allowableInterval": {
-                            "fromPrevious": "Y",
-                            "fromTargetDose": "",
-                            "absMinInt": {
-                                "value": 0,
-                                "unit": "d"
-                            },
-                            "effectiveDate": "",
-                            "cessationDate": ""
-                        },
+                        "allowableInterval": [
+                            {
+                                "fromPrevious": "Y",
+                                "fromTargetDose": "",
+                                "absMinInt": {
+                                    "value": 0,
+                                    "unit": "d"
+                                },
+                                "effectiveDate": "",
+                                "cessationDate": "20211024"
+                            }
+                        ],
                         "preferableVaccine": {
                             "vaccineType": "COVID-19, mRNA, LNP-S, PF, 100 mcg/0.5 mL dose",
                             "cvx": "207",
@@ -451,20 +528,146 @@
                             }
                         ],
                         "inadvertentVaccine": "",
-                        "conditionalSkip": "",
+                        "conditionalSkip": {},
+                        "recurringDose": "No",
+                        "seasonalRecommendation": ""
+                    },
+                    {
+                        "doseNumber": "Dose 3",
+                        "age": {
+                            "absMinAge": {
+                                "value": 0,
+                                "unit": "d"
+                            },
+                            "minAge": "65 years",
+                            "earliestRecAge": {
+                                "value": 65,
+                                "unit": "a"
+                            },
+                            "latestRecAge": "",
+                            "maxAge": "",
+                            "effectiveDate": "",
+                            "cessationDate": ""
+                        },
+                        "interval": [
+                            {
+                                "fromPrevious": "N",
+                                "fromTargetDose": "",
+                                "fromMostRecent": "208; 210; 211; 212; 213",
+                                "fromRelevantObs": "",
+                                "absMinInt": "0 days",
+                                "minInt": "28 days",
+                                "earliestRecInt": {
+                                    "value": 28,
+                                    "unit": "d"
+                                },
+                                "latestRecInt": "",
+                                "intervalPriority": "",
+                                "effectiveDate": "",
+                                "cessationDate": ""
+                            },
+                            {
+                                "fromPrevious": "Y",
+                                "fromTargetDose": "",
+                                "fromMostRecent": "",
+                                "fromRelevantObs": "",
+                                "absMinInt": "6 months - 4 days",
+                                "minInt": "6 months",
+                                "earliestRecInt": {
+                                    "value": 6,
+                                    "unit": "mo"
+                                },
+                                "latestRecInt": "",
+                                "intervalPriority": "",
+                                "effectiveDate": "",
+                                "cessationDate": ""
+                            }
+                        ],
+                        "allowableInterval": [
+                            {
+                                "fromPrevious": "Y",
+                                "fromTargetDose": "",
+                                "absMinInt": {
+                                    "value": 0,
+                                    "unit": "d"
+                                },
+                                "effectiveDate": "",
+                                "cessationDate": ""
+                            }
+                        ],
+                        "preferableVaccine": [
+                            {
+                                "vaccineType": "COVID-19, mRNA, LNP-S, PF, 100 mcg/0.5 mL dose",
+                                "cvx": "207",
+                                "beginAge": "18 years",
+                                "endAge": "",
+                                "tradeName": "",
+                                "mvx": "",
+                                "volume": "0.25",
+                                "forecastVaccineType": "N"
+                            },
+                            {
+                                "vaccineType": "COVID-19, mRNA, LNP-S, PF, 30 mcg/0.3 mL dose",
+                                "cvx": "208",
+                                "beginAge": "12 years",
+                                "endAge": "",
+                                "tradeName": "",
+                                "mvx": "",
+                                "volume": "0.3",
+                                "forecastVaccineType": "N"
+                            },
+                            {
+                                "vaccineType": "SARS-COV-2 (COVID-19) vaccine, vector non-replicating, recombinant spike protein-Ad26, preservative free, 0.5 mL",
+                                "cvx": "212",
+                                "beginAge": "18 years",
+                                "endAge": "",
+                                "tradeName": "",
+                                "mvx": "",
+                                "volume": "0.5",
+                                "forecastVaccineType": "N"
+                            }
+                        ],
+                        "allowableVaccine": [
+                            {
+                                "vaccineType": "COVID-19, mRNA, LNP-S, PF, 100 mcg/0.5 mL dose",
+                                "cvx": "207",
+                                "beginAge": "0 days",
+                                "endAge": ""
+                            },
+                            {
+                                "vaccineType": "COVID-19, mRNA, LNP-S, PF, 30 mcg/0.3 mL dose",
+                                "cvx": "208",
+                                "beginAge": "0 days",
+                                "endAge": ""
+                            },
+                            {
+                                "vaccineType": "SARS-COV-2 (COVID-19) vaccine, vector non-replicating, recombinant spike protein-Ad26, preservative free, 0.5 mL",
+                                "cvx": "212",
+                                "beginAge": "0 days",
+                                "endAge": ""
+                            },
+                            {
+                                "vaccineType": "SARS-COV-2 (COVID-19) vaccine, Unspecified Formulation",
+                                "cvx": "213",
+                                "beginAge": "0 days",
+                                "endAge": ""
+                            }
+                        ],
+                        "inadvertentVaccine": "",
+                        "conditionalSkip": {},
                         "recurringDose": "No",
                         "seasonalRecommendation": ""
                     }
                 ]
             },
             {
-                "seriesName": "1-dose Janssen series",
+                "seriesName": "2-dose Janssen series",
                 "targetDisease": "COVID-19",
                 "vaccineGroup": "COVID-19",
                 "seriesAdminGuidance": [
                     "COVID-19 vaccines and other vaccines may now be administered without regard to timing. This includes simultaneous administration of COVID-19 vaccines and other vaccines on the same day, as well as coadministration within 14 days. It is unknown whether reactogenicity of COVID-19 vaccine is increased with coadministration, including with other vaccines known to be more reactogenic, such as adjuvanted vaccines or live vaccines. When deciding whether to coadminister another vaccine(s) with COVID-19 vaccines, providers should consider whether the patient is behind or at risk of becoming behind on recommended vaccines, their risk of vaccine-preventable disease (e.g., during an outbreak or occupational exposures), and the reactogenicity profile of the vaccines.",
                     "Vaccination should be deferred until recovery from acute illness (if person had symptoms) and criteria have been met to discontinue isolation.",
-                    "Current evidence suggests that the risk of SARS-CoV-2 reinfection is low in the months after initial infection but may increase with time due to waning immunity. Thus, people with a history of MIS-C or MIS-A should consider delaying vaccination until they have recovered from illness and for 90 days after the date of diagnosis of MIS-C or MIS-A, recognizing that the risk of reinfection and, therefore, the benefit from vaccination, might increase with time following initial infection.",
+                    "Given the lack of data on the safety of COVID-19 vaccines in people with a history of MIS-C or MIS-A, a conversation between the patient, their guardian(s), and their clinical team or a specialist is strongly encouraged to assist with decisions about the use of COVID-19 vaccines.",
                     "Currently no data on safety or efficacy of COVID-19 vaccination in persons who received monoclonal antibodies or convalescent plasma as part of COVID-19 treatment. Vaccination should be deferred for at least 90 days to avoid interference of the treatment with vaccine-induced immune responses."
                 ],
                 "seriesType": "Standard",
@@ -499,20 +702,27 @@
                             "effectiveDate": "",
                             "cessationDate": ""
                         },
-                        "interval": {
-                            "fromPrevious": "N",
-                            "fromTargetDose": "",
-                            "fromMostRecent": "207; 208; 210; 211; 213",
-                            "fromRelevantObs": "",
-                            "absMinInt": "0 days",
-                            "minInt": "28 days",
-                            "earliestRecInt": "28 days",
-                            "latestRecInt": "",
-                            "intervalPriority": "",
-                            "effectiveDate": "",
-                            "cessationDate": ""
-                        },
-                        "allowableInterval": {},
+                        "interval": [
+                            {
+                                "fromPrevious": "N",
+                                "fromTargetDose": "",
+                                "fromMostRecent": "207; 208; 210; 211; 213",
+                                "fromRelevantObs": "",
+                                "absMinInt": "0 days",
+                                "minInt": "28 days",
+                                "earliestRecInt": {
+                                    "value": 28,
+                                    "unit": "d"
+                                },
+                                "latestRecInt": "",
+                                "intervalPriority": "",
+                                "effectiveDate": "",
+                                "cessationDate": ""
+                            }
+                        ],
+                        "allowableInterval": [
+                            {}
+                        ],
                         "preferableVaccine": {
                             "vaccineType": "SARS-COV-2 (COVID-19) vaccine, vector non-replicating, recombinant spike protein-Ad26, preservative free, 0.5 mL",
                             "cvx": "212",
@@ -532,7 +742,133 @@
                             }
                         ],
                         "inadvertentVaccine": "",
-                        "conditionalSkip": "",
+                        "conditionalSkip": {},
+                        "recurringDose": "No",
+                        "seasonalRecommendation": ""
+                    },
+                    {
+                        "doseNumber": "Dose 2",
+                        "age": {
+                            "absMinAge": {
+                                "value": 0,
+                                "unit": "d"
+                            },
+                            "minAge": "18 years",
+                            "earliestRecAge": {
+                                "value": 18,
+                                "unit": "a"
+                            },
+                            "latestRecAge": "",
+                            "maxAge": "",
+                            "effectiveDate": "",
+                            "cessationDate": ""
+                        },
+                        "interval": [
+                            {
+                                "fromPrevious": "N",
+                                "fromTargetDose": "",
+                                "fromMostRecent": "207; 208; 210; 211; 213",
+                                "fromRelevantObs": "",
+                                "absMinInt": "0 days",
+                                "minInt": "28 days",
+                                "earliestRecInt": {
+                                    "value": 28,
+                                    "unit": "d"
+                                },
+                                "latestRecInt": "",
+                                "intervalPriority": "",
+                                "effectiveDate": "",
+                                "cessationDate": ""
+                            },
+                            {
+                                "fromPrevious": "Y",
+                                "fromTargetDose": "",
+                                "fromMostRecent": "",
+                                "fromRelevantObs": "",
+                                "absMinInt": "8 weeks - 4 days",
+                                "minInt": "8 weeks",
+                                "earliestRecInt": {
+                                    "value": 8,
+                                    "unit": "wk"
+                                },
+                                "latestRecInt": "",
+                                "intervalPriority": "",
+                                "effectiveDate": "",
+                                "cessationDate": ""
+                            }
+                        ],
+                        "allowableInterval": [
+                            {
+                                "fromPrevious": "Y",
+                                "fromTargetDose": "",
+                                "absMinInt": {
+                                    "value": 0,
+                                    "unit": "d"
+                                },
+                                "effectiveDate": "",
+                                "cessationDate": ""
+                            }
+                        ],
+                        "preferableVaccine": [
+                            {
+                                "vaccineType": "COVID-19, mRNA, LNP-S, PF, 100 mcg/0.5 mL dose",
+                                "cvx": "207",
+                                "beginAge": "18 years",
+                                "endAge": "",
+                                "tradeName": "",
+                                "mvx": "",
+                                "volume": "0.25",
+                                "forecastVaccineType": "N"
+                            },
+                            {
+                                "vaccineType": "COVID-19, mRNA, LNP-S, PF, 30 mcg/0.3 mL dose",
+                                "cvx": "208",
+                                "beginAge": "12 years",
+                                "endAge": "",
+                                "tradeName": "",
+                                "mvx": "",
+                                "volume": "0.3",
+                                "forecastVaccineType": "N"
+                            },
+                            {
+                                "vaccineType": "SARS-COV-2 (COVID-19) vaccine, vector non-replicating, recombinant spike protein-Ad26, preservative free, 0.5 mL",
+                                "cvx": "212",
+                                "beginAge": "18 years",
+                                "endAge": "",
+                                "tradeName": "",
+                                "mvx": "",
+                                "volume": "0.5",
+                                "forecastVaccineType": "N"
+                            }
+                        ],
+                        "allowableVaccine": [
+                            {
+                                "vaccineType": "COVID-19, mRNA, LNP-S, PF, 100 mcg/0.5 mL dose",
+                                "cvx": "207",
+                                "beginAge": "0 days",
+                                "endAge": ""
+                            },
+                            {
+                                "vaccineType": "COVID-19, mRNA, LNP-S, PF, 30 mcg/0.3 mL dose",
+                                "cvx": "208",
+                                "beginAge": "0 days",
+                                "endAge": ""
+                            },
+                            {
+                                "vaccineType": "SARS-COV-2 (COVID-19) vaccine, vector non-replicating, recombinant spike protein-Ad26, preservative free, 0.5 mL",
+                                "cvx": "212",
+                                "beginAge": "0 days",
+                                "endAge": ""
+                            },
+                            {
+                                "vaccineType": "SARS-COV-2 (COVID-19) vaccine, Unspecified Formulation",
+                                "cvx": "213",
+                                "beginAge": "0 days",
+                                "endAge": ""
+                            }
+                        ],
+                        "inadvertentVaccine": "",
+                        "conditionalSkip": {},
                         "recurringDose": "No",
                         "seasonalRecommendation": ""
                     }
@@ -545,8 +881,9 @@
                 "seriesAdminGuidance": [
                     "COVID-19 vaccines and other vaccines may now be administered without regard to timing. This includes simultaneous administration of COVID-19 vaccines and other vaccines on the same day, as well as coadministration within 14 days. It is unknown whether reactogenicity of COVID-19 vaccine is increased with coadministration, including with other vaccines known to be more reactogenic, such as adjuvanted vaccines or live vaccines. When deciding whether to coadminister another vaccine(s) with COVID-19 vaccines, providers should consider whether the patient is behind or at risk of becoming behind on recommended vaccines, their risk of vaccine-preventable disease (e.g., during an outbreak or occupational exposures), and the reactogenicity profile of the vaccines.",
                     "Vaccination should be deferred until recovery from acute illness (if person had symptoms) and criteria have been met to discontinue isolation.",
-                    "Current evidence suggests that the risk of SARS-CoV-2 reinfection is low in the months after initial infection but may increase with time due to waning immunity. Thus, people with a history of MIS-C or MIS-A should consider delaying vaccination until they have recovered from illness and for 90 days after the date of diagnosis of MIS-C or MIS-A, recognizing that the risk of reinfection and, therefore, the benefit from vaccination, might increase with time following initial infection.",
-                    "Currently no data on safety or efficacy of COVID-19 vaccination in persons who received monoclonal antibodies or convalescent plasma as part of COVID-19 treatment. Vaccination should be deferred for at least 90 days to avoid interference of the treatment with vaccine-induced immune responses."
+                    "Given the lack of data on the safety of COVID-19 vaccines in people with a history of MIS-C or MIS-A, a conversation between the patient, their guardian(s), and their clinical team or a specialist is strongly encouraged to assist with decisions about the use of COVID-19 vaccines.",
+                    "Currently no data on safety or efficacy of COVID-19 vaccination in persons who received monoclonal antibodies or convalescent plasma as part of COVID-19 treatment. Vaccination should be deferred for at least 90 days to avoid interference of the treatment with vaccine-induced immune responses.",
+                    "If Moderna vaccine administered as the first dose before 18 years, it is suggested to give Pfizer-BioNTech vaccine as the second dose (at least 28 days after the Moderna vaccine dose) because Pfizer-BioNTech is authorized in this age group."
                 ],
                 "seriesType": "Standard",
                 "equivalentSeriesGroups": "2; 3",
@@ -580,20 +917,27 @@
                             "effectiveDate": "",
                             "cessationDate": ""
                         },
-                        "interval": {
-                            "fromPrevious": "N",
-                            "fromTargetDose": "",
-                            "fromMostRecent": "210; 211; 212",
-                            "fromRelevantObs": "",
-                            "absMinInt": "0 days",
-                            "minInt": "28 days",
-                            "earliestRecInt": "28 days",
-                            "latestRecInt": "",
-                            "intervalPriority": "",
-                            "effectiveDate": "",
-                            "cessationDate": ""
-                        },
-                        "allowableInterval": {},
+                        "interval": [
+                            {
+                                "fromPrevious": "N",
+                                "fromTargetDose": "",
+                                "fromMostRecent": "210; 211; 212",
+                                "fromRelevantObs": "",
+                                "absMinInt": "0 days",
+                                "minInt": "28 days",
+                                "earliestRecInt": {
+                                    "value": 28,
+                                    "unit": "d"
+                                },
+                                "latestRecInt": "",
+                                "intervalPriority": "",
+                                "effectiveDate": "",
+                                "cessationDate": ""
+                            }
+                        ],
+                        "allowableInterval": [
+                            {}
+                        ],
                         "preferableVaccine": [
                             {
                                 "vaccineType": "COVID-19, mRNA, LNP-S, PF, 100 mcg/0.5 mL dose",
@@ -637,7 +981,7 @@
                             }
                         ],
                         "inadvertentVaccine": "",
-                        "conditionalSkip": "",
+                        "conditionalSkip": {},
                         "recurringDose": "No",
                         "seasonalRecommendation": ""
                     },
@@ -663,7 +1007,10 @@
                                 "fromRelevantObs": "",
                                 "absMinInt": "0 days",
                                 "minInt": "28 days",
-                                "earliestRecInt": "28 days",
+                                "earliestRecInt": {
+                                    "value": 28,
+                                    "unit": "d"
+                                },
                                 "latestRecInt": "",
                                 "intervalPriority": "",
                                 "effectiveDate": "",
@@ -676,23 +1023,28 @@
                                 "fromRelevantObs": "",
                                 "absMinInt": "28 days - 4 days",
                                 "minInt": "28 days",
-                                "earliestRecInt": "28 days",
+                                "earliestRecInt": {
+                                    "value": 28,
+                                    "unit": "d"
+                                },
                                 "latestRecInt": "42 days",
                                 "intervalPriority": "",
                                 "effectiveDate": "",
                                 "cessationDate": ""
                             }
                         ],
-                        "allowableInterval": {
-                            "fromPrevious": "Y",
-                            "fromTargetDose": "",
-                            "absMinInt": {
-                                "value": 0,
-                                "unit": "d"
-                            },
-                            "effectiveDate": "",
-                            "cessationDate": ""
-                        },
+                        "allowableInterval": [
+                            {
+                                "fromPrevious": "Y",
+                                "fromTargetDose": "",
+                                "absMinInt": {
+                                    "value": 0,
+                                    "unit": "d"
+                                },
+                                "effectiveDate": "",
+                                "cessationDate": "20211024"
+                            }
+                        ],
                         "preferableVaccine": [
                             {
                                 "vaccineType": "COVID-19, mRNA, LNP-S, PF, 100 mcg/0.5 mL dose",
@@ -736,7 +1088,7 @@
                             }
                         ],
                         "inadvertentVaccine": "",
-                        "conditionalSkip": "",
+                        "conditionalSkip": {},
                         "recurringDose": "No",
                         "seasonalRecommendation": ""
                     },
@@ -765,7 +1117,10 @@
                                 "fromRelevantObs": "",
                                 "absMinInt": "0 days",
                                 "minInt": "28 days",
-                                "earliestRecInt": "28 days",
+                                "earliestRecInt": {
+                                    "value": 28,
+                                    "unit": "d"
+                                },
                                 "latestRecInt": "",
                                 "intervalPriority": "",
                                 "effectiveDate": "",
@@ -778,23 +1133,28 @@
                                 "fromRelevantObs": "",
                                 "absMinInt": "6 months - 4 days",
                                 "minInt": "6 months",
-                                "earliestRecInt": "6 months",
+                                "earliestRecInt": {
+                                    "value": 6,
+                                    "unit": "mo"
+                                },
                                 "latestRecInt": "",
                                 "intervalPriority": "",
                                 "effectiveDate": "",
                                 "cessationDate": ""
                             }
                         ],
-                        "allowableInterval": {
-                            "fromPrevious": "Y",
-                            "fromTargetDose": "",
-                            "absMinInt": {
-                                "value": 0,
-                                "unit": "d"
-                            },
-                            "effectiveDate": "",
-                            "cessationDate": ""
-                        },
+                        "allowableInterval": [
+                            {
+                                "fromPrevious": "Y",
+                                "fromTargetDose": "",
+                                "absMinInt": {
+                                    "value": 0,
+                                    "unit": "d"
+                                },
+                                "effectiveDate": "",
+                                "cessationDate": ""
+                            }
+                        ],
                         "preferableVaccine": [
                             {
                                 "vaccineType": "COVID-19, mRNA, LNP-S, PF, 100 mcg/0.5 mL dose",
@@ -807,6 +1167,16 @@
                                 "forecastVaccineType": "N"
                             },
                             {
+                                "vaccineType": "COVID-19, mRNA, LNP-S, PF, 100 mcg/0.5 mL dose",
+                                "cvx": "207",
+                                "beginAge": "18 years",
+                                "endAge": "",
+                                "tradeName": "",
+                                "mvx": "",
+                                "volume": "0.25",
+                                "forecastVaccineType": "N"
+                            },
+                            {
                                 "vaccineType": "COVID-19, mRNA, LNP-S, PF, 30 mcg/0.3 mL dose",
                                 "cvx": "208",
                                 "beginAge": "12 years",
@@ -815,9 +1185,25 @@
                                 "mvx": "",
                                 "volume": "0.3",
                                 "forecastVaccineType": "N"
+                            },
+                            {
+                                "vaccineType": "SARS-COV-2 (COVID-19) vaccine, vector non-replicating, recombinant spike protein-Ad26, preservative free, 0.5 mL",
+                                "cvx": "212",
+                                "beginAge": "18 years",
+                                "endAge": "",
+                                "tradeName": "",
+                                "mvx": "",
+                                "volume": "0.5",
+                                "forecastVaccineType": "N"
                             }
                         ],
                         "allowableVaccine": [
+                            {
+                                "vaccineType": "COVID-19, mRNA, LNP-S, PF, 100 mcg/0.5 mL dose",
+                                "cvx": "207",
+                                "beginAge": "0 days",
+                                "endAge": ""
+                            },
                             {
                                 "vaccineType": "COVID-19, mRNA, LNP-S, PF, 100 mcg/0.5 mL dose",
                                 "cvx": "207",
@@ -831,6 +1217,12 @@
                                 "endAge": ""
                             },
                             {
+                                "vaccineType": "SARS-COV-2 (COVID-19) vaccine, vector non-replicating, recombinant spike protein-Ad26, preservative free, 0.5 mL",
+                                "cvx": "212",
+                                "beginAge": "0 days",
+                                "endAge": ""
+                            },
+                            {
                                 "vaccineType": "SARS-COV-2 (COVID-19) vaccine, Unspecified Formulation",
                                 "cvx": "213",
                                 "beginAge": "0 days",
@@ -838,45 +1230,21 @@
                             }
                         ],
                         "inadvertentVaccine": "",
-                        "conditionalSkip": {
-                            "context": "Both",
-                            "setLogic": "n/a",
-                            "set": {
-                                "setID": "1",
-                                "setDescription": "Target Dose is not required if any non-Pfizer vaccine is administered",
-                                "effectiveDate": "",
-                                "cessationDate": "",
-                                "conditionLogic": "",
-                                "condition": {
-                                    "conditionID": "1",
-                                    "conditionType": "Vaccine Count by Age",
-                                    "startDate": "",
-                                    "endDate": "",
-                                    "beginAge": "",
-                                    "endAge": "",
-                                    "interval": "",
-                                    "doseCount": "0",
-                                    "doseType": "Total",
-                                    "doseCountLogic": "greater than",
-                                    "vaccineTypes": "207; 213",
-                                    "seriesGroups": ""
-                                }
-                            }
-                        },
+                        "conditionalSkip": {},
                         "recurringDose": "No",
                         "seasonalRecommendation": ""
                     }
                 ]
             },
             {
-                "seriesName": "Risk 3-dose Immunocompromised Pfizer series",
+                "seriesName": "Risk 4-dose Immunocompromised Pfizer series",
                 "targetDisease": "COVID-19",
                 "vaccineGroup": "COVID-19",
                 "seriesAdminGuidance": [
                     "A patients clinical team is best positioned to determine the degree of immune compromise and appropriate timing of vaccination.\n\nFactors to consider in assessing the general level of immune competence in a patient include disease severity, duration, clinical stability, complications, comorbidities, and any potentially immune-suppressing treatment.",
                     "COVID-19 vaccines and other vaccines may now be administered without regard to timing. This includes simultaneous administration of COVID-19 vaccines and other vaccines on the same day, as well as coadministration within 14 days. It is unknown whether reactogenicity of COVID-19 vaccine is increased with coadministration, including with other vaccines known to be more reactogenic, such as adjuvanted vaccines or live vaccines. When deciding whether to coadminister another vaccine(s) with COVID-19 vaccines, providers should consider whether the patient is behind or at risk of becoming behind on recommended vaccines, their risk of vaccine-preventable disease (e.g., during an outbreak or occupational exposures), and the reactogenicity profile of the vaccines.",
                     "Vaccination should be deferred until recovery from acute illness (if person had symptoms) and criteria have been met to discontinue isolation.",
-                    "Current evidence suggests that the risk of SARS-CoV-2 reinfection is low in the months after initial infection but may increase with time due to waning immunity. Thus, people with a history of MIS-C or MIS-A should consider delaying vaccination until they have recovered from illness and for 90 days after the date of diagnosis of MIS-C or MIS-A, recognizing that the risk of reinfection and, therefore, the benefit from vaccination, might increase with time following initial infection.",
+                    "Given the lack of data on the safety of COVID-19 vaccines in people with a history of MIS-C or MIS-A, a conversation between the patient, their guardian(s), and their clinical team or a specialist is strongly encouraged to assist with decisions about the use of COVID-19 vaccines.",
                     "Currently no data on safety or efficacy of COVID-19 vaccination in persons who received monoclonal antibodies or convalescent plasma as part of COVID-19 treatment. Vaccination should be deferred for at least 90 days to avoid interference of the treatment with vaccine-induced immune responses."
                 ],
                 "seriesType": "Risk",
@@ -1032,20 +1400,27 @@
                             "effectiveDate": "",
                             "cessationDate": ""
                         },
-                        "interval": {
-                            "fromPrevious": "N",
-                            "fromTargetDose": "",
-                            "fromMostRecent": "207; 210; 211; 212; 213",
-                            "fromRelevantObs": "",
-                            "absMinInt": "0 days",
-                            "minInt": "28 days",
-                            "earliestRecInt": "28 days",
-                            "latestRecInt": "",
-                            "intervalPriority": "",
-                            "effectiveDate": "",
-                            "cessationDate": ""
-                        },
-                        "allowableInterval": {},
+                        "interval": [
+                            {
+                                "fromPrevious": "N",
+                                "fromTargetDose": "",
+                                "fromMostRecent": "207; 210; 211; 212; 213",
+                                "fromRelevantObs": "",
+                                "absMinInt": "0 days",
+                                "minInt": "28 days",
+                                "earliestRecInt": {
+                                    "value": 28,
+                                    "unit": "d"
+                                },
+                                "latestRecInt": "",
+                                "intervalPriority": "",
+                                "effectiveDate": "",
+                                "cessationDate": ""
+                            }
+                        ],
+                        "allowableInterval": [
+                            {}
+                        ],
                         "preferableVaccine": {
                             "vaccineType": "COVID-19, mRNA, LNP-S, PF, 30 mcg/0.3 mL dose",
                             "cvx": "208",
@@ -1065,7 +1440,7 @@
                             }
                         ],
                         "inadvertentVaccine": "",
-                        "conditionalSkip": "",
+                        "conditionalSkip": {},
                         "recurringDose": "No",
                         "seasonalRecommendation": ""
                     },
@@ -1094,7 +1469,10 @@
                                 "fromRelevantObs": "",
                                 "absMinInt": "0 days",
                                 "minInt": "28 days",
-                                "earliestRecInt": "28 days",
+                                "earliestRecInt": {
+                                    "value": 28,
+                                    "unit": "d"
+                                },
                                 "latestRecInt": "",
                                 "intervalPriority": "",
                                 "effectiveDate": "",
@@ -1107,23 +1485,28 @@
                                 "fromRelevantObs": "",
                                 "absMinInt": "21 days - 4 days",
                                 "minInt": "21 days",
-                                "earliestRecInt": "21 days",
+                                "earliestRecInt": {
+                                    "value": 21,
+                                    "unit": "d"
+                                },
                                 "latestRecInt": "42 days",
                                 "intervalPriority": "",
                                 "effectiveDate": "",
                                 "cessationDate": ""
                             }
                         ],
-                        "allowableInterval": {
-                            "fromPrevious": "Y",
-                            "fromTargetDose": "",
-                            "absMinInt": {
-                                "value": 0,
-                                "unit": "d"
-                            },
-                            "effectiveDate": "",
-                            "cessationDate": ""
-                        },
+                        "allowableInterval": [
+                            {
+                                "fromPrevious": "Y",
+                                "fromTargetDose": "",
+                                "absMinInt": {
+                                    "value": 0,
+                                    "unit": "d"
+                                },
+                                "effectiveDate": "",
+                                "cessationDate": "20211024"
+                            }
+                        ],
                         "preferableVaccine": {
                             "vaccineType": "COVID-19, mRNA, LNP-S, PF, 30 mcg/0.3 mL dose",
                             "cvx": "208",
@@ -1143,7 +1526,7 @@
                             }
                         ],
                         "inadvertentVaccine": "",
-                        "conditionalSkip": "",
+                        "conditionalSkip": {},
                         "recurringDose": "No",
                         "seasonalRecommendation": ""
                     },
@@ -1172,7 +1555,10 @@
                                 "fromRelevantObs": "",
                                 "absMinInt": "0 days",
                                 "minInt": "28 days",
-                                "earliestRecInt": "28 days",
+                                "earliestRecInt": {
+                                    "value": 28,
+                                    "unit": "d"
+                                },
                                 "latestRecInt": "",
                                 "intervalPriority": "",
                                 "effectiveDate": "",
@@ -1185,23 +1571,28 @@
                                 "fromRelevantObs": "",
                                 "absMinInt": "28 days - 4 days",
                                 "minInt": "28 days",
-                                "earliestRecInt": "28 days",
+                                "earliestRecInt": {
+                                    "value": 28,
+                                    "unit": "d"
+                                },
                                 "latestRecInt": "42 days",
                                 "intervalPriority": "",
                                 "effectiveDate": "",
                                 "cessationDate": ""
                             }
                         ],
-                        "allowableInterval": {
-                            "fromPrevious": "Y",
-                            "fromTargetDose": "",
-                            "absMinInt": {
-                                "value": 0,
-                                "unit": "d"
-                            },
-                            "effectiveDate": "",
-                            "cessationDate": ""
-                        },
+                        "allowableInterval": [
+                            {
+                                "fromPrevious": "Y",
+                                "fromTargetDose": "",
+                                "absMinInt": {
+                                    "value": 0,
+                                    "unit": "d"
+                                },
+                                "effectiveDate": "",
+                                "cessationDate": "20211024"
+                            }
+                        ],
                         "preferableVaccine": {
                             "vaccineType": "COVID-19, mRNA, LNP-S, PF, 30 mcg/0.3 mL dose",
                             "cvx": "208",
@@ -1221,23 +1612,148 @@
                             }
                         ],
                         "inadvertentVaccine": "",
-                        "conditionalSkip": "",
+                        "conditionalSkip": {},
+                        "recurringDose": "No",
+                        "seasonalRecommendation": ""
+                    },
+                    {
+                        "doseNumber": "Dose 4",
+                        "age": {
+                            "absMinAge": {
+                                "value": 0,
+                                "unit": "d"
+                            },
+                            "minAge": "18 years",
+                            "earliestRecAge": {
+                                "value": 18,
+                                "unit": "a"
+                            },
+                            "latestRecAge": "",
+                            "maxAge": "",
+                            "effectiveDate": "",
+                            "cessationDate": ""
+                        },
+                        "interval": [
+                            {
+                                "fromPrevious": "N",
+                                "fromTargetDose": "",
+                                "fromMostRecent": "207; 210; 211; 212; 213",
+                                "fromRelevantObs": "",
+                                "absMinInt": "0 days",
+                                "minInt": "28 days",
+                                "earliestRecInt": {
+                                    "value": 28,
+                                    "unit": "d"
+                                },
+                                "latestRecInt": "",
+                                "intervalPriority": "",
+                                "effectiveDate": "",
+                                "cessationDate": ""
+                            },
+                            {
+                                "fromPrevious": "Y",
+                                "fromTargetDose": "",
+                                "fromMostRecent": "",
+                                "fromRelevantObs": "",
+                                "absMinInt": "6 months - 4 days",
+                                "minInt": "6 months",
+                                "earliestRecInt": {
+                                    "value": 6,
+                                    "unit": "mo"
+                                },
+                                "latestRecInt": "",
+                                "intervalPriority": "",
+                                "effectiveDate": "",
+                                "cessationDate": ""
+                            }
+                        ],
+                        "allowableInterval": [
+                            {
+                                "fromPrevious": "Y",
+                                "fromTargetDose": "",
+                                "absMinInt": {
+                                    "value": 0,
+                                    "unit": "d"
+                                },
+                                "effectiveDate": "",
+                                "cessationDate": ""
+                            }
+                        ],
+                        "preferableVaccine": [
+                            {
+                                "vaccineType": "COVID-19, mRNA, LNP-S, PF, 100 mcg/0.5 mL dose",
+                                "cvx": "207",
+                                "beginAge": "18 years",
+                                "endAge": "",
+                                "tradeName": "",
+                                "mvx": "",
+                                "volume": "0.25",
+                                "forecastVaccineType": "N"
+                            },
+                            {
+                                "vaccineType": "COVID-19, mRNA, LNP-S, PF, 30 mcg/0.3 mL dose",
+                                "cvx": "208",
+                                "beginAge": "12 years",
+                                "endAge": "",
+                                "tradeName": "",
+                                "mvx": "",
+                                "volume": "0.3",
+                                "forecastVaccineType": "N"
+                            },
+                            {
+                                "vaccineType": "SARS-COV-2 (COVID-19) vaccine, vector non-replicating, recombinant spike protein-Ad26, preservative free, 0.5 mL",
+                                "cvx": "212",
+                                "beginAge": "18 years",
+                                "endAge": "",
+                                "tradeName": "",
+                                "mvx": "",
+                                "volume": "0.5",
+                                "forecastVaccineType": "N"
+                            }
+                        ],
+                        "allowableVaccine": [
+                            {
+                                "vaccineType": "COVID-19, mRNA, LNP-S, PF, 100 mcg/0.5 mL dose",
+                                "cvx": "207",
+                                "beginAge": "0 days",
+                                "endAge": ""
+                            },
+                            {
+                                "vaccineType": "COVID-19, mRNA, LNP-S, PF, 30 mcg/0.3 mL dose",
+                                "cvx": "208",
+                                "beginAge": "0 days",
+                                "endAge": ""
+                            },
+                            {
+                                "vaccineType": "SARS-COV-2 (COVID-19) vaccine, vector non-replicating, recombinant spike protein-Ad26, preservative free, 0.5 mL",
+                                "cvx": "212",
+                                "beginAge": "0 days",
+                                "endAge": ""
+                            },
+                            {
+                                "vaccineType": "SARS-COV-2 (COVID-19) vaccine, Unspecified Formulation",
+                                "cvx": "213",
+                                "beginAge": "0 days",
+                                "endAge": ""
+                            }
+                        ],
+                        "inadvertentVaccine": "",
+                        "conditionalSkip": {},
                         "recurringDose": "No",
                         "seasonalRecommendation": ""
                     }
                 ]
             },
             {
-                "seriesName": "Risk 3-dose Immunocompromised Moderna series",
+                "seriesName": "Risk 4-dose Immunocompromised Moderna series",
                 "targetDisease": "COVID-19",
                 "vaccineGroup": "COVID-19",
                 "seriesAdminGuidance": [
                     "A patients clinical team is best positioned to determine the degree of immune compromise and appropriate timing of vaccination.\n\nFactors to consider in assessing the general level of immune competence in a patient include disease severity, duration, clinical stability, complications, comorbidities, and any potentially immune-suppressing treatment.",
                     "COVID-19 vaccines and other vaccines may now be administered without regard to timing. This includes simultaneous administration of COVID-19 vaccines and other vaccines on the same day, as well as coadministration within 14 days. It is unknown whether reactogenicity of COVID-19 vaccine is increased with coadministration, including with other vaccines known to be more reactogenic, such as adjuvanted vaccines or live vaccines. When deciding whether to coadminister another vaccine(s) with COVID-19 vaccines, providers should consider whether the patient is behind or at risk of becoming behind on recommended vaccines, their risk of vaccine-preventable disease (e.g., during an outbreak or occupational exposures), and the reactogenicity profile of the vaccines.",
                     "Vaccination should be deferred until recovery from acute illness (if person had symptoms) and criteria have been met to discontinue isolation.",
-                    "Current evidence suggests that the risk of SARS-CoV-2 reinfection is low in the months after initial infection but may increase with time due to waning immunity. Thus, people with a history of MIS-C or MIS-A should consider delaying vaccination until they have recovered from illness and for 90 days after the date of diagnosis of MIS-C or MIS-A, recognizing that the risk of reinfection and, therefore, the benefit from vaccination, might increase with time following initial infection.",
-                    "Currently no data on safety or efficacy of COVID-19 vaccination in persons who received monoclonal antibodies or convalescent plasma as part of COVID-19 treatment. Vaccination should be deferred for at least 90 days to avoid interference of the treatment with vaccine-induced immune responses.",
-                    "If age 12 through 17 years and Moderna vaccine inadvertently administered instead of Pfizer-BioNTech as the first dose, may administer Moderna vaccine as the second dose (as off-label use, because Moderna vaccine is not authorized in this age group)."
+                    "Given the lack of data on the safety of COVID-19 vaccines in people with a history of MIS-C or MIS-A, a conversation between the patient, their guardian(s), and their clinical team or a specialist is strongly encouraged to assist with decisions about the use of COVID-19 vaccines.",
+                    "Currently no data on safety or efficacy of COVID-19 vaccination in persons who received monoclonal antibodies or convalescent plasma as part of COVID-19 treatment. Vaccination should be deferred for at least 90 days to avoid interference of the treatment with vaccine-induced immune responses."
                 ],
                 "seriesType": "Risk",
                 "equivalentSeriesGroups": "3",
@@ -1379,8 +1895,8 @@
                         "doseNumber": "Dose 1",
                         "age": {
                             "absMinAge": {
-                                "value": 0,
-                                "unit": "d"
+                                "value": 18,
+                                "unit": "a"
                             },
                             "minAge": "18 years",
                             "earliestRecAge": {
@@ -1392,20 +1908,27 @@
                             "effectiveDate": "",
                             "cessationDate": ""
                         },
-                        "interval": {
-                            "fromPrevious": "N",
-                            "fromTargetDose": "",
-                            "fromMostRecent": "208; 210; 211; 212; 213",
-                            "fromRelevantObs": "",
-                            "absMinInt": "0 days",
-                            "minInt": "28 days",
-                            "earliestRecInt": "28 days",
-                            "latestRecInt": "",
-                            "intervalPriority": "",
-                            "effectiveDate": "",
-                            "cessationDate": ""
-                        },
-                        "allowableInterval": {},
+                        "interval": [
+                            {
+                                "fromPrevious": "N",
+                                "fromTargetDose": "",
+                                "fromMostRecent": "208; 210; 211; 212; 213",
+                                "fromRelevantObs": "",
+                                "absMinInt": "0 days",
+                                "minInt": "28 days",
+                                "earliestRecInt": {
+                                    "value": 28,
+                                    "unit": "d"
+                                },
+                                "latestRecInt": "",
+                                "intervalPriority": "",
+                                "effectiveDate": "",
+                                "cessationDate": ""
+                            }
+                        ],
+                        "allowableInterval": [
+                            {}
+                        ],
                         "preferableVaccine": {
                             "vaccineType": "COVID-19, mRNA, LNP-S, PF, 100 mcg/0.5 mL dose",
                             "cvx": "207",
@@ -1425,7 +1948,7 @@
                             }
                         ],
                         "inadvertentVaccine": "",
-                        "conditionalSkip": "",
+                        "conditionalSkip": {},
                         "recurringDose": "No",
                         "seasonalRecommendation": ""
                     },
@@ -1433,12 +1956,12 @@
                         "doseNumber": "Dose 2",
                         "age": {
                             "absMinAge": {
-                                "value": 0,
-                                "unit": "d"
+                                "value": 18,
+                                "unit": "a"
                             },
-                            "minAge": "12 years",
+                            "minAge": "18 years",
                             "earliestRecAge": {
-                                "value": 12,
+                                "value": 18,
                                 "unit": "a"
                             },
                             "latestRecAge": "",
@@ -1454,7 +1977,10 @@
                                 "fromRelevantObs": "",
                                 "absMinInt": "0 days",
                                 "minInt": "28 days",
-                                "earliestRecInt": "28 days",
+                                "earliestRecInt": {
+                                    "value": 28,
+                                    "unit": "d"
+                                },
                                 "latestRecInt": "",
                                 "intervalPriority": "",
                                 "effectiveDate": "",
@@ -1467,23 +1993,28 @@
                                 "fromRelevantObs": "",
                                 "absMinInt": "28 days - 4 days",
                                 "minInt": "28 days",
-                                "earliestRecInt": "28 days",
+                                "earliestRecInt": {
+                                    "value": 28,
+                                    "unit": "d"
+                                },
                                 "latestRecInt": "42 days",
                                 "intervalPriority": "",
                                 "effectiveDate": "",
                                 "cessationDate": ""
                             }
                         ],
-                        "allowableInterval": {
-                            "fromPrevious": "Y",
-                            "fromTargetDose": "",
-                            "absMinInt": {
-                                "value": 0,
-                                "unit": "d"
-                            },
-                            "effectiveDate": "",
-                            "cessationDate": ""
-                        },
+                        "allowableInterval": [
+                            {
+                                "fromPrevious": "Y",
+                                "fromTargetDose": "",
+                                "absMinInt": {
+                                    "value": 0,
+                                    "unit": "d"
+                                },
+                                "effectiveDate": "",
+                                "cessationDate": "20211024"
+                            }
+                        ],
                         "preferableVaccine": {
                             "vaccineType": "COVID-19, mRNA, LNP-S, PF, 100 mcg/0.5 mL dose",
                             "cvx": "207",
@@ -1503,7 +2034,7 @@
                             }
                         ],
                         "inadvertentVaccine": "",
-                        "conditionalSkip": "",
+                        "conditionalSkip": {},
                         "recurringDose": "No",
                         "seasonalRecommendation": ""
                     },
@@ -1511,12 +2042,12 @@
                         "doseNumber": "Dose 3",
                         "age": {
                             "absMinAge": {
-                                "value": 0,
-                                "unit": "d"
+                                "value": 18,
+                                "unit": "a"
                             },
-                            "minAge": "12 years",
+                            "minAge": "18 years",
                             "earliestRecAge": {
-                                "value": 12,
+                                "value": 18,
                                 "unit": "a"
                             },
                             "latestRecAge": "",
@@ -1532,7 +2063,10 @@
                                 "fromRelevantObs": "",
                                 "absMinInt": "0 days",
                                 "minInt": "28 days",
-                                "earliestRecInt": "28 days",
+                                "earliestRecInt": {
+                                    "value": 28,
+                                    "unit": "d"
+                                },
                                 "latestRecInt": "",
                                 "intervalPriority": "",
                                 "effectiveDate": "",
@@ -1545,23 +2079,28 @@
                                 "fromRelevantObs": "",
                                 "absMinInt": "28 days - 4 days",
                                 "minInt": "28 days",
-                                "earliestRecInt": "28 days",
+                                "earliestRecInt": {
+                                    "value": 28,
+                                    "unit": "d"
+                                },
                                 "latestRecInt": "42 days",
                                 "intervalPriority": "",
                                 "effectiveDate": "",
                                 "cessationDate": ""
                             }
                         ],
-                        "allowableInterval": {
-                            "fromPrevious": "Y",
-                            "fromTargetDose": "",
-                            "absMinInt": {
-                                "value": 0,
-                                "unit": "d"
-                            },
-                            "effectiveDate": "",
-                            "cessationDate": ""
-                        },
+                        "allowableInterval": [
+                            {
+                                "fromPrevious": "Y",
+                                "fromTargetDose": "",
+                                "absMinInt": {
+                                    "value": 0,
+                                    "unit": "d"
+                                },
+                                "effectiveDate": "",
+                                "cessationDate": "20211024"
+                            }
+                        ],
                         "preferableVaccine": {
                             "vaccineType": "COVID-19, mRNA, LNP-S, PF, 100 mcg/0.5 mL dose",
                             "cvx": "207",
@@ -1581,21 +2120,147 @@
                             }
                         ],
                         "inadvertentVaccine": "",
-                        "conditionalSkip": "",
+                        "conditionalSkip": {},
+                        "recurringDose": "No",
+                        "seasonalRecommendation": ""
+                    },
+                    {
+                        "doseNumber": "Dose 4",
+                        "age": {
+                            "absMinAge": {
+                                "value": 18,
+                                "unit": "a"
+                            },
+                            "minAge": "18 years",
+                            "earliestRecAge": {
+                                "value": 18,
+                                "unit": "a"
+                            },
+                            "latestRecAge": "",
+                            "maxAge": "",
+                            "effectiveDate": "",
+                            "cessationDate": ""
+                        },
+                        "interval": [
+                            {
+                                "fromPrevious": "N",
+                                "fromTargetDose": "",
+                                "fromMostRecent": "208; 210; 211; 212; 213",
+                                "fromRelevantObs": "",
+                                "absMinInt": "0 days",
+                                "minInt": "28 days",
+                                "earliestRecInt": {
+                                    "value": 28,
+                                    "unit": "d"
+                                },
+                                "latestRecInt": "",
+                                "intervalPriority": "",
+                                "effectiveDate": "",
+                                "cessationDate": ""
+                            },
+                            {
+                                "fromPrevious": "Y",
+                                "fromTargetDose": "",
+                                "fromMostRecent": "",
+                                "fromRelevantObs": "",
+                                "absMinInt": "6 months - 4 days",
+                                "minInt": "6 months",
+                                "earliestRecInt": {
+                                    "value": 6,
+                                    "unit": "mo"
+                                },
+                                "latestRecInt": "",
+                                "intervalPriority": "",
+                                "effectiveDate": "",
+                                "cessationDate": ""
+                            }
+                        ],
+                        "allowableInterval": [
+                            {
+                                "fromPrevious": "Y",
+                                "fromTargetDose": "",
+                                "absMinInt": {
+                                    "value": 0,
+                                    "unit": "d"
+                                },
+                                "effectiveDate": "",
+                                "cessationDate": ""
+                            }
+                        ],
+                        "preferableVaccine": [
+                            {
+                                "vaccineType": "COVID-19, mRNA, LNP-S, PF, 100 mcg/0.5 mL dose",
+                                "cvx": "207",
+                                "beginAge": "18 years",
+                                "endAge": "",
+                                "tradeName": "",
+                                "mvx": "",
+                                "volume": "0.25",
+                                "forecastVaccineType": "N"
+                            },
+                            {
+                                "vaccineType": "COVID-19, mRNA, LNP-S, PF, 30 mcg/0.3 mL dose",
+                                "cvx": "208",
+                                "beginAge": "12 years",
+                                "endAge": "",
+                                "tradeName": "",
+                                "mvx": "",
+                                "volume": "0.3",
+                                "forecastVaccineType": "N"
+                            },
+                            {
+                                "vaccineType": "SARS-COV-2 (COVID-19) vaccine, vector non-replicating, recombinant spike protein-Ad26, preservative free, 0.5 mL",
+                                "cvx": "212",
+                                "beginAge": "18 years",
+                                "endAge": "",
+                                "tradeName": "",
+                                "mvx": "",
+                                "volume": "0.5",
+                                "forecastVaccineType": "N"
+                            }
+                        ],
+                        "allowableVaccine": [
+                            {
+                                "vaccineType": "COVID-19, mRNA, LNP-S, PF, 100 mcg/0.5 mL dose",
+                                "cvx": "207",
+                                "beginAge": "0 days",
+                                "endAge": ""
+                            },
+                            {
+                                "vaccineType": "COVID-19, mRNA, LNP-S, PF, 30 mcg/0.3 mL dose",
+                                "cvx": "208",
+                                "beginAge": "0 days",
+                                "endAge": ""
+                            },
+                            {
+                                "vaccineType": "SARS-COV-2 (COVID-19) vaccine, vector non-replicating, recombinant spike protein-Ad26, preservative free, 0.5 mL",
+                                "cvx": "212",
+                                "beginAge": "0 days",
+                                "endAge": ""
+                            },
+                            {
+                                "vaccineType": "SARS-COV-2 (COVID-19) vaccine, Unspecified Formulation",
+                                "cvx": "213",
+                                "beginAge": "0 days",
+                                "endAge": ""
+                            }
+                        ],
+                        "inadvertentVaccine": "",
+                        "conditionalSkip": {},
                         "recurringDose": "No",
                         "seasonalRecommendation": ""
                     }
                 ]
             },
             {
-                "seriesName": "Risk 1-dose Immunocompromised Janssen series",
+                "seriesName": "Risk 2-dose Immunocompromised Janssen series",
                 "targetDisease": "COVID-19",
                 "vaccineGroup": "COVID-19",
                 "seriesAdminGuidance": [
                     "A patients clinical team is best positioned to determine the degree of immune compromise and appropriate timing of vaccination.\n\nFactors to consider in assessing the general level of immune competence in a patient include disease severity, duration, clinical stability, complications, comorbidities, and any potentially immune-suppressing treatment.",
                     "COVID-19 vaccines and other vaccines may now be administered without regard to timing. This includes simultaneous administration of COVID-19 vaccines and other vaccines on the same day, as well as coadministration within 14 days. It is unknown whether reactogenicity of COVID-19 vaccine is increased with coadministration, including with other vaccines known to be more reactogenic, such as adjuvanted vaccines or live vaccines. When deciding whether to coadminister another vaccine(s) with COVID-19 vaccines, providers should consider whether the patient is behind or at risk of becoming behind on recommended vaccines, their risk of vaccine-preventable disease (e.g., during an outbreak or occupational exposures), and the reactogenicity profile of the vaccines.",
                     "Vaccination should be deferred until recovery from acute illness (if person had symptoms) and criteria have been met to discontinue isolation.",
-                    "Current evidence suggests that the risk of SARS-CoV-2 reinfection is low in the months after initial infection but may increase with time due to waning immunity. Thus, people with a history of MIS-C or MIS-A should consider delaying vaccination until they have recovered from illness and for 90 days after the date of diagnosis of MIS-C or MIS-A, recognizing that the risk of reinfection and, therefore, the benefit from vaccination, might increase with time following initial infection.",
+                    "Given the lack of data on the safety of COVID-19 vaccines in people with a history of MIS-C or MIS-A, a conversation between the patient, their guardian(s), and their clinical team or a specialist is strongly encouraged to assist with decisions about the use of COVID-19 vaccines.",
                     "Currently no data on safety or efficacy of COVID-19 vaccination in persons who received monoclonal antibodies or convalescent plasma as part of COVID-19 treatment. Vaccination should be deferred for at least 90 days to avoid interference of the treatment with vaccine-induced immune responses."
                 ],
                 "seriesType": "Risk",
@@ -1751,20 +2416,27 @@
                             "effectiveDate": "",
                             "cessationDate": ""
                         },
-                        "interval": {
-                            "fromPrevious": "N",
-                            "fromTargetDose": "",
-                            "fromMostRecent": "207; 208; 210; 211; 213",
-                            "fromRelevantObs": "",
-                            "absMinInt": "0 days",
-                            "minInt": "28 days",
-                            "earliestRecInt": "28 days",
-                            "latestRecInt": "",
-                            "intervalPriority": "",
-                            "effectiveDate": "",
-                            "cessationDate": ""
-                        },
-                        "allowableInterval": {},
+                        "interval": [
+                            {
+                                "fromPrevious": "N",
+                                "fromTargetDose": "",
+                                "fromMostRecent": "207; 208; 210; 211; 213",
+                                "fromRelevantObs": "",
+                                "absMinInt": "0 days",
+                                "minInt": "28 days",
+                                "earliestRecInt": {
+                                    "value": 28,
+                                    "unit": "d"
+                                },
+                                "latestRecInt": "",
+                                "intervalPriority": "",
+                                "effectiveDate": "",
+                                "cessationDate": ""
+                            }
+                        ],
+                        "allowableInterval": [
+                            {}
+                        ],
                         "preferableVaccine": {
                             "vaccineType": "SARS-COV-2 (COVID-19) vaccine, vector non-replicating, recombinant spike protein-Ad26, preservative free, 0.5 mL",
                             "cvx": "212",
@@ -1784,22 +2456,149 @@
                             }
                         ],
                         "inadvertentVaccine": "",
-                        "conditionalSkip": "",
+                        "conditionalSkip": {},
+                        "recurringDose": "No",
+                        "seasonalRecommendation": ""
+                    },
+                    {
+                        "doseNumber": "Dose 2",
+                        "age": {
+                            "absMinAge": {
+                                "value": 0,
+                                "unit": "d"
+                            },
+                            "minAge": "18 years",
+                            "earliestRecAge": {
+                                "value": 18,
+                                "unit": "a"
+                            },
+                            "latestRecAge": "",
+                            "maxAge": "",
+                            "effectiveDate": "",
+                            "cessationDate": ""
+                        },
+                        "interval": [
+                            {
+                                "fromPrevious": "N",
+                                "fromTargetDose": "",
+                                "fromMostRecent": "207; 208; 210; 211; 213",
+                                "fromRelevantObs": "",
+                                "absMinInt": "0 days",
+                                "minInt": "28 days",
+                                "earliestRecInt": {
+                                    "value": 28,
+                                    "unit": "d"
+                                },
+                                "latestRecInt": "",
+                                "intervalPriority": "",
+                                "effectiveDate": "",
+                                "cessationDate": ""
+                            },
+                            {
+                                "fromPrevious": "Y",
+                                "fromTargetDose": "",
+                                "fromMostRecent": "",
+                                "fromRelevantObs": "",
+                                "absMinInt": "8 weeks - 4 days",
+                                "minInt": "8 weeks",
+                                "earliestRecInt": {
+                                    "value": 8,
+                                    "unit": "wk"
+                                },
+                                "latestRecInt": "",
+                                "intervalPriority": "",
+                                "effectiveDate": "",
+                                "cessationDate": ""
+                            }
+                        ],
+                        "allowableInterval": [
+                            {
+                                "fromPrevious": "Y",
+                                "fromTargetDose": "",
+                                "absMinInt": {
+                                    "value": 0,
+                                    "unit": "d"
+                                },
+                                "effectiveDate": "",
+                                "cessationDate": ""
+                            }
+                        ],
+                        "preferableVaccine": [
+                            {
+                                "vaccineType": "COVID-19, mRNA, LNP-S, PF, 100 mcg/0.5 mL dose",
+                                "cvx": "207",
+                                "beginAge": "18 years",
+                                "endAge": "",
+                                "tradeName": "",
+                                "mvx": "",
+                                "volume": "0.25",
+                                "forecastVaccineType": "N"
+                            },
+                            {
+                                "vaccineType": "COVID-19, mRNA, LNP-S, PF, 30 mcg/0.3 mL dose",
+                                "cvx": "208",
+                                "beginAge": "12 years",
+                                "endAge": "",
+                                "tradeName": "",
+                                "mvx": "",
+                                "volume": "0.3",
+                                "forecastVaccineType": "N"
+                            },
+                            {
+                                "vaccineType": "SARS-COV-2 (COVID-19) vaccine, vector non-replicating, recombinant spike protein-Ad26, preservative free, 0.5 mL",
+                                "cvx": "212",
+                                "beginAge": "18 years",
+                                "endAge": "",
+                                "tradeName": "",
+                                "mvx": "",
+                                "volume": "0.5",
+                                "forecastVaccineType": "N"
+                            }
+                        ],
+                        "allowableVaccine": [
+                            {
+                                "vaccineType": "COVID-19, mRNA, LNP-S, PF, 100 mcg/0.5 mL dose",
+                                "cvx": "207",
+                                "beginAge": "0 days",
+                                "endAge": ""
+                            },
+                            {
+                                "vaccineType": "COVID-19, mRNA, LNP-S, PF, 30 mcg/0.3 mL dose",
+                                "cvx": "208",
+                                "beginAge": "0 days",
+                                "endAge": ""
+                            },
+                            {
+                                "vaccineType": "SARS-COV-2 (COVID-19) vaccine, vector non-replicating, recombinant spike protein-Ad26, preservative free, 0.5 mL",
+                                "cvx": "212",
+                                "beginAge": "0 days",
+                                "endAge": ""
+                            },
+                            {
+                                "vaccineType": "SARS-COV-2 (COVID-19) vaccine, Unspecified Formulation",
+                                "cvx": "213",
+                                "beginAge": "0 days",
+                                "endAge": ""
+                            }
+                        ],
+                        "inadvertentVaccine": "",
+                        "conditionalSkip": {},
                         "recurringDose": "No",
                         "seasonalRecommendation": ""
                     }
                 ]
             },
             {
-                "seriesName": "Risk 3-dose Immunocompromised mRNA series",
+                "seriesName": "Risk 4-dose Immunocompromised mRNA series",
                 "targetDisease": "COVID-19",
                 "vaccineGroup": "COVID-19",
                 "seriesAdminGuidance": [
                     "A patients clinical team is best positioned to determine the degree of immune compromise and appropriate timing of vaccination.\n\nFactors to consider in assessing the general level of immune competence in a patient include disease severity, duration, clinical stability, complications, comorbidities, and any potentially immune-suppressing treatment.",
                     "COVID-19 vaccines and other vaccines may now be administered without regard to timing. This includes simultaneous administration of COVID-19 vaccines and other vaccines on the same day, as well as coadministration within 14 days. It is unknown whether reactogenicity of COVID-19 vaccine is increased with coadministration, including with other vaccines known to be more reactogenic, such as adjuvanted vaccines or live vaccines. When deciding whether to coadminister another vaccine(s) with COVID-19 vaccines, providers should consider whether the patient is behind or at risk of becoming behind on recommended vaccines, their risk of vaccine-preventable disease (e.g., during an outbreak or occupational exposures), and the reactogenicity profile of the vaccines.",
                     "Vaccination should be deferred until recovery from acute illness (if person had symptoms) and criteria have been met to discontinue isolation.",
-                    "Current evidence suggests that the risk of SARS-CoV-2 reinfection is low in the months after initial infection but may increase with time due to waning immunity. Thus, people with a history of MIS-C or MIS-A should consider delaying vaccination until they have recovered from illness and for 90 days after the date of diagnosis of MIS-C or MIS-A, recognizing that the risk of reinfection and, therefore, the benefit from vaccination, might increase with time following initial infection.",
-                    "Currently no data on safety or efficacy of COVID-19 vaccination in persons who received monoclonal antibodies or convalescent plasma as part of COVID-19 treatment. Vaccination should be deferred for at least 90 days to avoid interference of the treatment with vaccine-induced immune responses."
+                    "Given the lack of data on the safety of COVID-19 vaccines in people with a history of MIS-C or MIS-A, a conversation between the patient, their guardian(s), and their clinical team or a specialist is strongly encouraged to assist with decisions about the use of COVID-19 vaccines.",
+                    "Currently no data on safety or efficacy of COVID-19 vaccination in persons who received monoclonal antibodies or convalescent plasma as part of COVID-19 treatment. Vaccination should be deferred for at least 90 days to avoid interference of the treatment with vaccine-induced immune responses.",
+                    "If Moderna vaccine administered as the first dose before 18 years, it is suggested to give Pfizer-BioNTech vaccine as the second dose (at least 28 days after the Moderna vaccine dose) because Pfizer-BioNTech is authorized in this age group."
                 ],
                 "seriesType": "Risk",
                 "equivalentSeriesGroups": "3",
@@ -1954,20 +2753,27 @@
                             "effectiveDate": "",
                             "cessationDate": ""
                         },
-                        "interval": {
-                            "fromPrevious": "N",
-                            "fromTargetDose": "",
-                            "fromMostRecent": "210; 211; 212",
-                            "fromRelevantObs": "",
-                            "absMinInt": "0 days",
-                            "minInt": "28 days",
-                            "earliestRecInt": "28 days",
-                            "latestRecInt": "",
-                            "intervalPriority": "",
-                            "effectiveDate": "",
-                            "cessationDate": ""
-                        },
-                        "allowableInterval": {},
+                        "interval": [
+                            {
+                                "fromPrevious": "N",
+                                "fromTargetDose": "",
+                                "fromMostRecent": "210; 211; 212",
+                                "fromRelevantObs": "",
+                                "absMinInt": "0 days",
+                                "minInt": "28 days",
+                                "earliestRecInt": {
+                                    "value": 28,
+                                    "unit": "d"
+                                },
+                                "latestRecInt": "",
+                                "intervalPriority": "",
+                                "effectiveDate": "",
+                                "cessationDate": ""
+                            }
+                        ],
+                        "allowableInterval": [
+                            {}
+                        ],
                         "preferableVaccine": [
                             {
                                 "vaccineType": "COVID-19, mRNA, LNP-S, PF, 100 mcg/0.5 mL dose",
@@ -2011,7 +2817,7 @@
                             }
                         ],
                         "inadvertentVaccine": "",
-                        "conditionalSkip": "",
+                        "conditionalSkip": {},
                         "recurringDose": "No",
                         "seasonalRecommendation": ""
                     },
@@ -2037,7 +2843,10 @@
                                 "fromRelevantObs": "",
                                 "absMinInt": "0 days",
                                 "minInt": "28 days",
-                                "earliestRecInt": "28 days",
+                                "earliestRecInt": {
+                                    "value": 28,
+                                    "unit": "d"
+                                },
                                 "latestRecInt": "",
                                 "intervalPriority": "",
                                 "effectiveDate": "",
@@ -2050,23 +2859,28 @@
                                 "fromRelevantObs": "",
                                 "absMinInt": "28 days - 4 days",
                                 "minInt": "28 days",
-                                "earliestRecInt": "28 days",
+                                "earliestRecInt": {
+                                    "value": 28,
+                                    "unit": "d"
+                                },
                                 "latestRecInt": "42 days",
                                 "intervalPriority": "",
                                 "effectiveDate": "",
                                 "cessationDate": ""
                             }
                         ],
-                        "allowableInterval": {
-                            "fromPrevious": "Y",
-                            "fromTargetDose": "",
-                            "absMinInt": {
-                                "value": 0,
-                                "unit": "d"
-                            },
-                            "effectiveDate": "",
-                            "cessationDate": ""
-                        },
+                        "allowableInterval": [
+                            {
+                                "fromPrevious": "Y",
+                                "fromTargetDose": "",
+                                "absMinInt": {
+                                    "value": 0,
+                                    "unit": "d"
+                                },
+                                "effectiveDate": "",
+                                "cessationDate": "20211024"
+                            }
+                        ],
                         "preferableVaccine": [
                             {
                                 "vaccineType": "COVID-19, mRNA, LNP-S, PF, 100 mcg/0.5 mL dose",
@@ -2110,7 +2924,7 @@
                             }
                         ],
                         "inadvertentVaccine": "",
-                        "conditionalSkip": "",
+                        "conditionalSkip": {},
                         "recurringDose": "No",
                         "seasonalRecommendation": ""
                     },
@@ -2136,7 +2950,10 @@
                                 "fromRelevantObs": "",
                                 "absMinInt": "0 days",
                                 "minInt": "28 days",
-                                "earliestRecInt": "28 days",
+                                "earliestRecInt": {
+                                    "value": 28,
+                                    "unit": "d"
+                                },
                                 "latestRecInt": "",
                                 "intervalPriority": "",
                                 "effectiveDate": "",
@@ -2149,23 +2966,28 @@
                                 "fromRelevantObs": "",
                                 "absMinInt": "28 days - 4 days",
                                 "minInt": "28 days",
-                                "earliestRecInt": "28 days",
+                                "earliestRecInt": {
+                                    "value": 28,
+                                    "unit": "d"
+                                },
                                 "latestRecInt": "42 days",
                                 "intervalPriority": "",
                                 "effectiveDate": "",
                                 "cessationDate": ""
                             }
                         ],
-                        "allowableInterval": {
-                            "fromPrevious": "Y",
-                            "fromTargetDose": "",
-                            "absMinInt": {
-                                "value": 0,
-                                "unit": "d"
-                            },
-                            "effectiveDate": "",
-                            "cessationDate": ""
-                        },
+                        "allowableInterval": [
+                            {
+                                "fromPrevious": "Y",
+                                "fromTargetDose": "",
+                                "absMinInt": {
+                                    "value": 0,
+                                    "unit": "d"
+                                },
+                                "effectiveDate": "",
+                                "cessationDate": "20211024"
+                            }
+                        ],
                         "preferableVaccine": [
                             {
                                 "vaccineType": "COVID-19, mRNA, LNP-S, PF, 100 mcg/0.5 mL dose",
@@ -2209,7 +3031,149 @@
                             }
                         ],
                         "inadvertentVaccine": "",
-                        "conditionalSkip": "",
+                        "conditionalSkip": {},
+                        "recurringDose": "No",
+                        "seasonalRecommendation": ""
+                    },
+                    {
+                        "doseNumber": "Dose 4",
+                        "age": {
+                            "absMinAge": {
+                                "value": 0,
+                                "unit": "d"
+                            },
+                            "minAge": "18 years",
+                            "earliestRecAge": {
+                                "value": 18,
+                                "unit": "a"
+                            },
+                            "latestRecAge": "",
+                            "maxAge": "",
+                            "effectiveDate": "",
+                            "cessationDate": ""
+                        },
+                        "interval": [
+                            {
+                                "fromPrevious": "N",
+                                "fromTargetDose": "",
+                                "fromMostRecent": "210; 211; 212",
+                                "fromRelevantObs": "",
+                                "absMinInt": "0 days",
+                                "minInt": "28 days",
+                                "earliestRecInt": {
+                                    "value": 28,
+                                    "unit": "d"
+                                },
+                                "latestRecInt": "",
+                                "intervalPriority": "",
+                                "effectiveDate": "",
+                                "cessationDate": ""
+                            },
+                            {
+                                "fromPrevious": "Y",
+                                "fromTargetDose": "",
+                                "fromMostRecent": "",
+                                "fromRelevantObs": "",
+                                "absMinInt": "6 months - 4 days",
+                                "minInt": "6 months",
+                                "earliestRecInt": {
+                                    "value": 6,
+                                    "unit": "mo"
+                                },
+                                "latestRecInt": "",
+                                "intervalPriority": "",
+                                "effectiveDate": "",
+                                "cessationDate": ""
+                            }
+                        ],
+                        "allowableInterval": [
+                            {
+                                "fromPrevious": "Y",
+                                "fromTargetDose": "",
+                                "absMinInt": {
+                                    "value": 0,
+                                    "unit": "d"
+                                },
+                                "effectiveDate": "",
+                                "cessationDate": ""
+                            }
+                        ],
+                        "preferableVaccine": [
+                            {
+                                "vaccineType": "COVID-19, mRNA, LNP-S, PF, 100 mcg/0.5 mL dose",
+                                "cvx": "207",
+                                "beginAge": "18 years",
+                                "endAge": "",
+                                "tradeName": "",
+                                "mvx": "",
+                                "volume": "0.5",
+                                "forecastVaccineType": "N"
+                            },
+                            {
+                                "vaccineType": "COVID-19, mRNA, LNP-S, PF, 100 mcg/0.5 mL dose",
+                                "cvx": "207",
+                                "beginAge": "18 years",
+                                "endAge": "",
+                                "tradeName": "",
+                                "mvx": "",
+                                "volume": "0.25",
+                                "forecastVaccineType": "N"
+                            },
+                            {
+                                "vaccineType": "COVID-19, mRNA, LNP-S, PF, 30 mcg/0.3 mL dose",
+                                "cvx": "208",
+                                "beginAge": "12 years",
+                                "endAge": "",
+                                "tradeName": "",
+                                "mvx": "",
+                                "volume": "0.3",
+                                "forecastVaccineType": "N"
+                            },
+                            {
+                                "vaccineType": "SARS-COV-2 (COVID-19) vaccine, vector non-replicating, recombinant spike protein-Ad26, preservative free, 0.5 mL",
+                                "cvx": "212",
+                                "beginAge": "18 years",
+                                "endAge": "",
+                                "tradeName": "",
+                                "mvx": "",
+                                "volume": "0.5",
+                                "forecastVaccineType": "N"
+                            }
+                        ],
+                        "allowableVaccine": [
+                            {
+                                "vaccineType": "COVID-19, mRNA, LNP-S, PF, 100 mcg/0.5 mL dose",
+                                "cvx": "207",
+                                "beginAge": "0 days",
+                                "endAge": ""
+                            },
+                            {
+                                "vaccineType": "COVID-19, mRNA, LNP-S, PF, 100 mcg/0.5 mL dose",
+                                "cvx": "207",
+                                "beginAge": "0 days",
+                                "endAge": ""
+                            },
+                            {
+                                "vaccineType": "COVID-19, mRNA, LNP-S, PF, 30 mcg/0.3 mL dose",
+                                "cvx": "208",
+                                "beginAge": "0 days",
+                                "endAge": ""
+                            },
+                            {
+                                "vaccineType": "SARS-COV-2 (COVID-19) vaccine, vector non-replicating, recombinant spike protein-Ad26, preservative free, 0.5 mL",
+                                "cvx": "212",
+                                "beginAge": "0 days",
+                                "endAge": ""
+                            },
+                            {
+                                "vaccineType": "SARS-COV-2 (COVID-19) vaccine, Unspecified Formulation",
+                                "cvx": "213",
+                                "beginAge": "0 days",
+                                "endAge": ""
+                            }
+                        ],
+                        "inadvertentVaccine": "",
+                        "conditionalSkip": {},
                         "recurringDose": "No",
                         "seasonalRecommendation": ""
                     }
@@ -2222,7 +3186,7 @@
                 "seriesAdminGuidance": [
                     "COVID-19 vaccines and other vaccines may now be administered without regard to timing. This includes simultaneous administration of COVID-19 vaccines and other vaccines on the same day, as well as coadministration within 14 days. It is unknown whether reactogenicity of COVID-19 vaccine is increased with coadministration, including with other vaccines known to be more reactogenic, such as adjuvanted vaccines or live vaccines. When deciding whether to coadminister another vaccine(s) with COVID-19 vaccines, providers should consider whether the patient is behind or at risk of becoming behind on recommended vaccines, their risk of vaccine-preventable disease (e.g., during an outbreak or occupational exposures), and the reactogenicity profile of the vaccines.",
                     "Vaccination should be deferred until recovery from acute illness (if person had symptoms) and criteria have been met to discontinue isolation.",
-                    "Current evidence suggests that the risk of SARS-CoV-2 reinfection is low in the months after initial infection but may increase with time due to waning immunity. Thus, people with a history of MIS-C or MIS-A should consider delaying vaccination until they have recovered from illness and for 90 days after the date of diagnosis of MIS-C or MIS-A, recognizing that the risk of reinfection and, therefore, the benefit from vaccination, might increase with time following initial infection.",
+                    "Given the lack of data on the safety of COVID-19 vaccines in people with a history of MIS-C or MIS-A, a conversation between the patient, their guardian(s), and their clinical team or a specialist is strongly encouraged to assist with decisions about the use of COVID-19 vaccines.",
                     "Currently no data on safety or efficacy of COVID-19 vaccination in persons who received monoclonal antibodies or convalescent plasma as part of COVID-19 treatment. Vaccination should be deferred for at least 90 days to avoid interference of the treatment with vaccine-induced immune responses."
                 ],
                 "seriesType": "Risk",
@@ -2377,7 +3341,7 @@
                         "description": "Administer to persons residing in an institutional setting at increased risk for COVID-19 exposure and transmission",
                         "beginAge": "18 years",
                         "endAge": "65 years",
-                        "guidance": "Institutional settings such as health care, schools, correctional facilities, and homeless shelters at increased risk for COVID-19 exposure and transmission and may get a booster shot based on their individual benefits and risks including "
+                        "guidance": "Institutional settings such as health care, schools, correctional facilities, and homeless shelters at increased risk for COVID-19 exposure and transmission and may get a booster shot "
                     },
                     {
                         "observationCode": {
@@ -2508,20 +3472,27 @@
                             "effectiveDate": "",
                             "cessationDate": ""
                         },
-                        "interval": {
-                            "fromPrevious": "N",
-                            "fromTargetDose": "",
-                            "fromMostRecent": "207; 210; 211; 212; 213",
-                            "fromRelevantObs": "",
-                            "absMinInt": "0 days",
-                            "minInt": "28 days",
-                            "earliestRecInt": "28 days",
-                            "latestRecInt": "",
-                            "intervalPriority": "",
-                            "effectiveDate": "",
-                            "cessationDate": ""
-                        },
-                        "allowableInterval": {},
+                        "interval": [
+                            {
+                                "fromPrevious": "N",
+                                "fromTargetDose": "",
+                                "fromMostRecent": "207; 210; 211; 212; 213",
+                                "fromRelevantObs": "",
+                                "absMinInt": "0 days",
+                                "minInt": "28 days",
+                                "earliestRecInt": {
+                                    "value": 28,
+                                    "unit": "d"
+                                },
+                                "latestRecInt": "",
+                                "intervalPriority": "",
+                                "effectiveDate": "",
+                                "cessationDate": ""
+                            }
+                        ],
+                        "allowableInterval": [
+                            {}
+                        ],
                         "preferableVaccine": {
                             "vaccineType": "COVID-19, mRNA, LNP-S, PF, 30 mcg/0.3 mL dose",
                             "cvx": "208",
@@ -2541,7 +3512,7 @@
                             }
                         ],
                         "inadvertentVaccine": "",
-                        "conditionalSkip": "",
+                        "conditionalSkip": {},
                         "recurringDose": "No",
                         "seasonalRecommendation": ""
                     },
@@ -2570,7 +3541,10 @@
                                 "fromRelevantObs": "",
                                 "absMinInt": "0 days",
                                 "minInt": "28 days",
-                                "earliestRecInt": "28 days",
+                                "earliestRecInt": {
+                                    "value": 28,
+                                    "unit": "d"
+                                },
                                 "latestRecInt": "",
                                 "intervalPriority": "",
                                 "effectiveDate": "",
@@ -2583,23 +3557,28 @@
                                 "fromRelevantObs": "",
                                 "absMinInt": "21 days - 4 days",
                                 "minInt": "21 days",
-                                "earliestRecInt": "21 days",
+                                "earliestRecInt": {
+                                    "value": 21,
+                                    "unit": "d"
+                                },
                                 "latestRecInt": "42 days",
                                 "intervalPriority": "",
                                 "effectiveDate": "",
                                 "cessationDate": ""
                             }
                         ],
-                        "allowableInterval": {
-                            "fromPrevious": "Y",
-                            "fromTargetDose": "",
-                            "absMinInt": {
-                                "value": 0,
-                                "unit": "d"
-                            },
-                            "effectiveDate": "",
-                            "cessationDate": ""
-                        },
+                        "allowableInterval": [
+                            {
+                                "fromPrevious": "Y",
+                                "fromTargetDose": "",
+                                "absMinInt": {
+                                    "value": 0,
+                                    "unit": "d"
+                                },
+                                "effectiveDate": "",
+                                "cessationDate": "20211024"
+                            }
+                        ],
                         "preferableVaccine": {
                             "vaccineType": "COVID-19, mRNA, LNP-S, PF, 30 mcg/0.3 mL dose",
                             "cvx": "208",
@@ -2619,7 +3598,7 @@
                             }
                         ],
                         "inadvertentVaccine": "",
-                        "conditionalSkip": "",
+                        "conditionalSkip": {},
                         "recurringDose": "No",
                         "seasonalRecommendation": ""
                     },
@@ -2648,7 +3627,10 @@
                                 "fromRelevantObs": "",
                                 "absMinInt": "0 days",
                                 "minInt": "28 days",
-                                "earliestRecInt": "28 days",
+                                "earliestRecInt": {
+                                    "value": 28,
+                                    "unit": "d"
+                                },
                                 "latestRecInt": "",
                                 "intervalPriority": "",
                                 "effectiveDate": "",
@@ -2661,58 +3643,102 @@
                                 "fromRelevantObs": "",
                                 "absMinInt": "6 months - 4 days",
                                 "minInt": "6 months",
-                                "earliestRecInt": "6 months",
+                                "earliestRecInt": {
+                                    "value": 6,
+                                    "unit": "mo"
+                                },
                                 "latestRecInt": "",
                                 "intervalPriority": "",
                                 "effectiveDate": "",
                                 "cessationDate": ""
                             }
                         ],
-                        "allowableInterval": {
-                            "fromPrevious": "Y",
-                            "fromTargetDose": "",
-                            "absMinInt": {
-                                "value": 0,
-                                "unit": "d"
+                        "allowableInterval": [
+                            {
+                                "fromPrevious": "Y",
+                                "fromTargetDose": "",
+                                "absMinInt": {
+                                    "value": 0,
+                                    "unit": "d"
+                                },
+                                "effectiveDate": "",
+                                "cessationDate": ""
+                            }
+                        ],
+                        "preferableVaccine": [
+                            {
+                                "vaccineType": "COVID-19, mRNA, LNP-S, PF, 100 mcg/0.5 mL dose",
+                                "cvx": "207",
+                                "beginAge": "18 years",
+                                "endAge": "",
+                                "tradeName": "",
+                                "mvx": "",
+                                "volume": "0.25",
+                                "forecastVaccineType": "N"
                             },
-                            "effectiveDate": "",
-                            "cessationDate": ""
-                        },
-                        "preferableVaccine": {
-                            "vaccineType": "COVID-19, mRNA, LNP-S, PF, 30 mcg/0.3 mL dose",
-                            "cvx": "208",
-                            "beginAge": "12 years",
-                            "endAge": "",
-                            "tradeName": "",
-                            "mvx": "",
-                            "volume": "0.3",
-                            "forecastVaccineType": "Y"
-                        },
+                            {
+                                "vaccineType": "COVID-19, mRNA, LNP-S, PF, 30 mcg/0.3 mL dose",
+                                "cvx": "208",
+                                "beginAge": "12 years",
+                                "endAge": "",
+                                "tradeName": "",
+                                "mvx": "",
+                                "volume": "0.3",
+                                "forecastVaccineType": "N"
+                            },
+                            {
+                                "vaccineType": "SARS-COV-2 (COVID-19) vaccine, vector non-replicating, recombinant spike protein-Ad26, preservative free, 0.5 mL",
+                                "cvx": "212",
+                                "beginAge": "18 years",
+                                "endAge": "",
+                                "tradeName": "",
+                                "mvx": "",
+                                "volume": "0.5",
+                                "forecastVaccineType": "N"
+                            }
+                        ],
                         "allowableVaccine": [
+                            {
+                                "vaccineType": "COVID-19, mRNA, LNP-S, PF, 100 mcg/0.5 mL dose",
+                                "cvx": "207",
+                                "beginAge": "0 days",
+                                "endAge": ""
+                            },
                             {
                                 "vaccineType": "COVID-19, mRNA, LNP-S, PF, 30 mcg/0.3 mL dose",
                                 "cvx": "208",
                                 "beginAge": "0 days",
                                 "endAge": ""
+                            },
+                            {
+                                "vaccineType": "SARS-COV-2 (COVID-19) vaccine, vector non-replicating, recombinant spike protein-Ad26, preservative free, 0.5 mL",
+                                "cvx": "212",
+                                "beginAge": "0 days",
+                                "endAge": ""
+                            },
+                            {
+                                "vaccineType": "SARS-COV-2 (COVID-19) vaccine, Unspecified Formulation",
+                                "cvx": "213",
+                                "beginAge": "0 days",
+                                "endAge": ""
                             }
                         ],
                         "inadvertentVaccine": "",
-                        "conditionalSkip": "",
+                        "conditionalSkip": {},
                         "recurringDose": "No",
                         "seasonalRecommendation": ""
                     }
                 ]
             },
             {
-                "seriesName": "Risk 2-dose Increased Risk Moderna series",
+                "seriesName": "Risk 3-dose Increased Risk Moderna series",
                 "targetDisease": "COVID-19",
                 "vaccineGroup": "COVID-19",
                 "seriesAdminGuidance": [
                     "COVID-19 vaccines and other vaccines may now be administered without regard to timing. This includes simultaneous administration of COVID-19 vaccines and other vaccines on the same day, as well as coadministration within 14 days. It is unknown whether reactogenicity of COVID-19 vaccine is increased with coadministration, including with other vaccines known to be more reactogenic, such as adjuvanted vaccines or live vaccines. When deciding whether to coadminister another vaccine(s) with COVID-19 vaccines, providers should consider whether the patient is behind or at risk of becoming behind on recommended vaccines, their risk of vaccine-preventable disease (e.g., during an outbreak or occupational exposures), and the reactogenicity profile of the vaccines.",
                     "Vaccination should be deferred until recovery from acute illness (if person had symptoms) and criteria have been met to discontinue isolation.",
-                    "Current evidence suggests that the risk of SARS-CoV-2 reinfection is low in the months after initial infection but may increase with time due to waning immunity. Thus, people with a history of MIS-C or MIS-A should consider delaying vaccination until they have recovered from illness and for 90 days after the date of diagnosis of MIS-C or MIS-A, recognizing that the risk of reinfection and, therefore, the benefit from vaccination, might increase with time following initial infection.",
-                    "Currently no data on safety or efficacy of COVID-19 vaccination in persons who received monoclonal antibodies or convalescent plasma as part of COVID-19 treatment. Vaccination should be deferred for at least 90 days to avoid interference of the treatment with vaccine-induced immune responses.",
-                    "If age 12 through 17 years and Moderna vaccine inadvertently administered instead of Pfizer-BioNTech as the first dose, may administer Moderna vaccine as the second dose (as off-label use, because Moderna vaccine is not authorized in this age group)."
+                    "Given the lack of data on the safety of COVID-19 vaccines in people with a history of MIS-C or MIS-A, a conversation between the patient, their guardian(s), and their clinical team or a specialist is strongly encouraged to assist with decisions about the use of COVID-19 vaccines.",
+                    "Currently no data on safety or efficacy of COVID-19 vaccination in persons who received monoclonal antibodies or convalescent plasma as part of COVID-19 treatment. Vaccination should be deferred for at least 90 days to avoid interference of the treatment with vaccine-induced immune responses."
                 ],
                 "seriesType": "Risk",
                 "equivalentSeriesGroups": "3",
@@ -2866,7 +3892,7 @@
                         "description": "Administer to persons residing in an institutional setting at increased risk for COVID-19 exposure and transmission",
                         "beginAge": "18 years",
                         "endAge": "65 years",
-                        "guidance": "Institutional settings such as health care, schools, correctional facilities, and homeless shelters at increased risk for COVID-19 exposure and transmission and may get a booster shot based on their individual benefits and risks including "
+                        "guidance": "Institutional settings such as health care, schools, correctional facilities, and homeless shelters at increased risk for COVID-19 exposure and transmission and may get a booster shot "
                     },
                     {
                         "observationCode": {
@@ -2984,8 +4010,8 @@
                         "doseNumber": "Dose 1",
                         "age": {
                             "absMinAge": {
-                                "value": 0,
-                                "unit": "d"
+                                "value": 18,
+                                "unit": "a"
                             },
                             "minAge": "18 years",
                             "earliestRecAge": {
@@ -2997,20 +4023,27 @@
                             "effectiveDate": "",
                             "cessationDate": ""
                         },
-                        "interval": {
-                            "fromPrevious": "N",
-                            "fromTargetDose": "",
-                            "fromMostRecent": "208; 210; 211; 212; 213",
-                            "fromRelevantObs": "",
-                            "absMinInt": "0 days",
-                            "minInt": "28 days",
-                            "earliestRecInt": "28 days",
-                            "latestRecInt": "",
-                            "intervalPriority": "",
-                            "effectiveDate": "",
-                            "cessationDate": ""
-                        },
-                        "allowableInterval": {},
+                        "interval": [
+                            {
+                                "fromPrevious": "N",
+                                "fromTargetDose": "",
+                                "fromMostRecent": "208; 210; 211; 212; 213",
+                                "fromRelevantObs": "",
+                                "absMinInt": "0 days",
+                                "minInt": "28 days",
+                                "earliestRecInt": {
+                                    "value": 28,
+                                    "unit": "d"
+                                },
+                                "latestRecInt": "",
+                                "intervalPriority": "",
+                                "effectiveDate": "",
+                                "cessationDate": ""
+                            }
+                        ],
+                        "allowableInterval": [
+                            {}
+                        ],
                         "preferableVaccine": {
                             "vaccineType": "COVID-19, mRNA, LNP-S, PF, 100 mcg/0.5 mL dose",
                             "cvx": "207",
@@ -3030,7 +4063,7 @@
                             }
                         ],
                         "inadvertentVaccine": "",
-                        "conditionalSkip": "",
+                        "conditionalSkip": {},
                         "recurringDose": "No",
                         "seasonalRecommendation": ""
                     },
@@ -3038,12 +4071,12 @@
                         "doseNumber": "Dose 2",
                         "age": {
                             "absMinAge": {
-                                "value": 0,
-                                "unit": "d"
+                                "value": 18,
+                                "unit": "a"
                             },
-                            "minAge": "12 years",
+                            "minAge": "18 years",
                             "earliestRecAge": {
-                                "value": 12,
+                                "value": 18,
                                 "unit": "a"
                             },
                             "latestRecAge": "",
@@ -3059,7 +4092,10 @@
                                 "fromRelevantObs": "",
                                 "absMinInt": "0 days",
                                 "minInt": "28 days",
-                                "earliestRecInt": "28 days",
+                                "earliestRecInt": {
+                                    "value": 28,
+                                    "unit": "d"
+                                },
                                 "latestRecInt": "",
                                 "intervalPriority": "",
                                 "effectiveDate": "",
@@ -3072,23 +4108,28 @@
                                 "fromRelevantObs": "",
                                 "absMinInt": "28 days - 4 days",
                                 "minInt": "28 days",
-                                "earliestRecInt": "28 days",
+                                "earliestRecInt": {
+                                    "value": 28,
+                                    "unit": "d"
+                                },
                                 "latestRecInt": "42 days",
                                 "intervalPriority": "",
                                 "effectiveDate": "",
                                 "cessationDate": ""
                             }
                         ],
-                        "allowableInterval": {
-                            "fromPrevious": "Y",
-                            "fromTargetDose": "",
-                            "absMinInt": {
-                                "value": 0,
-                                "unit": "d"
-                            },
-                            "effectiveDate": "",
-                            "cessationDate": ""
-                        },
+                        "allowableInterval": [
+                            {
+                                "fromPrevious": "Y",
+                                "fromTargetDose": "",
+                                "absMinInt": {
+                                    "value": 0,
+                                    "unit": "d"
+                                },
+                                "effectiveDate": "",
+                                "cessationDate": "20211024"
+                            }
+                        ],
                         "preferableVaccine": {
                             "vaccineType": "COVID-19, mRNA, LNP-S, PF, 100 mcg/0.5 mL dose",
                             "cvx": "207",
@@ -3108,20 +4149,146 @@
                             }
                         ],
                         "inadvertentVaccine": "",
-                        "conditionalSkip": "",
+                        "conditionalSkip": {},
+                        "recurringDose": "No",
+                        "seasonalRecommendation": ""
+                    },
+                    {
+                        "doseNumber": "Dose 3",
+                        "age": {
+                            "absMinAge": {
+                                "value": 18,
+                                "unit": "a"
+                            },
+                            "minAge": "18 years",
+                            "earliestRecAge": {
+                                "value": 18,
+                                "unit": "a"
+                            },
+                            "latestRecAge": "",
+                            "maxAge": "",
+                            "effectiveDate": "",
+                            "cessationDate": ""
+                        },
+                        "interval": [
+                            {
+                                "fromPrevious": "N",
+                                "fromTargetDose": "",
+                                "fromMostRecent": "208; 210; 211; 212; 213",
+                                "fromRelevantObs": "",
+                                "absMinInt": "0 days",
+                                "minInt": "28 days",
+                                "earliestRecInt": {
+                                    "value": 28,
+                                    "unit": "d"
+                                },
+                                "latestRecInt": "",
+                                "intervalPriority": "",
+                                "effectiveDate": "",
+                                "cessationDate": ""
+                            },
+                            {
+                                "fromPrevious": "Y",
+                                "fromTargetDose": "",
+                                "fromMostRecent": "",
+                                "fromRelevantObs": "",
+                                "absMinInt": "6 months - 4 days",
+                                "minInt": "6 months",
+                                "earliestRecInt": {
+                                    "value": 6,
+                                    "unit": "mo"
+                                },
+                                "latestRecInt": "",
+                                "intervalPriority": "",
+                                "effectiveDate": "",
+                                "cessationDate": ""
+                            }
+                        ],
+                        "allowableInterval": [
+                            {
+                                "fromPrevious": "Y",
+                                "fromTargetDose": "",
+                                "absMinInt": {
+                                    "value": 0,
+                                    "unit": "d"
+                                },
+                                "effectiveDate": "",
+                                "cessationDate": ""
+                            }
+                        ],
+                        "preferableVaccine": [
+                            {
+                                "vaccineType": "COVID-19, mRNA, LNP-S, PF, 100 mcg/0.5 mL dose",
+                                "cvx": "207",
+                                "beginAge": "18 years",
+                                "endAge": "",
+                                "tradeName": "",
+                                "mvx": "",
+                                "volume": "0.25",
+                                "forecastVaccineType": "N"
+                            },
+                            {
+                                "vaccineType": "COVID-19, mRNA, LNP-S, PF, 30 mcg/0.3 mL dose",
+                                "cvx": "208",
+                                "beginAge": "12 years",
+                                "endAge": "",
+                                "tradeName": "",
+                                "mvx": "",
+                                "volume": "0.3",
+                                "forecastVaccineType": "N"
+                            },
+                            {
+                                "vaccineType": "SARS-COV-2 (COVID-19) vaccine, vector non-replicating, recombinant spike protein-Ad26, preservative free, 0.5 mL",
+                                "cvx": "212",
+                                "beginAge": "18 years",
+                                "endAge": "",
+                                "tradeName": "",
+                                "mvx": "",
+                                "volume": "0.5",
+                                "forecastVaccineType": "N"
+                            }
+                        ],
+                        "allowableVaccine": [
+                            {
+                                "vaccineType": "COVID-19, mRNA, LNP-S, PF, 100 mcg/0.5 mL dose",
+                                "cvx": "207",
+                                "beginAge": "0 days",
+                                "endAge": ""
+                            },
+                            {
+                                "vaccineType": "COVID-19, mRNA, LNP-S, PF, 30 mcg/0.3 mL dose",
+                                "cvx": "208",
+                                "beginAge": "0 days",
+                                "endAge": ""
+                            },
+                            {
+                                "vaccineType": "SARS-COV-2 (COVID-19) vaccine, vector non-replicating, recombinant spike protein-Ad26, preservative free, 0.5 mL",
+                                "cvx": "212",
+                                "beginAge": "0 days",
+                                "endAge": ""
+                            },
+                            {
+                                "vaccineType": "SARS-COV-2 (COVID-19) vaccine, Unspecified Formulation",
+                                "cvx": "213",
+                                "beginAge": "0 days",
+                                "endAge": ""
+                            }
+                        ],
+                        "inadvertentVaccine": "",
+                        "conditionalSkip": {},
                         "recurringDose": "No",
                         "seasonalRecommendation": ""
                     }
                 ]
             },
             {
-                "seriesName": "Risk 1-dose Increased Risk Janssen series",
+                "seriesName": "Risk 2-dose Increased Risk Janssen series",
                 "targetDisease": "COVID-19",
                 "vaccineGroup": "COVID-19",
                 "seriesAdminGuidance": [
                     "COVID-19 vaccines and other vaccines may now be administered without regard to timing. This includes simultaneous administration of COVID-19 vaccines and other vaccines on the same day, as well as coadministration within 14 days. It is unknown whether reactogenicity of COVID-19 vaccine is increased with coadministration, including with other vaccines known to be more reactogenic, such as adjuvanted vaccines or live vaccines. When deciding whether to coadminister another vaccine(s) with COVID-19 vaccines, providers should consider whether the patient is behind or at risk of becoming behind on recommended vaccines, their risk of vaccine-preventable disease (e.g., during an outbreak or occupational exposures), and the reactogenicity profile of the vaccines.",
                     "Vaccination should be deferred until recovery from acute illness (if person had symptoms) and criteria have been met to discontinue isolation.",
-                    "Current evidence suggests that the risk of SARS-CoV-2 reinfection is low in the months after initial infection but may increase with time due to waning immunity. Thus, people with a history of MIS-C or MIS-A should consider delaying vaccination until they have recovered from illness and for 90 days after the date of diagnosis of MIS-C or MIS-A, recognizing that the risk of reinfection and, therefore, the benefit from vaccination, might increase with time following initial infection.",
+                    "Given the lack of data on the safety of COVID-19 vaccines in people with a history of MIS-C or MIS-A, a conversation between the patient, their guardian(s), and their clinical team or a specialist is strongly encouraged to assist with decisions about the use of COVID-19 vaccines.",
                     "Currently no data on safety or efficacy of COVID-19 vaccination in persons who received monoclonal antibodies or convalescent plasma as part of COVID-19 treatment. Vaccination should be deferred for at least 90 days to avoid interference of the treatment with vaccine-induced immune responses."
                 ],
                 "seriesType": "Risk",
@@ -3276,7 +4443,7 @@
                         "description": "Administer to persons residing in an institutional setting at increased risk for COVID-19 exposure and transmission",
                         "beginAge": "18 years",
                         "endAge": "65 years",
-                        "guidance": "Institutional settings such as health care, schools, correctional facilities, and homeless shelters at increased risk for COVID-19 exposure and transmission and may get a booster shot based on their individual benefits and risks including "
+                        "guidance": "Institutional settings such as health care, schools, correctional facilities, and homeless shelters at increased risk for COVID-19 exposure and transmission and may get a booster shot "
                     },
                     {
                         "observationCode": {
@@ -3407,20 +4574,27 @@
                             "effectiveDate": "",
                             "cessationDate": ""
                         },
-                        "interval": {
-                            "fromPrevious": "N",
-                            "fromTargetDose": "",
-                            "fromMostRecent": "207; 208; 210; 211; 213",
-                            "fromRelevantObs": "",
-                            "absMinInt": "0 days",
-                            "minInt": "28 days",
-                            "earliestRecInt": "28 days",
-                            "latestRecInt": "",
-                            "intervalPriority": "",
-                            "effectiveDate": "",
-                            "cessationDate": ""
-                        },
-                        "allowableInterval": {},
+                        "interval": [
+                            {
+                                "fromPrevious": "N",
+                                "fromTargetDose": "",
+                                "fromMostRecent": "207; 208; 210; 211; 213",
+                                "fromRelevantObs": "",
+                                "absMinInt": "0 days",
+                                "minInt": "28 days",
+                                "earliestRecInt": {
+                                    "value": 28,
+                                    "unit": "d"
+                                },
+                                "latestRecInt": "",
+                                "intervalPriority": "",
+                                "effectiveDate": "",
+                                "cessationDate": ""
+                            }
+                        ],
+                        "allowableInterval": [
+                            {}
+                        ],
                         "preferableVaccine": {
                             "vaccineType": "SARS-COV-2 (COVID-19) vaccine, vector non-replicating, recombinant spike protein-Ad26, preservative free, 0.5 mL",
                             "cvx": "212",
@@ -3440,7 +4614,133 @@
                             }
                         ],
                         "inadvertentVaccine": "",
-                        "conditionalSkip": "",
+                        "conditionalSkip": {},
+                        "recurringDose": "No",
+                        "seasonalRecommendation": ""
+                    },
+                    {
+                        "doseNumber": "Dose 2",
+                        "age": {
+                            "absMinAge": {
+                                "value": 0,
+                                "unit": "d"
+                            },
+                            "minAge": "18 years",
+                            "earliestRecAge": {
+                                "value": 18,
+                                "unit": "a"
+                            },
+                            "latestRecAge": "",
+                            "maxAge": "",
+                            "effectiveDate": "",
+                            "cessationDate": ""
+                        },
+                        "interval": [
+                            {
+                                "fromPrevious": "N",
+                                "fromTargetDose": "",
+                                "fromMostRecent": "207; 208; 210; 211; 213",
+                                "fromRelevantObs": "",
+                                "absMinInt": "0 days",
+                                "minInt": "28 days",
+                                "earliestRecInt": {
+                                    "value": 28,
+                                    "unit": "d"
+                                },
+                                "latestRecInt": "",
+                                "intervalPriority": "",
+                                "effectiveDate": "",
+                                "cessationDate": ""
+                            },
+                            {
+                                "fromPrevious": "Y",
+                                "fromTargetDose": "",
+                                "fromMostRecent": "",
+                                "fromRelevantObs": "",
+                                "absMinInt": "8 weeks - 4 days",
+                                "minInt": "8 weeks",
+                                "earliestRecInt": {
+                                    "value": 8,
+                                    "unit": "wk"
+                                },
+                                "latestRecInt": "",
+                                "intervalPriority": "",
+                                "effectiveDate": "",
+                                "cessationDate": ""
+                            }
+                        ],
+                        "allowableInterval": [
+                            {
+                                "fromPrevious": "Y",
+                                "fromTargetDose": "",
+                                "absMinInt": {
+                                    "value": 0,
+                                    "unit": "d"
+                                },
+                                "effectiveDate": "",
+                                "cessationDate": ""
+                            }
+                        ],
+                        "preferableVaccine": [
+                            {
+                                "vaccineType": "COVID-19, mRNA, LNP-S, PF, 100 mcg/0.5 mL dose",
+                                "cvx": "207",
+                                "beginAge": "18 years",
+                                "endAge": "",
+                                "tradeName": "",
+                                "mvx": "",
+                                "volume": "0.25",
+                                "forecastVaccineType": "N"
+                            },
+                            {
+                                "vaccineType": "COVID-19, mRNA, LNP-S, PF, 30 mcg/0.3 mL dose",
+                                "cvx": "208",
+                                "beginAge": "12 years",
+                                "endAge": "",
+                                "tradeName": "",
+                                "mvx": "",
+                                "volume": "0.3",
+                                "forecastVaccineType": "N"
+                            },
+                            {
+                                "vaccineType": "SARS-COV-2 (COVID-19) vaccine, vector non-replicating, recombinant spike protein-Ad26, preservative free, 0.5 mL",
+                                "cvx": "212",
+                                "beginAge": "18 years",
+                                "endAge": "",
+                                "tradeName": "",
+                                "mvx": "",
+                                "volume": "0.5",
+                                "forecastVaccineType": "N"
+                            }
+                        ],
+                        "allowableVaccine": [
+                            {
+                                "vaccineType": "COVID-19, mRNA, LNP-S, PF, 100 mcg/0.5 mL dose",
+                                "cvx": "207",
+                                "beginAge": "0 days",
+                                "endAge": ""
+                            },
+                            {
+                                "vaccineType": "COVID-19, mRNA, LNP-S, PF, 30 mcg/0.3 mL dose",
+                                "cvx": "208",
+                                "beginAge": "0 days",
+                                "endAge": ""
+                            },
+                            {
+                                "vaccineType": "SARS-COV-2 (COVID-19) vaccine, vector non-replicating, recombinant spike protein-Ad26, preservative free, 0.5 mL",
+                                "cvx": "212",
+                                "beginAge": "0 days",
+                                "endAge": ""
+                            },
+                            {
+                                "vaccineType": "SARS-COV-2 (COVID-19) vaccine, Unspecified Formulation",
+                                "cvx": "213",
+                                "beginAge": "0 days",
+                                "endAge": ""
+                            }
+                        ],
+                        "inadvertentVaccine": "",
+                        "conditionalSkip": {},
                         "recurringDose": "No",
                         "seasonalRecommendation": ""
                     }
@@ -3453,8 +4753,9 @@
                 "seriesAdminGuidance": [
                     "COVID-19 vaccines and other vaccines may now be administered without regard to timing. This includes simultaneous administration of COVID-19 vaccines and other vaccines on the same day, as well as coadministration within 14 days. It is unknown whether reactogenicity of COVID-19 vaccine is increased with coadministration, including with other vaccines known to be more reactogenic, such as adjuvanted vaccines or live vaccines. When deciding whether to coadminister another vaccine(s) with COVID-19 vaccines, providers should consider whether the patient is behind or at risk of becoming behind on recommended vaccines, their risk of vaccine-preventable disease (e.g., during an outbreak or occupational exposures), and the reactogenicity profile of the vaccines.",
                     "Vaccination should be deferred until recovery from acute illness (if person had symptoms) and criteria have been met to discontinue isolation.",
-                    "Current evidence suggests that the risk of SARS-CoV-2 reinfection is low in the months after initial infection but may increase with time due to waning immunity. Thus, people with a history of MIS-C or MIS-A should consider delaying vaccination until they have recovered from illness and for 90 days after the date of diagnosis of MIS-C or MIS-A, recognizing that the risk of reinfection and, therefore, the benefit from vaccination, might increase with time following initial infection.",
-                    "Currently no data on safety or efficacy of COVID-19 vaccination in persons who received monoclonal antibodies or convalescent plasma as part of COVID-19 treatment. Vaccination should be deferred for at least 90 days to avoid interference of the treatment with vaccine-induced immune responses."
+                    "Given the lack of data on the safety of COVID-19 vaccines in people with a history of MIS-C or MIS-A, a conversation between the patient, their guardian(s), and their clinical team or a specialist is strongly encouraged to assist with decisions about the use of COVID-19 vaccines.",
+                    "Currently no data on safety or efficacy of COVID-19 vaccination in persons who received monoclonal antibodies or convalescent plasma as part of COVID-19 treatment. Vaccination should be deferred for at least 90 days to avoid interference of the treatment with vaccine-induced immune responses.",
+                    "If Moderna vaccine administered as the first dose before 18 years, it is suggested to give Pfizer-BioNTech vaccine as the second dose (at least 28 days after the Moderna vaccine dose) because Pfizer-BioNTech is authorized in this age group."
                 ],
                 "seriesType": "Risk",
                 "equivalentSeriesGroups": "3",
@@ -3608,7 +4909,7 @@
                         "description": "Administer to persons residing in an institutional setting at increased risk for COVID-19 exposure and transmission",
                         "beginAge": "18 years",
                         "endAge": "65 years",
-                        "guidance": "Institutional settings such as health care, schools, correctional facilities, and homeless shelters at increased risk for COVID-19 exposure and transmission and may get a booster shot based on their individual benefits and risks including "
+                        "guidance": "Institutional settings such as health care, schools, correctional facilities, and homeless shelters at increased risk for COVID-19 exposure and transmission and may get a booster shot "
                     },
                     {
                         "observationCode": {
@@ -3739,20 +5040,27 @@
                             "effectiveDate": "",
                             "cessationDate": ""
                         },
-                        "interval": {
-                            "fromPrevious": "N",
-                            "fromTargetDose": "",
-                            "fromMostRecent": "210; 211; 212",
-                            "fromRelevantObs": "",
-                            "absMinInt": "0 days",
-                            "minInt": "28 days",
-                            "earliestRecInt": "28 days",
-                            "latestRecInt": "",
-                            "intervalPriority": "",
-                            "effectiveDate": "",
-                            "cessationDate": ""
-                        },
-                        "allowableInterval": {},
+                        "interval": [
+                            {
+                                "fromPrevious": "N",
+                                "fromTargetDose": "",
+                                "fromMostRecent": "210; 211; 212",
+                                "fromRelevantObs": "",
+                                "absMinInt": "0 days",
+                                "minInt": "28 days",
+                                "earliestRecInt": {
+                                    "value": 28,
+                                    "unit": "d"
+                                },
+                                "latestRecInt": "",
+                                "intervalPriority": "",
+                                "effectiveDate": "",
+                                "cessationDate": ""
+                            }
+                        ],
+                        "allowableInterval": [
+                            {}
+                        ],
                         "preferableVaccine": [
                             {
                                 "vaccineType": "COVID-19, mRNA, LNP-S, PF, 100 mcg/0.5 mL dose",
@@ -3796,7 +5104,7 @@
                             }
                         ],
                         "inadvertentVaccine": "",
-                        "conditionalSkip": "",
+                        "conditionalSkip": {},
                         "recurringDose": "No",
                         "seasonalRecommendation": ""
                     },
@@ -3822,7 +5130,10 @@
                                 "fromRelevantObs": "",
                                 "absMinInt": "0 days",
                                 "minInt": "28 days",
-                                "earliestRecInt": "28 days",
+                                "earliestRecInt": {
+                                    "value": 28,
+                                    "unit": "d"
+                                },
                                 "latestRecInt": "",
                                 "intervalPriority": "",
                                 "effectiveDate": "",
@@ -3835,23 +5146,28 @@
                                 "fromRelevantObs": "",
                                 "absMinInt": "28 days - 4 days",
                                 "minInt": "28 days",
-                                "earliestRecInt": "28 days",
+                                "earliestRecInt": {
+                                    "value": 28,
+                                    "unit": "d"
+                                },
                                 "latestRecInt": "42 days",
                                 "intervalPriority": "",
                                 "effectiveDate": "",
                                 "cessationDate": ""
                             }
                         ],
-                        "allowableInterval": {
-                            "fromPrevious": "Y",
-                            "fromTargetDose": "",
-                            "absMinInt": {
-                                "value": 0,
-                                "unit": "d"
-                            },
-                            "effectiveDate": "",
-                            "cessationDate": ""
-                        },
+                        "allowableInterval": [
+                            {
+                                "fromPrevious": "Y",
+                                "fromTargetDose": "",
+                                "absMinInt": {
+                                    "value": 0,
+                                    "unit": "d"
+                                },
+                                "effectiveDate": "",
+                                "cessationDate": "20211024"
+                            }
+                        ],
                         "preferableVaccine": [
                             {
                                 "vaccineType": "COVID-19, mRNA, LNP-S, PF, 100 mcg/0.5 mL dose",
@@ -3895,7 +5211,7 @@
                             }
                         ],
                         "inadvertentVaccine": "",
-                        "conditionalSkip": "",
+                        "conditionalSkip": {},
                         "recurringDose": "No",
                         "seasonalRecommendation": ""
                     },
@@ -3924,7 +5240,10 @@
                                 "fromRelevantObs": "",
                                 "absMinInt": "0 days",
                                 "minInt": "28 days",
-                                "earliestRecInt": "28 days",
+                                "earliestRecInt": {
+                                    "value": 28,
+                                    "unit": "d"
+                                },
                                 "latestRecInt": "",
                                 "intervalPriority": "",
                                 "effectiveDate": "",
@@ -3937,23 +5256,28 @@
                                 "fromRelevantObs": "",
                                 "absMinInt": "6 months - 4 days",
                                 "minInt": "6 months",
-                                "earliestRecInt": "6 months",
+                                "earliestRecInt": {
+                                    "value": 6,
+                                    "unit": "mo"
+                                },
                                 "latestRecInt": "",
                                 "intervalPriority": "",
                                 "effectiveDate": "",
                                 "cessationDate": ""
                             }
                         ],
-                        "allowableInterval": {
-                            "fromPrevious": "Y",
-                            "fromTargetDose": "",
-                            "absMinInt": {
-                                "value": 0,
-                                "unit": "d"
-                            },
-                            "effectiveDate": "",
-                            "cessationDate": ""
-                        },
+                        "allowableInterval": [
+                            {
+                                "fromPrevious": "Y",
+                                "fromTargetDose": "",
+                                "absMinInt": {
+                                    "value": 0,
+                                    "unit": "d"
+                                },
+                                "effectiveDate": "",
+                                "cessationDate": ""
+                            }
+                        ],
                         "preferableVaccine": [
                             {
                                 "vaccineType": "COVID-19, mRNA, LNP-S, PF, 100 mcg/0.5 mL dose",
@@ -3966,6 +5290,16 @@
                                 "forecastVaccineType": "N"
                             },
                             {
+                                "vaccineType": "COVID-19, mRNA, LNP-S, PF, 100 mcg/0.5 mL dose",
+                                "cvx": "207",
+                                "beginAge": "18 years",
+                                "endAge": "",
+                                "tradeName": "",
+                                "mvx": "",
+                                "volume": "0.25",
+                                "forecastVaccineType": "N"
+                            },
+                            {
                                 "vaccineType": "COVID-19, mRNA, LNP-S, PF, 30 mcg/0.3 mL dose",
                                 "cvx": "208",
                                 "beginAge": "12 years",
@@ -3974,9 +5308,25 @@
                                 "mvx": "",
                                 "volume": "0.3",
                                 "forecastVaccineType": "N"
+                            },
+                            {
+                                "vaccineType": "SARS-COV-2 (COVID-19) vaccine, vector non-replicating, recombinant spike protein-Ad26, preservative free, 0.5 mL",
+                                "cvx": "212",
+                                "beginAge": "18 years",
+                                "endAge": "",
+                                "tradeName": "",
+                                "mvx": "",
+                                "volume": "0.5",
+                                "forecastVaccineType": "N"
                             }
                         ],
                         "allowableVaccine": [
+                            {
+                                "vaccineType": "COVID-19, mRNA, LNP-S, PF, 100 mcg/0.5 mL dose",
+                                "cvx": "207",
+                                "beginAge": "0 days",
+                                "endAge": ""
+                            },
                             {
                                 "vaccineType": "COVID-19, mRNA, LNP-S, PF, 100 mcg/0.5 mL dose",
                                 "cvx": "207",
@@ -3990,6 +5340,12 @@
                                 "endAge": ""
                             },
                             {
+                                "vaccineType": "SARS-COV-2 (COVID-19) vaccine, vector non-replicating, recombinant spike protein-Ad26, preservative free, 0.5 mL",
+                                "cvx": "212",
+                                "beginAge": "0 days",
+                                "endAge": ""
+                            },
+                            {
                                 "vaccineType": "SARS-COV-2 (COVID-19) vaccine, Unspecified Formulation",
                                 "cvx": "213",
                                 "beginAge": "0 days",
@@ -3997,31 +5353,7 @@
                             }
                         ],
                         "inadvertentVaccine": "",
-                        "conditionalSkip": {
-                            "context": "Both",
-                            "setLogic": "n/a",
-                            "set": {
-                                "setID": "1",
-                                "setDescription": "Target Dose is not required if any non-Pfizer vaccine is administered",
-                                "effectiveDate": "",
-                                "cessationDate": "",
-                                "conditionLogic": "",
-                                "condition": {
-                                    "conditionID": "1",
-                                    "conditionType": "Vaccine Count by Age",
-                                    "startDate": "",
-                                    "endDate": "",
-                                    "beginAge": "",
-                                    "endAge": "",
-                                    "interval": "",
-                                    "doseCount": "0",
-                                    "doseType": "Total",
-                                    "doseCountLogic": "greater than",
-                                    "vaccineTypes": "207; 213",
-                                    "seriesGroups": ""
-                                }
-                            }
-                        },
+                        "conditionalSkip": {},
                         "recurringDose": "No",
                         "seasonalRecommendation": ""
                     }
@@ -4064,8 +5396,12 @@
                             "effectiveDate": "",
                             "cessationDate": ""
                         },
-                        "interval": "",
-                        "allowableInterval": {},
+                        "interval": [
+                            {}
+                        ],
+                        "allowableInterval": [
+                            {}
+                        ],
                         "preferableVaccine": "",
                         "allowableVaccine": [
                             {
@@ -4076,7 +5412,7 @@
                             }
                         ],
                         "inadvertentVaccine": "",
-                        "conditionalSkip": "",
+                        "conditionalSkip": {},
                         "recurringDose": "No",
                         "seasonalRecommendation": ""
                     },
@@ -4097,29 +5433,36 @@
                             "effectiveDate": "",
                             "cessationDate": ""
                         },
-                        "interval": {
-                            "fromPrevious": "Y",
-                            "fromTargetDose": "",
-                            "fromMostRecent": "",
-                            "fromRelevantObs": "",
-                            "absMinInt": "0 days",
-                            "minInt": "8 weeks",
-                            "earliestRecInt": "8 weeks",
-                            "latestRecInt": "12 weeks",
-                            "intervalPriority": "",
-                            "effectiveDate": "",
-                            "cessationDate": ""
-                        },
-                        "allowableInterval": {
-                            "fromPrevious": "Y",
-                            "fromTargetDose": "",
-                            "absMinInt": {
-                                "value": 0,
-                                "unit": "d"
-                            },
-                            "effectiveDate": "",
-                            "cessationDate": ""
-                        },
+                        "interval": [
+                            {
+                                "fromPrevious": "Y",
+                                "fromTargetDose": "",
+                                "fromMostRecent": "",
+                                "fromRelevantObs": "",
+                                "absMinInt": "0 days",
+                                "minInt": "8 weeks",
+                                "earliestRecInt": {
+                                    "value": 8,
+                                    "unit": "wk"
+                                },
+                                "latestRecInt": "12 weeks",
+                                "intervalPriority": "",
+                                "effectiveDate": "",
+                                "cessationDate": ""
+                            }
+                        ],
+                        "allowableInterval": [
+                            {
+                                "fromPrevious": "Y",
+                                "fromTargetDose": "",
+                                "absMinInt": {
+                                    "value": 0,
+                                    "unit": "d"
+                                },
+                                "effectiveDate": "",
+                                "cessationDate": ""
+                            }
+                        ],
                         "preferableVaccine": "",
                         "allowableVaccine": [
                             {
@@ -4130,7 +5473,7 @@
                             }
                         ],
                         "inadvertentVaccine": "",
-                        "conditionalSkip": "",
+                        "conditionalSkip": {},
                         "recurringDose": "No",
                         "seasonalRecommendation": ""
                     }
@@ -4173,8 +5516,12 @@
                             "effectiveDate": "",
                             "cessationDate": ""
                         },
-                        "interval": "",
-                        "allowableInterval": {},
+                        "interval": [
+                            {}
+                        ],
+                        "allowableInterval": [
+                            {}
+                        ],
                         "preferableVaccine": "",
                         "allowableVaccine": [
                             {
@@ -4185,7 +5532,7 @@
                             }
                         ],
                         "inadvertentVaccine": "",
-                        "conditionalSkip": "",
+                        "conditionalSkip": {},
                         "recurringDose": "No",
                         "seasonalRecommendation": ""
                     },
@@ -4206,29 +5553,36 @@
                             "effectiveDate": "",
                             "cessationDate": ""
                         },
-                        "interval": {
-                            "fromPrevious": "Y",
-                            "fromTargetDose": "",
-                            "fromMostRecent": "",
-                            "fromRelevantObs": "",
-                            "absMinInt": "0 days",
-                            "minInt": "3 weeks",
-                            "earliestRecInt": "3 weeks",
-                            "latestRecInt": "4 weeks",
-                            "intervalPriority": "",
-                            "effectiveDate": "",
-                            "cessationDate": ""
-                        },
-                        "allowableInterval": {
-                            "fromPrevious": "Y",
-                            "fromTargetDose": "",
-                            "absMinInt": {
-                                "value": 0,
-                                "unit": "d"
-                            },
-                            "effectiveDate": "",
-                            "cessationDate": ""
-                        },
+                        "interval": [
+                            {
+                                "fromPrevious": "Y",
+                                "fromTargetDose": "",
+                                "fromMostRecent": "",
+                                "fromRelevantObs": "",
+                                "absMinInt": "0 days",
+                                "minInt": "3 weeks",
+                                "earliestRecInt": {
+                                    "value": 3,
+                                    "unit": "wk"
+                                },
+                                "latestRecInt": "4 weeks",
+                                "intervalPriority": "",
+                                "effectiveDate": "",
+                                "cessationDate": ""
+                            }
+                        ],
+                        "allowableInterval": [
+                            {
+                                "fromPrevious": "Y",
+                                "fromTargetDose": "",
+                                "absMinInt": {
+                                    "value": 0,
+                                    "unit": "d"
+                                },
+                                "effectiveDate": "",
+                                "cessationDate": ""
+                            }
+                        ],
                         "preferableVaccine": "",
                         "allowableVaccine": [
                             {
@@ -4239,7 +5593,7 @@
                             }
                         ],
                         "inadvertentVaccine": "",
-                        "conditionalSkip": "",
+                        "conditionalSkip": {},
                         "recurringDose": "No",
                         "seasonalRecommendation": ""
                     }
@@ -4282,8 +5636,12 @@
                             "effectiveDate": "",
                             "cessationDate": ""
                         },
-                        "interval": "",
-                        "allowableInterval": {},
+                        "interval": [
+                            {}
+                        ],
+                        "allowableInterval": [
+                            {}
+                        ],
                         "preferableVaccine": "",
                         "allowableVaccine": [
                             {
@@ -4294,7 +5652,7 @@
                             }
                         ],
                         "inadvertentVaccine": "",
-                        "conditionalSkip": "",
+                        "conditionalSkip": {},
                         "recurringDose": "No",
                         "seasonalRecommendation": ""
                     },
@@ -4315,29 +5673,36 @@
                             "effectiveDate": "",
                             "cessationDate": ""
                         },
-                        "interval": {
-                            "fromPrevious": "Y",
-                            "fromTargetDose": "",
-                            "fromMostRecent": "",
-                            "fromRelevantObs": "",
-                            "absMinInt": "0 days",
-                            "minInt": "2 weeks",
-                            "earliestRecInt": "2 weeks",
-                            "latestRecInt": "4 weeks",
-                            "intervalPriority": "",
-                            "effectiveDate": "",
-                            "cessationDate": ""
-                        },
-                        "allowableInterval": {
-                            "fromPrevious": "Y",
-                            "fromTargetDose": "",
-                            "absMinInt": {
-                                "value": 0,
-                                "unit": "d"
-                            },
-                            "effectiveDate": "",
-                            "cessationDate": ""
-                        },
+                        "interval": [
+                            {
+                                "fromPrevious": "Y",
+                                "fromTargetDose": "",
+                                "fromMostRecent": "",
+                                "fromRelevantObs": "",
+                                "absMinInt": "0 days",
+                                "minInt": "2 weeks",
+                                "earliestRecInt": {
+                                    "value": 2,
+                                    "unit": "wk"
+                                },
+                                "latestRecInt": "4 weeks",
+                                "intervalPriority": "",
+                                "effectiveDate": "",
+                                "cessationDate": ""
+                            }
+                        ],
+                        "allowableInterval": [
+                            {
+                                "fromPrevious": "Y",
+                                "fromTargetDose": "",
+                                "absMinInt": {
+                                    "value": 0,
+                                    "unit": "d"
+                                },
+                                "effectiveDate": "",
+                                "cessationDate": ""
+                            }
+                        ],
                         "preferableVaccine": "",
                         "allowableVaccine": [
                             {
@@ -4348,7 +5713,7 @@
                             }
                         ],
                         "inadvertentVaccine": "",
-                        "conditionalSkip": "",
+                        "conditionalSkip": {},
                         "recurringDose": "No",
                         "seasonalRecommendation": ""
                     }
@@ -4391,8 +5756,12 @@
                             "effectiveDate": "",
                             "cessationDate": ""
                         },
-                        "interval": "",
-                        "allowableInterval": {},
+                        "interval": [
+                            {}
+                        ],
+                        "allowableInterval": [
+                            {}
+                        ],
                         "preferableVaccine": "",
                         "allowableVaccine": [
                             {
@@ -4403,7 +5772,7 @@
                             }
                         ],
                         "inadvertentVaccine": "",
-                        "conditionalSkip": "",
+                        "conditionalSkip": {},
                         "recurringDose": "No",
                         "seasonalRecommendation": ""
                     },
@@ -4424,20 +5793,27 @@
                             "effectiveDate": "",
                             "cessationDate": ""
                         },
-                        "interval": {
-                            "fromPrevious": "Y",
-                            "fromTargetDose": "",
-                            "fromMostRecent": "",
-                            "fromRelevantObs": "",
-                            "absMinInt": "0 days",
-                            "minInt": "21 days",
-                            "earliestRecInt": "21 days",
-                            "latestRecInt": "28 days",
-                            "intervalPriority": "",
-                            "effectiveDate": "",
-                            "cessationDate": ""
-                        },
-                        "allowableInterval": {},
+                        "interval": [
+                            {
+                                "fromPrevious": "Y",
+                                "fromTargetDose": "",
+                                "fromMostRecent": "",
+                                "fromRelevantObs": "",
+                                "absMinInt": "0 days",
+                                "minInt": "21 days",
+                                "earliestRecInt": {
+                                    "value": 21,
+                                    "unit": "d"
+                                },
+                                "latestRecInt": "28 days",
+                                "intervalPriority": "",
+                                "effectiveDate": "",
+                                "cessationDate": ""
+                            }
+                        ],
+                        "allowableInterval": [
+                            {}
+                        ],
                         "preferableVaccine": "",
                         "allowableVaccine": [
                             {
@@ -4448,7 +5824,7 @@
                             }
                         ],
                         "inadvertentVaccine": "",
-                        "conditionalSkip": "",
+                        "conditionalSkip": {},
                         "recurringDose": "No",
                         "seasonalRecommendation": ""
                     }

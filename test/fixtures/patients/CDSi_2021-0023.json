@@ -15,7 +15,7 @@
               ]
             }
           ],
-          "birthDate": "1989-09-09"
+          "birthDate": "1982-08-29"
         }
       },
       {
@@ -27,14 +27,14 @@
             "coding": [
               {
                 "system": "http://hl7.org/fhir/sid/cvx",
-                "code": "208"
+                "code": "212"
               }
             ]
           },
           "patient": {
             "reference": "resource:0"
           },
-          "occurrenceDateTime": "2021-09-09"
+          "occurrenceDateTime": "2021-08-29"
         }
       },
       {
@@ -46,14 +46,14 @@
             "coding": [
               {
                 "system": "http://hl7.org/fhir/sid/cvx",
-                "code": "208"
+                "code": "207"
               }
             ]
           },
           "patient": {
             "reference": "resource:0"
           },
-          "occurrenceDateTime": "2021-09-30"
+          "occurrenceDateTime": "2021-10-29"
         }
       }
     ]

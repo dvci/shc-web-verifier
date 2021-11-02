@@ -4,7 +4,7 @@ import fhirhelpers from '../../output-elm/FHIRHelpers-4.0.0.json';
 
 const { Repository, CodeService, PatientContext } = require('cql-execution');
 const { PatientSource } = require('cql-exec-fhir');
-const { supportingData } = require('../../supporting-data');
+const { supportingData, ancillaryData } = require('../../supporting-data');
 
 export interface IValidationResult {
   seriesName: string;
@@ -53,7 +53,10 @@ export class Validator {
     );
 
     const codeService = new CodeService(valueSetMap);
-    const parameters = { AntigenSupportingData: supportingData[antigen].antigenSupportingData };
+    const parameters = { 
+      AntigenSupportingData: supportingData[antigen].antigenSupportingData,
+      AntigenAncillaryData: ancillaryData[antigen].antigenAncillaryData 
+    };
 
     // Load array of patient bundles
     const patientSource = new PatientSource.FHIRv400();

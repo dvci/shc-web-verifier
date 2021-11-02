@@ -15,6 +15,8 @@ const stringToQuantity = (quantityString) => {
   switch (substrings[1]) {
     case 'days': quantityUnit = 'd';
       break;
+    case 'weeks': quantityUnit = 'wk';
+      break;
     case 'months': quantityUnit = 'mo';
       break;
     case 'years': quantityUnit = 'a';
@@ -46,14 +48,21 @@ const validator = (xpath, currentValue, newValue) => {
     return elementToArray(newValue, 'seriesDose');
   }
   if (['/antigenSupportingData/series/seriesDose'].includes(xpath)) {
-    return elementToArray(newValue, 'allowableVaccine');
+    let seriesDose = elementToArray(newValue, 'allowableVaccine');
+    seriesDose = elementToArray(newValue, 'interval');
+    seriesDose = elementToArray(newValue, 'allowableInterval');
+    return seriesDose;
   }
-  if (['/antigenSupportingData/series/seriesDose/allowableInterval'].includes(xpath)) {
+  if (['/antigenSupportingData/series/seriesDose/allowableVaccine',
+    '/antigenSupportingData/series/seriesDose/interval',
+    '/antigenSupportingData/series/seriesDose/allowableInterval',
+    '/antigenSupportingData/series/seriesDose/conditionalSkip'].includes(xpath)) {
     return elementToObject(newValue);
   }
   if (['/antigenSupportingData/series/seriesDose/age/absMinAge',
     '/antigenSupportingData/series/seriesDose/age/earliestRecAge',
-    '/antigenSupportingData/series/seriesDose/allowableInterval/absMinInt'].includes(xpath)) {
+    '/antigenSupportingData/series/seriesDose/allowableInterval/absMinInt',
+    '/antigenSupportingData/series/seriesDose/interval/earliestRecInt'].includes(xpath)) {
     return stringToQuantity(newValue);
   }
   return newValue

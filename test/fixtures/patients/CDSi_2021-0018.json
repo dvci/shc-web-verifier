@@ -15,7 +15,7 @@
               ]
             }
           ],
-          "birthDate": "1989-09-09"
+          "birthDate": "1956-04-05"
         }
       },
       {
@@ -34,7 +34,7 @@
           "patient": {
             "reference": "resource:0"
           },
-          "occurrenceDateTime": "2021-09-09"
+          "occurrenceDateTime": "2021-04-05"
         }
       },
       {
@@ -53,7 +53,26 @@
           "patient": {
             "reference": "resource:0"
           },
-          "occurrenceDateTime": "2021-09-30"
+          "occurrenceDateTime": "2021-04-26"
+        }
+      },
+      {
+        "fullUrl": "resource:3",
+        "resource": {
+          "resourceType": "Immunization",
+          "status": "completed",
+          "vaccineCode": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/sid/cvx",
+                "code": "208"
+              }
+            ]
+          },
+          "patient": {
+            "reference": "resource:0"
+          },
+          "occurrenceDateTime": "2021-10-26"
         }
       }
     ]

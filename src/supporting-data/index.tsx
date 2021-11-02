@@ -1,12 +1,17 @@
 import COVID from './AntigenSupportingData-COVID-19.json';
+import ancillaryCOVID from './AntigenAncillaryData-COVID-19.json';
 
-interface IAntigenSupportingData {
+interface ISupportingData {
   [antigen: string]: any;
 }
 
 const supportingData = {
   'COVID-19': COVID,
-} as IAntigenSupportingData;
+} as ISupportingData;
 
-export { supportingData };  
-export type { IAntigenSupportingData };
+const ancillaryData = {
+  'COVID-19': ancillaryCOVID,
+} as ISupportingData;
+
+export { supportingData, ancillaryData };  
+export type { ISupportingData };

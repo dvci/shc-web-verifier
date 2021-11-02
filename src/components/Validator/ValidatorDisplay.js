@@ -33,7 +33,7 @@ const ValidatorDisplay = ({ bundle, action }) => {
         </Typography>
         {complete.map((c) => (
           <div>
-            {c.map((dose) => (
+            {c.doses.map((dose) => (
               <div>
                 {`${dose.doseNumber}: `}
                 {JSON.stringify(dose.immunization)}
