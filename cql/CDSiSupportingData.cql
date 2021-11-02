@@ -69,11 +69,11 @@ define function "EvaluateSeriesDoses" (seriesDoses List<Tuple{
             R union ({
             seriesDose X
                 let currentImmunizationIndex: if Count(R)>0 then Count(R) + startingImmunizationIndex else startingImmunizationIndex,
-				previousDoseImmunizationIndex: if Count(R)>0 then (Last(R)).immunizationIndex else -1,
-                previousValidImmunizationIndex: if Count(R)>0 and Last(R.where(validDose = true)) is not null then (Last(R.where(validDose = true))).immunizationIndex else -1,
+				previousValidDoseIndex: if Count(R)>0 then (Last(R.where(validDose = true))).doseIndex else -1,
+                previousValidImmunizationIndex: if Count(R)>0 then (Last(R.where(validDose = true))).immunizationIndex else -1,
                 currentDoseIndex: if Count(R)>0 then Count(R) else 0
                 return(
-					"EvaluateSeriesDose"(seriesDose, currentDoseIndex, currentImmunizationIndex, previousDoseImmunizationIndex, previousValidImmunizationIndex)
+					"EvaluateSeriesDose"(seriesDose, currentDoseIndex, currentImmunizationIndex, previousValidDoseIndex, previousValidImmunizationIndex)
 				)
             })
 
@@ -84,8 +84,8 @@ define function "EvaluateSeriesDose" (seriesDose Tuple{
 		allowableInterval List<Tuple{fromPrevious String, absMinInt Tuple{value Decimal, unit String}}>,  
 		allowableVaccine List<Tuple{cvx String}>,
 		conditionalSkip Tuple{context String} },
-        currentDoseIndex Integer, currentImmunizationIndex Integer, previousDoseImmunizationIndex Integer, previousValidImmunizationIndex Integer):
-	if currentImmunizationIndex >= Count("Immunizations") or previousDoseImmunizationIndex != previousValidImmunizationIndex
+        currentDoseIndex Integer, currentImmunizationIndex Integer, previousValidDoseIndex Integer, previousValidImmunizationIndex Integer):
+	if currentImmunizationIndex >= Count("Immunizations") or previousValidDoseIndex is null
     	then Tuple {
 			doseNumber: seriesDose.doseNumber,
             doseIndex: currentDoseIndex,
@@ -169,67 +169,4 @@ define function "IsValidPrimarySeries" (primarySeriesName String,
 	doseEvaluations List<Tuple{doseNumber String, doseIndex Integer, 
 		immunizationIndex Integer, validDose Boolean }>):
 	Count(doseEvaluations.where(validDose = true)) >= First(AntigenAncillaryData.series.where(seriesName = primarySeriesName)).primarySeriesNumberDoses
-	//if Count(doseEvaluations.where(validDose = true)) = Count(seriesDoses)
-	//then true
-	//else if Count(doseEvaluations.where(validDose = true)) = 0 
-	//		or not AllTrue(Take(doseEvaluations, Count(doseEvaluations.where(validDose = true))).validDose)
-	//	then false
-	//	else if "IsRecommendedSeriesDose"(seriesDoses[Count(doseEvaluations.where(validDose = true))],
-	//		Immunizations[Last(doseEvaluations.where(validDose = true)).immunizationIndex])
-	//	then false //next dose in series is due as of today
-	//	else true
-
-define function "IsRecommendedSeriesDose" (seriesDose Tuple{
-		doseNumber String, 
-		age Tuple{absMinAge Tuple{value Decimal, unit String}, earliestRecAge Tuple{value Decimal, unit String}}, 
-		interval List<Tuple{fromPrevious String, earliestRecInt Tuple{value Decimal, unit String}}>, 
-		allowableInterval List<Tuple{fromPrevious String, absMinInt Tuple{value Decimal, unit String}}>,  
-		allowableVaccine List<Tuple{cvx String}>,
-		conditionalSkip Tuple{context String} },
-		previousImmunization FHIR.Immunization):
-	"IsRecommendedByEarliestRecAge"(seriesDose.age)
-	and "IsRecommendedByEarliestRecInterval"(seriesDose.interval, previousImmunization) 
-	and "IsRecommendedByConditionalSkip"(seriesDose.conditionalSkip)
-
-define function "IsRecommendedByEarliestRecAge" (age Tuple{absMinAge Tuple{value Decimal, unit String}, earliestRecAge Tuple{value Decimal, unit String}}):
-	if Count(age) = 0 
-		or age.earliestRecAge.value is null
-	then
-		false
-	else
-		case age.earliestRecAge.unit
-			when 'd' then AgeInDays() >= age.earliestRecAge.value	
-			when 'wk' then AgeInWeeks() >= age.earliestRecAge.value	
-			when 'mo' then AgeInMonths() >= age.earliestRecAge.value	
-			when 'a' then AgeInYears() >= age.earliestRecAge.value	
-			else null
-		end	
-
-define function "IsRecommendedByEarliestRecInterval" (
-		interval List<Tuple{fromPrevious String, earliestRecInt Tuple{value Decimal, unit String}}>,
-		previousImmunization FHIR.Immunization) returns Boolean:
-	if Count(interval) = 0 
-		or Count(First(interval.where(fromPrevious = 'Y'))) = 0 
-		or First(interval.where(fromPrevious = 'Y')).earliestRecInt.value is null
-		or previousImmunization is null
-	then
-		false
-	else
-		case First(interval.where(fromPrevious = 'Y')).earliestRecInt.unit
-			when 'd' then difference in days between (previousImmunization.occurrence as FHIR.dateTime) and Today() 
-				>= First(interval.where(fromPrevious = 'Y')).earliestRecInt.value
-			when 'wk' then difference in weeks between (previousImmunization.occurrence as FHIR.dateTime) and Today() 
-				>= First(interval.where(fromPrevious = 'Y')).earliestRecInt.value				
-			when 'mo' then difference in months between (previousImmunization.occurrence as FHIR.dateTime) and Today()
-				>= First(interval.where(fromPrevious = 'Y')).earliestRecInt.value
-			when 'a' then difference in years between (previousImmunization.occurrence as FHIR.dateTime) and Today()
-				>= First(interval.where(fromPrevious = 'Y')).earliestRecInt.value
-			else null
-		end
-
-define function "IsRecommendedByConditionalSkip" (
-		conditionalSkip Tuple{context String}) returns Boolean:
-	if conditionalSkip.context in {'Forecast', 'Both'}
-	then false
-	else true
 				
