@@ -190,3 +190,9 @@ test('2nd dose of Pfizer Covid-19 Vaccine at 21 - 5 days before ACIP instituted 
   const values = Validator.execute(patientBundle, 'COVID-19');
   expect(validPrimarySeries(values)).toBe(true);
 });
+
+test('Dose #2 and Dose #4 Pfizer Covid-19 vaccine with Dose #1 and Dose #3 invalid', () => {
+  const patientBundle = loadJSONFixture('./test/fixtures/patients/invalid_doses.test.json');
+  const values = Validator.execute(patientBundle, 'COVID-19');
+  expect(validPrimarySeries(values)).toBe(true);
+});

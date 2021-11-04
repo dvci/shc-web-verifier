@@ -22,17 +22,17 @@ define "Immunizations":
 	sort by (occurrence as FHIR.dateTime) asc
 
 define "Run":
-	"EvaluateSeries"
+	"EvaluateAllSeries"
 
-define "EvaluateSeries":
+define "EvaluateAllSeries":
 	AntigenSupportingData.series series
 	where series.seriesType != 'Risk'
 	return Tuple {
 		seriesName: series.seriesName,
-		complete: ("EvaluateSeriesImmunizations"(series.seriesName, series.seriesDose)).where(validPrimarySeries = true)
+		complete: ("EvaluateSeries"(series.seriesName, series.seriesDose)).where(validPrimarySeries = true)
 	}
 
-define function "EvaluateSeriesImmunizations" (seriesName String,
+define function "EvaluateSeries" (seriesName String,
 	seriesDoses List<Tuple{
 		doseNumber String, 
 		age Tuple{absMinAge Tuple{value Decimal, unit String}, earliestRecAge Tuple{value Decimal, unit String}}, 
@@ -41,17 +41,16 @@ define function "EvaluateSeriesImmunizations" (seriesName String,
 		allowableVaccine List<Tuple{cvx String}>,
 		conditionalSkip Tuple{context String} }>):
     "Immunizations" immunization      
-        aggregate all R starting (List{} as List<Tuple{startingImmunizationIndex Integer, validSeries Boolean }>): 
+        aggregate all R starting (List{} as List<Tuple{startingImmunizationIndex Integer, validPrimarySeries Boolean }>): 
             R union ({
             immunization X
-                let currentImmunizationIndex: Count(R),
-				doseEvaluations: "EvaluateSeriesDoses"(seriesDoses, currentImmunizationIndex)
+                let startingImmunizationIndex: Count(R),
+				doseEvaluations: "EvaluateSeriesDoses"(seriesDoses, startingImmunizationIndex)
                  return(
 					Tuple {
-                    	startingImmunizationIndex: currentImmunizationIndex,                 
+                    	startingImmunizationIndex: startingImmunizationIndex,                 
                     	validPrimarySeries: IsValidPrimarySeries(seriesName, seriesDoses, doseEvaluations),
-						doses: doseEvaluations.where(validDose = true),
-						allDoses: doseEvaluations
+						doses: doseEvaluations.where(validDose = true)
                     }
                 )
             }) 
@@ -68,12 +67,18 @@ define function "EvaluateSeriesDoses" (seriesDoses List<Tuple{
         aggregate all R starting (List{} as List<Tuple{immunizationIndex Integer, doseIndex Integer, doseNumber String, validDose Boolean }>): 
             R union ({
             seriesDose X
-                let currentImmunizationIndex: if Count(R)>0 then Count(R) + startingImmunizationIndex else startingImmunizationIndex,
-				previousValidDoseIndex: if Count(R)>0 then (Last(R.where(validDose = true))).doseIndex else -1,
+                let previousValidDoseIndex: if Count(R)>0 then (Last(R.where(validDose = true))).doseIndex else -1,
                 previousValidImmunizationIndex: if Count(R)>0 then (Last(R.where(validDose = true))).immunizationIndex else -1,
-                currentDoseIndex: if Count(R)>0 then Count(R) else 0
+                currentDoseIndex: Count(R),
+				doseImmunizationEvaluations: "EvaluateSeriesDose"(seriesDose, currentDoseIndex, startingImmunizationIndex, previousValidDoseIndex, previousValidImmunizationIndex)
                 return(
-					"EvaluateSeriesDose"(seriesDose, currentDoseIndex, currentImmunizationIndex, previousValidDoseIndex, previousValidImmunizationIndex)
+					if First(doseImmunizationEvaluations.where(validDose = true)) is not null
+					then First(doseImmunizationEvaluations.where(validDose = true))
+					else if First(doseImmunizationEvaluations.where(validDose is not null and validDose = false)) is not null
+					then First(doseImmunizationEvaluations.where(validDose is not null and validDose = false))
+					else if previousValidImmunizationIndex is not null and First(doseImmunizationEvaluations.where(immunizationIndex > previousValidImmunizationIndex)) is not null
+					then First(doseImmunizationEvaluations.where(immunizationIndex > previousValidImmunizationIndex))
+					else First(doseImmunizationEvaluations)
 				)
             })
 
@@ -84,23 +89,49 @@ define function "EvaluateSeriesDose" (seriesDose Tuple{
 		allowableInterval List<Tuple{fromPrevious String, absMinInt Tuple{value Decimal, unit String}}>,  
 		allowableVaccine List<Tuple{cvx String}>,
 		conditionalSkip Tuple{context String} },
-        currentDoseIndex Integer, currentImmunizationIndex Integer, previousValidDoseIndex Integer, previousValidImmunizationIndex Integer):
-	if currentImmunizationIndex >= Count("Immunizations") or previousValidDoseIndex is null
-    	then Tuple {
+        currentDoseIndex Integer, startingImmunizationIndex Integer, previousValidDoseIndex Integer, previousValidImmunizationIndex Integer):
+    ("Immunizations".skip(startingImmunizationIndex)) immunization      
+        aggregate all R starting (List{} as List<Tuple{doseNumber String, doseIndex Integer, immunizationIndex Integer, immunization FHIR.Immunization, validDose Boolean }>): 
+            R union ({
+            immunization X
+                let currentImmunizationIndex: Count(R) + startingImmunizationIndex
+                return(
+					EvaluateSeriesDoseImmunization(seriesDose, currentDoseIndex, currentImmunizationIndex, previousValidDoseIndex, previousValidImmunizationIndex)
+                )
+            }) 		
+
+define function "EvaluateSeriesDoseImmunization" (seriesDose Tuple{
+		doseNumber String, 
+		age Tuple{absMinAge Tuple{value Decimal, unit String}, earliestRecAge Tuple{value Decimal, unit String}}, 
+		interval List<Tuple{fromPrevious String, earliestRecInt Tuple{value Decimal, unit String}}>, 
+		allowableInterval List<Tuple{fromPrevious String, absMinInt Tuple{value Decimal, unit String}}>,  
+		allowableVaccine List<Tuple{cvx String}>,
+		conditionalSkip Tuple{context String} },
+        currentDoseIndex Integer, currentImmunizationIndex Integer, previousValidDoseIndex Integer, previousValidImmunizationIndex Integer):  
+	if currentImmunizationIndex >= Count("Immunizations")
+		then Tuple {
 			doseNumber: seriesDose.doseNumber,
-            doseIndex: currentDoseIndex,
-            immunizationIndex: null,   
+			doseIndex: currentDoseIndex,
+			immunizationIndex: null,   
 			immunization: null,
-            validDose: null
+			validDose: null
 		}
-    else
-        Tuple {
-            doseNumber: seriesDose.doseNumber,
-            doseIndex: currentDoseIndex,
-            immunizationIndex: currentImmunizationIndex,   
+	else if previousValidDoseIndex is null or (previousValidImmunizationIndex is not null and currentImmunizationIndex <= previousValidImmunizationIndex)
+		then Tuple {
+			doseNumber: seriesDose.doseNumber,
+			doseIndex: currentDoseIndex,
+			immunizationIndex: currentImmunizationIndex,   
 			immunization: "Immunizations"[currentImmunizationIndex],
-            validDose: "IsValidSeriesDose"(seriesDose, "Immunizations"[currentImmunizationIndex], "Immunizations"[previousValidImmunizationIndex])
-        }				
+			validDose: null
+		}			
+	else
+		Tuple {
+			doseNumber: seriesDose.doseNumber,
+			doseIndex: currentDoseIndex,
+			immunizationIndex: currentImmunizationIndex,   
+			immunization: "Immunizations"[currentImmunizationIndex],
+			validDose: "IsValidSeriesDose"(seriesDose, "Immunizations"[currentImmunizationIndex], "Immunizations"[previousValidImmunizationIndex])
+		}						
 
 define function "IsValidSeriesDose" (seriesDose Tuple{
 		doseNumber String, 
