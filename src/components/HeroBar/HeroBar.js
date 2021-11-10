@@ -25,7 +25,7 @@ const HeroBar = () => {
       <Route path={['/qr-scan', '/display-results']}>
         <IconButton
           size="small"
-          onClick={() => history.push('/shc-web-verifier')}
+          onClick={() => history.push('/')}
           style={{
             position: 'absolute',
             marginTop: '2.5rem',

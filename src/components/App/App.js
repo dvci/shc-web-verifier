@@ -3,7 +3,7 @@ import './App.css';
 import React from 'react';
 import { CssBaseline } from '@mui/material';
 import {
-  BrowserRouter as Router, Redirect, Route, Switch
+  HashRouter as Router, Redirect, Route, Switch
 } from 'react-router-dom';
 import HealthCardDisplay from 'components/HealthCardDisplay';
 import HealthCardVerify from 'components/HealthCardVerify';
@@ -24,8 +24,8 @@ const App = () => (
       <HeroBar />
 
       <Switch>
-        <Redirect exact from="/" to="/shc-web-verifier" />
-        <Route exact path="/shc-web-verifier">
+        <Redirect exact from="/shc-web-verifier" to="/" />
+        <Route exact path="/">
           <Landing />
         </Route>
 
