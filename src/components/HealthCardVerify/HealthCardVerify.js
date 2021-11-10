@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@mui/styles';
 import axios from 'axios';
 import https from 'https';
 import jose from 'node-jose';
 import {
   Typography
-} from '@material-ui/core';
+} from '@mui/material';
+import { useQrDataContext } from 'components/QrDataProvider';
+import { getIssuer, getJws } from 'utils/qrHelpers';
 
 const useStyles = makeStyles({
   bold: {
@@ -13,9 +15,11 @@ const useStyles = makeStyles({
   }
 });
 
-const HealthCardVerify = ({ jws, iss }) => {
+const HealthCardVerify = () => {
   const classes = useStyles();
-
+  const { qrCode } = useQrDataContext();
+  const jws = getJws(qrCode);
+  const iss = getIssuer(qrCode);
   const [verified, setVerified] = useState();
   const [error, setError] = useState(null);
 
