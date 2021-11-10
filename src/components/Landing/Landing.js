@@ -49,7 +49,7 @@ const Landing = () => {
                 target="_blank"
                 rel="noopener"
               >
-                SMART Health Card
+                SMART&reg; Health Card
               </Link>
               &nbsp;QR code in a safe and privacy-preserving way.
             </Typography>
@@ -73,7 +73,7 @@ const Landing = () => {
             </Button>
           </Box>
           <Box>
-            <Typography variant="h6">What is a SMART Health Card?</Typography>
+            <Typography variant="h6">What is a SMART&reg; Health Card?</Typography>
             <Typography>
               <img
                 src={checkIcon}
@@ -94,7 +94,7 @@ const Landing = () => {
           </Box>
           <Box mt={5}>
             <Typography>
-              For more information on SMART Health Cards, please visit
+              For more information on SMART&reg; Health Cards, please visit
               <br />
               <Link
                 href="https://smarthealth.cards/"

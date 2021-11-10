@@ -45,7 +45,7 @@ const HeroBar = () => {
           pb={4}
         >
           <Typography variant="h3" component="h2">
-            SMART Health Card Verifier
+            SMART&reg; Health Card Verifier
           </Typography>
         </Box>
       </Container>

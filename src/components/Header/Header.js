@@ -27,7 +27,7 @@ const Header = () => {
           <img src={logo} alt="Placeholder Mitre logo" style={{ width: '100px' }} />
           <Box ml={2}>
             <Typography variant="h6" component="h1">
-              SMART Health Card Verifier
+              SMART&reg; Health Card Verifier
             </Typography>
           </Box>
         </Box>
