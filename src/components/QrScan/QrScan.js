@@ -91,7 +91,7 @@ const QrScan = () => {
             {scannedCodes.map((code, i) => (
               <Button
                 className={classes.button}
-                key={`qr-${i}`}
+                key={code}
                 variant="contained"
                 color={code ? 'success' : 'error'}
                 disableRipple
