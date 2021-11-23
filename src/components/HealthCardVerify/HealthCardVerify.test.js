@@ -42,7 +42,7 @@ const renderHealthCardVerify = ({ jwsValue = jws, issValue = iss }) => {
   qrHelpers.getJws = jest.fn().mockReturnValue(jwsValue);
   qrHelpers.getIssuer = jest.fn().mockReturnValue(issValue);
   return render(
-    <QrDataContext.Provider value={{ qrCode: '', setQrCode: jest.fn() }}>
+    <QrDataContext.Provider value={{ qrCodes: [], setQrCode: jest.fn() }}>
       <HealthCardVerify />
     </QrDataContext.Provider>
   );

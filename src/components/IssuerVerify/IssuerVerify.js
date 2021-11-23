@@ -15,8 +15,8 @@ const useStyles = makeStyles({
 
 const IssuerVerify = () => {
   const classes = useStyles();
-  const { qrCode } = useQrDataContext();
-  const iss = getIssuer(qrCode);
+  const { qrCodes } = useQrDataContext();
+  const iss = getIssuer(qrCodes);
   const [issuerDirectories, setIssuerDirectories] = useState(null);
   const [verified, setVerified] = useState(null);
   const [errors, setErrors] = useState(null);

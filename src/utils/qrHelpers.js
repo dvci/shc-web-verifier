@@ -1,15 +1,17 @@
 import { Base64 } from 'js-base64';
 import pako from 'pako';
 
-const getJws = (qrString) => {
-  const sliceIndex = qrString.lastIndexOf('/');
-  const rawPayload = qrString.slice(sliceIndex + 1);
-  const encodingChars = rawPayload.match(/\d\d/g);
-  return encodingChars.map((charPair) => String.fromCharCode(+charPair + 45)).join('');
-};
+const getJws = (qrCodes) => (
+  qrCodes.map((c) => {
+    const sliceIndex = c.lastIndexOf('/');
+    const rawPayload = c.slice(sliceIndex + 1);
+    const encodingChars = rawPayload.match(/\d\d/g);
+    return encodingChars.map((charPair) => String.fromCharCode(+charPair + 45)).join('');
+  }).join('')
+);
 
-const getPayload = (qrString) => {
-  const jwsString = getJws(qrString)
+const getPayload = (qrCodes) => {
+  const jwsString = getJws(qrCodes);
   const dataString = jwsString.split('.')[1];
   const decodedPayload = Base64.toUint8Array(dataString);
   const inflatedPayload = pako.inflateRaw(decodedPayload);
@@ -53,15 +55,15 @@ const extractPatientData = (card) => {
   return { name, dateOfBirth, immunizations };
 };
 
-const getPatientData = (qrCode) => {
-  if (!qrCode) { return null; }
-  const decodedQr = getPayload(qrCode);
+const getPatientData = (qrCodes) => {
+  if (!qrCodes || qrCodes.length === 0) { return null; }
+  const decodedQr = getPayload(qrCodes);
   return extractPatientData(decodedQr);
 };
 
-const getIssuer = (qrCode) => {
-  if (!qrCode) { return null; }
-  const payload = JSON.parse(getPayload(qrCode));
+const getIssuer = (qrCodes) => {
+  if (!qrCodes || qrCodes.length === 0) { return null; }
+  const payload = JSON.parse(getPayload(qrCodes));
   return payload.iss;
 };
 

@@ -26,6 +26,6 @@ beforeAll(() => {
 test('renders title', () => {
   React.useState.mockImplementation(jest.requireActual('react').useState);
   render(<App />);
-  const titleElement = screen.getByText(/Health Cards/i);
+  const titleElement = screen.getByText(/SMART® Health Cards/i);
   expect(titleElement).toBeInTheDocument();
 });

@@ -17,8 +17,8 @@ const useStyles = makeStyles({
 
 const HealthCardDisplay = () => {
   const classes = useStyles();
-  const { qrCode } = useQrDataContext();
-  const patientData = getPatientData(qrCode);
+  const { qrCodes } = useQrDataContext();
+  const patientData = getPatientData(qrCodes);
   const [tradenames, setTradenames] = useState({});
   const [cvxCodes, setCvxCodes] = useState({});
 
