@@ -31,7 +31,7 @@
     "predeploy": "yarn run build",
     "deploy": "gh-pages -d build",
     "lint": "eslint './src/**/*.{js,jsx}'",
-    "lint:fix": "eslint './src/**/*.{js,jsx}' --fix",
+    "lint:fix": "eslint './src/**/*.{js,jsx,ts,tsx}' --fix",
     "translate": "translate-cql"
   },
   "eslintConfig": {
