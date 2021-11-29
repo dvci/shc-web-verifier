@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@mui/styles';
 import {
   Card, CardContent, CardHeader, Grid, Typography
-} from '@material-ui/core';
+} from '@mui/material';
 import axios from 'axios';
+import { useQrDataContext } from 'components/QrDataProvider';
+import { getPatientData } from 'utils/qrHelpers';
 import tradenamesXml from './iisstandards_tradename.xml';
 import cvxXml from './iisstandards_cvx.xml';
 
@@ -13,9 +15,10 @@ const useStyles = makeStyles({
   }
 });
 
-const HealthCardDisplay = ({ patientData }) => {
+const HealthCardDisplay = () => {
   const classes = useStyles();
-
+  const { qrCodes } = useQrDataContext();
+  const patientData = getPatientData(qrCodes);
   const [tradenames, setTradenames] = useState({});
   const [cvxCodes, setCvxCodes] = useState({});
 

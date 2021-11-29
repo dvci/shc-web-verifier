@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@mui/styles';
 import {
   Typography
-} from '@material-ui/core';
+} from '@mui/material';
+import { useQrDataContext } from 'components/QrDataProvider';
+import { getIssuer } from 'utils/qrHelpers';
+import IssuerDirectories from './IssuerDirectories';
 
 const useStyles = makeStyles({
   bold: {
@@ -10,11 +13,22 @@ const useStyles = makeStyles({
   }
 });
 
-const IssuerVerify = ({ iss, issuerDirectories }) => {
+const IssuerVerify = () => {
   const classes = useStyles();
-
+  const { qrCodes } = useQrDataContext();
+  const iss = getIssuer(qrCodes);
+  const [issuerDirectories, setIssuerDirectories] = useState(null);
   const [verified, setVerified] = useState(null);
   const [errors, setErrors] = useState(null);
+
+  useEffect(() => {
+    IssuerDirectories.getIssuerDirectories()
+      .then((fetchedDirectories) => {
+        setIssuerDirectories(fetchedDirectories);
+      }).catch(() => {
+        setIssuerDirectories(null);
+      });
+  }, []);
 
   useEffect(() => {
     if (!issuerDirectories) {

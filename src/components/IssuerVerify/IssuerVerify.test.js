@@ -3,8 +3,9 @@ import axios from 'axios';
 import {
   render, screen, waitFor
 } from '@testing-library/react';
+import { QrDataContext } from 'components/QrDataProvider';
+import * as qrHelpers from 'utils/qrHelpers';
 import IssuerVerify from './IssuerVerify';
-import IssuerDirectories from './IssuerDirectories';
 
 const iss = 'https://spec.smarthealth.cards/examples/issuer';
 
@@ -34,27 +35,31 @@ afterEach(() => {
   axiosSpy.mockRestore();
 });
 
-const getIssuerDirectories = async () => IssuerDirectories.getIssuerDirectories();
+const renderIssuerVerify = ({ issValue = iss }) => {
+  qrHelpers.getIssuer = jest.fn().mockReturnValue(issValue);
+  return render(
+    <QrDataContext.Provider value={{ qrCodes: [], setQrCode: jest.fn() }}>
+      <IssuerVerify />
+    </QrDataContext.Provider>
+  );
+}
 
 test('verifies issuer true', async () => {
   axiosSpy.mockResolvedValueOnce({ data: directory });
-  const issuerDirectories = await getIssuerDirectories();
-  render(<IssuerVerify iss={iss} issuerDirectories={issuerDirectories} />);
+  renderIssuerVerify({});
   await waitFor(() => expect(axiosSpy).toHaveBeenCalledTimes(1));
   expect(await screen.findAllByText('true', {}, { timeout: 3000 })).toHaveLength(1);
 });
 
 test.skip('verifies issuer true integration test', async () => {
-  const issuerDirectories = await getIssuerDirectories();
-  render(<IssuerVerify iss="https://myvaccinerecord.cdph.ca.gov/creds" issuerDirectories={issuerDirectories} />);
+  renderIssuerVerify({ issValue: 'https://myvaccinerecord.cdph.ca.gov/creds' });
   await waitFor(() => expect(axiosSpy).toHaveBeenCalledTimes(1));
   expect(await screen.findAllByText('true', {}, { timeout: 3000 })).toHaveLength(1);
 });
 
 test('verifies issuer false', async () => {
   axiosSpy.mockResolvedValueOnce({ data: directory });
-  const issuerDirectories = await getIssuerDirectories();
-  render(<IssuerVerify iss="https://myvaccinerecord.cdph.ca.gov/creds" issuerDirectories={issuerDirectories} />);
+  renderIssuerVerify({ issValue: 'https://myvaccinerecord.cdph.ca.gov/creds' });
   await waitFor(() => expect(axiosSpy).toHaveBeenCalledTimes(1));
   expect(await screen.findAllByText('false', {}, { timeout: 3000 })).toHaveLength(1);
 });
@@ -62,16 +67,14 @@ test('verifies issuer false', async () => {
 test('verifies error bad directory format', async () => {
   const badDirectory = {};
   axiosSpy.mockResolvedValueOnce({ data: badDirectory });
-  const issuerDirectories = await getIssuerDirectories();
-  render(<IssuerVerify iss={iss} issuerDirectories={issuerDirectories} />);
+  renderIssuerVerify({});
   await waitFor(() => expect(axiosSpy).toHaveBeenCalledTimes(1));
   expect(await screen.findAllByText('VCI: Incorrect issuer directory format.', {}, { timeout: 3000 })).toHaveLength(1);
 });
 
 test('verifies error bad directory URL', async () => {
   axiosSpy.mockRejectedValueOnce(new Error('Bad URL'));
-  const issuerDirectories = await getIssuerDirectories();
-  render(<IssuerVerify iss={iss} issuerDirectories={issuerDirectories} />);
+  renderIssuerVerify({});
   await waitFor(() => expect(axiosSpy).toHaveBeenCalledTimes(1));
   expect(await screen.findAllByText('VCI: Error fetching issuer directory.', {}, { timeout: 3000 })).toHaveLength(1);
 });
