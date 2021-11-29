@@ -35,7 +35,7 @@
     "eject": "react-scripts eject",
     "predeploy": "yarn run build",
     "deploy": "gh-pages -d build",
-    "lint": "eslint './src/**/*.{js,jsx}'",
+    "lint": "eslint './src/**/*.{js,jsx,ts,tsx}'",
     "lint:fix": "eslint './src/**/*.{js,jsx,ts,tsx}' --fix",
     "translate": "translate-cql"
   },
