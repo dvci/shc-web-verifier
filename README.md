@@ -50,7 +50,7 @@ Does not support forecasting or any other validation, including conditional dose
 
 ### Update CQL library
 
-Script to convert CQL to ELM and write results to src/output-elm.
+Script to convert CQL to ELM and write results to src/output-elm. Requires Docker to be running locally.
 
 `yarn translate`
 
