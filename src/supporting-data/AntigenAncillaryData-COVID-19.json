@@ -1,0 +1,38 @@
+{
+    "antigenAncillaryData": {
+        "series": [
+            {
+                "seriesName": "3-dose Pfizer series",
+                "primarySeriesNumberDoses": 2
+            },
+            {
+                "seriesName": "3-dose Moderna series",
+                "primarySeriesNumberDoses": 2
+            },
+            {
+                "seriesName": "2-dose Janssen series",
+                "primarySeriesNumberDoses": 1
+            },
+            {
+                "seriesName": "3-dose mRNA series",
+                "primarySeriesNumberDoses": 2
+            },
+            {
+                "seriesName": "2-dose AstraZeneca Series",
+                "primarySeriesNumberDoses": 2
+            },
+            {
+                "seriesName": "2-dose BIBP Sinopharm Series",
+                "primarySeriesNumberDoses": 2
+            },
+            {
+                "seriesName": "2-dose CoronaVac Sinovac Series",
+                "primarySeriesNumberDoses": 2
+            },
+            {
+                "seriesName": "2-dose Novavax Series",
+                "primarySeriesNumberDoses": 2
+            }
+        ]
+    }
+}

@@ -40,6 +40,28 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
+## Client-side CDC CDSi validator app
+
+Limited scope, CQL engine based client-side validation app that executes the CDSi supporting data guidelines.
+
+Currently only validates each non-Risk type series based on dose absMinAge, allowable vaccine codes (CVX only), and allowableInterval absMinInt fromPrevious.
+
+Does not support forecasting or any other validation, including conditional doses, recurring or seasonal doses, immunity or contradictions.
+
+### Update CQL library
+
+Script to convert CQL to ELM and write results to src/output-elm. Requires Docker to be running locally.
+
+`yarn translate`
+
+### Update CDSi supporting data
+
+Script to convert CDSi AntigenSupportingData XML format to json and write results to src/supporting-data.
+
+`node ./src/supporting-data/SupportingData.js '/path/to/CDC/Version x.xx - 508/XML/AntigenSupportingData- COVID-19-508.xml'`
+
+Will need to be updated with each CDSi release. Primary vaccine series number of doses are defined separately in src/supporting-data/AncilarySupportingData-{antigen}.json
+
 ## Learn More
 
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).

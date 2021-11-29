@@ -1,0 +1,22 @@
+{
+    "resourceType": "Bundle",
+    "type": "collection",
+    "entry": [
+      {
+        "fullUrl": "resource:0",
+        "resource": {
+          "resourceType": "Patient",
+          "name": [
+            {
+              "family": "Anyperson",
+              "given": [
+                "John",
+                "B."
+              ]
+            }
+          ],
+          "birthDate": "2009-09-09"
+        }
+      }
+    ]
+  }
