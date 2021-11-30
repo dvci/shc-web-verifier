@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import {
   Box,
+  Button,
   Card,
   CardContent,
   Grid,
@@ -12,19 +13,27 @@ import {
 } from '@mui/material';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 import { useQrDataContext } from 'components/QrDataProvider';
 import { getPatientData } from 'utils/qrHelpers';
+import errorIllustration from 'assets/error-illustration.png';
+import scanIcon from 'assets/scan-icon.png';
 import useStyles from './styles';
 import tradenamesXml from './iisstandards_tradename.xml';
 import cvxXml from './iisstandards_cvx.xml';
 
 const HealthCardDisplay = () => {
   const styles = useStyles();
+  const history = useHistory();
   const { qrCodes } = useQrDataContext();
   const patientData = getPatientData(qrCodes);
   const [tradenames, setTradenames] = useState({});
   const [cvxCodes, setCvxCodes] = useState({});
   const [showDateOfBirth, setShowDateOfBirth] = useState(false);
+
+  const handleScan = () => {
+    history.push('qr-scan');
+  };
 
   async function fetchCdcXml(file) {
     const response = await axios.get(file, {
@@ -188,7 +197,62 @@ const HealthCardDisplay = () => {
   );
 
   return !patientData ? (
-    <p>Error</p>
+    <Grid
+      container
+      style={{ marginTop: '2rem' }}
+    >
+      <Grid
+        item
+        xs={6}
+        display="flex"
+        justifyContent="center"
+      >
+        <img
+          src={errorIllustration}
+          alt="Error Illustration"
+          width="100%"
+        />
+      </Grid>
+      <Grid
+        item
+        xs={6}
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+      >
+        <Grid container>
+          <Grid item xs={12}>
+            <Typography variant="h4" color="primary.main">
+              Only valid
+              <span className={styles.shcText}> SMART&reg; Health Card </span>
+              QR Codes
+              <br />
+              are currently supported.
+            </Typography>
+          </Grid>
+          <Grid item xs={10}>
+            <Box mt={10}>
+              <Button
+                type="button"
+                fullWidth
+                size="large"
+                variant="contained"
+                color="secondary"
+                onClick={handleScan}
+                style={{ fontSize: '150%' }}
+              >
+                <img
+                  src={scanIcon}
+                  alt="Scan Icon"
+                  style={{ height: '2.5rem', marginRight: '10px' }}
+                />
+                SCAN QR CODE
+              </Button>
+            </Box>
+          </Grid>
+        </Grid>
+      </Grid>
+    </Grid>
   ) : (
     <Box display="flex" className={styles.healthCard}>
       <Card display="flex" className={styles.card}>

@@ -194,4 +194,7 @@ export default makeStyles((theme) => ({
   date: {
     fontWeight: '700',
   },
+  shcText: {
+    color: theme.palette.secondary.main,
+  },
 }));
