@@ -74,7 +74,7 @@ const QrScan = () => {
   }
 
   const handleError = () => {
-    // TODO: Handle QR code scan error
+    history.push('/display-results');
   }
 
   return (

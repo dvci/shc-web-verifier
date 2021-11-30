@@ -28,10 +28,11 @@ const HealthCardDisplay = () => {
 
   async function fetchCdcXml(file) {
     const response = await axios.get(file, {
-      Accept: 'application/xml'
+      Accept: 'application/xml',
     });
     let data = await response.data;
-    data = data.replace(/&/g, '&amp;')
+    data = data
+      .replace(/&/g, '&amp;')
       .replace(/"/g, '&quot;')
       .replace(/'/g, '&apos;');
     const parser = new DOMParser();
@@ -45,16 +46,22 @@ const HealthCardDisplay = () => {
   React.useEffect(() => {
     async function fetchTradenames() {
       const xmlDoc = await fetchCdcXml(tradenamesXml);
-      const prodInfos = xmlDoc.evaluate('//productnames/prodInfo',
-        xmlDoc, null, XPathResult.ORDERED_NODE_ITERATOR_TYPE, null);
+      const prodInfos = xmlDoc.evaluate(
+        '//productnames/prodInfo',
+        xmlDoc,
+        null,
+        XPathResult.ORDERED_NODE_ITERATOR_TYPE,
+        null
+      );
       let prodInfo = prodInfos.iterateNext();
       const tn = {};
       while (prodInfo) {
         if (tn[prodInfo.children[5].textContent.trim()]) {
-          tn[prodInfo.children[5].textContent.trim()] = prodInfo.children[3].textContent
+          tn[prodInfo.children[5].textContent.trim()] = prodInfo.children[3].textContent;
         } else {
-          tn[prodInfo.children[5].textContent.trim()] = prodInfo.children[1].textContent
+          tn[prodInfo.children[5].textContent.trim()] = prodInfo.children[1].textContent;
         }
+
         prodInfo = prodInfos.iterateNext();
       }
       setTradenames(tn);
@@ -62,12 +69,17 @@ const HealthCardDisplay = () => {
 
     async function fetchCvx() {
       const xmlDoc = await fetchCdcXml(cvxXml);
-      const prodInfos = xmlDoc.evaluate('//CVXCodes/CVXInfo',
-        xmlDoc, null, XPathResult.ORDERED_NODE_ITERATOR_TYPE, null);
+      const prodInfos = xmlDoc.evaluate(
+        '//CVXCodes/CVXInfo',
+        xmlDoc,
+        null,
+        XPathResult.ORDERED_NODE_ITERATOR_TYPE,
+        null
+      );
       let prodInfo = prodInfos.iterateNext();
       const cvx = {};
       while (prodInfo) {
-        cvx[prodInfo.getElementsByTagName('CVXCode')[0].textContent.trim()] = prodInfo.getElementsByTagName('ShortDescription')[0].textContent
+        cvx[prodInfo.getElementsByTagName('CVXCode')[0].textContent.trim()] = prodInfo.getElementsByTagName('ShortDescription')[0].textContent;
         prodInfo = prodInfos.iterateNext();
       }
       setCvxCodes(cvx);
@@ -175,7 +187,9 @@ const HealthCardDisplay = () => {
     </Box>
   );
 
-  return (
+  return !patientData ? (
+    <p>Error</p>
+  ) : (
     <Box display="flex" className={styles.healthCard}>
       <Card display="flex" className={styles.card}>
         <CardContent className={styles.cardContent}>
