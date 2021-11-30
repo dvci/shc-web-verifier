@@ -2,6 +2,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import axios from 'axios';
 import { act } from 'react-dom/test-utils';
+import ThemeProvider from 'components/ThemeProvider';
 import { QrDataContext } from 'components/QrDataProvider';
 import * as qrHelpers from 'utils/qrHelpers';
 import HealthCardDisplay from './HealthCardDisplay';
@@ -130,9 +131,11 @@ afterEach(() => {
 const renderHealthCardDisplay = () => {
   qrHelpers.getPatientData = jest.fn().mockReturnValue(patientData);
   return render(
-    <QrDataContext.Provider value={{ qrCodes: [], setQrCode: jest.fn() }}>
-      <HealthCardDisplay />
-    </QrDataContext.Provider>
+    <ThemeProvider>
+      <QrDataContext.Provider value={{ qrCodes: [], setQrCode: jest.fn() }}>
+        <HealthCardDisplay />
+      </QrDataContext.Provider>
+    </ThemeProvider>
   );
 }
 

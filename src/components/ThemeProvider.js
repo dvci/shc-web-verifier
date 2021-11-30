@@ -1,10 +1,12 @@
 import React from 'react';
 
-import { ThemeProvider as MuiThemeProvider } from '@mui/material';
+import { ThemeProvider as MuiThemeProvider, StyledEngineProvider } from '@mui/material/styles';
 import lightTheme from 'styles/theme';
 
 const ThemeProvider = ({ children }) => (
-  <MuiThemeProvider theme={lightTheme}>{children}</MuiThemeProvider>
+  <StyledEngineProvider injectFirst>
+    <MuiThemeProvider theme={lightTheme}>{children}</MuiThemeProvider>
+  </StyledEngineProvider>
 );
 
 export default ThemeProvider;
