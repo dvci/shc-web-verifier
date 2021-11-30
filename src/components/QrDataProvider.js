@@ -1,9 +1,18 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, {
+  createContext,
+  useContext,
+  useEffect,
+  useState
+} from 'react';
 
 const QrDataContext = createContext();
 
 const QrDataProvider = ({ children }) => {
-  const [qrCodes, setQrCodes] = useState(null);
+  const [qrCodes, setQrCodes] = useState(JSON.parse(localStorage.getItem('qrCodes')));
+
+  useEffect(() => {
+    localStorage.setItem('qrCodes', JSON.stringify(qrCodes));
+  }, [qrCodes]);
 
   return (
     <QrDataContext.Provider
