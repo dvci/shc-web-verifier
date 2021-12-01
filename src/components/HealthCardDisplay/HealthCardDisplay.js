@@ -230,87 +230,114 @@ const HealthCardDisplay = () => {
           </Grid>
         </>
       ) : (
-        <Box display="flex" className={styles.healthCard}>
-          <Card display="flex" className={styles.card}>
-            <CardContent className={styles.cardContent}>
-              <Box
-                display="flex"
-                flexDirection="column"
-                alignItems="flex-start"
-                className={styles.flexCol}
-              >
-                <Typography className={styles.nameLabel}>NAME</Typography>
-                <Typography className={styles.name}>
-                  {patientData.name}
-                </Typography>
-              </Box>
-              <Box
-                display="flex"
-                flexDirection="column"
-                alignItems="flex-start"
-                className={styles.flexCol}
-              >
-                <Typography className={styles.dateOfBirthLabel}>
-                  DATE OF BIRTH
-                </Typography>
-                <Box
-                  display="flex"
-                  flexDirection="row"
-                  alignItems="center"
-                  className={styles.flexRow}
-                >
-                  <Typography
-                    className={styles.dateOfBirth}
-                    hidden={!showDateOfBirth}
-                    id="dateOfBirth"
+        <>
+          <Grid item xs={4} />
+          <Grid item xs={4}>
+            <Box display="flex" className={styles.healthCard}>
+              <Card display="flex" className={styles.card}>
+                <CardContent className={styles.cardContent}>
+                  <Box
+                    display="flex"
+                    flexDirection="column"
+                    alignItems="flex-start"
+                    className={styles.flexCol}
                   >
-                    {patientData.dateOfBirth}
-                  </Typography>
-                  <Typography
-                    className={styles.dateOfBirth}
-                    hidden={showDateOfBirth}
+                    <Typography className={styles.nameLabel}>NAME</Typography>
+                    <Typography className={styles.name}>
+                      {patientData.name}
+                    </Typography>
+                  </Box>
+                  <Box
+                    display="flex"
+                    flexDirection="column"
+                    alignItems="flex-start"
+                    className={styles.flexCol}
                   >
-                    {'**/**/****'}
-                  </Typography>
-                  <IconButton
-                    className={styles.eyeOutline}
-                    aria-label="toggle datofbirth visibility"
-                    onClick={toggleShowDateOfBirth}
+                    <Typography className={styles.dateOfBirthLabel}>
+                      DATE OF BIRTH
+                    </Typography>
+                    <Box
+                      display="flex"
+                      flexDirection="row"
+                      alignItems="center"
+                      className={styles.flexRow}
+                    >
+                      <Typography
+                        className={styles.dateOfBirth}
+                        hidden={!showDateOfBirth}
+                        id="dateOfBirth"
+                      >
+                        {patientData.dateOfBirth}
+                      </Typography>
+                      <Typography
+                        className={styles.dateOfBirth}
+                        hidden={showDateOfBirth}
+                      >
+                        {'**/**/****'}
+                      </Typography>
+                      <IconButton
+                        className={styles.eyeOutline}
+                        aria-label="toggle datofbirth visibility"
+                        onClick={toggleShowDateOfBirth}
+                      >
+                        <VisibilityIcon />
+                      </IconButton>
+                    </Box>
+                  </Box>
+                  <Divider className={styles.line} variant="middle" />
+                  <Box
+                    display="flex"
+                    flexDirection="column"
+                    alignItems="center"
+                    className={styles.flexCol2}
                   >
-                    <VisibilityIcon />
-                  </IconButton>
-                </Box>
-              </Box>
-              <Divider className={styles.line} variant="middle" />
-              <Box
-                display="flex"
-                flexDirection="column"
-                alignItems="center"
-                className={styles.flexCol2}
+                    <Box
+                      display="flex"
+                      alignItems="center"
+                      justifyContent="center"
+                      className={styles.group12}
+                    >
+                      <Typography className={styles.covid19Vaccination}>
+                        VACCINATION RECORD
+                      </Typography>
+                    </Box>
+                    <List>
+                      {patientData.immunizations.map((item) => (
+                        <div key={item.fullUrl}>
+                          <ListItem>
+                            <HealthCardVaccination immunization={item.resource} />
+                          </ListItem>
+                        </div>
+                      ))}
+                    </List>
+                  </Box>
+                </CardContent>
+              </Card>
+            </Box>
+          </Grid>
+          <Grid item xs={4} />
+          <Grid item xs={4} />
+          <Grid item xs={4}>
+            <Box mt={5}>
+              <Button
+                type="button"
+                fullWidth
+                size="large"
+                variant="contained"
+                color="secondary"
+                onClick={handleScan}
+                style={{ fontSize: '150%' }}
               >
-                <Box
-                  display="flex"
-                  alignItems="center"
-                  justifyContent="center"
-                  className={styles.group12}
-                >
-                  <Typography className={styles.covid19Vaccination}>
-                    VACCINATION RECORD
-                  </Typography>
-                </Box>
-                <List>
-                  {patientData.immunizations.map((item) => (
-                    <div key={item.fullUrl}>
-                      <ListItem>
-                        <HealthCardVaccination immunization={item.resource} />
-                      </ListItem>
-                    </div>
-                  ))}
-                </List>
-              </Box>
-            </CardContent>
-          </Card>
-        </Box>
+                <img
+                  src={scanIcon}
+                  alt="Scan Icon"
+                  style={{ height: '2.5rem', marginRight: '10px' }}
+                />
+                SCAN QR CODE
+              </Button>
+            </Box>
+          </Grid>
+        </>
       )}
     </Grid>
   );
