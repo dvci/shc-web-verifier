@@ -97,44 +97,38 @@ const HealthCardDisplay = () => {
 
   const HealthCardVaccination = ({ immunization }) => (
     <Box display="flex" flexDirection="column" alignItems="flex-start" className={styles.group8}>
-      <Box display="flex" alignItems="center" alignSelf="flex-end" className={styles.group7}>
+      <Box display="flex" alignItems="center" justifyContent="center" alignSelf="flex-end" className={styles.group7}>
         <Divider className={styles.line2} variant="middle" />
       </Box>
-      <Grid container>
-        <Grid container direction="row" alignItems="flex-start" className={styles.gridRow}>
-          <Grid item className={styles.gridLabel}>
-            <Typography>Vaccine</Typography>
-          </Grid>
-          <Grid item className={styles.gridItem}>
-            <Typography>
-              <Box component="span" fontWeight="700">
-                {immunization.vaccineCode ? immunizationDisplayName(immunization.vaccineCode.coding) : ''}
-              </Box>
-              {immunization.lotNumber && (` Lot #${immunization.lotNumber}`)}
-            </Typography>
-          </Grid>
+      <Grid container columnSpacing={{ xs: 1, sm: 1, md: 3 }}>
+        <Grid item xs={3} className={styles.gridLabel}>
+          <Typography>Vaccine</Typography>
         </Grid>
-        <Grid container direction="row" className={styles.gridRow}>
-          <Grid item className={styles.gridLabel}>
-            <Typography>Date</Typography>
-          </Grid>
-          <Grid item className={styles.gridItem}>
-            <Typography className={styles.date}>{immunization.occurrenceDateTime}</Typography>
-          </Grid>
+        <Grid item xs={9} className={styles.gridItem}>
+          <Typography>
+            <Box component="span" fontWeight="700">
+              {immunization.vaccineCode ? immunizationDisplayName(immunization.vaccineCode.coding) : ''}
+            </Box>
+            {immunization.lotNumber && (` Lot #${immunization.lotNumber}`)}
+          </Typography>
         </Grid>
-        <Grid container direction="row" className={styles.gridRow}>
-          <Grid item className={styles.gridLabel}>
+        <Grid item xs={3} className={styles.gridLabel}>
+          <Typography>Date</Typography>
+        </Grid>
+        <Grid item xs={8} className={styles.gridItem}>
+          <Typography className={styles.date}>{immunization.occurrenceDateTime}</Typography>
+        </Grid>
+        <Grid item xs={3} className={styles.gridLabel}>
+          <Typography>
+            Vaccinator
+          </Typography>
+        </Grid>
+        <Grid item xs={9} className={styles.gridItem}>
+          {(immunization.performer && immunization.performer.length > 0) && (
             <Typography>
-              Vaccinator
-            </Typography>
-          </Grid>
-          <Grid item className={styles.gridItem}>
-            {(immunization.performer && immunization.performer.length > 0) && (
-            <Typography paragraph>
               {immunization.performer[0].actor.display}
             </Typography>
-            )}
-          </Grid>
+          )}
         </Grid>
       </Grid>
     </Box>

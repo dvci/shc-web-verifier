@@ -145,14 +145,13 @@ export default makeStyles((theme) => ({
   },
   // .group-8
   group8: {
-    marginLeft: '3px',
     minHeight: '79px',
     width: '425px',
   },
   // .group-7
   group7: {
     height: '19px',
-    minWidth: '411px',
+    width: '100%',
   },
   // .dose
   dose: {
@@ -164,12 +163,10 @@ export default makeStyles((theme) => ({
     minWidth: '52px',
     whiteSpace: 'nowrap',
   },
-  // .line-2
   line2: {
     backgroundColor: theme.palette.common.blueGreenDark,
     height: '2px',
-    marginLeft: '7px',
-    width: '352px',
+    width: '90%',
   },
   gridRow: {
     alignItems: 'flex-start',
@@ -191,8 +188,8 @@ export default makeStyles((theme) => ({
   gridItem: {
     letterSpacing: '0',
     lineHeight: '16px',
-    marginLeft: '8px',
     minHeight: '19px',
+    wordWrap: 'break-word',
   },
   date: {
     fontWeight: '700',
