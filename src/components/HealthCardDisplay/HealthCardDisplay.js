@@ -159,28 +159,31 @@ const HealthCardDisplay = () => {
 
   return (
     <Grid container style={{ marginTop: '2rem' }}>
-      <Grid item xs={12} className={styles.bannerError}>
-        <Container
-          maxWidth="md"
-        >
-          <Box
-            display="flex"
-            alignItems="center"
-            flexDirection="column"
-            pt={5}
-            pb={4}
+      {!patientData && (
+        <Grid item xs={12} className={styles.bannerError}>
+          <Container
+            maxWidth="md"
           >
-            <Typography variant="h4" component="h2">
+            <Box
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
+              flexDirection="row"
+              pt={2}
+              pb={2}
+            >
               <img
                 src={exclamationIcon}
                 alt="Banner Icon"
                 style={{ height: '2rem', marginRight: '1rem' }}
               />
-              Not Verified
-            </Typography>
-          </Box>
-        </Container>
-      </Grid>
+              <Typography variant="h4" component="h2">
+                Unsupported QR Code
+              </Typography>
+            </Box>
+          </Container>
+        </Grid>
+      )}
       {!patientData ? (
         <>
           <Grid item xs={6} display="flex" justifyContent="center">
