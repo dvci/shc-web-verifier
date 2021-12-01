@@ -197,4 +197,7 @@ export default makeStyles((theme) => ({
   shcText: {
     color: theme.palette.secondary.main,
   },
+  bannerError: {
+    backgroundColor: theme.palette.common.redLight,
+  },
 }));

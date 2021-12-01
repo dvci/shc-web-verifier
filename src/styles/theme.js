@@ -9,6 +9,7 @@ const colors = {
   grayLight: '#eeeeee',
   grayDark: '#323841',
   blueGreenLight: '#f2f9f8',
+  redLight: '#ffe6ee',
 };
 
 const paletteBase = {

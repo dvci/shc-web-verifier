@@ -4,6 +4,7 @@ import {
   Button,
   Card,
   CardContent,
+  Container,
   Grid,
   Typography,
   Divider,
@@ -18,6 +19,7 @@ import { useQrDataContext } from 'components/QrDataProvider';
 import { getPatientData } from 'utils/qrHelpers';
 import errorIllustration from 'assets/error-illustration.png';
 import scanIcon from 'assets/scan-icon.png';
+import exclamationIcon from 'assets/exclamation-red-icon.png';
 import useStyles from './styles';
 import tradenamesXml from './iisstandards_tradename.xml';
 import cvxXml from './iisstandards_cvx.xml';
@@ -118,7 +120,6 @@ const HealthCardDisplay = () => {
 
   const HealthCardVaccination = ({ immunization }) => (
     <Box display="flex" flexDirection="column" alignItems="flex-start" className={styles.group8}>
-<<<<<<< HEAD
       <Box display="flex" alignItems="center" justifyContent="center" alignSelf="flex-end" className={styles.group7}>
         <Divider className={styles.line2} variant="middle" />
       </Box>
@@ -151,168 +152,164 @@ const HealthCardDisplay = () => {
               {immunization.performer[0].actor.display}
             </Typography>
           )}
-=======
-      <Box display="flex" alignItems="center" alignSelf="flex-end" className={styles.group7}>
-        <Divider className={styles.line2} variant="middle" />
-      </Box>
-      <Grid container>
-        <Grid container direction="row" alignItems="flex-start" className={styles.gridRow}>
-          <Grid item className={styles.gridLabel}>
-            <Typography>Vaccine</Typography>
-          </Grid>
-          <Grid item className={styles.gridItem}>
-            <Typography>
-              <Box component="span" fontWeight="700">
-                {immunization.vaccineCode ? immunizationDisplayName(immunization.vaccineCode.coding) : ''}
-              </Box>
-              {immunization.lotNumber && (` Lot #${immunization.lotNumber}`)}
-            </Typography>
-          </Grid>
-        </Grid>
-        <Grid container direction="row" className={styles.gridRow}>
-          <Grid item className={styles.gridLabel}>
-            <Typography>Date</Typography>
-          </Grid>
-          <Grid item className={styles.gridItem}>
-            <Typography className={styles.date}>{immunization.occurrenceDateTime}</Typography>
-          </Grid>
-        </Grid>
-        <Grid container direction="row" className={styles.gridRow}>
-          <Grid item className={styles.gridLabel}>
-            <Typography>
-              Vaccinator
-            </Typography>
-          </Grid>
-          <Grid item className={styles.gridItem}>
-            {(immunization.performer && immunization.performer.length > 0) && (
-            <Typography paragraph>
-              {immunization.performer[0].actor.display}
-            </Typography>
-            )}
-          </Grid>
->>>>>>> 6e3b4ca (update health card display styling)
         </Grid>
       </Grid>
     </Box>
   );
 
-  return !patientData ? (
-    <Grid
-      container
-      style={{ marginTop: '2rem' }}
-    >
-      <Grid
-        item
-        xs={6}
-        display="flex"
-        justifyContent="center"
-      >
-        <img
-          src={errorIllustration}
-          alt="Error Illustration"
-          width="100%"
-        />
-      </Grid>
-      <Grid
-        item
-        xs={6}
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-      >
-        <Grid container>
-          <Grid item xs={12}>
-            <Typography variant="h4" color="primary.main">
-              Only valid
-              <span className={styles.shcText}> SMART&reg; Health Card </span>
-              QR Codes
-              <br />
-              are currently supported.
-            </Typography>
-          </Grid>
-          <Grid item xs={10}>
-            <Box mt={10}>
-              <Button
-                type="button"
-                fullWidth
-                size="large"
-                variant="contained"
-                color="secondary"
-                onClick={handleScan}
-                style={{ fontSize: '150%' }}
-              >
-                <img
-                  src={scanIcon}
-                  alt="Scan Icon"
-                  style={{ height: '2.5rem', marginRight: '10px' }}
-                />
-                SCAN QR CODE
-              </Button>
-            </Box>
-          </Grid>
-        </Grid>
-      </Grid>
-    </Grid>
-  ) : (
-    <Box display="flex" className={styles.healthCard}>
-      <Card display="flex" className={styles.card}>
-        <CardContent className={styles.cardContent}>
+  return (
+    <Grid container style={{ marginTop: '2rem' }}>
+      <Grid item xs={12} className={styles.bannerError}>
+        <Container
+          maxWidth="md"
+        >
           <Box
             display="flex"
-            flexDirection="column"
-            alignItems="flex-start"
-            className={styles.flexCol}
-          >
-            <Typography className={styles.nameLabel}>NAME</Typography>
-            <Typography className={styles.name}>
-              {patientData.name}
-            </Typography>
-          </Box>
-          <Box display="flex" flexDirection="column" alignItems="flex-start" className={styles.flexCol}>
-            <Typography className={styles.dateOfBirthLabel}>
-              DATE OF BIRTH
-            </Typography>
-            <Box display="flex" flexDirection="row" alignItems="center" className={styles.flexRow}>
-              <Typography className={styles.dateOfBirth} hidden={!showDateOfBirth} id="dateOfBirth">
-                {patientData.dateOfBirth}
-              </Typography>
-              <Typography className={styles.dateOfBirth} hidden={showDateOfBirth}>
-                {'**/**/****'}
-              </Typography>
-              <IconButton
-                className={styles.eyeOutline}
-                aria-label="toggle datofbirth visibility"
-                onClick={toggleShowDateOfBirth}
-              >
-                <VisibilityIcon />
-              </IconButton>
-            </Box>
-          </Box>
-          <Divider className={styles.line} variant="middle" />
-          <Box
-            display="flex"
-            flexDirection="column"
             alignItems="center"
-            className={styles.flexCol2}
+            flexDirection="column"
+            pt={5}
+            pb={4}
           >
-            <Box display="flex" alignItems="center" justifyContent="center" className={styles.group12}>
-              <Typography className={styles.covid19Vaccination}>
-                VACCINATION RECORD
-              </Typography>
-            </Box>
-            <List>
-              {patientData.immunizations.map((item) => (
-                <div key={item.fullUrl}>
-                  <ListItem>
-                    <HealthCardVaccination immunization={item.resource} />
-                  </ListItem>
-                </div>
-              ))}
-            </List>
+            <Typography variant="h4" component="h2">
+              <img
+                src={exclamationIcon}
+                alt="Banner Icon"
+                style={{ height: '2rem', marginRight: '1rem' }}
+              />
+              Not Verified
+            </Typography>
           </Box>
-        </CardContent>
-      </Card>
-    </Box>
+        </Container>
+      </Grid>
+      {!patientData ? (
+        <>
+          <Grid item xs={6} display="flex" justifyContent="center">
+            <img src={errorIllustration} alt="Error Illustration" width="100%" />
+          </Grid>
+          <Grid
+            item
+            xs={6}
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+          >
+            <Grid container>
+              <Grid item xs={12}>
+                <Typography variant="h4" color="primary.main">
+                  Only valid
+                  <span className={styles.shcText}> SMART&reg; Health Card </span>
+                  QR Codes
+                  <br />
+                  are currently supported.
+                </Typography>
+              </Grid>
+              <Grid item xs={10}>
+                <Box mt={10}>
+                  <Button
+                    type="button"
+                    fullWidth
+                    size="large"
+                    variant="contained"
+                    color="secondary"
+                    onClick={handleScan}
+                    style={{ fontSize: '150%' }}
+                  >
+                    <img
+                      src={scanIcon}
+                      alt="Scan Icon"
+                      style={{ height: '2.5rem', marginRight: '10px' }}
+                    />
+                    SCAN QR CODE
+                  </Button>
+                </Box>
+              </Grid>
+            </Grid>
+          </Grid>
+        </>
+      ) : (
+        <Box display="flex" className={styles.healthCard}>
+          <Card display="flex" className={styles.card}>
+            <CardContent className={styles.cardContent}>
+              <Box
+                display="flex"
+                flexDirection="column"
+                alignItems="flex-start"
+                className={styles.flexCol}
+              >
+                <Typography className={styles.nameLabel}>NAME</Typography>
+                <Typography className={styles.name}>
+                  {patientData.name}
+                </Typography>
+              </Box>
+              <Box
+                display="flex"
+                flexDirection="column"
+                alignItems="flex-start"
+                className={styles.flexCol}
+              >
+                <Typography className={styles.dateOfBirthLabel}>
+                  DATE OF BIRTH
+                </Typography>
+                <Box
+                  display="flex"
+                  flexDirection="row"
+                  alignItems="center"
+                  className={styles.flexRow}
+                >
+                  <Typography
+                    className={styles.dateOfBirth}
+                    hidden={!showDateOfBirth}
+                    id="dateOfBirth"
+                  >
+                    {patientData.dateOfBirth}
+                  </Typography>
+                  <Typography
+                    className={styles.dateOfBirth}
+                    hidden={showDateOfBirth}
+                  >
+                    {'**/**/****'}
+                  </Typography>
+                  <IconButton
+                    className={styles.eyeOutline}
+                    aria-label="toggle datofbirth visibility"
+                    onClick={toggleShowDateOfBirth}
+                  >
+                    <VisibilityIcon />
+                  </IconButton>
+                </Box>
+              </Box>
+              <Divider className={styles.line} variant="middle" />
+              <Box
+                display="flex"
+                flexDirection="column"
+                alignItems="center"
+                className={styles.flexCol2}
+              >
+                <Box
+                  display="flex"
+                  alignItems="center"
+                  justifyContent="center"
+                  className={styles.group12}
+                >
+                  <Typography className={styles.covid19Vaccination}>
+                    VACCINATION RECORD
+                  </Typography>
+                </Box>
+                <List>
+                  {patientData.immunizations.map((item) => (
+                    <div key={item.fullUrl}>
+                      <ListItem>
+                        <HealthCardVaccination immunization={item.resource} />
+                      </ListItem>
+                    </div>
+                  ))}
+                </List>
+              </Box>
+            </CardContent>
+          </Card>
+        </Box>
+      )}
+    </Grid>
   );
 };
 
