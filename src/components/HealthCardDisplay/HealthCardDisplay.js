@@ -203,7 +203,7 @@ const HealthCardDisplay = () => {
               alt="Banner Icon"
               style={{ height: '2rem', marginRight: '1rem' }}
             />
-            <Typography variant="h4" component="h2">
+            <Typography variant="h4">
               {topBannerText}
             </Typography>
           </Box>
@@ -211,49 +211,41 @@ const HealthCardDisplay = () => {
       </Grid>
       {bottomBannerStyle && (
         <Grid item xs={12} className={bottomBannerStyle} style={{ marginBottom: '2rem' }}>
-          <Container
-            maxWidth="md"
-          >
+          <Box pt={1} pb={1} style={{ marginLeft: '40%' }}>
             <Box
               display="flex"
               alignItems="center"
-              justifyContent="center"
+              justifyContent="left"
               flexDirection="row"
-              pt={1}
             >
               <img
                 src={checkIcon}
                 alt="Bottom Banner Health Card Icon"
                 style={{ height: '1.5rem', marginRight: '1rem' }}
               />
-              <Typography variant="h6" component="h2">
+              <Typography variant="h6" className={styles.verifiedText}>
                 Valid SMART&reg; Health Card
               </Typography>
             </Box>
-          </Container>
-          <Container
-            maxWidth="md"
-          >
             <Box
               display="flex"
               alignItems="center"
-              justifyContent="center"
+              justifyContent="left"
               flexDirection="row"
-              pt={1}
             >
               <img
                 src={issuerVerified ? checkIcon : xIcon}
                 alt="Bottom Banner Issuer Icon"
                 style={{ height: '1.5rem', marginRight: '1rem' }}
               />
-              <Typography variant="h6" component="h2">
+              <Typography variant="h6" className={issuerVerified ? styles.verifiedText : styles.unverifiedText}>
                 {issuerVerified ? 'Issuer recognized' : 'Issuer not recognized'}
               </Typography>
             </Box>
-          </Container>
+          </Box>
         </Grid>
       )}
-      {!patientData ? (
+      {(!patientData || !bottomBannerStyle) ? (
         <>
           <Grid item xs={6} display="flex" justifyContent="center">
             <img src={errorIllustration} alt="Error Illustration" width="100%" />

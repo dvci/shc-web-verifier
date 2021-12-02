@@ -217,4 +217,10 @@ export default makeStyles((theme) => ({
     backgroundColor: theme.palette.common.orangeLighter,
     color: theme.palette.common.orangeDark,
   },
+  verifiedText: {
+    color: theme.palette.common.greenDark,
+  },
+  unverifiedText: {
+    color: theme.palette.common.redDark,
+  },
 }));
