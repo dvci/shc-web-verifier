@@ -18,6 +18,7 @@ import { useHistory } from 'react-router-dom';
 import { useQrDataContext } from 'components/QrDataProvider';
 import { getPatientData } from 'utils/qrHelpers';
 import errorIllustration from 'assets/error-illustration.png';
+import checkIcon from 'assets/check-icon.png';
 import scanIcon from 'assets/scan-icon.png';
 import exclamationRedIcon from 'assets/exclamation-red-icon.png';
 import exclamationOrangeIcon from 'assets/exclamation-orange-icon.png';
@@ -28,7 +29,7 @@ import cvxXml from './iisstandards_cvx.xml';
 const HealthCardDisplay = () => {
   const styles = useStyles();
   const history = useHistory();
-  const { qrCodes } = useQrDataContext();
+  const { qrCodes, healthCardVerified } = useQrDataContext();
   const patientData = getPatientData(qrCodes);
   const [tradenames, setTradenames] = useState({});
   const [cvxCodes, setCvxCodes] = useState({});
@@ -165,6 +166,14 @@ const HealthCardDisplay = () => {
     topBannerStyle = styles.bannerError;
     topBannerIcon = exclamationRedIcon;
     topBannerText = 'Invalid SMART® Health Card';
+  } else if (!healthCardVerified.verified && healthCardVerified.error) {
+    topBannerStyle = styles.bannerError;
+    topBannerIcon = exclamationRedIcon;
+    topBannerText = 'Not verified';
+  } else if (healthCardVerified.verified) {
+    topBannerStyle = styles.topBannerValid;
+    topBannerIcon = checkIcon;
+    topBannerText = 'Verified';
   } else {
     topBannerStyle = styles.topBannerPartial;
     topBannerIcon = exclamationOrangeIcon;
