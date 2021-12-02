@@ -162,6 +162,7 @@ const HealthCardDisplay = () => {
   let topBannerStyle;
   let topBannerIcon;
   let topBannerText;
+  let bottomBannerStyle;
   if (!patientData) {
     topBannerStyle = styles.bannerError;
     topBannerIcon = exclamationRedIcon;
@@ -174,10 +175,12 @@ const HealthCardDisplay = () => {
     topBannerStyle = styles.topBannerValid;
     topBannerIcon = checkIcon;
     topBannerText = 'Verified';
+    bottomBannerStyle = styles.bottomBannerValid;
   } else {
     topBannerStyle = styles.topBannerPartial;
     topBannerIcon = exclamationOrangeIcon;
     topBannerText = 'Partially Verified';
+    bottomBannerStyle = styles.bottomBannerPartial;
   }
 
   return (
@@ -201,6 +204,28 @@ const HealthCardDisplay = () => {
             />
             <Typography variant="h4" component="h2">
               {topBannerText}
+            </Typography>
+          </Box>
+        </Container>
+      </Grid>
+      <Grid item xs={12} className={bottomBannerStyle} style={{ marginBottom: '2rem' }}>
+        <Container
+          maxWidth="md"
+        >
+          <Box
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
+            flexDirection="row"
+            pt={1}
+          >
+            <img
+              src={checkIcon}
+              alt="Bottom Banner Health Card Icon"
+              style={{ height: '1.5rem', marginRight: '1rem' }}
+            />
+            <Typography variant="h6" component="h2">
+              Valid SMART&reg; Health Card
             </Typography>
           </Box>
         </Container>

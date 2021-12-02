@@ -12,6 +12,7 @@ const colors = {
   redLight: '#f9e0e7',
   redDark: '#cc6178',
   greenLight: '#daf2f0',
+  greenLighter: '#f0f9f9',
   greenDark: '#2da39d',
   orangeLight: '#ffe7e1',
   orangeLighter: '#fff6f4',
