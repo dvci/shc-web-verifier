@@ -178,7 +178,7 @@ const HealthCardDisplay = () => {
                 style={{ height: '2rem', marginRight: '1rem' }}
               />
               <Typography variant="h4" component="h2">
-                Unsupported QR Code
+                Invalid SMART&reg; Health Card
               </Typography>
             </Box>
           </Container>

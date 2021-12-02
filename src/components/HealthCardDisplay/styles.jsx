@@ -199,5 +199,6 @@ export default makeStyles((theme) => ({
   },
   bannerError: {
     backgroundColor: theme.palette.common.redLight,
+    color: theme.palette.common.redDark,
   },
 }));
