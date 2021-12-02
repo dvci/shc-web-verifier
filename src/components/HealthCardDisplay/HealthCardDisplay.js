@@ -292,8 +292,7 @@ const HealthCardDisplay = () => {
         </>
       ) : (
         <>
-          <Grid item xs={4} />
-          <Grid item xs={4}>
+          <Grid item xs={12} style={{ marginLeft: '35%' }}>
             <Box display="flex" className={styles.healthCard}>
               <Card display="flex" className={styles.card}>
                 <CardContent className={styles.cardContent}>
@@ -376,18 +375,15 @@ const HealthCardDisplay = () => {
               </Card>
             </Box>
           </Grid>
-          <Grid item xs={4} />
-          <Grid item xs={4} />
-          <Grid item xs={4}>
+          <Grid item xs={12} style={{ marginLeft: '35%' }}>
             <Box mt={5}>
               <Button
                 type="button"
-                fullWidth
                 size="large"
                 variant="contained"
                 color="secondary"
                 onClick={handleScan}
-                style={{ fontSize: '150%' }}
+                style={{ fontSize: '150%', width: '50%' }}
               >
                 <img
                   src={scanIcon}
