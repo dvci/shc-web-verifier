@@ -19,7 +19,8 @@ import { useQrDataContext } from 'components/QrDataProvider';
 import { getPatientData } from 'utils/qrHelpers';
 import errorIllustration from 'assets/error-illustration.png';
 import scanIcon from 'assets/scan-icon.png';
-import exclamationIcon from 'assets/exclamation-red-icon.png';
+import exclamationRedIcon from 'assets/exclamation-red-icon.png';
+import exclamationOrangeIcon from 'assets/exclamation-orange-icon.png';
 import useStyles from './styles';
 import tradenamesXml from './iisstandards_tradename.xml';
 import cvxXml from './iisstandards_cvx.xml';
@@ -157,33 +158,44 @@ const HealthCardDisplay = () => {
     </Box>
   );
 
+  let topBannerStyle;
+  let topBannerIcon;
+  let topBannerText;
+  if (!patientData) {
+    topBannerStyle = styles.bannerError;
+    topBannerIcon = exclamationRedIcon;
+    topBannerText = 'Invalid SMART® Health Card';
+  } else {
+    topBannerStyle = styles.topBannerPartial;
+    topBannerIcon = exclamationOrangeIcon;
+    topBannerText = 'Partially Verified';
+  }
+
   return (
-    <Grid container style={{ marginTop: '2rem' }}>
-      {!patientData && (
-        <Grid item xs={12} className={styles.bannerError}>
-          <Container
-            maxWidth="md"
+    <Grid container style={{ marginTop: '1rem' }}>
+      <Grid item xs={12} className={topBannerStyle}>
+        <Container
+          maxWidth="md"
+        >
+          <Box
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
+            flexDirection="row"
+            pt={2}
+            pb={2}
           >
-            <Box
-              display="flex"
-              alignItems="center"
-              justifyContent="center"
-              flexDirection="row"
-              pt={2}
-              pb={2}
-            >
-              <img
-                src={exclamationIcon}
-                alt="Banner Icon"
-                style={{ height: '2rem', marginRight: '1rem' }}
-              />
-              <Typography variant="h4" component="h2">
-                Invalid SMART&reg; Health Card
-              </Typography>
-            </Box>
-          </Container>
-        </Grid>
-      )}
+            <img
+              src={topBannerIcon}
+              alt="Banner Icon"
+              style={{ height: '2rem', marginRight: '1rem' }}
+            />
+            <Typography variant="h4" component="h2">
+              {topBannerText}
+            </Typography>
+          </Box>
+        </Container>
+      </Grid>
       {!patientData ? (
         <>
           <Grid item xs={6} display="flex" justifyContent="center">

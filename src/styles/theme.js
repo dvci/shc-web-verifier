@@ -13,9 +13,9 @@ const colors = {
   redDark: '#cc6178',
   greenLight: '#daf2f0',
   greenDark: '#2da39d',
-  orangeLight: 'ffe7e1',
-  orangeLighter: 'fff6f4',
-  orangeDark: 'f96b45',
+  orangeLight: '#ffe7e1',
+  orangeLighter: '#fff6f4',
+  orangeDark: '#f96b45',
 };
 
 const paletteBase = {

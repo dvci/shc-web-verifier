@@ -201,4 +201,20 @@ export default makeStyles((theme) => ({
     backgroundColor: theme.palette.common.redLight,
     color: theme.palette.common.redDark,
   },
+  topBannerValid: {
+    backgroundColor: theme.palette.common.greenLight,
+    color: theme.palette.common.greenDark,
+  },
+  bottomBannerValid: {
+    backgroundColor: theme.palette.common.greenLighter,
+    color: theme.palette.common.greenDark,
+  },
+  topBannerPartial: {
+    backgroundColor: theme.palette.common.orangeLight,
+    color: theme.palette.common.orangeDark,
+  },
+  bottomBannerPartial: {
+    backgroundColor: theme.palette.common.orangeLighter,
+    color: theme.palette.common.orangeDark,
+  },
 }));
