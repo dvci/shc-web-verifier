@@ -18,25 +18,27 @@ const QrDataProvider = ({ children }) => {
   useEffect(() => {
     localStorage.setItem('qrCodes', JSON.stringify(qrCodes));
 
-    // Verify health card signature
-    const jws = getJws(qrCodes);
-    const iss = getIssuer(qrCodes);
-    const agent = new https.Agent({
-      rejectUnauthorized: false
-    });
-
-    healthCardVerify(agent, jws, iss)
-      .then((status) => {
-        if (status) setHealthCardVerified({ verified: true, error: null });
-        else setHealthCardVerified({ verified: false, error: 'Not Verified' });
-      }).catch((err) => {
-        setHealthCardVerified({ verified: false, error: err.message });
+    if (qrCodes) {
+      // Verify health card signature
+      const jws = getJws(qrCodes);
+      const iss = getIssuer(qrCodes);
+      const agent = new https.Agent({
+        rejectUnauthorized: false
       });
 
-    // Verify issuer
-    issuerVerify(iss)
-      .then((status) => setIssuerVerified(status))
-      .catch(() => setIssuerVerified(false));
+      healthCardVerify(agent, jws, iss)
+        .then((status) => {
+          if (status) setHealthCardVerified({ verified: true, error: null });
+          else setHealthCardVerified({ verified: false, error: 'Not Verified' });
+        }).catch((err) => {
+          setHealthCardVerified({ verified: false, error: err.message });
+        });
+
+      // Verify issuer
+      issuerVerify(iss)
+        .then((status) => setIssuerVerified(status))
+        .catch(() => setIssuerVerified(false));
+    }
   }, [qrCodes]);
 
   return (
