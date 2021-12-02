@@ -19,6 +19,7 @@ import { useQrDataContext } from 'components/QrDataProvider';
 import { getPatientData } from 'utils/qrHelpers';
 import errorIllustration from 'assets/error-illustration.png';
 import checkIcon from 'assets/check-icon.png';
+import xIcon from 'assets/x-icon.png';
 import scanIcon from 'assets/scan-icon.png';
 import exclamationRedIcon from 'assets/exclamation-red-icon.png';
 import exclamationOrangeIcon from 'assets/exclamation-orange-icon.png';
@@ -29,7 +30,7 @@ import cvxXml from './iisstandards_cvx.xml';
 const HealthCardDisplay = () => {
   const styles = useStyles();
   const history = useHistory();
-  const { qrCodes, healthCardVerified } = useQrDataContext();
+  const { qrCodes, healthCardVerified, issuerVerified } = useQrDataContext();
   const patientData = getPatientData(qrCodes);
   const [tradenames, setTradenames] = useState({});
   const [cvxCodes, setCvxCodes] = useState({});
@@ -171,7 +172,7 @@ const HealthCardDisplay = () => {
     topBannerStyle = styles.bannerError;
     topBannerIcon = exclamationRedIcon;
     topBannerText = 'Not verified';
-  } else if (healthCardVerified.verified) {
+  } else if (healthCardVerified.verified && issuerVerified) {
     topBannerStyle = styles.topBannerValid;
     topBannerIcon = checkIcon;
     topBannerText = 'Verified';
@@ -208,28 +209,50 @@ const HealthCardDisplay = () => {
           </Box>
         </Container>
       </Grid>
-      <Grid item xs={12} className={bottomBannerStyle} style={{ marginBottom: '2rem' }}>
-        <Container
-          maxWidth="md"
-        >
-          <Box
-            display="flex"
-            alignItems="center"
-            justifyContent="center"
-            flexDirection="row"
-            pt={1}
+      {bottomBannerStyle && (
+        <Grid item xs={12} className={bottomBannerStyle} style={{ marginBottom: '2rem' }}>
+          <Container
+            maxWidth="md"
           >
-            <img
-              src={checkIcon}
-              alt="Bottom Banner Health Card Icon"
-              style={{ height: '1.5rem', marginRight: '1rem' }}
-            />
-            <Typography variant="h6" component="h2">
-              Valid SMART&reg; Health Card
-            </Typography>
-          </Box>
-        </Container>
-      </Grid>
+            <Box
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
+              flexDirection="row"
+              pt={1}
+            >
+              <img
+                src={checkIcon}
+                alt="Bottom Banner Health Card Icon"
+                style={{ height: '1.5rem', marginRight: '1rem' }}
+              />
+              <Typography variant="h6" component="h2">
+                Valid SMART&reg; Health Card
+              </Typography>
+            </Box>
+          </Container>
+          <Container
+            maxWidth="md"
+          >
+            <Box
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
+              flexDirection="row"
+              pt={1}
+            >
+              <img
+                src={issuerVerified ? checkIcon : xIcon}
+                alt="Bottom Banner Issuer Icon"
+                style={{ height: '1.5rem', marginRight: '1rem' }}
+              />
+              <Typography variant="h6" component="h2">
+                {issuerVerified ? 'Issuer recognized' : 'Issuer not recognized'}
+              </Typography>
+            </Box>
+          </Container>
+        </Grid>
+      )}
       {!patientData ? (
         <>
           <Grid item xs={6} display="flex" justifyContent="center">
