@@ -5,8 +5,9 @@ import React, {
   useState
 } from 'react';
 import https from 'https';
-import { getIssuer, getJws } from 'utils/qrHelpers';
+import { getIssuer, getJws, getPayload } from 'utils/qrHelpers';
 import { healthCardVerify, issuerVerify } from 'utils/verifyHelpers';
+import { Validator } from 'components/Validator/Validator.tsx';
 
 const QrDataContext = createContext();
 
@@ -14,6 +15,7 @@ const QrDataProvider = ({ children }) => {
   const [qrCodes, setQrCodes] = useState(JSON.parse(localStorage.getItem('qrCodes')));
   const [healthCardVerified, setHealthCardVerified] = useState({ verified: false, error: null });
   const [issuerVerified, setIssuerVerified] = useState(false);
+  const [validPrimarySeries, setValidPrimarySeries] = useState(false);
 
   useEffect(() => {
     localStorage.setItem('qrCodes', JSON.stringify(qrCodes));
@@ -38,6 +40,12 @@ const QrDataProvider = ({ children }) => {
       issuerVerify(iss)
         .then((status) => setIssuerVerified(status))
         .catch(() => setIssuerVerified(false));
+
+      // Validate vaccine series
+      const payload = getPayload(qrCodes);
+      const patientBundle = JSON.parse(payload).vc.credentialSubject.fhirBundle;
+      const results = Validator.execute(patientBundle, 'COVID-19');
+      setValidPrimarySeries(results.some((series) => series.complete.length > 0));
     }
   }, [qrCodes]);
 
@@ -48,6 +56,7 @@ const QrDataProvider = ({ children }) => {
         issuerVerified,
         qrCodes,
         setQrCodes,
+        validPrimarySeries,
       }}
     >
       {children}

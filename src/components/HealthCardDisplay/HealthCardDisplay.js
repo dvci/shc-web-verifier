@@ -30,7 +30,12 @@ import cvxXml from './iisstandards_cvx.xml';
 const HealthCardDisplay = () => {
   const styles = useStyles();
   const history = useHistory();
-  const { qrCodes, healthCardVerified, issuerVerified } = useQrDataContext();
+  const {
+    qrCodes,
+    healthCardVerified,
+    issuerVerified,
+    validPrimarySeries,
+  } = useQrDataContext();
   const patientData = getPatientData(qrCodes);
   const [tradenames, setTradenames] = useState({});
   const [cvxCodes, setCvxCodes] = useState({});
@@ -225,6 +230,21 @@ const HealthCardDisplay = () => {
               />
               <Typography variant="h6" className={styles.verifiedText}>
                 Valid SMART&reg; Health Card
+              </Typography>
+            </Box>
+            <Box
+              display="flex"
+              alignItems="center"
+              justifyContent="left"
+              flexDirection="row"
+            >
+              <img
+                src={validPrimarySeries ? checkIcon : xIcon}
+                alt="Bottom Banner Series Icon"
+                style={{ height: '1.5rem', marginRight: '1rem' }}
+              />
+              <Typography variant="h6" className={validPrimarySeries ? styles.verifiedText : styles.unverifiedText}>
+                {validPrimarySeries ? 'Valid vaccination series' : 'Vaccination series not valid'}
               </Typography>
             </Box>
             <Box
