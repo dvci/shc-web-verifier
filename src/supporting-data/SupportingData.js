@@ -59,10 +59,14 @@ const validator = (xpath, currentValue, newValue) => {
     '/antigenSupportingData/series/seriesDose/conditionalSkip'].includes(xpath)) {
     return elementToObject(newValue);
   }
-  if (['/antigenSupportingData/series/seriesDose/age/absMinAge',
+  if (['/antigenSupportingData/series/selectSeries/minAgeToStart',
+    '/antigenSupportingData/series/selectSeries/maxAgeToStart',
+    '/antigenSupportingData/series/seriesDose/age/absMinAge',
     '/antigenSupportingData/series/seriesDose/age/earliestRecAge',
     '/antigenSupportingData/series/seriesDose/allowableInterval/absMinInt',
-    '/antigenSupportingData/series/seriesDose/interval/earliestRecInt'].includes(xpath)) {
+    '/antigenSupportingData/series/seriesDose/interval/earliestRecInt',
+    '/antigenSupportingData/series/seriesDose/allowableVaccine/beginAge',
+    '/antigenSupportingData/series/seriesDose/allowableVaccine/endAge'].includes(xpath)) {
     return stringToQuantity(newValue);
   }
   return newValue
