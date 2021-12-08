@@ -40,11 +40,11 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Client-side CDC CDSi validator app
+## Client-side CDC CDSi validator
 
-Limited scope, CQL engine based client-side validation app that executes the CDSi supporting data guidelines.
+Limited scope, CQL engine based client-side validation script that executes the CDSi supporting data guidelines.
 
-Currently only validates each non-Risk type series based on dose absMinAge, allowable vaccine codes (CVX only), and allowableInterval absMinInt fromPrevious.
+Currently only validates each non-Risk type series based on allowable series age to start, dose absMinAge, allowable vaccine codes (CVX only) and begin/end age, and allowableInterval absMinInt fromPrevious.
 
 Does not support forecasting or any other validation, including conditional doses, recurring or seasonal doses, immunity or contradictions.
 
