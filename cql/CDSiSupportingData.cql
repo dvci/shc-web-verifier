@@ -12,7 +12,7 @@ parameter AntigenSupportingData Tuple{series List<Tuple{
 		age Tuple{absMinAge Tuple{value Decimal, unit String}, earliestRecAge Tuple{value Decimal, unit String}}, 
 		interval List<Tuple{fromPrevious String, earliestRecInt Tuple{value Decimal, unit String}}>, 
 		allowableInterval List<Tuple{fromPrevious String, absMinInt Tuple{value Decimal, unit String}}>, 
-		allowableVaccine List<Tuple{cvx String}>,
+		allowableVaccine List<Tuple{cvx String, beginAge Tuple{value Decimal, unit String}, endAge Tuple{value Decimal, unit String}}>,
 		conditionalSkip Tuple{context String} }>
 }>}
 
@@ -42,7 +42,7 @@ define function "EvaluateSeries" (seriesName String,
 		age Tuple{absMinAge Tuple{value Decimal, unit String}, earliestRecAge Tuple{value Decimal, unit String}}, 
 		interval List<Tuple{fromPrevious String, earliestRecInt Tuple{value Decimal, unit String}}>, 
 		allowableInterval List<Tuple{fromPrevious String, absMinInt Tuple{value Decimal, unit String}}>,  
-		allowableVaccine List<Tuple{cvx String}>,
+		allowableVaccine List<Tuple{cvx String, beginAge Tuple{value Decimal, unit String}, endAge Tuple{value Decimal, unit String}}>,
 		conditionalSkip Tuple{context String} }>):
     "Immunizations" immunization      
         aggregate all R starting (List{} as List<Tuple{startingImmunizationIndex Integer, validPrimarySeries Boolean }>): 
@@ -65,7 +65,7 @@ define function "EvaluateSeriesDoses" (selectSeries Tuple{minAgeToStart Tuple{va
 		age Tuple{absMinAge Tuple{value Decimal, unit String}, earliestRecAge Tuple{value Decimal, unit String}}, 
 		interval List<Tuple{fromPrevious String, earliestRecInt Tuple{value Decimal, unit String}}>, 
 		allowableInterval List<Tuple{fromPrevious String, absMinInt Tuple{value Decimal, unit String}}>,  
-		allowableVaccine List<Tuple{cvx String}>,
+		allowableVaccine List<Tuple{cvx String, beginAge Tuple{value Decimal, unit String}, endAge Tuple{value Decimal, unit String}}>,
 		conditionalSkip Tuple{context String} }>,
         startingImmunizationIndex Integer):
 	seriesDoses seriesDose  
@@ -93,7 +93,7 @@ define function "EvaluateSeriesDose" (selectSeries Tuple{minAgeToStart Tuple{val
 		age Tuple{absMinAge Tuple{value Decimal, unit String}, earliestRecAge Tuple{value Decimal, unit String}}, 
 		interval List<Tuple{fromPrevious String, earliestRecInt Tuple{value Decimal, unit String}}>, 
 		allowableInterval List<Tuple{fromPrevious String, absMinInt Tuple{value Decimal, unit String}}>,  
-		allowableVaccine List<Tuple{cvx String}>,
+		allowableVaccine List<Tuple{cvx String, beginAge Tuple{value Decimal, unit String}, endAge Tuple{value Decimal, unit String}}>,
 		conditionalSkip Tuple{context String} },
         currentDoseIndex Integer, startingImmunizationIndex Integer, previousValidDoseIndex Integer, previousValidImmunizationIndex Integer):
     ("Immunizations".skip(startingImmunizationIndex)) immunization      
@@ -112,7 +112,7 @@ define function "EvaluateSeriesDoseImmunization" (selectSeries Tuple{minAgeToSta
 		age Tuple{absMinAge Tuple{value Decimal, unit String}, earliestRecAge Tuple{value Decimal, unit String}}, 
 		interval List<Tuple{fromPrevious String, earliestRecInt Tuple{value Decimal, unit String}}>, 
 		allowableInterval List<Tuple{fromPrevious String, absMinInt Tuple{value Decimal, unit String}}>,  
-		allowableVaccine List<Tuple{cvx String}>,
+		allowableVaccine List<Tuple{cvx String, beginAge Tuple{value Decimal, unit String}, endAge Tuple{value Decimal, unit String}}>,
 		conditionalSkip Tuple{context String} },
         currentDoseIndex Integer, currentImmunizationIndex Integer, previousValidDoseIndex Integer, previousValidImmunizationIndex Integer):  
 	if currentImmunizationIndex >= Count("Immunizations")
@@ -146,7 +146,7 @@ define function "IsValidSeriesDose" (selectSeries Tuple{minAgeToStart Tuple{valu
 		age Tuple{absMinAge Tuple{value Decimal, unit String}, earliestRecAge Tuple{value Decimal, unit String}}, 
 		interval List<Tuple{fromPrevious String, earliestRecInt Tuple{value Decimal, unit String}}>, 
 		allowableInterval List<Tuple{fromPrevious String, absMinInt Tuple{value Decimal, unit String}}>,  
-		allowableVaccine List<Tuple{cvx String}>,
+		allowableVaccine List<Tuple{cvx String, beginAge Tuple{value Decimal, unit String}, endAge Tuple{value Decimal, unit String}}>,
 		conditionalSkip Tuple{context String} },
 		immunization FHIR.Immunization,
 		previousImmunization FHIR.Immunization):
@@ -166,10 +166,19 @@ define function "IsValidSeriesAgeToStart"(selectSeries Tuple{minAgeToStart Tuple
 		and (selectSeries.maxAgeToStart.value is null 
 			or AgeInUnitsAt(selectSeries.maxAgeToStart.unit, immunization.occurrence) < selectSeries.maxAgeToStart.value)
 
-define function "IsValidAllowableVaccine" (allowableVaccine List<Tuple{cvx String}>, immunization FHIR.Immunization) returns Boolean:
-	exists(immunization.vaccineCode.coding coding
-		where coding.system = 'http://hl7.org/fhir/sid/cvx'
-			and coding.code in allowableVaccine.cvx
+define function "IsValidAllowableVaccine" (allowableVaccine List<Tuple{cvx String, beginAge Tuple{value Decimal, unit String}, endAge Tuple{value Decimal, unit String}}>, 
+		immunization FHIR.Immunization) returns Boolean:
+	exists(
+		flatten(immunization.vaccineCode.coding coding
+			where coding.system = 'http://hl7.org/fhir/sid/cvx'
+			return(allowableVaccine av
+      			where coding.code = av.cvx
+      			and (av.beginAge.value is null 
+					or AgeInUnitsAt(av.beginAge.unit, immunization.occurrence) >= av.beginAge.value)
+				and (av.endAge.value is null 
+					or AgeInUnitsAt(av.endAge.unit, immunization.occurrence) < av.endAge.value)
+    		)
+		)	
 	)
 
 define function "IsValidAllowableInterval" (allowableInterval List<Tuple{fromPrevious String, absMinInt Tuple{value Decimal, unit String}}>, 
@@ -209,7 +218,7 @@ define function "IsValidPrimarySeries" (primarySeriesName String,
 		age Tuple{absMinAge Tuple{value Decimal, unit String}, earliestRecAge Tuple{value Decimal, unit String}}, 
 		interval List<Tuple{fromPrevious String, earliestRecInt Tuple{value Decimal, unit String}}>, 
 		allowableInterval List<Tuple{fromPrevious String, absMinInt Tuple{value Decimal, unit String}}>,  
-		allowableVaccine List<Tuple{cvx String}>,
+		allowableVaccine List<Tuple{cvx String, beginAge Tuple{value Decimal, unit String}, endAge Tuple{value Decimal, unit String}}>,
 		conditionalSkip Tuple{context String} }>,
 	doseEvaluations List<Tuple{doseNumber String, doseIndex Integer, 
 		immunizationIndex Integer, validDose Boolean }>):
