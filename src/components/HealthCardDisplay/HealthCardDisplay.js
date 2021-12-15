@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import {
   Box,
   Button,
@@ -40,6 +40,7 @@ const HealthCardDisplay = () => {
   const [tradenames, setTradenames] = useState({});
   const [cvxCodes, setCvxCodes] = useState({});
   const [showDateOfBirth, setShowDateOfBirth] = useState(false);
+  const healthCardRef = useRef(null);
 
   const handleScan = () => {
     history.push('qr-scan');
@@ -314,7 +315,7 @@ const HealthCardDisplay = () => {
         <>
           <Grid item xs={12} style={{ marginLeft: '35%' }}>
             <Box display="flex" className={styles.healthCard}>
-              <Card display="flex" className={styles.card}>
+              <Card display="flex" ref={healthCardRef} className={styles.card}>
                 <CardContent className={styles.cardContent}>
                   <Box
                     display="flex"
@@ -403,7 +404,7 @@ const HealthCardDisplay = () => {
                 variant="contained"
                 color="secondary"
                 onClick={handleScan}
-                style={{ fontSize: '150%', width: '50%' }}
+                style={{ fontSize: '150%', width: healthCardRef.current ? healthCardRef.current.offsetWidth : '35%' }}
               >
                 <img
                   src={scanIcon}
