@@ -9,6 +9,14 @@ const colors = {
   grayLight: '#eeeeee',
   grayDark: '#323841',
   blueGreenLight: '#f2f9f8',
+  redLight: '#f9e0e7',
+  redDark: '#cc6178',
+  greenLight: '#daf2f0',
+  greenLighter: '#f0f9f9',
+  greenDark: '#2da39d',
+  orangeLight: '#ffe7e1',
+  orangeLighter: '#fff6f4',
+  orangeDark: '#f96b45',
 };
 
 const paletteBase = {

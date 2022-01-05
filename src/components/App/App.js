@@ -6,8 +6,6 @@ import {
   HashRouter as Router, Redirect, Route, Switch
 } from 'react-router-dom';
 import HealthCardDisplay from 'components/HealthCardDisplay';
-import HealthCardVerify from 'components/HealthCardVerify';
-import IssuerVerify from 'components/IssuerVerify';
 import ThemeProvider from 'components/ThemeProvider';
 import Header from 'components/Header';
 import HeroBar from 'components/HeroBar';
@@ -35,11 +33,7 @@ const App = () => (
           </Route>
 
           <Route exact path="/display-results">
-            <>
-              <HealthCardDisplay />
-              <HealthCardVerify />
-              <IssuerVerify />
-            </>
+            <HealthCardDisplay />
           </Route>
         </QrDataProvider>
       </Switch>

@@ -132,7 +132,14 @@ const renderHealthCardDisplay = () => {
   qrHelpers.getPatientData = jest.fn().mockReturnValue(patientData);
   return render(
     <ThemeProvider>
-      <QrDataContext.Provider value={{ qrCodes: [], setQrCode: jest.fn() }}>
+      <QrDataContext.Provider
+        value={{
+          qrCodes: [],
+          setQrCode: jest.fn(),
+          healthCardVerified: { verified: false, error: null },
+          issuerVerified: false,
+        }}
+      >
         <HealthCardDisplay />
       </QrDataContext.Provider>
     </ThemeProvider>

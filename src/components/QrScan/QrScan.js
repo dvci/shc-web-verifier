@@ -3,6 +3,7 @@ import { Button, Grid } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import QrReader from 'react-qr-reader';
 import { useHistory } from 'react-router-dom';
+import { v4 as uuidv4 } from 'uuid';
 import frame from 'assets/frame.png';
 import { useQrDataContext } from 'components/QrDataProvider';
 
@@ -74,7 +75,7 @@ const QrScan = () => {
   }
 
   const handleError = () => {
-    // TODO: Handle QR code scan error
+    history.push('/display-results');
   }
 
   return (
@@ -91,7 +92,7 @@ const QrScan = () => {
             {scannedCodes.map((code, i) => (
               <Button
                 className={classes.button}
-                key={code}
+                key={code || uuidv4()}
                 variant="contained"
                 color={code ? 'success' : 'error'}
                 disableRipple

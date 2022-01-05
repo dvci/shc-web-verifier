@@ -194,4 +194,33 @@ export default makeStyles((theme) => ({
   date: {
     fontWeight: '700',
   },
+  shcText: {
+    color: theme.palette.secondary.main,
+  },
+  bannerError: {
+    backgroundColor: theme.palette.common.redLight,
+    color: theme.palette.common.redDark,
+  },
+  topBannerValid: {
+    backgroundColor: theme.palette.common.greenLight,
+    color: theme.palette.common.greenDark,
+  },
+  bottomBannerValid: {
+    backgroundColor: theme.palette.common.greenLighter,
+    color: theme.palette.common.greenDark,
+  },
+  topBannerPartial: {
+    backgroundColor: theme.palette.common.orangeLight,
+    color: theme.palette.common.orangeDark,
+  },
+  bottomBannerPartial: {
+    backgroundColor: theme.palette.common.orangeLighter,
+    color: theme.palette.common.orangeDark,
+  },
+  verifiedText: {
+    color: theme.palette.common.greenDark,
+  },
+  unverifiedText: {
+    color: theme.palette.common.redDark,
+  },
 }));
