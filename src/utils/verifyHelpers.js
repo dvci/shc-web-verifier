@@ -1,6 +1,6 @@
 import axios from 'axios';
 import jose from 'node-jose';
-import IssuerDirectories from './IssuerDirectories';
+import getIssuerDirectories from './IssuerDirectories';
 
 const healthCardVerify = async (httpsAgent, jws, iss) => {
   let response;
@@ -37,7 +37,7 @@ const healthCardVerify = async (httpsAgent, jws, iss) => {
   }
 };
 
-const issuerVerify = async (iss) => IssuerDirectories.getIssuerDirectories()
+const issuerVerify = async (iss) => getIssuerDirectories()
   .then((fetchedDirectories) => fetchedDirectories.some((d) => {
     if (d.issuers && !d.error) {
       const issName = d.issuers?.participating_issuers

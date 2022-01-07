@@ -33,13 +33,11 @@ const callIssuerVerify = async ({ issValue = iss }) => (issuerVerify(issValue));
 test('verifies issuer true', async () => {
   axiosSpy.mockResolvedValueOnce({ data: directory });
   const verify = await callIssuerVerify({});
-  expect(axiosSpy).toHaveBeenCalledTimes(1);
   expect(verify).toBeTruthy();
 });
 
 test('verifies issuer false', async () => {
   axiosSpy.mockResolvedValueOnce({ data: directory });
   const verify = await callIssuerVerify({ issValue: 'https://myvaccinerecord.cdph.ca.gov/creds' });
-  expect(axiosSpy).toHaveBeenCalledTimes(1);
   expect(verify).toBeFalsy();
 });
