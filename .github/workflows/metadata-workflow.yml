@@ -1,0 +1,27 @@
+name: Update
+
+on:
+  schedule:
+    - cron:  '0 0 * * *'
+
+jobs:
+  update:
+    name: Update CDC metadata files
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Fetch files
+      run: |
+        curl -sSL -o src/components/HealthCardDisplay/iisstandards_cvx.xml https://www2a.cdc.gov/vaccines/iis/iisstandards/XML2.asp?rpt=cvx
+        curl -sSL -o src/components/HealthCardDisplay/iisstandards_tradename.xml https://www2a.cdc.gov/vaccines/iis/iisstandards/XML.asp?rpt=tradename
+
+    - name: Commit files
+      run: |
+        # setup the username and email
+        git config user.name "GitHub Actions Bot"
+        git config user.email "<>"
+        # Stage the files, commit and push
+        git add src/components/HealthCardDisplay/
+        git commit -m "updated CDC files"
+        git push   
