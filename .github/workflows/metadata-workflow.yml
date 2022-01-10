@@ -25,4 +25,4 @@ jobs:
         # Stage the files, commit and push
         git add src/components/HealthCardDisplay/
         git commit -m "updated CDC files"
-        git push
+        git push origin HEAD:main
