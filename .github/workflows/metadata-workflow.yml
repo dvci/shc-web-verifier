@@ -21,8 +21,9 @@ jobs:
 
     - name: Commit files
       run: |
+        echo "GITHUB_ACTOR: ${GITHUB_ACTOR}"
         git config user.name "${GITHUB_ACTOR}"
-        git config user.email "<>"
+        git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
         # Stage the files, commit and push
         git add src/components/HealthCardDisplay/
         git commit -m "update CDC files"
