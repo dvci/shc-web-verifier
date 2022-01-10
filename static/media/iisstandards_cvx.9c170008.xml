@@ -1,0 +1,1649 @@
+<?xml version='1.0' encoding='ISO-8859-1'?><CVXCodes>
+<CVXInfo><ShortDescription>Adenovirus types 4 and 7</ShortDescription>
+<FullVaccinename>Adenovirus, type 4 and type 7, live, oral</FullVaccinename>
+<CVXCode>143       </CVXCode>
+<Notes>This vaccine is administered as 2 tablets.</Notes>
+<Status>Active</Status>
+<LastUpdated>3/20/2011</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>adenovirus, type 4</ShortDescription>
+<FullVaccinename>adenovirus vaccine, type 4, live, oral</FullVaccinename>
+<CVXCode>54        </CVXCode>
+<Notes></Notes>
+<Status>Inactive</Status>
+<LastUpdated>5/28/2010</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>adenovirus, type 7</ShortDescription>
+<FullVaccinename>adenovirus vaccine, type 7, live, oral</FullVaccinename>
+<CVXCode>55        </CVXCode>
+<Notes></Notes>
+<Status>Inactive</Status>
+<LastUpdated>5/28/2010</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>adenovirus, unspecified formulation</ShortDescription>
+<FullVaccinename>adenovirus vaccine, unspecified formulation</FullVaccinename>
+<CVXCode>82        </CVXCode>
+<Notes>This CVX code allows reporting of a vaccination when formulation is unknown (for example, when recording a adenovirus vaccination when noted on a vaccination card)</Notes>
+<Status>Inactive</Status>
+<LastUpdated>9/30/2010</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>anthrax</ShortDescription>
+<FullVaccinename>anthrax vaccine</FullVaccinename>
+<CVXCode>24        </CVXCode>
+<Notes></Notes>
+<Status>Active</Status>
+<LastUpdated>6/11/2019</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>BCG</ShortDescription>
+<FullVaccinename>Bacillus Calmette-Guerin vaccine</FullVaccinename>
+<CVXCode>19        </CVXCode>
+<Notes></Notes>
+<Status>Active</Status>
+<LastUpdated>5/28/2010</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>cholera, BivWC</ShortDescription>
+<FullVaccinename>cholera, BivWC</FullVaccinename>
+<CVXCode>173       </CVXCode>
+<Notes></Notes>
+<Status>Non-US</Status>
+<LastUpdated>6/17/2016</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>cholera, live attenuated</ShortDescription>
+<FullVaccinename>cholera, live attenuated</FullVaccinename>
+<CVXCode>174       </CVXCode>
+<Notes></Notes>
+<Status>Active</Status>
+<LastUpdated>6/17/2016</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>cholera, unspecified formulation</ShortDescription>
+<FullVaccinename>cholera vaccine, unspecified formulation</FullVaccinename>
+<CVXCode>26        </CVXCode>
+<Notes></Notes>
+<Status>Inactive</Status>
+<LastUpdated>6/17/2016</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>cholera, WC-rBS</ShortDescription>
+<FullVaccinename>cholera, WC-rBS</FullVaccinename>
+<CVXCode>172       </CVXCode>
+<Notes></Notes>
+<Status>Non-US</Status>
+<LastUpdated>6/17/2016</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>COVID-19 IV Non-US Vaccine (BIBP, Sinopharm)</ShortDescription>
+<FullVaccinename>SARS-COV-2 COVID-19 Inactivated Virus Non-US Vaccine Product (BIBP, Sinopharm)</FullVaccinename>
+<CVXCode>510       </CVXCode>
+<Notes>WHO authorized pandemic vaccine.  Recognized towards immunity in US</Notes>
+<Status>Non-US</Status>
+<LastUpdated>7/15/2021</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>COVID-19 IV Non-US Vaccine (CoronaVac, Sinovac)</ShortDescription>
+<FullVaccinename>SARS-COV-2 COVID-19 Inactivated Virus Non-US Vaccine Product (CoronaVac, Sinovac)</FullVaccinename>
+<CVXCode>511       </CVXCode>
+<Notes>WHO authorized pandemic vaccine.  Recognized towards immunity in US</Notes>
+<Status>Non-US</Status>
+<LastUpdated>7/15/2021</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>COVID-19 IV Non-US Vaccine (COVAXIN)</ShortDescription>
+<FullVaccinename>SARS-COV-2 COVID-19 Inactivated Virus Non-US Vaccine Product (COVAXIN)</FullVaccinename>
+<CVXCode>502       </CVXCode>
+<Notes>Pandemic Non-US Vaccine Authorized by WHO 11-3-2021, recognized toward immunity in US, https://extranet.who.int/pqweb/vaccines/who-recommendation-bharat-biotech-international-ltd-covid-19-vaccine- whole-virion</Notes>
+<Status>Non-US</Status>
+<LastUpdated>11/9/2021</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>COVID-19 IV Non-US Vaccine (QAZCOVID-IN)</ShortDescription>
+<FullVaccinename>SARS-COV-2 COVID-19 Inactivated Virus Non-US Vaccine Product (QAZCOVID-IN)</FullVaccinename>
+<CVXCode>501       </CVXCode>
+<Notes>Pandemic Non-US Vaccine not Authorized by WHO - not counted toward  immunity in US</Notes>
+<Status>Non-US</Status>
+<LastUpdated>7/15/2021</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>COVID-19 LAV Non-US Vaccine (COVIVAC)</ShortDescription>
+<FullVaccinename>SARS-COV-2 COVID-19  Live Attenuated Virus Non-US Vaccine Product (COVIVAC)</FullVaccinename>
+<CVXCode>503       </CVXCode>
+<Notes>Pandemic Non-US Vaccine not Authorized by WHO - not counted toward  immunity in US</Notes>
+<Status>Non-US</Status>
+<LastUpdated>7/15/2021</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>COVID-19 Non-US Vaccine, Product Unknown</ShortDescription>
+<FullVaccinename>SARS-COV-2 COVID-19 Non-US Vaccine, Specific Product Unknown</FullVaccinename>
+<CVXCode>500       </CVXCode>
+<Notes>Pandemic Non-US Covid Administration - specific CVX or product unknown </Notes>
+<Status>Non-US</Status>
+<LastUpdated>7/15/2021</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>COVID-19 PS Non-US Vaccine (Anhui Zhifei Longcom Biopharm + Inst of Micro, Chinese Acad of Sciences)</ShortDescription>
+<FullVaccinename>SARS-COV-2 COVID-19 Protein Subunit Non-US Vaccine Product (Anhui Zhifei Longcom Biopharmaceutical + Institute of Microbiology, Chinese Academy of Sciences)</FullVaccinename>
+<CVXCode>507       </CVXCode>
+<Notes>Pandemic Non-US Vaccine not Authorized by WHO - not counted toward immunity in US</Notes>
+<Status>Non-US</Status>
+<LastUpdated>8/18/2021</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>COVID-19 PS Non-US Vaccine (EpiVacCorona)</ShortDescription>
+<FullVaccinename>SARS-COV-2 COVID-19 Protein Subunit Non-US Vaccine Product (EpiVacCorona)</FullVaccinename>
+<CVXCode>509       </CVXCode>
+<Notes>Pandemic Non-US Vaccine not Authorized by WHO - not counted toward  immunity in US</Notes>
+<Status>Non-US</Status>
+<LastUpdated>7/15/2021</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>COVID-19 PS Non-US Vaccine (Jiangsu Province Centers for Disease Control and Prevention)</ShortDescription>
+<FullVaccinename>SARS-COV-2 COVID-19 Protein Subunit Non-US Vaccine Product  (Jiangsu Province Centers for Disease Control and Prevention)</FullVaccinename>
+<CVXCode>508       </CVXCode>
+<Notes>Pandemic Non-US Vaccine not Authorized by WHO - not counted toward  immunity in US</Notes>
+<Status>Non-US</Status>
+<LastUpdated>7/15/2021</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>COVID-19 vaccine, Subunit, rS-nanoparticle+Matrix-M1 Adjuvant, PF, 0.5 mL</ShortDescription>
+<FullVaccinename>SARS-COV-2 (COVID-19) vaccine, Subunit, recombinant spike protein-nanoparticle+Matrix-M1 Adjuvant, preservative free, 0.5mL per dose</FullVaccinename>
+<CVXCode>211       </CVXCode>
+<Notes>Potential FDA EUA Authorization</Notes>
+<Status>Pending</Status>
+<LastUpdated>9/8/2021</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>COVID-19 vaccine, vector-nr, rS-Ad26, PF, 0.5 mL</ShortDescription>
+<FullVaccinename>SARS-COV-2 (COVID-19) vaccine, vector non-replicating, recombinant spike protein-Ad26, preservative free, 0.5 mL</FullVaccinename>
+<CVXCode>212       </CVXCode>
+<Notes>FDA EUA 02/27/2021, 1-dose vaccine. Used to record Janssen/J&amp;J vaccines administered in the US and in non-US locations</Notes>
+<Status>Active</Status>
+<LastUpdated>9/8/2021</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>COVID-19 vaccine, vector-nr, rS-ChAdOx1, PF, 0.5 mL </ShortDescription>
+<FullVaccinename>SARS-COV-2 (COVID-19) vaccine, vector non-replicating, recombinant spike protein-ChAdOx1, preservative free, 0.5 mL </FullVaccinename>
+<CVXCode>210       </CVXCode>
+<Notes>Potential FDA EUA, 2-dose vaccine. AstraZeneca vaccine is authorized by the WHO and recognized towards immunity in the US. Non-US WHO authorized tradenames/identifiers include VAXZEVRIA, AZD1222, ChAdOx1 nCoV-19, COVISHIELD</Notes>
+<Status>Non-US</Status>
+<LastUpdated>9/8/2021</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>COVID-19 VVnr Non-US Vaccine (CanSino Biological Inc./Beijing Institute of Biotechnology)</ShortDescription>
+<FullVaccinename>SARS-COV-2 COVID-19 Viral Vector Non-replicating Non-US Vaccine Product (CanSino Biological Inc./Beijing Institute of Biotechnology)</FullVaccinename>
+<CVXCode>506       </CVXCode>
+<Notes>Pandemic Non-US Vaccine not Authorized by WHO - not counted toward  immunity in US</Notes>
+<Status>Non-US</Status>
+<LastUpdated>7/15/2021</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>COVID-19 VVnr Non-US Vaccine (Sputnik Light)</ShortDescription>
+<FullVaccinename>SARS-COV-2 COVID-19 Viral Vector Non-replicating Non-US Vaccine Product (Sputnik Light)</FullVaccinename>
+<CVXCode>504       </CVXCode>
+<Notes>Pandemic Non-US Vaccine not Authorized by WHO - not counted toward  immunity in US</Notes>
+<Status>Non-US</Status>
+<LastUpdated>7/15/2021</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>COVID-19 VVnr Non-US Vaccine (Sputnik V)</ShortDescription>
+<FullVaccinename>SARS-COV-2 COVID-19 Viral Vector Non-replicating Non-US Vaccine Product (Sputnik V)</FullVaccinename>
+<CVXCode>505       </CVXCode>
+<Notes>Pandemic Non-US Vaccine not Authorized by WHO - not counted toward  immunity in US</Notes>
+<Status>Non-US</Status>
+<LastUpdated>7/15/2021</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>COVID-19, mRNA, LNP-S, PF, 10 mcg/0.2 mL dose, tris-sucrose</ShortDescription>
+<FullVaccinename>SARS-COV-2 (COVID-19) vaccine, mRNA, spike protein, LNP, preservative free, 10 mcg/0.2mL dose, tris-sucrose formulation</FullVaccinename>
+<CVXCode>218       </CVXCode>
+<Notes>Potential FDA EUA, Pfizer tris-sucrose vaccine for 5 through 11 years of age</Notes>
+<Status>Active</Status>
+<LastUpdated>9/13/2021</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>COVID-19, mRNA, LNP-S, PF, 100 mcg or 50 mcg dose</ShortDescription>
+<FullVaccinename>SARS-COV-2 (COVID-19) vaccine, mRNA, spike protein, LNP, preservative free, 100 mcg or 50 mcg dose</FullVaccinename>
+<CVXCode>207       </CVXCode>
+<Notes>FDA EUA 12/18/2020, 2-dose vaccine.  Used to record Moderna vaccines administered in the US and in non-US locations (includes tradename Spikevax)</Notes>
+<Status>Active</Status>
+<LastUpdated>9/8/2021</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>COVID-19, mRNA, LNP-S, PF, 3 mcg/0.2 mL dose, tris-sucrose</ShortDescription>
+<FullVaccinename>SARS-COV-2 (COVID-19) vaccine, mRNA, spike protein, LNP, preservative free, 3 mcg/0.2mL dose, tris-sucrose formulation</FullVaccinename>
+<CVXCode>219       </CVXCode>
+<Notes>Potential FDA EUA, Pfizer tris-sucrose vaccine for 2 through 4  years of age</Notes>
+<Status>Active</Status>
+<LastUpdated>9/8/2021</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>COVID-19, mRNA, LNP-S, PF, 30 mcg/0.3 mL dose</ShortDescription>
+<FullVaccinename>SARS-COV-2 (COVID-19) vaccine, mRNA, spike protein, LNP, preservative free, 30 mcg/0.3mL dose</FullVaccinename>
+<CVXCode>208       </CVXCode>
+<Notes>FDA BLA 08/23/2021 for adult dose (16+ years). Still under EUA for adolescent doses and presentations. EUA 12/11/2020, 2-dose vaccine. Used to record Pfizer vaccines administered in the US and in non-US locations (includes tradename Comirnaty)</Notes>
+<Status>Active</Status>
+<LastUpdated>9/10/2021</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>COVID-19, mRNA, LNP-S, PF, 30 mcg/0.3 mL dose, tris-sucrose</ShortDescription>
+<FullVaccinename>SARS-COV-2 (COVID-19) vaccine, mRNA, spike protein, LNP, preservative free, 30 mcg/0.3mL dose, tris-sucrose formulation</FullVaccinename>
+<CVXCode>217       </CVXCode>
+<Notes>Potential FDA EUA, Pfizer tris-sucrose formulation vaccine for ages 12 and older</Notes>
+<Status>Active</Status>
+<LastUpdated>10/22/2021</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>dengue fever</ShortDescription>
+<FullVaccinename>dengue fever vaccine</FullVaccinename>
+<CVXCode>56        </CVXCode>
+<Notes>Applies to dengue tetravalent product (e.g. DENGVAXIA)</Notes>
+<Status>Active</Status>
+<LastUpdated>9/24/2019</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>DT (pediatric)</ShortDescription>
+<FullVaccinename>diphtheria and tetanus toxoids, adsorbed for pediatric use</FullVaccinename>
+<CVXCode>28        </CVXCode>
+<Notes></Notes>
+<Status>Active</Status>
+<LastUpdated>5/28/2010</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>DT, IPV adsorbed</ShortDescription>
+<FullVaccinename>Diphtheria, Tetanus, Poliomyelitis adsorbed</FullVaccinename>
+<CVXCode>195       </CVXCode>
+<Notes>This code should be used to document non-US vaccines for DT,IPV such as Revaxis</Notes>
+<Status>Non-US</Status>
+<LastUpdated>7/30/2019</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>DTaP</ShortDescription>
+<FullVaccinename>diphtheria, tetanus toxoids and acellular pertussis vaccine</FullVaccinename>
+<CVXCode>20        </CVXCode>
+<Notes></Notes>
+<Status>Active</Status>
+<LastUpdated>5/28/2010</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>DTaP, 5 pertussis antigens</ShortDescription>
+<FullVaccinename>diphtheria, tetanus toxoids and acellular pertussis vaccine, 5 pertussis antigens</FullVaccinename>
+<CVXCode>106       </CVXCode>
+<Notes></Notes>
+<Status>Active</Status>
+<LastUpdated>5/28/2010</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>DTaP, unspecified formulation</ShortDescription>
+<FullVaccinename>diphtheria, tetanus toxoids and acellular pertussis vaccine, unspecified formulation</FullVaccinename>
+<CVXCode>107       </CVXCode>
+<Notes>This CVX code allows reporting of a vaccination when formulation is unknown (for example, when recording a DTaP vaccination when noted on a vaccination card)</Notes>
+<Status>Inactive</Status>
+<LastUpdated>9/30/2010</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>DTaP,IPV,Hib,HepB</ShortDescription>
+<FullVaccinename>Diphtheria and Tetanus Toxoids and Acellular Pertussis Adsorbed, Inactivated Poliovirus, Haemophilus b Conjugate (Meningococcal Protein Conjugate), and Hepatitis B (Recombinant) Vaccine.</FullVaccinename>
+<CVXCode>146       </CVXCode>
+<Notes>Note that this vaccine is different from CVX 132.</Notes>
+<Status>Active</Status>
+<LastUpdated>5/2/2019</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>DTaP-Hep B-IPV</ShortDescription>
+<FullVaccinename>DTaP-hepatitis B and poliovirus vaccine</FullVaccinename>
+<CVXCode>110       </CVXCode>
+<Notes></Notes>
+<Status>Active</Status>
+<LastUpdated>5/28/2010</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>DTaP-Hib</ShortDescription>
+<FullVaccinename>DTaP-Haemophilus influenzae type b conjugate vaccine</FullVaccinename>
+<CVXCode>50        </CVXCode>
+<Notes></Notes>
+<Status>Inactive</Status>
+<LastUpdated>3/20/2017</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>DTaP-Hib-IPV</ShortDescription>
+<FullVaccinename>diphtheria, tetanus toxoids and acellular pertussis vaccine, Haemophilus influenzae type b conjugate, and poliovirus vaccine, inactivated (DTaP-Hib-IPV)</FullVaccinename>
+<CVXCode>120       </CVXCode>
+<Notes></Notes>
+<Status>Active</Status>
+<LastUpdated>5/28/2010</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>DTaP-IPV</ShortDescription>
+<FullVaccinename>Diphtheria, tetanus toxoids and acellular pertussis vaccine, and poliovirus vaccine, inactivated</FullVaccinename>
+<CVXCode>130       </CVXCode>
+<Notes></Notes>
+<Status>Active</Status>
+<LastUpdated>5/28/2010</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>DTaP-IPV-HIB-HEP B, historical</ShortDescription>
+<FullVaccinename>Historical diphtheria and tetanus toxoids and acellular pertussis, poliovirus, Haemophilus b conjugate and hepatitis B (recombinant) vaccine.</FullVaccinename>
+<CVXCode>132       </CVXCode>
+<Notes>This is not the same as CVX 146, Hexavalent vaccine.</Notes>
+<Status>Inactive</Status>
+<LastUpdated>5/10/2018</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>DTAP/IPV/HIB - non-US</ShortDescription>
+<FullVaccinename>non-US diphtheria, tetanus toxoids and acellular pertussis vaccine, Haemophilus influenzae type b conjugate, and poliovirus vaccine, inactivated (DTaP-Hib-IPV)</FullVaccinename>
+<CVXCode>170       </CVXCode>
+<Notes>This CVX was split off from CVX 102, to correctly identify the contents of the vaccine.</Notes>
+<Status>Non-US</Status>
+<LastUpdated>5/20/2016</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>DTP</ShortDescription>
+<FullVaccinename>diphtheria, tetanus toxoids and pertussis vaccine</FullVaccinename>
+<CVXCode>01        </CVXCode>
+<Notes></Notes>
+<Status>Inactive</Status>
+<LastUpdated>5/28/2010</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>DTP-hepB-Hib Pentavalent Non-US</ShortDescription>
+<FullVaccinename>Diphtheria, pertussis, tetanus, hepatitis B, Haemophilus Influenza Type b, (Pentavalent)</FullVaccinename>
+<CVXCode>198       </CVXCode>
+<Notes>This represents the non-US pentavalent vaccine.  Should be used for historic documentation in US</Notes>
+<Status>Non-US</Status>
+<LastUpdated>4/22/2020</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>DTP-Hib</ShortDescription>
+<FullVaccinename>DTP-Haemophilus influenzae type b conjugate vaccine</FullVaccinename>
+<CVXCode>22        </CVXCode>
+<Notes></Notes>
+<Status>Inactive</Status>
+<LastUpdated>3/23/2017</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>DTP-Hib-Hep B</ShortDescription>
+<FullVaccinename>DTP- Haemophilus influenzae type b conjugate and hepatitis b vaccine</FullVaccinename>
+<CVXCode>102       </CVXCode>
+<Notes>This CVX has been corrected. This non-US vaccine contained DTP, Hib and Hep B. It was withdrawn in 2007 .</Notes>
+<Status>Non-US</Status>
+<LastUpdated>5/20/2016</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>Ebola Zaire vaccine, live, recombinant, 1mL dose</ShortDescription>
+<FullVaccinename>Ebola Zaire vaccine, live, recombinant, 1mL dose </FullVaccinename>
+<CVXCode>204       </CVXCode>
+<Notes>FDA Approval Pending</Notes>
+<Status>Active</Status>
+<LastUpdated>4/6/2021</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>Ebola, unspecified</ShortDescription>
+<FullVaccinename>Ebola, unspecified</FullVaccinename>
+<CVXCode>214       </CVXCode>
+<Notes></Notes>
+<Status>Inactive</Status>
+<LastUpdated>4/6/2021</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>hantavirus</ShortDescription>
+<FullVaccinename>hantavirus vaccine</FullVaccinename>
+<CVXCode>57        </CVXCode>
+<Notes></Notes>
+<Status>Never Active</Status>
+<LastUpdated>9/9/2020</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>Hep A, adult</ShortDescription>
+<FullVaccinename>hepatitis A vaccine, adult dosage</FullVaccinename>
+<CVXCode>52        </CVXCode>
+<Notes></Notes>
+<Status>Active</Status>
+<LastUpdated>5/28/2010</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>Hep A, live attenuated</ShortDescription>
+<FullVaccinename>Hep A, live attenuated-IM</FullVaccinename>
+<CVXCode>169       </CVXCode>
+<Notes>This vaccine is not available in the US.</Notes>
+<Status>Non-US</Status>
+<LastUpdated>5/10/2016</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>Hep A, ped/adol, 2 dose</ShortDescription>
+<FullVaccinename>hepatitis A vaccine, pediatric/adolescent dosage, 2 dose schedule</FullVaccinename>
+<CVXCode>83        </CVXCode>
+<Notes></Notes>
+<Status>Active</Status>
+<LastUpdated>5/28/2010</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>Hep A, ped/adol, 3 dose</ShortDescription>
+<FullVaccinename>hepatitis A vaccine, pediatric/adolescent dosage, 3 dose schedule</FullVaccinename>
+<CVXCode>84        </CVXCode>
+<Notes>This vaccine formulation is inactive and should not be used, except to record historic vaccinations with this formulation.</Notes>
+<Status>Inactive</Status>
+<LastUpdated>5/28/2010</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>Hep A, pediatric, unspecified formulation</ShortDescription>
+<FullVaccinename>hepatitis A vaccine, pediatric dosage, unspecified formulation</FullVaccinename>
+<CVXCode>31        </CVXCode>
+<Notes>Do NOT use this code.  If formulation is unknown, use CVX 85.  There is only one formulation of Hep A, peds.</Notes>
+<Status>Inactive</Status>
+<LastUpdated>9/30/2010</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>Hep A, unspecified formulation</ShortDescription>
+<FullVaccinename>hepatitis A vaccine, unspecified formulation</FullVaccinename>
+<CVXCode>85        </CVXCode>
+<Notes>This CVX code allows reporting of a vaccination when formulation is unknown (for example, when recording a HepA vaccination when noted on a vaccination card)</Notes>
+<Status>Inactive</Status>
+<LastUpdated>9/30/2010</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>Hep A-Hep B</ShortDescription>
+<FullVaccinename>hepatitis A and hepatitis B vaccine</FullVaccinename>
+<CVXCode>104       </CVXCode>
+<Notes></Notes>
+<Status>Active</Status>
+<LastUpdated>5/28/2010</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>Hep A-Hep B, pediatric/adolescent</ShortDescription>
+<FullVaccinename>hepatitis A and hepatitis B vaccine, pediatric/adolescent (non-US)</FullVaccinename>
+<CVXCode>193       </CVXCode>
+<Notes>e.g. Twinrix Junior available in Canada</Notes>
+<Status>Non-US</Status>
+<LastUpdated>8/21/2018</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>Hep B, adolescent or pediatric</ShortDescription>
+<FullVaccinename>hepatitis B vaccine, pediatric or pediatric/adolescent dosage</FullVaccinename>
+<CVXCode>08        </CVXCode>
+<Notes>This code applies to any standard pediatric formulation of Hepatitis B vaccine. It should not be used for the 2-dose hepatitis B schedule for adolescents (11-15 year olds). It requires Merck's Recombivax HB adult formulation. Use code 43 for that vaccine.</Notes>
+<Status>Active</Status>
+<LastUpdated>5/10/2018</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>Hep B, adolescent/high risk infant</ShortDescription>
+<FullVaccinename>hepatitis B vaccine, adolescent/high risk infant dosage</FullVaccinename>
+<CVXCode>42        </CVXCode>
+<Notes>As of August 27, 1998, Merck ceased distribution of their adolescent/high risk infant hepatitis B vaccine dosage. Code 42 should only be used to record historical records. For current administration of hepatitis B vaccine, pediatric/adolescent dosage, use code 08.</Notes>
+<Status>Inactive</Status>
+<LastUpdated>5/28/2010</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>Hep B, adult</ShortDescription>
+<FullVaccinename>hepatitis B vaccine, adult dosage</FullVaccinename>
+<CVXCode>43        </CVXCode>
+<Notes>As of September 1999, a 2-dose hepatitis B schedule for adolescents (11-15 year olds) was FDA approved for Merck's Recombivax HB adult formulation. Use code 43 for the 2-dose. This code should be used for any use of standard adult formulation of hepatitis B vaccine.</Notes>
+<Status>Active</Status>
+<LastUpdated>5/10/2018</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>Hep B, dialysis</ShortDescription>
+<FullVaccinename>hepatitis B vaccine, dialysis patient dosage</FullVaccinename>
+<CVXCode>44        </CVXCode>
+<Notes>NDCs that are used for both vaccine and dialysis (e.g. Engerix-B)  are mapped to CVX 43 which is not specific to dialysis use</Notes>
+<Status>Active</Status>
+<LastUpdated>5/8/2019</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>Hep B, unspecified formulation</ShortDescription>
+<FullVaccinename>hepatitis B vaccine, unspecified formulation</FullVaccinename>
+<CVXCode>45        </CVXCode>
+<Notes>This CVX code allows reporting of a vaccination when formulation is unknown (for example, when recording a HepB vaccination when noted on a vaccination card)</Notes>
+<Status>Inactive</Status>
+<LastUpdated>9/30/2010</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>Hep C</ShortDescription>
+<FullVaccinename>hepatitis C vaccine</FullVaccinename>
+<CVXCode>58        </CVXCode>
+<Notes></Notes>
+<Status>Never Active</Status>
+<LastUpdated>9/9/2020</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>Hep E</ShortDescription>
+<FullVaccinename>hepatitis E vaccine</FullVaccinename>
+<CVXCode>59        </CVXCode>
+<Notes></Notes>
+<Status>Never Active</Status>
+<LastUpdated>9/9/2020</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>HepB-CpG</ShortDescription>
+<FullVaccinename>Hepatitis B vaccine (recombinant), CpG adjuvanted</FullVaccinename>
+<CVXCode>189       </CVXCode>
+<Notes></Notes>
+<Status>Active</Status>
+<LastUpdated>5/10/2018</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>herpes simplex 2</ShortDescription>
+<FullVaccinename>herpes simplex virus, type 2 vaccine</FullVaccinename>
+<CVXCode>60        </CVXCode>
+<Notes></Notes>
+<Status>Never Active</Status>
+<LastUpdated>9/9/2020</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>Hib (HbOC)</ShortDescription>
+<FullVaccinename>Haemophilus influenzae type b vaccine, HbOC conjugate</FullVaccinename>
+<CVXCode>47        </CVXCode>
+<Notes></Notes>
+<Status>Inactive</Status>
+<LastUpdated>5/28/2010</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>Hib (PRP-D)</ShortDescription>
+<FullVaccinename>Haemophilus influenzae type b vaccine, PRP-D conjugate</FullVaccinename>
+<CVXCode>46        </CVXCode>
+<Notes></Notes>
+<Status>Inactive</Status>
+<LastUpdated>5/28/2010</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>Hib (PRP-OMP)</ShortDescription>
+<FullVaccinename>Haemophilus influenzae type b vaccine, PRP-OMP conjugate</FullVaccinename>
+<CVXCode>49        </CVXCode>
+<Notes></Notes>
+<Status>Active</Status>
+<LastUpdated>5/28/2010</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>Hib (PRP-T)</ShortDescription>
+<FullVaccinename>Haemophilus influenzae type b vaccine, PRP-T conjugate</FullVaccinename>
+<CVXCode>48        </CVXCode>
+<Notes></Notes>
+<Status>Active</Status>
+<LastUpdated>5/28/2010</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>Hib, unspecified formulation</ShortDescription>
+<FullVaccinename>Haemophilus influenzae type b vaccine, conjugate unspecified formulation</FullVaccinename>
+<CVXCode>17        </CVXCode>
+<Notes></Notes>
+<Status>Inactive</Status>
+<LastUpdated>9/30/2010</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>Hib-Hep B</ShortDescription>
+<FullVaccinename>Haemophilus influenzae type b conjugate and Hepatitis B vaccine</FullVaccinename>
+<CVXCode>51        </CVXCode>
+<Notes>This vaccine may still be in use until the existing lots expire on 8/19/16.</Notes>
+<Status>Inactive</Status>
+<LastUpdated>3/11/2016</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>HIV</ShortDescription>
+<FullVaccinename>human immunodeficiency virus vaccine</FullVaccinename>
+<CVXCode>61        </CVXCode>
+<Notes></Notes>
+<Status>Never Active</Status>
+<LastUpdated>9/9/2020</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>HPV, bivalent</ShortDescription>
+<FullVaccinename>human papilloma virus vaccine, bivalent</FullVaccinename>
+<CVXCode>118       </CVXCode>
+<Notes></Notes>
+<Status>Inactive</Status>
+<LastUpdated>5/28/2010</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>HPV, quadrivalent</ShortDescription>
+<FullVaccinename>human papilloma virus vaccine, quadrivalent</FullVaccinename>
+<CVXCode>62        </CVXCode>
+<Notes></Notes>
+<Status>Active</Status>
+<LastUpdated>6/2/2020</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>HPV, unspecified formulation</ShortDescription>
+<FullVaccinename>HPV, unspecified formulation</FullVaccinename>
+<CVXCode>137       </CVXCode>
+<Notes>This CVX code allows reporting of a vaccination when formulation is unknown (for example, when recording a HPV vaccination when noted on a vaccination card)</Notes>
+<Status>Inactive</Status>
+<LastUpdated>9/30/2010</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>HPV9</ShortDescription>
+<FullVaccinename>Human Papillomavirus 9-valent vaccine</FullVaccinename>
+<CVXCode>165       </CVXCode>
+<Notes></Notes>
+<Status>Active</Status>
+<LastUpdated>12/11/2014</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>Influenza A monovalent (H5N1), ADJUVANTED-2013</ShortDescription>
+<FullVaccinename>Influenza A monovalent (H5N1), adjuvanted, National stockpile 2013</FullVaccinename>
+<CVXCode>160       </CVXCode>
+<Notes>Approved by FDA 2013, adjuvant is mixed at point of administration.</Notes>
+<Status>Active</Status>
+<LastUpdated>5/27/2014</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>influenza nasal, unspecified formulation</ShortDescription>
+<FullVaccinename>influenza nasal, unspecified formulation</FullVaccinename>
+<CVXCode>151       </CVXCode>
+<Notes>This CVX should only be used for historical records where the formulation of nasal flu vaccine is not known.</Notes>
+<Status>Inactive</Status>
+<LastUpdated>1/28/2013</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>Influenza vaccine, quadrivalent, adjuvanted</ShortDescription>
+<FullVaccinename>influenza, seasonal vaccine, quadrivalent, adjuvanted, .5mL dose, preservative free</FullVaccinename>
+<CVXCode>205       </CVXCode>
+<Notes></Notes>
+<Status>Active</Status>
+<LastUpdated>7/22/2020</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>influenza, H5N1-1203</ShortDescription>
+<FullVaccinename>influenza virus vaccine, H5N1, A/Vietnam/1203/2004 (national stockpile)</FullVaccinename>
+<CVXCode>123       </CVXCode>
+<Notes></Notes>
+<Status>Inactive</Status>
+<LastUpdated>5/28/2010</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>Influenza, high dose seasonal</ShortDescription>
+<FullVaccinename>influenza, high dose seasonal, preservative-free</FullVaccinename>
+<CVXCode>135       </CVXCode>
+<Notes></Notes>
+<Status>Active</Status>
+<LastUpdated>5/28/2010</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>influenza, high-dose, quadrivalent</ShortDescription>
+<FullVaccinename>influenza, high-dose seasonal, quadrivalent, .7mL dose, preservative free</FullVaccinename>
+<CVXCode>197       </CVXCode>
+<Notes>Target population 65 and older, starting season 2020/2021</Notes>
+<Status>Active</Status>
+<LastUpdated>7/22/2020</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>Influenza, injectable, MDCK, preservative free</ShortDescription>
+<FullVaccinename>Influenza, injectable, Madin Darby Canine Kidney, preservative free</FullVaccinename>
+<CVXCode>153       </CVXCode>
+<Notes>ccIIV3</Notes>
+<Status>Inactive</Status>
+<LastUpdated>6/24/2016</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>Influenza, injectable, MDCK, preservative free, quadrivalent</ShortDescription>
+<FullVaccinename>Influenza, injectable, Madin Darby Canine Kidney, preservative free, quadrivalent</FullVaccinename>
+<CVXCode>171       </CVXCode>
+<Notes></Notes>
+<Status>Active</Status>
+<LastUpdated>6/16/2016</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>Influenza, injectable, MDCK, quadrivalent, preservative</ShortDescription>
+<FullVaccinename>Influenza, injectable, Madin Darby Canine Kidney,  quadrivalent with preservative</FullVaccinename>
+<CVXCode>186       </CVXCode>
+<Notes></Notes>
+<Status>Active</Status>
+<LastUpdated>6/27/2017</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>influenza, injectable, quadrivalent</ShortDescription>
+<FullVaccinename>influenza, injectable, quadrivalent, contains preservative</FullVaccinename>
+<CVXCode>158       </CVXCode>
+<Notes>New in 2013.  IIV4</Notes>
+<Status>Active</Status>
+<LastUpdated>8/20/2013</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>influenza, injectable, quadrivalent, preservative free</ShortDescription>
+<FullVaccinename>Influenza, injectable, quadrivalent, preservative free</FullVaccinename>
+<CVXCode>150       </CVXCode>
+<Notes>New in 2012.  IIV4</Notes>
+<Status>Active</Status>
+<LastUpdated>7/17/2013</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>Influenza, injectable,quadrivalent, preservative free, pediatric</ShortDescription>
+<FullVaccinename>Influenza, injectable,quadrivalent, preservative free, pediatric</FullVaccinename>
+<CVXCode>161       </CVXCode>
+<Notes></Notes>
+<Status>Active</Status>
+<LastUpdated>7/23/2014</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>influenza, intradermal, quadrivalent, preservative free</ShortDescription>
+<FullVaccinename>influenza, intradermal, quadrivalent, preservative free, injectable</FullVaccinename>
+<CVXCode>166       </CVXCode>
+<Notes></Notes>
+<Status>Active</Status>
+<LastUpdated>12/15/2014</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>influenza, live, intranasal</ShortDescription>
+<FullVaccinename>influenza virus vaccine, live, attenuated, for intranasal use</FullVaccinename>
+<CVXCode>111       </CVXCode>
+<Notes>LAIV3</Notes>
+<Status>Inactive</Status>
+<LastUpdated>9/22/2014</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>influenza, live, intranasal, quadrivalent</ShortDescription>
+<FullVaccinename>influenza, live, intranasal, quadrivalent</FullVaccinename>
+<CVXCode>149       </CVXCode>
+<Notes>new in 2012.  LAIV4</Notes>
+<Status>Active</Status>
+<LastUpdated>7/17/2013</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>influenza, recombinant, injectable, preservative free</ShortDescription>
+<FullVaccinename>Seasonal, trivalent, recombinant, injectable influenza vaccine, preservative free</FullVaccinename>
+<CVXCode>155       </CVXCode>
+<Notes>RIV</Notes>
+<Status>Active</Status>
+<LastUpdated>7/17/2013</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>influenza, recombinant, quadrivalent,injectable, preservative free</ShortDescription>
+<FullVaccinename>Seasonal, quadrivalent, recombinant, injectable influenza vaccine, preservative free</FullVaccinename>
+<CVXCode>185       </CVXCode>
+<Notes></Notes>
+<Status>Active</Status>
+<LastUpdated>4/21/2017</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>Influenza, seasonal, injectable</ShortDescription>
+<FullVaccinename>Influenza, seasonal, injectable</FullVaccinename>
+<CVXCode>141       </CVXCode>
+<Notes>IIV3. This is one of two codes replacing CVX 15, which is being retired.</Notes>
+<Status>Active</Status>
+<LastUpdated>7/17/2013</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>Influenza, seasonal, injectable, preservative free</ShortDescription>
+<FullVaccinename>Influenza, seasonal, injectable, preservative free</FullVaccinename>
+<CVXCode>140       </CVXCode>
+<Notes>IIV3. This vaccine code is one of two which replace CVX 15, influenza, split virus.</Notes>
+<Status>Active</Status>
+<LastUpdated>7/17/2013</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>influenza, seasonal, intradermal, preservative free</ShortDescription>
+<FullVaccinename>seasonal influenza, intradermal, preservative free</FullVaccinename>
+<CVXCode>144       </CVXCode>
+<Notes>IIV3</Notes>
+<Status>Active</Status>
+<LastUpdated>7/17/2013</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>Influenza, Southern Hemisphere</ShortDescription>
+<FullVaccinename>influenza, Southern Hemisphere, unspecified formulation</FullVaccinename>
+<CVXCode>194       </CVXCode>
+<Notes>This CVX code should be used to record administration of Southern Hemisphere influenza vaccine where formulation is unknown</Notes>
+<Status>Inactive</Status>
+<LastUpdated>7/16/2020</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>influenza, Southern Hemisphere, pediatric, preservative free</ShortDescription>
+<FullVaccinename>influenza, seasonal, Southern Hemisphere, quadrivalent, pediatric 0.25mL dose, preservative free</FullVaccinename>
+<CVXCode>200       </CVXCode>
+<Notes>Pediatric dose for ages 6-35 months</Notes>
+<Status>Active</Status>
+<LastUpdated>5/6/2020</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>influenza, Southern Hemisphere, preservative free</ShortDescription>
+<FullVaccinename>influenza, seasonal, Southern Hemisphere, quadrivalent, 0.5mL dose, no preservative</FullVaccinename>
+<CVXCode>201       </CVXCode>
+<Notes>Represents single dose vial</Notes>
+<Status>Active</Status>
+<LastUpdated>5/6/2020</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>influenza, Southern Hemisphere, quadrivalent, with preservative</ShortDescription>
+<FullVaccinename>influenza, seasonal, Southern Hemisphere, quadrivalent, 0.5mL dose, with preservative</FullVaccinename>
+<CVXCode>202       </CVXCode>
+<Notes>Represents multi-dose vial</Notes>
+<Status>Active</Status>
+<LastUpdated>5/6/2020</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>influenza, split (incl. purified surface antigen)</ShortDescription>
+<FullVaccinename>influenza virus vaccine, split virus (incl. purified surface antigen)-retired CODE</FullVaccinename>
+<CVXCode>15        </CVXCode>
+<Notes>This code is being retired. It will still be found in older immunization records. It included both preservative free and non-preservative free.</Notes>
+<Status>Inactive</Status>
+<LastUpdated>9/30/2010</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>influenza, trivalent, adjuvanted</ShortDescription>
+<FullVaccinename>Seasonal trivalent influenza vaccine, adjuvanted, preservative free</FullVaccinename>
+<CVXCode>168       </CVXCode>
+<Notes></Notes>
+<Status>Active</Status>
+<LastUpdated>12/10/2015</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>influenza, unspecified formulation</ShortDescription>
+<FullVaccinename>influenza virus vaccine, unspecified formulation</FullVaccinename>
+<CVXCode>88        </CVXCode>
+<Notes>This CVX code allows reporting of a vaccination when formulation is unknown (for example, when recording a Influenza vaccination when noted on a vaccination card)</Notes>
+<Status>Inactive</Status>
+<LastUpdated>9/30/2010</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>influenza, whole</ShortDescription>
+<FullVaccinename>influenza virus vaccine, whole virus</FullVaccinename>
+<CVXCode>16        </CVXCode>
+<Notes></Notes>
+<Status>Inactive</Status>
+<LastUpdated>5/28/2010</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>IPV</ShortDescription>
+<FullVaccinename>poliovirus vaccine, inactivated</FullVaccinename>
+<CVXCode>10        </CVXCode>
+<Notes></Notes>
+<Status>Active</Status>
+<LastUpdated>5/28/2010</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>Japanese Encephalitis IM</ShortDescription>
+<FullVaccinename>Japanese Encephalitis vaccine for intramuscular administration</FullVaccinename>
+<CVXCode>134       </CVXCode>
+<Notes></Notes>
+<Status>Active</Status>
+<LastUpdated>5/28/2010</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>Japanese encephalitis SC</ShortDescription>
+<FullVaccinename>Japanese Encephalitis Vaccine SC</FullVaccinename>
+<CVXCode>39        </CVXCode>
+<Notes></Notes>
+<Status>Inactive</Status>
+<LastUpdated>9/24/2015</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>Japanese Encephalitis, unspecified formulation</ShortDescription>
+<FullVaccinename>Japanese Encephalitis vaccine, unspecified formulation</FullVaccinename>
+<CVXCode>129       </CVXCode>
+<Notes>This CVX code allows reporting of a vaccination when formulation is unknown (for example, when recording a JE vaccination when noted on a vaccination card)</Notes>
+<Status>Inactive</Status>
+<LastUpdated>9/30/2010</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>Junin virus</ShortDescription>
+<FullVaccinename>Junin virus vaccine</FullVaccinename>
+<CVXCode>63        </CVXCode>
+<Notes></Notes>
+<Status>Never Active</Status>
+<LastUpdated>9/9/2020</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>leishmaniasis</ShortDescription>
+<FullVaccinename>leishmaniasis vaccine</FullVaccinename>
+<CVXCode>64        </CVXCode>
+<Notes></Notes>
+<Status>Never Active</Status>
+<LastUpdated>9/9/2020</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>leprosy</ShortDescription>
+<FullVaccinename>leprosy vaccine</FullVaccinename>
+<CVXCode>65        </CVXCode>
+<Notes></Notes>
+<Status>Never Active</Status>
+<LastUpdated>9/9/2020</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>Lyme disease</ShortDescription>
+<FullVaccinename>Lyme disease vaccine</FullVaccinename>
+<CVXCode>66        </CVXCode>
+<Notes></Notes>
+<Status>Inactive</Status>
+<LastUpdated>5/28/2010</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>M/R</ShortDescription>
+<FullVaccinename>measles and rubella virus vaccine</FullVaccinename>
+<CVXCode>04        </CVXCode>
+<Notes></Notes>
+<Status>Inactive</Status>
+<LastUpdated>5/28/2010</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>malaria</ShortDescription>
+<FullVaccinename>malaria vaccine</FullVaccinename>
+<CVXCode>67        </CVXCode>
+<Notes></Notes>
+<Status>Never Active</Status>
+<LastUpdated>9/9/2020</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>measles</ShortDescription>
+<FullVaccinename>measles virus vaccine</FullVaccinename>
+<CVXCode>05        </CVXCode>
+<Notes></Notes>
+<Status>Inactive</Status>
+<LastUpdated>8/31/2010</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>melanoma</ShortDescription>
+<FullVaccinename>melanoma vaccine</FullVaccinename>
+<CVXCode>68        </CVXCode>
+<Notes></Notes>
+<Status>Never Active</Status>
+<LastUpdated>9/9/2020</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>meningococcal A polysaccharide (non-US)</ShortDescription>
+<FullVaccinename>meningococcal A polysaccharide vaccine (non-US)</FullVaccinename>
+<CVXCode>191       </CVXCode>
+<Notes></Notes>
+<Status>Non-US</Status>
+<LastUpdated>5/10/2018</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>meningococcal AC polysaccharide (non-US)</ShortDescription>
+<FullVaccinename>meningococcal AC polysaccharide vaccine (non-US)</FullVaccinename>
+<CVXCode>192       </CVXCode>
+<Notes></Notes>
+<Status>Non-US</Status>
+<LastUpdated>5/10/2018</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>meningococcal ACWY, unspecified formulation</ShortDescription>
+<FullVaccinename>meningococcal ACWY vaccine, unspecified formulation</FullVaccinename>
+<CVXCode>108       </CVXCode>
+<Notes>This CVX is intended for use when one of the meningococcal vaccines containing serogroups A, C, W and Y (conjugate or polysaccaride) was given and the exact formulation was not recorded. It should not be used to record newly administered immunizations. It is not to be used when one of the meningococcal vaccines containing other serogroups was administered.</Notes>
+<Status>Inactive</Status>
+<LastUpdated>12/1/2015</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>meningococcal B, OMV</ShortDescription>
+<FullVaccinename>meningococcal B vaccine, recombinant, OMV, adjuvanted</FullVaccinename>
+<CVXCode>163       </CVXCode>
+<Notes></Notes>
+<Status>Active</Status>
+<LastUpdated>2/2/2015</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>meningococcal B, recombinant</ShortDescription>
+<FullVaccinename>meningococcal B vaccine, fully recombinant</FullVaccinename>
+<CVXCode>162       </CVXCode>
+<Notes></Notes>
+<Status>Active</Status>
+<LastUpdated>11/3/2014</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>meningococcal B, unspecified</ShortDescription>
+<FullVaccinename>meningococcal B, unspecified formulation</FullVaccinename>
+<CVXCode>164       </CVXCode>
+<Notes></Notes>
+<Status>Inactive</Status>
+<LastUpdated>11/3/2014</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>meningococcal C conjugate</ShortDescription>
+<FullVaccinename>meningococcal C conjugate vaccine</FullVaccinename>
+<CVXCode>103       </CVXCode>
+<Notes></Notes>
+<Status>Inactive</Status>
+<LastUpdated>5/28/2010</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>Meningococcal C/Y-HIB PRP</ShortDescription>
+<FullVaccinename>Meningococcal Groups C and Y and Haemophilus b Tetanus Toxoid Conjugate Vaccine</FullVaccinename>
+<CVXCode>148       </CVXCode>
+<Notes></Notes>
+<Status>Inactive</Status>
+<LastUpdated>5/11/2018</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>meningococcal MCV4, unspecified formulation</ShortDescription>
+<FullVaccinename>Meningococcal, MCV4, unspecified conjugate formulation(groups A, C, Y and W-135)</FullVaccinename>
+<CVXCode>147       </CVXCode>
+<Notes>This CVX should only be used for historical doses of meningococcal conjugate vaccine where the formulation is unknown (oligosaccharide vs polysaccharide). It is not the same as CVX 108, Meningococcal, unspecified formulation. This CVX is for unspecified Meningococcal conjugate vaccines.</Notes>
+<Status>Inactive</Status>
+<LastUpdated>2/8/2012</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>Meningococcal MCV4O</ShortDescription>
+<FullVaccinename>meningococcal oligosaccharide (groups A, C, Y and W-135) diphtheria toxoid conjugate vaccine (MCV4O)</FullVaccinename>
+<CVXCode>136       </CVXCode>
+<Notes></Notes>
+<Status>Active</Status>
+<LastUpdated>5/28/2010</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>meningococcal MCV4P</ShortDescription>
+<FullVaccinename>meningococcal polysaccharide (groups A, C, Y and W-135) diphtheria toxoid conjugate vaccine (MCV4P)</FullVaccinename>
+<CVXCode>114       </CVXCode>
+<Notes></Notes>
+<Status>Active</Status>
+<LastUpdated>5/28/2010</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>meningococcal MPSV4</ShortDescription>
+<FullVaccinename>meningococcal polysaccharide vaccine (MPSV4)</FullVaccinename>
+<CVXCode>32        </CVXCode>
+<Notes></Notes>
+<Status>Inactive</Status>
+<LastUpdated>10/27/2017</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>meningococcal polysaccharide (groups A, C, Y, W-135) TT conjugate</ShortDescription>
+<FullVaccinename>meningococcal polysaccharide (groups A, C, Y, W-135) tetanus toxoid conjugate vaccine .5mL dose, preservative free</FullVaccinename>
+<CVXCode>203       </CVXCode>
+<Notes></Notes>
+<Status>Active</Status>
+<LastUpdated>5/27/2020</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>meningococcal, unknown serogroups</ShortDescription>
+<FullVaccinename>meningococcal vaccine of unknown formulation and unknown serogroups</FullVaccinename>
+<CVXCode>167       </CVXCode>
+<Notes>This CVX is intended for use when any one of the meningococcal vaccines is recorded and there is no information about which serogroups are protected against. This code should not be used when a newly administered immunization is recorded.</Notes>
+<Status>Inactive</Status>
+<LastUpdated>12/1/2015</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>MMR</ShortDescription>
+<FullVaccinename>measles, mumps and rubella virus vaccine</FullVaccinename>
+<CVXCode>03        </CVXCode>
+<Notes></Notes>
+<Status>Active</Status>
+<LastUpdated>5/28/2010</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>MMRV</ShortDescription>
+<FullVaccinename>measles, mumps, rubella, and varicella virus vaccine</FullVaccinename>
+<CVXCode>94        </CVXCode>
+<Notes></Notes>
+<Status>Active</Status>
+<LastUpdated>5/28/2010</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>mumps</ShortDescription>
+<FullVaccinename>mumps virus vaccine</FullVaccinename>
+<CVXCode>07        </CVXCode>
+<Notes></Notes>
+<Status>Inactive</Status>
+<LastUpdated>6/18/2015</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>Novel influenza-H1N1-09</ShortDescription>
+<FullVaccinename>Novel influenza-H1N1-09, injectable</FullVaccinename>
+<CVXCode>127       </CVXCode>
+<Notes></Notes>
+<Status>Inactive</Status>
+<LastUpdated>8/28/2010</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>Novel Influenza-H1N1-09, all formulations</ShortDescription>
+<FullVaccinename>Novel influenza-H1N1-09, all formulations</FullVaccinename>
+<CVXCode>128       </CVXCode>
+<Notes>This code is used whenever the actual formulation is not determined or when aggregating all Novel H1N1 Influenza-09 immunizations for reporting to CRA. It should not be used for seasonal influenza vaccine that is not otherwise specified. (NOS)</Notes>
+<Status>Inactive</Status>
+<LastUpdated>8/28/2010</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>Novel Influenza-H1N1-09, nasal</ShortDescription>
+<FullVaccinename>Novel Influenza-H1N1-09, live virus for nasal administration</FullVaccinename>
+<CVXCode>125       </CVXCode>
+<Notes></Notes>
+<Status>Inactive</Status>
+<LastUpdated>8/28/2010</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>Novel influenza-H1N1-09, preservative-free</ShortDescription>
+<FullVaccinename>Novel influenza-H1N1-09, preservative-free, injectable</FullVaccinename>
+<CVXCode>126       </CVXCode>
+<Notes></Notes>
+<Status>Inactive</Status>
+<LastUpdated>8/28/2010</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>OPV</ShortDescription>
+<FullVaccinename>trivalent poliovirus vaccine, live, oral</FullVaccinename>
+<CVXCode>02        </CVXCode>
+<Notes>This is the OPV that was used in the US</Notes>
+<Status>Inactive</Status>
+<LastUpdated>2/10/2017</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>OPV ,monovalent, unspecified</ShortDescription>
+<FullVaccinename>Non-US monovalent oral polio vaccine, unspecified formulation</FullVaccinename>
+<CVXCode>179       </CVXCode>
+<Notes>This is a non-US vaccine that may be seen in some immunization histories. It is composed of either Type 1, Type 2 or Type 3 oral polio vaccine.</Notes>
+<Status>Non-US</Status>
+<LastUpdated>1/17/2017</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>OPV bivalent</ShortDescription>
+<FullVaccinename>Non-US bivalent oral polio vaccine (types 1 and 3)</FullVaccinename>
+<CVXCode>178       </CVXCode>
+<Notes>This is a non-US vaccine that may be seen in some immunization histories.</Notes>
+<Status>Non-US</Status>
+<LastUpdated>1/17/2017</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>OPV, Unspecified</ShortDescription>
+<FullVaccinename>Oral Polio Vaccine, Unspecified formulation</FullVaccinename>
+<CVXCode>182       </CVXCode>
+<Notes>This code represents an oral polio vaccine where the specific formulation is unknown.</Notes>
+<Status>Inactive</Status>
+<LastUpdated>1/17/2017</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>parainfluenza-3</ShortDescription>
+<FullVaccinename>parainfluenza-3 virus vaccine</FullVaccinename>
+<CVXCode>69        </CVXCode>
+<Notes></Notes>
+<Status>Inactive</Status>
+<LastUpdated>5/28/2010</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>PCV10</ShortDescription>
+<FullVaccinename>pneumococcal conjugate vaccine, 10 valent</FullVaccinename>
+<CVXCode>177       </CVXCode>
+<Notes>This is a foreign vaccine</Notes>
+<Status>Non-US</Status>
+<LastUpdated>12/19/2016</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>pertussis</ShortDescription>
+<FullVaccinename>pertussis vaccine</FullVaccinename>
+<CVXCode>11        </CVXCode>
+<Notes></Notes>
+<Status>Inactive</Status>
+<LastUpdated>5/28/2010</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>plague</ShortDescription>
+<FullVaccinename>plague vaccine</FullVaccinename>
+<CVXCode>23        </CVXCode>
+<Notes></Notes>
+<Status>Inactive</Status>
+<LastUpdated>5/17/2018</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>Pneumococcal conjugate PCV 13</ShortDescription>
+<FullVaccinename>pneumococcal conjugate vaccine, 13 valent</FullVaccinename>
+<CVXCode>133       </CVXCode>
+<Notes></Notes>
+<Status>Active</Status>
+<LastUpdated>5/28/2010</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>pneumococcal conjugate PCV 7</ShortDescription>
+<FullVaccinename>pneumococcal conjugate vaccine, 7 valent</FullVaccinename>
+<CVXCode>100       </CVXCode>
+<Notes></Notes>
+<Status>Inactive</Status>
+<LastUpdated>6/26/2014</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>Pneumococcal conjugate PCV15, polysaccharide CRM197 conjugate, adjuvant, PF</ShortDescription>
+<FullVaccinename>Pneumococcal conjugate vaccine 15-valent (PCV15), polysaccharide CRM197 conjugate, adjuvant, preservative free</FullVaccinename>
+<CVXCode>215       </CVXCode>
+<Notes></Notes>
+<Status>Active</Status>
+<LastUpdated>8/18/2021</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>Pneumococcal conjugate PCV20, polysaccharide CRM197 conjugate, adjuvant, PF</ShortDescription>
+<FullVaccinename>Pneumococcal conjugate vaccine 20-valent (PCV20), polysaccharide CRM197 conjugate, adjuvant, preservative free</FullVaccinename>
+<CVXCode>216       </CVXCode>
+<Notes></Notes>
+<Status>Active</Status>
+<LastUpdated>8/18/2021</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>Pneumococcal Conjugate, unspecified formulation</ShortDescription>
+<FullVaccinename>Pneumococcal Conjugate, unspecified formulation</FullVaccinename>
+<CVXCode>152       </CVXCode>
+<Notes>This CVX should only be used for historical records where the formulation of pneumococcal conjugate vaccine is not known.</Notes>
+<Status>Inactive</Status>
+<LastUpdated>1/28/2013</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>pneumococcal polysaccharide PPV23</ShortDescription>
+<FullVaccinename>pneumococcal polysaccharide vaccine, 23 valent</FullVaccinename>
+<CVXCode>33        </CVXCode>
+<Notes></Notes>
+<Status>Active</Status>
+<LastUpdated>5/28/2010</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>pneumococcal, unspecified formulation</ShortDescription>
+<FullVaccinename>pneumococcal vaccine, unspecified formulation</FullVaccinename>
+<CVXCode>109       </CVXCode>
+<Notes>This CVX code allows reporting of a vaccination when formulation is unknown (for example, when recording a pneumococcal vaccination when noted on a vaccination card)</Notes>
+<Status>Inactive</Status>
+<LastUpdated>9/30/2010</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>polio, unspecified formulation</ShortDescription>
+<FullVaccinename>poliovirus vaccine, unspecified formulation</FullVaccinename>
+<CVXCode>89        </CVXCode>
+<Notes>This CVX code allows reporting of a vaccination when formulation is unknown (for example, when recording a polio vaccination when noted on a vaccination card)</Notes>
+<Status>Inactive</Status>
+<LastUpdated>9/30/2010</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>Q fever</ShortDescription>
+<FullVaccinename>Q fever vaccine</FullVaccinename>
+<CVXCode>70        </CVXCode>
+<Notes></Notes>
+<Status>Never Active</Status>
+<LastUpdated>9/9/2020</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>Rabies - IM Diploid cell culture</ShortDescription>
+<FullVaccinename>Human Rabies vaccine from human diploid cell culture</FullVaccinename>
+<CVXCode>175       </CVXCode>
+<Notes></Notes>
+<Status>Active</Status>
+<LastUpdated>10/18/2016</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>Rabies - IM fibroblast culture</ShortDescription>
+<FullVaccinename>Human rabies vaccine from Chicken fibroblast culture</FullVaccinename>
+<CVXCode>176       </CVXCode>
+<Notes></Notes>
+<Status>Active</Status>
+<LastUpdated>10/18/2016</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>rabies, intradermal injection</ShortDescription>
+<FullVaccinename>rabies vaccine, for intradermal injection</FullVaccinename>
+<CVXCode>40        </CVXCode>
+<Notes></Notes>
+<Status>Inactive</Status>
+<LastUpdated>6/18/2015</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>rabies, intramuscular injection</ShortDescription>
+<FullVaccinename>rabies vaccine, for intramuscular injection RETIRED CODE</FullVaccinename>
+<CVXCode>18        </CVXCode>
+<Notes>This CVX code has been retired. It is replace by CVX 175,  or CVX 176. It will continue to be found in historic records.</Notes>
+<Status>Inactive</Status>
+<LastUpdated>10/18/2016</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>rabies, unspecified formulation</ShortDescription>
+<FullVaccinename>rabies vaccine, unspecified formulation</FullVaccinename>
+<CVXCode>90        </CVXCode>
+<Notes>This CVX code allows reporting of a vaccination when formulation is unknown (for example, when recording a rabies vaccination when noted on a vaccination card)</Notes>
+<Status>Inactive</Status>
+<LastUpdated>9/30/2010</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>rheumatic fever</ShortDescription>
+<FullVaccinename>rheumatic fever vaccine</FullVaccinename>
+<CVXCode>72        </CVXCode>
+<Notes></Notes>
+<Status>Never Active</Status>
+<LastUpdated>9/9/2020</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>Rift Valley fever</ShortDescription>
+<FullVaccinename>Rift Valley fever vaccine</FullVaccinename>
+<CVXCode>73        </CVXCode>
+<Notes></Notes>
+<Status>Never Active</Status>
+<LastUpdated>9/9/2020</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>rotavirus, monovalent</ShortDescription>
+<FullVaccinename>rotavirus, live, monovalent vaccine</FullVaccinename>
+<CVXCode>119       </CVXCode>
+<Notes></Notes>
+<Status>Active</Status>
+<LastUpdated>5/28/2010</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>rotavirus, pentavalent</ShortDescription>
+<FullVaccinename>rotavirus, live, pentavalent vaccine</FullVaccinename>
+<CVXCode>116       </CVXCode>
+<Notes></Notes>
+<Status>Active</Status>
+<LastUpdated>5/28/2010</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>rotavirus, tetravalent</ShortDescription>
+<FullVaccinename>rotavirus, live, tetravalent vaccine</FullVaccinename>
+<CVXCode>74        </CVXCode>
+<Notes></Notes>
+<Status>Inactive</Status>
+<LastUpdated>5/28/2010</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>rotavirus, unspecified formulation</ShortDescription>
+<FullVaccinename>rotavirus vaccine, unspecified formulation</FullVaccinename>
+<CVXCode>122       </CVXCode>
+<Notes></Notes>
+<Status>Inactive</Status>
+<LastUpdated>9/30/2010</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>rubella</ShortDescription>
+<FullVaccinename>rubella virus vaccine</FullVaccinename>
+<CVXCode>06        </CVXCode>
+<Notes></Notes>
+<Status>Inactive</Status>
+<LastUpdated>6/18/2015</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>rubella/mumps</ShortDescription>
+<FullVaccinename>rubella and mumps virus vaccine</FullVaccinename>
+<CVXCode>38        </CVXCode>
+<Notes></Notes>
+<Status>Inactive</Status>
+<LastUpdated>5/28/2010</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>SARS-COV-2 (COVID-19) vaccine, UNSPECIFIED</ShortDescription>
+<FullVaccinename>SARS-COV-2 (COVID-19) vaccine, UNSPECIFIED</FullVaccinename>
+<CVXCode>213       </CVXCode>
+<Notes>Unspecified code for COVID-19 not to be used to record patient US administration. May be used to record historic US administration if product not known.  CVX code 500 should be used to record Non-US vaccine where product is not known.</Notes>
+<Status>Inactive</Status>
+<LastUpdated>7/31/2021</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>Smallpox monkeypox vaccine (National Stockpile)</ShortDescription>
+<FullVaccinename>smallpox monkeypox vaccine, live attenuated, preservative free (National Stockpile)</FullVaccinename>
+<CVXCode>206       </CVXCode>
+<Notes>National Stockpile Only. FDA US Licensed products JYNNEOS (also brandnames IMVAMUNE, IMVANEX) </Notes>
+<Status>Active</Status>
+<LastUpdated>7/20/2020</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>Td (adult)</ShortDescription>
+<FullVaccinename>tetanus and diphtheria toxoids, not adsorbed, for adult use</FullVaccinename>
+<CVXCode>138       </CVXCode>
+<Notes>Note that this Td is not adsorbed.</Notes>
+<Status>Inactive</Status>
+<LastUpdated>9/30/2010</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>Td (adult), 2 Lf tetanus toxoid, preservative free, adsorbed</ShortDescription>
+<FullVaccinename>tetanus and diphtheria toxoids, adsorbed, preservative free, for adult use (2 Lf of tetanus toxoid and 2 Lf of diphtheria toxoid)</FullVaccinename>
+<CVXCode>09        </CVXCode>
+<Notes></Notes>
+<Status>Active</Status>
+<LastUpdated>10/27/2017</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>Td (adult), 5 Lf tetanus toxoid, preservative free, adsorbed</ShortDescription>
+<FullVaccinename>tetanus and diphtheria toxoids, adsorbed, preservative free, for adult use (5 Lf of tetanus toxoid and 2 Lf of diphtheria toxoid)</FullVaccinename>
+<CVXCode>113       </CVXCode>
+<Notes></Notes>
+<Status>Active</Status>
+<LastUpdated>10/27/2017</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>Td(adult) unspecified formulation</ShortDescription>
+<FullVaccinename>Td(adult) unspecified formulation</FullVaccinename>
+<CVXCode>139       </CVXCode>
+<Notes>This CVX code allows reporting of a historic vaccination when the formulation is unknown (for example, when recording a Td vaccination when noted on a vaccination card)</Notes>
+<Status>Inactive</Status>
+<LastUpdated>8/27/2019</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>Td, adsorbed, preservative free, adult use, Lf unspecified</ShortDescription>
+<FullVaccinename>tetanus and diphtheria toxoids, adsorbed, preservative free, for adult use, Lf unspecified</FullVaccinename>
+<CVXCode>196       </CVXCode>
+<Notes>Used when Td Lf specification is unknown</Notes>
+<Status>Active</Status>
+<LastUpdated>8/15/2019</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>Tdap</ShortDescription>
+<FullVaccinename>tetanus toxoid, reduced diphtheria toxoid, and acellular pertussis vaccine, adsorbed</FullVaccinename>
+<CVXCode>115       </CVXCode>
+<Notes></Notes>
+<Status>Active</Status>
+<LastUpdated>5/28/2010</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>tetanus toxoid, adsorbed</ShortDescription>
+<FullVaccinename>tetanus toxoid, adsorbed</FullVaccinename>
+<CVXCode>35        </CVXCode>
+<Notes></Notes>
+<Status>Inactive</Status>
+<LastUpdated>8/14/2015</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>tetanus toxoid, not adsorbed</ShortDescription>
+<FullVaccinename>tetanus toxoid, not adsorbed</FullVaccinename>
+<CVXCode>142       </CVXCode>
+<Notes></Notes>
+<Status>Inactive</Status>
+<LastUpdated>8/14/2015</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>tetanus toxoid, unspecified formulation</ShortDescription>
+<FullVaccinename>tetanus toxoid, unspecified formulation</FullVaccinename>
+<CVXCode>112       </CVXCode>
+<Notes></Notes>
+<Status>Inactive</Status>
+<LastUpdated>9/30/2010</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>tick-borne encephalitis</ShortDescription>
+<FullVaccinename>tick-borne encephalitis vaccine</FullVaccinename>
+<CVXCode>77        </CVXCode>
+<Notes>FDA authorized vaccine 2021</Notes>
+<Status>Active</Status>
+<LastUpdated>11/4/2021</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>tularemia vaccine</ShortDescription>
+<FullVaccinename>tularemia vaccine</FullVaccinename>
+<CVXCode>78        </CVXCode>
+<Notes></Notes>
+<Status>Inactive</Status>
+<LastUpdated>5/28/2010</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>Typhoid conjugate vaccine (TCV)</ShortDescription>
+<FullVaccinename>Typhoid conjugate vaccine (non-US)</FullVaccinename>
+<CVXCode>190       </CVXCode>
+<Notes></Notes>
+<Status>Non-US</Status>
+<LastUpdated>7/23/2021</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>typhoid, oral</ShortDescription>
+<FullVaccinename>typhoid vaccine, live, oral</FullVaccinename>
+<CVXCode>25        </CVXCode>
+<Notes></Notes>
+<Status>Active</Status>
+<LastUpdated>5/28/2010</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>typhoid, parenteral</ShortDescription>
+<FullVaccinename>typhoid vaccine, parenteral, other than acetone-killed, dried</FullVaccinename>
+<CVXCode>41        </CVXCode>
+<Notes></Notes>
+<Status>Inactive</Status>
+<LastUpdated>8/13/2015</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>typhoid, parenteral, AKD (U.S. military)</ShortDescription>
+<FullVaccinename>typhoid vaccine, parenteral, acetone-killed, dried (U.S. military)</FullVaccinename>
+<CVXCode>53        </CVXCode>
+<Notes></Notes>
+<Status>Inactive</Status>
+<LastUpdated>6/18/2015</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>typhoid, unspecified formulation</ShortDescription>
+<FullVaccinename>typhoid vaccine, unspecified formulation</FullVaccinename>
+<CVXCode>91        </CVXCode>
+<Notes>This CVX code allows reporting of a vaccination when formulation is unknown (for example, when recording a typhoid vaccination when noted on a vaccination card)</Notes>
+<Status>Inactive</Status>
+<LastUpdated>9/30/2010</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>typhoid, ViCPs</ShortDescription>
+<FullVaccinename>typhoid Vi capsular polysaccharide vaccine</FullVaccinename>
+<CVXCode>101       </CVXCode>
+<Notes></Notes>
+<Status>Active</Status>
+<LastUpdated>5/28/2010</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>typhus, historical</ShortDescription>
+<FullVaccinename>Historical record of a typhus vaccination</FullVaccinename>
+<CVXCode>131       </CVXCode>
+<Notes></Notes>
+<Status>Inactive</Status>
+<LastUpdated>5/28/2010</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>vaccinia (smallpox)</ShortDescription>
+<FullVaccinename>vaccinia (smallpox) vaccine</FullVaccinename>
+<CVXCode>75        </CVXCode>
+<Notes></Notes>
+<Status>Active</Status>
+<LastUpdated>5/28/2010</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>vaccinia (smallpox) diluted</ShortDescription>
+<FullVaccinename>vaccinia (smallpox) vaccine, diluted</FullVaccinename>
+<CVXCode>105       </CVXCode>
+<Notes></Notes>
+<Status>Inactive</Status>
+<LastUpdated>5/28/2010</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>varicella</ShortDescription>
+<FullVaccinename>varicella virus vaccine</FullVaccinename>
+<CVXCode>21        </CVXCode>
+<Notes></Notes>
+<Status>Active</Status>
+<LastUpdated>5/28/2010</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>VEE, inactivated</ShortDescription>
+<FullVaccinename>Venezuelan equine encephalitis, inactivated</FullVaccinename>
+<CVXCode>81        </CVXCode>
+<Notes></Notes>
+<Status>Inactive</Status>
+<LastUpdated>5/28/2010</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>VEE, live</ShortDescription>
+<FullVaccinename>Venezuelan equine encephalitis, live, attenuated</FullVaccinename>
+<CVXCode>80        </CVXCode>
+<Notes></Notes>
+<Status>Inactive</Status>
+<LastUpdated>5/28/2010</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>VEE, unspecified formulation</ShortDescription>
+<FullVaccinename>Venezuelan equine encephalitis vaccine, unspecified formulation</FullVaccinename>
+<CVXCode>92        </CVXCode>
+<Notes>This CVX code allows reporting of a vaccination when formulation is unknown (for example, when recording a VEE vaccination when noted on a vaccination card)</Notes>
+<Status>Inactive</Status>
+<LastUpdated>9/30/2010</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>yellow fever</ShortDescription>
+<FullVaccinename>yellow fever vaccine</FullVaccinename>
+<CVXCode>37        </CVXCode>
+<Notes>This is the YF vaccine that has been available in the US for years. It is stabilized with sorbitol and gelatin.</Notes>
+<Status>Active</Status>
+<LastUpdated>3/2/2017</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>Yellow fever vaccine - alt</ShortDescription>
+<FullVaccinename>Yellow fever vaccine alternative formulation</FullVaccinename>
+<CVXCode>183       </CVXCode>
+<Notes>This vaccine is stabilized with sorbitol and lactose and has been used outside the US for some time. It will be made available in the US.</Notes>
+<Status>Active</Status>
+<LastUpdated>3/2/2017</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>Yellow fever, unspecified formulation</ShortDescription>
+<FullVaccinename>Yellow fever vaccine, unspecified formulation</FullVaccinename>
+<CVXCode>184       </CVXCode>
+<Notes></Notes>
+<Status>Inactive</Status>
+<LastUpdated>3/2/2017</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>zoster live</ShortDescription>
+<FullVaccinename>zoster vaccine, live</FullVaccinename>
+<CVXCode>121       </CVXCode>
+<Notes></Notes>
+<Status>Active</Status>
+<LastUpdated>5/28/2010</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>zoster recombinant</ShortDescription>
+<FullVaccinename>zoster vaccine recombinant</FullVaccinename>
+<CVXCode>187       </CVXCode>
+<Notes></Notes>
+<Status>Active</Status>
+<LastUpdated>10/27/2017</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>zoster, unspecified formulation</ShortDescription>
+<FullVaccinename>zoster vaccine, unspecified formulation</FullVaccinename>
+<CVXCode>188       </CVXCode>
+<Notes>This CVX code allows reporting of a vaccination when formulation is unknown (for example, when recording a zoster vaccination when noted on a vaccination card)</Notes>
+<Status>Inactive</Status>
+<LastUpdated>10/27/2017</LastUpdated>
+</CVXInfo>
+<CVXInfo>
+<ShortDescription>anthrax immune globulin</ShortDescription>
+<FullVaccinename>anthrax immune globulin</FullVaccinename>
+<CVXCode>181       </CVXCode>
+<Notes></Notes>
+<Status>Active</Status>
+<LastUpdated>9/4/2020</LastUpdated>
+</CVXInfo>
+<CVXInfo>
+<ShortDescription>AS03 Adjuvant</ShortDescription>
+<FullVaccinename>AS03 Adjuvant</FullVaccinename>
+<CVXCode>801       </CVXCode>
+<Notes>This is the adjuvant that is packaged with H5N1 vaccine, adjuvanted</Notes>
+<Status>Active</Status>
+<LastUpdated>10/27/2020</LastUpdated>
+</CVXInfo>
+<CVXInfo>
+<ShortDescription>botulinum antitoxin</ShortDescription>
+<FullVaccinename>botulinum antitoxin</FullVaccinename>
+<CVXCode>27        </CVXCode>
+<Notes></Notes>
+<Status>Active</Status>
+<LastUpdated>9/4/2020</LastUpdated>
+</CVXInfo>
+<CVXInfo>
+<ShortDescription>CMVIG</ShortDescription>
+<FullVaccinename>cytomegalovirus immune globulin, intravenous</FullVaccinename>
+<CVXCode>29        </CVXCode>
+<Notes></Notes>
+<Status>Active</Status>
+<LastUpdated>9/4/2020</LastUpdated>
+</CVXInfo>
+<CVXInfo>
+<ShortDescription>diphtheria antitoxin</ShortDescription>
+<FullVaccinename>diphtheria antitoxin</FullVaccinename>
+<CVXCode>12        </CVXCode>
+<Notes></Notes>
+<Status>Active</Status>
+<LastUpdated>9/4/2020</LastUpdated>
+</CVXInfo>
+<CVXInfo>
+<ShortDescription>HBIG</ShortDescription>
+<FullVaccinename>hepatitis B immune globulin</FullVaccinename>
+<CVXCode>30        </CVXCode>
+<Notes></Notes>
+<Status>Active</Status>
+<LastUpdated>9/4/2020</LastUpdated>
+</CVXInfo>
+<CVXInfo>
+<ShortDescription>Hep A, IG</ShortDescription>
+<FullVaccinename>Hepatitis A immune globulin</FullVaccinename>
+<CVXCode>154       </CVXCode>
+<Notes>Do not use this code. This product may be used for Hep A and other viral infections. The correct vaccine / CVX is 86 (IG).</Notes>
+<Status>Never Active</Status>
+<LastUpdated>9/9/2020</LastUpdated>
+</CVXInfo>
+<CVXInfo>
+<ShortDescription>IG</ShortDescription>
+<FullVaccinename>immune globulin, intramuscular</FullVaccinename>
+<CVXCode>86        </CVXCode>
+<Notes></Notes>
+<Status>Active</Status>
+<LastUpdated>9/4/2020</LastUpdated>
+</CVXInfo>
+<CVXInfo>
+<ShortDescription>IG, unspecified formulation</ShortDescription>
+<FullVaccinename>immune globulin, unspecified formulation</FullVaccinename>
+<CVXCode>14        </CVXCode>
+<Notes></Notes>
+<Status>Inactive</Status>
+<LastUpdated>9/4/2020</LastUpdated>
+</CVXInfo>
+<CVXInfo>
+<ShortDescription>IGIV</ShortDescription>
+<FullVaccinename>immune globulin, intravenous</FullVaccinename>
+<CVXCode>87        </CVXCode>
+<Notes></Notes>
+<Status>Active</Status>
+<LastUpdated>9/4/2020</LastUpdated>
+</CVXInfo>
+<CVXInfo>
+<ShortDescription>no vaccine administered</ShortDescription>
+<FullVaccinename>no vaccine administered</FullVaccinename>
+<CVXCode>998       </CVXCode>
+<Notes>Code 998 was added for use in VXU HL7 messages where the OBX segment is nested with the RXA segment, but the message does not contain information about a vaccine administration. An example of this use is to report the vaccines due next for a patient when no vaccine administration is being reported.</Notes>
+<Status>Inactive</Status>
+<LastUpdated>5/28/2010</LastUpdated>
+</CVXInfo>
+<CVXInfo>
+<ShortDescription>RESERVED - do not use</ShortDescription>
+<FullVaccinename>RESERVED - do not use</FullVaccinename>
+<CVXCode>99        </CVXCode>
+<Notes>Code 99 will not be used in this table to avoid confusion with code 999.</Notes>
+<Status>Inactive</Status>
+<LastUpdated>9/9/2020</LastUpdated>
+</CVXInfo>
+<CVXInfo>
+<ShortDescription>Rho(D) - Unspecified formulation</ShortDescription>
+<FullVaccinename>Rho(D) Unspecified formulation</FullVaccinename>
+<CVXCode>159       </CVXCode>
+<Notes></Notes>
+<Status>Inactive</Status>
+<LastUpdated>9/4/2020</LastUpdated>
+</CVXInfo>
+<CVXInfo>
+<ShortDescription>Rho(D) -IG IM</ShortDescription>
+<FullVaccinename>Rho(D) Immune globulin - IM</FullVaccinename>
+<CVXCode>157       </CVXCode>
+<Notes>This immune globulin may be administered IM only.</Notes>
+<Status>Active</Status>
+<LastUpdated>9/4/2020</LastUpdated>
+</CVXInfo>
+<CVXInfo>
+<ShortDescription>Rho(D)-IG</ShortDescription>
+<FullVaccinename>Rho(D) Immune globulin- IV or IM</FullVaccinename>
+<CVXCode>156       </CVXCode>
+<Notes>This immune globulin may be administered either IM or IV.</Notes>
+<Status>Active</Status>
+<LastUpdated>9/4/2020</LastUpdated>
+</CVXInfo>
+<CVXInfo>
+<ShortDescription>RIG</ShortDescription>
+<FullVaccinename>rabies immune globulin</FullVaccinename>
+<CVXCode>34        </CVXCode>
+<Notes></Notes>
+<Status>Active</Status>
+<LastUpdated>9/4/2020</LastUpdated>
+</CVXInfo>
+<CVXInfo>
+<ShortDescription>RSV-IGIV</ShortDescription>
+<FullVaccinename>respiratory syncytial virus immune globulin, intravenous</FullVaccinename>
+<CVXCode>71        </CVXCode>
+<Notes></Notes>
+<Status>Active</Status>
+<LastUpdated>9/4/2020</LastUpdated>
+</CVXInfo>
+<CVXInfo>
+<ShortDescription>RSV-MAb</ShortDescription>
+<FullVaccinename>respiratory syncytial virus monoclonal antibody (palivizumab), intramuscular</FullVaccinename>
+<CVXCode>93        </CVXCode>
+<Notes></Notes>
+<Status>Active</Status>
+<LastUpdated>9/4/2020</LastUpdated>
+</CVXInfo>
+<CVXInfo>
+<ShortDescription>RSV-MAb (new)</ShortDescription>
+<FullVaccinename>respiratory syncytial virus monoclonal antibody (motavizumab), intramuscular</FullVaccinename>
+<CVXCode>145       </CVXCode>
+<Notes></Notes>
+<Status>Never Active</Status>
+<LastUpdated>9/9/2020</LastUpdated>
+</CVXInfo>
+<CVXInfo>
+<ShortDescription>Staphylococcus bacterio lysate</ShortDescription>
+<FullVaccinename>Staphylococcus bacteriophage lysate</FullVaccinename>
+<CVXCode>76        </CVXCode>
+<Notes></Notes>
+<Status>Inactive</Status>
+<LastUpdated>9/4/2020</LastUpdated>
+</CVXInfo>
+<CVXInfo>
+<ShortDescription>tetanus immune globulin</ShortDescription>
+<FullVaccinename>tetanus immune globulin</FullVaccinename>
+<CVXCode>180       </CVXCode>
+<Notes>This record duplicates CVX 13 (TIG). Do not use CVX 180.</Notes>
+<Status>Inactive</Status>
+<LastUpdated>9/9/2020</LastUpdated>
+</CVXInfo>
+<CVXInfo>
+<ShortDescription>TIG</ShortDescription>
+<FullVaccinename>tetanus immune globulin</FullVaccinename>
+<CVXCode>13        </CVXCode>
+<Notes></Notes>
+<Status>Active</Status>
+<LastUpdated>9/4/2020</LastUpdated>
+</CVXInfo>
+<CVXInfo>
+<ShortDescription>TST, unspecified formulation</ShortDescription>
+<FullVaccinename>tuberculin skin test; unspecified formulation</FullVaccinename>
+<CVXCode>98        </CVXCode>
+<Notes>TB Skin test is not vaccine.</Notes>
+<Status>Inactive</Status>
+<LastUpdated>9/4/2020</LastUpdated>
+</CVXInfo>
+<CVXInfo>
+<ShortDescription>TST-OT tine test</ShortDescription>
+<FullVaccinename>tuberculin skin test; old tuberculin, multipuncture device</FullVaccinename>
+<CVXCode>95        </CVXCode>
+<Notes>TB Skin test is not vaccine.</Notes>
+<Status>Inactive</Status>
+<LastUpdated>9/4/2020</LastUpdated>
+</CVXInfo>
+<CVXInfo>
+<ShortDescription>TST-PPD intradermal</ShortDescription>
+<FullVaccinename>tuberculin skin test; purified protein derivative solution, intradermal</FullVaccinename>
+<CVXCode>96        </CVXCode>
+<Notes>TB Skin test is not vaccine.</Notes>
+<Status>Inactive</Status>
+<LastUpdated>9/4/2020</LastUpdated>
+</CVXInfo>
+<CVXInfo>
+<ShortDescription>TST-PPD tine test</ShortDescription>
+<FullVaccinename>tuberculin skin test; purified protein derivative, multipuncture device</FullVaccinename>
+<CVXCode>97        </CVXCode>
+<Notes>TB Skin test is not vaccine.</Notes>
+<Status>Inactive</Status>
+<LastUpdated>9/4/2020</LastUpdated>
+</CVXInfo>
+<CVXInfo>
+<ShortDescription>unknown</ShortDescription>
+<FullVaccinename>unknown vaccine or immune globulin</FullVaccinename>
+<CVXCode>999       </CVXCode>
+<Notes>This CVX code has little utility and should rarely be used.</Notes>
+<Status>Inactive</Status>
+<LastUpdated>10/27/2020</LastUpdated>
+</CVXInfo>
+<CVXInfo>
+<ShortDescription>vaccinia immune globulin</ShortDescription>
+<FullVaccinename>vaccinia immune globulin</FullVaccinename>
+<CVXCode>79        </CVXCode>
+<Notes></Notes>
+<Status>Active</Status>
+<LastUpdated>9/4/2020</LastUpdated>
+</CVXInfo>
+<CVXInfo>
+<ShortDescription>VZIG</ShortDescription>
+<FullVaccinename>varicella zoster immune globulin</FullVaccinename>
+<CVXCode>36        </CVXCode>
+<Notes></Notes>
+<Status>Active</Status>
+<LastUpdated>9/4/2020</LastUpdated>
+</CVXInfo>
+<CVXInfo>
+<ShortDescription>VZIG (IND)</ShortDescription>
+<FullVaccinename>varicella zoster immune globulin (Investigational New Drug)</FullVaccinename>
+<CVXCode>117       </CVXCode>
+<Notes></Notes>
+<Status>Never Active</Status>
+<LastUpdated>9/9/2020</LastUpdated>
+</CVXInfo>
+</CVXCodes>
