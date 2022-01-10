@@ -52,6 +52,7 @@ const HealthCardDisplay = () => {
     });
     let data = await response.data;
     data = data
+      .replace(/<\?xml.*\?>/g, '')
       .replace(/&/g, '&amp;')
       .replace(/"/g, '&quot;')
       .replace(/'/g, '&apos;');
