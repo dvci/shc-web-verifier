@@ -21,10 +21,7 @@ jobs:
 
     - name: Commit files
       run: |
-        # setup the username and email
-        git config user.name "GitHub Actions Bot"
-        git config user.email "<>"
         # Stage the files, commit and push
         git add src/components/HealthCardDisplay/
-        git commit -m "updated CDC files"
+        git commit -m "update CDC files"
         git push
