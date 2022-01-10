@@ -60,7 +60,8 @@ const patientData = {
   ]
 };
 
-const tradenames = `<productnames>
+const tradenames = `<?xml version="1.0"?>
+<productnames>
 <prodInfo>
 <Name>CDC Product Name</Name>
 <Value>Moderna COVID-19 Vaccine (non-US Spikevax)</Value>
@@ -99,7 +100,7 @@ const tradenames = `<productnames>
 </prodInfo>
 </productnames>`;
 
-const cvxCodes = `<CVXCodes>
+const cvxCodes = `<?xml version='1.0' encoding='ISO-8859-1'?><CVXCodes>
 <CVXInfo>
 <ShortDescription>SARS-COV-2 (COVID-19) vaccine, UNSPECIFIED</ShortDescription>
 <FullVaccinename>SARS-COV-2 (COVID-19) vaccine, UNSPECIFIED</FullVaccinename>
