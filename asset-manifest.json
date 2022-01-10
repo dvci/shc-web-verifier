@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/shc-web-verifier/static/css/main.9519d0d7.chunk.css",
-    "main.js": "/shc-web-verifier/static/js/main.6aca373f.chunk.js",
-    "main.js.map": "/shc-web-verifier/static/js/main.6aca373f.chunk.js.map",
+    "main.js": "/shc-web-verifier/static/js/main.4bf2b4ba.chunk.js",
+    "main.js.map": "/shc-web-verifier/static/js/main.4bf2b4ba.chunk.js.map",
     "runtime-main.js": "/shc-web-verifier/static/js/runtime-main.df48d009.js",
     "runtime-main.js.map": "/shc-web-verifier/static/js/runtime-main.df48d009.js.map",
     "static/js/2.4274c89f.chunk.js": "/shc-web-verifier/static/js/2.4274c89f.chunk.js",
@@ -14,8 +14,8 @@
     "static/js/2.4274c89f.chunk.js.LICENSE.txt": "/shc-web-verifier/static/js/2.4274c89f.chunk.js.LICENSE.txt",
     "static/media/error-illustration.9c7db9b8.png": "/shc-web-verifier/static/media/error-illustration.9c7db9b8.png",
     "static/media/frame.b05edd9c.png": "/shc-web-verifier/static/media/frame.b05edd9c.png",
-    "static/media/iisstandards_cvx.f9c3cb7c.xml": "/shc-web-verifier/static/media/iisstandards_cvx.f9c3cb7c.xml",
-    "static/media/iisstandards_tradename.ca620fff.xml": "/shc-web-verifier/static/media/iisstandards_tradename.ca620fff.xml",
+    "static/media/iisstandards_cvx.62a49133.xml": "/shc-web-verifier/static/media/iisstandards_cvx.62a49133.xml",
+    "static/media/iisstandards_tradename.03868249.xml": "/shc-web-verifier/static/media/iisstandards_tradename.03868249.xml",
     "static/media/mitre-logo.8e5321e7.svg": "/shc-web-verifier/static/media/mitre-logo.8e5321e7.svg",
     "static/media/qr-code-illustration.732bf9a3.png": "/shc-web-verifier/static/media/qr-code-illustration.732bf9a3.png"
   },
@@ -23,6 +23,6 @@
     "static/js/runtime-main.df48d009.js",
     "static/js/2.4274c89f.chunk.js",
     "static/css/main.9519d0d7.chunk.css",
-    "static/js/main.6aca373f.chunk.js"
+    "static/js/main.4bf2b4ba.chunk.js"
   ]
 }
