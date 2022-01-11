@@ -13,7 +13,6 @@ import {
   ListItem,
 } from '@mui/material';
 import VisibilityIcon from '@mui/icons-material/Visibility';
-import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import { useQrDataContext } from 'components/QrDataProvider';
 import { getPatientData } from 'utils/qrHelpers';
@@ -24,8 +23,7 @@ import scanIcon from 'assets/scan-icon.png';
 import exclamationRedIcon from 'assets/exclamation-red-icon.png';
 import exclamationOrangeIcon from 'assets/exclamation-orange-icon.png';
 import useStyles from './styles';
-import tradenamesXml from './iisstandards_tradename.xml';
-import cvxXml from './iisstandards_cvx.xml';
+import { fetchTradenames, fetchCvx } from './iisstandards';
 
 const HealthCardDisplay = () => {
   const styles = useStyles();
@@ -46,68 +44,19 @@ const HealthCardDisplay = () => {
     history.push('qr-scan');
   };
 
-  async function fetchCdcXml(file) {
-    const response = await axios.get(file, {
-      Accept: 'application/xml',
-    });
-    let data = await response.data;
-    data = data
-      .replace(/<\?xml.*\?>/g, '')
-      .replace(/&/g, '&amp;')
-      .replace(/"/g, '&quot;')
-      .replace(/'/g, '&apos;');
-    const parser = new DOMParser();
-    const xmlDoc = parser.parseFromString(data, 'application/xml');
-    if (xmlDoc.getElementsByTagName('parsererror').length > 0) {
-      throw new Error('Error parsing XML');
-    }
-    return xmlDoc;
-  }
-
   React.useEffect(() => {
-    async function fetchTradenames() {
-      const xmlDoc = await fetchCdcXml(tradenamesXml);
-      const prodInfos = xmlDoc.evaluate(
-        '//productnames/prodInfo',
-        xmlDoc,
-        null,
-        XPathResult.ORDERED_NODE_ITERATOR_TYPE,
-        null
-      );
-      let prodInfo = prodInfos.iterateNext();
-      const tn = {};
-      while (prodInfo) {
-        if (tn[prodInfo.children[5].textContent.trim()]) {
-          tn[prodInfo.children[5].textContent.trim()] = prodInfo.children[3].textContent;
-        } else {
-          tn[prodInfo.children[5].textContent.trim()] = prodInfo.children[1].textContent;
-        }
-
-        prodInfo = prodInfos.iterateNext();
-      }
+    async function getTradenames() {
+      const tn = await fetchTradenames();
       setTradenames(tn);
     }
 
-    async function fetchCvx() {
-      const xmlDoc = await fetchCdcXml(cvxXml);
-      const prodInfos = xmlDoc.evaluate(
-        '//CVXCodes/CVXInfo',
-        xmlDoc,
-        null,
-        XPathResult.ORDERED_NODE_ITERATOR_TYPE,
-        null
-      );
-      let prodInfo = prodInfos.iterateNext();
-      const cvx = {};
-      while (prodInfo) {
-        cvx[prodInfo.getElementsByTagName('CVXCode')[0].textContent.trim()] = prodInfo.getElementsByTagName('ShortDescription')[0].textContent;
-        prodInfo = prodInfos.iterateNext();
-      }
+    async function getCvx() {
+      const cvx = await fetchCvx();
       setCvxCodes(cvx);
     }
 
-    fetchTradenames();
-    fetchCvx();
+    getTradenames();
+    getCvx();
   }, []);
 
   const toggleShowDateOfBirth = () => {

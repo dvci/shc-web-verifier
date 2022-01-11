@@ -1,6 +1,8 @@
 import axios from 'axios';
 import https from 'https';
 
+let directories = null;
+
 const defaultIssuerDirectories = [
   {
     name: 'VCI',
@@ -12,7 +14,7 @@ const agent = new https.Agent({
   rejectUnauthorized: false
 });
 
-const getIssuerDirectories = async () => Promise.all(defaultIssuerDirectories.map(async (d) => {
+const fetchIssuerDirectories = async () => Promise.all(defaultIssuerDirectories.map(async (d) => {
   const directory = d;
   let response;
   try {
@@ -30,6 +32,10 @@ const getIssuerDirectories = async () => Promise.all(defaultIssuerDirectories.ma
   return directory;
 }));
 
-export default class IssuerDirectories {
-  static async getIssuerDirectories() { return getIssuerDirectories(); }
+export default function getIssuerDirectories() {
+  if (!directories) {
+    directories = fetchIssuerDirectories();
+  }
+
+  return directories;
 }
