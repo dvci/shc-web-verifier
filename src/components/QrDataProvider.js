@@ -42,10 +42,14 @@ const QrDataProvider = ({ children }) => {
         .catch(() => setIssuerVerified(false));
 
       // Validate vaccine series
-      const payload = getPayload(qrCodes);
-      const patientBundle = JSON.parse(payload).vc.credentialSubject.fhirBundle;
-      const results = Validator.execute(patientBundle, 'COVID-19');
-      setValidPrimarySeries(results.some((series) => series.complete.length > 0));
+      try {
+        const payload = getPayload(qrCodes);
+        const patientBundle = JSON.parse(payload).vc.credentialSubject.fhirBundle;
+        const results = Validator.execute(patientBundle, 'COVID-19');
+        setValidPrimarySeries(results.some((series) => series.complete.length > 0));
+      } catch {
+        setValidPrimarySeries(false);
+      }
     }
   }, [qrCodes]);
 
