@@ -57,8 +57,13 @@ const extractPatientData = (card) => {
 
 const getPatientData = (qrCodes) => {
   if (!qrCodes || qrCodes.length === 0) { return null; }
-  const decodedQr = getPayload(qrCodes);
-  return extractPatientData(decodedQr);
+  try {
+    const decodedQr = getPayload(qrCodes);
+    const patientData = extractPatientData(decodedQr);
+    return patientData;
+  } catch {
+    return null;
+  }
 };
 
 const getIssuer = (qrCodes) => {

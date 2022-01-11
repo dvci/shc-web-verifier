@@ -8,17 +8,6 @@ jest.mock('react', () => ({
   useEffect: jest.fn()
 }))
 
-jest.mock('../HealthCardVerify', () => ({
-  __esModule: true,
-  default: () => <div />
-}))
-
-jest.mock('../IssuerVerify', () => ({
-  __esModule: true,
-  default: () => <div />,
-  IssuerDirectories: jest.fn().mockImplementation(() => ({ getIssuerDirectories: () => jest.fn() }))
-}));
-
 beforeAll(() => {
   React.useEffect.mockImplementation(() => {});
 });
