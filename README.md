@@ -50,18 +50,21 @@ Does not support forecasting or any other validation, including conditional dose
 
 ### Update CQL library
 
-Script to convert CQL to ELM and write results to src/output-elm. Requires Docker to be running locally.
+Convert CQL to ELM JSON and write results to src/output-elm. 
+
+Requires CQFramework CQL-to-ELM Translator Java tool to be built and installed locally. See [build instructions](https://github.com/cqframework/clinical_quality_language/tree/master/Src/java#generate-an-elm-representation-of-cql-logic).
 
 ```
-docker run --name cql-translation-service --rm -d -p 8080:8080 cqframework/cql-translation-service:latest
-yarn translate
+/path/to/clinical_quality_language/Src/java/cql-to-elm/build/install/cql-to-elm/bin/cql-to-elm --input ./cql/CDSiSupportingData.cql --model ./cql/cdsi-modelinfo-1.0.0.xml --format JSON --output ./src/output-elm
 ```
 
 ### Update CDSi supporting data
 
 Script to convert CDSi AntigenSupportingData XML format to json and write results to src/supporting-data.
 
-`node ./src/supporting-data/SupportingData.js '/path/to/CDC/Version x.xx - 508/XML/AntigenSupportingData- COVID-19-508.xml'`
+```
+node ./src/supporting-data/SupportingData.js '/path/to/CDC/Version x.xx - 508/XML/AntigenSupportingData- COVID-19-508.xml'
+```
 
 Will need to be updated with each CDSi release. Primary vaccine series number of doses are defined separately in src/supporting-data/AncilarySupportingData-{antigen}.json
 
