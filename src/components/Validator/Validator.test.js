@@ -196,3 +196,15 @@ test('Dose #2 and Dose #4 Pfizer Covid-19 vaccine with Dose #1 and Dose #3 inval
   const values = Validator.execute(patientBundle, 'COVID-19');
   expect(validPrimarySeries(values)).toBe(true);
 });
+
+test('Patient is 20 years of age and was administered Pfizer\'s vaccine 5-11 formulation', () => {
+  const patientBundle = loadJSONFixture('./test/fixtures/patients/CDSi_2021-0030.json');
+  const values = Validator.execute(patientBundle, 'COVID-19');
+  expect(validPrimarySeries(values)).toBe(false);
+});
+
+test('Patient is 20 years of age and was administered Pfizer\'s Vaccine 5-11 formulation as a second dose', () => {
+  const patientBundle = loadJSONFixture('./test/fixtures/patients/CDSi_2021-0031.json');
+  const values = Validator.execute(patientBundle, 'COVID-19');
+  expect(validPrimarySeries(values)).toBe(false);
+});
