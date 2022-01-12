@@ -11,7 +11,6 @@ import { useTranslation, Trans } from 'react-i18next';
 
 const Landing = () => {
   const history = useHistory();
-
   const { t } = useTranslation();
 
   const handleScan = () => {
