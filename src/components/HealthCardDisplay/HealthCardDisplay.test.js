@@ -6,6 +6,7 @@ import ThemeProvider from 'components/ThemeProvider';
 import { QrDataContext } from 'components/QrDataProvider';
 import * as qrHelpers from 'utils/qrHelpers';
 import HealthCardDisplay from './HealthCardDisplay';
+import '../../i18nTest';
 
 const patientData = {
   name: 'John B. Anyperson',
