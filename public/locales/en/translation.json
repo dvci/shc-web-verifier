@@ -12,5 +12,24 @@
     "Holds important vaccination or lab report data.": "Holds important vaccination or lab report data.",
     "Can be scanned to verify that the information has not been tampered with.": "Can be scanned to verify that the information has not been tampered with.",
     "For more information on SMART Health Cards, please visit": "For more information on SMART\u00AE Health Cards, please visit <br/><0>{{url}}</0>."
+  },
+  "healthcarddisplay": {
+    "Vaccine": "Vaccine",
+    "Lot": "Lot",
+    "Date": "Date",
+    "Vaccinator": "Vaccinator",
+    "Invalid SMART Health Card": "Invalid SMART\u00AE Health Card",
+    "Not verified": "Not verified",
+    "Verified": "Verified",
+    "Partially Verified": "Partially Verified",
+    "Valid SMART Health Card": "Valid SMART\u00AE Health Card",
+    "Valid vaccination series": "Valid vaccination series",
+    "Vaccination series not valid": "Vaccination series not valid",
+    "Issuer recognized": "Issuer not recognized",
+    "Only valid SMART Health Card QR Codes are currently supported.": "Only valid <0>SMART\u00AE Health Card</0> QR Codes<br/>are currently supported.",
+    "SCAN QR CODE": "SCAN QR CODE",
+    "NAME": "NAME",
+    "DATE OF BIRTH": "DATE OF BIRTH",
+    "VACCINATION RECORD": "VACCINATION RECORD"
   }
 }
