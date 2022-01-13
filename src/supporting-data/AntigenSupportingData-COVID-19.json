@@ -1,6 +1,6 @@
 {
     "antigenSupportingData": {
-        "immunity": "",
+        "immunity": "\r\n",
         "contraindications": {
             "vaccineGroup": {
                 "contraindication": [
@@ -67,6 +67,18 @@
                                 "endAge": ""
                             }
                         ]
+                    },
+                    {
+                        "observationCode": "209",
+                        "observationTitle": "History of thrombosis with thrombocytopenia following the Janssen COVID-19 Vaccine or any other adenovirus-vectored COVID-19 vaccines",
+                        "contraindicationText": "Do not administer the Janssen COVID-19 vaccine to individuals with a history of thrombosis with thrombocytopenia following the Janssen COVID-19 vaccine or any other adenovirus-vectored COVID-19 vaccines (e.g., AstraZeneca's COVID-19 vaccine which is not authorized or approved in the United States)",
+                        "contraindicationGuidance": "",
+                        "contraindicatedVaccine": {
+                            "vaccineType": "SARS-COV-2 (COVID-19) vaccine, vector non-replicating, recombinant spike protein-Ad26, preservative free, 0.5 mL",
+                            "cvx": "212",
+                            "beginAge": "",
+                            "endAge": ""
+                        }
                     }
                 ]
             }
@@ -77,11 +89,11 @@
                 "targetDisease": "COVID-19",
                 "vaccineGroup": "COVID-19",
                 "seriesAdminGuidance": [
+                    "mRNA COVID-19 vaccines are preferred over the Janssen COVID-19 vaccine for the prevention of COVID-19 for all 18 years of age and older.",
                     "COVID-19 vaccines and other vaccines may now be administered without regard to timing. This includes simultaneous administration of COVID-19 vaccines and other vaccines on the same day, as well as coadministration within 14 days. It is unknown whether reactogenicity of COVID-19 vaccine is increased with coadministration, including with other vaccines known to be more reactogenic, such as adjuvanted vaccines or live vaccines. When deciding whether to coadminister another vaccine(s) with COVID-19 vaccines, providers should consider whether the patient is behind or at risk of becoming behind on recommended vaccines, their risk of vaccine-preventable disease (e.g., during an outbreak or occupational exposures), and the reactogenicity profile of the vaccines.",
                     "Vaccination should be deferred until recovery from acute illness (if person had symptoms) and criteria have been met to discontinue isolation.",
                     "Given the lack of data on the safety of COVID-19 vaccines in people with a history of MIS-C or MIS-A, a conversation between the patient, their guardian(s), and their clinical team or a specialist is strongly encouraged to assist with decisions about the use of COVID-19 vaccines.",
-                    "Currently no data on safety or efficacy of COVID-19 vaccination in persons who received monoclonal antibodies or convalescent plasma as part of COVID-19 treatment. Vaccination should be deferred for at least 90 days to avoid interference of the treatment with vaccine-induced immune responses.",
-                    "All persons aged ≥18 years should receive a single COVID-19 vaccine booster dose (Pfizer-BioNTech, Moderna, or Janssen) ≥6 months after completion of their primary mRNA vaccine series."
+                    "Currently no data on safety or efficacy of COVID-19 vaccination in persons who received monoclonal antibodies or convalescent plasma as part of COVID-19 treatment. Vaccination should be deferred for at least 90 days to avoid interference of the treatment with vaccine-induced immune responses."
                 ],
                 "seriesType": "Standard",
                 "equivalentSeriesGroups": "2; 3",
@@ -354,9 +366,9 @@
                                 "value": 0,
                                 "unit": "d"
                             },
-                            "minAge": "18 years",
+                            "minAge": "12 years",
                             "earliestRecAge": {
-                                "value": 18,
+                                "value": 12,
                                 "unit": "a"
                             },
                             "latestRecAge": "",
@@ -386,10 +398,10 @@
                                 "fromTargetDose": "",
                                 "fromMostRecent": "",
                                 "fromRelevantObs": "",
-                                "absMinInt": "6 months - 4 days",
-                                "minInt": "6 months",
+                                "absMinInt": "5 months - 4 days",
+                                "minInt": "5 months",
                                 "earliestRecInt": {
-                                    "value": 6,
+                                    "value": 5,
                                     "unit": "mo"
                                 },
                                 "latestRecInt": "",
@@ -508,7 +520,7 @@
                             "setLogic": "n/a",
                             "set": {
                                 "setID": "1",
-                                "setDescription": "Target Dose should not be forecasted for anyone under 18 years of age",
+                                "setDescription": "Target Dose should not be forecasted for anyone under 12 years of age",
                                 "effectiveDate": "",
                                 "cessationDate": "",
                                 "conditionLogic": "",
@@ -518,7 +530,7 @@
                                     "startDate": "",
                                     "endDate": "",
                                     "beginAge": "",
-                                    "endAge": "18 years",
+                                    "endAge": "12 years",
                                     "interval": "",
                                     "doseCount": "",
                                     "doseType": "",
@@ -538,11 +550,11 @@
                 "targetDisease": "COVID-19",
                 "vaccineGroup": "COVID-19",
                 "seriesAdminGuidance": [
+                    "mRNA COVID-19 vaccines are preferred over the Janssen COVID-19 vaccine for the prevention of COVID-19 for all 18 years of age and older.",
                     "COVID-19 vaccines and other vaccines may now be administered without regard to timing. This includes simultaneous administration of COVID-19 vaccines and other vaccines on the same day, as well as coadministration within 14 days. It is unknown whether reactogenicity of COVID-19 vaccine is increased with coadministration, including with other vaccines known to be more reactogenic, such as adjuvanted vaccines or live vaccines. When deciding whether to coadminister another vaccine(s) with COVID-19 vaccines, providers should consider whether the patient is behind or at risk of becoming behind on recommended vaccines, their risk of vaccine-preventable disease (e.g., during an outbreak or occupational exposures), and the reactogenicity profile of the vaccines.",
                     "Vaccination should be deferred until recovery from acute illness (if person had symptoms) and criteria have been met to discontinue isolation.",
                     "Given the lack of data on the safety of COVID-19 vaccines in people with a history of MIS-C or MIS-A, a conversation between the patient, their guardian(s), and their clinical team or a specialist is strongly encouraged to assist with decisions about the use of COVID-19 vaccines.",
-                    "Currently no data on safety or efficacy of COVID-19 vaccination in persons who received monoclonal antibodies or convalescent plasma as part of COVID-19 treatment. Vaccination should be deferred for at least 90 days to avoid interference of the treatment with vaccine-induced immune responses.",
-                    "All persons aged ≥18 years should receive a single COVID-19 vaccine booster dose (Pfizer-BioNTech, Moderna, or Janssen) ≥6 months after completion of their primary mRNA vaccine series."
+                    "Currently no data on safety or efficacy of COVID-19 vaccination in persons who received monoclonal antibodies or convalescent plasma as part of COVID-19 treatment. Vaccination should be deferred for at least 90 days to avoid interference of the treatment with vaccine-induced immune responses."
                 ],
                 "seriesType": "Standard",
                 "equivalentSeriesGroups": "2; 3",
@@ -774,9 +786,9 @@
                                 "value": 0,
                                 "unit": "d"
                             },
-                            "minAge": "18 years",
+                            "minAge": "12 years",
                             "earliestRecAge": {
-                                "value": 18,
+                                "value": 12,
                                 "unit": "a"
                             },
                             "latestRecAge": "",
@@ -806,10 +818,10 @@
                                 "fromTargetDose": "",
                                 "fromMostRecent": "",
                                 "fromRelevantObs": "",
-                                "absMinInt": "6 months - 4 days",
-                                "minInt": "6 months",
+                                "absMinInt": "5 months - 4 days",
+                                "minInt": "5 months",
                                 "earliestRecInt": {
-                                    "value": 6,
+                                    "value": 5,
                                     "unit": "mo"
                                 },
                                 "latestRecInt": "",
@@ -934,11 +946,11 @@
                 "targetDisease": "COVID-19",
                 "vaccineGroup": "COVID-19",
                 "seriesAdminGuidance": [
+                    "mRNA COVID-19 vaccines are preferred over the Janssen COVID-19 vaccine for the prevention of COVID-19 for all 18 years of age and older.",
                     "COVID-19 vaccines and other vaccines may now be administered without regard to timing. This includes simultaneous administration of COVID-19 vaccines and other vaccines on the same day, as well as coadministration within 14 days. It is unknown whether reactogenicity of COVID-19 vaccine is increased with coadministration, including with other vaccines known to be more reactogenic, such as adjuvanted vaccines or live vaccines. When deciding whether to coadminister another vaccine(s) with COVID-19 vaccines, providers should consider whether the patient is behind or at risk of becoming behind on recommended vaccines, their risk of vaccine-preventable disease (e.g., during an outbreak or occupational exposures), and the reactogenicity profile of the vaccines.",
                     "Vaccination should be deferred until recovery from acute illness (if person had symptoms) and criteria have been met to discontinue isolation.",
                     "Given the lack of data on the safety of COVID-19 vaccines in people with a history of MIS-C or MIS-A, a conversation between the patient, their guardian(s), and their clinical team or a specialist is strongly encouraged to assist with decisions about the use of COVID-19 vaccines.",
-                    "Currently no data on safety or efficacy of COVID-19 vaccination in persons who received monoclonal antibodies or convalescent plasma as part of COVID-19 treatment. Vaccination should be deferred for at least 90 days to avoid interference of the treatment with vaccine-induced immune responses.",
-                    "All persons aged ≥18 years should receive a single COVID-19 vaccine booster dose (Pfizer-BioNTech, Moderna, or Janssen) ≥6 months after completion of their primary mRNA vaccine series."
+                    "Currently no data on safety or efficacy of COVID-19 vaccination in persons who received monoclonal antibodies or convalescent plasma as part of COVID-19 treatment. Vaccination should be deferred for at least 90 days to avoid interference of the treatment with vaccine-induced immune responses."
                 ],
                 "seriesType": "Standard",
                 "equivalentSeriesGroups": "2; 3",
@@ -1138,9 +1150,9 @@
                                 "value": 0,
                                 "unit": "d"
                             },
-                            "minAge": "18 years",
+                            "minAge": "12 years",
                             "earliestRecAge": {
-                                "value": 18,
+                                "value": 12,
                                 "unit": "a"
                             },
                             "latestRecAge": "",
@@ -1170,10 +1182,10 @@
                                 "fromTargetDose": "",
                                 "fromMostRecent": "",
                                 "fromRelevantObs": "",
-                                "absMinInt": "6 months - 4 days",
-                                "minInt": "6 months",
+                                "absMinInt": "5 months - 4 days",
+                                "minInt": "5 months",
                                 "earliestRecInt": {
-                                    "value": 6,
+                                    "value": 5,
                                     "unit": "mo"
                                 },
                                 "latestRecInt": "",
@@ -1298,12 +1310,12 @@
                 "targetDisease": "COVID-19",
                 "vaccineGroup": "COVID-19",
                 "seriesAdminGuidance": [
+                    "mRNA COVID-19 vaccines are preferred over the Janssen COVID-19 vaccine for the prevention of COVID-19 for all 18 years of age and older.",
                     "COVID-19 vaccines and other vaccines may now be administered without regard to timing. This includes simultaneous administration of COVID-19 vaccines and other vaccines on the same day, as well as coadministration within 14 days. It is unknown whether reactogenicity of COVID-19 vaccine is increased with coadministration, including with other vaccines known to be more reactogenic, such as adjuvanted vaccines or live vaccines. When deciding whether to coadminister another vaccine(s) with COVID-19 vaccines, providers should consider whether the patient is behind or at risk of becoming behind on recommended vaccines, their risk of vaccine-preventable disease (e.g., during an outbreak or occupational exposures), and the reactogenicity profile of the vaccines.",
                     "Vaccination should be deferred until recovery from acute illness (if person had symptoms) and criteria have been met to discontinue isolation.",
                     "Given the lack of data on the safety of COVID-19 vaccines in people with a history of MIS-C or MIS-A, a conversation between the patient, their guardian(s), and their clinical team or a specialist is strongly encouraged to assist with decisions about the use of COVID-19 vaccines.",
                     "Currently no data on safety or efficacy of COVID-19 vaccination in persons who received monoclonal antibodies or convalescent plasma as part of COVID-19 treatment. Vaccination should be deferred for at least 90 days to avoid interference of the treatment with vaccine-induced immune responses.",
-                    "Because the efficacy of the Janssen vaccine in people aged less than 18 years has not been established, a single dose of the Pfizer-BioNTech COVID-19 Vaccine could be considered at least 2 months after the Janssen COVID-19 Vaccine.",
-                    "People aged ≥18 years who received a Janssen primary series should receive a single COVID-19 vaccine booster dose (Pfizer-BioNTech, Moderna, or Janssen) ≥2 months after their Janssen primary dose."
+                    "Because the efficacy of the Janssen vaccine in people aged less than 18 years has not been established, a single dose of the Pfizer-BioNTech COVID-19 Vaccine could be considered at least 2 months after the Janssen COVID-19 Vaccine."
                 ],
                 "seriesType": "Standard",
                 "equivalentSeriesGroups": "2; 3",
@@ -1391,9 +1403,9 @@
                                 "value": 0,
                                 "unit": "d"
                             },
-                            "minAge": "18 years",
+                            "minAge": "12 years",
                             "earliestRecAge": {
-                                "value": 18,
+                                "value": 12,
                                 "unit": "a"
                             },
                             "latestRecAge": "",
@@ -1529,7 +1541,7 @@
                             "setLogic": "n/a",
                             "set": {
                                 "setID": "1",
-                                "setDescription": "Target Dose should not be forecasted for anyone under 18 years of age",
+                                "setDescription": "Target Dose should not be forecasted for anyone under 12 years of age",
                                 "effectiveDate": "",
                                 "cessationDate": "",
                                 "conditionLogic": "",
@@ -1539,7 +1551,7 @@
                                     "startDate": "",
                                     "endDate": "",
                                     "beginAge": "",
-                                    "endAge": "18 years",
+                                    "endAge": "12 years",
                                     "interval": "",
                                     "doseCount": "",
                                     "doseType": "",
@@ -1559,12 +1571,12 @@
                 "targetDisease": "COVID-19",
                 "vaccineGroup": "COVID-19",
                 "seriesAdminGuidance": [
+                    "mRNA COVID-19 vaccines are preferred over the Janssen COVID-19 vaccine for the prevention of COVID-19 for all 18 years of age and older.",
                     "COVID-19 vaccines and other vaccines may now be administered without regard to timing. This includes simultaneous administration of COVID-19 vaccines and other vaccines on the same day, as well as coadministration within 14 days. It is unknown whether reactogenicity of COVID-19 vaccine is increased with coadministration, including with other vaccines known to be more reactogenic, such as adjuvanted vaccines or live vaccines. When deciding whether to coadminister another vaccine(s) with COVID-19 vaccines, providers should consider whether the patient is behind or at risk of becoming behind on recommended vaccines, their risk of vaccine-preventable disease (e.g., during an outbreak or occupational exposures), and the reactogenicity profile of the vaccines.",
                     "Vaccination should be deferred until recovery from acute illness (if person had symptoms) and criteria have been met to discontinue isolation.",
                     "Given the lack of data on the safety of COVID-19 vaccines in people with a history of MIS-C or MIS-A, a conversation between the patient, their guardian(s), and their clinical team or a specialist is strongly encouraged to assist with decisions about the use of COVID-19 vaccines.",
                     "Currently no data on safety or efficacy of COVID-19 vaccination in persons who received monoclonal antibodies or convalescent plasma as part of COVID-19 treatment. Vaccination should be deferred for at least 90 days to avoid interference of the treatment with vaccine-induced immune responses.",
-                    "If Moderna vaccine administered as the first dose before 18 years, it is suggested to give Pfizer-BioNTech vaccine as the second dose (at least 28 days after the Moderna vaccine dose) because Pfizer-BioNTech is authorized in this age group.",
-                    "All persons aged ≥18 years should receive a single COVID-19 vaccine booster dose (Pfizer-BioNTech, Moderna, or Janssen) ≥6 months after completion of their primary mRNA vaccine series."
+                    "If Moderna vaccine administered as the first dose before 18 years, it is suggested to give Pfizer-BioNTech vaccine as the second dose (at least 28 days after the Moderna vaccine dose) because Pfizer-BioNTech is authorized in this age group."
                 ],
                 "seriesType": "Standard",
                 "equivalentSeriesGroups": "2; 3",
@@ -1890,9 +1902,9 @@
                                 "value": 0,
                                 "unit": "d"
                             },
-                            "minAge": "18 years",
+                            "minAge": "12 years",
                             "earliestRecAge": {
-                                "value": 18,
+                                "value": 12,
                                 "unit": "a"
                             },
                             "latestRecAge": "",
@@ -1922,10 +1934,10 @@
                                 "fromTargetDose": "",
                                 "fromMostRecent": "",
                                 "fromRelevantObs": "",
-                                "absMinInt": "6 months - 4 days",
-                                "minInt": "6 months",
+                                "absMinInt": "5 months - 4 days",
+                                "minInt": "5 months",
                                 "earliestRecInt": {
-                                    "value": 6,
+                                    "value": 5,
                                     "unit": "mo"
                                 },
                                 "latestRecInt": "",
@@ -2044,7 +2056,7 @@
                             "setLogic": "n/a",
                             "set": {
                                 "setID": "1",
-                                "setDescription": "Target Dose should not be forecasted for anyone under 18 years of age",
+                                "setDescription": "Target Dose should not be forecasted for anyone under 12 years of age",
                                 "effectiveDate": "",
                                 "cessationDate": "",
                                 "conditionLogic": "",
@@ -2054,7 +2066,7 @@
                                     "startDate": "",
                                     "endDate": "",
                                     "beginAge": "",
-                                    "endAge": "18 years",
+                                    "endAge": "12 years",
                                     "interval": "",
                                     "doseCount": "",
                                     "doseType": "",
@@ -2074,12 +2086,12 @@
                 "targetDisease": "COVID-19",
                 "vaccineGroup": "COVID-19",
                 "seriesAdminGuidance": [
-                    "A patients clinical team is best positioned to determine the degree of immune compromise and appropriate timing of vaccination.\r\n\r\nFactors to consider in assessing the general level of immune competence in a patient include disease severity, duration, clinical stability, complications, comorbidities, and any potentially immune-suppressing treatment.",
+                    "mRNA COVID-19 vaccines are preferred over the Janssen COVID-19 vaccine for the prevention of COVID-19 for all 18 years of age and older.",
+                    "A patients clinical team is best positioned to determine the degree of immune compromise and appropriate timing of vaccination.\n\nFactors to consider in assessing the general level of immune competence in a patient include disease severity, duration, clinical stability, complications, comorbidities, and any potentially immune-suppressing treatment.",
                     "COVID-19 vaccines and other vaccines may now be administered without regard to timing. This includes simultaneous administration of COVID-19 vaccines and other vaccines on the same day, as well as coadministration within 14 days. It is unknown whether reactogenicity of COVID-19 vaccine is increased with coadministration, including with other vaccines known to be more reactogenic, such as adjuvanted vaccines or live vaccines. When deciding whether to coadminister another vaccine(s) with COVID-19 vaccines, providers should consider whether the patient is behind or at risk of becoming behind on recommended vaccines, their risk of vaccine-preventable disease (e.g., during an outbreak or occupational exposures), and the reactogenicity profile of the vaccines.",
                     "Vaccination should be deferred until recovery from acute illness (if person had symptoms) and criteria have been met to discontinue isolation.",
                     "Given the lack of data on the safety of COVID-19 vaccines in people with a history of MIS-C or MIS-A, a conversation between the patient, their guardian(s), and their clinical team or a specialist is strongly encouraged to assist with decisions about the use of COVID-19 vaccines.",
-                    "Currently no data on safety or efficacy of COVID-19 vaccination in persons who received monoclonal antibodies or convalescent plasma as part of COVID-19 treatment. Vaccination should be deferred for at least 90 days to avoid interference of the treatment with vaccine-induced immune responses.",
-                    "All persons aged ≥18 years should receive a single COVID-19 vaccine booster dose (Pfizer-BioNTech, Moderna, or Janssen) ≥6 months after completion of their primary mRNA vaccine series."
+                    "Currently no data on safety or efficacy of COVID-19 vaccination in persons who received monoclonal antibodies or convalescent plasma as part of COVID-19 treatment. Vaccination should be deferred for at least 90 days to avoid interference of the treatment with vaccine-induced immune responses."
                 ],
                 "seriesType": "Risk",
                 "equivalentSeriesGroups": "3",
@@ -2101,7 +2113,7 @@
                             "code": "004"
                         },
                         "description": "Administer to recipients of a hematopoietic stem cell transplant [HSCT] within 2 years of successful transplantation.",
-                        "beginAge": "12 years",
+                        "beginAge": "5 years",
                         "endAge": "",
                         "guidance": ""
                     },
@@ -2111,7 +2123,7 @@
                             "code": "145"
                         },
                         "description": "Administer to persons who have severe B-lymphocyte (humoral) - antibody deficiencies (e.g., X-linked agammaglobulinemia and common variable immunodeficiency).",
-                        "beginAge": "12 years",
+                        "beginAge": "5 years",
                         "endAge": "",
                         "guidance": ""
                     },
@@ -2121,7 +2133,7 @@
                             "code": "147"
                         },
                         "description": "Administer to persons who have complete cell-mediated or humoral T-lymphocyte defects (e.g., severe combined immunodeficiency [SCID] disease, complete DiGeorge syndrome).",
-                        "beginAge": "12 years",
+                        "beginAge": "5 years",
                         "endAge": "",
                         "guidance": ""
                     },
@@ -2131,7 +2143,7 @@
                             "code": "148"
                         },
                         "description": "Administer to persons who have partial cell-mediated or humoral T-lymphocyte defects (e.g., most patients with DiGeorge syndrome, Wiskott-Aldrich syndrome, ataxia- telangiectasia).",
-                        "beginAge": "12 years",
+                        "beginAge": "5 years",
                         "endAge": "",
                         "guidance": ""
                     },
@@ -2141,7 +2153,7 @@
                             "code": "153"
                         },
                         "description": "Administer to persons who have a phagocytic function defect (e.g. leukocyte adhesion defect and myeloperoxidase deficiency).",
-                        "beginAge": "12 years",
+                        "beginAge": "5 years",
                         "endAge": "",
                         "guidance": ""
                     },
@@ -2151,7 +2163,7 @@
                             "code": "154"
                         },
                         "description": "Administer to persons who have HIV/AIDS and are severely immunocompromised [See the CDC general recommendations for a definition of \"severely immunocompromised\"].",
-                        "beginAge": "12 years",
+                        "beginAge": "5 years",
                         "endAge": "",
                         "guidance": ""
                     },
@@ -2161,7 +2173,7 @@
                             "code": "157"
                         },
                         "description": "Administer to persons who have received a transplant.",
-                        "beginAge": "12 years",
+                        "beginAge": "5 years",
                         "endAge": "",
                         "guidance": ""
                     },
@@ -2171,7 +2183,7 @@
                             "code": "158"
                         },
                         "description": "Administer to persons who are undergoing immunosuppressive therapy. Immunosuppressive medications include those given to prevent solid organ transplant rejection, human immune mediators like interleukins and colony-stimulating factors, immune modulators like levamisol and BCG bladder-tumor therapy, and medicines like tumor necrosis factor alpha inhibitors and anti-B cell antibodies. ",
-                        "beginAge": "12 years",
+                        "beginAge": "5 years",
                         "endAge": "",
                         "guidance": "When immunocompromising therapy is being planned, vaccination should be completed at least 2 weeks before initiation or resumption of therapy."
                     },
@@ -2181,7 +2193,7 @@
                             "code": "159"
                         },
                         "description": "Administer to persons who are undergoing radiation therapy.",
-                        "beginAge": "12 years",
+                        "beginAge": "5 years",
                         "endAge": "",
                         "guidance": "When immunocompromising therapy is being planned, vaccination should be completed at least 2 weeks before initiation or resumption of therapy."
                     },
@@ -2191,7 +2203,7 @@
                             "code": "189"
                         },
                         "description": "Administer to persons receiving active treatement for solid tumors",
-                        "beginAge": "12 years",
+                        "beginAge": "5 years",
                         "endAge": "",
                         "guidance": ""
                     },
@@ -2201,7 +2213,7 @@
                             "code": "190"
                         },
                         "description": "Administer to persons receiving active treatement for hematologic malignancies",
-                        "beginAge": "12 years",
+                        "beginAge": "5 years",
                         "endAge": "",
                         "guidance": ""
                     },
@@ -2211,7 +2223,7 @@
                             "code": "191"
                         },
                         "description": "Adminster to persons receiving CAR-T-cell therapy",
-                        "beginAge": "12 years",
+                        "beginAge": "5 years",
                         "endAge": "",
                         "guidance": ""
                     }
@@ -2224,9 +2236,9 @@
                                 "value": 0,
                                 "unit": "d"
                             },
-                            "minAge": "12 years",
+                            "minAge": "5 years",
                             "earliestRecAge": {
-                                "value": 12,
+                                "value": 5,
                                 "unit": "a"
                             },
                             "latestRecAge": "",
@@ -2275,6 +2287,16 @@
                                 "mvx": "",
                                 "volume": "0.3",
                                 "forecastVaccineType": "N"
+                            },
+                            {
+                                "vaccineType": "COVID-19, mRNA, LNP-S, PF, 10 mcg/0.2 mL dose, tris-sucrose",
+                                "cvx": "218",
+                                "beginAge": "5 years",
+                                "endAge": "12 years",
+                                "tradeName": "",
+                                "mvx": "",
+                                "volume": "0.2",
+                                "forecastVaccineType": "N"
                             }
                         ],
                         "allowableVaccine": [
@@ -2321,9 +2343,9 @@
                                 "value": 0,
                                 "unit": "d"
                             },
-                            "minAge": "12 years",
+                            "minAge": "5 years",
                             "earliestRecAge": {
-                                "value": 12,
+                                "value": 5,
                                 "unit": "a"
                             },
                             "latestRecAge": "",
@@ -2404,6 +2426,16 @@
                                 "mvx": "",
                                 "volume": "0.3",
                                 "forecastVaccineType": "Y"
+                            },
+                            {
+                                "vaccineType": "COVID-19, mRNA, LNP-S, PF, 10 mcg/0.2 mL dose, tris-sucrose",
+                                "cvx": "218",
+                                "beginAge": "5 years",
+                                "endAge": "12 years",
+                                "tradeName": "",
+                                "mvx": "",
+                                "volume": "0.2",
+                                "forecastVaccineType": "Y"
                             }
                         ],
                         "allowableVaccine": [
@@ -2450,9 +2482,9 @@
                                 "value": 0,
                                 "unit": "d"
                             },
-                            "minAge": "12 years",
+                            "minAge": "5 years",
                             "earliestRecAge": {
-                                "value": 12,
+                                "value": 5,
                                 "unit": "a"
                             },
                             "latestRecAge": "",
@@ -2533,6 +2565,16 @@
                                 "mvx": "",
                                 "volume": "0.3",
                                 "forecastVaccineType": "Y"
+                            },
+                            {
+                                "vaccineType": "COVID-19, mRNA, LNP-S, PF, 10 mcg/0.2 mL dose, tris-sucrose",
+                                "cvx": "218",
+                                "beginAge": "5 years",
+                                "endAge": "12 years",
+                                "tradeName": "",
+                                "mvx": "",
+                                "volume": "0.2",
+                                "forecastVaccineType": "Y"
                             }
                         ],
                         "allowableVaccine": [
@@ -2579,9 +2621,9 @@
                                 "value": 0,
                                 "unit": "d"
                             },
-                            "minAge": "18 years",
+                            "minAge": "12 years",
                             "earliestRecAge": {
-                                "value": 18,
+                                "value": 12,
                                 "unit": "a"
                             },
                             "latestRecAge": "",
@@ -2611,10 +2653,10 @@
                                 "fromTargetDose": "",
                                 "fromMostRecent": "",
                                 "fromRelevantObs": "",
-                                "absMinInt": "6 months - 4 days",
-                                "minInt": "6 months",
+                                "absMinInt": "5 months - 4 days",
+                                "minInt": "5 months",
                                 "earliestRecInt": {
-                                    "value": 6,
+                                    "value": 5,
                                     "unit": "mo"
                                 },
                                 "latestRecInt": "",
@@ -2733,7 +2775,7 @@
                             "setLogic": "n/a",
                             "set": {
                                 "setID": "1",
-                                "setDescription": "Target Dose should not be forecasted for anyone under 18 years of age",
+                                "setDescription": "Target Dose should not be forecasted for anyone under 12 years of age",
                                 "effectiveDate": "",
                                 "cessationDate": "",
                                 "conditionLogic": "",
@@ -2743,7 +2785,7 @@
                                     "startDate": "",
                                     "endDate": "",
                                     "beginAge": "",
-                                    "endAge": "18 years",
+                                    "endAge": "12 years",
                                     "interval": "",
                                     "doseCount": "",
                                     "doseType": "",
@@ -2763,12 +2805,12 @@
                 "targetDisease": "COVID-19",
                 "vaccineGroup": "COVID-19",
                 "seriesAdminGuidance": [
-                    "A patients clinical team is best positioned to determine the degree of immune compromise and appropriate timing of vaccination.\r\n\r\nFactors to consider in assessing the general level of immune competence in a patient include disease severity, duration, clinical stability, complications, comorbidities, and any potentially immune-suppressing treatment.",
+                    "mRNA COVID-19 vaccines are preferred over the Janssen COVID-19 vaccine for the prevention of COVID-19 for all 18 years of age and older.",
+                    "A patients clinical team is best positioned to determine the degree of immune compromise and appropriate timing of vaccination.\n\nFactors to consider in assessing the general level of immune competence in a patient include disease severity, duration, clinical stability, complications, comorbidities, and any potentially immune-suppressing treatment.",
                     "COVID-19 vaccines and other vaccines may now be administered without regard to timing. This includes simultaneous administration of COVID-19 vaccines and other vaccines on the same day, as well as coadministration within 14 days. It is unknown whether reactogenicity of COVID-19 vaccine is increased with coadministration, including with other vaccines known to be more reactogenic, such as adjuvanted vaccines or live vaccines. When deciding whether to coadminister another vaccine(s) with COVID-19 vaccines, providers should consider whether the patient is behind or at risk of becoming behind on recommended vaccines, their risk of vaccine-preventable disease (e.g., during an outbreak or occupational exposures), and the reactogenicity profile of the vaccines.",
                     "Vaccination should be deferred until recovery from acute illness (if person had symptoms) and criteria have been met to discontinue isolation.",
                     "Given the lack of data on the safety of COVID-19 vaccines in people with a history of MIS-C or MIS-A, a conversation between the patient, their guardian(s), and their clinical team or a specialist is strongly encouraged to assist with decisions about the use of COVID-19 vaccines.",
-                    "Currently no data on safety or efficacy of COVID-19 vaccination in persons who received monoclonal antibodies or convalescent plasma as part of COVID-19 treatment. Vaccination should be deferred for at least 90 days to avoid interference of the treatment with vaccine-induced immune responses.",
-                    "All persons aged ≥18 years should receive a single COVID-19 vaccine booster dose (Pfizer-BioNTech, Moderna, or Janssen) ≥6 months after completion of their primary mRNA vaccine series."
+                    "Currently no data on safety or efficacy of COVID-19 vaccination in persons who received monoclonal antibodies or convalescent plasma as part of COVID-19 treatment. Vaccination should be deferred for at least 90 days to avoid interference of the treatment with vaccine-induced immune responses."
                 ],
                 "seriesType": "Risk",
                 "equivalentSeriesGroups": "3",
@@ -3182,12 +3224,12 @@
                         "doseNumber": "Dose 4",
                         "age": {
                             "absMinAge": {
-                                "value": 18,
-                                "unit": "a"
+                                "value": 0,
+                                "unit": "d"
                             },
-                            "minAge": "18 years",
+                            "minAge": "12 years",
                             "earliestRecAge": {
-                                "value": 18,
+                                "value": 12,
                                 "unit": "a"
                             },
                             "latestRecAge": "",
@@ -3217,10 +3259,10 @@
                                 "fromTargetDose": "",
                                 "fromMostRecent": "",
                                 "fromRelevantObs": "",
-                                "absMinInt": "6 months - 4 days",
-                                "minInt": "6 months",
+                                "absMinInt": "5 months - 4 days",
+                                "minInt": "5 months",
                                 "earliestRecInt": {
-                                    "value": 6,
+                                    "value": 5,
                                     "unit": "mo"
                                 },
                                 "latestRecInt": "",
@@ -3345,13 +3387,13 @@
                 "targetDisease": "COVID-19",
                 "vaccineGroup": "COVID-19",
                 "seriesAdminGuidance": [
-                    "A patients clinical team is best positioned to determine the degree of immune compromise and appropriate timing of vaccination.\r\n\r\nFactors to consider in assessing the general level of immune competence in a patient include disease severity, duration, clinical stability, complications, comorbidities, and any potentially immune-suppressing treatment.",
+                    "mRNA COVID-19 vaccines are preferred over the Janssen COVID-19 vaccine for the prevention of COVID-19 for all 18 years of age and older.",
+                    "A patients clinical team is best positioned to determine the degree of immune compromise and appropriate timing of vaccination.\n\nFactors to consider in assessing the general level of immune competence in a patient include disease severity, duration, clinical stability, complications, comorbidities, and any potentially immune-suppressing treatment.",
                     "COVID-19 vaccines and other vaccines may now be administered without regard to timing. This includes simultaneous administration of COVID-19 vaccines and other vaccines on the same day, as well as coadministration within 14 days. It is unknown whether reactogenicity of COVID-19 vaccine is increased with coadministration, including with other vaccines known to be more reactogenic, such as adjuvanted vaccines or live vaccines. When deciding whether to coadminister another vaccine(s) with COVID-19 vaccines, providers should consider whether the patient is behind or at risk of becoming behind on recommended vaccines, their risk of vaccine-preventable disease (e.g., during an outbreak or occupational exposures), and the reactogenicity profile of the vaccines.",
                     "Vaccination should be deferred until recovery from acute illness (if person had symptoms) and criteria have been met to discontinue isolation.",
                     "Given the lack of data on the safety of COVID-19 vaccines in people with a history of MIS-C or MIS-A, a conversation between the patient, their guardian(s), and their clinical team or a specialist is strongly encouraged to assist with decisions about the use of COVID-19 vaccines.",
                     "Currently no data on safety or efficacy of COVID-19 vaccination in persons who received monoclonal antibodies or convalescent plasma as part of COVID-19 treatment. Vaccination should be deferred for at least 90 days to avoid interference of the treatment with vaccine-induced immune responses.",
-                    "Because the efficacy of the Janssen vaccine in people aged less than 18 years has not been established, a single dose of the Pfizer-BioNTech COVID-19 Vaccine could be considered at least 2 months after the Janssen COVID-19 Vaccine.",
-                    "People aged ≥18 years who received a Janssen primary series should receive a single COVID-19 vaccine booster dose (Pfizer-BioNTech, Moderna, or Janssen) ≥2 months after their Janssen primary dose."
+                    "Because the efficacy of the Janssen vaccine in people aged less than 18 years has not been established, a single dose of the Pfizer-BioNTech COVID-19 Vaccine could be considered at least 2 months after the Janssen COVID-19 Vaccine."
                 ],
                 "seriesType": "Risk",
                 "equivalentSeriesGroups": "3",
@@ -3560,9 +3602,9 @@
                                 "value": 0,
                                 "unit": "d"
                             },
-                            "minAge": "18 years",
+                            "minAge": "12 years",
                             "earliestRecAge": {
-                                "value": 18,
+                                "value": 12,
                                 "unit": "a"
                             },
                             "latestRecAge": "",
@@ -3698,7 +3740,7 @@
                             "setLogic": "n/a",
                             "set": {
                                 "setID": "1",
-                                "setDescription": "Target Dose should not be forecasted for anyone under 18 years of age",
+                                "setDescription": "Target Dose should not be forecasted for anyone under 12 years of age",
                                 "effectiveDate": "",
                                 "cessationDate": "",
                                 "conditionLogic": "",
@@ -3708,7 +3750,7 @@
                                     "startDate": "",
                                     "endDate": "",
                                     "beginAge": "",
-                                    "endAge": "18 years",
+                                    "endAge": "12 years",
                                     "interval": "",
                                     "doseCount": "",
                                     "doseType": "",
@@ -3728,13 +3770,13 @@
                 "targetDisease": "COVID-19",
                 "vaccineGroup": "COVID-19",
                 "seriesAdminGuidance": [
-                    "A patients clinical team is best positioned to determine the degree of immune compromise and appropriate timing of vaccination.\r\n\r\nFactors to consider in assessing the general level of immune competence in a patient include disease severity, duration, clinical stability, complications, comorbidities, and any potentially immune-suppressing treatment.",
+                    "mRNA COVID-19 vaccines are preferred over the Janssen COVID-19 vaccine for the prevention of COVID-19 for all 18 years of age and older.",
+                    "A patients clinical team is best positioned to determine the degree of immune compromise and appropriate timing of vaccination.\n\nFactors to consider in assessing the general level of immune competence in a patient include disease severity, duration, clinical stability, complications, comorbidities, and any potentially immune-suppressing treatment.",
                     "COVID-19 vaccines and other vaccines may now be administered without regard to timing. This includes simultaneous administration of COVID-19 vaccines and other vaccines on the same day, as well as coadministration within 14 days. It is unknown whether reactogenicity of COVID-19 vaccine is increased with coadministration, including with other vaccines known to be more reactogenic, such as adjuvanted vaccines or live vaccines. When deciding whether to coadminister another vaccine(s) with COVID-19 vaccines, providers should consider whether the patient is behind or at risk of becoming behind on recommended vaccines, their risk of vaccine-preventable disease (e.g., during an outbreak or occupational exposures), and the reactogenicity profile of the vaccines.",
                     "Vaccination should be deferred until recovery from acute illness (if person had symptoms) and criteria have been met to discontinue isolation.",
                     "Given the lack of data on the safety of COVID-19 vaccines in people with a history of MIS-C or MIS-A, a conversation between the patient, their guardian(s), and their clinical team or a specialist is strongly encouraged to assist with decisions about the use of COVID-19 vaccines.",
                     "Currently no data on safety or efficacy of COVID-19 vaccination in persons who received monoclonal antibodies or convalescent plasma as part of COVID-19 treatment. Vaccination should be deferred for at least 90 days to avoid interference of the treatment with vaccine-induced immune responses.",
-                    "If Moderna vaccine administered as the first dose before 18 years, it is suggested to give Pfizer-BioNTech vaccine as the second dose (at least 28 days after the Moderna vaccine dose) because Pfizer-BioNTech is authorized in this age group.",
-                    "All persons aged ≥18 years should receive a single COVID-19 vaccine booster dose (Pfizer-BioNTech, Moderna, or Janssen) ≥6 months after completion of their primary mRNA vaccine series."
+                    "If Moderna vaccine administered as the first dose before 18 years, it is suggested to give Pfizer-BioNTech vaccine as the second dose (at least 28 days after the Moderna vaccine dose) because Pfizer-BioNTech is authorized in this age group."
                 ],
                 "seriesType": "Risk",
                 "equivalentSeriesGroups": "3",
@@ -3756,7 +3798,7 @@
                             "code": "004"
                         },
                         "description": "Administer to recipients of a hematopoietic stem cell transplant [HSCT] within 2 years of successful transplantation.",
-                        "beginAge": "12 years",
+                        "beginAge": "5 years",
                         "endAge": "",
                         "guidance": ""
                     },
@@ -3766,7 +3808,7 @@
                             "code": "145"
                         },
                         "description": "Administer to persons who have severe B-lymphocyte (humoral) - antibody deficiencies (e.g., X-linked agammaglobulinemia and common variable immunodeficiency).",
-                        "beginAge": "12 years",
+                        "beginAge": "5 years",
                         "endAge": "",
                         "guidance": ""
                     },
@@ -3776,7 +3818,7 @@
                             "code": "147"
                         },
                         "description": "Administer to persons who have complete cell-mediated or humoral T-lymphocyte defects (e.g., severe combined immunodeficiency [SCID] disease, complete DiGeorge syndrome).",
-                        "beginAge": "12 years",
+                        "beginAge": "5 years",
                         "endAge": "",
                         "guidance": ""
                     },
@@ -3786,7 +3828,7 @@
                             "code": "148"
                         },
                         "description": "Administer to persons who have partial cell-mediated or humoral T-lymphocyte defects (e.g., most patients with DiGeorge syndrome, Wiskott-Aldrich syndrome, ataxia- telangiectasia).",
-                        "beginAge": "12 years",
+                        "beginAge": "5 years",
                         "endAge": "",
                         "guidance": ""
                     },
@@ -3796,7 +3838,7 @@
                             "code": "153"
                         },
                         "description": "Administer to persons who have a phagocytic function defect (e.g. leukocyte adhesion defect and myeloperoxidase deficiency).",
-                        "beginAge": "12 years",
+                        "beginAge": "5 years",
                         "endAge": "",
                         "guidance": ""
                     },
@@ -3806,7 +3848,7 @@
                             "code": "154"
                         },
                         "description": "Administer to persons who have HIV/AIDS and are severely immunocompromised [See the CDC general recommendations for a definition of \"severely immunocompromised\"].",
-                        "beginAge": "12 years",
+                        "beginAge": "5 years",
                         "endAge": "",
                         "guidance": ""
                     },
@@ -3816,7 +3858,7 @@
                             "code": "157"
                         },
                         "description": "Administer to persons who have received a transplant.",
-                        "beginAge": "12 years",
+                        "beginAge": "5 years",
                         "endAge": "",
                         "guidance": ""
                     },
@@ -3826,7 +3868,7 @@
                             "code": "158"
                         },
                         "description": "Administer to persons who are undergoing immunosuppressive therapy. Immunosuppressive medications include those given to prevent solid organ transplant rejection, human immune mediators like interleukins and colony-stimulating factors, immune modulators like levamisol and BCG bladder-tumor therapy, and medicines like tumor necrosis factor alpha inhibitors and anti-B cell antibodies. ",
-                        "beginAge": "12 years",
+                        "beginAge": "5 years",
                         "endAge": "",
                         "guidance": "When immunocompromising therapy is being planned, vaccination should be completed at least 2 weeks before initiation or resumption of therapy."
                     },
@@ -3836,7 +3878,7 @@
                             "code": "159"
                         },
                         "description": "Administer to persons who are undergoing radiation therapy.",
-                        "beginAge": "12 years",
+                        "beginAge": "5 years",
                         "endAge": "",
                         "guidance": "When immunocompromising therapy is being planned, vaccination should be completed at least 2 weeks before initiation or resumption of therapy."
                     },
@@ -3846,7 +3888,7 @@
                             "code": "189"
                         },
                         "description": "Administer to persons receiving active treatement for solid tumors",
-                        "beginAge": "12 years",
+                        "beginAge": "5 years",
                         "endAge": "",
                         "guidance": ""
                     },
@@ -3856,7 +3898,7 @@
                             "code": "190"
                         },
                         "description": "Administer to persons receiving active treatement for hematologic malignancies",
-                        "beginAge": "12 years",
+                        "beginAge": "5 years",
                         "endAge": "",
                         "guidance": ""
                     },
@@ -3866,7 +3908,7 @@
                             "code": "191"
                         },
                         "description": "Adminster to persons receiving CAR-T-cell therapy",
-                        "beginAge": "12 years",
+                        "beginAge": "5 years",
                         "endAge": "",
                         "guidance": ""
                     }
@@ -3879,9 +3921,9 @@
                                 "value": 0,
                                 "unit": "d"
                             },
-                            "minAge": "12 years",
+                            "minAge": "5 years",
                             "earliestRecAge": {
-                                "value": 12,
+                                "value": 5,
                                 "unit": "a"
                             },
                             "latestRecAge": "",
@@ -3939,6 +3981,16 @@
                                 "tradeName": "",
                                 "mvx": "",
                                 "volume": "0.3",
+                                "forecastVaccineType": "N"
+                            },
+                            {
+                                "vaccineType": "COVID-19, mRNA, LNP-S, PF, 10 mcg/0.2 mL dose, tris-sucrose",
+                                "cvx": "218",
+                                "beginAge": "5 years",
+                                "endAge": "12 years",
+                                "tradeName": "",
+                                "mvx": "",
+                                "volume": "0.2",
                                 "forecastVaccineType": "N"
                             }
                         ],
@@ -4001,9 +4053,9 @@
                         "doseNumber": "Dose 2",
                         "age": {
                             "absMinAge": {},
-                            "minAge": "12 years",
+                            "minAge": "5 years",
                             "earliestRecAge": {
-                                "value": 12,
+                                "value": 5,
                                 "unit": "a"
                             },
                             "latestRecAge": "",
@@ -4093,6 +4145,16 @@
                                 "tradeName": "",
                                 "mvx": "",
                                 "volume": "0.3",
+                                "forecastVaccineType": "N"
+                            },
+                            {
+                                "vaccineType": "COVID-19, mRNA, LNP-S, PF, 10 mcg/0.2 mL dose, tris-sucrose",
+                                "cvx": "218",
+                                "beginAge": "5 years",
+                                "endAge": "12 years",
+                                "tradeName": "",
+                                "mvx": "",
+                                "volume": "0.2",
                                 "forecastVaccineType": "N"
                             }
                         ],
@@ -4155,9 +4217,9 @@
                         "doseNumber": "Dose 3",
                         "age": {
                             "absMinAge": {},
-                            "minAge": "12 years",
+                            "minAge": "5 years",
                             "earliestRecAge": {
-                                "value": 12,
+                                "value": 5,
                                 "unit": "a"
                             },
                             "latestRecAge": "",
@@ -4247,6 +4309,16 @@
                                 "tradeName": "",
                                 "mvx": "",
                                 "volume": "0.3",
+                                "forecastVaccineType": "N"
+                            },
+                            {
+                                "vaccineType": "COVID-19, mRNA, LNP-S, PF, 10 mcg/0.2 mL dose, tris-sucrose",
+                                "cvx": "218",
+                                "beginAge": "5 years",
+                                "endAge": "12 years",
+                                "tradeName": "",
+                                "mvx": "",
+                                "volume": "0.2",
                                 "forecastVaccineType": "N"
                             }
                         ],
@@ -4312,9 +4384,9 @@
                                 "value": 0,
                                 "unit": "d"
                             },
-                            "minAge": "18 years",
+                            "minAge": "12 years",
                             "earliestRecAge": {
-                                "value": 18,
+                                "value": 12,
                                 "unit": "a"
                             },
                             "latestRecAge": "",
@@ -4344,10 +4416,10 @@
                                 "fromTargetDose": "",
                                 "fromMostRecent": "",
                                 "fromRelevantObs": "",
-                                "absMinInt": "6 months - 4 days",
-                                "minInt": "6 months",
+                                "absMinInt": "5 months - 4 days",
+                                "minInt": "5 months",
                                 "earliestRecInt": {
-                                    "value": 6,
+                                    "value": 5,
                                     "unit": "mo"
                                 },
                                 "latestRecInt": "",
@@ -4466,7 +4538,7 @@
                             "setLogic": "n/a",
                             "set": {
                                 "setID": "1",
-                                "setDescription": "Target Dose should not be forecasted for anyone under 18 years of age",
+                                "setDescription": "Target Dose should not be forecasted for anyone under 12 years of age",
                                 "effectiveDate": "",
                                 "cessationDate": "",
                                 "conditionLogic": "",
@@ -4476,7 +4548,7 @@
                                     "startDate": "",
                                     "endDate": "",
                                     "beginAge": "",
-                                    "endAge": "18 years",
+                                    "endAge": "12 years",
                                     "interval": "",
                                     "doseCount": "",
                                     "doseType": "",
