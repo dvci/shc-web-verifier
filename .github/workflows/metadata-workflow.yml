@@ -20,7 +20,11 @@ jobs:
         curl -sSL -o src/components/HealthCardDisplay/iisstandards_cvx.xml https://www2a.cdc.gov/vaccines/iis/iisstandards/XML2.asp?rpt=cvx
         curl -sSL -o src/components/HealthCardDisplay/iisstandards_tradename.xml https://www2a.cdc.gov/vaccines/iis/iisstandards/XML.asp?rpt=tradename
 
+    - name: Check dirty files
+      run: git diff --quiet --exit-code
+        
     - name: Commit files
+      if: failure()
       run: |
         echo "GITHUB_ACTOR: ${GITHUB_ACTOR}"
         git config user.name "${GITHUB_ACTOR}"
