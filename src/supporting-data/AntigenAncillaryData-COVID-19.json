@@ -2,6 +2,10 @@
     "antigenAncillaryData": {
         "series": [
             {
+                "seriesName": "2-dose 5-17 Pfizer Series",
+                "primarySeriesNumberDoses": 2
+            },
+            {
                 "seriesName": "3-dose Pfizer series",
                 "primarySeriesNumberDoses": 2
             },
@@ -31,6 +35,10 @@
             },
             {
                 "seriesName": "2-dose Novavax Series",
+                "primarySeriesNumberDoses": 2
+            },
+            {
+                "seriesName": "2-dose COVAXIN Series",
                 "primarySeriesNumberDoses": 2
             }
         ]

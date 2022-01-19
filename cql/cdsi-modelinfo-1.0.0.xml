@@ -26,11 +26,9 @@
     </ns4:typeInfo>
     <ns4:typeInfo xsi:type="ns4:ClassInfo" name="CDSI.SeriesDose.Age" baseType="System.Any" retrievable="false">
         <ns4:element name="absMinAge" type="CDSI.Quantity" />
-        <ns4:element name="earliestRecAge" type="CDSI.Quantity" />
     </ns4:typeInfo>    
     <ns4:typeInfo xsi:type="ns4:ClassInfo" name="CDSI.SeriesDose.Interval" baseType="System.Any" retrievable="false">
         <ns4:element name="fromPrevious" type="System.String" />
-        <ns4:element name="earliestRecInt" type="CDSI.Quantity" />
     </ns4:typeInfo>
     <ns4:typeInfo xsi:type="ns4:ClassInfo" name="CDSI.SeriesDose.AllowableInterval" baseType="System.Any" retrievable="false">
         <ns4:element name="fromPrevious" type="System.String" />
