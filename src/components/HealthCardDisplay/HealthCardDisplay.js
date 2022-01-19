@@ -16,6 +16,7 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import { useHistory } from 'react-router-dom';
 import { useQrDataContext } from 'components/QrDataProvider';
 import { getPatientData } from 'utils/qrHelpers';
+import { useTranslation, Trans } from 'react-i18next';
 import errorIllustration from 'assets/error-illustration.png';
 import checkIcon from 'assets/check-icon.png';
 import xIcon from 'assets/x-icon.png';
@@ -28,6 +29,7 @@ import { fetchTradenames, fetchCvx } from './iisstandards';
 const HealthCardDisplay = () => {
   const styles = useStyles();
   const history = useHistory();
+  const { t } = useTranslation();
   const {
     qrCodes,
     healthCardVerified,
@@ -84,25 +86,25 @@ const HealthCardDisplay = () => {
       </Box>
       <Grid container columnSpacing={{ xs: 1, sm: 1, md: 3 }}>
         <Grid item xs={3} className={styles.gridLabel}>
-          <Typography>Vaccine</Typography>
+          <Typography>{t('healthcarddisplay.Vaccine')}</Typography>
         </Grid>
         <Grid item xs={9} className={styles.gridItem}>
           <Typography>
             <Box component="span" fontWeight="700">
               {immunization.vaccineCode ? immunizationDisplayName(immunization.vaccineCode.coding) : ''}
             </Box>
-            {immunization.lotNumber && (` Lot #${immunization.lotNumber}`)}
+            {immunization.lotNumber && (` ${t('healthcarddisplay.Lot')} #${immunization.lotNumber}`)}
           </Typography>
         </Grid>
         <Grid item xs={3} className={styles.gridLabel}>
-          <Typography>Date</Typography>
+          <Typography>{t('healthcarddisplay.Date')}</Typography>
         </Grid>
         <Grid item xs={8} className={styles.gridItem}>
           <Typography className={styles.date}>{immunization.occurrenceDateTime}</Typography>
         </Grid>
         <Grid item xs={3} className={styles.gridLabel}>
           <Typography>
-            Vaccinator
+            {t('healthcarddisplay.Vaccinator')}
           </Typography>
         </Grid>
         <Grid item xs={9} className={styles.gridItem}>
@@ -123,20 +125,20 @@ const HealthCardDisplay = () => {
   if (!patientData) {
     topBannerStyle = styles.bannerError;
     topBannerIcon = exclamationRedIcon;
-    topBannerText = 'Invalid SMART® Health Card';
+    topBannerText = t('healthcarddisplay.Invalid SMART Health Card');
   } else if (!healthCardVerified.verified && healthCardVerified.error) {
     topBannerStyle = styles.bannerError;
     topBannerIcon = exclamationRedIcon;
-    topBannerText = 'Not verified';
+    topBannerText = t('healthcarddisplay.Not verified');
   } else if (healthCardVerified.verified && issuerVerified) {
     topBannerStyle = styles.topBannerValid;
     topBannerIcon = checkIcon;
-    topBannerText = 'Verified';
+    topBannerText = t('healthcarddisplay.Verified');
     bottomBannerStyle = styles.bottomBannerValid;
   } else {
     topBannerStyle = styles.topBannerPartial;
     topBannerIcon = exclamationOrangeIcon;
-    topBannerText = 'Partially Verified';
+    topBannerText = t('healthcarddisplay.Partially Verified');
     bottomBannerStyle = styles.bottomBannerPartial;
   }
 
@@ -180,7 +182,7 @@ const HealthCardDisplay = () => {
                 style={{ height: '1.5rem', marginRight: '1rem' }}
               />
               <Typography variant="h6" className={styles.verifiedText}>
-                Valid SMART&reg; Health Card
+                {t('healthcarddisplay.Valid SMART Health Card')}
               </Typography>
             </Box>
             <Box
@@ -195,7 +197,7 @@ const HealthCardDisplay = () => {
                 style={{ height: '1.5rem', marginRight: '1rem' }}
               />
               <Typography variant="h6" className={validPrimarySeries ? styles.verifiedText : styles.unverifiedText}>
-                {validPrimarySeries ? 'Valid vaccination series' : 'Vaccination series not valid'}
+                {validPrimarySeries ? t('healthcarddisplay.Valid vaccination series') : t('healthcarddisplay.Vaccination series not valid')}
               </Typography>
             </Box>
             <Box
@@ -210,7 +212,7 @@ const HealthCardDisplay = () => {
                 style={{ height: '1.5rem', marginRight: '1rem' }}
               />
               <Typography variant="h6" className={issuerVerified ? styles.verifiedText : styles.unverifiedText}>
-                {issuerVerified ? 'Issuer recognized' : 'Issuer not recognized'}
+                {issuerVerified ? t('healthcarddisplay.Issuer recognized') : t('healthcarddisplay.Issuer not recognized')}
               </Typography>
             </Box>
           </Box>
@@ -231,11 +233,12 @@ const HealthCardDisplay = () => {
             <Grid container>
               <Grid item xs={12}>
                 <Typography variant="h4" color="primary.main">
-                  Only valid
-                  <span className={styles.shcText}> SMART&reg; Health Card </span>
-                  QR Codes
-                  <br />
-                  are currently supported.
+                  <Trans
+                    i18nKey="healthcarddisplay.Only valid SMART Health Card QR Codes are currently supported."
+                    components={[
+                      <span className={styles.shcText}> SMART&reg; Health Card </span>
+                    ]}
+                  />
                 </Typography>
               </Grid>
               <Grid item xs={10}>
@@ -254,7 +257,7 @@ const HealthCardDisplay = () => {
                       alt="Scan Icon"
                       style={{ height: '2.5rem', marginRight: '10px' }}
                     />
-                    SCAN QR CODE
+                    {t('healthcarddisplay.SCAN QR CODE')}
                   </Button>
                 </Box>
               </Grid>
@@ -273,7 +276,7 @@ const HealthCardDisplay = () => {
                     alignItems="flex-start"
                     className={styles.flexCol}
                   >
-                    <Typography className={styles.nameLabel}>NAME</Typography>
+                    <Typography className={styles.nameLabel}>{t('healthcarddisplay.NAME')}</Typography>
                     <Typography className={styles.name}>
                       {patientData.name}
                     </Typography>
@@ -285,7 +288,7 @@ const HealthCardDisplay = () => {
                     className={styles.flexCol}
                   >
                     <Typography className={styles.dateOfBirthLabel}>
-                      DATE OF BIRTH
+                      {t('healthcarddisplay.DATE OF BIRTH')}
                     </Typography>
                     <Box
                       display="flex"
@@ -329,7 +332,7 @@ const HealthCardDisplay = () => {
                       className={styles.group12}
                     >
                       <Typography className={styles.covid19Vaccination}>
-                        VACCINATION RECORD
+                        {t('healthcarddisplay.VACCINATION RECORD')}
                       </Typography>
                     </Box>
                     <List>
@@ -361,7 +364,7 @@ const HealthCardDisplay = () => {
                   alt="Scan Icon"
                   style={{ height: '2.5rem', marginRight: '10px' }}
                 />
-                SCAN QR CODE
+                {t('healthcarddisplay.SCAN QR CODE')}
               </Button>
             </Box>
           </Grid>

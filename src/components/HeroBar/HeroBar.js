@@ -4,6 +4,7 @@ import {
   Box, Container, IconButton, Typography
 } from '@mui/material';
 import { Route, useHistory } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import backIcon from 'assets/back-icon.png';
 
 const useStyles = makeStyles((theme) => ({
@@ -19,6 +20,7 @@ const useStyles = makeStyles((theme) => ({
 const HeroBar = () => {
   const history = useHistory();
   const classes = useStyles();
+  const { t } = useTranslation();
 
   return (
     <div className={classes.heroBar}>
@@ -45,7 +47,7 @@ const HeroBar = () => {
           pb={4}
         >
           <Typography variant="h3" component="h2">
-            SMART&reg; Health Card Verifier
+            {t('herobar.SMART Health Card Verifier')}
           </Typography>
         </Box>
       </Container>

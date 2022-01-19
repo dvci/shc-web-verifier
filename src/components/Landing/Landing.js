@@ -7,9 +7,11 @@ import checkIcon from 'assets/check-icon.png';
 import qrIllustration from 'assets/qr-code-illustration.png';
 import qrIcon from 'assets/qr-vaccine-icon.png';
 import scanIcon from 'assets/scan-icon.png';
+import { useTranslation, Trans } from 'react-i18next';
 
 const Landing = () => {
   const history = useHistory();
+  const { t } = useTranslation();
 
   const handleScan = () => {
     history.push('qr-scan');
@@ -42,16 +44,17 @@ const Landing = () => {
               variant="h6"
               style={{ marginTop: '5px', marginLeft: '25px' }}
             >
-              Verify a&nbsp;
-              <Link
-                href="https://smarthealth.cards/"
-                color="secondary"
-                target="_blank"
-                rel="noopener"
-              >
-                SMART&reg; Health Card
-              </Link>
-              &nbsp;QR code in a safe and privacy-preserving way.
+              <Trans
+                i18nKey="landing.Verify a SMART Health Card QR code in a safe and privacy-preserving way."
+                components={[
+                  <Link
+                    href="https://smarthealth.cards/"
+                    color="secondary"
+                    target="_blank"
+                    rel="noopener"
+                  />
+                ]}
+              />
             </Typography>
           </Box>
           <Box mt={10} mb={10}>
@@ -69,18 +72,18 @@ const Landing = () => {
                 alt="Scan Icon"
                 style={{ height: '2.5rem', marginRight: '10px' }}
               />
-              SCAN QR CODE
+              {t('landing.SCAN QR CODE')}
             </Button>
           </Box>
           <Box>
-            <Typography variant="h6">What is a SMART&reg; Health Card?</Typography>
+            <Typography variant="h6">{t('landing.What is a SMART Health Card?')}</Typography>
             <Typography>
               <img
                 src={checkIcon}
                 alt="Check Icon"
                 style={{ height: '1rem', marginRight: '10px' }}
               />
-              Holds important vaccination or lab report data.
+              {t('landing.Holds important vaccination or lab report data.')}
             </Typography>
             <Typography>
               <img
@@ -88,23 +91,25 @@ const Landing = () => {
                 alt="Check Icon"
                 style={{ height: '1rem', marginRight: '10px' }}
               />
-              Can be scanned to verify that the information has not been
-              tampered with.
+              {t('landing.Can be scanned to verify that the information has not been tampered with.')}
             </Typography>
           </Box>
           <Box mt={5}>
             <Typography>
-              For more information on SMART&reg; Health Cards, please visit
-              <br />
-              <Link
-                href="https://smarthealth.cards/"
-                color="secondary"
-                target="_blank"
-                rel="noopener"
-              >
-                https://smarthealth.cards/
-              </Link>
-              .
+              <Trans
+                i18nKey="landing.For more information on SMART Health Cards, please visit"
+                values={{ url: 'https://smarthealth.cards/' }}
+                components={[
+                  <Link
+                    href="https://smarthealth.cards/"
+                    color="secondary"
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    https://smarthealth.cards/
+                  </Link>
+                ]}
+              />
             </Typography>
           </Box>
         </Box>

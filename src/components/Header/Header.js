@@ -1,6 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@mui/styles';
 import { Box, Container, Typography } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 import logo from 'assets/mitre-logo.svg';
 
 const useStyles = makeStyles((theme) => ({
@@ -19,6 +20,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Header = () => {
   const classes = useStyles();
+  const { t } = useTranslation();
 
   return (
     <header className={classes.header}>
@@ -27,7 +29,7 @@ const Header = () => {
           <img src={logo} alt="Placeholder Mitre logo" style={{ width: '100px' }} />
           <Box ml={2}>
             <Typography variant="h6" component="h1">
-              SMART&reg; Health Card Verifier
+              {t('header.SMART Health Card Verifier')}
             </Typography>
           </Box>
         </Box>
