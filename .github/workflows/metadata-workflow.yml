@@ -29,10 +29,16 @@ jobs:
         exit 1
 
     - name: Check dirty files
-      run: git diff --quiet --exit-code
+      id: check    
+      run: |
+        if git diff --exit-code; then
+          echo "::set-output name=diff::false"
+        else
+          echo "::set-output name=diff::true"
+        fi
         
     - name: Commit files
-      if: failure()
+      if: steps.check.outputs.diff == 'true'
       run: |
         echo "GITHUB_ACTOR: ${GITHUB_ACTOR}"
         git config user.name "${GITHUB_ACTOR}"
