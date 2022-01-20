@@ -16,15 +16,29 @@ jobs:
         ref: ${{ github.head_ref }}
 
     - name: Fetch files
+      id: fetch
       run: |
-        curl -sSL -o src/components/HealthCardDisplay/iisstandards_cvx.xml https://www2a.cdc.gov/vaccines/iis/iisstandards/XML2.asp?rpt=cvx
-        curl -sSL -o src/components/HealthCardDisplay/iisstandards_tradename.xml https://www2a.cdc.gov/vaccines/iis/iisstandards/XML.asp?rpt=tradename
+        echo "::set-output name=cvx_status::$(curl -sSL -s -w '%{http_code}' -o src/components/HealthCardDisplay/iisstandards_cvx.xml https://www2a.cdc.gov/vaccines/iis/iisstandards/XML2.asp?rpt=cvx)"
+        echo "::set-output name=tradename_status::$(curl -sSL -s -w '%{http_code}' -o src/components/HealthCardDisplay/iisstandards_tradename.xml https://www2a.cdc.gov/vaccines/iis/iisstandards/XML.asp?rpt=tradename)"
+
+    - name: Check http status
+      if: steps.fetch.outputs.cvx_status > 200 || steps.fetch.outputs.tradename_status > 200
+      run: |
+        echo "cvx_status ${{ steps.fetch.outputs.cvx_status }}, tradename_status ${{ steps.fetch.outputs.tradename_status }}"
+        echo "::error title=Fetch::Failed to fetch CDC files"
+        exit 1
 
     - name: Check dirty files
-      run: git diff --quiet --exit-code
+      id: check    
+      run: |
+        if git diff --exit-code; then
+          echo "::set-output name=diff::false"
+        else
+          echo "::set-output name=diff::true"
+        fi
         
     - name: Commit files
-      if: failure()
+      if: steps.check.outputs.diff == 'true'
       run: |
         echo "GITHUB_ACTOR: ${GITHUB_ACTOR}"
         git config user.name "${GITHUB_ACTOR}"
