@@ -1,20 +1,11 @@
-import React, {
-  useState,
-  useRef,
-  createRef,
-  useCallback,
-  useEffect,
-} from "react";
+import React, { useState, useRef, useCallback, useEffect } from "react";
 import { Button, Grid } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-//import QrReader from "react-qr-reader";
-//import QrScanner from "qr-scanner";
-import QrScanner from "./qr-scanner";
 import { useHistory } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import frame from "assets/frame.png";
 import { useQrDataContext } from "components/QrDataProvider";
-import { convertCompilerOptionsFromJson } from "typescript";
+import QrScanner from "./vendor/qr-scanner";
 
 const useStyles = makeStyles(() => ({
   button: {
@@ -48,7 +39,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-QrScanner.WORKER_PATH = "src/components/QrScan/qr-scanner-worker.min.js";
+//QrScanner.WORKER_PATH = "./vendor/qr-scanner/qr-scanner-worker.min.js";
 
 const healthCardPattern =
   /^shc:\/(?<multipleChunks>(?<chunkIndex>[0-9]+)\/(?<chunkCount>[0-9]+)\/)?[0-9]+$/;
@@ -93,16 +84,15 @@ const QrScan = () => {
   };
 
   const runningQrScanner = useRef(null);
-  let qrScanner; // scope bound to callback
-
   let qrScan; // scope bound to callback
 
   const videoCallback = useCallback((videoElement) => {
+    console.log(videoElement);
     // code to run on component mount
     qrScan = new QrScanner(
+      //runningQrScanner.current,
       videoElement,
       (result) => {
-        console.log("got result");
         handleScan(result);
         qrScan.stop();
       },
@@ -114,12 +104,22 @@ const QrScan = () => {
         height: videoElement.videoHeight,
       })
     );
-    runningQrScanner.current = qrScanner;
+    runningQrScanner.current = qrScan;
     qrScan.start();
     return () => {
       qrScan.stop();
     };
   }, []);
+
+  useEffect(() => {
+    const currentScanner = runningQrScanner.current;
+    // currentScanner.addEventListener("ended", videoCallback);
+
+    // return () => {
+    //   currentScanner.removeEventListener("ended", videoCallback);
+    //  };
+  }, []);
+  // }, [videoCallback]);
 
   return (
     <Grid
@@ -151,12 +151,6 @@ const QrScan = () => {
       <Grid item xs={4}>
         {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
         <video className={classes.qrScanner} autoPlay ref={videoCallback} />
-        {/* <QrReader
-          className={classes.qrScanner}
-          onError={handleError}
-          onScan={handleScan}
-          showViewFinder={false}
-        /> */}
         <img alt="Scan Frame" className={classes.frame} src={frame} />
       </Grid>
     </Grid>
