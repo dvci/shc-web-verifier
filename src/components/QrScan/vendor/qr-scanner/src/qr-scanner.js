@@ -593,4 +593,6 @@ export default class QrScanner {
 }
 QrScanner.DEFAULT_CANVAS_SIZE = 400;
 QrScanner.NO_QR_CODE_FOUND = "No QR code found";
-QrScanner.WORKER_PATH = "../qr-scanner-worker.min.js";
+QrScanner.WORKER_PATH = "/shc-web-verifier/qr-scanner-worker.min.js";
+//"/Users/smcdougall/vci/shc-web-verifier/public/qr-scanner-worker.min.js";
+//"shc-web-verifier/src/components/QrScan/vendor/qr-scanner/qr-scanner-worker.min.js";
