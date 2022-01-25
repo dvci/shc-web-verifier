@@ -122,6 +122,7 @@ export default class QrScanner {
 
   /* async */
   start() {
+    console.log(this);
     if (this._active && !this._paused) {
       return Promise.resolve();
     }
@@ -132,33 +133,31 @@ export default class QrScanner {
       );
     }
     this._active = true;
-    this._paused = false;
     if (document.hidden) {
       // camera will be started as soon as tab is in foreground
       return Promise.resolve();
     }
-    clearTimeout(this._offTimeout);
-    this._offTimeout = null;
+    this._paused = false;
     if (this.$video.srcObject) {
       // camera stream already/still set
+      console.log("going to play video");
       this.$video.play();
+      console.log("playing");
       return Promise.resolve();
     }
 
-    let facingMode = this._preferredFacingMode;
-    return this._getCameraStream(facingMode, true)
-      .catch(() => {
-        // We (probably) don't have a camera of the requested facing mode
-        facingMode = facingMode === "environment" ? "user" : "environment";
-        return this._getCameraStream(); // throws if camera is not accessible (e.g. due to not https)
-      })
-      .then((stream) => {
-        // Try to determine the facing mode from the stream, otherwise use our guess. Note that the guess is not
-        // always accurate as Safari returns cameras of different facing mode, even for exact constraints.
-        facingMode = this._getFacingMode(stream) || facingMode;
+    return this._getCameraStream()
+      .then(({ stream, facingMode }) => {
         this.$video.srcObject = stream;
         this.$video.play();
         this._setVideoMirror(facingMode);
+
+        // Restart the flash if it was previously on
+        if (this._flashOn) {
+          this._flashOn = false; // force turnFlashOn to restart the flash
+          this.turnFlashOn().catch(() => {});
+        }
+        console.log("made it to bottom");
       })
       .catch((e) => {
         this._active = false;
@@ -221,6 +220,7 @@ export default class QrScanner {
           // Enable scanning of inverted color qr codes. Not using _postWorkerMessage as it's async
           qrEngine.postMessage({ type: "inversionMode", data: "both" });
         }
+
         return new Promise((resolve, reject) => {
           let timeout;
           let onMessage;
@@ -233,6 +233,7 @@ export default class QrScanner {
             qrEngine.removeEventListener("error", onError);
             clearTimeout(timeout);
             if (event.data.data !== null) {
+              console.log(event.data.data);
               resolve(event.data.data);
             } else {
               reject(QrScanner.NO_QR_CODE_FOUND);
@@ -338,6 +339,7 @@ export default class QrScanner {
 
   _onPlay() {
     this._scanRegion = this._calculateScanRegion(this.$video);
+    console.log("about to scan frame");
     this._scanFrame();
   }
 

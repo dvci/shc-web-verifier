@@ -88,48 +88,113 @@ const QrScan = () => {
 
   const runningQrScanner = useRef(null);
   let qrScan; // scope bound to callback
-  let videoElement;
+  //let videoElement;
 
-  const videoCallback = useCallback(
-    (videoElement) => {
-      console.log(videoElement);
-      if (!videoElement) {
-        if (qrScan) {
-          qrScan.destroy();
-          console.log("destroyed");
-        }
-        return;
+  const videoCallback = (videoElement) => {
+    //useCallback(
+    console.log("in video callback");
+    console.log(videoElement);
+    if (!videoElement) {
+      if (runningQrScanner.current) {
+        qrScan.destroy();
+        console.log("destroyed");
       }
-      // code to run on component mount
-      qrScan = new QrScanner(
-        //runningQrScanner.current,
-        videoElement,
-        (result) => {
-          handleScan(result);
-          qrScan.stop();
-        },
-        (error) => {
-          handleError(), console.log(error), (qrScan.hasCamera = false);
-        },
-        (videoElement) => ({
-          x: 0,
-          y: 0,
-          width: classes.qrScanner.width,
-          height: classes.qrScanner.height,
-          //width: videoElement.videoWidth,
-          //height: videoElement.videoHeight,
-        })
-      );
-      runningQrScanner.current = qrScan;
-      qrScan.start().then(() => {
-        qrScan.hasCamera = true;
-      });
-      return () => {
+      return;
+    }
+    console.log("about to make qr scanner");
+    // code to run on component mount
+    qrScan = new QrScanner(
+      //runningQrScanner.current,
+      videoElement,
+      (result) => {
+        console.log("got result");
+        handleScan(result);
         qrScan.stop();
-      };
-    },
-    [handleError, handleScan]
-  );
+      },
+      (error) => {
+        //console.log("got error");
+        //handleError();
+        // handleError(), console.log(error), (qrScan.hasCamera = false);
+      },
+      (videoElement) => ({
+        x: 0,
+        y: 0,
+        width: 570,
+        height: 500,
+        //width: videoElement.videoWidth,
+        //height: videoElement.videoHeight,
+      })
+    );
+    runningQrScanner.current = qrScan;
+    console.log("qrScan:", qrScan);
+    qrScan.start().then(() => {
+      qrScan.hasCamera = true;
+    });
+    // return () => {
+    //   qrScan.stop();
+    // };
+    // qrScan.start().then(() => {
+    //   console.log("started");
+    //   qrScan.hasCamera = true;
+    // });
+    // return () => {
+    //   qrScan.stop();
+  };
+  // }, []);
+
+  const videoRef = useRef(null);
+  useEffect(() => {
+    console.log("in effect");
+    const getUserMedia = async () => {
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({
+          video: { facingMode: { exact: "environment" } },
+        });
+        videoRef.current.srcObject = stream;
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getUserMedia()
+      .then(() => {
+        console.log(videoRef.current.srcObject);
+      })
+      .then(() => {
+        videoCallback(videoRef.current);
+      });
+    //.then(videoCallback(videoRef.current));
+    // .then(
+    //   qrScan.start().then(() => {
+    //     console.log(qrScan);
+    //   })
+    // );
+    // runningQrScanner.current.start().then(() => {
+    //   runningQrScanner.current.hasCamera = true;
+    //   console.log(runningQrScanner);
+    // });
+    // console.log(videoRef.current.srcObject);
+    // videoCallback(videoRef.current);
+    // console.log("starting qr scanner");
+    // console.log(runningQrScanner);
+    // runningQrScanner.current.start().then(() => {
+    //   runningQrScanner.current.hasCamera = true;
+    //   console.log(runningQrScanner);
+    // });
+    // return () => {
+    //   runningQrScanner.current.stop();
+    // };
+    //videoCallback(videoRef.current);
+  }, []);
+
+  // useEffect(() => {
+  //   //console.log("videoElement", videoElement);
+  //   console.log("qrScan", qrScan);
+  //   console.log("in effect");
+  //   //videoCallback(videoElement);
+  //   return () => {
+  //     qrScan.stop();
+  //   };
+  // }, [qrScan]);
 
   // useEffect(() => {
   //   videoElement = document.getElementById("test");
@@ -208,8 +273,8 @@ const QrScan = () => {
         <video
           id="test"
           className={classes.qrScanner}
-          autoPlay
-          ref={videoCallback}
+          //autoPlay
+          ref={videoRef}
         />
         <img alt="Scan Frame" className={classes.frame} src={frame} />
       </Grid>
