@@ -86,9 +86,9 @@
 <CVXInfo><ShortDescription>COVID-19 IV Non-US Vaccine (COVAXIN)</ShortDescription>
 <FullVaccinename>SARS-COV-2 COVID-19 Inactivated Virus Non-US Vaccine Product (COVAXIN)</FullVaccinename>
 <CVXCode>502       </CVXCode>
-<Notes>Pandemic Non-US Vaccine Authorized by WHO 11-3-2021, recognized toward immunity in US, https://extranet.who.int/pqweb/vaccines/who-recommendation-bharat-biotech-international-ltd-covid-19-vaccine- whole-virion</Notes>
+<Notes>Pandemic Non-US Vaccine Authorized by WHO 11-3-2021, recognized toward immunity in US, https://extranet.who.int/pqweb/vaccines/who-recommendation-bharat-biotech-international-ltd-covid-19-vaccine-whole-virion</Notes>
 <Status>Non-US</Status>
-<LastUpdated>11/9/2021</LastUpdated>
+<LastUpdated>11/19/2021</LastUpdated>
 </CVXInfo>
 <CVXInfo><ShortDescription>COVID-19 IV Non-US Vaccine (QAZCOVID-IN)</ShortDescription>
 <FullVaccinename>SARS-COV-2 COVID-19 Inactivated Virus Non-US Vaccine Product (QAZCOVID-IN)</FullVaccinename>
@@ -191,9 +191,9 @@
 <CVXInfo><ShortDescription>COVID-19, mRNA, LNP-S, PF, 3 mcg/0.2 mL dose, tris-sucrose</ShortDescription>
 <FullVaccinename>SARS-COV-2 (COVID-19) vaccine, mRNA, spike protein, LNP, preservative free, 3 mcg/0.2mL dose, tris-sucrose formulation</FullVaccinename>
 <CVXCode>219       </CVXCode>
-<Notes>Potential FDA EUA, Pfizer tris-sucrose vaccine for 2 through 4  years of age</Notes>
+<Notes>Potential FDA EUA, Pfizer tris-sucrose vaccine for 6 mo through 4  years of age</Notes>
 <Status>Active</Status>
-<LastUpdated>9/8/2021</LastUpdated>
+<LastUpdated>1/12/2022</LastUpdated>
 </CVXInfo>
 <CVXInfo><ShortDescription>COVID-19, mRNA, LNP-S, PF, 30 mcg/0.3 mL dose</ShortDescription>
 <FullVaccinename>SARS-COV-2 (COVID-19) vaccine, mRNA, spike protein, LNP, preservative free, 30 mcg/0.3mL dose</FullVaccinename>
@@ -453,6 +453,13 @@
 <Notes></Notes>
 <Status>Never Active</Status>
 <LastUpdated>9/9/2020</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>HepB recombinant, Al(OH)3</ShortDescription>
+<FullVaccinename>Hepatitis B vaccine (recombinant), Al(OH)3 adjuvanted</FullVaccinename>
+<CVXCode>220       </CVXCode>
+<Notes>New Hep B vaccine 1/2022</Notes>
+<Status>Active</Status>
+<LastUpdated>1/19/2022</LastUpdated>
 </CVXInfo>
 <CVXInfo><ShortDescription>HepB-CpG</ShortDescription>
 <FullVaccinename>Hepatitis B vaccine (recombinant), CpG adjuvanted</FullVaccinename>
