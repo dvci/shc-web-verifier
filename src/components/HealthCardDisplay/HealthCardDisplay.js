@@ -74,9 +74,9 @@ const HealthCardDisplay = () => {
       if (!cvxCodes[coding.code]) {
         return coding.system ? `${coding.system}#${coding.code}` : coding.code;
       }
-      return cvxCodes[coding.code];
+      return cvxCodes[coding.code].replace(/&amp;/g, '&');
     }
-    return tradenames[coding.code];
+    return tradenames[coding.code].replace(/&amp;/g, '&');
   };
 
   const HealthCardVaccination = ({ immunization }) => (
