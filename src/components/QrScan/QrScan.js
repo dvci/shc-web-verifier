@@ -7,10 +7,7 @@ import frame from "assets/frame.png";
 import { useQrDataContext } from "components/QrDataProvider";
 import QrScanner from "./vendor/qr-scanner";
 
-//import QrScanner from "./vendor/qr-scanner/qr-scanner.min.js";
 QrScanner.WORKER_PATH = "/shc-web-verifier/qr-scanner-worker.min.js";
-// "/Users/smcdougall/vci/shc-web-verifier/public/qr-scanner-worker.min.js";
-//"shc-web-verifier/src/components/QrScan/vendor/qr-scanner/qr-scanner-worker.min.js";
 
 const useStyles = makeStyles(() => ({
   button: {
@@ -24,7 +21,7 @@ const useStyles = makeStyles(() => ({
     width: "640px",
     marginTop: "3rem",
     marginBottom: "3rem",
-    zIndex: "2",
+    zIndex: "3",
   },
   qrScanner: {
     width: "570px",
@@ -34,7 +31,7 @@ const useStyles = makeStyles(() => ({
     marginLeft: "2.2rem",
     marginTop: "4.5rem",
     "object-fit": "fill",
-    zIndex: "1",
+    zIndex: "2",
     "& section": {
       position: "unset !important",
       "& div": {
@@ -88,12 +85,9 @@ const QrScan = () => {
 
   const runningQrScanner = useRef(null);
   let qrScan; // scope bound to callback
-  //let videoElement;
 
   const videoCallback = (videoElement) => {
     //useCallback(
-    console.log("in video callback");
-    console.log(videoElement);
     if (!videoElement) {
       if (runningQrScanner.current) {
         qrScan.destroy();
@@ -101,28 +95,21 @@ const QrScan = () => {
       }
       return;
     }
-    console.log("about to make qr scanner");
-    // code to run on component mount
+
     qrScan = new QrScanner(
-      //runningQrScanner.current,
       videoElement,
       (result) => {
-        console.log("got result");
         handleScan(result);
-        qrScan.stop();
       },
       (error) => {
-        //console.log("got error");
-        //handleError();
-        // handleError(), console.log(error), (qrScan.hasCamera = false);
+        //handleError(), console.log(error),
+        //qrScan.hasCamera = false;
       },
       (videoElement) => ({
         x: 0,
         y: 0,
-        width: 570,
-        height: 500,
-        //width: videoElement.videoWidth,
-        //height: videoElement.videoHeight,
+        width: videoElement.videoWidth,
+        height: videoElement.videoHeight,
       })
     );
     runningQrScanner.current = qrScan;
@@ -130,116 +117,32 @@ const QrScan = () => {
     qrScan.start().then(() => {
       qrScan.hasCamera = true;
     });
-    // return () => {
-    //   qrScan.stop();
-    // };
-    // qrScan.start().then(() => {
-    //   console.log("started");
-    //   qrScan.hasCamera = true;
-    // });
-    // return () => {
-    //   qrScan.stop();
+    return () => {
+      qrScan.stop();
+    };
   };
   // }, []);
 
   const videoRef = useRef(null);
   useEffect(() => {
     console.log("in effect");
+    //window.location.reload();
     const getUserMedia = async () => {
       try {
-        const stream = await navigator.mediaDevices.getUserMedia({
-          video: { facingMode: { exact: "environment" } },
-        });
+        const stream = await navigator.mediaDevices.getUserMedia(
+          {
+            video: true,
+          } //{ facingMode: { exact: "environment" } },
+        );
         videoRef.current.srcObject = stream;
       } catch (err) {
         console.log(err);
       }
     };
-    getUserMedia()
-      .then(() => {
-        console.log(videoRef.current.srcObject);
-      })
-      .then(() => {
-        videoCallback(videoRef.current);
-      });
-    //.then(videoCallback(videoRef.current));
-    // .then(
-    //   qrScan.start().then(() => {
-    //     console.log(qrScan);
-    //   })
-    // );
-    // runningQrScanner.current.start().then(() => {
-    //   runningQrScanner.current.hasCamera = true;
-    //   console.log(runningQrScanner);
-    // });
-    // console.log(videoRef.current.srcObject);
-    // videoCallback(videoRef.current);
-    // console.log("starting qr scanner");
-    // console.log(runningQrScanner);
-    // runningQrScanner.current.start().then(() => {
-    //   runningQrScanner.current.hasCamera = true;
-    //   console.log(runningQrScanner);
-    // });
-    // return () => {
-    //   runningQrScanner.current.stop();
-    // };
-    //videoCallback(videoRef.current);
+    getUserMedia().then(() => {
+      videoCallback(videoRef.current);
+    });
   }, []);
-
-  // useEffect(() => {
-  //   //console.log("videoElement", videoElement);
-  //   console.log("qrScan", qrScan);
-  //   console.log("in effect");
-  //   //videoCallback(videoElement);
-  //   return () => {
-  //     qrScan.stop();
-  //   };
-  // }, [qrScan]);
-
-  // useEffect(() => {
-  //   videoElement = document.getElementById("test");
-  //   return new Promise((resolve) => {
-  //     videoElement.addEventListener(
-  //       "loadeddata",
-  //       function () {
-  //         const width = classes.qrScanner.width;
-  //         const height = classes.qrScanner.height;
-
-  //         // send back result
-  //         resolve({ height, width });
-  //       },
-  //       false
-  //     );
-  //     console.log("height");
-  //     console.log(videoElement.videoHeight);
-  //   });
-
-  //   // console.log("in effect");
-  //   // window.open(videoCallback());
-  //   // const currentScanner = runningQrScanner.current;
-  //   // console.log("Video element:");
-  //   // console.log(videoElement);
-  // }, []);
-
-  // useEffect(() => {
-  //   if (props.redirectMode === "window-open") {
-  //     const onMessage = ({ data, source }) => {
-  //       props.onReady(data);
-  //     };
-  //     const registered = window.addEventListener("message", onMessage);
-  //     const opened = window.open(props.startUrl);
-  //     return () => {
-  //       window.removeEventListener("message", onMessage);
-  //     };
-  //   }
-  // }, []);
-  // currentScanner.addEventListener("ended", videoCallback);
-
-  // return () => {
-  //   currentScanner.removeEventListener("ended", videoCallback);
-  //  };
-  //}, []);
-  // }, [videoCallback]);
 
   return (
     <Grid
@@ -270,12 +173,7 @@ const QrScan = () => {
       )}
       <Grid item xs={4}>
         {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
-        <video
-          id="test"
-          className={classes.qrScanner}
-          //autoPlay
-          ref={videoRef}
-        />
+        <video id="test" className={classes.qrScanner} ref={videoRef} />
         <img alt="Scan Frame" className={classes.frame} src={frame} />
       </Grid>
     </Grid>
