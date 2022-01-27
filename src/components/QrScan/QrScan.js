@@ -44,6 +44,8 @@ const useStyles = makeStyles(() => ({
 const healthCardPattern =
   /^shc:\/(?<multipleChunks>(?<chunkIndex>[0-9]+)\/(?<chunkCount>[0-9]+)\/)?[0-9]+$/;
 
+let qrScan; // scope bound to callback
+
 const QrScan = () => {
   const history = useHistory();
   const classes = useStyles();
@@ -52,6 +54,7 @@ const QrScan = () => {
 
   const handleScan = (data) => {
     if (healthCardPattern.test(data)) {
+      console.log("handling scan");
       const match = data.match(healthCardPattern);
       if (match.groups.multipleChunks) {
         const chunkCount = +match.groups.chunkCount;
@@ -77,6 +80,7 @@ const QrScan = () => {
         history.push("/display-results");
       }
     }
+    qrScan.start();
   };
 
   const handleError = () => {
@@ -84,7 +88,6 @@ const QrScan = () => {
   };
 
   const runningQrScanner = useRef(null);
-  let qrScan; // scope bound to callback
 
   const videoCallback = (videoElement) => {
     //useCallback(
@@ -99,6 +102,8 @@ const QrScan = () => {
     qrScan = new QrScanner(
       videoElement,
       (result) => {
+        // pause QR code scanner without disabling camera
+        qrScan._active = !1;
         handleScan(result);
       },
       (error) => {
@@ -142,7 +147,7 @@ const QrScan = () => {
     getUserMedia().then(() => {
       videoCallback(videoRef.current);
     });
-  }, []);
+  }, [scannedCodes]);
 
   return (
     <Grid
@@ -155,6 +160,7 @@ const QrScan = () => {
         <>
           <Grid item xs={4} />
           <Grid item xs={4} alignItems="right" justifyContent="right">
+            {console.log(scannedCodes)}
             {scannedCodes.map((code, i) => (
               <Button
                 className={classes.button}
