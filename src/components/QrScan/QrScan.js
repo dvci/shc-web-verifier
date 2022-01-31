@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Button, Grid } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { useHistory } from "react-router-dom";
@@ -51,6 +51,8 @@ const QrScan = () => {
   const classes = useStyles();
   const { setQrCodes } = useQrDataContext();
   const [scannedCodes, setScannedCodes] = useState([]);
+  // TODO: Figure out how to populate scanned codes without child ref
+  const childRef = useRef([]);
 
   const handleScan = (data) => {
     if (healthCardPattern.test(data)) {
@@ -59,7 +61,9 @@ const QrScan = () => {
       if (match.groups.multipleChunks) {
         const chunkCount = +match.groups.chunkCount;
         const currentChunkIndex = +match.groups.chunkIndex;
-        let tempScannedCodes = [...scannedCodes];
+
+        let tempScannedCodes = [...childRef.current]; //= [...scannedCodes];
+
         if (tempScannedCodes.length !== chunkCount) {
           tempScannedCodes = new Array(chunkCount);
           tempScannedCodes.fill(null, 0, chunkCount);
@@ -72,15 +76,15 @@ const QrScan = () => {
         if (tempScannedCodes.every((code) => code)) {
           setQrCodes(tempScannedCodes);
           history.push("/display-results");
+          qrScan.stop();
         }
-
         setScannedCodes(tempScannedCodes);
+        childRef.current = tempScannedCodes;
       } else {
         setQrCodes([data]);
         history.push("/display-results");
       }
     }
-    qrScan.start();
   };
 
   const handleError = () => {
@@ -101,10 +105,10 @@ const QrScan = () => {
 
     qrScan = new QrScanner(
       videoElement,
-      (result) => {
+      (data) => {
         // pause QR code scanner without disabling camera
-        qrScan._active = !1;
-        handleScan(result);
+        qrScan.stop();
+        handleScan(data);
       },
       (error) => {
         //handleError(), console.log(error),
@@ -131,14 +135,12 @@ const QrScan = () => {
   const videoRef = useRef(null);
   useEffect(() => {
     console.log("in effect");
-    //window.location.reload();
+    console.log(history);
     const getUserMedia = async () => {
       try {
-        const stream = await navigator.mediaDevices.getUserMedia(
-          {
-            video: true,
-          } //{ facingMode: { exact: "environment" } },
-        );
+        const stream = await navigator.mediaDevices.getUserMedia({
+          video: true,
+        });
         videoRef.current.srcObject = stream;
       } catch (err) {
         console.log(err);
@@ -147,7 +149,7 @@ const QrScan = () => {
     getUserMedia().then(() => {
       videoCallback(videoRef.current);
     });
-  }, [scannedCodes]);
+  }, []);
 
   return (
     <Grid
@@ -160,6 +162,7 @@ const QrScan = () => {
         <>
           <Grid item xs={4} />
           <Grid item xs={4} alignItems="right" justifyContent="right">
+            {console.log("scannedCodes in Grid")}
             {console.log(scannedCodes)}
             {scannedCodes.map((code, i) => (
               <Button
