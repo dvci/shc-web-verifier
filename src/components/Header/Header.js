@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@mui/styles';
-import { Box, Container, Typography } from '@mui/material';
+import { Grid, Typography } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import logo from 'assets/mitre-logo.svg';
 
@@ -10,7 +10,11 @@ const useStyles = makeStyles((theme) => ({
     height: '6em',
     padding: '0.25em 0.25em',
     display: 'flex',
+    alignItems: 'center'
+  },
+  container: {
     alignItems: 'center',
+    flexWrap: 'nowrap',
   },
   logo: {
     objectFit: 'contain',
@@ -24,16 +28,22 @@ const Header = () => {
 
   return (
     <header className={classes.header}>
-      <Container maxWidth={false}>
-        <Box display="flex" alignItems="center">
+      <Grid
+        container
+        className={classes.container}
+        spacing={{
+          xs: 1, sm: 2, md: 3
+        }}
+      >
+        <Grid item>
           <img src={logo} alt="Placeholder Mitre logo" style={{ width: '100px' }} />
-          <Box ml={2}>
-            <Typography variant="h6" component="h1">
-              {t('header.SMART Health Card Verifier')}
-            </Typography>
-          </Box>
-        </Box>
-      </Container>
+        </Grid>
+        <Grid item>
+          <Typography variant="h6" component="h1">
+            {t('header.SMART Health Card Verifier')}
+          </Typography>
+        </Grid>
+      </Grid>
     </header>
   );
 };
