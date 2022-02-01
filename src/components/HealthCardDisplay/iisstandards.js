@@ -5,6 +5,15 @@ import cvxXml from './iisstandards_cvx.xml';
 let tradenames = null;
 let cvx = null;
 
+function decodeEntity(xmlString) {
+  return xmlString
+    .replace(/&amp;/g, '&')
+    .replace(/&quot;/g, '"')
+    .replace(/&apos;/g, "'")
+    .replace(/&gt;/g, '>')
+    .replace(/&lt;/g, '<');
+}
+
 async function fetchCdcXml(file) {
   const response = await axios.get(file, {
     Accept: 'application/xml',
@@ -35,9 +44,9 @@ function processTradenames(xmlDoc) {
   const tn = {};
   while (prodInfo) {
     if (tn[prodInfo.children[5].textContent.trim()]) {
-      tn[prodInfo.children[5].textContent.trim()] = prodInfo.children[3].textContent;
+      tn[prodInfo.children[5].textContent.trim()] = decodeEntity(prodInfo.children[3].textContent);
     } else {
-      tn[prodInfo.children[5].textContent.trim()] = prodInfo.children[1].textContent;
+      tn[prodInfo.children[5].textContent.trim()] = decodeEntity(prodInfo.children[1].textContent);
     }
 
     prodInfo = prodInfos.iterateNext();
@@ -56,7 +65,9 @@ function processCvx(xmlDoc) {
   let prodInfo = prodInfos.iterateNext();
   const cvxDesc = {};
   while (prodInfo) {
-    cvxDesc[prodInfo.getElementsByTagName('CVXCode')[0].textContent.trim()] = prodInfo.getElementsByTagName('ShortDescription')[0].textContent;
+    cvxDesc[prodInfo.getElementsByTagName('CVXCode')[0].textContent.trim()] = decodeEntity(
+      prodInfo.getElementsByTagName('ShortDescription')[0].textContent
+    );
     prodInfo = prodInfos.iterateNext();
   }
   return cvxDesc;
