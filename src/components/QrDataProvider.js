@@ -1,14 +1,16 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
-import https from "https";
-import { getIssuer, getJws, getPayload } from "utils/qrHelpers";
-import { healthCardVerify, issuerVerify } from "utils/verifyHelpers";
-import { Validator } from "components/Validator/Validator.tsx";
+import React, {
+  createContext, useContext, useEffect, useState
+} from 'react';
+import https from 'https';
+import { getIssuer, getJws, getPayload } from 'utils/qrHelpers';
+import { healthCardVerify, issuerVerify } from 'utils/verifyHelpers';
+import { Validator } from 'components/Validator/Validator.tsx';
 
 const QrDataContext = createContext();
 
 const QrDataProvider = ({ children }) => {
   const [qrCodes, setQrCodes] = useState(
-    JSON.parse(localStorage.getItem("qrCodes"))
+    JSON.parse(localStorage.getItem('qrCodes'))
   );
   const [healthCardVerified, setHealthCardVerified] = useState({
     verified: false,
@@ -18,7 +20,7 @@ const QrDataProvider = ({ children }) => {
   const [validPrimarySeries, setValidPrimarySeries] = useState(false);
 
   useEffect(() => {
-    localStorage.setItem("qrCodes", JSON.stringify(qrCodes));
+    localStorage.setItem('qrCodes', JSON.stringify(qrCodes));
 
     if (qrCodes) {
       // Verify health card signature
@@ -31,8 +33,7 @@ const QrDataProvider = ({ children }) => {
       healthCardVerify(agent, jws, iss)
         .then((status) => {
           if (status) setHealthCardVerified({ verified: true, error: null });
-          else
-            setHealthCardVerified({ verified: false, error: "Not Verified" });
+          else setHealthCardVerified({ verified: false, error: 'Not Verified' });
         })
         .catch((err) => {
           setHealthCardVerified({ verified: false, error: err.message });
@@ -46,9 +47,8 @@ const QrDataProvider = ({ children }) => {
       // Validate vaccine series
       try {
         const payload = getPayload(qrCodes);
-        const patientBundle =
-          JSON.parse(payload).vc.credentialSubject.fhirBundle;
-        const results = Validator.execute(patientBundle, "COVID-19");
+        const patientBundle = JSON.parse(payload).vc.credentialSubject.fhirBundle;
+        const results = Validator.execute(patientBundle, 'COVID-19');
         setValidPrimarySeries(
           results.some((series) => series.complete.length > 0)
         );
