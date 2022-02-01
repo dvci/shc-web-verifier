@@ -51,8 +51,7 @@ const QrScan = () => {
   const classes = useStyles();
   const { setQrCodes } = useQrDataContext();
   const [scannedCodes, setScannedCodes] = useState([]);
-  // TODO: Figure out how to populate scanned codes without child ref
-  const childRef = useRef([]);
+  const [scannedData, setScannedData] = useState("");
 
   const handleScan = (data) => {
     if (healthCardPattern.test(data)) {
@@ -62,8 +61,7 @@ const QrScan = () => {
         const chunkCount = +match.groups.chunkCount;
         const currentChunkIndex = +match.groups.chunkIndex;
 
-        let tempScannedCodes = [...childRef.current]; //= [...scannedCodes];
-
+        let tempScannedCodes = [...scannedCodes];
         if (tempScannedCodes.length !== chunkCount) {
           tempScannedCodes = new Array(chunkCount);
           tempScannedCodes.fill(null, 0, chunkCount);
@@ -76,10 +74,8 @@ const QrScan = () => {
         if (tempScannedCodes.every((code) => code)) {
           setQrCodes(tempScannedCodes);
           history.push("/display-results");
-          qrScan.stop();
         }
         setScannedCodes(tempScannedCodes);
-        childRef.current = tempScannedCodes;
       } else {
         setQrCodes([data]);
         history.push("/display-results");
@@ -94,7 +90,6 @@ const QrScan = () => {
   const runningQrScanner = useRef(null);
 
   const videoCallback = (videoElement) => {
-    //useCallback(
     if (!videoElement) {
       if (runningQrScanner.current) {
         qrScan.destroy();
@@ -107,13 +102,15 @@ const QrScan = () => {
       videoElement,
       (data) => {
         // pause QR code scanner without disabling camera
-        qrScan.stop();
-        handleScan(data);
+        //qrScan._active = !1;
+        console.log("got data");
+        setScannedData(data);
+        //handleScan(data);
       },
-      (error) => {
-        //handleError(), console.log(error),
-        //qrScan.hasCamera = false;
-      },
+      (error) => {},
+      //   handleError(), console.log(error);
+      //   //qrScan.hasCamera = false;
+      // },
       (videoElement) => ({
         x: 0,
         y: 0,
@@ -122,7 +119,6 @@ const QrScan = () => {
       })
     );
     runningQrScanner.current = qrScan;
-    console.log("qrScan:", qrScan);
     qrScan.start().then(() => {
       qrScan.hasCamera = true;
     });
@@ -130,12 +126,10 @@ const QrScan = () => {
       qrScan.stop();
     };
   };
-  // }, []);
 
   const videoRef = useRef(null);
   useEffect(() => {
     console.log("in effect");
-    console.log(history);
     const getUserMedia = async () => {
       try {
         const stream = await navigator.mediaDevices.getUserMedia({
@@ -150,6 +144,22 @@ const QrScan = () => {
       videoCallback(videoRef.current);
     });
   }, []);
+
+  useEffect(() => {
+    console.log("in scanned data effect");
+    console.log(scannedData);
+    if (scannedData) {
+      console.log("the scanned data changed");
+      try {
+        handleScan(scannedData);
+      } catch (e) {
+        console.log("handling error");
+        handleError();
+      }
+      // handleScan(scannedData);
+      //qrScan.start();
+    }
+  }, [scannedData]);
 
   return (
     <Grid
