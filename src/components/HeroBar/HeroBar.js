@@ -38,7 +38,7 @@ const HeroBar = () => {
         </IconButton>
       </Route>
 
-      <Container maxWidth="md">
+      <Container maxWidth={false}>
         <Box
           display="flex"
           alignItems="center"
@@ -46,7 +46,7 @@ const HeroBar = () => {
           pt={5}
           pb={4}
         >
-          <Typography variant="h3" component="h2">
+          <Typography variant="h3" component="h2" textAlign="center">
             {t('herobar.SMART Health Card Verifier')}
           </Typography>
         </Box>
