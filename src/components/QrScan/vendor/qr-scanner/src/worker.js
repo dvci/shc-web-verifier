@@ -1,7 +1,7 @@
-import jsQR from "../node_modules/jsqr-es6/dist/jsQR.js";
+import jsQR from '../node_modules/jsqr-es6/dist/jsQR.js';
 
-let inversionAttempts = "dontInvert";
-let grayscaleWeights = {
+let inversionAttempts = 'dontInvert';
+const grayscaleWeights = {
   // weights for quick luma integer approximation (https://en.wikipedia.org/wiki/YUV#Full_swing_for_BT.601)
   red: 77,
   green: 150,
@@ -10,20 +10,20 @@ let grayscaleWeights = {
 };
 
 self.onmessage = (event) => {
-  const type = event["data"]["type"];
-  const data = event["data"]["data"];
+  const { type } = event.data;
+  const { data } = event.data;
 
   switch (type) {
-    case "decode":
+    case 'decode':
       decode(data);
       break;
-    case "grayscaleWeights":
+    case 'grayscaleWeights':
       setGrayscaleWeights(data);
       break;
-    case "inversionMode":
+    case 'inversionMode':
       setInversionMode(data);
       break;
-    case "close":
+    case 'close':
       // close after earlier messages in the event loop finished processing
       self.close();
       break;
@@ -31,39 +31,39 @@ self.onmessage = (event) => {
 };
 
 function decode(data) {
-  const rgbaData = data["data"];
-  const width = data["width"];
-  const height = data["height"];
+  const rgbaData = data.data;
+  const { width } = data;
+  const { height } = data;
   const result = jsQR(rgbaData, width, height, {
-    inversionAttempts: inversionAttempts,
+    inversionAttempts,
     greyScaleWeights: grayscaleWeights,
   });
   self.postMessage({
-    type: "qrResult",
+    type: 'qrResult',
     data: result ? result.data : null,
   });
 }
 
 function setGrayscaleWeights(data) {
   // update grayscaleWeights in a closure compiler compatible fashion
-  grayscaleWeights.red = data["red"];
-  grayscaleWeights.green = data["green"];
-  grayscaleWeights.blue = data["blue"];
-  grayscaleWeights.useIntegerApproximation = data["useIntegerApproximation"];
+  grayscaleWeights.red = data.red;
+  grayscaleWeights.green = data.green;
+  grayscaleWeights.blue = data.blue;
+  grayscaleWeights.useIntegerApproximation = data.useIntegerApproximation;
 }
 
 function setInversionMode(inversionMode) {
   switch (inversionMode) {
-    case "original":
-      inversionAttempts = "dontInvert";
+    case 'original':
+      inversionAttempts = 'dontInvert';
       break;
-    case "invert":
-      inversionAttempts = "onlyInvert";
+    case 'invert':
+      inversionAttempts = 'onlyInvert';
       break;
-    case "both":
-      inversionAttempts = "attemptBoth";
+    case 'both':
+      inversionAttempts = 'attemptBoth';
       break;
     default:
-      throw new Error("Invalid inversion mode");
+      throw new Error('Invalid inversion mode');
   }
 }

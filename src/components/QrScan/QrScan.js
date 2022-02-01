@@ -1,61 +1,59 @@
-import React, { useState, useRef, useEffect } from "react";
-import { Button, Grid } from "@mui/material";
-import { makeStyles } from "@mui/styles";
-import { useHistory } from "react-router-dom";
-import { v4 as uuidv4 } from "uuid";
-import frame from "assets/frame.png";
-import { useQrDataContext } from "components/QrDataProvider";
-import QrScanner from "./vendor/qr-scanner";
+import React, { useState, useRef, useEffect } from 'react';
+import { Button, Grid } from '@mui/material';
+import { makeStyles } from '@mui/styles';
+import { useHistory } from 'react-router-dom';
+import { v4 as uuidv4 } from 'uuid';
+import frame from 'assets/frame.png';
+import { useQrDataContext } from 'components/QrDataProvider';
+import QrScanner from './vendor/qr-scanner';
 
-QrScanner.WORKER_PATH = "/shc-web-verifier/qr-scanner-worker.min.js";
+QrScanner.WORKER_PATH = '/shc-web-verifier/qr-scanner-worker.min.js';
 
 const useStyles = makeStyles(() => ({
   button: {
-    "&:hover": {
-      cursor: "default",
+    '&:hover': {
+      cursor: 'default',
     },
   },
   frame: {
-    position: "relative",
-    height: "550px",
-    width: "640px",
-    marginTop: "3rem",
-    marginBottom: "3rem",
-    zIndex: "3",
+    position: 'relative',
+    height: '550px',
+    width: '640px',
+    marginTop: '3rem',
+    marginBottom: '3rem',
+    zIndex: '3',
   },
   qrScanner: {
-    width: "570px",
-    height: "500px",
-    "object-fit": "cover",
-    position: "absolute",
-    marginLeft: "2.2rem",
-    marginTop: "4.5rem",
-    "object-fit": "fill",
-    zIndex: "2",
-    "& section": {
-      position: "unset !important",
-      "& div": {
-        boxShadow: "unset !important",
+    width: '570px',
+    height: '500px',
+    'object-fit': 'cover',
+    position: 'absolute',
+    marginLeft: '2.2rem',
+    marginTop: '4.5rem',
+    zIndex: '2',
+    '& section': {
+      position: 'unset !important',
+      '& div': {
+        boxShadow: 'unset !important',
       },
     },
   },
 }));
 
-const healthCardPattern =
-  /^shc:\/(?<multipleChunks>(?<chunkIndex>[0-9]+)\/(?<chunkCount>[0-9]+)\/)?[0-9]+$/;
+const healthCardPattern = /^shc:\/(?<multipleChunks>(?<chunkIndex>[0-9]+)\/(?<chunkCount>[0-9]+)\/)?[0-9]+$/;
 
-let qrScan; // scope bound to callback
+let qrScan;
 
 const QrScan = () => {
   const history = useHistory();
   const classes = useStyles();
   const { setQrCodes } = useQrDataContext();
   const [scannedCodes, setScannedCodes] = useState([]);
-  const [scannedData, setScannedData] = useState("");
+  const [scannedData, setScannedData] = useState('');
+  const runningQrScanner = useRef(null);
 
   const handleScan = (data) => {
     if (healthCardPattern.test(data)) {
-      console.log("handling scan");
       const match = data.match(healthCardPattern);
       if (match.groups.multipleChunks) {
         const chunkCount = +match.groups.chunkCount;
@@ -73,27 +71,28 @@ const QrScan = () => {
 
         if (tempScannedCodes.every((code) => code)) {
           setQrCodes(tempScannedCodes);
-          history.push("/display-results");
+          history.push('/display-results');
         }
         setScannedCodes(tempScannedCodes);
       } else {
         setQrCodes([data]);
-        history.push("/display-results");
+        history.push('/display-results');
       }
     }
   };
 
   const handleError = () => {
-    history.push("/display-results");
+    history.push('/display-results');
   };
 
-  const runningQrScanner = useRef(null);
-
-  const videoCallback = (videoElement) => {
+  /**
+   * Create QrScanner instance using video element and specify result/error conditions
+   * @param {*} videoElement HTML video element
+   */
+  const createQrScanner = (videoElement) => {
     if (!videoElement) {
       if (runningQrScanner.current) {
         qrScan.destroy();
-        console.log("destroyed");
       }
       return;
     }
@@ -101,17 +100,11 @@ const QrScan = () => {
     qrScan = new QrScanner(
       videoElement,
       (data) => {
-        // pause QR code scanner without disabling camera
-        //qrScan._active = !1;
-        console.log("got data");
         setScannedData(data);
-        //handleScan(data);
       },
-      (error) => {},
-      //   handleError(), console.log(error);
-      //   //qrScan.hasCamera = false;
-      // },
+      () => {},
       (videoElement) => ({
+        // define scan region for QrScanner
         x: 0,
         y: 0,
         width: videoElement.videoWidth,
@@ -122,14 +115,11 @@ const QrScan = () => {
     qrScan.start().then(() => {
       qrScan.hasCamera = true;
     });
-    return () => {
-      qrScan.stop();
-    };
   };
 
   const videoRef = useRef(null);
+  // Get user media when the page first renders, and feed into createQrScanner()
   useEffect(() => {
-    console.log("in effect");
     const getUserMedia = async () => {
       try {
         const stream = await navigator.mediaDevices.getUserMedia({
@@ -141,47 +131,40 @@ const QrScan = () => {
       }
     };
     getUserMedia().then(() => {
-      videoCallback(videoRef.current);
+      createQrScanner(videoRef.current);
     });
   }, []);
 
+  // Call handleScan() from parent component when the QrScanner successfully reads data
   useEffect(() => {
-    console.log("in scanned data effect");
-    console.log(scannedData);
     if (scannedData) {
-      console.log("the scanned data changed");
       try {
         handleScan(scannedData);
       } catch (e) {
-        console.log("handling error");
         handleError();
       }
-      // handleScan(scannedData);
-      //qrScan.start();
     }
-  }, [scannedData]);
+  }, [scannedData, handleScan, handleError]);
 
   return (
     <Grid
       container
       alignItems="center"
       justifyContent="center"
-      style={{ marginTop: "2rem" }}
+      style={{ marginTop: '2rem' }}
     >
       {scannedCodes.length > 0 && (
         <>
           <Grid item xs={4} />
           <Grid item xs={4} alignItems="right" justifyContent="right">
-            {console.log("scannedCodes in Grid")}
-            {console.log(scannedCodes)}
             {scannedCodes.map((code, i) => (
               <Button
                 className={classes.button}
                 key={code || uuidv4()}
                 variant="contained"
-                color={code ? "success" : "error"}
+                color={code ? 'success' : 'error'}
                 disableRipple
-                style={{ marginRight: "0.5rem" }}
+                style={{ marginRight: '0.5rem' }}
               >
                 {`${i + 1}/${scannedCodes.length}`}
               </Button>
