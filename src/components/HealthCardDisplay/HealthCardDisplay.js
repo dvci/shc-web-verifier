@@ -1,19 +1,13 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import {
   Box,
   Button,
-  Card,
-  CardContent,
   Container,
   Grid,
   Typography,
-  Divider,
-  IconButton,
-  List,
-  ListItem,
 } from '@mui/material';
-import VisibilityIcon from '@mui/icons-material/Visibility';
 import { useHistory } from 'react-router-dom';
+import { makeStyles } from '@mui/styles';
 import { useQrDataContext } from 'components/QrDataProvider';
 import { getPatientData } from 'utils/qrHelpers';
 import { useTranslation, Trans } from 'react-i18next';
@@ -23,8 +17,39 @@ import xIcon from 'assets/x-icon.png';
 import scanIcon from 'assets/scan-icon.png';
 import exclamationRedIcon from 'assets/exclamation-red-icon.png';
 import exclamationOrangeIcon from 'assets/exclamation-orange-icon.png';
-import useStyles from './styles';
-import { fetchTradenames, fetchCvx } from './iisstandards';
+import VaccineCard from 'components/VaccineCard';
+
+const useStyles = makeStyles((theme) => ({
+  bannerError: {
+    backgroundColor: theme.palette.common.redLight,
+    color: theme.palette.common.redDark,
+  },
+  topBannerValid: {
+    backgroundColor: theme.palette.common.greenLight,
+    color: theme.palette.common.greenDark,
+  },
+  bottomBannerValid: {
+    backgroundColor: theme.palette.common.greenLighter,
+    color: theme.palette.common.greenDark,
+  },
+  topBannerPartial: {
+    backgroundColor: theme.palette.common.orangeLight,
+    color: theme.palette.common.orangeDark,
+  },
+  bottomBannerPartial: {
+    backgroundColor: theme.palette.common.orangeLighter,
+    color: theme.palette.common.orangeDark,
+  },
+  verifiedText: {
+    color: theme.palette.common.greenDark,
+  },
+  unverifiedText: {
+    color: theme.palette.common.redDark,
+  },
+  shcText: {
+    color: theme.palette.secondary.main,
+  },
+}));
 
 const HealthCardDisplay = () => {
   const styles = useStyles();
@@ -37,86 +62,11 @@ const HealthCardDisplay = () => {
     validPrimarySeries,
   } = useQrDataContext();
   const patientData = getPatientData(qrCodes);
-  const [tradenames, setTradenames] = useState({});
-  const [cvxCodes, setCvxCodes] = useState({});
-  const [showDateOfBirth, setShowDateOfBirth] = useState(false);
   const healthCardRef = useRef(null);
 
   const handleScan = () => {
     history.push('qr-scan');
   };
-
-  React.useEffect(() => {
-    async function getTradenames() {
-      const tn = await fetchTradenames();
-      setTradenames(tn);
-    }
-
-    async function getCvx() {
-      const cvx = await fetchCvx();
-      setCvxCodes(cvx);
-    }
-
-    getTradenames();
-    getCvx();
-  }, []);
-
-  const toggleShowDateOfBirth = () => {
-    setShowDateOfBirth(!showDateOfBirth);
-  };
-
-  const immunizationDisplayName = (codings) => {
-    if (codings.length === 0) return '';
-
-    const coding = codings[0];
-
-    if (!tradenames[coding.code]) {
-      if (!cvxCodes[coding.code]) {
-        return coding.system ? `${coding.system}#${coding.code}` : coding.code;
-      }
-      return cvxCodes[coding.code];
-    }
-    return tradenames[coding.code];
-  };
-
-  const HealthCardVaccination = ({ immunization }) => (
-    <Box display="flex" flexDirection="column" alignItems="flex-start" className={styles.group8}>
-      <Box display="flex" alignItems="center" justifyContent="center" alignSelf="flex-end" className={styles.group7}>
-        <Divider className={styles.line2} variant="middle" />
-      </Box>
-      <Grid container columnSpacing={{ xs: 1, sm: 1, md: 3 }}>
-        <Grid item xs={3} className={styles.gridLabel}>
-          <Typography>{t('healthcarddisplay.Vaccine')}</Typography>
-        </Grid>
-        <Grid item xs={9} className={styles.gridItem}>
-          <Typography>
-            <Box component="span" fontWeight="700">
-              {immunization.vaccineCode ? immunizationDisplayName(immunization.vaccineCode.coding) : ''}
-            </Box>
-            {immunization.lotNumber && (` ${t('healthcarddisplay.Lot')} #${immunization.lotNumber}`)}
-          </Typography>
-        </Grid>
-        <Grid item xs={3} className={styles.gridLabel}>
-          <Typography>{t('healthcarddisplay.Date')}</Typography>
-        </Grid>
-        <Grid item xs={8} className={styles.gridItem}>
-          <Typography className={styles.date}>{immunization.occurrenceDateTime}</Typography>
-        </Grid>
-        <Grid item xs={3} className={styles.gridLabel}>
-          <Typography>
-            {t('healthcarddisplay.Vaccinator')}
-          </Typography>
-        </Grid>
-        <Grid item xs={9} className={styles.gridItem}>
-          {(immunization.performer && immunization.performer.length > 0) && (
-            <Typography>
-              {immunization.performer[0].actor.display}
-            </Typography>
-          )}
-        </Grid>
-      </Grid>
-    </Box>
-  );
 
   let topBannerStyle;
   let topBannerIcon;
@@ -266,89 +216,7 @@ const HealthCardDisplay = () => {
         </>
       ) : (
         <>
-          <Grid item xs={12} style={{ marginLeft: '35%' }}>
-            <Box display="flex" className={styles.healthCard}>
-              <Card display="flex" ref={healthCardRef} className={styles.card}>
-                <CardContent className={styles.cardContent}>
-                  <Box
-                    display="flex"
-                    flexDirection="column"
-                    alignItems="flex-start"
-                    className={styles.flexCol}
-                  >
-                    <Typography className={styles.nameLabel}>{t('healthcarddisplay.NAME')}</Typography>
-                    <Typography className={styles.name}>
-                      {patientData.name}
-                    </Typography>
-                  </Box>
-                  <Box
-                    display="flex"
-                    flexDirection="column"
-                    alignItems="flex-start"
-                    className={styles.flexCol}
-                  >
-                    <Typography className={styles.dateOfBirthLabel}>
-                      {t('healthcarddisplay.DATE OF BIRTH')}
-                    </Typography>
-                    <Box
-                      display="flex"
-                      flexDirection="row"
-                      alignItems="center"
-                      className={styles.flexRow}
-                    >
-                      <Typography
-                        className={styles.dateOfBirth}
-                        hidden={!showDateOfBirth}
-                        id="dateOfBirth"
-                      >
-                        {patientData.dateOfBirth}
-                      </Typography>
-                      <Typography
-                        className={styles.dateOfBirth}
-                        hidden={showDateOfBirth}
-                      >
-                        {'**/**/****'}
-                      </Typography>
-                      <IconButton
-                        className={styles.eyeOutline}
-                        aria-label="toggle datofbirth visibility"
-                        onClick={toggleShowDateOfBirth}
-                      >
-                        <VisibilityIcon />
-                      </IconButton>
-                    </Box>
-                  </Box>
-                  <Divider className={styles.line} variant="middle" />
-                  <Box
-                    display="flex"
-                    flexDirection="column"
-                    alignItems="center"
-                    className={styles.flexCol2}
-                  >
-                    <Box
-                      display="flex"
-                      alignItems="center"
-                      justifyContent="center"
-                      className={styles.group12}
-                    >
-                      <Typography className={styles.covid19Vaccination}>
-                        {t('healthcarddisplay.VACCINATION RECORD')}
-                      </Typography>
-                    </Box>
-                    <List>
-                      {patientData.immunizations.map((item) => (
-                        <div key={item.fullUrl}>
-                          <ListItem>
-                            <HealthCardVaccination immunization={item.resource} />
-                          </ListItem>
-                        </div>
-                      ))}
-                    </List>
-                  </Box>
-                </CardContent>
-              </Card>
-            </Box>
-          </Grid>
+          <VaccineCard />
           <Grid item xs={12} style={{ marginLeft: '35%' }}>
             <Box mt={5}>
               <Button
