@@ -103,7 +103,7 @@ const QrScan = () => {
         setScannedData(data);
       },
       () => {},
-      (videoElement) => ({
+      () => ({
         // define scan region for QrScanner
         x: 0,
         y: 0,
