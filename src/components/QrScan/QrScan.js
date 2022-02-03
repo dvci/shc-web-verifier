@@ -18,6 +18,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     justifyContent: 'center',
     width: '100%',
+    marginTop: '2em',
   },
   grid: {
     display: 'flex',
@@ -58,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
   },
   qrScanner: {
     position: 'absolute',
-    width: '70%',
+    width: '80%',
     zIndex: '1',
     '& section': {
       position: 'unset !important',
