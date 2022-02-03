@@ -4,7 +4,7 @@
   },
   "herobar": {
     "SMART Health Card Verifier": "SMART\u00AE Health Card Verifier"
-  },  
+  },
   "landing": {
     "Verify a SMART Health Card QR code in a safe and privacy-preserving way.": "Verify a <0>SMART\u00AE Health Card</0> QR code in a safe and privacy-preserving way.",
     "SCAN QR CODE": "SCAN QR CODE",
@@ -18,6 +18,7 @@
     "Lot": "Lot",
     "Date": "Date",
     "Vaccinator": "Vaccinator",
+    "Issuer": "Issuer",
     "Invalid SMART Health Card": "Invalid SMART\u00AE Health Card",
     "Not verified": "Not verified",
     "Verified": "Verified",

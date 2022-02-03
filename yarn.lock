@@ -9915,7 +9915,7 @@ react-is@^17.0.1, react-is@^17.0.2:
 
 react-qr-reader@^2.2.1:
   version "2.2.1"
-  resolved "https://registry.npmjs.org/react-qr-reader/-/react-qr-reader-2.2.1.tgz#dc89046d1c1a1da837a683dd970de5926817d55b"
+  resolved "https://registry.yarnpkg.com/react-qr-reader/-/react-qr-reader-2.2.1.tgz#dc89046d1c1a1da837a683dd970de5926817d55b"
   integrity sha512-EL5JEj53u2yAOgtpAKAVBzD/SiKWn0Bl7AZy6ZrSf1lub7xHwtaXe6XSx36Wbhl1VMGmvmrwYMRwO1aSCT2fwA==
   dependencies:
     jsqr "^1.2.0"

@@ -15,7 +15,7 @@ import {
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import { useHistory } from 'react-router-dom';
 import { useQrDataContext } from 'components/QrDataProvider';
-import { getPatientData } from 'utils/qrHelpers';
+import { getPatientData, getIssuerDisplayName } from 'utils/qrHelpers';
 import { useTranslation, Trans } from 'react-i18next';
 import errorIllustration from 'assets/error-illustration.png';
 import checkIcon from 'assets/check-icon.png';
@@ -31,16 +31,20 @@ const HealthCardDisplay = () => {
   const history = useHistory();
   const { t } = useTranslation();
   const {
-    qrCodes,
-    healthCardVerified,
-    issuerVerified,
-    validPrimarySeries,
+    qrCodes, healthCardVerified, issuerVerified, validPrimarySeries
   } = useQrDataContext();
   const patientData = getPatientData(qrCodes);
+  // const issuerDisplayName = getIssuerDisplayName(qrCodes);
+  const [issuerDisplayName, setIssuerDisplayName] = useState('');
   const [tradenames, setTradenames] = useState({});
   const [cvxCodes, setCvxCodes] = useState({});
   const [showDateOfBirth, setShowDateOfBirth] = useState(false);
   const healthCardRef = useRef(null);
+
+  // let issuerDisplayName = await Promise.resolve(getIssuerDisplayName(qrCodes));
+  // getIssuerDisplayName(qrCodes).then((data) => (issuerDisplayName = data));
+  // console.log("DISPLAY NAME");
+  // console.log(issuerDisplayName);
 
   const handleScan = () => {
     history.push('qr-scan');
@@ -59,6 +63,7 @@ const HealthCardDisplay = () => {
 
     getTradenames();
     getCvx();
+    getIssuerDisplayName(qrCodes).then((result) => setIssuerDisplayName(result));
   }, []);
 
   const toggleShowDateOfBirth = () => {
@@ -80,8 +85,19 @@ const HealthCardDisplay = () => {
   };
 
   const HealthCardVaccination = ({ immunization }) => (
-    <Box display="flex" flexDirection="column" alignItems="flex-start" className={styles.group8}>
-      <Box display="flex" alignItems="center" justifyContent="center" alignSelf="flex-end" className={styles.group7}>
+    <Box
+      display="flex"
+      flexDirection="column"
+      alignItems="flex-start"
+      className={styles.group8}
+    >
+      <Box
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+        alignSelf="flex-end"
+        className={styles.group7}
+      >
         <Divider className={styles.line2} variant="middle" />
       </Box>
       <Grid container columnSpacing={{ xs: 1, sm: 1, md: 3 }}>
@@ -91,28 +107,36 @@ const HealthCardDisplay = () => {
         <Grid item xs={9} className={styles.gridItem}>
           <Typography>
             <Box component="span" fontWeight="700">
-              {immunization.vaccineCode ? immunizationDisplayName(immunization.vaccineCode.coding) : ''}
+              {immunization.vaccineCode
+                ? immunizationDisplayName(immunization.vaccineCode.coding)
+                : ''}
             </Box>
-            {immunization.lotNumber && (` ${t('healthcarddisplay.Lot')} #${immunization.lotNumber}`)}
+            {immunization.lotNumber
+              && ` ${t('healthcarddisplay.Lot')} #${immunization.lotNumber}`}
           </Typography>
         </Grid>
         <Grid item xs={3} className={styles.gridLabel}>
           <Typography>{t('healthcarddisplay.Date')}</Typography>
         </Grid>
         <Grid item xs={8} className={styles.gridItem}>
-          <Typography className={styles.date}>{immunization.occurrenceDateTime}</Typography>
-        </Grid>
-        <Grid item xs={3} className={styles.gridLabel}>
-          <Typography>
-            {t('healthcarddisplay.Vaccinator')}
+          <Typography className={styles.date}>
+            {immunization.occurrenceDateTime}
           </Typography>
         </Grid>
+        <Grid item xs={3} className={styles.gridLabel}>
+          <Typography>{t('healthcarddisplay.Vaccinator')}</Typography>
+        </Grid>
         <Grid item xs={9} className={styles.gridItem}>
-          {(immunization.performer && immunization.performer.length > 0) && (
-            <Typography>
-              {immunization.performer[0].actor.display}
-            </Typography>
+          {immunization.performer && immunization.performer.length > 0 && (
+            <Typography>{immunization.performer[0].actor.display}</Typography>
           )}
+        </Grid>
+        <Grid item xs={3} className={styles.gridLabel}>
+          <Typography>{t('healthcarddisplay.Issuer')}</Typography>
+        </Grid>
+        <Grid item xs={9} className={styles.gridItem}>
+          {/* {console.log(issuerDisplayName)} */}
+          <Typography>{issuerDisplayName}</Typography>
         </Grid>
       </Grid>
     </Box>
@@ -145,9 +169,7 @@ const HealthCardDisplay = () => {
   return (
     <Grid container style={{ marginTop: '1rem' }}>
       <Grid item xs={12} className={topBannerStyle}>
-        <Container
-          maxWidth="md"
-        >
+        <Container maxWidth="md">
           <Box
             display="flex"
             alignItems="center"
@@ -161,14 +183,17 @@ const HealthCardDisplay = () => {
               alt="Banner Icon"
               style={{ height: '2rem', marginRight: '1rem' }}
             />
-            <Typography variant="h4">
-              {topBannerText}
-            </Typography>
+            <Typography variant="h4">{topBannerText}</Typography>
           </Box>
         </Container>
       </Grid>
       {bottomBannerStyle && (
-        <Grid item xs={12} className={bottomBannerStyle} style={{ marginBottom: '2rem' }}>
+        <Grid
+          item
+          xs={12}
+          className={bottomBannerStyle}
+          style={{ marginBottom: '2rem' }}
+        >
           <Box pt={1} pb={1} style={{ marginLeft: '40%' }}>
             <Box
               display="flex"
@@ -196,8 +221,17 @@ const HealthCardDisplay = () => {
                 alt="Bottom Banner Series Icon"
                 style={{ height: '1.5rem', marginRight: '1rem' }}
               />
-              <Typography variant="h6" className={validPrimarySeries ? styles.verifiedText : styles.unverifiedText}>
-                {validPrimarySeries ? t('healthcarddisplay.Valid vaccination series') : t('healthcarddisplay.Vaccination series not valid')}
+              <Typography
+                variant="h6"
+                className={
+                  validPrimarySeries
+                    ? styles.verifiedText
+                    : styles.unverifiedText
+                }
+              >
+                {validPrimarySeries
+                  ? t('healthcarddisplay.Valid vaccination series')
+                  : t('healthcarddisplay.Vaccination series not valid')}
               </Typography>
             </Box>
             <Box
@@ -211,17 +245,28 @@ const HealthCardDisplay = () => {
                 alt="Bottom Banner Issuer Icon"
                 style={{ height: '1.5rem', marginRight: '1rem' }}
               />
-              <Typography variant="h6" className={issuerVerified ? styles.verifiedText : styles.unverifiedText}>
-                {issuerVerified ? t('healthcarddisplay.Issuer recognized') : t('healthcarddisplay.Issuer not recognized')}
+              <Typography
+                variant="h6"
+                className={
+                  issuerVerified ? styles.verifiedText : styles.unverifiedText
+                }
+              >
+                {issuerVerified
+                  ? t('healthcarddisplay.Issuer recognized')
+                  : t('healthcarddisplay.Issuer not recognized')}
               </Typography>
             </Box>
           </Box>
         </Grid>
       )}
-      {(!patientData || !bottomBannerStyle) ? (
+      {!patientData || !bottomBannerStyle ? (
         <>
           <Grid item xs={6} display="flex" justifyContent="center">
-            <img src={errorIllustration} alt="Error Illustration" width="100%" />
+            <img
+              src={errorIllustration}
+              alt="Error Illustration"
+              width="100%"
+            />
           </Grid>
           <Grid
             item
@@ -236,7 +281,11 @@ const HealthCardDisplay = () => {
                   <Trans
                     i18nKey="healthcarddisplay.Only valid SMART Health Card QR Codes are currently supported."
                     components={[
-                      <span className={styles.shcText}> SMART&reg; Health Card </span>
+                      <span className={styles.shcText}>
+                        {' '}
+                        SMART&reg; Health Card
+                        {' '}
+                      </span>,
                     ]}
                   />
                 </Typography>
@@ -276,7 +325,9 @@ const HealthCardDisplay = () => {
                     alignItems="flex-start"
                     className={styles.flexCol}
                   >
-                    <Typography className={styles.nameLabel}>{t('healthcarddisplay.NAME')}</Typography>
+                    <Typography className={styles.nameLabel}>
+                      {t('healthcarddisplay.NAME')}
+                    </Typography>
                     <Typography className={styles.name}>
                       {patientData.name}
                     </Typography>
@@ -339,7 +390,9 @@ const HealthCardDisplay = () => {
                       {patientData.immunizations.map((item) => (
                         <div key={item.fullUrl}>
                           <ListItem>
-                            <HealthCardVaccination immunization={item.resource} />
+                            <HealthCardVaccination
+                              immunization={item.resource}
+                            />
                           </ListItem>
                         </div>
                       ))}
@@ -357,7 +410,12 @@ const HealthCardDisplay = () => {
                 variant="contained"
                 color="secondary"
                 onClick={handleScan}
-                style={{ fontSize: '150%', width: healthCardRef.current ? healthCardRef.current.offsetWidth : '35%' }}
+                style={{
+                  fontSize: '150%',
+                  width: healthCardRef.current
+                    ? healthCardRef.current.offsetWidth
+                    : '35%',
+                }}
               >
                 <img
                   src={scanIcon}
