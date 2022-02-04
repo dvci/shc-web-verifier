@@ -127,7 +127,7 @@ const QrScan = () => {
         });
         videoRef.current.srcObject = stream;
       } catch (err) {
-        console.log(err);
+       throw Error('Cannot access video.')
       }
     };
     getUserMedia().then(() => {
