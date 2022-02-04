@@ -15,7 +15,7 @@ import {
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import { useHistory } from 'react-router-dom';
 import { useQrDataContext } from 'components/QrDataProvider';
-import { getPatientData, getIssuerDisplayName } from 'utils/qrHelpers';
+import { getPatientData } from 'utils/qrHelpers';
 import { useTranslation, Trans } from 'react-i18next';
 import errorIllustration from 'assets/error-illustration.png';
 import checkIcon from 'assets/check-icon.png';
@@ -31,10 +31,13 @@ const HealthCardDisplay = () => {
   const history = useHistory();
   const { t } = useTranslation();
   const {
-    qrCodes, healthCardVerified, issuerVerified, validPrimarySeries
+    qrCodes,
+    healthCardVerified,
+    issuerVerified,
+    issuerDisplayName,
+    validPrimarySeries,
   } = useQrDataContext();
   const patientData = getPatientData(qrCodes);
-  const [issuerDisplayName, setIssuerDisplayName] = useState(null);
   const [tradenames, setTradenames] = useState({});
   const [cvxCodes, setCvxCodes] = useState({});
   const [showDateOfBirth, setShowDateOfBirth] = useState(false);
@@ -58,12 +61,6 @@ const HealthCardDisplay = () => {
     getTradenames();
     getCvx();
   }, []);
-
-  React.useEffect(() => {
-    if (issuerVerified) {
-      getIssuerDisplayName(qrCodes).then((result) => setIssuerDisplayName(result));
-    }
-  }, [qrCodes, issuerVerified]);
 
   const toggleShowDateOfBirth = () => {
     setShowDateOfBirth(!showDateOfBirth);
@@ -130,16 +127,6 @@ const HealthCardDisplay = () => {
             <Typography>{immunization.performer[0].actor.display}</Typography>
           )}
         </Grid>
-        {issuerVerified && (
-          <>
-            <Grid item xs={3} className={styles.gridLabel}>
-              <Typography>{t('healthcarddisplay.Issuer')}</Typography>
-            </Grid>
-            <Grid item xs={9} className={styles.gridItem}>
-              <Typography>{issuerDisplayName}</Typography>
-            </Grid>
-          </>
-        )}
       </Grid>
     </Box>
   );
@@ -388,6 +375,17 @@ const HealthCardDisplay = () => {
                         {t('healthcarddisplay.VACCINATION RECORD')}
                       </Typography>
                     </Box>
+                    {issuerVerified && (
+                      <>
+                        <Grid item xs={7} className={styles.covid19Vaccination}>
+                          <Typography>
+                            {t('healthcarddisplay.Issuer')}
+                            :&nbsp;
+                            {issuerDisplayName}
+                          </Typography>
+                        </Grid>
+                      </>
+                    )}
                     <List>
                       {patientData.immunizations.map((item) => (
                         <div key={item.fullUrl}>

@@ -2,7 +2,12 @@ import React, {
   createContext, useContext, useEffect, useState
 } from 'react';
 import https from 'https';
-import { getIssuer, getJws, getPayload } from 'utils/qrHelpers';
+import {
+  getIssuer,
+  getJws,
+  getPayload,
+  getIssuerDisplayName,
+} from 'utils/qrHelpers';
 import { healthCardVerify, issuerVerify } from 'utils/verifyHelpers';
 import { Validator } from 'components/Validator/Validator.tsx';
 
@@ -18,6 +23,7 @@ const QrDataProvider = ({ children }) => {
   });
   const [issuerVerified, setIssuerVerified] = useState(false);
   const [validPrimarySeries, setValidPrimarySeries] = useState(false);
+  const [issuerDisplayName, setIssuerDisplayName] = useState(null);
 
   useEffect(() => {
     localStorage.setItem('qrCodes', JSON.stringify(qrCodes));
@@ -41,7 +47,12 @@ const QrDataProvider = ({ children }) => {
 
       // Verify issuer
       issuerVerify(iss)
-        .then((status) => setIssuerVerified(status))
+        .then((status) => {
+          setIssuerVerified(status);
+          if (status === true) {
+            getIssuerDisplayName(qrCodes).then((result) => setIssuerDisplayName(result));
+          }
+        })
         .catch(() => setIssuerVerified(false));
 
       // Validate vaccine series
@@ -63,6 +74,7 @@ const QrDataProvider = ({ children }) => {
       value={{
         healthCardVerified,
         issuerVerified,
+        issuerDisplayName,
         qrCodes,
         setQrCodes,
         validPrimarySeries,
