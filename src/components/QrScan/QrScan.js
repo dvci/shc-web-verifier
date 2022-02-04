@@ -1,4 +1,6 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, {
+  useState, useRef, useEffect, useCallback
+} from 'react';
 import { Button, Grid } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { useHistory } from 'react-router-dom';
@@ -52,38 +54,9 @@ const QrScan = () => {
   const [scannedData, setScannedData] = useState('');
   const runningQrScanner = useRef(null);
 
-  const handleScan = (data) => {
-    if (healthCardPattern.test(data)) {
-      const match = data.match(healthCardPattern);
-      if (match.groups.multipleChunks) {
-        const chunkCount = +match.groups.chunkCount;
-        const currentChunkIndex = +match.groups.chunkIndex;
-
-        let tempScannedCodes = [...scannedCodes];
-        if (tempScannedCodes.length !== chunkCount) {
-          tempScannedCodes = new Array(chunkCount);
-          tempScannedCodes.fill(null, 0, chunkCount);
-        }
-
-        if (tempScannedCodes[currentChunkIndex - 1] === null) {
-          tempScannedCodes[currentChunkIndex - 1] = data;
-        }
-
-        if (tempScannedCodes.every((code) => code)) {
-          setQrCodes(tempScannedCodes);
-          history.push('/display-results');
-        }
-        setScannedCodes(tempScannedCodes);
-      } else {
-        setQrCodes([data]);
-        history.push('/display-results');
-      }
-    }
-  };
-
-  const handleError = () => {
+  const handleError = useCallback(() => {
     history.push('/display-results');
-  };
+  }, [history]);
 
   /**
    * Create QrScanner instance using video element and specify result/error conditions
@@ -127,7 +100,7 @@ const QrScan = () => {
         });
         videoRef.current.srcObject = stream;
       } catch (err) {
-       throw Error('Cannot access video.')
+        throw Error('Cannot access video.');
       }
     };
     getUserMedia().then(() => {
@@ -137,6 +110,34 @@ const QrScan = () => {
 
   // Call handleScan() from parent component when the QrScanner successfully reads data
   useEffect(() => {
+    const handleScan = (data) => {
+      if (healthCardPattern.test(data)) {
+        const match = data.match(healthCardPattern);
+        if (match.groups.multipleChunks) {
+          const chunkCount = +match.groups.chunkCount;
+          const currentChunkIndex = +match.groups.chunkIndex;
+          let tempScannedCodes = [...scannedCodes];
+          if (tempScannedCodes.length !== chunkCount) {
+            tempScannedCodes = new Array(chunkCount);
+            tempScannedCodes.fill(null, 0, chunkCount);
+          }
+
+          if (tempScannedCodes[currentChunkIndex - 1] === null) {
+            tempScannedCodes[currentChunkIndex - 1] = data;
+          }
+
+          if (tempScannedCodes.every((code) => code)) {
+            setQrCodes(tempScannedCodes);
+            history.push('/display-results');
+          }
+          setScannedCodes(tempScannedCodes);
+        } else {
+          setQrCodes([data]);
+          history.push('/display-results');
+        }
+      }
+    };
+
     if (scannedData) {
       try {
         handleScan(scannedData);
@@ -144,7 +145,7 @@ const QrScan = () => {
         handleError();
       }
     }
-  }, [scannedData, handleScan, handleError]);
+  }, [scannedData, handleError, history, scannedCodes, setQrCodes]);
 
   return (
     <Grid
@@ -174,12 +175,7 @@ const QrScan = () => {
         </>
       )}
       <Grid item xs={4}>
-        <video
-          muted
-          id="test"
-          className={classes.qrScanner}
-          ref={videoRef}
-        />
+        <video muted id="test" className={classes.qrScanner} ref={videoRef} />
         <img alt="Scan Frame" className={classes.frame} src={frame} />
       </Grid>
     </Grid>
