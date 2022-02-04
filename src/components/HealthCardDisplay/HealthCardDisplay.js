@@ -34,17 +34,11 @@ const HealthCardDisplay = () => {
     qrCodes, healthCardVerified, issuerVerified, validPrimarySeries
   } = useQrDataContext();
   const patientData = getPatientData(qrCodes);
-  // const issuerDisplayName = getIssuerDisplayName(qrCodes);
-  const [issuerDisplayName, setIssuerDisplayName] = useState('');
+  const [issuerDisplayName, setIssuerDisplayName] = useState(null);
   const [tradenames, setTradenames] = useState({});
   const [cvxCodes, setCvxCodes] = useState({});
   const [showDateOfBirth, setShowDateOfBirth] = useState(false);
   const healthCardRef = useRef(null);
-
-  // let issuerDisplayName = await Promise.resolve(getIssuerDisplayName(qrCodes));
-  // getIssuerDisplayName(qrCodes).then((data) => (issuerDisplayName = data));
-  // console.log("DISPLAY NAME");
-  // console.log(issuerDisplayName);
 
   const handleScan = () => {
     history.push('qr-scan');
@@ -63,8 +57,13 @@ const HealthCardDisplay = () => {
 
     getTradenames();
     getCvx();
-    getIssuerDisplayName(qrCodes).then((result) => setIssuerDisplayName(result));
   }, []);
+
+  React.useEffect(() => {
+    if (issuerVerified) {
+      getIssuerDisplayName(qrCodes).then((result) => setIssuerDisplayName(result));
+    }
+  }, [qrCodes, issuerVerified]);
 
   const toggleShowDateOfBirth = () => {
     setShowDateOfBirth(!showDateOfBirth);
@@ -131,13 +130,16 @@ const HealthCardDisplay = () => {
             <Typography>{immunization.performer[0].actor.display}</Typography>
           )}
         </Grid>
-        <Grid item xs={3} className={styles.gridLabel}>
-          <Typography>{t('healthcarddisplay.Issuer')}</Typography>
-        </Grid>
-        <Grid item xs={9} className={styles.gridItem}>
-          {/* {console.log(issuerDisplayName)} */}
-          <Typography>{issuerDisplayName}</Typography>
-        </Grid>
+        {issuerVerified && (
+          <>
+            <Grid item xs={3} className={styles.gridLabel}>
+              <Typography>{t('healthcarddisplay.Issuer')}</Typography>
+            </Grid>
+            <Grid item xs={9} className={styles.gridItem}>
+              <Typography>{issuerDisplayName}</Typography>
+            </Grid>
+          </>
+        )}
       </Grid>
     </Box>
   );
