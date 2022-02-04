@@ -174,8 +174,12 @@ const QrScan = () => {
         </>
       )}
       <Grid item xs={4}>
-        {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
-        <video id="test" className={classes.qrScanner} ref={videoRef} />
+        <video
+          muted
+          id="test"
+          className={classes.qrScanner}
+          ref={videoRef}
+        />
         <img alt="Scan Frame" className={classes.frame} src={frame} />
       </Grid>
     </Grid>
