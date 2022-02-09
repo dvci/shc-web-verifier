@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import {
   Box,
   Button,
@@ -20,6 +20,38 @@ import exclamationOrangeIcon from 'assets/exclamation-orange-icon.png';
 import VaccineCard from 'components/VaccineCard';
 
 const useStyles = makeStyles((theme) => ({
+  displayRoot: {
+    display: 'flex',
+    alignItems: 'center',
+    flexDirection: 'column',
+    fontSize: { xs: '1.3rem', sm: '3rem' },
+    marginTop: '1rem',
+    marginBottom: '1rem',
+    flexWrap: 'nowrap',
+  },
+  flexRow: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'row',
+  },
+  flexCol: {
+    display: 'flex',
+    alignItems: 'baseline',
+    justifyContent: 'center',
+    flexDirection: 'column',
+  },
+  flexCard: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'column',
+    maxWidth: '750px',
+    width: '100%',
+    [theme.breakpoints.up('md')]: {
+      width: '650px',
+    },
+  },
   bannerError: {
     backgroundColor: theme.palette.common.redLight,
     color: theme.palette.common.redDark,
@@ -62,7 +94,6 @@ const HealthCardDisplay = () => {
     validPrimarySeries,
   } = useQrDataContext();
   const patientData = getPatientData(qrCodes);
-  const healthCardRef = useRef(null);
 
   const handleScan = () => {
     history.push('qr-scan');
@@ -93,16 +124,11 @@ const HealthCardDisplay = () => {
   }
 
   return (
-    <Grid container style={{ marginTop: '1rem' }}>
-      <Grid item xs={12} className={topBannerStyle}>
-        <Container
-          maxWidth="md"
-        >
+    <Grid container className={styles.displayRoot}>
+      <Grid item xs={12} className={topBannerStyle} width="100%">
+        <Container style={{ width: 'fit-content' }}>
           <Box
-            display="flex"
-            alignItems="center"
-            justifyContent="center"
-            flexDirection="row"
+            className={styles.flexRow}
             pt={2}
             pb={2}
           >
@@ -118,14 +144,16 @@ const HealthCardDisplay = () => {
         </Container>
       </Grid>
       {bottomBannerStyle && (
-        <Grid item xs={12} className={bottomBannerStyle} style={{ marginBottom: '2rem' }}>
-          <Box pt={1} pb={1} style={{ marginLeft: '40%' }}>
-            <Box
-              display="flex"
-              alignItems="center"
-              justifyContent="left"
-              flexDirection="row"
-            >
+        <Grid
+          item
+          xs={12}
+          className={bottomBannerStyle}
+          style={{
+            marginBottom: '2rem', display: 'flex', justifyContent: 'center', width: '100%'
+          }}
+        >
+          <Box pt={1} pb={1} className={styles.flexCol} width="fit-content">
+            <Box className={styles.flexRow}>
               <img
                 src={checkIcon}
                 alt="Bottom Banner Health Card Icon"
@@ -135,12 +163,7 @@ const HealthCardDisplay = () => {
                 {t('healthcarddisplay.Valid SMART Health Card')}
               </Typography>
             </Box>
-            <Box
-              display="flex"
-              alignItems="center"
-              justifyContent="left"
-              flexDirection="row"
-            >
+            <Box className={styles.flexRow}>
               <img
                 src={validPrimarySeries ? checkIcon : xIcon}
                 alt="Bottom Banner Series Icon"
@@ -150,12 +173,7 @@ const HealthCardDisplay = () => {
                 {validPrimarySeries ? t('healthcarddisplay.Valid vaccination series') : t('healthcarddisplay.Vaccination series not valid')}
               </Typography>
             </Box>
-            <Box
-              display="flex"
-              alignItems="center"
-              justifyContent="left"
-              flexDirection="row"
-            >
+            <Box className={styles.flexRow}>
               <img
                 src={issuerVerified ? checkIcon : xIcon}
                 alt="Bottom Banner Issuer Icon"
@@ -215,28 +233,26 @@ const HealthCardDisplay = () => {
           </Grid>
         </>
       ) : (
-        <>
-          <VaccineCard />
-          <Grid item xs={12} style={{ marginLeft: '35%' }}>
-            <Box mt={5}>
-              <Button
-                type="button"
-                size="large"
-                variant="contained"
-                color="secondary"
-                onClick={handleScan}
-                style={{ fontSize: '150%', width: healthCardRef.current ? healthCardRef.current.offsetWidth : '35%' }}
-              >
-                <img
-                  src={scanIcon}
-                  alt="Scan Icon"
-                  style={{ height: '2.5rem', marginRight: '10px' }}
-                />
-                {t('healthcarddisplay.SCAN QR CODE')}
-              </Button>
-            </Box>
-          </Grid>
-        </>
+        <Grid item className={styles.flexCard}>
+          <VaccineCard padding="1rem" width="100%" />
+          <Box item xs={12} padding="2rem" width="100%">
+            <Button
+              type="button"
+              size="large"
+              variant="contained"
+              color="secondary"
+              onClick={handleScan}
+              style={{ fontSize: '150%', width: '100%' }}
+            >
+              <img
+                src={scanIcon}
+                alt="Scan Icon"
+                style={{ height: '2.5rem', marginRight: '10px' }}
+              />
+              {t('healthcarddisplay.SCAN QR CODE')}
+            </Button>
+          </Box>
+        </Grid>
       )}
     </Grid>
   );

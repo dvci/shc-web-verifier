@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import {
   Box,
   Card,
@@ -27,7 +27,6 @@ const VaccineCard = () => {
   const [tradenames, setTradenames] = useState({});
   const [cvxCodes, setCvxCodes] = useState({});
   const [showDateOfBirth, setShowDateOfBirth] = useState(false);
-  const healthCardRef = useRef(null);
 
   React.useEffect(() => {
     async function getTradenames() {
@@ -102,89 +101,87 @@ const VaccineCard = () => {
   );
 
   return (
-    <Grid item xs={12} style={{ marginLeft: '35%' }}>
-      <Box display="flex" className={styles.healthCard}>
-        <Card display="flex" ref={healthCardRef} className={styles.card}>
-          <CardContent className={styles.cardContent}>
+    <Box display="flex" className={styles.healthCard}>
+      <Card display="flex" className={styles.card}>
+        <CardContent className={styles.cardContent}>
+          <Box
+            display="flex"
+            flexDirection="column"
+            alignItems="flex-start"
+            className={styles.flexCol}
+          >
+            <Typography className={styles.nameLabel}>{t('healthcarddisplay.NAME')}</Typography>
+            <Typography className={styles.name}>
+              {patientData.name}
+            </Typography>
+          </Box>
+          <Box
+            display="flex"
+            flexDirection="column"
+            alignItems="flex-start"
+            className={styles.flexCol}
+          >
+            <Typography className={styles.dateOfBirthLabel}>
+              {t('healthcarddisplay.DATE OF BIRTH')}
+            </Typography>
             <Box
               display="flex"
-              flexDirection="column"
-              alignItems="flex-start"
-              className={styles.flexCol}
-            >
-              <Typography className={styles.nameLabel}>{t('healthcarddisplay.NAME')}</Typography>
-              <Typography className={styles.name}>
-                {patientData.name}
-              </Typography>
-            </Box>
-            <Box
-              display="flex"
-              flexDirection="column"
-              alignItems="flex-start"
-              className={styles.flexCol}
-            >
-              <Typography className={styles.dateOfBirthLabel}>
-                {t('healthcarddisplay.DATE OF BIRTH')}
-              </Typography>
-              <Box
-                display="flex"
-                flexDirection="row"
-                alignItems="center"
-                className={styles.flexRow}
-              >
-                <Typography
-                  className={styles.dateOfBirth}
-                  hidden={!showDateOfBirth}
-                  id="dateOfBirth"
-                >
-                  {patientData.dateOfBirth}
-                </Typography>
-                <Typography
-                  className={styles.dateOfBirth}
-                  hidden={showDateOfBirth}
-                >
-                  {'**/**/****'}
-                </Typography>
-                <IconButton
-                  className={styles.eyeOutline}
-                  aria-label="toggle datofbirth visibility"
-                  onClick={toggleShowDateOfBirth}
-                >
-                  <VisibilityIcon />
-                </IconButton>
-              </Box>
-            </Box>
-            <Divider className={styles.line} variant="middle" />
-            <Box
-              display="flex"
-              flexDirection="column"
+              flexDirection="row"
               alignItems="center"
-              className={styles.flexCol2}
+              className={styles.flexRow}
             >
-              <Box
-                display="flex"
-                alignItems="center"
-                justifyContent="center"
-                className={styles.group12}
+              <Typography
+                className={styles.dateOfBirth}
+                hidden={!showDateOfBirth}
+                id="dateOfBirth"
               >
-                <Typography className={styles.covid19Vaccination}>
-                  {t('healthcarddisplay.VACCINATION RECORD')}
-                </Typography>
-              </Box>
-              <List>
-                {patientData.immunizations.map((item) => (
-                  <div key={item.fullUrl}>
-                    <ListItem>
-                      <HealthCardVaccination immunization={item.resource} />
-                    </ListItem>
-                  </div>
-                ))}
-              </List>
+                {patientData.dateOfBirth}
+              </Typography>
+              <Typography
+                className={styles.dateOfBirth}
+                hidden={showDateOfBirth}
+              >
+                {'**/**/****'}
+              </Typography>
+              <IconButton
+                className={styles.eyeOutline}
+                aria-label="toggle datofbirth visibility"
+                onClick={toggleShowDateOfBirth}
+              >
+                <VisibilityIcon />
+              </IconButton>
             </Box>
-          </CardContent>
-        </Card>
-      </Box>
-    </Grid>
+          </Box>
+          <Divider className={styles.line} variant="middle" />
+          <Box
+            display="flex"
+            flexDirection="column"
+            alignItems="center"
+            className={styles.flexCol2}
+          >
+            <Box
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
+              className={styles.group12}
+            >
+              <Typography className={styles.covid19Vaccination}>
+                {t('healthcarddisplay.VACCINATION RECORD')}
+              </Typography>
+            </Box>
+            <List>
+              {patientData.immunizations.map((item) => (
+                <div key={item.fullUrl}>
+                  <ListItem>
+                    <HealthCardVaccination immunization={item.resource} />
+                  </ListItem>
+                </div>
+              ))}
+            </List>
+          </Box>
+        </CardContent>
+      </Card>
+    </Box>
   );
 };
 
