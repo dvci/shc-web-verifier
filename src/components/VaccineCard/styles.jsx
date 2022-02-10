@@ -32,16 +32,11 @@ export default makeStyles((theme) => ({
   },
   nameLabel: {
     letterSpacing: '0',
-    lineHeight: '16px',
-    minHeight: '19px',
     whiteSpace: 'nowrap',
   },
   name: {
     fontWeight: '700',
-    letterSpacing: '0',
-    lineHeight: '24px',
-    minHeight: '27px',
-    whiteSpace: 'nowrap',
+    wordWrap: 'break-word',
   },
   dateOfBirthRow: {
     display: 'flex',
@@ -52,15 +47,10 @@ export default makeStyles((theme) => ({
   },
   dateOfBirthLabel: {
     letterSpacing: '0',
-    lineHeight: '16px',
-    minHeight: '19px',
     whiteSpace: 'nowrap',
   },
   dateOfBirth: {
     fontWeight: '700',
-    letterSpacing: '0',
-    lineHeight: '24px',
-    minHeight: '27px',
     whiteSpace: 'nowrap',
   },
   eyeOutline: {
@@ -138,6 +128,13 @@ export default makeStyles((theme) => ({
     width: '100%',
     marginLeft: '0px',
     paddingLeft: '0px',
+    wordWrap: 'break-word',
+  },
+  gridRow: {
+    width: '100%',
+    marginLeft: '0px',
+    paddingLeft: '0px',
+    flexWrap: 'nowrap',
   },
   gridLabel: {
     fontStyle: 'italic',
@@ -145,16 +142,19 @@ export default makeStyles((theme) => ({
     letterSpacing: '0',
     lineHeight: '16px',
     minHeight: '19px',
+    minWidth: '76px',
     textAlign: 'right',
     whiteSpace: 'nowrap',
     marginLeft: '0px',
-    paddingLeft: '0px',
   },
   gridItem: {
     letterSpacing: '0',
     lineHeight: '16px',
     minHeight: '19px',
-    wordWrap: 'break-word',
+    paddingLeft: '2em',
+    [theme.breakpoints.down('md')]: {
+      paddingLeft: '1em',
+    },
   },
   date: {
     fontWeight: '700',

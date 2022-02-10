@@ -1,7 +1,6 @@
 import React from 'react';
 import {
   Box,
-  Button,
   Container,
   Grid,
   Typography,
@@ -14,13 +13,13 @@ import { useTranslation, Trans } from 'react-i18next';
 import errorIllustration from 'assets/error-illustration.png';
 import checkIcon from 'assets/check-icon.png';
 import xIcon from 'assets/x-icon.png';
-import scanIcon from 'assets/scan-icon.png';
 import exclamationRedIcon from 'assets/exclamation-red-icon.png';
 import exclamationOrangeIcon from 'assets/exclamation-orange-icon.png';
 import VaccineCard from 'components/VaccineCard';
+import QrScanButton from 'components/QrScanButton';
 
 const useStyles = makeStyles((theme) => ({
-  displayRoot: {
+  bannerRoot: {
     display: 'flex',
     alignItems: 'center',
     flexDirection: 'column',
@@ -51,6 +50,29 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     [theme.breakpoints.up('md')]: {
       width: '650px',
+    },
+  },
+  errorRoot: {
+    display: 'flex',
+    alignItems: 'center',
+    flexWrap: 'nowrap',
+    [theme.breakpoints.down('md')]: {
+      flexDirection: 'column',
+    },
+    [theme.breakpoints.up('md')]: {
+      flexDirection: 'row',
+    },
+  },
+  errorGrid: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    padding: '1rem',
+    [theme.breakpoints.down('md')]: {
+      padding: '1rem',
+    },
+    [theme.breakpoints.up('md')]: {
+      padding: '2rem',
     },
   },
   bannerError: {
@@ -125,134 +147,95 @@ const HealthCardDisplay = () => {
   }
 
   return (
-    <Grid container className={styles.displayRoot}>
-      <Grid item xs={12} className={topBannerStyle} width="100%">
-        <Container style={{ width: 'fit-content' }}>
-          <Box
-            className={styles.flexRow}
-            pt={2}
-            pb={2}
-          >
-            <img
-              src={topBannerIcon}
-              alt="Banner Icon"
-              style={{ height: '2rem', marginRight: '1rem' }}
-            />
-            <Typography variant="h4">
-              {topBannerText}
-            </Typography>
-          </Box>
-        </Container>
-      </Grid>
-      {bottomBannerStyle && (
-        <Grid
-          item
-          xs={12}
-          className={bottomBannerStyle}
-          style={{
-            marginBottom: '2rem', display: 'flex', justifyContent: 'center', width: '100%'
-          }}
-        >
-          <Box pt={1} pb={1} className={styles.flexCol} width="fit-content">
-            <Box className={styles.flexRow}>
+    <Grid container>
+      <Grid container className={styles.bannerRoot}>
+        <Grid item xs={12} className={topBannerStyle} width="100%">
+          <Container style={{ width: 'fit-content' }}>
+            <Box
+              className={styles.flexRow}
+              pt={2}
+              pb={2}
+            >
               <img
-                src={checkIcon}
-                alt="Bottom Banner Health Card Icon"
-                style={{ height: '1.5rem', marginRight: '1rem' }}
+                src={topBannerIcon}
+                alt="Banner Icon"
+                style={{ height: '2rem', marginRight: '1rem' }}
               />
-              <Typography variant="h6" className={styles.verifiedText}>
-                {t('healthcarddisplay.Valid SMART Health Card')}
+              <Typography variant="h4">
+                {topBannerText}
               </Typography>
             </Box>
-            <Box className={styles.flexRow}>
-              <img
-                src={validPrimarySeries ? checkIcon : xIcon}
-                alt="Bottom Banner Series Icon"
-                style={{ height: '1.5rem', marginRight: '1rem' }}
-              />
-              <Typography variant="h6" className={validPrimarySeries ? styles.verifiedText : styles.unverifiedText}>
-                {validPrimarySeries ? t('healthcarddisplay.Valid vaccination series') : t('healthcarddisplay.Vaccination series not valid')}
-              </Typography>
-            </Box>
-            <Box className={styles.flexRow}>
-              <img
-                src={issuerVerified ? checkIcon : xIcon}
-                alt="Bottom Banner Issuer Icon"
-                style={{ height: '1.5rem', marginRight: '1rem' }}
-              />
-              <Typography variant="h6" className={issuerVerified ? styles.verifiedText : styles.unverifiedText}>
-                {issuerVerified ? t('healthcarddisplay.Issuer recognized') : t('healthcarddisplay.Issuer not recognized')}
-              </Typography>
-            </Box>
-          </Box>
+          </Container>
         </Grid>
-      )}
-      {(!patientData || !bottomBannerStyle) ? (
-        <>
-          <Grid item xs={6} display="flex" justifyContent="center">
-            <img src={errorIllustration} alt="Error Illustration" width="100%" />
-          </Grid>
+        {bottomBannerStyle && (
           <Grid
             item
-            xs={6}
-            display="flex"
-            justifyContent="center"
-            alignItems="center"
+            xs={12}
+            className={bottomBannerStyle}
+            style={{
+              marginBottom: '2rem', display: 'flex', justifyContent: 'center', width: '100%'
+            }}
           >
-            <Grid container>
-              <Grid item xs={12}>
-                <Typography variant="h4" color="primary.main">
-                  <Trans
-                    i18nKey="healthcarddisplay.Only valid SMART Health Card QR Codes are currently supported."
-                    components={[
-                      <span className={styles.shcText}> SMART&reg; Health Card </span>
-                    ]}
-                  />
+            <Box pt={1} pb={1} className={styles.flexCol} width="fit-content">
+              <Box className={styles.flexRow}>
+                <img
+                  src={checkIcon}
+                  alt="Bottom Banner Health Card Icon"
+                  style={{ height: '1.5rem', marginRight: '1rem' }}
+                />
+                <Typography variant="h6" className={styles.verifiedText}>
+                  {t('healthcarddisplay.Valid SMART Health Card')}
                 </Typography>
-              </Grid>
-              <Grid item xs={10}>
-                <Box mt={10}>
-                  <Button
-                    type="button"
-                    fullWidth
-                    size="large"
-                    variant="contained"
-                    color="secondary"
-                    onClick={handleScan}
-                    style={{ fontSize: '150%' }}
-                  >
-                    <img
-                      src={scanIcon}
-                      alt="Scan Icon"
-                      style={{ height: '2.5rem', marginRight: '10px' }}
-                    />
-                    {t('healthcarddisplay.SCAN QR CODE')}
-                  </Button>
-                </Box>
-              </Grid>
+              </Box>
+              <Box className={styles.flexRow}>
+                <img
+                  src={validPrimarySeries ? checkIcon : xIcon}
+                  alt="Bottom Banner Series Icon"
+                  style={{ height: '1.5rem', marginRight: '1rem' }}
+                />
+                <Typography variant="h6" className={validPrimarySeries ? styles.verifiedText : styles.unverifiedText}>
+                  {validPrimarySeries ? t('healthcarddisplay.Valid vaccination series') : t('healthcarddisplay.Vaccination series not valid')}
+                </Typography>
+              </Box>
+              <Box className={styles.flexRow}>
+                <img
+                  src={issuerVerified ? checkIcon : xIcon}
+                  alt="Bottom Banner Issuer Icon"
+                  style={{ height: '1.5rem', marginRight: '1rem' }}
+                />
+                <Typography variant="h6" className={issuerVerified ? styles.verifiedText : styles.unverifiedText}>
+                  {issuerVerified ? t('healthcarddisplay.Issuer recognized') : t('healthcarddisplay.Issuer not recognized')}
+                </Typography>
+              </Box>
+            </Box>
+          </Grid>
+        )}
+      </Grid>
+      {(!patientData || !bottomBannerStyle) ? (
+        <Grid container className={styles.errorRoot}>
+          <Grid item md={6} display="flex" justifyContent="center">
+            <img src={errorIllustration} alt="Error Illustration" width="100%" />
+          </Grid>
+          <Grid item container md={6} className={styles.errorGrid} rowSpacing={{ xs: '1rem', md: '2rem' }}>
+            <Grid item>
+              <Typography textAlign="center" variant="h4" color="primary.main">
+                <Trans
+                  i18nKey="healthcarddisplay.Only valid SMART Health Card QR Codes are currently supported."
+                  components={[
+                    <span className={styles.shcText}> SMART&reg; Health Card </span>
+                  ]}
+                />
+              </Typography>
+            </Grid>
+            <Grid item>
+              <QrScanButton onClick={handleScan} styles={{ width: '100%' }} mt={10} />
             </Grid>
           </Grid>
-        </>
+        </Grid>
       ) : (
         <Grid item className={styles.flexCard}>
           <VaccineCard padding="1rem" width="100%" />
-          <Box item xs={12} padding="1rem" width="100%">
-            <Button
-              type="button"
-              size="large"
-              variant="contained"
-              color="secondary"
-              onClick={handleScan}
-              style={{ fontSize: '150%', width: '100%' }}
-            >
-              <img
-                src={scanIcon}
-                alt="Scan Icon"
-                style={{ height: '2.5rem', marginRight: '10px' }}
-              />
-              {t('healthcarddisplay.SCAN QR CODE')}
-            </Button>
-          </Box>
+          <QrScanButton onClick={handleScan} styles={{ padding: '1rem', width: '100%' }} />
         </Grid>
       )}
     </Grid>

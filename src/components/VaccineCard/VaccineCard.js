@@ -67,11 +67,11 @@ const VaccineCard = () => {
         <Divider className={styles.line2} />
       </Box>
       <Grid container className={styles.grid}>
-        <Grid container item className={styles.grid} columnSpacing={{ xs: 1, sm: 1, md: 3 }}>
+        <Grid container item className={styles.gridRow} spacing={0}>
           <Grid item xs={3} sm={2} className={styles.gridLabel}>
             <Typography>{t('healthcarddisplay.Vaccine')}</Typography>
           </Grid>
-          <Grid item xs={9} sm={10} className={styles.gridItem}>
+          <Grid item xs className={styles.gridItem}>
             <Typography>
               <Box component="span" fontWeight="700">
                 {immunization.vaccineCode ? immunizationDisplayName(immunization.vaccineCode.coding) : ''}
@@ -80,21 +80,21 @@ const VaccineCard = () => {
             </Typography>
           </Grid>
         </Grid>
-        <Grid container item className={styles.grid} columnSpacing={{ xs: 1, sm: 1, md: 3 }}>
+        <Grid container item className={styles.gridRow} spacing={0}>
           <Grid item xs={3} sm={2} className={styles.gridLabel}>
             <Typography>{t('healthcarddisplay.Date')}</Typography>
           </Grid>
-          <Grid item xs={9} sm={10} className={styles.gridItem}>
+          <Grid item xs className={styles.gridItem}>
             <Typography className={styles.date}>{immunization.occurrenceDateTime}</Typography>
           </Grid>
         </Grid>
-        <Grid container item className={styles.grid} columnSpacing={{ xs: 1, sm: 1, md: 3 }}>
+        <Grid container item className={styles.gridRow} spacing={0}>
           <Grid item xs={3} sm={2} className={styles.gridLabel}>
             <Typography>
               {t('healthcarddisplay.Vaccinator')}
             </Typography>
           </Grid>
-          <Grid item xs={9} sm={10} className={styles.gridItem}>
+          <Grid item xs className={styles.gridItem}>
             {(immunization.performer && immunization.performer.length > 0) && (
             <Typography>
               {immunization.performer[0].actor.display}
