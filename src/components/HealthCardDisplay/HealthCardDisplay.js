@@ -46,6 +46,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'column',
+    padding: '1rem',
     maxWidth: '750px',
     width: '100%',
     [theme.breakpoints.up('md')]: {
@@ -235,7 +236,7 @@ const HealthCardDisplay = () => {
       ) : (
         <Grid item className={styles.flexCard}>
           <VaccineCard padding="1rem" width="100%" />
-          <Box item xs={12} padding="2rem" width="100%">
+          <Box item xs={12} padding="1rem" width="100%">
             <Button
               type="button"
               size="large"

@@ -3,6 +3,8 @@ import { makeStyles } from '@mui/styles';
 export default makeStyles((theme) => ({
   healthCard: {
     color: theme.palette.primary.main,
+    width: '100%',
+    justifyContent: 'center',
   },
   card: {
     backgroundColor: theme.palette.common.blueGreenLight,
@@ -10,6 +12,7 @@ export default makeStyles((theme) => ({
     borderColor: 'white',
     borderRadius: '18px',
     boxShadow: '0px 4px 8px #00000080',
+    width: '100%',
     minHeight: '480px',
     padding: '28px 34.5px;',
   },
@@ -19,52 +22,20 @@ export default makeStyles((theme) => ({
       paddingBottom: 0
     }
   },
-  flexRow: {
-    marginLeft: '5.5px',
-    marginTop: '5px',
-  },
-  group4: {
-    minWidth: '191px',
-  },
-  overlapGroup: {
-    height: '88px',
-    position: 'relative',
-    width: '193px',
-  },
-  bitmap: {
-    height: '41px',
-    left: '2px',
-    position: 'absolute',
-    top: '0',
-    width: '191px',
-  },
-  title: {
-    fontWeight: '300',
-    left: '0',
-    letterSpacing: '-0.93px',
-    position: 'relative',
-    textAlign: 'center',
-    top: '33px',
-  },
-  // .group-9
-  group9: {
-    height: '55px',
-    marginBottom: '9.0px',
-    marginLeft: '96px',
-    minWidth: '465px',
-  },
-  // .flex-col
   flexCol: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  patientData: {
+    alignItems: 'flex-start',
     minHeight: '55px',
   },
-  // .place
   nameLabel: {
     letterSpacing: '0',
     lineHeight: '16px',
     minHeight: '19px',
     whiteSpace: 'nowrap',
   },
-  // .anypersonjohn-b
   name: {
     fontWeight: '700',
     letterSpacing: '0',
@@ -72,7 +43,13 @@ export default makeStyles((theme) => ({
     minHeight: '27px',
     whiteSpace: 'nowrap',
   },
-  // .date-of-birth
+  dateOfBirthRow: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginLeft: '5.5px',
+    marginTop: '5px',
+  },
   dateOfBirthLabel: {
     letterSpacing: '0',
     lineHeight: '16px',
@@ -86,7 +63,6 @@ export default makeStyles((theme) => ({
     minHeight: '27px',
     whiteSpace: 'nowrap',
   },
-  // .eye-outline
   eyeOutline: {
     backgroundSize: '100% 100%',
     color: theme.palette.common.blueGreenDark,
@@ -95,27 +71,35 @@ export default makeStyles((theme) => ({
     marginLeft: '10px',
     width: '22px',
   },
-  // .line
   line: {
     height: '2px',
     marginTop: '5px',
+    variant: 'middle',
   },
-  // .flex-col-2
-  flexCol2: {
+  divider: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    alignSelf: 'flex-end',
+    height: '19px',
+    width: '100%',
+  },
+  vaccinationRecordBox: {
+    alignItems: 'center',
     marginTop: '10px',
     minHeight: '230px',
-    position: 'relative',
   },
-  // .group-12
-  group12: {
+  vaccinationRecordLabel: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
     backgroundColor: 'white',
     borderRadius: '11.5px',
     height: '23px',
-    minWidth: '428px',
+    width: '100%',
     padding: '1px',
   },
-  // .covid-19-vaccination
-  covid19Vaccination: {
+  vaccinationRecordLabelText: {
     color: 'var(--mako)',
     fontSize: 'var(--font-size-l2)',
     fontWeight: '600',
@@ -123,37 +107,18 @@ export default makeStyles((theme) => ({
     minHeight: '19px',
     whiteSpace: 'nowrap',
   },
-  // .group-5
-  group5: {
-    backgroundColor: 'white',
-    height: '275px',
-    marginLeft: '56px',
-    minWidth: '281px',
-    padding: '0 18px',
-  },
-  // .iss-smart-health-car
-  issSmartHealthCar: {
-    alignSelf: 'flex-end',
-    letterSpacing: '0',
-    lineHeight: '16px',
-    marginLeft: '56px',
-    marginTop: '6px',
-    minHeight: '19px',
-    minWidth: '195px',
-    textAlign: 'center',
-    whiteSpace: 'nowrap',
-  },
-  // .group-8
-  group8: {
-    minHeight: '79px',
-    width: '425px',
-  },
-  // .group-7
-  group7: {
-    height: '19px',
+  vaccinationRecordList: {
     width: '100%',
   },
-  // .dose
+  vaccinationRecordListItem: {
+    paddingLeft: '0px',
+    paddingRight: '0px',
+  },
+  vaccinationRoot: {
+    minHeight: '79px',
+    width: '100%',
+    marginLeft: '0px',
+  },
   dose: {
     color: theme.palette.common.blueGreenDark,
     fontWeight: '800',
@@ -167,13 +132,12 @@ export default makeStyles((theme) => ({
     backgroundColor: theme.palette.common.blueGreenDark,
     height: '2px',
     width: '90%',
+    variant: 'middle',
   },
-  gridRow: {
-    alignItems: 'flex-start',
-    flexWrap: 'nowrap',
-    minHeight: '19px',
-    marginTop: '1px',
-    minWidth: '182px',
+  grid: {
+    width: '100%',
+    marginLeft: '0px',
+    paddingLeft: '0px',
   },
   gridLabel: {
     fontStyle: 'italic',
@@ -181,9 +145,10 @@ export default makeStyles((theme) => ({
     letterSpacing: '0',
     lineHeight: '16px',
     minHeight: '19px',
-    minWidth: '80px',
     textAlign: 'right',
     whiteSpace: 'nowrap',
+    marginLeft: '0px',
+    paddingLeft: '0px',
   },
   gridItem: {
     letterSpacing: '0',
@@ -193,5 +158,16 @@ export default makeStyles((theme) => ({
   },
   date: {
     fontWeight: '700',
+  },
+  issSmartHealthCar: {
+    alignSelf: 'flex-end',
+    letterSpacing: '0',
+    lineHeight: '16px',
+    marginLeft: '56px',
+    marginTop: '6px',
+    minHeight: '19px',
+    minWidth: '195px',
+    textAlign: 'center',
+    whiteSpace: 'nowrap',
   },
 }));

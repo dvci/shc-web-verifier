@@ -62,39 +62,45 @@ const VaccineCard = () => {
   };
 
   const HealthCardVaccination = ({ immunization }) => (
-    <Box display="flex" flexDirection="column" alignItems="flex-start" className={styles.group8}>
-      <Box display="flex" alignItems="center" justifyContent="center" alignSelf="flex-end" className={styles.group7}>
-        <Divider className={styles.line2} variant="middle" />
+    <Box className={[styles.flexCol, styles.vaccinationRoot].join(' ')}>
+      <Box className={styles.divider}>
+        <Divider className={styles.line2} />
       </Box>
-      <Grid container columnSpacing={{ xs: 1, sm: 1, md: 3 }}>
-        <Grid item xs={3} className={styles.gridLabel}>
-          <Typography>{t('healthcarddisplay.Vaccine')}</Typography>
+      <Grid container className={styles.grid}>
+        <Grid container item className={styles.grid} columnSpacing={{ xs: 1, sm: 1, md: 3 }}>
+          <Grid item xs={3} sm={2} className={styles.gridLabel}>
+            <Typography>{t('healthcarddisplay.Vaccine')}</Typography>
+          </Grid>
+          <Grid item xs={9} sm={10} className={styles.gridItem}>
+            <Typography>
+              <Box component="span" fontWeight="700">
+                {immunization.vaccineCode ? immunizationDisplayName(immunization.vaccineCode.coding) : ''}
+              </Box>
+              {immunization.lotNumber && (` ${t('healthcarddisplay.Lot')} #${immunization.lotNumber}`)}
+            </Typography>
+          </Grid>
         </Grid>
-        <Grid item xs={9} className={styles.gridItem}>
-          <Typography>
-            <Box component="span" fontWeight="700">
-              {immunization.vaccineCode ? immunizationDisplayName(immunization.vaccineCode.coding) : ''}
-            </Box>
-            {immunization.lotNumber && (` ${t('healthcarddisplay.Lot')} #${immunization.lotNumber}`)}
-          </Typography>
+        <Grid container item className={styles.grid} columnSpacing={{ xs: 1, sm: 1, md: 3 }}>
+          <Grid item xs={3} sm={2} className={styles.gridLabel}>
+            <Typography>{t('healthcarddisplay.Date')}</Typography>
+          </Grid>
+          <Grid item xs={9} sm={10} className={styles.gridItem}>
+            <Typography className={styles.date}>{immunization.occurrenceDateTime}</Typography>
+          </Grid>
         </Grid>
-        <Grid item xs={3} className={styles.gridLabel}>
-          <Typography>{t('healthcarddisplay.Date')}</Typography>
-        </Grid>
-        <Grid item xs={8} className={styles.gridItem}>
-          <Typography className={styles.date}>{immunization.occurrenceDateTime}</Typography>
-        </Grid>
-        <Grid item xs={3} className={styles.gridLabel}>
-          <Typography>
-            {t('healthcarddisplay.Vaccinator')}
-          </Typography>
-        </Grid>
-        <Grid item xs={9} className={styles.gridItem}>
-          {(immunization.performer && immunization.performer.length > 0) && (
+        <Grid container item className={styles.grid} columnSpacing={{ xs: 1, sm: 1, md: 3 }}>
+          <Grid item xs={3} sm={2} className={styles.gridLabel}>
+            <Typography>
+              {t('healthcarddisplay.Vaccinator')}
+            </Typography>
+          </Grid>
+          <Grid item xs={9} sm={10} className={styles.gridItem}>
+            {(immunization.performer && immunization.performer.length > 0) && (
             <Typography>
               {immunization.performer[0].actor.display}
             </Typography>
-          )}
+            )}
+          </Grid>
         </Grid>
       </Grid>
     </Box>
@@ -104,32 +110,15 @@ const VaccineCard = () => {
     <Box display="flex" className={styles.healthCard}>
       <Card display="flex" className={styles.card}>
         <CardContent className={styles.cardContent}>
-          <Box
-            display="flex"
-            flexDirection="column"
-            alignItems="flex-start"
-            className={styles.flexCol}
-          >
+          <Box className={[styles.flexCol, styles.patientData].join(' ')}>
             <Typography className={styles.nameLabel}>{t('healthcarddisplay.NAME')}</Typography>
-            <Typography className={styles.name}>
-              {patientData.name}
-            </Typography>
+            <Typography className={styles.name}>{patientData.name}</Typography>
           </Box>
-          <Box
-            display="flex"
-            flexDirection="column"
-            alignItems="flex-start"
-            className={styles.flexCol}
-          >
+          <Box className={[styles.flexCol, styles.patientData].join(' ')}>
             <Typography className={styles.dateOfBirthLabel}>
               {t('healthcarddisplay.DATE OF BIRTH')}
             </Typography>
-            <Box
-              display="flex"
-              flexDirection="row"
-              alignItems="center"
-              className={styles.flexRow}
-            >
+            <Box className={styles.dateOfBirthRow}>
               <Typography
                 className={styles.dateOfBirth}
                 hidden={!showDateOfBirth}
@@ -152,27 +141,17 @@ const VaccineCard = () => {
               </IconButton>
             </Box>
           </Box>
-          <Divider className={styles.line} variant="middle" />
-          <Box
-            display="flex"
-            flexDirection="column"
-            alignItems="center"
-            className={styles.flexCol2}
-          >
-            <Box
-              display="flex"
-              alignItems="center"
-              justifyContent="center"
-              className={styles.group12}
-            >
-              <Typography className={styles.covid19Vaccination}>
+          <Divider className={styles.line} />
+          <Box className={[styles.flexCol, styles.vaccinationRecordBox].join(' ')}>
+            <Box className={styles.vaccinationRecordLabel}>
+              <Typography className={styles.vaccinationRecordLabelText}>
                 {t('healthcarddisplay.VACCINATION RECORD')}
               </Typography>
             </Box>
-            <List>
+            <List className={styles.vaccinationRecordList}>
               {patientData.immunizations.map((item) => (
                 <div key={item.fullUrl}>
-                  <ListItem>
+                  <ListItem className={styles.vaccinationRecordListItem}>
                     <HealthCardVaccination immunization={item.resource} />
                   </ListItem>
                 </div>
