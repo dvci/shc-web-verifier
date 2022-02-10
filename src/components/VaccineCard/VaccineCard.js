@@ -81,7 +81,7 @@ const VaccineCard = () => {
           <Grid item xs={3} sm={2} className={styles.gridLabel}>
             <Typography>{t('healthcarddisplay.Vaccine')}</Typography>
           </Grid>
-          <Grid item xs={9} sm={10} className={styles.gridItem}>
+          <Grid item xs className={styles.gridItem}>
             <Typography>
               <Box component="span" fontWeight="700">
                 {immunization.vaccineCode
