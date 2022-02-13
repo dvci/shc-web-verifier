@@ -375,17 +375,6 @@ const HealthCardDisplay = () => {
                         {t('healthcarddisplay.VACCINATION RECORD')}
                       </Typography>
                     </Box>
-                    {issuerVerified && (
-                      <>
-                        <Grid item xs={7} className={styles.covid19Vaccination}>
-                          <Typography>
-                            {t('healthcarddisplay.Issuer')}
-                            :&nbsp;
-                            {issuerDisplayName}
-                          </Typography>
-                        </Grid>
-                      </>
-                    )}
                     <List>
                       {patientData.immunizations.map((item) => (
                         <div key={item.fullUrl}>
@@ -397,6 +386,18 @@ const HealthCardDisplay = () => {
                         </div>
                       ))}
                     </List>
+                    {issuerVerified && (
+                      <>
+                        <Grid
+                          container
+                          xs={10.5}
+                          justifyContent="left"
+                          alignItems="flex-end"
+                        >
+                          <Typography>{issuerDisplayName}</Typography>
+                        </Grid>
+                      </>
+                    )}
                   </Box>
                 </CardContent>
               </Card>
