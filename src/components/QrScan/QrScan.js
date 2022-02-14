@@ -67,20 +67,21 @@ const QrScan = () => {
       }
       return;
     }
-
     qrScan = new QrScanner(
       videoElement,
-      (data) => {
-        setScannedData(data);
+      (results) => {
+        setScannedData(results.data);
       },
-      () => {},
-      () => ({
-        // define scan region for QrScanner
-        x: 0,
-        y: 0,
-        width: videoElement.videoWidth,
-        height: videoElement.videoHeight,
-      })
+      {
+        // eslint-disable-next-line no-shadow
+        calculateScanRegion: (videoElement) => ({
+          // define scan region for QrScanner
+          x: 0,
+          y: 0,
+          width: videoElement.videoWidth,
+          height: videoElement.videoHeight,
+        }),
+      }
     );
     runningQrScanner.current = qrScan;
     qrScan.start().then(() => {
@@ -109,7 +110,6 @@ const QrScan = () => {
     };
   }, []);
 
-  // Call handleScan() from parent component when the QrScanner successfully reads data
   useEffect(() => {
     const handleScan = (data) => {
       if (healthCardPattern.test(data)) {
