@@ -386,18 +386,14 @@ const HealthCardDisplay = () => {
                         </div>
                       ))}
                     </List>
-                    {issuerVerified && (
-                      <>
-                        <Grid
-                          container
-                          xs={10.5}
-                          justifyContent="left"
-                          alignItems="flex-end"
-                        >
-                          <Typography>{issuerDisplayName}</Typography>
-                        </Grid>
-                      </>
-                    )}
+                    <Grid
+                      container
+                      xs={10.5}
+                      justifyContent="left"
+                      alignItems="flex-end"
+                    >
+                      <Typography>{issuerDisplayName}</Typography>
+                    </Grid>
                   </Box>
                 </CardContent>
               </Card>
