@@ -392,7 +392,33 @@ const HealthCardDisplay = () => {
                       justifyContent="left"
                       alignItems="flex-end"
                     >
-                      <Typography>{issuerDisplayName}</Typography>
+                      <Box
+                        display="flex"
+                        alignItems="center"
+                        justifyContent="left"
+                        flexDirection="row"
+                      >
+                        <Typography>{issuerDisplayName}</Typography>
+                        {!issuerVerified && (
+                          <>
+                            <img
+                              src={xIcon}
+                              alt="Bottom Banner Issuer Icon"
+                              style={{
+                                height: '1.5rem',
+                                marginRight: '1rem',
+                                marginLeft: '1rem',
+                              }}
+                            />
+                            <Typography
+                              variant="h6"
+                              className={styles.unverifiedText}
+                            >
+                              {t('healthcarddisplay.Issuer not recognized')}
+                            </Typography>
+                          </>
+                        )}
+                      </Box>
                     </Grid>
                   </Box>
                 </CardContent>
