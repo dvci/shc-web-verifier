@@ -7,9 +7,7 @@ import { useHistory } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import frame from 'assets/frame.png';
 import { useQrDataContext } from 'components/QrDataProvider';
-import QrScanner from './vendor/qr-scanner';
-
-QrScanner.WORKER_PATH = '/shc-web-verifier/qr-scanner-worker.min.js';
+import QrScanner from 'qr-scanner';
 
 const useStyles = makeStyles(() => ({
   button: {
@@ -106,6 +104,9 @@ const QrScan = () => {
     getUserMedia().then(() => {
       createQrScanner(videoRef.current);
     });
+    return () => {
+      if (runningQrScanner.current) runningQrScanner.current.stop();
+    };
   }, []);
 
   // Call handleScan() from parent component when the QrScanner successfully reads data

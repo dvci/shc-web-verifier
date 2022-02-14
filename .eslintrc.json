@@ -31,6 +31,5 @@
         "paths": ["src"]
       }
     }
-  },
-  "ignorePatterns": ["src/components/QrScan/vendor/qr-scanner/*"]
+  }
 }
