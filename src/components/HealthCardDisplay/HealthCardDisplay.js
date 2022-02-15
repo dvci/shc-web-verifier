@@ -197,7 +197,7 @@ const HealthCardDisplay = () => {
                 style={{ height: '1.5rem', marginRight: '1rem' }}
               />
               <Typography variant="h6" className={validPrimarySeries ? styles.verifiedText : styles.unverifiedText}>
-                {validPrimarySeries ? t('healthcarddisplay.Valid vaccination series') : t('healthcarddisplay.Could not validate status of vaccination series')}
+                {validPrimarySeries ? t('healthcarddisplay.Valid vaccination series') : t('healthcarddisplay.Vaccination status undetermined')}
               </Typography>
             </Box>
             <Box
