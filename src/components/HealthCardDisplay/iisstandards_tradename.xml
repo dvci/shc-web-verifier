@@ -128,24 +128,6 @@
  </prodInfo>
  <prodInfo>
  <Name>CDC Product Name</Name>
- <Value>Afluria</Value>
- <Name>Short Description</Name>
- <Value>Influenza, seasonal, injectable</Value>
- <Name>CVXCode</Name>
- <Value>141       </Value>
- <Name>Manufacturer</Name>
- <Value>Seqirus</Value>
- <Name>MVX Code</Name>
- <Value>SEQ       </Value>
- <Name>MVX Status</Name>
- <Value>Active</Value>
- <Name>Product name Status</Name>
- <Value>Active</Value>
- <Name>Last Updated</Name>
- <Value>9/26/2016</Value>
- </prodInfo>
- <prodInfo>
- <Name>CDC Product Name</Name>
  <Value>AFLURIA</Value>
  <Name>Short Description</Name>
  <Value>Influenza, seasonal, injectable</Value>
@@ -159,6 +141,24 @@
  <Value>Inactive</Value>
  <Name>Product name Status</Name>
  <Value>Inactive</Value>
+ <Name>Last Updated</Name>
+ <Value>9/26/2016</Value>
+ </prodInfo>
+ <prodInfo>
+ <Name>CDC Product Name</Name>
+ <Value>Afluria</Value>
+ <Name>Short Description</Name>
+ <Value>Influenza, seasonal, injectable</Value>
+ <Name>CVXCode</Name>
+ <Value>141       </Value>
+ <Name>Manufacturer</Name>
+ <Value>Seqirus</Value>
+ <Name>MVX Code</Name>
+ <Value>SEQ       </Value>
+ <Name>MVX Status</Name>
+ <Value>Active</Value>
+ <Name>Product name Status</Name>
+ <Value>Active</Value>
  <Name>Last Updated</Name>
  <Value>9/26/2016</Value>
  </prodInfo>
@@ -764,13 +764,13 @@
  <Name>CVXCode</Name>
  <Value>185       </Value>
  <Name>Manufacturer</Name>
- <Value>Protein Sciences</Value>
+ <Value>Sanofi Pasteur</Value>
  <Name>MVX Code</Name>
- <Value>PSC       </Value>
+ <Value>PMC       </Value>
  <Name>MVX Status</Name>
- <Value>Inactive</Value>
+ <Value>Active</Value>
  <Name>Product name Status</Name>
- <Value>Inactive</Value>
+ <Value>Active</Value>
  <Name>Last Updated</Name>
  <Value>5/2/2019</Value>
  </prodInfo>
@@ -782,13 +782,13 @@
  <Name>CVXCode</Name>
  <Value>185       </Value>
  <Name>Manufacturer</Name>
- <Value>Sanofi Pasteur</Value>
+ <Value>Protein Sciences</Value>
  <Name>MVX Code</Name>
- <Value>PMC       </Value>
+ <Value>PSC       </Value>
  <Name>MVX Status</Name>
- <Value>Active</Value>
+ <Value>Inactive</Value>
  <Name>Product name Status</Name>
- <Value>Active</Value>
+ <Value>Inactive</Value>
  <Name>Last Updated</Name>
  <Value>5/2/2019</Value>
  </prodInfo>
@@ -1768,7 +1768,25 @@
  <Name>CDC Product Name</Name>
  <Value>Moderna COVID-19 Vaccine (non-US Spikevax)</Value>
  <Name>Short Description</Name>
- <Value>COVID-19, mRNA, LNP-S, PF, 100 mcg or 50 mcg dose</Value>
+ <Value>COVID-19, mRNA, LNP-S, PF, 50 mcg/0.5 mL dose</Value>
+ <Name>CVXCode</Name>
+ <Value>221       </Value>
+ <Name>Manufacturer</Name>
+ <Value>Moderna US, Inc.</Value>
+ <Name>MVX Code</Name>
+ <Value>MOD       </Value>
+ <Name>MVX Status</Name>
+ <Value>Active</Value>
+ <Name>Product name Status</Name>
+ <Value>Active</Value>
+ <Name>Last Updated</Name>
+ <Value>7/13/2021</Value>
+ </prodInfo>
+ <prodInfo>
+ <Name>CDC Product Name</Name>
+ <Value>Moderna COVID-19 Vaccine (non-US Spikevax)</Value>
+ <Name>Short Description</Name>
+ <Value>COVID-19, mRNA, LNP-S, PF, 100 mcg/0.5mL dose or 50 mcg/0.25mL dose</Value>
  <Name>CVXCode</Name>
  <Value>207       </Value>
  <Name>Manufacturer</Name>
@@ -1862,11 +1880,11 @@
  <Name>CVXCode</Name>
  <Value>127       </Value>
  <Name>Manufacturer</Name>
- <Value>Novartis Pharmaceutical Corporation</Value>
+ <Value>Sanofi Pasteur</Value>
  <Name>MVX Code</Name>
- <Value>NOV       </Value>
+ <Value>PMC       </Value>
  <Name>MVX Status</Name>
- <Value>Inactive</Value>
+ <Value>Active</Value>
  <Name>Product name Status</Name>
  <Value>Inactive</Value>
  <Name>Last Updated</Name>
@@ -1880,11 +1898,11 @@
  <Name>CVXCode</Name>
  <Value>127       </Value>
  <Name>Manufacturer</Name>
- <Value>Sanofi Pasteur</Value>
+ <Value>Novartis Pharmaceutical Corporation</Value>
  <Name>MVX Code</Name>
- <Value>PMC       </Value>
+ <Value>NOV       </Value>
  <Name>MVX Status</Name>
- <Value>Active</Value>
+ <Value>Inactive</Value>
  <Name>Product name Status</Name>
  <Value>Inactive</Value>
  <Name>Last Updated</Name>
@@ -1916,11 +1934,11 @@
  <Name>CVXCode</Name>
  <Value>126       </Value>
  <Name>Manufacturer</Name>
- <Value>bioCSL</Value>
+ <Value>Sanofi Pasteur</Value>
  <Name>MVX Code</Name>
- <Value>CSL       </Value>
+ <Value>PMC       </Value>
  <Name>MVX Status</Name>
- <Value>Inactive</Value>
+ <Value>Active</Value>
  <Name>Product name Status</Name>
  <Value>Inactive</Value>
  <Name>Last Updated</Name>
@@ -1934,11 +1952,11 @@
  <Name>CVXCode</Name>
  <Value>126       </Value>
  <Name>Manufacturer</Name>
- <Value>Sanofi Pasteur</Value>
+ <Value>bioCSL</Value>
  <Name>MVX Code</Name>
- <Value>PMC       </Value>
+ <Value>CSL       </Value>
  <Name>MVX Status</Name>
- <Value>Active</Value>
+ <Value>Inactive</Value>
  <Name>Product name Status</Name>
  <Value>Inactive</Value>
  <Name>Last Updated</Name>
@@ -2146,7 +2164,7 @@
  <Name>CDC Product Name</Name>
  <Value>PREHEVBRIO Hepatitis B Vaccine (Recombinant)</Value>
  <Name>Short Description</Name>
- <Value>HepB recombinant, Al(OH)3</Value>
+ <Value>HepB recombinant, 3-antigen, Al(OH)3</Value>
  <Name>CVXCode</Name>
  <Value>220       </Value>
  <Name>Manufacturer</Name>
@@ -2158,7 +2176,7 @@
  <Name>Product name Status</Name>
  <Value>Active</Value>
  <Name>Last Updated</Name>
- <Value>1/12/2022</Value>
+ <Value>1/25/2022</Value>
  </prodInfo>
  <prodInfo>
  <Name>CDC Product Name</Name>
