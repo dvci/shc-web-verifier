@@ -386,41 +386,44 @@ const HealthCardDisplay = () => {
                         </div>
                       ))}
                     </List>
-                    <Grid
-                      container
-                      xs={10.5}
-                      justifyContent="left"
-                      alignItems="flex-end"
-                    >
-                      <Box
-                        display="flex"
-                        alignItems="center"
-                        justifyContent="left"
-                        flexDirection="row"
-                      >
-                        <Typography>{issuerDisplayName}</Typography>
-                        {!issuerVerified && (
-                          <>
-                            <img
-                              src={xIcon}
-                              alt="Bottom Banner Issuer Icon"
-                              style={{
-                                height: '1.5rem',
-                                marginRight: '1rem',
-                                marginLeft: '1rem',
-                              }}
-                            />
-                            <Typography
-                              variant="h6"
-                              className={styles.unverifiedText}
-                            >
-                              {t('healthcarddisplay.Issuer not recognized')}
-                            </Typography>
-                          </>
-                        )}
-                      </Box>
-                    </Grid>
                   </Box>
+                  <Grid
+                    item
+                    maxWidth="xs"
+                    xs={10.5}
+                    justifyContent="left"
+                    alignItems="flex-end"
+                  >
+                    <Box
+                      display="flex"
+                      alignItems="center"
+                      justifyContent="left"
+                      flexDirection="row"
+                    >
+                      {issuerVerified ? (
+                        <Typography className={styles.covid19Vaccination}>
+                          {issuerDisplayName}
+                        </Typography>
+                      ) : (
+                        <>
+                          <img
+                            src={xIcon}
+                            alt="Bottom Banner Issuer Icon"
+                            style={{
+                              height: '1.5rem',
+                              marginRight: '1rem',
+                            }}
+                          />
+                          <Typography
+                            variant="h6"
+                            className={styles.unverifiedText}
+                          >
+                            {t('healthcarddisplay.Issuer not recognized')}
+                          </Typography>
+                        </>
+                      )}
+                    </Box>
+                  </Grid>
                 </CardContent>
               </Card>
             </Box>
