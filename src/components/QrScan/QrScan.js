@@ -51,6 +51,7 @@ const QrScan = () => {
   const [scannedCodes, setScannedCodes] = useState([]);
   const [scannedData, setScannedData] = useState('');
   const runningQrScanner = useRef(null);
+  const scannedCodesRef = useRef([]);
 
   const handleError = useCallback(() => {
     history.push('/display-results');
@@ -73,13 +74,12 @@ const QrScan = () => {
         setScannedData(results.data);
       },
       {
-        // eslint-disable-next-line no-shadow
-        calculateScanRegion: (videoElement) => ({
+        calculateScanRegion: (video) => ({
           // define scan region for QrScanner
           x: 0,
           y: 0,
-          width: videoElement.videoWidth,
-          height: videoElement.videoHeight,
+          width: video.videoWidth,
+          height: video.videoHeight,
         }),
       }
     );
@@ -117,7 +117,7 @@ const QrScan = () => {
         if (match.groups.multipleChunks) {
           const chunkCount = +match.groups.chunkCount;
           const currentChunkIndex = +match.groups.chunkIndex;
-          let tempScannedCodes = [...scannedCodes];
+          let tempScannedCodes = [...scannedCodesRef.current];
           if (tempScannedCodes.length !== chunkCount) {
             tempScannedCodes = new Array(chunkCount);
             tempScannedCodes.fill(null, 0, chunkCount);
@@ -132,6 +132,7 @@ const QrScan = () => {
             history.push('/display-results');
           }
           setScannedCodes(tempScannedCodes);
+          scannedCodesRef.current = tempScannedCodes;
         } else {
           setQrCodes([data]);
           history.push('/display-results');
@@ -146,7 +147,7 @@ const QrScan = () => {
         handleError();
       }
     }
-  }, [scannedData, handleError, history, scannedCodes, setQrCodes]);
+  }, [scannedData, handleError, history, setQrCodes]);
 
   return (
     <Grid
