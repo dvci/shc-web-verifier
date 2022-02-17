@@ -23,18 +23,27 @@ const useStyles = makeStyles((theme) => ({
   grid: {
     display: 'flex',
     flexDirection: 'column',
+    flexWrap: 'nowrap',
     alignItems: 'center',
     justifyContent: 'center',
     width: 'auto',
     [theme.breakpoints.down('md')]: {
       maxHeight: '550px',
       maxWidth: '300px',
+      margin: '1rem',
     },
     [theme.breakpoints.up('md')]: {
       maxHeight: '550px',
       maxWidth: '650px',
-    },
-    margin: '2rem'
+      margin: '2rem',
+    }
+  },
+  gridContainerMultiple: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'right',
+    justifyContent: 'right',
+    paddingBottom: '1rem',
   },
   gridItem: {
     display: 'flex',
@@ -115,9 +124,7 @@ const QrScan = () => {
     <Box className={classes.box}>
       <Grid container className={classes.grid}>
         {scannedCodes.length > 0 && (
-        <>
-          <Grid item xs={4} />
-          <Grid item xs={4} alignItems="right" justifyContent="right">
+          <Grid container item className={classes.gridContainerMultiple}>
             {scannedCodes.map((code, i) => (
               <Button
                 className={classes.button}
@@ -131,8 +138,6 @@ const QrScan = () => {
               </Button>
             ))}
           </Grid>
-          <Grid item xs={4} />
-        </>
         )}
         <Grid item className={classes.gridItem}>
           <QrReader
