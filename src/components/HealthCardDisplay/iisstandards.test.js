@@ -1,6 +1,6 @@
 import axios from 'axios';
 import fs from 'fs';
-import { fetchTradenames, fetchCvx } from './iisstandards';
+import { fetchTradenames, fetchCvx, encodeEntity } from './iisstandards';
 
 jest.mock('axios');
 
@@ -22,4 +22,26 @@ test('fetches CVX codes', async () => {
 test('fetches tradenames', async () => {
   const tradenames = await fetchTradenames();
   expect(Object.keys(tradenames).length).toBeGreaterThan(0);
+});
+
+test('encodes unescaped characters in XML files', () => {
+  const unescapedXmlString = [
+    '<?xml version="1.0"?>',
+    '<MockXml>',
+    '<Ampersand>&</Ampersand>',
+    '<Quotation>"</Quotation>',
+    '<Apostrophe>\'</Apostrophe>',
+    '</MockXml>',
+  ].join('\n');
+  const encodedXmlString = encodeEntity(unescapedXmlString);
+  const escapedLines = encodedXmlString.split('\n');
+  expect(escapedLines[0]).toEqual('');
+  expect(escapedLines[2]).toEqual('<Ampersand>&amp;</Ampersand>');
+  expect(escapedLines[3]).toEqual('<Quotation>&quot;</Quotation>');
+  expect(escapedLines[4]).toEqual('<Apostrophe>&apos;</Apostrophe>');
+});
+
+test('does not decode escaped ampersand characters in XML file', () => {
+  const escapedXmlString = '<Ampersand>&amp;</Ampersand>';
+  expect(encodeEntity(escapedXmlString)).toEqual(escapedXmlString)
 });
