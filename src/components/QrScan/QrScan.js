@@ -10,8 +10,8 @@ import { useQrDataContext } from 'components/QrDataProvider';
 const useStyles = makeStyles(() => ({
   button: {
     '&:hover': {
-      cursor: 'default'
-    }
+      cursor: 'default',
+    },
   },
   frame: {
     position: 'relative',
@@ -31,10 +31,10 @@ const useStyles = makeStyles(() => ({
     '& section': {
       position: 'unset !important',
       '& div': {
-        boxShadow: 'unset !important'
+        boxShadow: 'unset !important',
       },
     },
-  }
+  },
 }));
 
 const healthCardPattern = /^shc:\/(?<multipleChunks>(?<chunkIndex>[0-9]+)\/(?<chunkCount>[0-9]+)\/)?[0-9]+$/;
@@ -72,11 +72,11 @@ const QrScan = () => {
         history.push('/display-results');
       }
     }
-  }
+  };
 
   const handleError = () => {
     history.push('/display-results');
-  }
+  };
 
   return (
     <Grid
