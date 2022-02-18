@@ -18,7 +18,8 @@ async function fetchCdcXml(file) {
   const parser = new DOMParser();
   const xmlDoc = parser.parseFromString(data, 'application/xml');
   if (xmlDoc.getElementsByTagName('parsererror').length > 0) {
-    throw new Error('Error parsing XML');
+    const parseerror = xmlDoc.getElementsByTagName('parsererror')[0].textContent;
+    throw new Error(`Error parsing XML ${file}: ${parseerror}`);
   }
   return xmlDoc;
 }
