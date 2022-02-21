@@ -180,7 +180,8 @@ const QrScan = () => {
     });
 
     return () => {
-      if (runningQrScanner.current) runningQrScanner.current.stop();
+      // TODO: add condition for when to stop when isChecked
+      if (runningQrScanner.current && !isChecked) runningQrScanner.current.stop();
     };
   }, [handleErrorFallback]);
 

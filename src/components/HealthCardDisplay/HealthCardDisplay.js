@@ -111,6 +111,8 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
+// TODO: add to !patientdata for case where we have inconsistent data
+// TODO: display HealthCard for each of the health cards that have been scanned
 const HealthCardDisplay = () => {
   const styles = useStyles();
   const history = useHistory();
