@@ -178,6 +178,6 @@ test('renders immunization display', async () => {
     });
     expect(await screen.findAllByText('Pfizer-BioNTech COVID-19 Vaccine (Non-US COMIRNATY)', {}, { timeout: 3000 })).toHaveLength(1);
     expect(screen.getByText('SARS-COV-2 (COVID-19) vaccine, UNSPECIFIED')).toBeInTheDocument();
-    screen.debug();
+    // screen.debug();
   });
 });

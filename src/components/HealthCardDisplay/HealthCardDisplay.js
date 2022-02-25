@@ -35,6 +35,7 @@ const HealthCardDisplay = () => {
     qrCodes,
     healthCardVerified,
     issuerVerified,
+    issuerDisplayName,
     validPrimarySeries,
   } = useQrDataContext();
   const patientData = getPatientData(qrCodes);
@@ -81,8 +82,19 @@ const HealthCardDisplay = () => {
   };
 
   const HealthCardVaccination = ({ immunization }) => (
-    <Box display="flex" flexDirection="column" alignItems="flex-start" className={styles.group8}>
-      <Box display="flex" alignItems="center" justifyContent="center" alignSelf="flex-end" className={styles.group7}>
+    <Box
+      display="flex"
+      flexDirection="column"
+      alignItems="flex-start"
+      className={styles.group8}
+    >
+      <Box
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+        alignSelf="flex-end"
+        className={styles.group7}
+      >
         <Divider className={styles.line2} variant="middle" />
       </Box>
       <Grid container columnSpacing={{ xs: 1, sm: 1, md: 3 }}>
@@ -92,27 +104,28 @@ const HealthCardDisplay = () => {
         <Grid item xs={9} className={styles.gridItem}>
           <Typography>
             <Box component="span" fontWeight="700">
-              {immunization.vaccineCode ? immunizationDisplayName(immunization.vaccineCode.coding) : ''}
+              {immunization.vaccineCode
+                ? immunizationDisplayName(immunization.vaccineCode.coding)
+                : ''}
             </Box>
-            {immunization.lotNumber && (` ${t('healthcarddisplay.Lot')} #${immunization.lotNumber}`)}
+            {immunization.lotNumber
+              && ` ${t('healthcarddisplay.Lot')} #${immunization.lotNumber}`}
           </Typography>
         </Grid>
         <Grid item xs={3} className={styles.gridLabel}>
           <Typography>{t('healthcarddisplay.Date')}</Typography>
         </Grid>
         <Grid item xs={8} className={styles.gridItem}>
-          <Typography className={styles.date}>{immunization.occurrenceDateTime}</Typography>
-        </Grid>
-        <Grid item xs={3} className={styles.gridLabel}>
-          <Typography>
-            {t('healthcarddisplay.Vaccinator')}
+          <Typography className={styles.date}>
+            {immunization.occurrenceDateTime}
           </Typography>
         </Grid>
+        <Grid item xs={3} className={styles.gridLabel}>
+          <Typography>{t('healthcarddisplay.Vaccinator')}</Typography>
+        </Grid>
         <Grid item xs={9} className={styles.gridItem}>
-          {(immunization.performer && immunization.performer.length > 0) && (
-            <Typography>
-              {immunization.performer[0].actor.display}
-            </Typography>
+          {immunization.performer && immunization.performer.length > 0 && (
+            <Typography>{immunization.performer[0].actor.display}</Typography>
           )}
         </Grid>
       </Grid>
@@ -146,9 +159,7 @@ const HealthCardDisplay = () => {
   return (
     <Grid container style={{ marginTop: '1rem' }}>
       <Grid item xs={12} className={topBannerStyle}>
-        <Container
-          maxWidth="md"
-        >
+        <Container maxWidth="md">
           <Box
             display="flex"
             alignItems="center"
@@ -162,14 +173,17 @@ const HealthCardDisplay = () => {
               alt="Banner Icon"
               style={{ height: '2rem', marginRight: '1rem' }}
             />
-            <Typography variant="h4">
-              {topBannerText}
-            </Typography>
+            <Typography variant="h4">{topBannerText}</Typography>
           </Box>
         </Container>
       </Grid>
       {bottomBannerStyle && (
-        <Grid item xs={12} className={bottomBannerStyle} style={{ marginBottom: '2rem' }}>
+        <Grid
+          item
+          xs={12}
+          className={bottomBannerStyle}
+          style={{ marginBottom: '2rem' }}
+        >
           <Box pt={1} pb={1} style={{ marginLeft: '40%' }}>
             <Box
               display="flex"
@@ -227,17 +241,28 @@ const HealthCardDisplay = () => {
                 alt="Bottom Banner Issuer Icon"
                 style={{ height: '1.5rem', marginRight: '1rem' }}
               />
-              <Typography variant="h6" className={issuerVerified ? styles.verifiedText : styles.unverifiedText}>
-                {issuerVerified ? t('healthcarddisplay.Issuer recognized') : t('healthcarddisplay.Issuer not recognized')}
+              <Typography
+                variant="h6"
+                className={
+                  issuerVerified ? styles.verifiedText : styles.unverifiedText
+                }
+              >
+                {issuerVerified
+                  ? t('healthcarddisplay.Issuer recognized')
+                  : t('healthcarddisplay.Issuer not recognized')}
               </Typography>
             </Box>
           </Box>
         </Grid>
       )}
-      {(!patientData || !bottomBannerStyle) ? (
+      {!patientData || !bottomBannerStyle ? (
         <>
           <Grid item xs={6} display="flex" justifyContent="center">
-            <img src={errorIllustration} alt="Error Illustration" width="100%" />
+            <img
+              src={errorIllustration}
+              alt="Error Illustration"
+              width="100%"
+            />
           </Grid>
           <Grid
             item
@@ -252,7 +277,11 @@ const HealthCardDisplay = () => {
                   <Trans
                     i18nKey="healthcarddisplay.Only valid SMART Health Card QR Codes are currently supported."
                     components={[
-                      <span className={styles.shcText}> SMART&reg; Health Card </span>
+                      <span className={styles.shcText}>
+                        {' '}
+                        SMART&reg; Health Card
+                        {' '}
+                      </span>,
                     ]}
                   />
                 </Typography>
@@ -292,7 +321,9 @@ const HealthCardDisplay = () => {
                     alignItems="flex-start"
                     className={styles.flexCol}
                   >
-                    <Typography className={styles.nameLabel}>{t('healthcarddisplay.NAME')}</Typography>
+                    <Typography className={styles.nameLabel}>
+                      {t('healthcarddisplay.NAME')}
+                    </Typography>
                     <Typography className={styles.name}>
                       {patientData.name}
                     </Typography>
@@ -355,12 +386,51 @@ const HealthCardDisplay = () => {
                       {patientData.immunizations.map((item) => (
                         <div key={item.fullUrl}>
                           <ListItem>
-                            <HealthCardVaccination immunization={item.resource} />
+                            <HealthCardVaccination
+                              immunization={item.resource}
+                            />
                           </ListItem>
                         </div>
                       ))}
                     </List>
                   </Box>
+                  <Grid
+                    item
+                    maxWidth="xs"
+                    xs={10.5}
+                    justifyContent="left"
+                    alignItems="flex-end"
+                  >
+                    <Box
+                      display="flex"
+                      alignItems="center"
+                      justifyContent="left"
+                      flexDirection="row"
+                    >
+                      {issuerVerified ? (
+                        <Typography className={styles.covid19Vaccination}>
+                          {issuerDisplayName}
+                        </Typography>
+                      ) : (
+                        <>
+                          <img
+                            src={xIcon}
+                            alt="Bottom Banner Issuer Icon"
+                            style={{
+                              height: '1.5rem',
+                              marginRight: '1rem',
+                            }}
+                          />
+                          <Typography
+                            variant="h6"
+                            className={styles.unverifiedText}
+                          >
+                            {t('healthcarddisplay.Issuer not recognized')}
+                          </Typography>
+                        </>
+                      )}
+                    </Box>
+                  </Grid>
                 </CardContent>
               </Card>
             </Box>
@@ -373,7 +443,12 @@ const HealthCardDisplay = () => {
                 variant="contained"
                 color="secondary"
                 onClick={handleScan}
-                style={{ fontSize: '150%', width: healthCardRef.current ? healthCardRef.current.offsetWidth : '35%' }}
+                style={{
+                  fontSize: '150%',
+                  width: healthCardRef.current
+                    ? healthCardRef.current.offsetWidth
+                    : '35%',
+                }}
               >
                 <img
                   src={scanIcon}

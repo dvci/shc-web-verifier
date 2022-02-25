@@ -16,8 +16,8 @@ export default makeStyles((theme) => ({
   cardContent: {
     padding: 0,
     '&:last-child': {
-      paddingBottom: 0
-    }
+      paddingBottom: 0,
+    },
   },
   flexRow: {
     marginLeft: '5.5px',

@@ -1,21 +1,29 @@
 import React, {
-  createContext,
-  useContext,
-  useEffect,
-  useState
+  createContext, useContext, useEffect, useState
 } from 'react';
 import https from 'https';
-import { getIssuer, getJws, getPayload } from 'utils/qrHelpers';
+import {
+  getIssuer,
+  getJws,
+  getPayload,
+  getIssuerDisplayName,
+} from 'utils/qrHelpers';
 import { healthCardVerify, issuerVerify } from 'utils/verifyHelpers';
 import { Validator } from 'components/Validator/Validator.tsx';
 
 const QrDataContext = createContext();
 
 const QrDataProvider = ({ children }) => {
-  const [qrCodes, setQrCodes] = useState(JSON.parse(localStorage.getItem('qrCodes')));
-  const [healthCardVerified, setHealthCardVerified] = useState({ verified: false, error: null });
+  const [qrCodes, setQrCodes] = useState(
+    JSON.parse(localStorage.getItem('qrCodes'))
+  );
+  const [healthCardVerified, setHealthCardVerified] = useState({
+    verified: false,
+    error: null,
+  });
   const [issuerVerified, setIssuerVerified] = useState(false);
   const [validPrimarySeries, setValidPrimarySeries] = useState(false);
+  const [issuerDisplayName, setIssuerDisplayName] = useState(null);
 
   useEffect(() => {
     localStorage.setItem('qrCodes', JSON.stringify(qrCodes));
@@ -25,20 +33,26 @@ const QrDataProvider = ({ children }) => {
       const jws = getJws(qrCodes);
       const iss = getIssuer(qrCodes);
       const agent = new https.Agent({
-        rejectUnauthorized: false
+        rejectUnauthorized: false,
       });
 
       healthCardVerify(agent, jws, iss)
         .then((status) => {
           if (status) setHealthCardVerified({ verified: true, error: null });
           else setHealthCardVerified({ verified: false, error: 'Not Verified' });
-        }).catch((err) => {
+        })
+        .catch((err) => {
           setHealthCardVerified({ verified: false, error: err.message });
         });
 
       // Verify issuer
       issuerVerify(iss)
-        .then((status) => setIssuerVerified(status))
+        .then((status) => {
+          setIssuerVerified(status);
+          if (status === true) {
+            getIssuerDisplayName(qrCodes).then((result) => setIssuerDisplayName(result));
+          }
+        })
         .catch(() => setIssuerVerified(false));
 
       // Validate vaccine series
@@ -46,7 +60,9 @@ const QrDataProvider = ({ children }) => {
         const payload = getPayload(qrCodes);
         const patientBundle = JSON.parse(payload).vc.credentialSubject.fhirBundle;
         const results = Validator.execute(patientBundle, 'COVID-19');
-        setValidPrimarySeries(results.some((series) => series.complete.length > 0));
+        setValidPrimarySeries(
+          results.some((series) => series.complete.length > 0)
+        );
       } catch {
         setValidPrimarySeries(false);
       }
@@ -58,6 +74,7 @@ const QrDataProvider = ({ children }) => {
       value={{
         healthCardVerified,
         issuerVerified,
+        issuerDisplayName,
         qrCodes,
         setQrCodes,
         validPrimarySeries,
@@ -65,7 +82,7 @@ const QrDataProvider = ({ children }) => {
     >
       {children}
     </QrDataContext.Provider>
-  )
+  );
 };
 
 const useQrDataContext = () => useContext(QrDataContext);
