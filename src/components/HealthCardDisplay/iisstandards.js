@@ -85,4 +85,4 @@ function fetchCvx() {
   return cvx;
 }
 
-export { fetchTradenames, fetchCvx, encodeEntity };
+export { fetchTradenames, fetchCvx };
