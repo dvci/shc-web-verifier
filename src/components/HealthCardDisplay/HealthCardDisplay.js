@@ -201,7 +201,7 @@ const HealthCardDisplay = () => {
                 {validPrimarySeries ? t('healthcarddisplay.Valid vaccination series')
                   : (
                     <Trans
-                      i18nKey="healthcarddisplay.Vaccination status undetermined. Learn what this result means."
+                      i18nKey="healthcarddisplay.Vaccination series does not meet the definition of fully vaccinated with vaccines against COVID-19 defined by the CDC. Learn what this result means."
                       components={[
                         <Link
                           href="https://github.com/dvci/shc-web-verifier/tree/main/FAQ/valid_vaccination_series.md"

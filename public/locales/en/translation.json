@@ -24,7 +24,7 @@
     "Partially Verified": "Partially Verified",
     "Valid SMART Health Card": "Valid SMART\u00AE Health Card",
     "Valid vaccination series": "Valid vaccination series",
-    "Vaccination status undetermined. Learn what this result means.": "Vaccination status undetermined. <0>Learn what this result means.</0>",
+    "Vaccination series does not meet the definition of fully vaccinated with vaccines against COVID-19 defined by the CDC. Learn what this result means.": "Vaccination series does not meet the definition of fully vaccinated with vaccines against COVID-19 defined by the CDC. <0>Learn what this result means.</0>",
     "Issuer recognized": "Issuer recognized",
     "Issuer not recognized": "Issuer not recognized",
     "Only valid SMART Health Card QR Codes are currently supported.": "Only valid <0>SMART\u00AE Health Card</0> QR Codes<br/>are currently supported.",
