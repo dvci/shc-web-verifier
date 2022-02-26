@@ -63,7 +63,7 @@ Requires CQFramework CQL-to-ELM Translator Java tool to be built and installed l
 Script to convert CDSi AntigenSupportingData XML format to json and write results to src/supporting-data.
 
 ```
-node ./src/supporting-data/SupportingData.js '/path/to/CDC/Version x.xx - 508/XML/AntigenSupportingData- COVID-19-508.xml'
+node ./cql/SupportingData.js '/path/to/CDC/Version x.xx - 508/XML/AntigenSupportingData- COVID-19-508.xml'
 ```
 
 Will need to be updated with each CDSi release. Primary vaccine series number of doses are defined separately in src/supporting-data/AncilarySupportingData-{antigen}.json

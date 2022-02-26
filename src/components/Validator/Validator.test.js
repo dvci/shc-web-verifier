@@ -4,7 +4,10 @@ const {
 const { Validator } = require('./Validator.tsx');
 
 const createPatientBundle = (birthDate, vaccineDoses) => {
-  const bundle = { resourceType: 'Bundle', entry: [{ resource: { resourceType: 'Patient', birthDate } }] };
+  const bundle = {
+    resourceType: 'Bundle',
+    entry: [{ resource: { resourceType: 'Patient', birthDate: `${birthDate.toISOString().substring(0, 10)}` } }]
+  };
   const immunizations = vaccineDoses.map((dose) => ({
     resource: {
       resourceType: 'Immunization',
@@ -17,7 +20,7 @@ const createPatientBundle = (birthDate, vaccineDoses) => {
   return bundle;
 }
 
-const validPrimarySeries = (results) => results.some((series) => series.complete.length > 0);
+const validPrimarySeries = (results) => results.some((series) => series.validPrimarySeries);
 
 test('Dose #1 of Pfizer Covid-19 Vaccine', () => {
   const patientBundle = loadJSONFixture('./test/fixtures/patients/CDSi_2020-0011.json');
@@ -103,10 +106,10 @@ test('Dose #1 Unspecified Covid 19 vaccine, Dose #2 given as Janssen', () => {
   expect(validPrimarySeries(values)).toBe(true);
 });
 
-test('Patient is <18 years and has received the Janssen Covid-19 vaccine', () => {
+test('2021-0043: Patient is <18 years and has received the Janssen Covid-19 vaccine', () => {
   const patientBundle = loadJSONFixture('./test/fixtures/patients/CDSi_2021-0005.json');
   const values = Validator.execute(patientBundle, 'COVID-19');
-  expect(validPrimarySeries(values)).toBe(true);
+  expect(validPrimarySeries(values)).toBe(false);
 });
 
 test('Dose #1 of a Non-U.S. Covid-19 Vaccine', () => {
@@ -225,8 +228,8 @@ test('Patient is 20 years of age and was administered Pfizer\'s Vaccine 5-11 for
 
 test('2021-0043: Patient is 16 years of age and has been administered dose #1 as Pfizer and dose #2 as Moderna', () => {
   const birthDate = new Date();
-  birthDate.setFullYear(birthDate.getFullYear() - 16)
-  const patientBundle = createPatientBundle(`${birthDate.toISOString().substring(0, 10)}`,
+  birthDate.setFullYear(birthDate.getFullYear() - 16);
+  const patientBundle = createPatientBundle(birthDate,
     [{ dateAdministered: '2021-12-14', cvx: '208' }, { dateAdministered: '2022-01-11', cvx: '207' }]);
   const values = Validator.execute(patientBundle, 'COVID-19');
   expect(validPrimarySeries(values)).toBe(true);
