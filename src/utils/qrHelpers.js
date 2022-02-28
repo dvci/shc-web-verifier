@@ -75,6 +75,15 @@ const getPatientData = (jws) => {
   }
 };
 
+const getAllPatientData = (qrCodes) => {
+  const patientDataArray = [];
+  qrCodes.forEach((healthCardQR) => {
+    const jws = getJws(healthCardQR);
+    const patientData = getPatientData(jws);
+    patientDataArray.push(patientData);
+  })
+}
+
 const getIssuer = (jws) => {
   const payload = JSON.parse(getPayload(jws));
   return payload.iss;
@@ -101,6 +110,7 @@ export {
   extractPatientName,
   getIssuer,
   getJws,
+  getAllPatientData,
   getPatientData,
   getPayload,
   getCredential,
