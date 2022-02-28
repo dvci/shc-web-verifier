@@ -8,7 +8,7 @@ let cvx = null;
 function encodeEntity(xmlString) {
   return xmlString
     .replace(/<\?xml.*\?>/g, '')
-    .replace(/&(?!amp;)/g, '&amp;')
+    .replace(/&(?!amp;)(?!quot;)(?!apos;)(?!lt;)(?!gt;)/g, '&amp;')
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&apos;');
 }

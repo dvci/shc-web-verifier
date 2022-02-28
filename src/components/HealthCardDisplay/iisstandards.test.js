@@ -13,6 +13,15 @@ const testEncode = `<?xml version='1.0' encoding='ISO-8859-1'?><CVXCodes>
 <LastUpdated>3/20/2011</LastUpdated>
 </CVXInfo></CVXCodes>`
 
+const testEncoded = `<?xml version='1.0' encoding='ISO-8859-1'?><CVXCodes>
+<CVXInfo><ShortDescription>Adenovirus &amp; types &quot; 4 and 7&apos;</ShortDescription>
+<FullVaccinename>Adenovirus, type 4 and type 7, live, oral</FullVaccinename>
+<CVXCode>143       </CVXCode>
+<Notes>This vaccine is administered as 2 tablets.</Notes>
+<Status>Active</Status>
+<LastUpdated>3/20/2011</LastUpdated>
+</CVXInfo></CVXCodes>`
+
 beforeEach(() => {
   jest.isolateModules(() => {
     // eslint-disable-next-line global-require
@@ -37,4 +46,10 @@ test('encodes unescaped characters in XML files', async () => {
   axios.get.mockImplementationOnce(() => ({ data: testEncode }));
   const unencoded = await iisstandards.fetchCvx();
   expect(unencoded['143']).toEqual('Adenovirus & types " 4 and 7\'');
+});
+
+test('does not encode escaped characters in XML files', async () => {
+  axios.get.mockImplementationOnce(() => ({ data: testEncoded }));
+  const encoded = await iisstandards.fetchCvx();
+  expect(encoded['143']).toEqual('Adenovirus & types " 4 and 7\'');
 });
