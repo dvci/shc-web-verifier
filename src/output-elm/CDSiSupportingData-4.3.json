@@ -426,6 +426,161 @@
                }
             } ]
          }, {
+            "name" : "ApplicableInterval",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "type" : "FunctionDef",
+            "expression" : {
+               "type" : "First",
+               "source" : {
+                  "type" : "Query",
+                  "source" : [ {
+                     "alias" : "i",
+                     "expression" : {
+                        "name" : "intervals",
+                        "type" : "OperandRef"
+                     }
+                  } ],
+                  "relationship" : [ ],
+                  "where" : {
+                     "type" : "And",
+                     "operand" : [ {
+                        "type" : "And",
+                        "operand" : [ {
+                           "type" : "And",
+                           "operand" : [ {
+                              "type" : "Equal",
+                              "operand" : [ {
+                                 "path" : "fromPrevious",
+                                 "scope" : "i",
+                                 "type" : "Property"
+                              }, {
+                                 "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                                 "value" : "Y",
+                                 "type" : "Literal"
+                              } ]
+                           }, {
+                              "type" : "Or",
+                              "operand" : [ {
+                                 "type" : "Not",
+                                 "operand" : {
+                                    "type" : "Exists",
+                                    "operand" : {
+                                       "type" : "ToList",
+                                       "operand" : {
+                                          "path" : "effectiveDate",
+                                          "scope" : "i",
+                                          "type" : "Property"
+                                       }
+                                    }
+                                 }
+                              }, {
+                                 "type" : "GreaterOrEqual",
+                                 "operand" : [ {
+                                    "name" : "ToDateTime",
+                                    "libraryName" : "FHIRHelpers",
+                                    "type" : "FunctionRef",
+                                    "operand" : [ {
+                                       "strict" : false,
+                                       "type" : "As",
+                                       "operand" : {
+                                          "path" : "occurrence",
+                                          "type" : "Property",
+                                          "source" : {
+                                             "name" : "immunization",
+                                             "type" : "OperandRef"
+                                          }
+                                       },
+                                       "asTypeSpecifier" : {
+                                          "name" : "{http://hl7.org/fhir}dateTime",
+                                          "type" : "NamedTypeSpecifier"
+                                       }
+                                    } ]
+                                 }, {
+                                    "type" : "ToDateTime",
+                                    "operand" : {
+                                       "path" : "effectiveDate",
+                                       "scope" : "i",
+                                       "type" : "Property"
+                                    }
+                                 } ]
+                              } ]
+                           } ]
+                        }, {
+                           "type" : "Or",
+                           "operand" : [ {
+                              "type" : "Not",
+                              "operand" : {
+                                 "type" : "Exists",
+                                 "operand" : {
+                                    "type" : "ToList",
+                                    "operand" : {
+                                       "path" : "cessationDate",
+                                       "scope" : "i",
+                                       "type" : "Property"
+                                    }
+                                 }
+                              }
+                           }, {
+                              "type" : "LessOrEqual",
+                              "operand" : [ {
+                                 "name" : "ToDateTime",
+                                 "libraryName" : "FHIRHelpers",
+                                 "type" : "FunctionRef",
+                                 "operand" : [ {
+                                    "strict" : false,
+                                    "type" : "As",
+                                    "operand" : {
+                                       "path" : "occurrence",
+                                       "type" : "Property",
+                                       "source" : {
+                                          "name" : "immunization",
+                                          "type" : "OperandRef"
+                                       }
+                                    },
+                                    "asTypeSpecifier" : {
+                                       "name" : "{http://hl7.org/fhir}dateTime",
+                                       "type" : "NamedTypeSpecifier"
+                                    }
+                                 } ]
+                              }, {
+                                 "type" : "ToDateTime",
+                                 "operand" : {
+                                    "path" : "cessationDate",
+                                    "scope" : "i",
+                                    "type" : "Property"
+                                 }
+                              } ]
+                           } ]
+                        } ]
+                     }, {
+                        "type" : "Exists",
+                        "operand" : {
+                           "path" : "absMinInt",
+                           "scope" : "i",
+                           "type" : "Property"
+                        }
+                     } ]
+                  }
+               }
+            },
+            "operand" : [ {
+               "name" : "intervals",
+               "operandTypeSpecifier" : {
+                  "type" : "ListTypeSpecifier",
+                  "elementType" : {
+                     "name" : "{https://www.cdc.gov/vaccines/programs/iis/cdsi}SeriesDose.DoseInterval",
+                     "type" : "NamedTypeSpecifier"
+                  }
+               }
+            }, {
+               "name" : "immunization",
+               "operandTypeSpecifier" : {
+                  "name" : "{http://hl7.org/fhir}Immunization",
+                  "type" : "NamedTypeSpecifier"
+               }
+            } ]
+         }, {
             "name" : "DateTimeAsOf",
             "context" : "Patient",
             "accessLevel" : "Public",
@@ -513,7 +668,7 @@
                }
             } ]
          }, {
-            "name" : "IsValidAllowableInterval",
+            "name" : "IsValidInterval",
             "context" : "Patient",
             "accessLevel" : "Public",
             "type" : "FunctionDef",
@@ -522,38 +677,17 @@
                "condition" : {
                   "type" : "Or",
                   "operand" : [ {
-                     "type" : "Not",
+                     "type" : "IsNull",
                      "operand" : {
-                        "type" : "Exists",
-                        "operand" : {
-                           "path" : "absMinInt",
-                           "type" : "Property",
-                           "source" : {
-                              "type" : "First",
-                              "source" : {
-                                 "type" : "Query",
-                                 "source" : [ {
-                                    "alias" : "$this",
-                                    "expression" : {
-                                       "name" : "allowableInterval",
-                                       "type" : "OperandRef"
-                                    }
-                                 } ],
-                                 "where" : {
-                                    "type" : "Equal",
-                                    "operand" : [ {
-                                       "path" : "fromPrevious",
-                                       "scope" : "$this",
-                                       "type" : "Property"
-                                    }, {
-                                       "valueType" : "{urn:hl7-org:elm-types:r1}String",
-                                       "value" : "Y",
-                                       "type" : "Literal"
-                                    } ]
-                                 }
-                              }
-                           }
-                        }
+                        "name" : "ApplicableInterval",
+                        "type" : "FunctionRef",
+                        "operand" : [ {
+                           "name" : "intervals",
+                           "type" : "OperandRef"
+                        }, {
+                           "name" : "immunization",
+                           "type" : "OperandRef"
+                        } ]
                      }
                   }, {
                      "type" : "IsNull",
@@ -612,40 +746,26 @@
                         "path" : "absMinInt",
                         "type" : "Property",
                         "source" : {
-                           "type" : "First",
-                           "source" : {
-                              "type" : "Query",
-                              "source" : [ {
-                                 "alias" : "$this",
-                                 "expression" : {
-                                    "name" : "allowableInterval",
-                                    "type" : "OperandRef"
-                                 }
-                              } ],
-                              "where" : {
-                                 "type" : "Equal",
-                                 "operand" : [ {
-                                    "path" : "fromPrevious",
-                                    "scope" : "$this",
-                                    "type" : "Property"
-                                 }, {
-                                    "valueType" : "{urn:hl7-org:elm-types:r1}String",
-                                    "value" : "Y",
-                                    "type" : "Literal"
-                                 } ]
-                              }
-                           }
+                           "name" : "ApplicableInterval",
+                           "type" : "FunctionRef",
+                           "operand" : [ {
+                              "name" : "intervals",
+                              "type" : "OperandRef"
+                           }, {
+                              "name" : "immunization",
+                              "type" : "OperandRef"
+                           } ]
                         }
                      } ]
                   } ]
                }
             },
             "operand" : [ {
-               "name" : "allowableInterval",
+               "name" : "intervals",
                "operandTypeSpecifier" : {
                   "type" : "ListTypeSpecifier",
                   "elementType" : {
-                     "name" : "{https://www.cdc.gov/vaccines/programs/iis/cdsi}SeriesDose.AllowableInterval",
+                     "name" : "{https://www.cdc.gov/vaccines/programs/iis/cdsi}SeriesDose.DoseInterval",
                      "type" : "NamedTypeSpecifier"
                   }
                }
@@ -848,6 +968,102 @@
                }
             } ]
          }, {
+            "name" : "IsNotInadvertentVaccine",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "type" : "FunctionDef",
+            "expression" : {
+               "type" : "Not",
+               "operand" : {
+                  "type" : "Exists",
+                  "operand" : {
+                     "type" : "Flatten",
+                     "operand" : {
+                        "type" : "Query",
+                        "source" : [ {
+                           "alias" : "coding",
+                           "expression" : {
+                              "path" : "coding",
+                              "type" : "Property",
+                              "source" : {
+                                 "path" : "vaccineCode",
+                                 "type" : "Property",
+                                 "source" : {
+                                    "name" : "immunization",
+                                    "type" : "OperandRef"
+                                 }
+                              }
+                           }
+                        } ],
+                        "relationship" : [ ],
+                        "where" : {
+                           "type" : "Equal",
+                           "operand" : [ {
+                              "name" : "ToString",
+                              "libraryName" : "FHIRHelpers",
+                              "type" : "FunctionRef",
+                              "operand" : [ {
+                                 "path" : "system",
+                                 "scope" : "coding",
+                                 "type" : "Property"
+                              } ]
+                           }, {
+                              "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                              "value" : "http://hl7.org/fhir/sid/cvx",
+                              "type" : "Literal"
+                           } ]
+                        },
+                        "return" : {
+                           "expression" : {
+                              "type" : "Query",
+                              "source" : [ {
+                                 "alias" : "iv",
+                                 "expression" : {
+                                    "name" : "inadvertentVaccine",
+                                    "type" : "OperandRef"
+                                 }
+                              } ],
+                              "relationship" : [ ],
+                              "where" : {
+                                 "type" : "Equal",
+                                 "operand" : [ {
+                                    "name" : "ToString",
+                                    "libraryName" : "FHIRHelpers",
+                                    "type" : "FunctionRef",
+                                    "operand" : [ {
+                                       "path" : "code",
+                                       "scope" : "coding",
+                                       "type" : "Property"
+                                    } ]
+                                 }, {
+                                    "path" : "cvx",
+                                    "scope" : "iv",
+                                    "type" : "Property"
+                                 } ]
+                              }
+                           }
+                        }
+                     }
+                  }
+               }
+            },
+            "operand" : [ {
+               "name" : "inadvertentVaccine",
+               "operandTypeSpecifier" : {
+                  "type" : "ListTypeSpecifier",
+                  "elementType" : {
+                     "name" : "{https://www.cdc.gov/vaccines/programs/iis/cdsi}SeriesDose.InadvertentVaccine",
+                     "type" : "NamedTypeSpecifier"
+                  }
+               }
+            }, {
+               "name" : "immunization",
+               "operandTypeSpecifier" : {
+                  "name" : "{http://hl7.org/fhir}Immunization",
+                  "type" : "NamedTypeSpecifier"
+               }
+            } ]
+         }, {
             "name" : "IsValidSeriesDose",
             "context" : "Patient",
             "accessLevel" : "Public",
@@ -859,32 +1075,69 @@
                   "operand" : [ {
                      "type" : "And",
                      "operand" : [ {
-                        "type" : "Or",
+                        "type" : "And",
                         "operand" : [ {
-                           "type" : "Not",
-                           "operand" : {
-                              "type" : "IsNull",
-                              "operand" : {
-                                 "name" : "previousImmunization",
+                           "type" : "And",
+                           "operand" : [ {
+                              "type" : "Or",
+                              "operand" : [ {
+                                 "type" : "Not",
+                                 "operand" : {
+                                    "type" : "IsNull",
+                                    "operand" : {
+                                       "name" : "previousImmunization",
+                                       "type" : "OperandRef"
+                                    }
+                                 }
+                              }, {
+                                 "name" : "IsValidSeriesAgeToStart",
+                                 "type" : "FunctionRef",
+                                 "operand" : [ {
+                                    "name" : "selectSeries",
+                                    "type" : "OperandRef"
+                                 }, {
+                                    "name" : "immunization",
+                                    "type" : "OperandRef"
+                                 } ]
+                              } ]
+                           }, {
+                              "name" : "IsValidAge",
+                              "type" : "FunctionRef",
+                              "operand" : [ {
+                                 "path" : "age",
+                                 "type" : "Property",
+                                 "source" : {
+                                    "name" : "seriesDose",
+                                    "type" : "OperandRef"
+                                 }
+                              }, {
+                                 "name" : "immunization",
                                  "type" : "OperandRef"
-                              }
-                           }
+                              } ]
+                           } ]
                         }, {
-                           "name" : "IsValidSeriesAgeToStart",
+                           "name" : "IsValidInterval",
                            "type" : "FunctionRef",
                            "operand" : [ {
-                              "name" : "selectSeries",
-                              "type" : "OperandRef"
+                              "path" : "interval",
+                              "type" : "Property",
+                              "source" : {
+                                 "name" : "seriesDose",
+                                 "type" : "OperandRef"
+                              }
                            }, {
                               "name" : "immunization",
+                              "type" : "OperandRef"
+                           }, {
+                              "name" : "previousImmunization",
                               "type" : "OperandRef"
                            } ]
                         } ]
                      }, {
-                        "name" : "IsValidAge",
+                        "name" : "IsValidInterval",
                         "type" : "FunctionRef",
                         "operand" : [ {
-                           "path" : "age",
+                           "path" : "allowableInterval",
                            "type" : "Property",
                            "source" : {
                               "name" : "seriesDose",
@@ -893,13 +1146,16 @@
                         }, {
                            "name" : "immunization",
                            "type" : "OperandRef"
+                        }, {
+                           "name" : "previousImmunization",
+                           "type" : "OperandRef"
                         } ]
                      } ]
                   }, {
-                     "name" : "IsValidAllowableInterval",
+                     "name" : "IsValidAllowableVaccine",
                      "type" : "FunctionRef",
                      "operand" : [ {
-                        "path" : "allowableInterval",
+                        "path" : "allowableVaccine",
                         "type" : "Property",
                         "source" : {
                            "name" : "seriesDose",
@@ -908,16 +1164,13 @@
                      }, {
                         "name" : "immunization",
                         "type" : "OperandRef"
-                     }, {
-                        "name" : "previousImmunization",
-                        "type" : "OperandRef"
                      } ]
                   } ]
                }, {
-                  "name" : "IsValidAllowableVaccine",
+                  "name" : "IsNotInadvertentVaccine",
                   "type" : "FunctionRef",
                   "operand" : [ {
-                     "path" : "allowableVaccine",
+                     "path" : "inadvertentVaccine",
                      "type" : "Property",
                      "source" : {
                         "name" : "seriesDose",
@@ -1016,14 +1269,42 @@
                            "type" : "OperandRef"
                         } ]
                      }, {
-                        "type" : "Indexer",
-                        "operand" : [ {
-                           "name" : "Immunizations",
-                           "type" : "ExpressionRef"
-                        }, {
-                           "name" : "previousValidImmunizationIndex",
-                           "type" : "OperandRef"
-                        } ]
+                        "type" : "If",
+                        "condition" : {
+                           "type" : "Greater",
+                           "operand" : [ {
+                              "name" : "currentImmunizationIndex",
+                              "type" : "OperandRef"
+                           }, {
+                              "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
+                              "value" : "0",
+                              "type" : "Literal"
+                           } ]
+                        },
+                        "then" : {
+                           "type" : "Indexer",
+                           "operand" : [ {
+                              "name" : "Immunizations",
+                              "type" : "ExpressionRef"
+                           }, {
+                              "type" : "Subtract",
+                              "operand" : [ {
+                                 "name" : "currentImmunizationIndex",
+                                 "type" : "OperandRef"
+                              }, {
+                                 "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
+                                 "value" : "1",
+                                 "type" : "Literal"
+                              } ]
+                           } ]
+                        },
+                        "else" : {
+                           "asType" : "{http://hl7.org/fhir}Immunization",
+                           "type" : "As",
+                           "operand" : {
+                              "type" : "Null"
+                           }
+                        }
                      } ]
                   }
                } ]
@@ -1441,65 +1722,71 @@
                            "elementType" : {
                               "type" : "ChoiceTypeSpecifier",
                               "choice" : [ {
-                                 "type" : "TupleTypeSpecifier",
-                                 "element" : [ {
-                                    "name" : "doseNumber",
-                                    "elementType" : {
-                                       "name" : "{urn:hl7-org:elm-types:r1}String",
-                                       "type" : "NamedTypeSpecifier"
-                                    }
-                                 }, {
-                                    "name" : "doseIndex",
-                                    "elementType" : {
-                                       "name" : "{urn:hl7-org:elm-types:r1}Integer",
-                                       "type" : "NamedTypeSpecifier"
-                                    }
-                                 }, {
-                                    "name" : "immunizationIndex",
-                                    "elementType" : {
-                                       "name" : "{urn:hl7-org:elm-types:r1}Any",
-                                       "type" : "NamedTypeSpecifier"
-                                    }
-                                 }, {
-                                    "name" : "immunization",
-                                    "elementType" : {
-                                       "name" : "{urn:hl7-org:elm-types:r1}Any",
-                                       "type" : "NamedTypeSpecifier"
-                                    }
-                                 }, {
-                                    "name" : "validDose",
-                                    "elementType" : {
-                                       "name" : "{urn:hl7-org:elm-types:r1}Any",
-                                       "type" : "NamedTypeSpecifier"
-                                    }
-                                 } ]
+                                 "type" : "ListTypeSpecifier",
+                                 "elementType" : {
+                                    "type" : "TupleTypeSpecifier",
+                                    "element" : [ {
+                                       "name" : "immunizationIndex",
+                                       "elementType" : {
+                                          "name" : "{urn:hl7-org:elm-types:r1}Integer",
+                                          "type" : "NamedTypeSpecifier"
+                                       }
+                                    }, {
+                                       "name" : "doseIndex",
+                                       "elementType" : {
+                                          "name" : "{urn:hl7-org:elm-types:r1}Integer",
+                                          "type" : "NamedTypeSpecifier"
+                                       }
+                                    }, {
+                                       "name" : "doseNumber",
+                                       "elementType" : {
+                                          "name" : "{urn:hl7-org:elm-types:r1}String",
+                                          "type" : "NamedTypeSpecifier"
+                                       }
+                                    }, {
+                                       "name" : "validDose",
+                                       "elementType" : {
+                                          "name" : "{urn:hl7-org:elm-types:r1}Boolean",
+                                          "type" : "NamedTypeSpecifier"
+                                       }
+                                    } ]
+                                 }
                               }, {
-                                 "type" : "TupleTypeSpecifier",
-                                 "element" : [ {
-                                    "name" : "immunizationIndex",
-                                    "elementType" : {
-                                       "name" : "{urn:hl7-org:elm-types:r1}Integer",
-                                       "type" : "NamedTypeSpecifier"
-                                    }
-                                 }, {
-                                    "name" : "doseIndex",
-                                    "elementType" : {
-                                       "name" : "{urn:hl7-org:elm-types:r1}Integer",
-                                       "type" : "NamedTypeSpecifier"
-                                    }
-                                 }, {
-                                    "name" : "doseNumber",
-                                    "elementType" : {
-                                       "name" : "{urn:hl7-org:elm-types:r1}String",
-                                       "type" : "NamedTypeSpecifier"
-                                    }
-                                 }, {
-                                    "name" : "validDose",
-                                    "elementType" : {
-                                       "name" : "{urn:hl7-org:elm-types:r1}Boolean",
-                                       "type" : "NamedTypeSpecifier"
-                                    }
-                                 } ]
+                                 "type" : "ListTypeSpecifier",
+                                 "elementType" : {
+                                    "type" : "TupleTypeSpecifier",
+                                    "element" : [ {
+                                       "name" : "doseNumber",
+                                       "elementType" : {
+                                          "name" : "{urn:hl7-org:elm-types:r1}String",
+                                          "type" : "NamedTypeSpecifier"
+                                       }
+                                    }, {
+                                       "name" : "doseIndex",
+                                       "elementType" : {
+                                          "name" : "{urn:hl7-org:elm-types:r1}Integer",
+                                          "type" : "NamedTypeSpecifier"
+                                       }
+                                    }, {
+                                       "name" : "immunizationIndex",
+                                       "elementType" : {
+                                          "name" : "{urn:hl7-org:elm-types:r1}Any",
+                                          "type" : "NamedTypeSpecifier"
+                                       }
+                                    }, {
+                                       "name" : "immunization",
+                                       "elementType" : {
+                                          "name" : "{urn:hl7-org:elm-types:r1}Any",
+                                          "type" : "NamedTypeSpecifier"
+                                       }
+                                    }, {
+                                       "name" : "validDose",
+                                       "elementType" : {
+                                          "name" : "{urn:hl7-org:elm-types:r1}Any",
+                                          "type" : "NamedTypeSpecifier"
+                                       }
+                                    } ]
+                                 }
                               } ]
                            }
                         }
@@ -1528,8 +1815,11 @@
                                           "source" : [ {
                                              "alias" : "$this",
                                              "expression" : {
-                                                "name" : "R",
-                                                "type" : "QueryLetRef"
+                                                "type" : "Flatten",
+                                                "operand" : {
+                                                   "name" : "R",
+                                                   "type" : "QueryLetRef"
+                                                }
                                              }
                                           } ],
                                           "where" : {
@@ -1559,8 +1849,11 @@
                                           "source" : [ {
                                              "alias" : "$this",
                                              "expression" : {
-                                                "name" : "R",
-                                                "type" : "QueryLetRef"
+                                                "type" : "Flatten",
+                                                "operand" : {
+                                                   "name" : "R",
+                                                   "type" : "QueryLetRef"
+                                                }
                                              }
                                           } ],
                                           "where" : {
@@ -1629,103 +1922,42 @@
                                              }
                                           } ],
                                           "where" : {
-                                             "type" : "Equal",
-                                             "operand" : [ {
-                                                "asType" : "{urn:hl7-org:elm-types:r1}Boolean",
-                                                "type" : "As",
+                                             "type" : "Not",
+                                             "operand" : {
+                                                "type" : "IsNull",
                                                 "operand" : {
                                                    "path" : "validDose",
                                                    "scope" : "$this",
                                                    "type" : "Property"
                                                 }
-                                             }, {
-                                                "valueType" : "{urn:hl7-org:elm-types:r1}Boolean",
-                                                "value" : "true",
-                                                "type" : "Literal"
-                                             } ]
+                                             }
                                           }
                                        }
                                     },
                                     "then" : {
-                                       "type" : "First",
-                                       "source" : {
-                                          "type" : "Query",
-                                          "source" : [ {
-                                             "alias" : "$this",
-                                             "expression" : {
-                                                "name" : "doseImmunizationEvaluations",
-                                                "type" : "QueryLetRef"
+                                       "type" : "Query",
+                                       "source" : [ {
+                                          "alias" : "$this",
+                                          "expression" : {
+                                             "name" : "doseImmunizationEvaluations",
+                                             "type" : "QueryLetRef"
+                                          }
+                                       } ],
+                                       "where" : {
+                                          "type" : "Not",
+                                          "operand" : {
+                                             "type" : "IsNull",
+                                             "operand" : {
+                                                "path" : "validDose",
+                                                "scope" : "$this",
+                                                "type" : "Property"
                                              }
-                                          } ],
-                                          "where" : {
-                                             "type" : "Equal",
-                                             "operand" : [ {
-                                                "asType" : "{urn:hl7-org:elm-types:r1}Boolean",
-                                                "type" : "As",
-                                                "operand" : {
-                                                   "path" : "validDose",
-                                                   "scope" : "$this",
-                                                   "type" : "Property"
-                                                }
-                                             }, {
-                                                "valueType" : "{urn:hl7-org:elm-types:r1}Boolean",
-                                                "value" : "true",
-                                                "type" : "Literal"
-                                             } ]
                                           }
                                        }
                                     },
                                     "else" : {
-                                       "type" : "If",
-                                       "condition" : {
-                                          "type" : "Exists",
-                                          "operand" : {
-                                             "type" : "Query",
-                                             "source" : [ {
-                                                "alias" : "$this",
-                                                "expression" : {
-                                                   "name" : "doseImmunizationEvaluations",
-                                                   "type" : "QueryLetRef"
-                                                }
-                                             } ],
-                                             "where" : {
-                                                "type" : "Not",
-                                                "operand" : {
-                                                   "type" : "IsNull",
-                                                   "operand" : {
-                                                      "path" : "validDose",
-                                                      "scope" : "$this",
-                                                      "type" : "Property"
-                                                   }
-                                                }
-                                             }
-                                          }
-                                       },
-                                       "then" : {
-                                          "type" : "First",
-                                          "source" : {
-                                             "type" : "Query",
-                                             "source" : [ {
-                                                "alias" : "$this",
-                                                "expression" : {
-                                                   "name" : "doseImmunizationEvaluations",
-                                                   "type" : "QueryLetRef"
-                                                }
-                                             } ],
-                                             "where" : {
-                                                "type" : "Not",
-                                                "operand" : {
-                                                   "type" : "IsNull",
-                                                   "operand" : {
-                                                      "path" : "validDose",
-                                                      "scope" : "$this",
-                                                      "type" : "Property"
-                                                   }
-                                                }
-                                             }
-                                          }
-                                       },
-                                       "else" : {
+                                       "type" : "List",
+                                       "element" : [ {
                                           "type" : "Tuple",
                                           "element" : [ {
                                              "name" : "doseNumber",
@@ -1756,7 +1988,7 @@
                                                 "type" : "Null"
                                              }
                                           } ]
-                                       }
+                                       } ]
                                     }
                                  }
                               }
@@ -1767,65 +1999,71 @@
                            "elementType" : {
                               "type" : "ChoiceTypeSpecifier",
                               "choice" : [ {
-                                 "type" : "TupleTypeSpecifier",
-                                 "element" : [ {
-                                    "name" : "doseNumber",
-                                    "elementType" : {
-                                       "name" : "{urn:hl7-org:elm-types:r1}String",
-                                       "type" : "NamedTypeSpecifier"
-                                    }
-                                 }, {
-                                    "name" : "doseIndex",
-                                    "elementType" : {
-                                       "name" : "{urn:hl7-org:elm-types:r1}Integer",
-                                       "type" : "NamedTypeSpecifier"
-                                    }
-                                 }, {
-                                    "name" : "immunizationIndex",
-                                    "elementType" : {
-                                       "name" : "{urn:hl7-org:elm-types:r1}Any",
-                                       "type" : "NamedTypeSpecifier"
-                                    }
-                                 }, {
-                                    "name" : "immunization",
-                                    "elementType" : {
-                                       "name" : "{urn:hl7-org:elm-types:r1}Any",
-                                       "type" : "NamedTypeSpecifier"
-                                    }
-                                 }, {
-                                    "name" : "validDose",
-                                    "elementType" : {
-                                       "name" : "{urn:hl7-org:elm-types:r1}Any",
-                                       "type" : "NamedTypeSpecifier"
-                                    }
-                                 } ]
+                                 "type" : "ListTypeSpecifier",
+                                 "elementType" : {
+                                    "type" : "TupleTypeSpecifier",
+                                    "element" : [ {
+                                       "name" : "immunizationIndex",
+                                       "elementType" : {
+                                          "name" : "{urn:hl7-org:elm-types:r1}Integer",
+                                          "type" : "NamedTypeSpecifier"
+                                       }
+                                    }, {
+                                       "name" : "doseIndex",
+                                       "elementType" : {
+                                          "name" : "{urn:hl7-org:elm-types:r1}Integer",
+                                          "type" : "NamedTypeSpecifier"
+                                       }
+                                    }, {
+                                       "name" : "doseNumber",
+                                       "elementType" : {
+                                          "name" : "{urn:hl7-org:elm-types:r1}String",
+                                          "type" : "NamedTypeSpecifier"
+                                       }
+                                    }, {
+                                       "name" : "validDose",
+                                       "elementType" : {
+                                          "name" : "{urn:hl7-org:elm-types:r1}Boolean",
+                                          "type" : "NamedTypeSpecifier"
+                                       }
+                                    } ]
+                                 }
                               }, {
-                                 "type" : "TupleTypeSpecifier",
-                                 "element" : [ {
-                                    "name" : "immunizationIndex",
-                                    "elementType" : {
-                                       "name" : "{urn:hl7-org:elm-types:r1}Integer",
-                                       "type" : "NamedTypeSpecifier"
-                                    }
-                                 }, {
-                                    "name" : "doseIndex",
-                                    "elementType" : {
-                                       "name" : "{urn:hl7-org:elm-types:r1}Integer",
-                                       "type" : "NamedTypeSpecifier"
-                                    }
-                                 }, {
-                                    "name" : "doseNumber",
-                                    "elementType" : {
-                                       "name" : "{urn:hl7-org:elm-types:r1}String",
-                                       "type" : "NamedTypeSpecifier"
-                                    }
-                                 }, {
-                                    "name" : "validDose",
-                                    "elementType" : {
-                                       "name" : "{urn:hl7-org:elm-types:r1}Boolean",
-                                       "type" : "NamedTypeSpecifier"
-                                    }
-                                 } ]
+                                 "type" : "ListTypeSpecifier",
+                                 "elementType" : {
+                                    "type" : "TupleTypeSpecifier",
+                                    "element" : [ {
+                                       "name" : "doseNumber",
+                                       "elementType" : {
+                                          "name" : "{urn:hl7-org:elm-types:r1}String",
+                                          "type" : "NamedTypeSpecifier"
+                                       }
+                                    }, {
+                                       "name" : "doseIndex",
+                                       "elementType" : {
+                                          "name" : "{urn:hl7-org:elm-types:r1}Integer",
+                                          "type" : "NamedTypeSpecifier"
+                                       }
+                                    }, {
+                                       "name" : "immunizationIndex",
+                                       "elementType" : {
+                                          "name" : "{urn:hl7-org:elm-types:r1}Any",
+                                          "type" : "NamedTypeSpecifier"
+                                       }
+                                    }, {
+                                       "name" : "immunization",
+                                       "elementType" : {
+                                          "name" : "{urn:hl7-org:elm-types:r1}Any",
+                                          "type" : "NamedTypeSpecifier"
+                                       }
+                                    }, {
+                                       "name" : "validDose",
+                                       "elementType" : {
+                                          "name" : "{urn:hl7-org:elm-types:r1}Any",
+                                          "type" : "NamedTypeSpecifier"
+                                       }
+                                    } ]
+                                 }
                               } ]
                            }
                         }
@@ -1840,32 +2078,35 @@
                      "asTypeSpecifier" : {
                         "type" : "ListTypeSpecifier",
                         "elementType" : {
-                           "type" : "TupleTypeSpecifier",
-                           "element" : [ {
-                              "name" : "immunizationIndex",
-                              "elementType" : {
-                                 "name" : "{urn:hl7-org:elm-types:r1}Integer",
-                                 "type" : "NamedTypeSpecifier"
-                              }
-                           }, {
-                              "name" : "doseIndex",
-                              "elementType" : {
-                                 "name" : "{urn:hl7-org:elm-types:r1}Integer",
-                                 "type" : "NamedTypeSpecifier"
-                              }
-                           }, {
-                              "name" : "doseNumber",
-                              "elementType" : {
-                                 "name" : "{urn:hl7-org:elm-types:r1}String",
-                                 "type" : "NamedTypeSpecifier"
-                              }
-                           }, {
-                              "name" : "validDose",
-                              "elementType" : {
-                                 "name" : "{urn:hl7-org:elm-types:r1}Boolean",
-                                 "type" : "NamedTypeSpecifier"
-                              }
-                           } ]
+                           "type" : "ListTypeSpecifier",
+                           "elementType" : {
+                              "type" : "TupleTypeSpecifier",
+                              "element" : [ {
+                                 "name" : "immunizationIndex",
+                                 "elementType" : {
+                                    "name" : "{urn:hl7-org:elm-types:r1}Integer",
+                                    "type" : "NamedTypeSpecifier"
+                                 }
+                              }, {
+                                 "name" : "doseIndex",
+                                 "elementType" : {
+                                    "name" : "{urn:hl7-org:elm-types:r1}Integer",
+                                    "type" : "NamedTypeSpecifier"
+                                 }
+                              }, {
+                                 "name" : "doseNumber",
+                                 "elementType" : {
+                                    "name" : "{urn:hl7-org:elm-types:r1}String",
+                                    "type" : "NamedTypeSpecifier"
+                                 }
+                              }, {
+                                 "name" : "validDose",
+                                 "elementType" : {
+                                    "name" : "{urn:hl7-org:elm-types:r1}Boolean",
+                                    "type" : "NamedTypeSpecifier"
+                                 }
+                              } ]
+                           }
                         }
                      }
                   }
@@ -2070,67 +2311,31 @@
                                     "elementType" : {
                                        "type" : "ListTypeSpecifier",
                                        "elementType" : {
-                                          "type" : "ChoiceTypeSpecifier",
-                                          "choice" : [ {
-                                             "type" : "TupleTypeSpecifier",
-                                             "element" : [ {
-                                                "name" : "doseNumber",
-                                                "elementType" : {
-                                                   "name" : "{urn:hl7-org:elm-types:r1}String",
-                                                   "type" : "NamedTypeSpecifier"
-                                                }
-                                             }, {
-                                                "name" : "doseIndex",
-                                                "elementType" : {
-                                                   "name" : "{urn:hl7-org:elm-types:r1}Integer",
-                                                   "type" : "NamedTypeSpecifier"
-                                                }
-                                             }, {
-                                                "name" : "immunizationIndex",
-                                                "elementType" : {
-                                                   "name" : "{urn:hl7-org:elm-types:r1}Any",
-                                                   "type" : "NamedTypeSpecifier"
-                                                }
-                                             }, {
-                                                "name" : "immunization",
-                                                "elementType" : {
-                                                   "name" : "{urn:hl7-org:elm-types:r1}Any",
-                                                   "type" : "NamedTypeSpecifier"
-                                                }
-                                             }, {
-                                                "name" : "validDose",
-                                                "elementType" : {
-                                                   "name" : "{urn:hl7-org:elm-types:r1}Any",
-                                                   "type" : "NamedTypeSpecifier"
-                                                }
-                                             } ]
+                                          "type" : "TupleTypeSpecifier",
+                                          "element" : [ {
+                                             "name" : "immunizationIndex",
+                                             "elementType" : {
+                                                "name" : "{urn:hl7-org:elm-types:r1}Integer",
+                                                "type" : "NamedTypeSpecifier"
+                                             }
                                           }, {
-                                             "type" : "TupleTypeSpecifier",
-                                             "element" : [ {
-                                                "name" : "immunizationIndex",
-                                                "elementType" : {
-                                                   "name" : "{urn:hl7-org:elm-types:r1}Integer",
-                                                   "type" : "NamedTypeSpecifier"
-                                                }
-                                             }, {
-                                                "name" : "doseIndex",
-                                                "elementType" : {
-                                                   "name" : "{urn:hl7-org:elm-types:r1}Integer",
-                                                   "type" : "NamedTypeSpecifier"
-                                                }
-                                             }, {
-                                                "name" : "doseNumber",
-                                                "elementType" : {
-                                                   "name" : "{urn:hl7-org:elm-types:r1}String",
-                                                   "type" : "NamedTypeSpecifier"
-                                                }
-                                             }, {
-                                                "name" : "validDose",
-                                                "elementType" : {
-                                                   "name" : "{urn:hl7-org:elm-types:r1}Boolean",
-                                                   "type" : "NamedTypeSpecifier"
-                                                }
-                                             } ]
+                                             "name" : "doseIndex",
+                                             "elementType" : {
+                                                "name" : "{urn:hl7-org:elm-types:r1}Integer",
+                                                "type" : "NamedTypeSpecifier"
+                                             }
+                                          }, {
+                                             "name" : "doseNumber",
+                                             "elementType" : {
+                                                "name" : "{urn:hl7-org:elm-types:r1}String",
+                                                "type" : "NamedTypeSpecifier"
+                                             }
+                                          }, {
+                                             "name" : "validDose",
+                                             "elementType" : {
+                                                "name" : "{urn:hl7-org:elm-types:r1}Boolean",
+                                                "type" : "NamedTypeSpecifier"
+                                             }
                                           } ]
                                        }
                                     }
@@ -2163,18 +2368,68 @@
                               }, {
                                  "identifier" : "doseEvaluations",
                                  "expression" : {
-                                    "name" : "EvaluateSeriesDoses",
-                                    "type" : "FunctionRef",
-                                    "operand" : [ {
-                                       "name" : "selectSeries",
-                                       "type" : "OperandRef"
-                                    }, {
-                                       "name" : "seriesDoses",
-                                       "type" : "OperandRef"
-                                    }, {
-                                       "name" : "startingImmunizationIndex",
-                                       "type" : "QueryLetRef"
-                                    } ]
+                                    "type" : "Flatten",
+                                    "operand" : {
+                                       "type" : "Query",
+                                       "source" : [ {
+                                          "alias" : "X",
+                                          "expression" : {
+                                             "name" : "EvaluateSeriesDoses",
+                                             "type" : "FunctionRef",
+                                             "operand" : [ {
+                                                "name" : "selectSeries",
+                                                "type" : "OperandRef"
+                                             }, {
+                                                "name" : "seriesDoses",
+                                                "type" : "OperandRef"
+                                             }, {
+                                                "name" : "startingImmunizationIndex",
+                                                "type" : "QueryLetRef"
+                                             } ]
+                                          }
+                                       } ],
+                                       "return" : {
+                                          "distinct" : false,
+                                          "expression" : {
+                                             "type" : "As",
+                                             "operand" : {
+                                                "name" : "X",
+                                                "type" : "AliasRef"
+                                             },
+                                             "asTypeSpecifier" : {
+                                                "type" : "ListTypeSpecifier",
+                                                "elementType" : {
+                                                   "type" : "TupleTypeSpecifier",
+                                                   "element" : [ {
+                                                      "name" : "immunizationIndex",
+                                                      "elementType" : {
+                                                         "name" : "{urn:hl7-org:elm-types:r1}Integer",
+                                                         "type" : "NamedTypeSpecifier"
+                                                      }
+                                                   }, {
+                                                      "name" : "doseIndex",
+                                                      "elementType" : {
+                                                         "name" : "{urn:hl7-org:elm-types:r1}Integer",
+                                                         "type" : "NamedTypeSpecifier"
+                                                      }
+                                                   }, {
+                                                      "name" : "doseNumber",
+                                                      "elementType" : {
+                                                         "name" : "{urn:hl7-org:elm-types:r1}String",
+                                                         "type" : "NamedTypeSpecifier"
+                                                      }
+                                                   }, {
+                                                      "name" : "validDose",
+                                                      "elementType" : {
+                                                         "name" : "{urn:hl7-org:elm-types:r1}Boolean",
+                                                         "type" : "NamedTypeSpecifier"
+                                                      }
+                                                   } ]
+                                                }
+                                             }
+                                          }
+                                       }
+                                    }
                                  }
                               } ],
                               "relationship" : [ ],
@@ -2199,52 +2454,8 @@
                                              "name" : "seriesDoses",
                                              "type" : "OperandRef"
                                           }, {
-                                             "type" : "Query",
-                                             "source" : [ {
-                                                "alias" : "X",
-                                                "expression" : {
-                                                   "name" : "doseEvaluations",
-                                                   "type" : "QueryLetRef"
-                                                }
-                                             } ],
-                                             "return" : {
-                                                "distinct" : false,
-                                                "expression" : {
-                                                   "type" : "As",
-                                                   "operand" : {
-                                                      "name" : "X",
-                                                      "type" : "AliasRef"
-                                                   },
-                                                   "asTypeSpecifier" : {
-                                                      "type" : "TupleTypeSpecifier",
-                                                      "element" : [ {
-                                                         "name" : "doseNumber",
-                                                         "elementType" : {
-                                                            "name" : "{urn:hl7-org:elm-types:r1}String",
-                                                            "type" : "NamedTypeSpecifier"
-                                                         }
-                                                      }, {
-                                                         "name" : "doseIndex",
-                                                         "elementType" : {
-                                                            "name" : "{urn:hl7-org:elm-types:r1}Integer",
-                                                            "type" : "NamedTypeSpecifier"
-                                                         }
-                                                      }, {
-                                                         "name" : "immunizationIndex",
-                                                         "elementType" : {
-                                                            "name" : "{urn:hl7-org:elm-types:r1}Integer",
-                                                            "type" : "NamedTypeSpecifier"
-                                                         }
-                                                      }, {
-                                                         "name" : "validDose",
-                                                         "elementType" : {
-                                                            "name" : "{urn:hl7-org:elm-types:r1}Boolean",
-                                                            "type" : "NamedTypeSpecifier"
-                                                         }
-                                                      } ]
-                                                   }
-                                                }
-                                             }
+                                             "name" : "doseEvaluations",
+                                             "type" : "QueryLetRef"
                                           } ]
                                        }
                                     }, {
@@ -2296,67 +2507,31 @@
                                     "elementType" : {
                                        "type" : "ListTypeSpecifier",
                                        "elementType" : {
-                                          "type" : "ChoiceTypeSpecifier",
-                                          "choice" : [ {
-                                             "type" : "TupleTypeSpecifier",
-                                             "element" : [ {
-                                                "name" : "doseNumber",
-                                                "elementType" : {
-                                                   "name" : "{urn:hl7-org:elm-types:r1}String",
-                                                   "type" : "NamedTypeSpecifier"
-                                                }
-                                             }, {
-                                                "name" : "doseIndex",
-                                                "elementType" : {
-                                                   "name" : "{urn:hl7-org:elm-types:r1}Integer",
-                                                   "type" : "NamedTypeSpecifier"
-                                                }
-                                             }, {
-                                                "name" : "immunizationIndex",
-                                                "elementType" : {
-                                                   "name" : "{urn:hl7-org:elm-types:r1}Any",
-                                                   "type" : "NamedTypeSpecifier"
-                                                }
-                                             }, {
-                                                "name" : "immunization",
-                                                "elementType" : {
-                                                   "name" : "{urn:hl7-org:elm-types:r1}Any",
-                                                   "type" : "NamedTypeSpecifier"
-                                                }
-                                             }, {
-                                                "name" : "validDose",
-                                                "elementType" : {
-                                                   "name" : "{urn:hl7-org:elm-types:r1}Any",
-                                                   "type" : "NamedTypeSpecifier"
-                                                }
-                                             } ]
+                                          "type" : "TupleTypeSpecifier",
+                                          "element" : [ {
+                                             "name" : "immunizationIndex",
+                                             "elementType" : {
+                                                "name" : "{urn:hl7-org:elm-types:r1}Integer",
+                                                "type" : "NamedTypeSpecifier"
+                                             }
                                           }, {
-                                             "type" : "TupleTypeSpecifier",
-                                             "element" : [ {
-                                                "name" : "immunizationIndex",
-                                                "elementType" : {
-                                                   "name" : "{urn:hl7-org:elm-types:r1}Integer",
-                                                   "type" : "NamedTypeSpecifier"
-                                                }
-                                             }, {
-                                                "name" : "doseIndex",
-                                                "elementType" : {
-                                                   "name" : "{urn:hl7-org:elm-types:r1}Integer",
-                                                   "type" : "NamedTypeSpecifier"
-                                                }
-                                             }, {
-                                                "name" : "doseNumber",
-                                                "elementType" : {
-                                                   "name" : "{urn:hl7-org:elm-types:r1}String",
-                                                   "type" : "NamedTypeSpecifier"
-                                                }
-                                             }, {
-                                                "name" : "validDose",
-                                                "elementType" : {
-                                                   "name" : "{urn:hl7-org:elm-types:r1}Boolean",
-                                                   "type" : "NamedTypeSpecifier"
-                                                }
-                                             } ]
+                                             "name" : "doseIndex",
+                                             "elementType" : {
+                                                "name" : "{urn:hl7-org:elm-types:r1}Integer",
+                                                "type" : "NamedTypeSpecifier"
+                                             }
+                                          }, {
+                                             "name" : "doseNumber",
+                                             "elementType" : {
+                                                "name" : "{urn:hl7-org:elm-types:r1}String",
+                                                "type" : "NamedTypeSpecifier"
+                                             }
+                                          }, {
+                                             "name" : "validDose",
+                                             "elementType" : {
+                                                "name" : "{urn:hl7-org:elm-types:r1}Boolean",
+                                                "type" : "NamedTypeSpecifier"
+                                             }
                                           } ]
                                        }
                                     }

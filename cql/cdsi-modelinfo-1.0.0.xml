@@ -25,12 +25,17 @@
     <typeInfo xsi:type="ClassInfo" namespace="CDSI" name="SeriesDose" baseType="System.Any" retrievable="false">
         <element name="doseNumber" elementType="System.String" />
         <element name="age" elementType="CDSI.SeriesDose.Age" />
-        <element name="interval" elementType="list&lt;CDSI.SeriesDose.Interval&gt;" />
+        <element name="interval">
+            <elementTypeSpecifier elementType="CDSI.SeriesDose.DoseInterval" xsi:type="ListTypeSpecifier"/>
+        </element>
         <element name="allowableInterval">
-            <elementTypeSpecifier elementType="CDSI.SeriesDose.AllowableInterval" xsi:type="ListTypeSpecifier"/>
+            <elementTypeSpecifier elementType="CDSI.SeriesDose.DoseInterval" xsi:type="ListTypeSpecifier"/>
         </element>
         <element name="allowableVaccine">
             <elementTypeSpecifier elementType="CDSI.SeriesDose.AllowableVaccine" xsi:type="ListTypeSpecifier"/>
+        </element>
+        <element name="inadvertentVaccine">
+            <elementTypeSpecifier elementType="CDSI.SeriesDose.InadvertentVaccine" xsi:type="ListTypeSpecifier"/>
         </element>
     </typeInfo>
     <typeInfo xsi:type="ClassInfo" namespace="CDSI" name="SeriesDose.Age" baseType="System.Any" retrievable="false">
@@ -38,19 +43,13 @@
             <elementTypeSpecifier elementType="System.Quantity" xsi:type="ListTypeSpecifier"/>
         </element>
     </typeInfo>    
-    <typeInfo xsi:type="ClassInfo" namespace="CDSI" name="SeriesDose.Interval" baseType="System.Any" retrievable="false">
+    <typeInfo xsi:type="ClassInfo" namespace="CDSI" name="SeriesDose.DoseInterval" baseType="System.Any" retrievable="false">
         <element name="fromPrevious" elementType="System.String" />
         <element name="absMinInt">
             <elementTypeSpecifier elementType="System.Quantity" xsi:type="ListTypeSpecifier"/>
         </element>
         <element name="effectiveDate" elementType="System.Date" />
         <element name="cessationDate" elementType="System.Date" />
-    </typeInfo>
-    <typeInfo xsi:type="ClassInfo" namespace="CDSI" name="SeriesDose.AllowableInterval" baseType="System.Any" retrievable="false">
-        <element name="fromPrevious" elementType="System.String" />
-        <element name="absMinInt">
-            <elementTypeSpecifier elementType="System.Quantity" xsi:type="ListTypeSpecifier"/>
-        </element>
     </typeInfo>
     <typeInfo xsi:type="ClassInfo" namespace="CDSI" name="SeriesDose.AllowableVaccine" baseType="System.Any" retrievable="false">
         <element name="cvx" elementType="System.String" />
@@ -60,5 +59,8 @@
         <element name="endAge">
             <elementTypeSpecifier elementType="System.Quantity" xsi:type="ListTypeSpecifier"/>
         </element>
+    </typeInfo>
+    <typeInfo xsi:type="ClassInfo" namespace="CDSI" name="SeriesDose.InadvertentVaccine" baseType="System.Any" retrievable="false">
+        <element name="cvx" elementType="System.String" />
     </typeInfo>
 </modelInfo>

@@ -147,8 +147,8 @@
                                 "earliestRecInt": "28 days",
                                 "latestRecInt": "",
                                 "intervalPriority": "",
-                                "effectiveDate": "",
-                                "cessationDate": ""
+                                "effectiveDate": null,
+                                "cessationDate": null
                             }
                         ],
                         "allowableInterval": [
@@ -226,7 +226,9 @@
                                 ]
                             }
                         ],
-                        "inadvertentVaccine": "",
+                        "inadvertentVaccine": [
+                            {}
+                        ],
                         "conditionalSkip": "",
                         "recurringDose": "No",
                         "seasonalRecommendation": ""
@@ -263,8 +265,8 @@
                                 "earliestRecInt": "28 days",
                                 "latestRecInt": "",
                                 "intervalPriority": "",
-                                "effectiveDate": "",
-                                "cessationDate": ""
+                                "effectiveDate": null,
+                                "cessationDate": null
                             },
                             {
                                 "fromPrevious": "Y",
@@ -281,8 +283,8 @@
                                 "earliestRecInt": "21 days",
                                 "latestRecInt": "42 days",
                                 "intervalPriority": "",
-                                "effectiveDate": "",
-                                "cessationDate": "20211024"
+                                "effectiveDate": null,
+                                "cessationDate": "2021-10-24"
                             },
                             {
                                 "fromPrevious": "Y",
@@ -303,8 +305,8 @@
                                 "earliestRecInt": "21 days",
                                 "latestRecInt": "42 days",
                                 "intervalPriority": "",
-                                "effectiveDate": "20211025",
-                                "cessationDate": ""
+                                "effectiveDate": "2021-10-25",
+                                "cessationDate": null
                             }
                         ],
                         "allowableInterval": [
@@ -382,7 +384,9 @@
                                 ]
                             }
                         ],
-                        "inadvertentVaccine": "",
+                        "inadvertentVaccine": [
+                            {}
+                        ],
                         "conditionalSkip": "",
                         "recurringDose": "No",
                         "seasonalRecommendation": ""
@@ -419,8 +423,8 @@
                                 "earliestRecInt": "28 days",
                                 "latestRecInt": "",
                                 "intervalPriority": "",
-                                "effectiveDate": "",
-                                "cessationDate": ""
+                                "effectiveDate": null,
+                                "cessationDate": null
                             },
                             {
                                 "fromPrevious": "Y",
@@ -441,8 +445,8 @@
                                 "earliestRecInt": "5 months",
                                 "latestRecInt": "",
                                 "intervalPriority": "",
-                                "effectiveDate": "",
-                                "cessationDate": ""
+                                "effectiveDate": null,
+                                "cessationDate": null
                             }
                         ],
                         "allowableInterval": [
@@ -455,8 +459,8 @@
                                         "unit": "days"
                                     }
                                 ],
-                                "effectiveDate": "",
-                                "cessationDate": ""
+                                "effectiveDate": null,
+                                "cessationDate": null
                             }
                         ],
                         "preferableVaccine": [
@@ -558,10 +562,12 @@
                                 "endAge": []
                             }
                         ],
-                        "inadvertentVaccine": {
-                            "vaccineType": "COVID-19, mRNA, LNP-S, PF, 10 mcg/0.2 mL dose, tris-sucrose",
-                            "cvx": "218"
-                        },
+                        "inadvertentVaccine": [
+                            {
+                                "vaccineType": "COVID-19, mRNA, LNP-S, PF, 10 mcg/0.2 mL dose, tris-sucrose",
+                                "cvx": "218"
+                            }
+                        ],
                         "conditionalSkip": {
                             "context": "Forecast",
                             "setLogic": "n/a",
@@ -650,8 +656,8 @@
                                 "earliestRecInt": "28 days",
                                 "latestRecInt": "",
                                 "intervalPriority": "",
-                                "effectiveDate": "",
-                                "cessationDate": ""
+                                "effectiveDate": null,
+                                "cessationDate": null
                             }
                         ],
                         "allowableInterval": [
@@ -703,10 +709,12 @@
                                 "endAge": []
                             }
                         ],
-                        "inadvertentVaccine": {
-                            "vaccineType": "COVID-19, mRNA, LNP-S, PF, 10 mcg/0.2 mL dose, tris-sucrose",
-                            "cvx": "218"
-                        },
+                        "inadvertentVaccine": [
+                            {
+                                "vaccineType": "COVID-19, mRNA, LNP-S, PF, 10 mcg/0.2 mL dose, tris-sucrose",
+                                "cvx": "218"
+                            }
+                        ],
                         "conditionalSkip": "",
                         "recurringDose": "No",
                         "seasonalRecommendation": ""
@@ -743,8 +751,8 @@
                                 "earliestRecInt": "28 days",
                                 "latestRecInt": "",
                                 "intervalPriority": "",
-                                "effectiveDate": "",
-                                "cessationDate": ""
+                                "effectiveDate": null,
+                                "cessationDate": null
                             },
                             {
                                 "fromPrevious": "Y",
@@ -761,8 +769,8 @@
                                 "earliestRecInt": "21 days",
                                 "latestRecInt": "42 days",
                                 "intervalPriority": "",
-                                "effectiveDate": "",
-                                "cessationDate": "20211024"
+                                "effectiveDate": null,
+                                "cessationDate": "2021-10-24"
                             },
                             {
                                 "fromPrevious": "Y",
@@ -783,8 +791,8 @@
                                 "earliestRecInt": "21 days",
                                 "latestRecInt": "42 days",
                                 "intervalPriority": "",
-                                "effectiveDate": "20211025",
-                                "cessationDate": ""
+                                "effectiveDate": "2021-10-25",
+                                "cessationDate": null
                             }
                         ],
                         "allowableInterval": [
@@ -836,10 +844,12 @@
                                 "endAge": []
                             }
                         ],
-                        "inadvertentVaccine": {
-                            "vaccineType": "COVID-19, mRNA, LNP-S, PF, 10 mcg/0.2 mL dose, tris-sucrose",
-                            "cvx": "218"
-                        },
+                        "inadvertentVaccine": [
+                            {
+                                "vaccineType": "COVID-19, mRNA, LNP-S, PF, 10 mcg/0.2 mL dose, tris-sucrose",
+                                "cvx": "218"
+                            }
+                        ],
                         "conditionalSkip": "",
                         "recurringDose": "No",
                         "seasonalRecommendation": ""
@@ -876,8 +886,8 @@
                                 "earliestRecInt": "28 days",
                                 "latestRecInt": "",
                                 "intervalPriority": "",
-                                "effectiveDate": "",
-                                "cessationDate": ""
+                                "effectiveDate": null,
+                                "cessationDate": null
                             },
                             {
                                 "fromPrevious": "Y",
@@ -898,8 +908,8 @@
                                 "earliestRecInt": "5 months",
                                 "latestRecInt": "",
                                 "intervalPriority": "",
-                                "effectiveDate": "",
-                                "cessationDate": ""
+                                "effectiveDate": null,
+                                "cessationDate": null
                             }
                         ],
                         "allowableInterval": [
@@ -912,8 +922,8 @@
                                         "unit": "days"
                                     }
                                 ],
-                                "effectiveDate": "",
-                                "cessationDate": ""
+                                "effectiveDate": null,
+                                "cessationDate": null
                             }
                         ],
                         "preferableVaccine": [
@@ -1015,10 +1025,12 @@
                                 "endAge": []
                             }
                         ],
-                        "inadvertentVaccine": {
-                            "vaccineType": "COVID-19, mRNA, LNP-S, PF, 10 mcg/0.2 mL dose, tris-sucrose",
-                            "cvx": "218"
-                        },
+                        "inadvertentVaccine": [
+                            {
+                                "vaccineType": "COVID-19, mRNA, LNP-S, PF, 10 mcg/0.2 mL dose, tris-sucrose",
+                                "cvx": "218"
+                            }
+                        ],
                         "conditionalSkip": "",
                         "recurringDose": "No",
                         "seasonalRecommendation": ""
@@ -1087,8 +1099,8 @@
                                 "earliestRecInt": "28 days",
                                 "latestRecInt": "",
                                 "intervalPriority": "",
-                                "effectiveDate": "",
-                                "cessationDate": ""
+                                "effectiveDate": null,
+                                "cessationDate": null
                             },
                             {
                                 "fromPrevious": "N",
@@ -1105,8 +1117,8 @@
                                 "earliestRecInt": "28 days",
                                 "latestRecInt": "",
                                 "intervalPriority": "",
-                                "effectiveDate": "",
-                                "cessationDate": ""
+                                "effectiveDate": null,
+                                "cessationDate": null
                             }
                         ],
                         "allowableInterval": [
@@ -1135,7 +1147,9 @@
                                 "endAge": []
                             }
                         ],
-                        "inadvertentVaccine": "",
+                        "inadvertentVaccine": [
+                            {}
+                        ],
                         "conditionalSkip": "",
                         "recurringDose": "No",
                         "seasonalRecommendation": ""
@@ -1176,8 +1190,8 @@
                                 "earliestRecInt": "28 days",
                                 "latestRecInt": "",
                                 "intervalPriority": "",
-                                "effectiveDate": "",
-                                "cessationDate": ""
+                                "effectiveDate": null,
+                                "cessationDate": null
                             },
                             {
                                 "fromPrevious": "Y",
@@ -1194,8 +1208,8 @@
                                 "earliestRecInt": "28 days",
                                 "latestRecInt": "42 days",
                                 "intervalPriority": "",
-                                "effectiveDate": "",
-                                "cessationDate": "20211024"
+                                "effectiveDate": null,
+                                "cessationDate": "2021-10-24"
                             },
                             {
                                 "fromPrevious": "Y",
@@ -1216,8 +1230,8 @@
                                 "earliestRecInt": "28 days",
                                 "latestRecInt": "42 days",
                                 "intervalPriority": "",
-                                "effectiveDate": "20211025",
-                                "cessationDate": ""
+                                "effectiveDate": "2021-10-25",
+                                "cessationDate": null
                             }
                         ],
                         "allowableInterval": [
@@ -1246,7 +1260,9 @@
                                 "endAge": []
                             }
                         ],
-                        "inadvertentVaccine": "",
+                        "inadvertentVaccine": [
+                            {}
+                        ],
                         "conditionalSkip": "",
                         "recurringDose": "No",
                         "seasonalRecommendation": ""
@@ -1283,8 +1299,8 @@
                                 "earliestRecInt": "28 days",
                                 "latestRecInt": "",
                                 "intervalPriority": "",
-                                "effectiveDate": "",
-                                "cessationDate": ""
+                                "effectiveDate": null,
+                                "cessationDate": null
                             },
                             {
                                 "fromPrevious": "Y",
@@ -1305,8 +1321,8 @@
                                 "earliestRecInt": "5 months",
                                 "latestRecInt": "",
                                 "intervalPriority": "",
-                                "effectiveDate": "",
-                                "cessationDate": ""
+                                "effectiveDate": null,
+                                "cessationDate": null
                             }
                         ],
                         "allowableInterval": [
@@ -1319,8 +1335,8 @@
                                         "unit": "days"
                                     }
                                 ],
-                                "effectiveDate": "",
-                                "cessationDate": ""
+                                "effectiveDate": null,
+                                "cessationDate": null
                             }
                         ],
                         "preferableVaccine": [
@@ -1422,10 +1438,12 @@
                                 "endAge": []
                             }
                         ],
-                        "inadvertentVaccine": {
-                            "vaccineType": "COVID-19, mRNA, LNP-S, PF, 10 mcg/0.2 mL dose, tris-sucrose",
-                            "cvx": "218"
-                        },
+                        "inadvertentVaccine": [
+                            {
+                                "vaccineType": "COVID-19, mRNA, LNP-S, PF, 10 mcg/0.2 mL dose, tris-sucrose",
+                                "cvx": "218"
+                            }
+                        ],
                         "conditionalSkip": "",
                         "recurringDose": "No",
                         "seasonalRecommendation": ""
@@ -1495,8 +1513,8 @@
                                 "earliestRecInt": "28 days",
                                 "latestRecInt": "",
                                 "intervalPriority": "",
-                                "effectiveDate": "",
-                                "cessationDate": ""
+                                "effectiveDate": null,
+                                "cessationDate": null
                             }
                         ],
                         "allowableInterval": [
@@ -1525,7 +1543,9 @@
                                 "endAge": []
                             }
                         ],
-                        "inadvertentVaccine": "",
+                        "inadvertentVaccine": [
+                            {}
+                        ],
                         "conditionalSkip": "",
                         "recurringDose": "No",
                         "seasonalRecommendation": ""
@@ -1566,8 +1586,8 @@
                                 "earliestRecInt": "8 weeks",
                                 "latestRecInt": "",
                                 "intervalPriority": "",
-                                "effectiveDate": "",
-                                "cessationDate": ""
+                                "effectiveDate": null,
+                                "cessationDate": null
                             }
                         ],
                         "allowableInterval": [
@@ -1580,8 +1600,8 @@
                                         "unit": "days"
                                     }
                                 ],
-                                "effectiveDate": "",
-                                "cessationDate": ""
+                                "effectiveDate": null,
+                                "cessationDate": null
                             }
                         ],
                         "preferableVaccine": [
@@ -1683,10 +1703,12 @@
                                 "endAge": []
                             }
                         ],
-                        "inadvertentVaccine": {
-                            "vaccineType": "COVID-19, mRNA, LNP-S, PF, 10 mcg/0.2 mL dose, tris-sucrose",
-                            "cvx": "218"
-                        },
+                        "inadvertentVaccine": [
+                            {
+                                "vaccineType": "COVID-19, mRNA, LNP-S, PF, 10 mcg/0.2 mL dose, tris-sucrose",
+                                "cvx": "218"
+                            }
+                        ],
                         "conditionalSkip": "",
                         "recurringDose": "No",
                         "seasonalRecommendation": ""
@@ -1753,8 +1775,8 @@
                                 "earliestRecInt": "28 days",
                                 "latestRecInt": "",
                                 "intervalPriority": "",
-                                "effectiveDate": "",
-                                "cessationDate": ""
+                                "effectiveDate": null,
+                                "cessationDate": null
                             }
                         ],
                         "allowableInterval": [
@@ -1875,7 +1897,9 @@
                                 ]
                             }
                         ],
-                        "inadvertentVaccine": "",
+                        "inadvertentVaccine": [
+                            {}
+                        ],
                         "conditionalSkip": "",
                         "recurringDose": "No",
                         "seasonalRecommendation": ""
@@ -1912,8 +1936,8 @@
                                 "earliestRecInt": "28 days",
                                 "latestRecInt": "",
                                 "intervalPriority": "",
-                                "effectiveDate": "",
-                                "cessationDate": ""
+                                "effectiveDate": null,
+                                "cessationDate": null
                             },
                             {
                                 "fromPrevious": "Y",
@@ -1930,8 +1954,8 @@
                                 "earliestRecInt": "28 days",
                                 "latestRecInt": "42 days",
                                 "intervalPriority": "",
-                                "effectiveDate": "",
-                                "cessationDate": "20211024"
+                                "effectiveDate": null,
+                                "cessationDate": "2021-10-24"
                             },
                             {
                                 "fromPrevious": "Y",
@@ -1952,8 +1976,8 @@
                                 "earliestRecInt": "28 days",
                                 "latestRecInt": "42 days",
                                 "intervalPriority": "",
-                                "effectiveDate": "20211025",
-                                "cessationDate": ""
+                                "effectiveDate": "2021-10-25",
+                                "cessationDate": null
                             }
                         ],
                         "allowableInterval": [
@@ -2063,7 +2087,9 @@
                                 ]
                             }
                         ],
-                        "inadvertentVaccine": "",
+                        "inadvertentVaccine": [
+                            {}
+                        ],
                         "conditionalSkip": "",
                         "recurringDose": "No",
                         "seasonalRecommendation": ""
@@ -2100,8 +2126,8 @@
                                 "earliestRecInt": "28 days",
                                 "latestRecInt": "",
                                 "intervalPriority": "",
-                                "effectiveDate": "",
-                                "cessationDate": ""
+                                "effectiveDate": null,
+                                "cessationDate": null
                             },
                             {
                                 "fromPrevious": "Y",
@@ -2122,8 +2148,8 @@
                                 "earliestRecInt": "5 months",
                                 "latestRecInt": "",
                                 "intervalPriority": "",
-                                "effectiveDate": "",
-                                "cessationDate": ""
+                                "effectiveDate": null,
+                                "cessationDate": null
                             }
                         ],
                         "allowableInterval": [
@@ -2136,8 +2162,8 @@
                                         "unit": "days"
                                     }
                                 ],
-                                "effectiveDate": "",
-                                "cessationDate": ""
+                                "effectiveDate": null,
+                                "cessationDate": null
                             }
                         ],
                         "preferableVaccine": [
@@ -2239,10 +2265,12 @@
                                 "endAge": []
                             }
                         ],
-                        "inadvertentVaccine": {
-                            "vaccineType": "COVID-19, mRNA, LNP-S, PF, 10 mcg/0.2 mL dose, tris-sucrose",
-                            "cvx": "218"
-                        },
+                        "inadvertentVaccine": [
+                            {
+                                "vaccineType": "COVID-19, mRNA, LNP-S, PF, 10 mcg/0.2 mL dose, tris-sucrose",
+                                "cvx": "218"
+                            }
+                        ],
                         "conditionalSkip": {
                             "context": "Forecast",
                             "setLogic": "n/a",
@@ -2453,8 +2481,8 @@
                                 "earliestRecInt": "28 days",
                                 "latestRecInt": "",
                                 "intervalPriority": "",
-                                "effectiveDate": "",
-                                "cessationDate": ""
+                                "effectiveDate": null,
+                                "cessationDate": null
                             }
                         ],
                         "allowableInterval": [
@@ -2532,7 +2560,9 @@
                                 ]
                             }
                         ],
-                        "inadvertentVaccine": "",
+                        "inadvertentVaccine": [
+                            {}
+                        ],
                         "conditionalSkip": "",
                         "recurringDose": "No",
                         "seasonalRecommendation": ""
@@ -2569,8 +2599,8 @@
                                 "earliestRecInt": "28 days",
                                 "latestRecInt": "",
                                 "intervalPriority": "",
-                                "effectiveDate": "",
-                                "cessationDate": ""
+                                "effectiveDate": null,
+                                "cessationDate": null
                             },
                             {
                                 "fromPrevious": "Y",
@@ -2587,8 +2617,8 @@
                                 "earliestRecInt": "21 days",
                                 "latestRecInt": "42 days",
                                 "intervalPriority": "",
-                                "effectiveDate": "",
-                                "cessationDate": "20211024"
+                                "effectiveDate": null,
+                                "cessationDate": "2021-10-24"
                             },
                             {
                                 "fromPrevious": "Y",
@@ -2609,8 +2639,8 @@
                                 "earliestRecInt": "21 days",
                                 "latestRecInt": "42 days",
                                 "intervalPriority": "",
-                                "effectiveDate": "20211025",
-                                "cessationDate": ""
+                                "effectiveDate": "2021-10-25",
+                                "cessationDate": null
                             }
                         ],
                         "allowableInterval": [
@@ -2688,7 +2718,9 @@
                                 ]
                             }
                         ],
-                        "inadvertentVaccine": "",
+                        "inadvertentVaccine": [
+                            {}
+                        ],
                         "conditionalSkip": "",
                         "recurringDose": "No",
                         "seasonalRecommendation": ""
@@ -2725,8 +2757,8 @@
                                 "earliestRecInt": "28 days",
                                 "latestRecInt": "",
                                 "intervalPriority": "",
-                                "effectiveDate": "",
-                                "cessationDate": ""
+                                "effectiveDate": null,
+                                "cessationDate": null
                             },
                             {
                                 "fromPrevious": "Y",
@@ -2743,8 +2775,8 @@
                                 "earliestRecInt": "28 days",
                                 "latestRecInt": "42 days",
                                 "intervalPriority": "",
-                                "effectiveDate": "",
-                                "cessationDate": "20211024"
+                                "effectiveDate": null,
+                                "cessationDate": "2021-10-24"
                             },
                             {
                                 "fromPrevious": "Y",
@@ -2765,8 +2797,8 @@
                                 "earliestRecInt": "28 days",
                                 "latestRecInt": "42 days",
                                 "intervalPriority": "",
-                                "effectiveDate": "20211025",
-                                "cessationDate": ""
+                                "effectiveDate": "2021-10-25",
+                                "cessationDate": null
                             }
                         ],
                         "allowableInterval": [
@@ -2844,7 +2876,9 @@
                                 ]
                             }
                         ],
-                        "inadvertentVaccine": "",
+                        "inadvertentVaccine": [
+                            {}
+                        ],
                         "conditionalSkip": "",
                         "recurringDose": "No",
                         "seasonalRecommendation": ""
@@ -2881,8 +2915,8 @@
                                 "earliestRecInt": "28 days",
                                 "latestRecInt": "",
                                 "intervalPriority": "",
-                                "effectiveDate": "",
-                                "cessationDate": ""
+                                "effectiveDate": null,
+                                "cessationDate": null
                             },
                             {
                                 "fromPrevious": "Y",
@@ -2903,8 +2937,8 @@
                                 "earliestRecInt": "5 months",
                                 "latestRecInt": "",
                                 "intervalPriority": "",
-                                "effectiveDate": "",
-                                "cessationDate": ""
+                                "effectiveDate": null,
+                                "cessationDate": null
                             }
                         ],
                         "allowableInterval": [
@@ -2917,8 +2951,8 @@
                                         "unit": "days"
                                     }
                                 ],
-                                "effectiveDate": "",
-                                "cessationDate": ""
+                                "effectiveDate": null,
+                                "cessationDate": null
                             }
                         ],
                         "preferableVaccine": [
@@ -3020,10 +3054,12 @@
                                 "endAge": []
                             }
                         ],
-                        "inadvertentVaccine": {
-                            "vaccineType": "COVID-19, mRNA, LNP-S, PF, 10 mcg/0.2 mL dose, tris-sucrose",
-                            "cvx": "218"
-                        },
+                        "inadvertentVaccine": [
+                            {
+                                "vaccineType": "COVID-19, mRNA, LNP-S, PF, 10 mcg/0.2 mL dose, tris-sucrose",
+                                "cvx": "218"
+                            }
+                        ],
                         "conditionalSkip": {
                             "context": "Forecast",
                             "setLogic": "n/a",
@@ -3238,8 +3274,8 @@
                                 "earliestRecInt": "28 days",
                                 "latestRecInt": "",
                                 "intervalPriority": "",
-                                "effectiveDate": "",
-                                "cessationDate": ""
+                                "effectiveDate": null,
+                                "cessationDate": null
                             },
                             {
                                 "fromPrevious": "N",
@@ -3256,8 +3292,8 @@
                                 "earliestRecInt": "28 days",
                                 "latestRecInt": "",
                                 "intervalPriority": "",
-                                "effectiveDate": "",
-                                "cessationDate": ""
+                                "effectiveDate": null,
+                                "cessationDate": null
                             }
                         ],
                         "allowableInterval": [
@@ -3286,7 +3322,9 @@
                                 "endAge": []
                             }
                         ],
-                        "inadvertentVaccine": "",
+                        "inadvertentVaccine": [
+                            {}
+                        ],
                         "conditionalSkip": "",
                         "recurringDose": "No",
                         "seasonalRecommendation": ""
@@ -3327,8 +3365,8 @@
                                 "earliestRecInt": "28 days",
                                 "latestRecInt": "",
                                 "intervalPriority": "",
-                                "effectiveDate": "",
-                                "cessationDate": ""
+                                "effectiveDate": null,
+                                "cessationDate": null
                             },
                             {
                                 "fromPrevious": "Y",
@@ -3345,8 +3383,8 @@
                                 "earliestRecInt": "28 days",
                                 "latestRecInt": "42 days",
                                 "intervalPriority": "",
-                                "effectiveDate": "",
-                                "cessationDate": "20211024"
+                                "effectiveDate": null,
+                                "cessationDate": "2021-10-24"
                             },
                             {
                                 "fromPrevious": "Y",
@@ -3367,8 +3405,8 @@
                                 "earliestRecInt": "28 days",
                                 "latestRecInt": "42 days",
                                 "intervalPriority": "",
-                                "effectiveDate": "20211025",
-                                "cessationDate": ""
+                                "effectiveDate": "2021-10-25",
+                                "cessationDate": null
                             }
                         ],
                         "allowableInterval": [
@@ -3397,7 +3435,9 @@
                                 "endAge": []
                             }
                         ],
-                        "inadvertentVaccine": "",
+                        "inadvertentVaccine": [
+                            {}
+                        ],
                         "conditionalSkip": "",
                         "recurringDose": "No",
                         "seasonalRecommendation": ""
@@ -3438,8 +3478,8 @@
                                 "earliestRecInt": "28 days",
                                 "latestRecInt": "",
                                 "intervalPriority": "",
-                                "effectiveDate": "",
-                                "cessationDate": ""
+                                "effectiveDate": null,
+                                "cessationDate": null
                             },
                             {
                                 "fromPrevious": "Y",
@@ -3456,8 +3496,8 @@
                                 "earliestRecInt": "28 days",
                                 "latestRecInt": "42 days",
                                 "intervalPriority": "",
-                                "effectiveDate": "",
-                                "cessationDate": "20211024"
+                                "effectiveDate": null,
+                                "cessationDate": "2021-10-24"
                             },
                             {
                                 "fromPrevious": "Y",
@@ -3478,8 +3518,8 @@
                                 "earliestRecInt": "28 days",
                                 "latestRecInt": "42 days",
                                 "intervalPriority": "",
-                                "effectiveDate": "20211025",
-                                "cessationDate": ""
+                                "effectiveDate": "2021-10-25",
+                                "cessationDate": null
                             }
                         ],
                         "allowableInterval": [
@@ -3508,7 +3548,9 @@
                                 "endAge": []
                             }
                         ],
-                        "inadvertentVaccine": "",
+                        "inadvertentVaccine": [
+                            {}
+                        ],
                         "conditionalSkip": "",
                         "recurringDose": "No",
                         "seasonalRecommendation": ""
@@ -3545,8 +3587,8 @@
                                 "earliestRecInt": "28 days",
                                 "latestRecInt": "",
                                 "intervalPriority": "",
-                                "effectiveDate": "",
-                                "cessationDate": ""
+                                "effectiveDate": null,
+                                "cessationDate": null
                             },
                             {
                                 "fromPrevious": "Y",
@@ -3567,8 +3609,8 @@
                                 "earliestRecInt": "5 months",
                                 "latestRecInt": "",
                                 "intervalPriority": "",
-                                "effectiveDate": "",
-                                "cessationDate": ""
+                                "effectiveDate": null,
+                                "cessationDate": null
                             }
                         ],
                         "allowableInterval": [
@@ -3581,8 +3623,8 @@
                                         "unit": "days"
                                     }
                                 ],
-                                "effectiveDate": "",
-                                "cessationDate": ""
+                                "effectiveDate": null,
+                                "cessationDate": null
                             }
                         ],
                         "preferableVaccine": [
@@ -3684,10 +3726,12 @@
                                 "endAge": []
                             }
                         ],
-                        "inadvertentVaccine": {
-                            "vaccineType": "COVID-19, mRNA, LNP-S, PF, 10 mcg/0.2 mL dose, tris-sucrose",
-                            "cvx": "218"
-                        },
+                        "inadvertentVaccine": [
+                            {
+                                "vaccineType": "COVID-19, mRNA, LNP-S, PF, 10 mcg/0.2 mL dose, tris-sucrose",
+                                "cvx": "218"
+                            }
+                        ],
                         "conditionalSkip": "",
                         "recurringDose": "No",
                         "seasonalRecommendation": ""
@@ -3879,8 +3923,8 @@
                                 "earliestRecInt": "28 days",
                                 "latestRecInt": "",
                                 "intervalPriority": "",
-                                "effectiveDate": "",
-                                "cessationDate": ""
+                                "effectiveDate": null,
+                                "cessationDate": null
                             }
                         ],
                         "allowableInterval": [
@@ -3909,7 +3953,9 @@
                                 "endAge": []
                             }
                         ],
-                        "inadvertentVaccine": "",
+                        "inadvertentVaccine": [
+                            {}
+                        ],
                         "conditionalSkip": "",
                         "recurringDose": "No",
                         "seasonalRecommendation": ""
@@ -3950,8 +3996,8 @@
                                 "earliestRecInt": "8 weeks",
                                 "latestRecInt": "",
                                 "intervalPriority": "",
-                                "effectiveDate": "",
-                                "cessationDate": ""
+                                "effectiveDate": null,
+                                "cessationDate": null
                             }
                         ],
                         "allowableInterval": [
@@ -3964,8 +4010,8 @@
                                         "unit": "days"
                                     }
                                 ],
-                                "effectiveDate": "",
-                                "cessationDate": ""
+                                "effectiveDate": null,
+                                "cessationDate": null
                             }
                         ],
                         "preferableVaccine": [
@@ -4067,10 +4113,12 @@
                                 "endAge": []
                             }
                         ],
-                        "inadvertentVaccine": {
-                            "vaccineType": "COVID-19, mRNA, LNP-S, PF, 10 mcg/0.2 mL dose, tris-sucrose",
-                            "cvx": "218"
-                        },
+                        "inadvertentVaccine": [
+                            {
+                                "vaccineType": "COVID-19, mRNA, LNP-S, PF, 10 mcg/0.2 mL dose, tris-sucrose",
+                                "cvx": "218"
+                            }
+                        ],
                         "conditionalSkip": "",
                         "recurringDose": "No",
                         "seasonalRecommendation": ""
@@ -4259,8 +4307,8 @@
                                 "earliestRecInt": "28 days",
                                 "latestRecInt": "",
                                 "intervalPriority": "",
-                                "effectiveDate": "",
-                                "cessationDate": ""
+                                "effectiveDate": null,
+                                "cessationDate": null
                             }
                         ],
                         "allowableInterval": [
@@ -4381,7 +4429,9 @@
                                 ]
                             }
                         ],
-                        "inadvertentVaccine": "",
+                        "inadvertentVaccine": [
+                            {}
+                        ],
                         "conditionalSkip": "",
                         "recurringDose": "No",
                         "seasonalRecommendation": ""
@@ -4413,8 +4463,8 @@
                                 "earliestRecInt": "28 days",
                                 "latestRecInt": "",
                                 "intervalPriority": "",
-                                "effectiveDate": "",
-                                "cessationDate": ""
+                                "effectiveDate": null,
+                                "cessationDate": null
                             },
                             {
                                 "fromPrevious": "Y",
@@ -4431,8 +4481,8 @@
                                 "earliestRecInt": "28 days",
                                 "latestRecInt": "42 days",
                                 "intervalPriority": "",
-                                "effectiveDate": "",
-                                "cessationDate": "20211024"
+                                "effectiveDate": null,
+                                "cessationDate": "2021-10-24"
                             },
                             {
                                 "fromPrevious": "Y",
@@ -4453,8 +4503,8 @@
                                 "earliestRecInt": "28 days",
                                 "latestRecInt": "42 days",
                                 "intervalPriority": "",
-                                "effectiveDate": "20211025",
-                                "cessationDate": ""
+                                "effectiveDate": "2021-10-25",
+                                "cessationDate": null
                             }
                         ],
                         "allowableInterval": [
@@ -4564,7 +4614,9 @@
                                 ]
                             }
                         ],
-                        "inadvertentVaccine": "",
+                        "inadvertentVaccine": [
+                            {}
+                        ],
                         "conditionalSkip": "",
                         "recurringDose": "No",
                         "seasonalRecommendation": ""
@@ -4596,8 +4648,8 @@
                                 "earliestRecInt": "28 days",
                                 "latestRecInt": "",
                                 "intervalPriority": "",
-                                "effectiveDate": "",
-                                "cessationDate": ""
+                                "effectiveDate": null,
+                                "cessationDate": null
                             },
                             {
                                 "fromPrevious": "Y",
@@ -4614,8 +4666,8 @@
                                 "earliestRecInt": "28 days",
                                 "latestRecInt": "42 days",
                                 "intervalPriority": "",
-                                "effectiveDate": "",
-                                "cessationDate": "20211024"
+                                "effectiveDate": null,
+                                "cessationDate": "2021-10-24"
                             },
                             {
                                 "fromPrevious": "Y",
@@ -4636,8 +4688,8 @@
                                 "earliestRecInt": "28 days",
                                 "latestRecInt": "42 days",
                                 "intervalPriority": "",
-                                "effectiveDate": "20211025",
-                                "cessationDate": ""
+                                "effectiveDate": "2021-10-25",
+                                "cessationDate": null
                             }
                         ],
                         "allowableInterval": [
@@ -4747,7 +4799,9 @@
                                 ]
                             }
                         ],
-                        "inadvertentVaccine": "",
+                        "inadvertentVaccine": [
+                            {}
+                        ],
                         "conditionalSkip": "",
                         "recurringDose": "No",
                         "seasonalRecommendation": ""
@@ -4784,8 +4838,8 @@
                                 "earliestRecInt": "28 days",
                                 "latestRecInt": "",
                                 "intervalPriority": "",
-                                "effectiveDate": "",
-                                "cessationDate": ""
+                                "effectiveDate": null,
+                                "cessationDate": null
                             },
                             {
                                 "fromPrevious": "Y",
@@ -4806,8 +4860,8 @@
                                 "earliestRecInt": "5 months",
                                 "latestRecInt": "",
                                 "intervalPriority": "",
-                                "effectiveDate": "",
-                                "cessationDate": ""
+                                "effectiveDate": null,
+                                "cessationDate": null
                             }
                         ],
                         "allowableInterval": [
@@ -4820,8 +4874,8 @@
                                         "unit": "days"
                                     }
                                 ],
-                                "effectiveDate": "",
-                                "cessationDate": ""
+                                "effectiveDate": null,
+                                "cessationDate": null
                             }
                         ],
                         "preferableVaccine": [
@@ -4923,10 +4977,12 @@
                                 "endAge": []
                             }
                         ],
-                        "inadvertentVaccine": {
-                            "vaccineType": "COVID-19, mRNA, LNP-S, PF, 10 mcg/0.2 mL dose, tris-sucrose",
-                            "cvx": "218"
-                        },
+                        "inadvertentVaccine": [
+                            {
+                                "vaccineType": "COVID-19, mRNA, LNP-S, PF, 10 mcg/0.2 mL dose, tris-sucrose",
+                                "cvx": "218"
+                            }
+                        ],
                         "conditionalSkip": {
                             "context": "Forecast",
                             "setLogic": "n/a",
@@ -5013,7 +5069,9 @@
                                 "endAge": []
                             }
                         ],
-                        "inadvertentVaccine": "",
+                        "inadvertentVaccine": [
+                            {}
+                        ],
                         "conditionalSkip": "",
                         "recurringDose": "No",
                         "seasonalRecommendation": ""
@@ -5050,8 +5108,8 @@
                                 "earliestRecInt": "8 weeks",
                                 "latestRecInt": "12 weeks",
                                 "intervalPriority": "",
-                                "effectiveDate": "",
-                                "cessationDate": ""
+                                "effectiveDate": null,
+                                "cessationDate": null
                             }
                         ],
                         "allowableInterval": [
@@ -5064,8 +5122,8 @@
                                         "unit": "days"
                                     }
                                 ],
-                                "effectiveDate": "",
-                                "cessationDate": ""
+                                "effectiveDate": null,
+                                "cessationDate": null
                             }
                         ],
                         "preferableVaccine": "",
@@ -5082,7 +5140,9 @@
                                 "endAge": []
                             }
                         ],
-                        "inadvertentVaccine": "",
+                        "inadvertentVaccine": [
+                            {}
+                        ],
                         "conditionalSkip": "",
                         "recurringDose": "No",
                         "seasonalRecommendation": ""
@@ -5145,7 +5205,9 @@
                                 "endAge": []
                             }
                         ],
-                        "inadvertentVaccine": "",
+                        "inadvertentVaccine": [
+                            {}
+                        ],
                         "conditionalSkip": "",
                         "recurringDose": "No",
                         "seasonalRecommendation": ""
@@ -5182,8 +5244,8 @@
                                 "earliestRecInt": "3 weeks",
                                 "latestRecInt": "4 weeks",
                                 "intervalPriority": "",
-                                "effectiveDate": "",
-                                "cessationDate": ""
+                                "effectiveDate": null,
+                                "cessationDate": null
                             }
                         ],
                         "allowableInterval": [
@@ -5196,8 +5258,8 @@
                                         "unit": "days"
                                     }
                                 ],
-                                "effectiveDate": "",
-                                "cessationDate": ""
+                                "effectiveDate": null,
+                                "cessationDate": null
                             }
                         ],
                         "preferableVaccine": "",
@@ -5214,7 +5276,9 @@
                                 "endAge": []
                             }
                         ],
-                        "inadvertentVaccine": "",
+                        "inadvertentVaccine": [
+                            {}
+                        ],
                         "conditionalSkip": "",
                         "recurringDose": "No",
                         "seasonalRecommendation": ""
@@ -5277,7 +5341,9 @@
                                 "endAge": []
                             }
                         ],
-                        "inadvertentVaccine": "",
+                        "inadvertentVaccine": [
+                            {}
+                        ],
                         "conditionalSkip": "",
                         "recurringDose": "No",
                         "seasonalRecommendation": ""
@@ -5314,8 +5380,8 @@
                                 "earliestRecInt": "2 weeks",
                                 "latestRecInt": "4 weeks",
                                 "intervalPriority": "",
-                                "effectiveDate": "",
-                                "cessationDate": ""
+                                "effectiveDate": null,
+                                "cessationDate": null
                             }
                         ],
                         "allowableInterval": [
@@ -5328,8 +5394,8 @@
                                         "unit": "days"
                                     }
                                 ],
-                                "effectiveDate": "",
-                                "cessationDate": ""
+                                "effectiveDate": null,
+                                "cessationDate": null
                             }
                         ],
                         "preferableVaccine": "",
@@ -5346,7 +5412,9 @@
                                 "endAge": []
                             }
                         ],
-                        "inadvertentVaccine": "",
+                        "inadvertentVaccine": [
+                            {}
+                        ],
                         "conditionalSkip": "",
                         "recurringDose": "No",
                         "seasonalRecommendation": ""
@@ -5409,7 +5477,9 @@
                                 "endAge": []
                             }
                         ],
-                        "inadvertentVaccine": "",
+                        "inadvertentVaccine": [
+                            {}
+                        ],
                         "conditionalSkip": "",
                         "recurringDose": "No",
                         "seasonalRecommendation": ""
@@ -5446,8 +5516,8 @@
                                 "earliestRecInt": "21 days",
                                 "latestRecInt": "28 days",
                                 "intervalPriority": "",
-                                "effectiveDate": "",
-                                "cessationDate": ""
+                                "effectiveDate": null,
+                                "cessationDate": null
                             }
                         ],
                         "allowableInterval": [
@@ -5467,7 +5537,9 @@
                                 "endAge": []
                             }
                         ],
-                        "inadvertentVaccine": "",
+                        "inadvertentVaccine": [
+                            {}
+                        ],
                         "conditionalSkip": "",
                         "recurringDose": "No",
                         "seasonalRecommendation": ""
@@ -5530,7 +5602,9 @@
                                 "endAge": []
                             }
                         ],
-                        "inadvertentVaccine": "",
+                        "inadvertentVaccine": [
+                            {}
+                        ],
                         "conditionalSkip": "",
                         "recurringDose": "No",
                         "seasonalRecommendation": ""
@@ -5567,8 +5641,8 @@
                                 "earliestRecInt": "28 days",
                                 "latestRecInt": "",
                                 "intervalPriority": "",
-                                "effectiveDate": "",
-                                "cessationDate": ""
+                                "effectiveDate": null,
+                                "cessationDate": null
                             }
                         ],
                         "allowableInterval": [
@@ -5588,7 +5662,9 @@
                                 "endAge": []
                             }
                         ],
-                        "inadvertentVaccine": "",
+                        "inadvertentVaccine": [
+                            {}
+                        ],
                         "conditionalSkip": "",
                         "recurringDose": "No",
                         "seasonalRecommendation": ""

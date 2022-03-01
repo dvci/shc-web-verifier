@@ -35,7 +35,7 @@ define function "EvaluateSeries" (seriesName String,
             R union ({
             immunization X
                 let startingImmunizationIndex: Count(R),
-				doseEvaluations: "EvaluateSeriesDoses"(selectSeries, seriesDoses, startingImmunizationIndex)
+				doseEvaluations: flatten("EvaluateSeriesDoses"(selectSeries, seriesDoses, startingImmunizationIndex))
                  return(
 					Tuple {
                     	startingImmunizationIndex: startingImmunizationIndex,
@@ -49,25 +49,23 @@ define function "EvaluateSeriesDoses" (selectSeries CDSI.SelectSeries,
 		seriesDoses List<CDSI.SeriesDose>,
         startingImmunizationIndex Integer):
 	seriesDoses seriesDose  
-        aggregate all R starting (List{} as List<Tuple{immunizationIndex Integer, doseIndex Integer, doseNumber String, validDose Boolean }>): 
+        aggregate all R starting (List{} as List<List<Tuple{immunizationIndex Integer, doseIndex Integer, doseNumber String, validDose Boolean }>>): 
             R union ({
             seriesDose X
-                let previousValidDoseIndex: (Last(R.where(validDose = true))).doseIndex,
-                previousValidImmunizationIndex: (Last(R.where(validDose = true))).immunizationIndex,
+                let previousValidDoseIndex: (Last((flatten(R)).where(validDose = true))).doseIndex,
+                previousValidImmunizationIndex: (Last((flatten(R)).where(validDose = true))).immunizationIndex,
                 currentDoseIndex: Count(R),
 				doseImmunizationEvaluations: "EvaluateSeriesDose"(selectSeries, seriesDose, currentDoseIndex, startingImmunizationIndex, previousValidDoseIndex, previousValidImmunizationIndex)
                 return(
-					if exists doseImmunizationEvaluations.where(validDose = true)
-					then First(doseImmunizationEvaluations.where(validDose = true))
-					else if exists doseImmunizationEvaluations.where(validDose is not null)
-					then First(doseImmunizationEvaluations.where(validDose is not null))
-					else Tuple { 
+					if exists doseImmunizationEvaluations.where(validDose is not null)
+					then doseImmunizationEvaluations.where(validDose is not null)
+					else {Tuple { 
 						doseNumber: seriesDose.doseNumber,
 						doseIndex: currentDoseIndex,
 						immunizationIndex: null,   
 						immunization: null,
 						validDose: null
-					}
+					}}
 				)
             })
 
@@ -103,7 +101,8 @@ define function "EvaluateSeriesDoseImmunization" (selectSeries CDSI.SelectSeries
 		doseIndex: currentDoseIndex,
 		immunizationIndex: currentImmunizationIndex,   
 		immunization: "Immunizations"[currentImmunizationIndex],
-		validDose: "IsValidSeriesDose"(selectSeries, seriesDose, "Immunizations"[currentImmunizationIndex], "Immunizations"[previousValidImmunizationIndex])
+		validDose: "IsValidSeriesDose"(selectSeries, seriesDose, "Immunizations"[currentImmunizationIndex], 
+			if currentImmunizationIndex > 0 then "Immunizations"[currentImmunizationIndex - 1] else null)
 	}						
 
 define function "IsValidSeriesDose" (selectSeries CDSI.SelectSeries,
@@ -112,8 +111,10 @@ define function "IsValidSeriesDose" (selectSeries CDSI.SelectSeries,
 		previousImmunization FHIR.Immunization):
 	(previousImmunization is not null or "IsValidSeriesAgeToStart"(selectSeries, immunization))
 	and "IsValidAge"(seriesDose.age, immunization)
-	and "IsValidAllowableInterval"(seriesDose.allowableInterval, immunization, previousImmunization)
+	and "IsValidInterval"(seriesDose.interval, immunization, previousImmunization)
+	and "IsValidInterval"(seriesDose.allowableInterval, immunization, previousImmunization)
 	and "IsValidAllowableVaccine"(seriesDose.allowableVaccine, immunization)
+	and "IsNotInadvertentVaccine"(seriesDose.inadvertentVaccine, immunization)
 
 define function "IsValidSeriesAgeToStart"(selectSeries CDSI.SelectSeries,
 		immunization FHIR.Immunization):
@@ -137,13 +138,24 @@ define function "IsValidAllowableVaccine" (allowableVaccine List<CDSI.SeriesDose
 		)	
 	)
 
-define function "IsValidAllowableInterval" (allowableInterval List<CDSI.SeriesDose.AllowableInterval>, 
+define function "IsNotInadvertentVaccine" (inadvertentVaccine List<CDSI.SeriesDose.InadvertentVaccine>, 
+		immunization FHIR.Immunization) returns Boolean:
+	not exists(
+		flatten(immunization.vaccineCode.coding coding
+			where coding.system = 'http://hl7.org/fhir/sid/cvx'
+			return(inadvertentVaccine iv
+      			where coding.code = iv.cvx
+    		)
+		)	
+	)	
+
+define function "IsValidInterval" (intervals List<CDSI.SeriesDose.DoseInterval>, 
 		immunization FHIR.Immunization,
 		previousImmunization FHIR.Immunization) returns Boolean:
-	if (not exists First(allowableInterval.where(fromPrevious = 'Y')).absMinInt)
+	if ApplicableInterval(intervals, immunization) is null
 		or previousImmunization is null
 	then true
-	else immunization.occurrence as FHIR.dateTime >= DateTimeAsOf(previousImmunization.occurrence as FHIR.dateTime, First(allowableInterval.where(fromPrevious = 'Y')).absMinInt)
+	else immunization.occurrence as FHIR.dateTime >= DateTimeAsOf(previousImmunization.occurrence as FHIR.dateTime, ApplicableInterval(intervals, immunization).absMinInt)
 
 define function "IsValidAge" (age CDSI.SeriesDose.Age, 
 		immunization FHIR.Immunization):
@@ -155,6 +167,16 @@ define function "IsValidPrimarySeries" (primarySeriesName String,
 		doseEvaluations List<Tuple{doseNumber String, doseIndex Integer, 
 		immunizationIndex Integer, validDose Boolean }>):
 	Count(doseEvaluations.where(validDose = true)) >= First(AntigenAncillaryData.series.where(seriesName = primarySeriesName)).primarySeriesNumberDoses
+
+define function "ApplicableInterval" (intervals List<CDSI.SeriesDose.DoseInterval>, 
+		immunization FHIR.Immunization) returns CDSI.SeriesDose.DoseInterval:
+	First(
+		intervals i
+			where i.fromPrevious = 'Y'
+			and ((not exists i.effectiveDate) or immunization.occurrence as FHIR.dateTime >= i.effectiveDate)
+			and ((not exists i.cessationDate) or immunization.occurrence as FHIR.dateTime <= i.cessationDate)
+			and exists i.absMinInt
+	)
 
 define function "DateAsOfAge"(ageWithGracePeriod List<System.Quantity>):
 	DateAsOf(Patient.birthDate, ageWithGracePeriod)

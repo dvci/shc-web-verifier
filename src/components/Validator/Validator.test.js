@@ -34,6 +34,20 @@ test('2nd dose of Pfizer Covid-19 Vaccine at 21 days', () => {
   expect(validPrimarySeries(values)).toBe(true);
 });
 
+test('2020-0013: 2nd dose of Pfizer Covid-19 Vaccine at 21 - 5 days', () => {
+  const patientBundle = createPatientBundle(new Date(1990, 0, 15),
+    [{ dateAdministered: '2022-01-15', cvx: '208' }, { dateAdministered: '2022-01-31', cvx: '208' }]);
+  const values = Validator.execute(patientBundle, 'COVID-19');
+  expect(validPrimarySeries(values)).toBe(false);
+});
+
+test('2020-0014: 2nd dose of Pfizer Covid-19 Vaccine at 21 - 4 days', () => {
+  const patientBundle = createPatientBundle(new Date(1990, 0, 10),
+    [{ dateAdministered: '2022-01-10', cvx: '208' }, { dateAdministered: '2022-01-27', cvx: '208' }]);
+  const values = Validator.execute(patientBundle, 'COVID-19');
+  expect(validPrimarySeries(values)).toBe(true);
+});
+
 test('2nd dose of Covid-19 Vaccine different product (Moderna) at an interval of 28 days', () => {
   const patientBundle = loadJSONFixture('./test/fixtures/patients/CDSi_2020-0015.json');
   const values = Validator.execute(patientBundle, 'COVID-19');
@@ -48,6 +62,20 @@ test('Dose #1 of the Moderna Covid-19 Vaccine', () => {
 
 test('2nd dose of Moderna Covid-19 Vaccine at 28 days', () => {
   const patientBundle = loadJSONFixture('./test/fixtures/patients/CDSi_2020-0017.json');
+  const values = Validator.execute(patientBundle, 'COVID-19');
+  expect(validPrimarySeries(values)).toBe(true);
+});
+
+test('2020-0018: 2nd dose of Moderna Covid-19 Vaccine at 28 - 5 days', () => {
+  const patientBundle = createPatientBundle(new Date(1957, 0, 8),
+    [{ dateAdministered: '2022-01-08', cvx: '207' }, { dateAdministered: '2022-01-31', cvx: '207' }]);
+  const values = Validator.execute(patientBundle, 'COVID-19');
+  expect(validPrimarySeries(values)).toBe(false);
+});
+
+test('2020-0019: 2nd dose of Moderna Covid-19 Vaccine at 28 - 4 days', () => {
+  const patientBundle = createPatientBundle(new Date(1957, 0, 7),
+    [{ dateAdministered: '2022-01-07', cvx: '207' }, { dateAdministered: '2022-01-31', cvx: '207' }]);
   const values = Validator.execute(patientBundle, 'COVID-19');
   expect(validPrimarySeries(values)).toBe(true);
 });
@@ -76,10 +104,31 @@ test('Patient with no previous dose of vaccine (age 12 years)', () => {
   expect(validPrimarySeries(values)).toBe(false);
 });
 
-test('Dose #2 of Pfizer Covid-19 Vaccine at 21 days (age 12 years)', () => {
-  const patientBundle = loadJSONFixture('./test/fixtures/patients/CDSi_2020-0025.json');
+test('2020-0025: Dose #2 of Pfizer Covid-19 Vaccine at 21 days (age 5 years)', () => {
+  const birthDate = new Date();
+  birthDate.setFullYear(birthDate.getFullYear() - 5);
+  const patientBundle = createPatientBundle(birthDate,
+    [{ dateAdministered: '2022-01-10', cvx: '218' }, { dateAdministered: '2022-01-31', cvx: '218' }]);
   const values = Validator.execute(patientBundle, 'COVID-19');
   expect(validPrimarySeries(values)).toBe(true);
+});
+
+test('2020-0026: Dose #2 of Pfizer Covid-19 Vaccine at 21 - 4 days (age 5 years)', () => {
+  const birthDate = new Date();
+  birthDate.setFullYear(birthDate.getFullYear() - 5);
+  const patientBundle = createPatientBundle(birthDate,
+    [{ dateAdministered: '2022-01-10', cvx: '218' }, { dateAdministered: '2022-01-27', cvx: '218' }]);
+  const values = Validator.execute(patientBundle, 'COVID-19');
+  expect(validPrimarySeries(values)).toBe(true);
+});
+
+test('2020-0027: Dose #2 of Pfizer Covid-19 Vaccine at 21 - 5 days (age 5 years)', () => {
+  const birthDate = new Date();
+  birthDate.setFullYear(birthDate.getFullYear() - 5);
+  const patientBundle = createPatientBundle(birthDate,
+    [{ dateAdministered: '2022-01-15', cvx: '218' }, { dateAdministered: '2022-01-31', cvx: '218' }]);
+  const values = Validator.execute(patientBundle, 'COVID-19');
+  expect(validPrimarySeries(values)).toBe(false);
 });
 
 test('Patient is >18 years and has received the Janssen Covid-19 vaccine', () => {
