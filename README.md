@@ -44,7 +44,7 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 
 Limited scope, CQL engine based client-side validation script that executes the CDSi supporting data guidelines.
 
-Currently only validates each non-Risk type series based on allowable series age to start, dose absMinAge, allowable vaccine codes (CVX only) and begin/end age, and allowableInterval absMinInt fromPrevious.
+Currently only validates each non-Risk type series based on allowable series age to start, dose absMinAge, allowable vaccine codes (CVX only) and begin/end age, inadvertent vaccine codes (CVX only), preferableInterval absMinInt fromPrevious (including effective and cessation dates), and allowableInterval absMinInt fromPrevious.
 
 Does not support forecasting or any other validation, including conditional doses, recurring or seasonal doses, immunity or contradictions.
 
