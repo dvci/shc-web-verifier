@@ -5,16 +5,20 @@ import cvxXml from './iisstandards_cvx.xml';
 let tradenames = null;
 let cvx = null;
 
+function encodeEntity(xmlString) {
+  return xmlString
+    .replace(/<\?xml.*\?>/g, '')
+    .replace(/&(?!amp;)(?!quot;)(?!apos;)(?!lt;)(?!gt;)/g, '&amp;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&apos;');
+}
+
 async function fetchCdcXml(file) {
   const response = await axios.get(file, {
     Accept: 'application/xml',
   });
   let data = await response.data;
-  data = data
-    .replace(/<\?xml.*\?>/g, '')
-    .replace(/&/g, '&amp;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&apos;');
+  data = encodeEntity(data)
   const parser = new DOMParser();
   const xmlDoc = parser.parseFromString(data, 'application/xml');
   if (xmlDoc.getElementsByTagName('parsererror').length > 0) {
