@@ -43,9 +43,31 @@ const reducer = (state, action) => {
         } else {
           // Validate vaccine series
           try {
-            const payload = getPayload(newState.jws);
-            const patientBundle = JSON.parse(payload).vc.credentialSubject.fhirBundle;
-            const results = Validator.execute(patientBundle, JSON.parse(payload).vc.type);
+            const patientBundles = {
+              type: 'collection',
+              resourceType: 'Bundle',
+              entry: [],
+            };
+            action.qrCodes.forEach((healthCardQR) => {
+              const jws = getJws(healthCardQR);
+              const payload = getPayload(jws);
+              const patientBundle = JSON.parse(payload).vc.credentialSubject.fhirBundle;
+              // use one patient bundle for validation
+              const existingPatientResource = patientBundles.entry.find(
+                (e) => e.resource.resourceType === 'Patient'
+              );
+              patientBundle.entry.forEach((e) => {
+                if (
+                  (e.resource.resourceType === 'Patient'
+                    && !existingPatientResource)
+                  || e.resource.resourceType !== 'Patient'
+                ) {
+                  e.fullUrl = `resource:${patientBundles.entry.length}`;
+                  patientBundles.entry.push(e);
+                }
+              });
+            });
+            const results = Validator.execute(patientBundles, 'COVID-19');
             newState.validationStatus = {
               validPrimarySeries: results
                 ? results.some((series) => series.validPrimarySeries) : null,

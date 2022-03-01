@@ -96,7 +96,7 @@ const QrScan = () => {
   const history = useHistory();
   const classes = useStyles();
   const handleErrorFallback = useErrorHandler();
-  const { setQrCodes, resetQrCodes } = useQrDataContext();
+  const { setQrCodes, resetQrCodes, multipleHC } = useQrDataContext();
   const [scannedCodes, setScannedCodes] = useState([]);
   const [scannedData, setScannedData] = useState('');
   const [cameraDeviceId, setCameraDeviceId] = useState('');
@@ -180,15 +180,14 @@ const QrScan = () => {
     });
 
     return () => {
-      // TODO: add condition for when to stop when isChecked
-      if (runningQrScanner.current && !isChecked) runningQrScanner.current.stop();
+      if (runningQrScanner.current) runningQrScanner.current.stop();
     };
   }, [handleErrorFallback]);
 
   useEffect(() => {
     const handleScan = (data) => {
       const qrData = parseHealthCardQr(data);
-      if (qrData && qrData.multipleChunks) {
+      if (qrData && qrData.multipleChunks && !multipleHC) {
         const chunkCount = +qrData.chunkCount;
         const currentChunkIndex = +qrData.chunkIndex;
         let tempScannedCodes = [...scannedCodesRef.current];
@@ -213,7 +212,41 @@ const QrScan = () => {
         setQrCodes([data]);
         history.push('/display-results');
       }
-    };
+      if (multipleHC) {
+        if (qrData && qrData.multipleChunks) {
+          const chunkCount = +qrData.chunkCount;
+          const currentChunkIndex = +qrData.chunkIndex;
+          const temps = [
+            ...new Set([...qrCodes, ...scannedCodesRef.current]),
+          ];
+          if (temps[temps.length - 1].length !== chunkCount) {
+            temps.push(new Array(chunkCount));
+            temps[temps.length - 1].fill(null, 0, chunkCount);
+          }
+          if (temps[temps.length - 1][currentChunkIndex - 1] === null) {
+            temps[temps.length - 1][currentChunkIndex - 1] = data;
+          }
+
+          if (temps[temps.length - 1].every((code) => code)) {
+            setScannedCodes(temps);
+            history.push('/display-results');
+          }
+          setScannedCodes(temps);
+          scannedCodesRef.current = temps;
+        } else {
+          const tempScannedCodes = [
+            ...qrCodes,
+            ...scannedCodesRef.current,
+            [data],
+          ];
+          resetQrCodes();
+          setQrCodes(tempScannedCodes);
+          history.push('/display-results');
+          setScannedCodes(tempScannedCodes);
+          scannedCodesRef.current = tempScannedCodes;
+        }
+      }
+    }
 
     if (scannedData) {
       try {
@@ -239,7 +272,7 @@ const QrScan = () => {
           </IconButton>
           {scannedCodes.length > 0 && (
           <Grid container item className={classes.gridContainerMultiple}>
-            {scannedCodes.map((code, i) => (
+            {scannedCodes[scannedCodes.length - 1].map((code, i) => (
               <Button
                 className={classes.button}
                 key={code || uuidv4()}
@@ -248,7 +281,7 @@ const QrScan = () => {
                 disableRipple
                 style={{ marginRight: '0.5rem' }}
               >
-                {`${i + 1}/${scannedCodes.length}`}
+                {`${i + 1}/${scannedCodes[scannedCodes.length - 1].length}`}
               </Button>
             ))}
           </Grid>
