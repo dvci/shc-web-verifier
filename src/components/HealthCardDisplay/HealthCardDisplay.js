@@ -9,7 +9,6 @@ import {
   Typography,
   Divider,
   IconButton,
-  Link,
   List,
   ListItem,
 } from '@mui/material';
@@ -211,23 +210,17 @@ const HealthCardDisplay = () => {
                 alt="Bottom Banner Series Icon"
                 style={{ height: '1.5rem', marginRight: '1rem' }}
               />
-              <Typography variant="h6" className={validPrimarySeries ? styles.verifiedText : styles.unverifiedText}>
-                {validPrimarySeries ? t('healthcarddisplay.Valid vaccination series')
-                  : (
-                    <Trans
-                      i18nKey="healthcarddisplay.Cannot determine vaccination status"
-                      components={[
-                        <Link
-                          href="https://github.com/dvci/shc-web-verifier/tree/main/FAQ/valid_vaccination_series.md"
-                          color="secondary"
-                          target="_blank"
-                          rel="noopener"
-                        >
-                          https://github.com/dvci/shc-web-verifier/tree/main/FAQ/valid_vaccination_series.md
-                        </Link>
-                      ]}
-                    />
-                  )}
+              <Typography
+                variant="h6"
+                className={
+                  validPrimarySeries
+                    ? styles.verifiedText
+                    : styles.unverifiedText
+                }
+              >
+                {validPrimarySeries
+                  ? t('healthcarddisplay.Valid vaccination series')
+                  : t('healthcarddisplay.Cannot determine vaccination status')}
               </Typography>
             </Box>
             <Box
