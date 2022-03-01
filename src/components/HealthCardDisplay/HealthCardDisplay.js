@@ -215,7 +215,7 @@ const HealthCardDisplay = () => {
                 {validPrimarySeries ? t('healthcarddisplay.Valid vaccination series')
                   : (
                     <Trans
-                      i18nKey="healthcarddisplay.Cannot determine vaccination status. Learn what this means."
+                      i18nKey="healthcarddisplay.Cannot determine vaccination status"
                       components={[
                         <Link
                           href="https://github.com/dvci/shc-web-verifier/tree/main/FAQ/valid_vaccination_series.md"
