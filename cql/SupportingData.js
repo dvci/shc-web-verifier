@@ -20,17 +20,11 @@ const stringToQuantityUnit = (quantityUnit) => {
   if (quantityUnit === '') {
     return '';
   }
-  switch (quantityUnit) {
-    case 'day': return 'day';
-    case 'week': return 'week';
-    case 'month': return 'month';
-    case 'year': return 'year';
-    case 'days': return 'days';
-    case 'weeks': return 'weeks';
-    case 'months': return 'months';
-    case 'years': return 'years';
-    default: return '';
+  const validQuantityUnits = ['day', 'week', 'month', 'year', 'days', 'weeks', 'months', 'years']
+  if (!validQuantityUnits.includes(quantityUnit)) {
+    throw new Error(`Invalid date unit ${quantityUnit}`);
   }
+  return quantityUnit;
 }
 
 const stringToQuantity = (quantityString) => {
