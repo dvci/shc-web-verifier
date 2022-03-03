@@ -43,8 +43,9 @@ const App = () => (
           </Route>
         </QrDataProvider>
       </Switch>
+
+      <Footer />
     </Router>
-    <Footer />
   </ThemeProvider>
 );
 
