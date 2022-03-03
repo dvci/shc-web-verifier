@@ -1,8 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
+import { Link as RouterLink, useHistory } from 'react-router-dom';
 import {
-  Box, Container, Grid, Typography
+  Box,
+  Container,
+  Grid,
+  Typography,
+  Link as MaterialLink,
 } from '@mui/material';
-import { useHistory } from 'react-router-dom';
 import { makeStyles } from '@mui/styles';
 import { useQrDataContext } from 'components/QrDataProvider';
 import { useHealthCardDataContext, HealthCardDataProvider } from 'components/HealthCardDataProvider';
@@ -115,25 +119,8 @@ const HealthCardDisplay = () => {
   const styles = useStyles();
   const history = useHistory();
   const { t } = useTranslation();
-<<<<<<< HEAD
   const { qrError, jws } = useQrDataContext();
   const [bannersUpdated, setBannersUpdated] = useState(false);
-=======
-  const {
-<<<<<<< HEAD
-    qrError,
-    jws,
-  } = useQrDataContext();
-=======
-    qrCodes,
-    healthCardVerified,
-    issuerVerified,
-    validPrimarySeries,
-    setMultipleHC,
-  } = useQrDataContext();
-  const patientDataArray = getPatientData(qrCodes);
->>>>>>> 87dd936 (updated multiple HC multiple QR logic, buttons)
->>>>>>> 81c8984 (updated multiple HC multiple QR logic, buttons)
 
   const handleScan = () => {
     setMultipleHC(false);
@@ -142,7 +129,6 @@ const HealthCardDisplay = () => {
 
   const handleScanWithMultipleHC = () => {
     setMultipleHC(true);
-    history.push('qr-scan');
   };
 
   const TopBanner = ({
@@ -203,75 +189,6 @@ const HealthCardDisplay = () => {
         <Grid container className={styles.bannerRoot}>
           <TopBanner img={exclamationRedIcon} alt="Banner Icon" style={styles.bannerError} text={bannerError} />
         </Grid>
-<<<<<<< HEAD
-=======
-        {bottomBannerStyle && (
-          <Grid
-            item
-            xs={12}
-            className={bottomBannerStyle}
-            style={{
-              marginBottom: '2rem',
-              display: 'flex',
-              justifyContent: 'center',
-              width: '100%',
-            }}
-          >
-            <Box pt={1} pb={1} className={styles.flexCol} width="fit-content">
-              <Box className={styles.flexRow}>
-                <img
-                  src={checkIcon}
-                  alt="Bottom Banner Health Card Icon"
-                  style={{ height: '1.5rem', marginRight: '1rem' }}
-                />
-                <Typography variant="h6" className={styles.verifiedText}>
-                  {t('healthcarddisplay.Valid SMART Health Card')}
-                </Typography>
-              </Box>
-              <Box className={styles.flexRow}>
-                <img
-                  src={validPrimarySeries ? checkIcon : xIcon}
-                  alt="Bottom Banner Series Icon"
-                  style={{ height: '1.5rem', marginRight: '1rem' }}
-                />
-                <Typography
-                  variant="h6"
-                  className={
-                    validPrimarySeries
-                      ? styles.verifiedText
-                      : styles.unverifiedText
-                  }
-                >
-                  {validPrimarySeries
-                    ? t('healthcarddisplay.Valid vaccination series')
-                    : t(
-                      'healthcarddisplay.Cannot determine vaccination status'
-                    )}
-                </Typography>
-              </Box>
-              <Box className={styles.flexRow}>
-                <img
-                  src={issuerVerified ? checkIcon : xIcon}
-                  alt="Bottom Banner Issuer Icon"
-                  style={{ height: '1.5rem', marginRight: '1rem' }}
-                />
-                <Typography
-                  variant="h6"
-                  className={
-                    issuerVerified ? styles.verifiedText : styles.unverifiedText
-                  }
-                >
-                  {issuerVerified
-                    ? t('healthcarddisplay.Issuer recognized')
-                    : t('healthcarddisplay.Issuer not recognized')}
-                </Typography>
-              </Box>
-            </Box>
-          </Grid>
-        )}
-      </Grid>
-      {!patientDataArray || !bottomBannerStyle ? (
->>>>>>> 87dd936 (updated multiple HC multiple QR logic, buttons)
         <Grid container className={styles.errorRoot}>
           <Grid item md={6} display="flex" justifyContent="center">
             <img src={errorIllustration} alt="Error Illustration" width="100%" />
@@ -401,23 +318,29 @@ const HealthCardDisplay = () => {
 
   return (
     <Grid container className={styles.root}>
-      {qrError ? (
-        <ErrorFallback error={qrError} />
-      ) : (
-        <ErrorBoundary FallbackComponent={ErrorFallback}>
-          <HealthCardDataProvider healthCardJws={jws}>
-            <Banners />
-            <Grid item className={styles.flexCard}>
-              {bannersUpdated && (
-                <>
-                  <VaccineCard padding="1rem" width="100%" />
-                  <QrScanButton onClick={handleScan} styles={{ padding: '1rem', width: '100%' }} />
-                </>
-              )}
-            </Grid>
-          </HealthCardDataProvider>
-        </ErrorBoundary>
-      )}
+      {(qrError)
+        ? (
+          <ErrorFallback error={qrError} />
+        ) : (
+          <ErrorBoundary FallbackComponent={ErrorFallback}>
+            <HealthCardDataProvider healthCardJws={jws}>
+              <Banners />
+              <Grid item className={styles.flexCard}>
+                <Box>
+                  <MaterialLink
+                    component={RouterLink}
+                    to="/qr-scan"
+                    onClick={handleScanWithMultipleHC}
+                  >
+                    {t('healthcarddisplay.multiple SMART Health Cards')}
+                  </MaterialLink>
+                </Box>
+                <VaccineCard padding="1rem" width="100%" />
+                <QrScanButton onClick={handleScan} styles={{ padding: '1rem', width: '100%' }} />
+              </Grid>
+            </HealthCardDataProvider>
+          </ErrorBoundary>
+        )}
     </Grid>
   );
 };
