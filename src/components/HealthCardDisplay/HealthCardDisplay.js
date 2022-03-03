@@ -220,7 +220,7 @@ const HealthCardDisplay = () => {
               >
                 {validPrimarySeries
                   ? t('healthcarddisplay.Valid vaccination series')
-                  : t('healthcarddisplay.Vaccination series not valid')}
+                  : t('healthcarddisplay.Cannot determine vaccination status')}
               </Typography>
             </Box>
             <Box
