@@ -11,6 +11,7 @@ import Header from 'components/Header';
 import HeroBar from 'components/HeroBar';
 import Landing from 'components/Landing';
 import Footer from 'components/Footer';
+import FAQ from 'components/FAQ';
 import QrScan from 'components/QrScan';
 import { QrDataProvider } from 'components/QrDataProvider';
 
@@ -26,6 +27,10 @@ const App = () => (
         <Redirect exact from="/shc-web-verifier" to="/" />
         <Route exact path="/">
           <Landing />
+        </Route>
+
+        <Route exact path="/faq">
+          <FAQ />
         </Route>
 
         <QrDataProvider>

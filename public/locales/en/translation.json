@@ -36,5 +36,8 @@
   "footer": {
     "FAQ": "FAQ",
     "Privacy": "Privacy"
+  },
+  "faq": {
+    "Frequently asked questions": "Frequently asked questions"
   }
 }
