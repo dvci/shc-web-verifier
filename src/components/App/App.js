@@ -10,6 +10,7 @@ import ThemeProvider from 'components/ThemeProvider';
 import Header from 'components/Header';
 import HeroBar from 'components/HeroBar';
 import Landing from 'components/Landing';
+import Footer from 'components/Footer';
 import QrScan from 'components/QrScan';
 import { QrDataProvider } from 'components/QrDataProvider';
 
@@ -38,6 +39,7 @@ const App = () => (
         </QrDataProvider>
       </Switch>
     </Router>
+    <Footer />
   </ThemeProvider>
 );
 
