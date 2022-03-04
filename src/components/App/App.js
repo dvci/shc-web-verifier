@@ -21,28 +21,30 @@ const App = () => (
     <Header />
 
     <Router>
-      <HeroBar />
+      <div id="content">
+        <HeroBar />
 
-      <Switch>
-        <Redirect exact from="/shc-web-verifier" to="/" />
-        <Route exact path="/">
-          <Landing />
-        </Route>
-
-        <Route exact path="/faq">
-          <FAQ />
-        </Route>
-
-        <QrDataProvider>
-          <Route exact path="/qr-scan">
-            <QrScan />
+        <Switch>
+          <Redirect exact from="/shc-web-verifier" to="/" />
+          <Route exact path="/">
+            <Landing />
           </Route>
 
-          <Route exact path="/display-results">
-            <HealthCardDisplay />
+          <Route exact path="/faq">
+            <FAQ />
           </Route>
-        </QrDataProvider>
-      </Switch>
+
+          <QrDataProvider>
+            <Route exact path="/qr-scan">
+              <QrScan />
+            </Route>
+
+            <Route exact path="/display-results">
+              <HealthCardDisplay />
+            </Route>
+          </QrDataProvider>
+        </Switch>
+      </div>
 
       <Footer />
     </Router>
