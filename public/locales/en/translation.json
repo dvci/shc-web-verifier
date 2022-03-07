@@ -45,5 +45,38 @@
         "answer": "answer 1"
       }
     ]
+  },
+  "privacy": {
+    "title": "Privacy Policy",
+    "items": [
+      {
+        "header": "Effective Date: March 7th, 2022",
+        "content": "The MITRE Corporation (\"MITRE\") respects the privacy of its website users.<br/><br/>This Privacy Policy explains the types of information collected from website visitors or that you provide to MITRE through other means, such as MITRE applications, (collectively \"Site\"), and how MITRE uses, shares, protects, and retains that information; and the choices you are provided with respect to the use of this information. By visiting the Site, you understand and agree to terms outlined in this Privacy Policy."
+      },
+      {
+        "header": "INFORMATION COLLECTED FROM WEB TRAFFIC REPORTING TOOLS",
+        "content": "When a GitHub Pages site is visited, the visitor's IP address is logged and stored for security purposes, regardless of whether the visitor has signed into GitHub or not. For more information about GitHub's security practices, see <a href=\"/en/articles/github-privacy-statement\" class=\"dotcom-only\">GitHub Privacy Statement</a>."
+      },
+      {
+        "header": "COOKIES",
+        "content": "“Cookies” are data that may be sent to your web browser and stored on your computer. This Site does not use cookies."
+      },
+      {
+        "header": "PERSONAL INFORMATION",
+        "content": "“Personal Information” means information that identifies you or could reasonably be used to identify you. This Site does not collect personal information."
+      },
+      {
+        "header": "LINKS TO OTHER SITES",
+        "content": "Though the MITRE Site may contain links to other websites, MITRE is not responsible for the content, links, or privacy on any of those websites. It is recommended that you review the privacy policy applicable to those websites before accessing them."
+      },
+      {
+        "header": "CHANGES TO OUR PRIVACY POLICY",
+        "content": "The MITRE Site may change from time to time. As a result, at times it may be necessary for us to make changes to this Privacy Policy. Accordingly, MITRE reserves the right to update or modify this Privacy Policy from time to time. If MITRE makes any material changes to this Privacy Policy, they will be posted and MITRE will concurrently update the “Effective Date” of this Privacy Policy stated above. Please review this Privacy Policy periodically, and especially before you provide any information. Your continued use of the MITRE Site after any changes or revisions to this Privacy Policy shall indicate your agreement with the terms of such revised Privacy Policy."
+      },
+      {
+        "header": "QUESTIONS AND COMMENTS",
+        "content": "Please feel free to send your privacy-related comments or questions to Privacy@MITRE.org. We will do our best to respond to all reasonable inquiries in a timely manner. For all other VCI™ related questions and comments, please contact us at vaccination@mitre.org."
+      }
+    ]
   }
 }

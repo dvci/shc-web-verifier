@@ -31,8 +31,9 @@ const FAQ = () => {
     <Box className={classes.faq}>
       <Box className={classes.box} sx={{ maxWidth: '750px' }}>
         <Typography variant="h6">{t('faq.Frequently asked questions')}</Typography>
-        {t('faq.items', { returnObjects: true }).map((item) => (
-          <Accordion>
+        {t('faq.items', { returnObjects: true }).map((item, i) => (
+          // eslint-disable-next-line react/no-array-index-key
+          <Accordion key={i}>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel1a-content"
@@ -41,7 +42,11 @@ const FAQ = () => {
               <Typography>{item.question}</Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <Typography>{item.answer}</Typography>
+              <Typography
+                dangerouslySetInnerHTML={{
+                  __html: item.answer
+                }}
+              />
             </AccordionDetails>
           </Accordion>
         ))}

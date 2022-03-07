@@ -12,6 +12,7 @@ import HeroBar from 'components/HeroBar';
 import Landing from 'components/Landing';
 import Footer from 'components/Footer';
 import FAQ from 'components/FAQ';
+import StaticDisplay from 'components/StaticDisplay';
 import QrScan from 'components/QrScan';
 import { QrDataProvider } from 'components/QrDataProvider';
 
@@ -32,6 +33,10 @@ const App = () => (
 
           <Route exact path="/faq">
             <FAQ />
+          </Route>
+
+          <Route exact path="/privacy">
+            <StaticDisplay section="privacy" />
           </Route>
 
           <QrDataProvider>

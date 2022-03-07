@@ -24,7 +24,7 @@ const HeroBar = () => {
 
   return (
     <div className={classes.heroBar}>
-      <Route path={['/qr-scan', '/display-results', '/faq']}>
+      <Route path={['/qr-scan', '/display-results', '/faq', '/privacy']}>
         <IconButton
           size="small"
           onClick={() => history.push('/')}
