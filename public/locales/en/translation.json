@@ -38,6 +38,12 @@
     "Privacy": "Privacy"
   },
   "faq": {
-    "Frequently asked questions": "Frequently asked questions"
+    "Frequently asked questions": "Frequently asked questions",
+    "items": [
+      {
+        "question": "question 1",
+        "answer": "answer 1"
+      }
+    ]
   }
 }
