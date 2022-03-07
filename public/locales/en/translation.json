@@ -41,8 +41,24 @@
     "Frequently asked questions": "Frequently asked questions",
     "items": [
       {
-        "question": "question 1",
-        "answer": "answer 1"
+        "question": "What is a SMART\u00AE Health Card and where can I get one?",
+        "answer": "SMART\u00AE Health Cards are paper or digital versions of your clinical information, such as vaccination history or test results. They allow you to keep a copy of your records on hand and easily share this information with others if you choose. Please visit <a href=\"https://smarthealth.cards/en/\">https://smarthealth.cards</a> for more information and details on how to obtain a SMART\u00AE Health Card."
+      },
+      {
+        "question": "What does it mean if you have an unsupported QR code?",
+        "answer": "An unsupported QR code can mean that the QR code you are attempting to scan is unreadable, is not a SMART\u00AE Health Card compliant QR code, or is a SMART\u00AE Health Card that does not contain vaccination data. The organization that provided your SMART\u00AE Health Card may be able to help you obtain a new QR code."
+      },
+      {
+        "question": "What does it mean if your SMART\u00AE Health Card is 'Verified'?",
+        "answer": "This means that the QR code or codes you scanned are valid SMART\u00AE Health Cards from a recognized issuing organization."
+      },
+      {
+        "question": "What does it mean if your SMART\u00AE Health Card is 'Partially Verified'?",
+        "answer": "This means that the QR code or codes you scanned are valid SMART\u00AE Health Cards but come from an unrecognized issuing organization."
+      },
+      {
+        "question": "What does it mean if your SMART\u00AE Health Card is 'Not Verified'?",
+        "answer": "This means that the QR code or codes you scanned are readable SMART\u00AE Health Cards but the signature from the issuing organization could not be validated, meaining the data may have been corrupted. The organization that provided your SMART\u00AE Health Card may be able to help you obtain a new QR code."
       }
     ]
   },
