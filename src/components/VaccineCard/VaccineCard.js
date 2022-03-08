@@ -71,7 +71,7 @@ const VaccineCard = () => {
           <Grid item xs={3} sm={2} className={styles.gridLabel}>
             <Typography>{t('healthcarddisplay.Vaccine')}</Typography>
           </Grid>
-          <Grid item xs className={styles.gridItem}>
+          <Grid item xs={9} sm={10} className={styles.gridItem}>
             <Typography>
               <Box component="span" fontWeight="700">
                 {immunization.vaccineCode ? immunizationDisplayName(immunization.vaccineCode.coding) : ''}
@@ -84,7 +84,7 @@ const VaccineCard = () => {
           <Grid item xs={3} sm={2} className={styles.gridLabel}>
             <Typography>{t('healthcarddisplay.Date')}</Typography>
           </Grid>
-          <Grid item xs className={styles.gridItem}>
+          <Grid item xs={9} sm={10} className={styles.gridItem}>
             <Typography className={styles.date}>{immunization.occurrenceDateTime}</Typography>
           </Grid>
         </Grid>
@@ -94,7 +94,7 @@ const VaccineCard = () => {
               {t('healthcarddisplay.Vaccinator')}
             </Typography>
           </Grid>
-          <Grid item xs className={styles.gridItem}>
+          <Grid item xs={9} sm={10} className={styles.gridItem}>
             {(immunization.performer && immunization.performer.length > 0) && (
             <Typography>
               {immunization.performer[0].actor.display}
