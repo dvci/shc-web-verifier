@@ -71,7 +71,7 @@ const useStyles = makeStyles((theme) => ({
   qrScanner: {
     objectFit: 'contain',
     position: 'absolute',
-    width: '85%',
+    width: '90%',
     zIndex: '1',
     '& section': {
       position: 'unset !important',
