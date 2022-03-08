@@ -4,7 +4,7 @@
   },
   "herobar": {
     "SMART Health Card Verifier": "SMART\u00AE Health Card Verifier"
-  },  
+  },
   "landing": {
     "Verify a SMART Health Card QR code in a safe and privacy-preserving way.": "Verify a <0>SMART\u00AE Health Card</0> QR code in a safe and privacy-preserving way.",
     "SCAN QR CODE": "SCAN QR CODE",
@@ -24,7 +24,7 @@
     "Partially Verified": "Partially Verified",
     "Valid SMART Health Card": "Valid SMART\u00AE Health Card",
     "Valid vaccination series": "Valid vaccination series",
-    "Vaccination series not valid": "Vaccination series not valid",
+    "Cannot determine vaccination status": "Cannot determine vaccination status",
     "Issuer recognized": "Issuer recognized",
     "Issuer not recognized": "Issuer not recognized",
     "Only valid SMART Health Card QR Codes are currently supported.": "Only valid <0>SMART\u00AE Health Card</0> QR Codes<br/>are currently supported.",

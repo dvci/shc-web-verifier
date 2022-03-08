@@ -12,7 +12,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
       with:
-        token: ${{ secrets.NKARIP_PAT }}
+        token: ${{ secrets.GITHUB_TOKEN }}
         ref: ${{ github.head_ref }}
 
     - name: Fetch files
@@ -36,14 +36,15 @@ jobs:
         else
           echo "::set-output name=diff::true"
         fi
-        
-    - name: Commit files
+
+    - name: Create Pull Request
       if: steps.check.outputs.diff == 'true'
-      run: |
-        echo "GITHUB_ACTOR: ${GITHUB_ACTOR}"
-        git config user.name "${GITHUB_ACTOR}"
-        git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
-        # Stage the files, commit and push
-        git add src/components/VaccineCard/
-        git commit -m "update CDC files"
-        git push
+      uses: peter-evans/create-pull-request@v3
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        commit-message: Update CDC metadata files
+        title: Update CDC metadata files
+        body: Workflow auto-generated PR
+        branch: update-cdc-metadata
+        branch-suffix: timestamp
+        reviewers: nkarip

@@ -1,14 +1,17 @@
 import { Base64 } from 'js-base64';
 import pako from 'pako';
+import getIssuerDirectories from './IssuerDirectories';
 
-const getJws = (qrCodes) => (
-  qrCodes.map((c) => {
+const getJws = (qrCodes) => qrCodes
+  .map((c) => {
     const sliceIndex = c.lastIndexOf('/');
     const rawPayload = c.slice(sliceIndex + 1);
     const encodingChars = rawPayload.match(/\d\d/g);
-    return encodingChars.map((charPair) => String.fromCharCode(+charPair + 45)).join('');
-  }).join('')
-);
+    return encodingChars
+      .map((charPair) => String.fromCharCode(+charPair + 45))
+      .join('');
+  })
+  .join('');
 
 const getPayload = (qrCodes) => {
   const jwsString = getJws(qrCodes);
@@ -37,8 +40,9 @@ const extractPatientName = (patient) => {
 };
 
 const extractImmunizations = (bundle) => {
-  const immunizationResources = bundle.entry
-    .filter((entry) => entry.resource.resourceType === 'Immunization')
+  const immunizationResources = bundle.entry.filter(
+    (entry) => entry.resource.resourceType === 'Immunization'
+  );
 
   return immunizationResources;
 };
@@ -56,7 +60,9 @@ const extractPatientData = (card) => {
 };
 
 const getPatientData = (qrCodes) => {
-  if (!qrCodes || qrCodes.length === 0) { return null; }
+  if (!qrCodes || qrCodes.length === 0) {
+    return null;
+  }
   try {
     const decodedQr = getPayload(qrCodes);
     const patientData = extractPatientData(decodedQr);
@@ -67,9 +73,22 @@ const getPatientData = (qrCodes) => {
 };
 
 const getIssuer = (qrCodes) => {
-  if (!qrCodes || qrCodes.length === 0) { return null; }
+  if (!qrCodes || qrCodes.length === 0) {
+    return null;
+  }
   const payload = JSON.parse(getPayload(qrCodes));
   return payload.iss;
+};
+
+const getIssuerDisplayName = async (qrCodes) => {
+  const issuer = getIssuer(qrCodes);
+  // use VCI directory to resolve name
+  const issuerDirectories = await getIssuerDirectories();
+  const participatingIssuers = issuerDirectories[0].issuers.participating_issuers;
+  const issuerDisplayName = participatingIssuers.find(
+    (issObj) => issObj.iss === issuer
+  ).name;
+  return issuerDisplayName;
 };
 
 export {
@@ -79,5 +98,6 @@ export {
   getIssuer,
   getJws,
   getPatientData,
-  getPayload
+  getPayload,
+  getIssuerDisplayName,
 };

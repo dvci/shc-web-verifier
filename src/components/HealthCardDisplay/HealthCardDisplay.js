@@ -19,6 +19,9 @@ import VaccineCard from 'components/VaccineCard';
 import QrScanButton from 'components/QrScanButton';
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    justifyContent: 'center',
+  },
   bannerRoot: {
     display: 'flex',
     alignItems: 'center',
@@ -147,7 +150,7 @@ const HealthCardDisplay = () => {
   }
 
   return (
-    <Grid container>
+    <Grid container className={styles.root}>
       <Grid container className={styles.bannerRoot}>
         <Grid item xs={12} className={topBannerStyle} width="100%">
           <Container style={{ width: 'fit-content' }}>

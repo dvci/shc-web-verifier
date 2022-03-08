@@ -19,8 +19,8 @@ export default makeStyles((theme) => ({
   cardContent: {
     padding: 0,
     '&:last-child': {
-      paddingBottom: 0
-    }
+      paddingBottom: 0,
+    },
   },
   flexCol: {
     display: 'flex',
