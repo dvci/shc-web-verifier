@@ -12,6 +12,8 @@ import HeroBar from 'components/HeroBar';
 import Landing from 'components/Landing';
 import QrScan from 'components/QrScan';
 import { QrDataProvider } from 'components/QrDataProvider';
+import { ErrorBoundary } from 'react-error-boundary'
+import { ErrorFallback } from 'utils/errorHelper';
 
 const App = () => (
   <ThemeProvider>
@@ -21,22 +23,26 @@ const App = () => (
     <Router>
       <HeroBar />
 
-      <Switch>
-        <Redirect exact from="/shc-web-verifier" to="/" />
-        <Route exact path="/">
-          <Landing />
-        </Route>
-
-        <QrDataProvider>
-          <Route exact path="/qr-scan">
-            <QrScan />
+      <ErrorBoundary
+        FallbackComponent={ErrorFallback}
+      >
+        <Switch>
+          <Redirect exact from="/shc-web-verifier" to="/" />
+          <Route exact path="/">
+            <Landing />
           </Route>
 
-          <Route exact path="/display-results">
-            <HealthCardDisplay />
-          </Route>
-        </QrDataProvider>
-      </Switch>
+          <QrDataProvider>
+            <Route exact path="/qr-scan">
+              <QrScan />
+            </Route>
+
+            <Route exact path="/display-results">
+              <HealthCardDisplay />
+            </Route>
+          </QrDataProvider>
+        </Switch>
+      </ErrorBoundary>
     </Router>
   </ThemeProvider>
 );
