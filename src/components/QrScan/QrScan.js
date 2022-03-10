@@ -217,7 +217,7 @@ const QrScan = () => {
           const chunkCount = +qrData.chunkCount;
           const currentChunkIndex = +qrData.chunkIndex;
           const temps = [
-            ...new Set([...qrCodes, ...scannedCodesRef.current]),
+            ...new Set([...qrData, ...scannedCodesRef.current]),
           ];
           if (temps[temps.length - 1].length !== chunkCount) {
             temps.push(new Array(chunkCount));
@@ -235,7 +235,7 @@ const QrScan = () => {
           scannedCodesRef.current = temps;
         } else {
           const tempScannedCodes = [
-            ...qrCodes,
+            ...qrData,
             ...scannedCodesRef.current,
             [data],
           ];

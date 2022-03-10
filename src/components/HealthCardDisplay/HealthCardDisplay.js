@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
-import { Link as RouterLink, useHistory } from 'react-router-dom';
 import {
-  Box,
-  Container,
-  Grid,
-  Typography,
-  Link as MaterialLink,
+  Link,
+  HashRouter as Router,
+  Switch,
+  useHistory,
+} from 'react-router-dom';
+import {
+  Box, Container, Grid, Typography
 } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { useQrDataContext } from 'components/QrDataProvider';
@@ -327,13 +328,13 @@ const HealthCardDisplay = () => {
               <Banners />
               <Grid item className={styles.flexCard}>
                 <Box>
-                  <MaterialLink
-                    component={RouterLink}
-                    to="/qr-scan"
-                    onClick={handleScanWithMultipleHC}
-                  >
-                    {t('healthcarddisplay.multiple SMART Health Cards')}
-                  </MaterialLink>
+                  <Router>
+                    <Switch>
+                      <Link to="/qr-scan" onClick={handleScanWithMultipleHC}>
+                        {t('healthcarddisplay.Multiple SMART Health Cards')}
+                      </Link>
+                    </Switch>
+                  </Router>
                 </Box>
                 <VaccineCard padding="1rem" width="100%" />
                 <QrScanButton onClick={handleScan} styles={{ padding: '1rem', width: '100%' }} />
