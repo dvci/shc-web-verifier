@@ -223,6 +223,10 @@ const QrScan = () => {
           setQrCodes([data]);
           history.push('/display-results');
         }
+      } else {
+        // non-SHC compliant QR code
+        setQrCodes(null);
+        history.push('/display-results');
       }
     };
 

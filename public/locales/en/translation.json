@@ -28,6 +28,7 @@
     "Issuer recognized": "Issuer recognized",
     "Issuer not recognized": "Issuer not recognized",
     "Only valid SMART Health Card QR Codes are currently supported.": "Only valid <0>SMART\u00AE Health Card</0> QR Codes<br/>are currently supported.",
+    "This SMART Health Card cannot be verified.": "This SMART\u00AE Health Card cannot be verified. It may have been corrupted.",
     "SCAN QR CODE": "SCAN QR CODE",
     "NAME": "NAME",
     "DATE OF BIRTH": "DATE OF BIRTH",
@@ -94,7 +95,7 @@
         "content": "Please feel free to send your privacy-related comments or questions to Privacy@MITRE.org. We will do our best to respond to all reasonable inquiries in a timely manner. For all other application related questions and comments, please contact us at vci-developers@mitre.org."
       }
     ]
-  },  
+  },
   "error": {
     "An unexpected error occured.": "An unexpected error occured.",
     "Return to main page.": "Return to main page."
