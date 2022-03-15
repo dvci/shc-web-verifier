@@ -1496,24 +1496,6 @@
  </prodInfo>
  <prodInfo>
  <Name>CDC Product Name</Name>
- <Value>IXIARO</Value>
- <Name>Short Description</Name>
- <Value>Japanese Encephalitis IM</Value>
- <Name>CVXCode</Name>
- <Value>134       </Value>
- <Name>Manufacturer</Name>
- <Value>Intercell Biomedical</Value>
- <Name>MVX Code</Name>
- <Value>INT       </Value>
- <Name>MVX Status</Name>
- <Value>Inactive</Value>
- <Name>Product name Status</Name>
- <Value>Inactive</Value>
- <Name>Last Updated</Name>
- <Value>7/19/2016</Value>
- </prodInfo>
- <prodInfo>
- <Name>CDC Product Name</Name>
  <Value>Ixiaro</Value>
  <Name>Short Description</Name>
  <Value>Japanese Encephalitis IM</Value>
@@ -1547,6 +1529,24 @@
  <Value>Active</Value>
  <Name>Last Updated</Name>
  <Value>12/4/2017</Value>
+ </prodInfo>
+ <prodInfo>
+ <Name>CDC Product Name</Name>
+ <Value>IXIARO</Value>
+ <Name>Short Description</Name>
+ <Value>Japanese Encephalitis IM</Value>
+ <Name>CVXCode</Name>
+ <Value>134       </Value>
+ <Name>Manufacturer</Name>
+ <Value>Intercell Biomedical</Value>
+ <Name>MVX Code</Name>
+ <Value>INT       </Value>
+ <Name>MVX Status</Name>
+ <Value>Inactive</Value>
+ <Name>Product name Status</Name>
+ <Value>Inactive</Value>
+ <Name>Last Updated</Name>
+ <Value>7/19/2016</Value>
  </prodInfo>
  <prodInfo>
  <Name>CDC Product Name</Name>
@@ -1840,7 +1840,7 @@
  <Name>CDC Product Name</Name>
  <Value>Novavax COVID-19 Vaccine</Value>
  <Name>Short Description</Name>
- <Value>COVID-19 vaccine, Subunit, rS-nanoparticle+Matrix-M1 Adjuvant, PF, 0.5 mL</Value>
+ <Value>COVID-19, subunit, rS-nanoparticle+Matrix-M1 Adjuvant, PF, 0.5 mL</Value>
  <Name>CVXCode</Name>
  <Value>211       </Value>
  <Name>Manufacturer</Name>
@@ -1880,11 +1880,11 @@
  <Name>CVXCode</Name>
  <Value>127       </Value>
  <Name>Manufacturer</Name>
- <Value>Sanofi Pasteur</Value>
+ <Value>Novartis Pharmaceutical Corporation</Value>
  <Name>MVX Code</Name>
- <Value>PMC       </Value>
+ <Value>NOV       </Value>
  <Name>MVX Status</Name>
- <Value>Active</Value>
+ <Value>Inactive</Value>
  <Name>Product name Status</Name>
  <Value>Inactive</Value>
  <Name>Last Updated</Name>
@@ -1898,11 +1898,11 @@
  <Name>CVXCode</Name>
  <Value>127       </Value>
  <Name>Manufacturer</Name>
- <Value>Novartis Pharmaceutical Corporation</Value>
+ <Value>Sanofi Pasteur</Value>
  <Name>MVX Code</Name>
- <Value>NOV       </Value>
+ <Value>PMC       </Value>
  <Name>MVX Status</Name>
- <Value>Inactive</Value>
+ <Value>Active</Value>
  <Name>Product name Status</Name>
  <Value>Inactive</Value>
  <Name>Last Updated</Name>
@@ -1934,11 +1934,11 @@
  <Name>CVXCode</Name>
  <Value>126       </Value>
  <Name>Manufacturer</Name>
- <Value>Sanofi Pasteur</Value>
+ <Value>Novartis Pharmaceutical Corporation</Value>
  <Name>MVX Code</Name>
- <Value>PMC       </Value>
+ <Value>NOV       </Value>
  <Name>MVX Status</Name>
- <Value>Active</Value>
+ <Value>Inactive</Value>
  <Name>Product name Status</Name>
  <Value>Inactive</Value>
  <Name>Last Updated</Name>
@@ -1970,11 +1970,11 @@
  <Name>CVXCode</Name>
  <Value>126       </Value>
  <Name>Manufacturer</Name>
- <Value>Novartis Pharmaceutical Corporation</Value>
+ <Value>Sanofi Pasteur</Value>
  <Name>MVX Code</Name>
- <Value>NOV       </Value>
+ <Value>PMC       </Value>
  <Name>MVX Status</Name>
- <Value>Inactive</Value>
+ <Value>Active</Value>
  <Name>Product name Status</Name>
  <Value>Inactive</Value>
  <Name>Last Updated</Name>
@@ -2468,6 +2468,42 @@
  </prodInfo>
  <prodInfo>
  <Name>CDC Product Name</Name>
+ <Value>Sanofi COVID-19 </Value>
+ <Name>Short Description</Name>
+ <Value>COVID-19, D614, recomb, preS dTM, AS03 adjuvant add, PF, 5mcg/0.5mL</Value>
+ <Name>CVXCode</Name>
+ <Value>225       </Value>
+ <Name>Manufacturer</Name>
+ <Value>Sanofi Pasteur</Value>
+ <Name>MVX Code</Name>
+ <Value>PMC       </Value>
+ <Name>MVX Status</Name>
+ <Value>Active</Value>
+ <Name>Product name Status</Name>
+ <Value>Active</Value>
+ <Name>Last Updated</Name>
+ <Value>3/10/2022</Value>
+ </prodInfo>
+ <prodInfo>
+ <Name>CDC Product Name</Name>
+ <Value>Sanofi COVID-19 </Value>
+ <Name>Short Description</Name>
+ <Value>COVID-19, D614, recomb, preS dTM, AS03 adjuvant add, PF, 10mcg/0.5mL</Value>
+ <Name>CVXCode</Name>
+ <Value>226       </Value>
+ <Name>Manufacturer</Name>
+ <Value>Sanofi Pasteur</Value>
+ <Name>MVX Code</Name>
+ <Value>PMC       </Value>
+ <Name>MVX Status</Name>
+ <Value>Active</Value>
+ <Name>Product name Status</Name>
+ <Value>Active</Value>
+ <Name>Last Updated</Name>
+ <Value>3/10/2022</Value>
+ </prodInfo>
+ <prodInfo>
+ <Name>CDC Product Name</Name>
  <Value>SHINGRIX</Value>
  <Name>Short Description</Name>
  <Value>zoster recombinant</Value>
@@ -2650,9 +2686,27 @@
  <Name>CDC Product Name</Name>
  <Value>TICOVAC</Value>
  <Name>Short Description</Name>
- <Value>tick-borne encephalitis</Value>
+ <Value>Tick-borne encephalitis, inactivated, PF, 0.5mL</Value>
  <Name>CVXCode</Name>
- <Value>77        </Value>
+ <Value>224       </Value>
+ <Name>Manufacturer</Name>
+ <Value>Pfizer, Inc</Value>
+ <Name>MVX Code</Name>
+ <Value>PFR       </Value>
+ <Name>MVX Status</Name>
+ <Value>Active</Value>
+ <Name>Product name Status</Name>
+ <Value>Active</Value>
+ <Name>Last Updated</Name>
+ <Value>11/4/2021</Value>
+ </prodInfo>
+ <prodInfo>
+ <Name>CDC Product Name</Name>
+ <Value>TICOVAC</Value>
+ <Name>Short Description</Name>
+ <Value>Tick-borne encephalitis, inactivated, PF, 0.25mL</Value>
+ <Name>CVXCode</Name>
+ <Value>223       </Value>
  <Name>Manufacturer</Name>
  <Value>Pfizer, Inc</Value>
  <Name>MVX Code</Name>
