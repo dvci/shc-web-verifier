@@ -71,7 +71,7 @@
       },
       {
         "header": "INFORMATION COLLECTED FROM WEB TRAFFIC REPORTING TOOLS",
-        "content": "When a GitHub Pages site is visited, the visitor's IP address is logged and stored for security purposes, regardless of whether the visitor has signed into GitHub or not. For more information about GitHub's security practices, see <a href=\"/en/articles/github-privacy-statement\" class=\"dotcom-only\">GitHub Privacy Statement</a>."
+        "content": "When a GitHub Pages site is visited, the visitor's IP address is logged and stored for security purposes, regardless of whether the visitor has signed into GitHub or not. For more information about GitHub's security practices, see <a href=\"https://docs.github.com/en/github/site-policy/github-privacy-statement\" class=\"dotcom-only\">GitHub Privacy Statement</a>."
       },
       {
         "header": "COOKIES",
