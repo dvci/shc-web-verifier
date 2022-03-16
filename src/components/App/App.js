@@ -19,13 +19,11 @@ const App = () => (
   <ThemeProvider>
     <CssBaseline />
     <Header />
-
     <Router>
-      <HeroBar />
-
       <ErrorBoundary
         FallbackComponent={ErrorFallback}
       >
+        <HeroBar hasError={false} />
         <Switch>
           <Redirect exact from="/shc-web-verifier" to="/" />
           <Route exact path="/">

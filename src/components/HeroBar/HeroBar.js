@@ -21,22 +21,23 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const HeroBar = () => {
+const HeroBar = ({ hasError }) => {
   const history = useHistory();
   const classes = useStyles();
   const { t } = useTranslation();
 
   return (
     <Box className={classes.heroBar}>
-      <Route path={['/qr-scan', '/display-results']}>
-        <IconButton
-          size="small"
-          onClick={() => history.push('/')}
-        >
-          <img src={backIcon} alt="Back icon" style={{ height: '3rem' }} />
-        </IconButton>
-      </Route>
-
+      {(!hasError) ? (
+        <Route path={['/qr-scan', '/display-results']}>
+          <IconButton
+            size="small"
+            onClick={() => history.push('/')}
+          >
+            <img src={backIcon} alt="Back icon" style={{ height: '3rem' }} />
+          </IconButton>
+        </Route>
+      ) : <></>}
       <Container>
         <Box
           display="flex"
