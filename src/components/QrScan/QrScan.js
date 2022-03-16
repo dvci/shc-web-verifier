@@ -1,7 +1,7 @@
 import React, {
   useState, useRef, useEffect, useCallback
 } from 'react';
-import { Button, Grid } from '@mui/material';
+import { Button, Grid, Box } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { useHistory } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
@@ -9,28 +9,70 @@ import frame from 'assets/frame.png';
 import { useQrDataContext } from 'components/QrDataProvider';
 import QrScanner from 'qr-scanner';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   button: {
     '&:hover': {
       cursor: 'default',
     },
   },
+  box: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '100%',
+    marginTop: '2em',
+  },
+  grid: {
+    display: 'flex',
+    flexDirection: 'column',
+    flexWrap: 'nowrap',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 'auto',
+    [theme.breakpoints.down('md')]: {
+      maxHeight: '550px',
+      maxWidth: '300px',
+      margin: '1rem',
+    },
+    [theme.breakpoints.up('md')]: {
+      maxHeight: '550px',
+      maxWidth: '650px',
+      margin: '2rem',
+    }
+  },
+  gridContainerMultiple: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'right',
+    justifyContent: 'right',
+    paddingBottom: '1rem',
+  },
+  gridItem: {
+    display: 'flex',
+    position: 'relative',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '100%',
+    height: '100%',
+  },
   frame: {
     position: 'relative',
-    height: '550px',
-    width: '640px',
-    marginTop: '3rem',
-    marginBottom: '3rem',
-    zIndex: '3',
+    [theme.breakpoints.down('md')]: {
+      maxHeight: '550px',
+      maxWidth: '300px',
+    },
+    [theme.breakpoints.up('md')]: {
+      maxHeight: '550px',
+      maxWidth: '650px',
+    },
+    objectFit: 'contain',
+    zIndex: '2',
   },
   qrScanner: {
-    width: '570px',
-    height: '500px',
-    'object-fit': 'cover',
+    objectFit: 'contain',
     position: 'absolute',
-    marginLeft: '2.2rem',
-    marginTop: '4.5rem',
-    zIndex: '2',
+    width: '90%',
+    zIndex: '1',
     '& section': {
       position: 'unset !important',
       '& div': {
@@ -150,16 +192,10 @@ const QrScan = () => {
   }, [scannedData, handleError, history, setQrCodes]);
 
   return (
-    <Grid
-      container
-      alignItems="center"
-      justifyContent="center"
-      style={{ marginTop: '2rem' }}
-    >
-      {scannedCodes.length > 0 && (
-        <>
-          <Grid item xs={4} />
-          <Grid item xs={4} alignItems="right" justifyContent="right">
+    <Box className={classes.box}>
+      <Grid container className={classes.grid}>
+        {scannedCodes.length > 0 && (
+          <Grid container item className={classes.gridContainerMultiple}>
             {scannedCodes.map((code, i) => (
               <Button
                 className={classes.button}
@@ -173,14 +209,13 @@ const QrScan = () => {
               </Button>
             ))}
           </Grid>
-          <Grid item xs={4} />
-        </>
-      )}
-      <Grid item xs={4}>
-        <video muted id="test" className={classes.qrScanner} ref={videoRef} />
-        <img alt="Scan Frame" className={classes.frame} src={frame} />
+        )}
+        <Grid item className={classes.gridItem}>
+          <video muted id="test" className={classes.qrScanner} ref={videoRef} />
+          <img alt="Scan Frame" className={classes.frame} src={frame} />
+        </Grid>
       </Grid>
-    </Grid>
+    </Box>
   );
 };
 
