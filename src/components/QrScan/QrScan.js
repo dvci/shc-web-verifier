@@ -136,10 +136,12 @@ const QrScan = () => {
   useEffect(() => {
     const getUserMedia = async () => {
       try {
-        const stream = await navigator.mediaDevices.getUserMedia({
-          video: true,
-        });
-        videoRef.current.srcObject = stream;
+        if (videoRef.current) {
+          const stream = await navigator.mediaDevices.getUserMedia({
+            video: true,
+          });
+          videoRef.current.srcObject = stream;
+        }
       } catch (err) {
         throw Error('Cannot access video.');
       }
