@@ -32,5 +32,9 @@
     "NAME": "NAME",
     "DATE OF BIRTH": "DATE OF BIRTH",
     "VACCINATION RECORD": "VACCINATION RECORD"
+  },  
+  "error": {
+    "An unexpected error occured.": "An unexpected error occured.",
+    "Return to main page.": "Return to main page."
   }
 }
