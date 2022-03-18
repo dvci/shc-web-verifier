@@ -36,7 +36,8 @@
     "SCAN QR CODE": "SCAN QR CODE",
     "NAME": "NAME",
     "DATE OF BIRTH": "DATE OF BIRTH",
-    "VACCINATION RECORD": "VACCINATION RECORD"
+    "VACCINATION RECORD": "VACCINATION RECORD",
+    "Multiple SMART Health Cards": "Add another SMART\u00AE Health Card for same patient"
   },
   "footer": {
     "FAQ": "FAQ",
