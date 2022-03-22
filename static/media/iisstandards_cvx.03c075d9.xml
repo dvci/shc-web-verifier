@@ -1308,8 +1308,8 @@
 <Status>Active</Status>
 <LastUpdated>3/4/2022</LastUpdated>
 </CVXInfo>
-<CVXInfo><ShortDescription>Tick-borne encephalitis, upspecified</ShortDescription>
-<FullVaccinename>Tick-borne encephalitis vaccine, upspecified</FullVaccinename>
+<CVXInfo><ShortDescription>Tick-borne encephalitis, unspecified</ShortDescription>
+<FullVaccinename>Tick-borne encephalitis vaccine, unspecified</FullVaccinename>
 <CVXCode>222       </CVXCode>
 <Notes>Unspecified Code - should only be used when specific vaccine administered is unknown</Notes>
 <Status>Inactive</Status>
