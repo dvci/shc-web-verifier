@@ -94,5 +94,9 @@
         "content": "Please feel free to send your privacy-related comments or questions to Privacy@MITRE.org. We will do our best to respond to all reasonable inquiries in a timely manner. For all other VCI™ related questions and comments, please contact us at vaccination@mitre.org."
       }
     ]
+  },  
+  "error": {
+    "An unexpected error occured.": "An unexpected error occured.",
+    "Return to main page.": "Return to main page."
   }
 }

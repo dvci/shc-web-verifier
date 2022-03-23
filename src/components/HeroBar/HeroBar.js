@@ -10,48 +10,46 @@ import backIcon from 'assets/back-icon.png';
 const useStyles = makeStyles((theme) => ({
   heroBar: {
     color: theme.palette.primary.main,
-    backgroundColor: theme.palette.common.grayLight
-  },
-  link: {
-    fontWeight: 700,
+    backgroundColor: theme.palette.common.grayLight,
+    display: 'flex',
+    alignItems: 'center',
+    flexDirection: 'row',
+    padding: '2em',
+    [theme.breakpoints.down('md')]: {
+      padding: '1em',
+    },
   }
 }));
 
-const HeroBar = () => {
+const HeroBar = ({ hasError }) => {
   const history = useHistory();
   const classes = useStyles();
   const { t } = useTranslation();
 
   return (
-    <div className={classes.heroBar}>
-      <Route path={['/qr-scan', '/display-results', '/faq', '/privacy']}>
-        <IconButton
-          size="small"
-          onClick={() => history.push('/')}
-          style={{
-            position: 'absolute',
-            marginTop: '2.5rem',
-            marginLeft: '3rem',
-          }}
-        >
-          <img src={backIcon} alt="Back icon" style={{ height: '3rem' }} />
-        </IconButton>
-      </Route>
-
-      <Container maxWidth="md">
+    <Box className={classes.heroBar}>
+      {(!hasError) ? (
+        <Route path={['/qr-scan', '/display-results', '/faq', '/privacy']}>
+          <IconButton
+            size="small"
+            onClick={() => history.push('/')}
+          >
+            <img src={backIcon} alt="Back icon" style={{ height: '3rem' }} />
+          </IconButton>
+        </Route>
+      ) : <></>}
+      <Container>
         <Box
           display="flex"
           alignItems="center"
           flexDirection="column"
-          pt={5}
-          pb={4}
         >
-          <Typography variant="h3" component="h2">
+          <Typography variant="h3" component="h2" textAlign="center" fontSize={{ xs: '1.3rem', sm: '3rem' }}>
             {t('herobar.SMART Health Card Verifier')}
           </Typography>
         </Box>
       </Container>
-    </div>
+    </Box>
   );
 };
 

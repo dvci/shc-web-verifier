@@ -80,10 +80,10 @@ const getIssuer = (qrCodes) => {
   return payload.iss;
 };
 
-const getIssuerDisplayName = async (qrCodes) => {
+const getIssuerDisplayName = async (qrCodes, controller) => {
   const issuer = getIssuer(qrCodes);
   // use VCI directory to resolve name
-  const issuerDirectories = await getIssuerDirectories();
+  const issuerDirectories = await getIssuerDirectories(controller);
   const participatingIssuers = issuerDirectories[0].issuers.participating_issuers;
   const issuerDisplayName = participatingIssuers.find(
     (issObj) => issObj.iss === issuer

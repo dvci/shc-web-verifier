@@ -132,13 +132,6 @@
 <Status>Non-US</Status>
 <LastUpdated>7/15/2021</LastUpdated>
 </CVXInfo>
-<CVXInfo><ShortDescription>COVID-19 vaccine, Subunit, rS-nanoparticle+Matrix-M1 Adjuvant, PF, 0.5 mL</ShortDescription>
-<FullVaccinename>SARS-COV-2 (COVID-19) vaccine, Subunit, recombinant spike protein-nanoparticle+Matrix-M1 Adjuvant, preservative free, 0.5mL per dose</FullVaccinename>
-<CVXCode>211       </CVXCode>
-<Notes>Potential FDA EUA Authorization</Notes>
-<Status>Pending</Status>
-<LastUpdated>9/8/2021</LastUpdated>
-</CVXInfo>
 <CVXInfo><ShortDescription>COVID-19 vaccine, vector-nr, rS-Ad26, PF, 0.5 mL</ShortDescription>
 <FullVaccinename>SARS-COV-2 (COVID-19) vaccine, vector non-replicating, recombinant spike protein-Ad26, preservative free, 0.5 mL</FullVaccinename>
 <CVXCode>212       </CVXCode>
@@ -173,6 +166,20 @@
 <Notes>Pandemic Non-US Vaccine not Authorized by WHO - not counted toward  immunity in US</Notes>
 <Status>Non-US</Status>
 <LastUpdated>7/15/2021</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>COVID-19, D614, recomb, preS dTM, AS03 adjuvant add, PF, 10mcg/0.5mL</ShortDescription>
+<FullVaccinename>SARS-COV-2 (COVID-19) vaccine, D614, prefusion spike recombinant protein subunit (CoV2 preS dTM), AS03 adjuvant added, preservative free, 10mcg/0.5mL dose</FullVaccinename>
+<CVXCode>226       </CVXCode>
+<Notes>Pre-EUA Authorization, Sanofi Primary Series dose - requires addition of AS03 adjuvant</Notes>
+<Status>Pending</Status>
+<LastUpdated>3/10/2022</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>COVID-19, D614, recomb, preS dTM, AS03 adjuvant add, PF, 5mcg/0.5mL</ShortDescription>
+<FullVaccinename>SARS-COV-2 (COVID-19) vaccine, D614, prefusion spike recombinant protein subunit (CoV2 preS dTM), AS03 adjuvant added, preservative free, 5mcg/0.5mL dose</FullVaccinename>
+<CVXCode>225       </CVXCode>
+<Notes>Pre-EUA Authorization, Sanofi Booster dose - requires addition of AS03 adjuvant</Notes>
+<Status>Active</Status>
+<LastUpdated>3/10/2022</LastUpdated>
 </CVXInfo>
 <CVXInfo><ShortDescription>COVID-19, mRNA, LNP-S, PF, 10 mcg/0.2 mL dose, tris-sucrose</ShortDescription>
 <FullVaccinename>SARS-COV-2 (COVID-19) vaccine, mRNA, spike protein, LNP, preservative free, 10 mcg/0.2mL dose, tris-sucrose formulation</FullVaccinename>
@@ -212,9 +219,16 @@
 <CVXInfo><ShortDescription>COVID-19, mRNA, LNP-S, PF, 50 mcg/0.5 mL dose</ShortDescription>
 <FullVaccinename>SARS-COV-2 (COVID-19) vaccine, mRNA, spike protein, LNP, preservative free, 50 mcg/0.5 mL dose</FullVaccinename>
 <CVXCode>221       </CVXCode>
-<Notes>Pre-EUA Authorization Use for Moderna booster dose 2.5mL vial presentation only</Notes>
+<Notes>Pre-EUA Authorization -  Moderna booster dose 2.5mL vial presentation only</Notes>
 <Status>Active</Status>
-<LastUpdated>2/14/2022</LastUpdated>
+<LastUpdated>3/10/2022</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>COVID-19, subunit, rS-nanoparticle+Matrix-M1 Adjuvant, PF, 0.5 mL</ShortDescription>
+<FullVaccinename>SARS-COV-2 (COVID-19) vaccine, subunit, recombinant spike protein-nanoparticle+Matrix-M1 Adjuvant, preservative free, 0.5mL dose</FullVaccinename>
+<CVXCode>211       </CVXCode>
+<Notes>Pre-EUA Authorization - Novavax Primary Series dose</Notes>
+<Status>Active</Status>
+<LastUpdated>3/10/2022</LastUpdated>
 </CVXInfo>
 <CVXInfo><ShortDescription>dengue fever</ShortDescription>
 <FullVaccinename>dengue fever vaccine</FullVaccinename>
@@ -1204,11 +1218,11 @@
 <LastUpdated>7/31/2021</LastUpdated>
 </CVXInfo>
 <CVXInfo><ShortDescription>Smallpox monkeypox vaccine (National Stockpile)</ShortDescription>
-<FullVaccinename>smallpox monkeypox vaccine, live attenuated, preservative free (National Stockpile)</FullVaccinename>
+<FullVaccinename>Vaccinia, smallpox monkeypox vaccine, live attenuated, preservative free (National Stockpile)</FullVaccinename>
 <CVXCode>206       </CVXCode>
 <Notes>National Stockpile Only. FDA US Licensed products JYNNEOS (also brandnames IMVAMUNE, IMVANEX) </Notes>
 <Status>Active</Status>
-<LastUpdated>7/20/2020</LastUpdated>
+<LastUpdated>3/4/2022</LastUpdated>
 </CVXInfo>
 <CVXInfo><ShortDescription>Td (adult)</ShortDescription>
 <FullVaccinename>tetanus and diphtheria toxoids, not adsorbed, for adult use</FullVaccinename>
@@ -1273,12 +1287,33 @@
 <Status>Inactive</Status>
 <LastUpdated>9/30/2010</LastUpdated>
 </CVXInfo>
-<CVXInfo><ShortDescription>tick-borne encephalitis</ShortDescription>
-<FullVaccinename>tick-borne encephalitis vaccine</FullVaccinename>
+<CVXInfo><ShortDescription>Tick-borne encephalitis vaccine (non-US)</ShortDescription>
+<FullVaccinename>Tick-borne encephalitis vaccine (non-US)</FullVaccinename>
 <CVXCode>77        </CVXCode>
-<Notes>FDA authorized vaccine 2021</Notes>
+<Notes>Non-US vaccine</Notes>
+<Status>Non-US</Status>
+<LastUpdated>3/4/2022</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>Tick-borne encephalitis, inactivated, PF, 0.25mL</ShortDescription>
+<FullVaccinename>Tick-borne encephalitis vaccine, inactivated, preservative free, 0.25mL dose</FullVaccinename>
+<CVXCode>223       </CVXCode>
+<Notes>Pediatric dose vaccine</Notes>
 <Status>Active</Status>
-<LastUpdated>11/4/2021</LastUpdated>
+<LastUpdated>3/3/2022</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>Tick-borne encephalitis, inactivated, PF, 0.5mL</ShortDescription>
+<FullVaccinename>Tick-borne encephalitis vaccine, inactivated, preservative free, 0.5mL dose</FullVaccinename>
+<CVXCode>224       </CVXCode>
+<Notes>Adult dose vaccine</Notes>
+<Status>Active</Status>
+<LastUpdated>3/4/2022</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>Tick-borne encephalitis, unspecified</ShortDescription>
+<FullVaccinename>Tick-borne encephalitis vaccine, unspecified</FullVaccinename>
+<CVXCode>222       </CVXCode>
+<Notes>Unspecified Code - should only be used when specific vaccine administered is unknown</Notes>
+<Status>Inactive</Status>
+<LastUpdated>3/3/2022</LastUpdated>
 </CVXInfo>
 <CVXInfo><ShortDescription>tularemia vaccine</ShortDescription>
 <FullVaccinename>tularemia vaccine</FullVaccinename>

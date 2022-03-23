@@ -15,42 +15,43 @@ import FAQ from 'components/FAQ';
 import StaticDisplay from 'components/StaticDisplay';
 import QrScan from 'components/QrScan';
 import { QrDataProvider } from 'components/QrDataProvider';
+import { ErrorBoundary } from 'react-error-boundary'
+import { ErrorFallback } from 'utils/errorHelper';
 
 const App = () => (
   <ThemeProvider>
     <CssBaseline />
     <Header />
-
     <Router>
       <div id="content">
-        <HeroBar />
-
-        <Switch>
-          <Redirect exact from="/shc-web-verifier" to="/" />
-          <Route exact path="/">
-            <Landing />
-          </Route>
-
-          <Route exact path="/faq">
-            <FAQ />
-          </Route>
-
-          <Route exact path="/privacy">
-            <StaticDisplay section="privacy" />
-          </Route>
-
-          <QrDataProvider>
-            <Route exact path="/qr-scan">
-              <QrScan />
+        <ErrorBoundary FallbackComponent={ErrorFallback}>
+          <HeroBar hasError={false} />
+          <Switch>
+            <Redirect exact from="/shc-web-verifier" to="/" />
+            <Route exact path="/">
+              <Landing />
             </Route>
 
-            <Route exact path="/display-results">
-              <HealthCardDisplay />
+            <Route exact path="/faq">
+              <FAQ />
             </Route>
-          </QrDataProvider>
-        </Switch>
+
+            <Route exact path="/privacy">
+              <StaticDisplay section="privacy" />
+            </Route>
+
+            <QrDataProvider>
+              <Route exact path="/qr-scan">
+                <QrScan />
+              </Route>
+
+              <Route exact path="/display-results">
+                <HealthCardDisplay />
+              </Route>
+            </QrDataProvider>
+          </Switch>
+        </ErrorBoundary>
       </div>
-
       <Footer />
     </Router>
   </ThemeProvider>

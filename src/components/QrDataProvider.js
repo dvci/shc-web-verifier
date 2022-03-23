@@ -26,7 +26,34 @@ const QrDataProvider = ({ children }) => {
   const [issuerDisplayName, setIssuerDisplayName] = useState(null);
 
   useEffect(() => {
+    async function verifyHealthCard(agent, jws, iss, abortController) {
+      try {
+        const status = await healthCardVerify(agent, jws, iss, abortController);
+        if (status) setHealthCardVerified({ verified: true, error: null });
+        else setHealthCardVerified({ verified: false, error: 'Not Verified' });
+      } catch (error) {
+        if (error.name !== 'AbortError') {
+          setHealthCardVerified({ verified: false, error: error.message });
+        }
+      }
+    }
+    async function verifyIssuer(iss, abortController) {
+      try {
+        const status = await issuerVerify(iss, abortController);
+        setIssuerVerified(status);
+        if (status === true) {
+          getIssuerDisplayName(qrCodes, abortController)
+            .then((result) => setIssuerDisplayName(result));
+        }
+      } catch (error) {
+        if (error.name !== 'AbortError') {
+          setIssuerVerified(false);
+        }
+      }
+    }
+
     localStorage.setItem('qrCodes', JSON.stringify(qrCodes));
+    const abortController = new AbortController();
 
     if (qrCodes) {
       // Verify health card signature
@@ -35,25 +62,10 @@ const QrDataProvider = ({ children }) => {
       const agent = new https.Agent({
         rejectUnauthorized: false,
       });
-
-      healthCardVerify(agent, jws, iss)
-        .then((status) => {
-          if (status) setHealthCardVerified({ verified: true, error: null });
-          else setHealthCardVerified({ verified: false, error: 'Not Verified' });
-        })
-        .catch((err) => {
-          setHealthCardVerified({ verified: false, error: err.message });
-        });
+      verifyHealthCard(agent, jws, iss, abortController);
 
       // Verify issuer
-      issuerVerify(iss)
-        .then((status) => {
-          setIssuerVerified(status);
-          if (status === true) {
-            getIssuerDisplayName(qrCodes).then((result) => setIssuerDisplayName(result));
-          }
-        })
-        .catch(() => setIssuerVerified(false));
+      verifyIssuer(iss, abortController);
 
       // Validate vaccine series
       try {
@@ -66,6 +78,10 @@ const QrDataProvider = ({ children }) => {
       } catch {
         setValidPrimarySeries(false);
       }
+    }
+
+    return () => {
+      abortController.abort()
     }
   }, [qrCodes]);
 
