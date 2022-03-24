@@ -1,4 +1,4 @@
-library CDSiSupportingData version '4.3'
+library CDSiSupportingData version '1.0'
 
 using FHIR version '4.0.0'
 using CDSI version '1.0.0'

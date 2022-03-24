@@ -1,5 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import cql from '../../output-elm/CDSiSupportingData-4.3.json';
+import cql from '../../output-elm/CDSiSupportingData.json';
 import fhirhelpers from '../../output-elm/FHIRHelpers-4.0.0.json';
 
 const { Repository, CodeService, PatientContext } = require('cql-execution');

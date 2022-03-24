@@ -6,7 +6,7 @@
       } ],
       "identifier" : {
          "id" : "CDSiSupportingData",
-         "version" : "4.3"
+         "version" : "1.0"
       },
       "schemaIdentifier" : {
          "id" : "urn:hl7-org:elm",
