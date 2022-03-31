@@ -58,7 +58,7 @@
       },
       {
         "question": "What does it mean if your SMART\u00AE Health Card is 'Not Verified'?",
-        "answer": "This means that the QR code or codes you scanned are readable SMART\u00AE Health Cards but the signature from the issuing organization could not be validated, meaining the data may have been corrupted. The organization that provided your SMART\u00AE Health Card may be able to help you obtain a new QR code."
+        "answer": "This means that the QR code or codes you scanned are readable SMART\u00AE Health Cards but the signature from the issuing organization could not be validated, meaning the data may have been corrupted. The organization that provided your SMART\u00AE Health Card may be able to help you obtain a new QR code."
       }
     ]
   },
