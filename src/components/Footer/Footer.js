@@ -38,7 +38,7 @@ const Footer = () => {
 
   const handleCloseNavMenu = (page) => {
     setAnchorElNav(null);
-    history.push(`/${page}`);
+    if (page !== null) history.push(`/${page}`);
   };
 
   return (
@@ -69,7 +69,7 @@ const Footer = () => {
                 horizontal: 'left',
               }}
               open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
+              onClose={() => handleCloseNavMenu(null)}
               sx={{
                 display: { xs: 'block', md: 'none' },
               }}
