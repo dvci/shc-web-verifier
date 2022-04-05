@@ -22,7 +22,7 @@ const QrDataProvider = ({ children }) => {
     error: null,
   });
   const [issuerVerified, setIssuerVerified] = useState(false);
-  const [validPrimarySeries, setValidPrimarySeries] = useState(false);
+  const [validPrimarySeries, setValidPrimarySeries] = useState(null);
   const [issuerDisplayName, setIssuerDisplayName] = useState(null);
 
   useEffect(() => {
@@ -71,12 +71,14 @@ const QrDataProvider = ({ children }) => {
       try {
         const payload = getPayload(qrCodes);
         const patientBundle = JSON.parse(payload).vc.credentialSubject.fhirBundle;
-        const results = Validator.execute(patientBundle, 'COVID-19');
-        setValidPrimarySeries(
-          results.some((series) => series.complete.length > 0)
-        );
+        const results = Validator.execute(patientBundle, JSON.parse(payload).vc.type);
+        if (results) {
+          setValidPrimarySeries(
+            results.some((series) => series.complete.length > 0)
+          );
+        } else setValidPrimarySeries(null);
       } catch {
-        setValidPrimarySeries(false);
+        setValidPrimarySeries(null);
       }
     }
 

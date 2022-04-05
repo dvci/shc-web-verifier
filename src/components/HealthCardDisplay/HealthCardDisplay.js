@@ -190,16 +190,20 @@ const HealthCardDisplay = () => {
                   {t('healthcarddisplay.Valid SMART Health Card')}
                 </Typography>
               </Box>
-              <Box className={styles.flexRow}>
-                <img
-                  src={validPrimarySeries ? checkIcon : xIcon}
-                  alt="Bottom Banner Series Icon"
-                  style={{ height: '1.5rem', marginRight: '1rem' }}
-                />
-                <Typography variant="h6" className={validPrimarySeries ? styles.verifiedText : styles.unverifiedText}>
-                  {validPrimarySeries ? t('healthcarddisplay.Valid vaccination series') : t('healthcarddisplay.Cannot determine vaccination status')}
-                </Typography>
-              </Box>
+              {(validPrimarySeries !== null) ? (
+                <Box className={styles.flexRow}>
+                  <img
+                    src={validPrimarySeries ? checkIcon : xIcon}
+                    alt="Bottom Banner Series Icon"
+                    style={{ height: '1.5rem', marginRight: '1rem' }}
+                  />
+                  <Typography variant="h6" className={validPrimarySeries ? styles.verifiedText : styles.unverifiedText}>
+                    {validPrimarySeries ? t('healthcarddisplay.Valid vaccination series') : t('healthcarddisplay.Cannot determine vaccination status')}
+                  </Typography>
+                </Box>
+              ) : (
+                <></>
+              )}
               <Box className={styles.flexRow}>
                 <img
                   src={issuerVerified ? checkIcon : xIcon}
