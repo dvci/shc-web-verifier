@@ -126,3 +126,9 @@ test('renders health card banner invalid', () => {
   expect(screen.getByText(/Invalid SMART® Health Card/i)).toBeInTheDocument();
   expect(screen.getByText(/SCAN QR CODE/i)).toBeInTheDocument();
 });
+
+test('renders health card banner verified without series status', () => {
+  renderHealthCardDisplay(patientData, true, null, true, null);
+  expect(screen.queryByText(/Valid vaccination series/i)).not.toBeInTheDocument();
+  expect(screen.queryByText(/Cannot determine vaccination status/i)).not.toBeInTheDocument();
+});
