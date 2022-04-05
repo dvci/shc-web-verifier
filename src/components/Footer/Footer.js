@@ -4,6 +4,7 @@ import {
   AppBar, Box, Container, Toolbar, IconButton, Menu, MenuItem, Button, Typography
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
+import EmailIcon from '@mui/icons-material/Email';
 import { useHistory } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import logo from 'assets/mitre-logo.svg';
@@ -48,7 +49,7 @@ const Footer = () => {
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
-              aria-label="account of current user"
+              aria-label="menu"
               aria-controls="menu-appbar"
               aria-haspopup="true"
               onClick={handleOpenNavMenu}
@@ -81,7 +82,9 @@ const Footer = () => {
               ))}
             </Menu>
           </Box>
-          <img src={logo} alt="Placeholder Mitre logo" style={{ width: '100px' }} sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }} />
+          <Box sx={{ flexGrow: { xs: 1, md: 0 } }}>
+            <img src={logo} alt="Placeholder Mitre logo" style={{ width: '100px' }} sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }} />
+          </Box>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               <Button
@@ -92,6 +95,21 @@ const Footer = () => {
                 {t(`footer.${page}`)}
               </Button>
             ))}
+          </Box>
+          <Box>
+            <IconButton
+              size="large"
+              aria-label="contact"
+              color="inherit"
+              target="_top"
+              rel="noopener noreferrer"
+              href="mailto:vci-developers@mitre.org"
+            >
+              <EmailIcon />
+              <Typography variant="button" style={{ fontSize: '0.69rem' }} sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+                vci-developers@mitre.org
+              </Typography>
+            </IconButton>
           </Box>
         </Toolbar>
       </Container>
