@@ -8,13 +8,17 @@ const { supportingData, ancillaryData } = require('../../supporting-data');
 
 export interface IValidationResult {
   seriesName: string;
-  complete: [
-    [
+  validPrimarySeries: boolean,
+  evaluations: [
+    startingImmunizationIndex: number,
+    validPrimarySeries: boolean,
+    doseEvaluations: [
       {
         doseNumber: string,
         doseIndex: number,
         immunizationIndex: number,
-        immunization: any
+        immunization: any,
+        validDose: boolean
       },
     ],
   ];
