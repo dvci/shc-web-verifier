@@ -2,7 +2,7 @@ import axios from 'axios';
 import jose from 'node-jose';
 import getIssuerDirectories from './IssuerDirectories';
 
-const healthCardVerify = async (httpsAgent, jws, iss) => {
+const healthCardVerify = async (httpsAgent, jws, iss, controller) => {
   let response;
   let verifier;
 
@@ -12,7 +12,7 @@ const healthCardVerify = async (httpsAgent, jws, iss) => {
 
   try {
     const jwkURL = `${iss}/.well-known/jwks.json`;
-    response = await axios.get(jwkURL, { httpsAgent });
+    response = await axios.get(jwkURL, { httpsAgent, signal: controller?.signal });
   } catch (err) {
     // network error, incorrect URL or status!=2xx
     throw Error('Error retrieving issuer key URL.');
@@ -37,7 +37,7 @@ const healthCardVerify = async (httpsAgent, jws, iss) => {
   }
 };
 
-const issuerVerify = async (iss) => getIssuerDirectories()
+const issuerVerify = async (iss, controller) => getIssuerDirectories(controller)
   .then((fetchedDirectories) => fetchedDirectories.some((d) => {
     if (d.issuers && !d.error) {
       const issName = d.issuers?.participating_issuers
