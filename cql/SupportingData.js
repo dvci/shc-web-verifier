@@ -6,28 +6,51 @@ const myArgs = process.argv.slice(2);
 
 const xml = fs.readFileSync(myArgs[0], 'utf8');
 
+const stringToIsoDate = (value) => {
+  if (value === '') {
+    return null;
+  }
+  if (value.length !== 8) {
+    throw new Error(`Invalid date ${value}`);
+  }
+  return `${value.substring(0, 4)}-${value.substring(4, 6)}-${value.substring(6)}`;
+}
+
+const stringToQuantityUnit = (quantityUnit) => {
+  if (quantityUnit === '') {
+    return '';
+  }
+  const validQuantityUnits = ['day', 'week', 'month', 'year', 'days', 'weeks', 'months', 'years']
+  if (!validQuantityUnits.includes(quantityUnit)) {
+    throw new Error(`Invalid date unit ${quantityUnit}`);
+  }
+  return quantityUnit;
+}
+
 const stringToQuantity = (quantityString) => {
   if (quantityString === '') {
-    return {};
+    return [];
   }
   const substrings = quantityString.split(' ');
-  let quantityUnit;
-  switch (substrings[1]) {
-    case 'days': quantityUnit = 'd';
-      break;
-    case 'weeks': quantityUnit = 'wk';
-      break;
-    case 'months': quantityUnit = 'mo';
-      break;
-    case 'years': quantityUnit = 'a';
-      break;
-    default: quantityUnit = '';
+  const quantityUnit = stringToQuantityUnit(substrings[1]);
+  if (substrings.length < 3) {
+    return [{
+      value: parseFloat(substrings[0]),
+      unit: quantityUnit
+    }];
   }
 
-  return {
-    value: Number(substrings[0]),
+  const gracePeriodValue = substrings[2] + substrings[3];
+  const gracePeriodUnit = stringToQuantityUnit(substrings[4]);
+
+  return [{
+    value: parseFloat(substrings[0]),
     unit: quantityUnit
-  };
+  },
+  {
+    value: parseFloat(gracePeriodValue),
+    unit: gracePeriodUnit
+  }];
 };
 
 const elementToArray = (value, item) => {
@@ -48,26 +71,32 @@ const validator = (xpath, currentValue, newValue) => {
     return elementToArray(newValue, 'seriesDose');
   }
   if (['/antigenSupportingData/series/seriesDose'].includes(xpath)) {
-    let seriesDose = elementToArray(newValue, 'allowableVaccine');
-    seriesDose = elementToArray(newValue, 'interval');
+    let seriesDose = elementToArray(newValue, 'interval');
     seriesDose = elementToArray(newValue, 'allowableInterval');
+    seriesDose = elementToArray(newValue, 'allowableVaccine');
+    seriesDose = elementToArray(newValue, 'inadvertentVaccine');
     return seriesDose;
   }
-  if (['/antigenSupportingData/series/seriesDose/allowableVaccine',
-    '/antigenSupportingData/series/seriesDose/interval',
+  if (['/antigenSupportingData/series/seriesDose/interval',
     '/antigenSupportingData/series/seriesDose/allowableInterval',
-    '/antigenSupportingData/series/seriesDose/conditionalSkip'].includes(xpath)) {
+    '/antigenSupportingData/series/seriesDose/allowableVaccine',
+    '/antigenSupportingData/series/seriesDose/inadvertentVaccine'].includes(xpath)) {
     return elementToObject(newValue);
   }
   if (['/antigenSupportingData/series/selectSeries/minAgeToStart',
     '/antigenSupportingData/series/selectSeries/maxAgeToStart',
     '/antigenSupportingData/series/seriesDose/age/absMinAge',
-    '/antigenSupportingData/series/seriesDose/age/earliestRecAge',
+    '/antigenSupportingData/series/seriesDose/interval/absMinInt',
     '/antigenSupportingData/series/seriesDose/allowableInterval/absMinInt',
-    '/antigenSupportingData/series/seriesDose/interval/earliestRecInt',
     '/antigenSupportingData/series/seriesDose/allowableVaccine/beginAge',
     '/antigenSupportingData/series/seriesDose/allowableVaccine/endAge'].includes(xpath)) {
     return stringToQuantity(newValue);
+  }
+  if (['/antigenSupportingData/series/seriesDose/interval/effectiveDate',
+    '/antigenSupportingData/series/seriesDose/interval/cessationDate',
+    '/antigenSupportingData/series/seriesDose/allowableInterval/effectiveDate',
+    '/antigenSupportingData/series/seriesDose/allowableInterval/cessationDate'].includes(xpath)) {
+    return stringToIsoDate(newValue);
   }
   return newValue
 }
