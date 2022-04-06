@@ -13,29 +13,30 @@ const QrDataProvider = ({ children }) => {
   const [qrCodes, setQrCodes] = useState(
     JSON.parse(localStorage.getItem('qrCodes'))
   );
+  const [jws, setJws] = useState(null);
   const [validPrimarySeries, setValidPrimarySeries] = useState(false);
 
   useEffect(() => {
     localStorage.setItem('qrCodes', JSON.stringify(qrCodes));
-    const abortController = new AbortController();
 
+    let cardJws;
     if (qrCodes) {
+      cardJws = getJws(qrCodes);
+      setJws(cardJws);
+    } else setJws(null);
+
+    if (cardJws) {
       // Validate vaccine series
       try {
-        const jws = getJws(qrCodes)
-        const payload = getPayload(jws);
+        const payload = getPayload(cardJws);
         const patientBundle = JSON.parse(payload).vc.credentialSubject.fhirBundle;
         const results = Validator.execute(patientBundle, 'COVID-19');
         setValidPrimarySeries(
-          results.some((series) => series.complete.length > 0)
+          results.some((series) => series.validPrimarySeries > 0)
         );
       } catch {
         setValidPrimarySeries(false);
       }
-    }
-
-    return () => {
-      abortController.abort()
     }
   }, [qrCodes]);
 
@@ -44,6 +45,7 @@ const QrDataProvider = ({ children }) => {
       value={{
         qrCodes,
         setQrCodes,
+        jws,
         validPrimarySeries,
       }}
     >

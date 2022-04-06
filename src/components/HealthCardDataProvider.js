@@ -52,9 +52,9 @@ const HealthCardDataProvider = ({ children }) => {
       setHealthCardSupported({ status: true, error: null })
       return true;
     }
-    async function verifyHealthCard(agent, iss, abortController) {
+    async function verifyHealthCard(agent, cardJws, iss, abortController) {
       try {
-        const status = await healthCardVerify(agent, jws, iss, abortController);
+        const status = await healthCardVerify(agent, cardJws, iss, abortController);
         if (status) setHealthCardVerified({ verified: true, error: null });
         else setHealthCardVerified({ verified: false, error: 'Not Verified' });
       } catch (error) {
@@ -101,7 +101,7 @@ const HealthCardDataProvider = ({ children }) => {
   }, [jws]);
 
   return (
-    <HealthCardDataProvider.Provider
+    <HealthCardDataContext.Provider
       value={{
         healthCardSupported,
         healthCardVerified,
@@ -112,7 +112,7 @@ const HealthCardDataProvider = ({ children }) => {
       }}
     >
       {children}
-    </HealthCardDataProvider.Provider>
+    </HealthCardDataContext.Provider>
   );
 };
 
