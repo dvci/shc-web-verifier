@@ -1,6 +1,6 @@
-import React, { createContext, useContext, useReducer } from 'react';
-import { parseHealthCardQr, getJws, getPayload } from 'utils/qrHelpers';
-import { Validator } from 'components/Validator/Validator.tsx';
+import React, { createContext, useContext, useReducer } from "react";
+import { parseHealthCardQr, getJws, getPayload } from "utils/qrHelpers";
+import { Validator } from "components/Validator/Validator.tsx";
 
 const QrDataContext = createContext();
 
@@ -15,15 +15,15 @@ const initialState = {
 };
 
 const actions = {
-  SET_QR_CODES: 'SET_QR_CODES',
-  RESET_QR_CODES: 'RESET_QR_CODES',
+  SET_QR_CODES: "SET_QR_CODES",
+  RESET_QR_CODES: "RESET_QR_CODES",
 };
 
 const reducer = (state, action) => {
   switch (action.type) {
     case actions.SET_QR_CODES: {
       const newState = {};
-      localStorage.setItem('qrCodes', JSON.stringify(action.qrCodes));
+      localStorage.setItem("qrCodes", JSON.stringify(action.qrCodes));
 
       if (action.qrCodes) {
         // check valid SHC QR
@@ -31,7 +31,7 @@ const reducer = (state, action) => {
           (c) => parseHealthCardQr(c) !== null
         );
         if (!validShcQr) {
-          newState.qrError = new Error('UNSUPPORTED_QR_NOT_SHC');
+          newState.qrError = new Error("UNSUPPORTED_QR_NOT_SHC");
           newState.jws = null;
         } else {
           newState.jws = getJws(action.qrCodes);
@@ -42,7 +42,8 @@ const reducer = (state, action) => {
         // Validate vaccine series
         try {
           const payload = getPayload(newState.jws);
-          const patientBundle = JSON.parse(payload).vc.credentialSubject.fhirBundle;
+          const patientBundle =
+            JSON.parse(payload).vc.credentialSubject.fhirBundle;
           const results = Validator.execute(
             patientBundle,
             JSON.parse(payload).vc.type
@@ -56,7 +57,7 @@ const reducer = (state, action) => {
         } catch {
           newState.validationStatus = {
             validPrimarySeries: false,
-            error: new Error('VALIDATION_ERROR'),
+            error: new Error("VALIDATION_ERROR"),
           };
         }
       }
@@ -78,7 +79,7 @@ const QrDataProvider = ({ children }) => {
     reducer,
     reducer(initialState, {
       type: actions.SET_QR_CODES,
-      qrCodes: JSON.parse(localStorage.getItem('qrCodes')),
+      qrCodes: JSON.parse(localStorage.getItem("qrCodes")),
     })
   );
 
