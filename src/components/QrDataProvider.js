@@ -73,7 +73,7 @@ const QrDataProvider = ({ children }) => {
         const patientBundle = JSON.parse(payload).vc.credentialSubject.fhirBundle;
         const results = Validator.execute(patientBundle, 'COVID-19');
         setValidPrimarySeries(
-          results.some((series) => series.complete.length > 0)
+          results.some((series) => series.validPrimarySeries)
         );
       } catch {
         setValidPrimarySeries(false);
