@@ -1,12 +1,14 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
-import https from "https";
+import React, {
+  createContext, useContext, useEffect, useState
+} from 'react';
+import https from 'https';
 import {
   getPatientData,
   getIssuer,
   getIssuerDisplayName,
   getCredential,
-} from "utils/qrHelpers";
-import { healthCardVerify, issuerVerify } from "utils/verifyHelpers";
+} from 'utils/qrHelpers';
+import { healthCardVerify, issuerVerify } from 'utils/verifyHelpers';
 
 const HealthCardDataContext = createContext();
 
@@ -31,30 +33,30 @@ const HealthCardDataProvider = ({ healthCardJws, children }) => {
       } catch {
         setHealthCardSupported({
           status: false,
-          error: new Error("UNSUPPORTED_MALFORMED_CREDENTIAL"),
+          error: new Error('UNSUPPORTED_MALFORMED_CREDENTIAL'),
         });
         return false;
       }
       if (
         !vc.type.some(
-          (type) => type === "https://smarthealth.cards#health-card"
+          (type) => type === 'https://smarthealth.cards#health-card'
         )
       ) {
         setHealthCardSupported({
           status: false,
-          error: new Error("UNSUPPORTED_CREDENTIAL"),
+          error: new Error('UNSUPPORTED_CREDENTIAL'),
         });
         return false;
       }
 
       if (
         !vc.type.some(
-          (type) => type === "https://smarthealth.cards#immunization"
+          (type) => type === 'https://smarthealth.cards#immunization'
         )
       ) {
         setHealthCardSupported({
           status: false,
-          error: new Error("UNSUPPORTED_HEALTH_CARD"),
+          error: new Error('UNSUPPORTED_HEALTH_CARD'),
         });
         return false;
       }
@@ -62,7 +64,7 @@ const HealthCardDataProvider = ({ healthCardJws, children }) => {
       if (!getPatientData(cardJws)) {
         setHealthCardSupported({
           status: false,
-          error: new Error("UNSUPPORTED_INVALID_PROFILE_MISSING_PATIENT"),
+          error: new Error('UNSUPPORTED_INVALID_PROFILE_MISSING_PATIENT'),
         });
         return false;
       }
@@ -80,7 +82,7 @@ const HealthCardDataProvider = ({ healthCardJws, children }) => {
         );
         setHealthCardVerified({ verified: status, error: null });
       } catch (error) {
-        if (error.name !== "AbortError") {
+        if (error.name !== 'AbortError') {
           setHealthCardVerified({ verified: false, error });
         }
       }
@@ -91,12 +93,10 @@ const HealthCardDataProvider = ({ healthCardJws, children }) => {
         setIssuerVerified(status);
         if (status === true) {
           // eslint-disable-next-line max-len
-          getIssuerDisplayName(cardJws, abortController).then((result) =>
-            setIssuerDisplayName(result)
-          );
+          getIssuerDisplayName(cardJws, abortController).then((result) => setIssuerDisplayName(result));
         }
       } catch (error) {
-        if (error.name !== "AbortError") {
+        if (error.name !== 'AbortError') {
           setIssuerVerified(false);
         }
       }
