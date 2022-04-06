@@ -20,7 +20,7 @@ const ValidatorDisplay = ({ bundle, action }) => {
       action
     );
     setValidPrimarySeries(
-      validationResults.some((series) => series.complete.length > 0)
+      validationResults.some((series) => series.validPrimarySeries)
     );
   }, [action, bundle]);
 

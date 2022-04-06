@@ -12,14 +12,14 @@ jobs:
     steps:
     - uses: actions/checkout@v2
       with:
-        token: ${{ secrets.NKARIP_PAT }}
+        token: ${{ secrets.GITHUB_TOKEN }}
         ref: ${{ github.head_ref }}
 
     - name: Fetch files
       id: fetch
       run: |
-        echo "::set-output name=cvx_status::$(curl -sSL -s -w '%{http_code}' -o src/components/HealthCardDisplay/iisstandards_cvx.xml https://www2a.cdc.gov/vaccines/iis/iisstandards/XML2.asp?rpt=cvx)"
-        echo "::set-output name=tradename_status::$(curl -sSL -s -w '%{http_code}' -o src/components/HealthCardDisplay/iisstandards_tradename.xml https://www2a.cdc.gov/vaccines/iis/iisstandards/XML.asp?rpt=tradename)"
+        echo "::set-output name=cvx_status::$(curl -sSL -s -w '%{http_code}' -o src/components/VaccineCard/iisstandards_cvx.xml https://www2a.cdc.gov/vaccines/iis/iisstandards/XML2.asp?rpt=cvx)"
+        echo "::set-output name=tradename_status::$(curl -sSL -s -w '%{http_code}' -o src/components/VaccineCard/iisstandards_tradename.xml https://www2a.cdc.gov/vaccines/iis/iisstandards/XML.asp?rpt=tradename)"
 
     - name: Check http status
       if: steps.fetch.outputs.cvx_status > 200 || steps.fetch.outputs.tradename_status > 200
@@ -36,14 +36,15 @@ jobs:
         else
           echo "::set-output name=diff::true"
         fi
-        
-    - name: Commit files
+
+    - name: Create Pull Request
       if: steps.check.outputs.diff == 'true'
-      run: |
-        echo "GITHUB_ACTOR: ${GITHUB_ACTOR}"
-        git config user.name "${GITHUB_ACTOR}"
-        git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
-        # Stage the files, commit and push
-        git add src/components/HealthCardDisplay/
-        git commit -m "update CDC files"
-        git push
+      uses: peter-evans/create-pull-request@v3
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        commit-message: Update CDC metadata files
+        title: Update CDC metadata files
+        body: Workflow auto-generated PR
+        branch: update-cdc-metadata
+        branch-suffix: timestamp
+        reviewers: nkarip

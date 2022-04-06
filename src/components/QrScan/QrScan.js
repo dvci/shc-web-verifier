@@ -1,32 +1,77 @@
-import React, { useState } from 'react';
-import { Button, Grid } from '@mui/material';
+import React, {
+  useState, useRef, useEffect, useCallback
+} from 'react';
+import { Button, Grid, Box } from '@mui/material';
 import { makeStyles } from '@mui/styles';
-import QrReader from 'react-qr-reader';
 import { useHistory } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import frame from 'assets/frame.png';
 import { useQrDataContext } from 'components/QrDataProvider';
+import QrScanner from 'qr-scanner';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   button: {
     '&:hover': {
       cursor: 'default',
     },
   },
+  box: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '100%',
+    marginTop: '2em',
+  },
+  grid: {
+    display: 'flex',
+    flexDirection: 'column',
+    flexWrap: 'nowrap',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 'auto',
+    [theme.breakpoints.down('md')]: {
+      maxHeight: '550px',
+      maxWidth: '300px',
+      margin: '1rem',
+    },
+    [theme.breakpoints.up('md')]: {
+      maxHeight: '550px',
+      maxWidth: '650px',
+      margin: '2rem',
+    }
+  },
+  gridContainerMultiple: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'right',
+    justifyContent: 'right',
+    paddingBottom: '1rem',
+  },
+  gridItem: {
+    display: 'flex',
+    position: 'relative',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '100%',
+    height: '100%',
+  },
   frame: {
     position: 'relative',
-    height: '550px',
-    width: '640px',
-    marginTop: '3rem',
-    marginBottom: '3rem',
+    [theme.breakpoints.down('md')]: {
+      maxHeight: '550px',
+      maxWidth: '300px',
+    },
+    [theme.breakpoints.up('md')]: {
+      maxHeight: '550px',
+      maxWidth: '650px',
+    },
+    objectFit: 'contain',
     zIndex: '2',
   },
   qrScanner: {
+    objectFit: 'contain',
     position: 'absolute',
-    marginLeft: '2.2rem',
-    marginTop: '4.5rem',
-    height: '500px',
-    width: '570px',
+    width: '90%',
     zIndex: '1',
     '& section': {
       position: 'unset !important',
@@ -39,56 +84,120 @@ const useStyles = makeStyles(() => ({
 
 const healthCardPattern = /^shc:\/(?<multipleChunks>(?<chunkIndex>[0-9]+)\/(?<chunkCount>[0-9]+)\/)?[0-9]+$/;
 
+let qrScan;
+
 const QrScan = () => {
   const history = useHistory();
   const classes = useStyles();
   const { setQrCodes } = useQrDataContext();
   const [scannedCodes, setScannedCodes] = useState([]);
+  const [scannedData, setScannedData] = useState('');
+  const runningQrScanner = useRef(null);
+  const scannedCodesRef = useRef([]);
 
-  const handleScan = (data) => {
-    if (healthCardPattern.test(data)) {
-      const match = data.match(healthCardPattern);
-      if (match.groups.multipleChunks) {
-        const chunkCount = +match.groups.chunkCount;
-        const currentChunkIndex = +match.groups.chunkIndex;
-        let tempScannedCodes = [...scannedCodes];
-        if (tempScannedCodes.length !== chunkCount) {
-          tempScannedCodes = new Array(chunkCount);
-          tempScannedCodes.fill(null, 0, chunkCount);
+  const handleError = useCallback(() => {
+    history.push('/display-results');
+  }, [history]);
+
+  /**
+   * Create QrScanner instance using video element and specify result/error conditions
+   * @param {*} videoElement HTML video element
+   */
+  const createQrScanner = (videoElement) => {
+    if (!videoElement) {
+      if (runningQrScanner.current) {
+        qrScan.destroy();
+      }
+      return;
+    }
+    qrScan = new QrScanner(
+      videoElement,
+      (results) => {
+        setScannedData(results.data);
+      },
+      {
+        calculateScanRegion: (video) => ({
+          // define scan region for QrScanner
+          x: 0,
+          y: 0,
+          width: video.videoWidth,
+          height: video.videoHeight,
+        }),
+      }
+    );
+    runningQrScanner.current = qrScan;
+    qrScan.start().then(() => {
+      qrScan.hasCamera = true;
+    });
+  };
+
+  const videoRef = useRef(null);
+  // Get user media when the page first renders, and feed into createQrScanner()
+  useEffect(() => {
+    const getUserMedia = async () => {
+      try {
+        if (videoRef.current) {
+          const stream = await navigator.mediaDevices.getUserMedia({
+            video: true,
+          });
+          videoRef.current.srcObject = stream;
         }
+      } catch (err) {
+        throw Error('Cannot access video.');
+      }
+    };
+    getUserMedia().then(() => {
+      createQrScanner(videoRef.current);
+    });
+    return () => {
+      if (runningQrScanner.current) runningQrScanner.current.stop();
+    };
+  }, []);
 
-        if (tempScannedCodes[currentChunkIndex - 1] === null) {
-          tempScannedCodes[currentChunkIndex - 1] = data;
-        }
+  useEffect(() => {
+    const handleScan = (data) => {
+      if (healthCardPattern.test(data)) {
+        const match = data.match(healthCardPattern);
+        if (match.groups.multipleChunks) {
+          const chunkCount = +match.groups.chunkCount;
+          const currentChunkIndex = +match.groups.chunkIndex;
+          let tempScannedCodes = [...scannedCodesRef.current];
+          if (tempScannedCodes.length !== chunkCount) {
+            tempScannedCodes = new Array(chunkCount);
+            tempScannedCodes.fill(null, 0, chunkCount);
+          }
 
-        if (tempScannedCodes.every((code) => code)) {
-          setQrCodes(tempScannedCodes);
+          if (tempScannedCodes[currentChunkIndex - 1] === null) {
+            tempScannedCodes[currentChunkIndex - 1] = data;
+          }
+
+          if (tempScannedCodes.every((code) => code)) {
+            setQrCodes(tempScannedCodes);
+            history.push('/display-results');
+          }
+          setScannedCodes(tempScannedCodes);
+          scannedCodesRef.current = tempScannedCodes;
+        } else {
+          setQrCodes([data]);
           history.push('/display-results');
         }
+      }
+    };
 
-        setScannedCodes(tempScannedCodes);
-      } else {
-        setQrCodes([data]);
-        history.push('/display-results');
+    if (scannedData) {
+      try {
+        handleScan(scannedData);
+      } catch (e) {
+        handleError();
       }
     }
-  };
-
-  const handleError = () => {
-    history.push('/display-results');
-  };
+  }, [scannedData, handleError, history, setQrCodes]);
 
   return (
-    <Grid
-      container
-      alignItems="center"
-      justifyContent="center"
-      style={{ marginTop: '2rem' }}
-    >
-      {scannedCodes.length > 0 && (
-        <>
-          <Grid item xs={4} />
-          <Grid item xs={4} alignItems="right" justifyContent="right">
+    <Box className={classes.box}>
+      <Grid container className={classes.grid}>
+        {scannedCodes.length > 0 && (
+          <Grid container item className={classes.gridContainerMultiple}>
             {scannedCodes.map((code, i) => (
               <Button
                 className={classes.button}
@@ -102,19 +211,13 @@ const QrScan = () => {
               </Button>
             ))}
           </Grid>
-          <Grid item xs={4} />
-        </>
-      )}
-      <Grid item xs={4}>
-        <QrReader
-          className={classes.qrScanner}
-          onError={handleError}
-          onScan={handleScan}
-          showViewFinder={false}
-        />
-        <img alt="Scan Frame" className={classes.frame} src={frame} />
+        )}
+        <Grid item className={classes.gridItem}>
+          <video muted id="test" className={classes.qrScanner} ref={videoRef} />
+          <img alt="Scan Frame" className={classes.frame} src={frame} />
+        </Grid>
       </Grid>
-    </Grid>
+    </Box>
   );
 };
 

@@ -14,12 +14,12 @@ const agent = new https.Agent({
   rejectUnauthorized: false,
 });
 
-const fetchIssuerDirectories = async () => Promise.all(
+const fetchIssuerDirectories = async (controller) => Promise.all(
   defaultIssuerDirectories.map(async (d) => {
     const directory = d;
     let response;
     try {
-      response = await axios.get(d.URL, { httpsAgent: agent });
+      response = await axios.get(d.URL, { httpsAgent: agent, signal: controller?.signal });
     } catch (err) {
       directory.error = 'Error fetching issuer directory.';
       return directory;
@@ -34,9 +34,9 @@ const fetchIssuerDirectories = async () => Promise.all(
   })
 );
 
-export default function getIssuerDirectories() {
+export default function getIssuerDirectories(controller) {
   if (!directories) {
-    directories = fetchIssuerDirectories();
+    directories = fetchIssuerDirectories(controller);
   }
 
   return directories;
