@@ -13,9 +13,8 @@ const getJws = (qrCodes) => qrCodes
   })
   .join('');
 
-const getPayload = (qrCodes) => {
-  const jwsString = getJws(qrCodes);
-  const dataString = jwsString.split('.')[1];
+const getPayload = (jws) => {
+  const dataString = jws.split('.')[1];
   const decodedPayload = Base64.toUint8Array(dataString);
   const inflatedPayload = pako.inflateRaw(decodedPayload);
   const payload = new TextDecoder().decode(inflatedPayload);
@@ -59,12 +58,12 @@ const extractPatientData = (card) => {
   return { name, dateOfBirth, immunizations };
 };
 
-const getPatientData = (qrCodes) => {
-  if (!qrCodes || qrCodes.length === 0) {
+const getPatientData = (jws) => {
+  if (!jws) {
     return null;
   }
   try {
-    const decodedQr = getPayload(qrCodes);
+    const decodedQr = getPayload(jws);
     const patientData = extractPatientData(decodedQr);
     return patientData;
   } catch {
@@ -72,16 +71,13 @@ const getPatientData = (qrCodes) => {
   }
 };
 
-const getIssuer = (qrCodes) => {
-  if (!qrCodes || qrCodes.length === 0) {
-    return null;
-  }
-  const payload = JSON.parse(getPayload(qrCodes));
+const getIssuer = (jws) => {
+  const payload = JSON.parse(getPayload(jws));
   return payload.iss;
 };
 
-const getIssuerDisplayName = async (qrCodes, controller) => {
-  const issuer = getIssuer(qrCodes);
+const getIssuerDisplayName = async (jws, controller) => {
+  const issuer = getIssuer(jws);
   // use VCI directory to resolve name
   const issuerDirectories = await getIssuerDirectories(controller);
   const participatingIssuers = issuerDirectories[0].issuers.participating_issuers;
@@ -89,6 +85,11 @@ const getIssuerDisplayName = async (qrCodes, controller) => {
     (issObj) => issObj.iss === issuer
   ).name;
   return issuerDisplayName;
+};
+
+const getCredential = (jws) => {
+  const payload = JSON.parse(getPayload(jws));
+  return payload.vc;
 };
 
 export {
@@ -99,5 +100,6 @@ export {
   getJws,
   getPatientData,
   getPayload,
+  getCredential,
   getIssuerDisplayName,
 };

@@ -11,7 +11,7 @@ import {
   ListItem,
 } from '@mui/material';
 import VisibilityIcon from '@mui/icons-material/Visibility';
-import { useQrDataContext } from 'components/QrDataProvider';
+import { useHealthCardDataContext } from 'components/HealthCardDataProvider';
 import { getPatientData } from 'utils/qrHelpers';
 import { useTranslation } from 'react-i18next';
 import useStyles from './styles';
@@ -21,9 +21,9 @@ const VaccineCard = () => {
   const styles = useStyles();
   const { t } = useTranslation();
   const {
-    qrCodes
-  } = useQrDataContext();
-  const patientData = getPatientData(qrCodes);
+    jws
+  } = useHealthCardDataContext();
+  const patientData = getPatientData(jws);
   const [tradenames, setTradenames] = useState({});
   const [cvxCodes, setCvxCodes] = useState({});
   const [showDateOfBirth, setShowDateOfBirth] = useState(false);
