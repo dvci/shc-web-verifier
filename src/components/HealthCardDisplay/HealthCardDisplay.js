@@ -115,7 +115,7 @@ const HealthCardDisplay = () => {
   const { t } = useTranslation();
   const {
     jws,
-    validPrimarySeries,
+    validationStatus,
   } = useQrDataContext();
 
   const handleScan = () => {
@@ -290,7 +290,7 @@ const HealthCardDisplay = () => {
   return (
     <Grid container className={styles.root}>
       <HealthCardDataProvider>
-        <Banners cardJws={jws} cardsValidPrimarySeries={validPrimarySeries} />
+        <Banners cardJws={jws} cardsValidPrimarySeries={validationStatus.validPrimarySeries} />
         <Content cardJws={jws} />
       </HealthCardDataProvider>
     </Grid>

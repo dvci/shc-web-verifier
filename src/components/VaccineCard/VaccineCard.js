@@ -14,6 +14,7 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import { useHealthCardDataContext } from 'components/HealthCardDataProvider';
 import { getPatientData } from 'utils/qrHelpers';
 import { useTranslation } from 'react-i18next';
+import { useErrorHandler } from 'react-error-boundary'
 import useStyles from './styles';
 import { fetchTradenames, fetchCvx } from './iisstandards';
 
@@ -27,16 +28,25 @@ const VaccineCard = () => {
   const [tradenames, setTradenames] = useState({});
   const [cvxCodes, setCvxCodes] = useState({});
   const [showDateOfBirth, setShowDateOfBirth] = useState(false);
+  const handleError = useErrorHandler();
 
   React.useEffect(() => {
     async function getTradenames() {
-      const tn = await fetchTradenames();
-      setTradenames(tn);
+      try {
+        const tn = await fetchTradenames();
+        setTradenames(tn);
+      } catch (e) {
+        handleError(e);
+      }
     }
 
     async function getCvx() {
-      const cvx = await fetchCvx();
-      setCvxCodes(cvx);
+      try {
+        const cvx = await fetchCvx();
+        setCvxCodes(cvx);
+      } catch (e) {
+        handleError(e);
+      }
     }
 
     getTradenames();

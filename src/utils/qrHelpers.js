@@ -2,6 +2,16 @@ import { Base64 } from 'js-base64';
 import pako from 'pako';
 import getIssuerDirectories from './IssuerDirectories';
 
+const healthCardPattern = /^shc:\/(?<multipleChunks>(?<chunkIndex>[0-9]+)\/(?<chunkCount>[0-9]+)\/)?(?<payload>[0-9]+)$/;
+
+const parseHealthCardQr = (qrCode) => {
+  if (healthCardPattern.test(qrCode)) {
+    const match = qrCode.match(healthCardPattern);
+    return match.groups;
+  }
+  return null;
+}
+
 const getJws = (qrCodes) => qrCodes
   .map((c) => {
     const sliceIndex = c.lastIndexOf('/');
@@ -93,6 +103,7 @@ const getCredential = (jws) => {
 };
 
 export {
+  parseHealthCardQr,
   extractImmunizations,
   extractPatientData,
   extractPatientName,

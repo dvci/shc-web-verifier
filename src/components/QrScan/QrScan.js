@@ -7,7 +7,9 @@ import { useHistory } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import frame from 'assets/frame.png';
 import { useQrDataContext } from 'components/QrDataProvider';
+import { parseHealthCardQr } from 'utils/qrHelpers'
 import QrScanner from 'qr-scanner';
+import { useErrorHandler } from 'react-error-boundary'
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -82,13 +84,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const healthCardPattern = /^shc:\/(?<multipleChunks>(?<chunkIndex>[0-9]+)\/(?<chunkCount>[0-9]+)\/)?[0-9]+$/;
-
 let qrScan;
 
 const QrScan = () => {
   const history = useHistory();
   const classes = useStyles();
+  const handleErrorFallback = useErrorHandler();
   const { setQrCodes } = useQrDataContext();
   const [scannedCodes, setScannedCodes] = useState([]);
   const [scannedData, setScannedData] = useState('');
@@ -148,7 +149,7 @@ const QrScan = () => {
     };
     getUserMedia().then(() => {
       createQrScanner(videoRef.current);
-    });
+    }, handleErrorFallback);
     return () => {
       if (runningQrScanner.current) runningQrScanner.current.stop();
     };
@@ -156,31 +157,29 @@ const QrScan = () => {
 
   useEffect(() => {
     const handleScan = (data) => {
-      if (healthCardPattern.test(data)) {
-        const match = data.match(healthCardPattern);
-        if (match.groups.multipleChunks) {
-          const chunkCount = +match.groups.chunkCount;
-          const currentChunkIndex = +match.groups.chunkIndex;
-          let tempScannedCodes = [...scannedCodesRef.current];
-          if (tempScannedCodes.length !== chunkCount) {
-            tempScannedCodes = new Array(chunkCount);
-            tempScannedCodes.fill(null, 0, chunkCount);
-          }
+      const qrData = parseHealthCardQr(data);
+      if (qrData && qrData.multipleChunks) {
+        const chunkCount = +qrData.chunkCount;
+        const currentChunkIndex = +qrData.chunkIndex;
+        let tempScannedCodes = [...scannedCodesRef.current];
+        if (tempScannedCodes.length !== chunkCount) {
+          tempScannedCodes = new Array(chunkCount);
+          tempScannedCodes.fill(null, 0, chunkCount);
+        }
 
-          if (tempScannedCodes[currentChunkIndex - 1] === null) {
-            tempScannedCodes[currentChunkIndex - 1] = data;
-          }
+        if (tempScannedCodes[currentChunkIndex - 1] === null) {
+          tempScannedCodes[currentChunkIndex - 1] = data;
+        }
 
-          if (tempScannedCodes.every((code) => code)) {
-            setQrCodes(tempScannedCodes);
-            history.push('/display-results');
-          }
-          setScannedCodes(tempScannedCodes);
-          scannedCodesRef.current = tempScannedCodes;
-        } else {
-          setQrCodes([data]);
+        if (tempScannedCodes.every((code) => code)) {
+          setQrCodes(tempScannedCodes);
           history.push('/display-results');
         }
+        setScannedCodes(tempScannedCodes);
+        scannedCodesRef.current = tempScannedCodes;
+      } else {
+        setQrCodes([data]);
+        history.push('/display-results');
       }
     };
 

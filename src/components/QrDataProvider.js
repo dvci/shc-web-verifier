@@ -2,6 +2,7 @@ import React, {
   createContext, useContext, useEffect, useState
 } from 'react';
 import {
+  parseHealthCardQr,
   getJws,
   getPayload,
 } from 'utils/qrHelpers';
@@ -14,15 +15,26 @@ const QrDataProvider = ({ children }) => {
     JSON.parse(localStorage.getItem('qrCodes'))
   );
   const [jws, setJws] = useState(null);
-  const [validPrimarySeries, setValidPrimarySeries] = useState(false);
+  const [qrError, setQrError] = useState(null);
+  const [validationStatus, setValidationStatus] = useState({
+    validPrimarySeries: null,
+    error: null,
+  });
 
   useEffect(() => {
     localStorage.setItem('qrCodes', JSON.stringify(qrCodes));
 
     let cardJws;
     if (qrCodes) {
-      cardJws = getJws(qrCodes);
-      setJws(cardJws);
+      // check valid SHC QR
+      const validShcQr = qrCodes.every((c) => parseHealthCardQr(c) !== null);
+      if (!validShcQr) {
+        setQrError('UNSUPPORTED_QR_NOT_SHC');
+        setJws(null);
+      } else {
+        cardJws = getJws(qrCodes);
+        setJws(cardJws);
+      }
     } else setJws(null);
 
     if (cardJws) {
@@ -31,11 +43,13 @@ const QrDataProvider = ({ children }) => {
         const payload = getPayload(cardJws);
         const patientBundle = JSON.parse(payload).vc.credentialSubject.fhirBundle;
         const results = Validator.execute(patientBundle, 'COVID-19');
-        setValidPrimarySeries(
-          results.some((series) => series.validPrimarySeries)
+        setValidationStatus(
+          { validPrimarySeries: results.some((series) => series.validPrimarySeries), error: null }
         );
       } catch {
-        setValidPrimarySeries(false);
+        setValidationStatus(
+          { validPrimarySeries: false, error: 'VALIDATION_ERROR' }
+        );
       }
     }
   }, [qrCodes]);
@@ -45,8 +59,9 @@ const QrDataProvider = ({ children }) => {
       value={{
         qrCodes,
         setQrCodes,
+        qrError,
         jws,
-        validPrimarySeries,
+        validationStatus,
       }}
     >
       {children}
