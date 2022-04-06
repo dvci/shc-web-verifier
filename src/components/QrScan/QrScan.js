@@ -153,7 +153,7 @@ const QrScan = () => {
     return () => {
       if (runningQrScanner.current) runningQrScanner.current.stop();
     };
-  }, []);
+  }, [handleErrorFallback]);
 
   useEffect(() => {
     const handleScan = (data) => {

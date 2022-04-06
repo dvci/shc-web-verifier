@@ -51,7 +51,7 @@ const VaccineCard = () => {
 
     getTradenames();
     getCvx();
-  }, []);
+  }, [handleError]);
 
   const toggleShowDateOfBirth = () => {
     setShowDateOfBirth(!showDateOfBirth);

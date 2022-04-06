@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import axios from 'axios';
 import { act } from 'react-dom/test-utils';
 import ThemeProvider from 'components/ThemeProvider';
-import { QrDataContext } from 'components/QrDataProvider';
+import { HealthCardDataContext } from 'components/HealthCardDataProvider';
 import * as qrHelpers from 'utils/qrHelpers';
 import VaccineCard from './VaccineCard';
 import '../../i18nTest';
@@ -134,16 +134,16 @@ const renderHealthCardDisplay = () => {
   qrHelpers.getPatientData = jest.fn().mockReturnValue(patientData);
   return render(
     <ThemeProvider>
-      <QrDataContext.Provider
+      <HealthCardDataContext.Provider
         value={{
-          qrCodes: [],
-          setQrCode: jest.fn(),
+          jws: null,
+          healthCardSupported: { status: true, error: null },
           healthCardVerified: { verified: false, error: null },
           issuerVerified: false,
         }}
       >
         <VaccineCard />
-      </QrDataContext.Provider>
+      </HealthCardDataContext.Provider>
     </ThemeProvider>
   );
 }

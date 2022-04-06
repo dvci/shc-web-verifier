@@ -2,6 +2,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import ThemeProvider from 'components/ThemeProvider';
 import { QrDataContext } from 'components/QrDataProvider';
+import * as healthCardDataProviders from 'components/HealthCardDataProvider';
 import * as qrHelpers from 'utils/qrHelpers';
 import HealthCardDisplay from './HealthCardDisplay';
 import '../../i18nTest';
@@ -61,31 +62,31 @@ const patientData = {
 
 jest.mock('../VaccineCard', () => ({ children }) => <>{children}</>);
 
-beforeAll(() => {
-  jest.spyOn(React, 'useEffect').mockImplementation((f) => f());
-});
-
-afterEach(() => {
-  jest.spyOn(React, 'useEffect').mockImplementation((f) => f());
-});
-
 const renderHealthCardDisplay = (
   displayPatientData,
+  healthCardSupported,
   healthCardVerified,
   healthCardVerifiedError,
   issuerVerified,
   validPrimarySeries
 ) => {
   qrHelpers.getPatientData = jest.fn().mockReturnValue(displayPatientData);
+  healthCardDataProviders.useHealthCardDataContext = jest.fn().mockReturnValue(
+    {
+      setJws: jest.fn(),
+      healthCardSupported: { status: healthCardSupported, error: null },
+      healthCardVerified: { verified: healthCardVerified, error: healthCardVerifiedError },
+      issuerVerified
+    }
+  );
+
   return render(
     <ThemeProvider>
       <QrDataContext.Provider
         value={{
           qrCodes: [],
           setQrCode: jest.fn(),
-          healthCardVerified: { verified: healthCardVerified, error: healthCardVerifiedError },
-          issuerVerified,
-          validPrimarySeries,
+          validationStatus: { validPrimarySeries, error: null }
         }}
       >
         <HealthCardDisplay />
@@ -95,7 +96,7 @@ const renderHealthCardDisplay = (
 }
 
 test('renders health card banner verified', () => {
-  renderHealthCardDisplay(patientData, true, null, true, true);
+  renderHealthCardDisplay(patientData, true, true, null, true, true);
   expect(screen.getByText(/Verified/i)).toBeInTheDocument();
   expect(screen.getByText(/Valid SMART® Health Card/i)).toBeInTheDocument();
   expect(screen.getByText(/Valid vaccination series/i)).toBeInTheDocument();
@@ -104,7 +105,7 @@ test('renders health card banner verified', () => {
 });
 
 test('renders health card banner partially verified', () => {
-  renderHealthCardDisplay(patientData, true, null, false, false);
+  renderHealthCardDisplay(patientData, true, true, null, false, false);
   expect(screen.getByText(/Partially Verified/i)).toBeInTheDocument();
   expect(screen.getByText(/Valid SMART® Health Card/i)).toBeInTheDocument();
   expect(screen.getByText(/Issuer not recognized/i)).toBeInTheDocument();
@@ -113,7 +114,7 @@ test('renders health card banner partially verified', () => {
 });
 
 test('renders health card banner series invalid', () => {
-  renderHealthCardDisplay(patientData, true, null, true, false);
+  renderHealthCardDisplay(patientData, true, true, null, true, false);
   expect(screen.getByText(/Verified/i)).toBeInTheDocument();
   expect(screen.getByText(/Valid SMART® Health Card/i)).toBeInTheDocument();
   expect(screen.getByText(/Issuer recognized/i)).toBeInTheDocument();
@@ -122,7 +123,7 @@ test('renders health card banner series invalid', () => {
 });
 
 test('renders health card banner invalid', () => {
-  renderHealthCardDisplay(null, false, null, false, false);
+  renderHealthCardDisplay(null, false, false, null, false, false);
   expect(screen.getByText(/Invalid SMART® Health Card/i)).toBeInTheDocument();
   expect(screen.getByText(/SCAN QR CODE/i)).toBeInTheDocument();
 });
