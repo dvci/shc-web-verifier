@@ -6,7 +6,7 @@ import {
   getPatientData,
   getIssuer,
   getIssuerDisplayName,
-  getCredential
+  getCredential,
 } from 'utils/qrHelpers';
 import { healthCardVerify, issuerVerify } from 'utils/verifyHelpers';
 
@@ -31,30 +31,55 @@ const HealthCardDataProvider = ({ healthCardJws, children }) => {
       try {
         vc = getCredential(cardJws);
       } catch {
-        setHealthCardSupported({ status: false, error: new Error('UNSUPPORTED_MALFORMED_CREDENTIAL') })
+        setHealthCardSupported({
+          status: false,
+          error: new Error('UNSUPPORTED_MALFORMED_CREDENTIAL'),
+        });
         return false;
       }
-      if (!vc.type.some((type) => type === 'https://smarthealth.cards#health-card')) {
-        setHealthCardSupported({ status: false, error: new Error('UNSUPPORTED_CREDENTIAL') })
+      if (
+        !vc.type.some(
+          (type) => type === 'https://smarthealth.cards#health-card'
+        )
+      ) {
+        setHealthCardSupported({
+          status: false,
+          error: new Error('UNSUPPORTED_CREDENTIAL'),
+        });
         return false;
       }
 
-      if (!vc.type.some((type) => type === 'https://smarthealth.cards#immunization')) {
-        setHealthCardSupported({ status: false, error: new Error('UNSUPPORTED_HEALTH_CARD') })
+      if (
+        !vc.type.some(
+          (type) => type === 'https://smarthealth.cards#immunization'
+        )
+      ) {
+        setHealthCardSupported({
+          status: false,
+          error: new Error('UNSUPPORTED_HEALTH_CARD'),
+        });
         return false;
       }
 
       if (!getPatientData(cardJws)) {
-        setHealthCardSupported({ status: false, error: new Error('UNSUPPORTED_INVALID_PROFILE_MISSING_PATIENT') })
+        setHealthCardSupported({
+          status: false,
+          error: new Error('UNSUPPORTED_INVALID_PROFILE_MISSING_PATIENT'),
+        });
         return false;
       }
 
-      setHealthCardSupported({ status: true, error: null })
+      setHealthCardSupported({ status: true, error: null });
       return true;
-    }
+    };
     async function verifyHealthCard(agent, cardJws, iss, abortController) {
       try {
-        const status = await healthCardVerify(agent, cardJws, iss, abortController);
+        const status = await healthCardVerify(
+          agent,
+          cardJws,
+          iss,
+          abortController
+        );
         setHealthCardVerified({ verified: status, error: null });
       } catch (error) {
         if (error.name !== 'AbortError') {
@@ -67,8 +92,8 @@ const HealthCardDataProvider = ({ healthCardJws, children }) => {
         const status = await issuerVerify(iss, abortController);
         setIssuerVerified(status);
         if (status === true) {
-          getIssuerDisplayName(cardJws, abortController)
-            .then((result) => setIssuerDisplayName(result));
+          // eslint-disable-next-line max-len
+          getIssuerDisplayName(cardJws, abortController).then((result) => setIssuerDisplayName(result));
         }
       } catch (error) {
         if (error.name !== 'AbortError') {
@@ -96,8 +121,8 @@ const HealthCardDataProvider = ({ healthCardJws, children }) => {
     }
 
     return () => {
-      abortController.abort()
-    }
+      abortController.abort();
+    };
   }, [healthCardJws]);
 
   return (
@@ -108,7 +133,7 @@ const HealthCardDataProvider = ({ healthCardJws, children }) => {
         issuerVerified,
         issuerDisplayName,
         jws,
-        setJws
+        setJws,
       }}
     >
       {children}
@@ -118,4 +143,8 @@ const HealthCardDataProvider = ({ healthCardJws, children }) => {
 
 const useHealthCardDataContext = () => useContext(HealthCardDataContext);
 
-export { HealthCardDataContext, HealthCardDataProvider, useHealthCardDataContext };
+export {
+  HealthCardDataContext,
+  HealthCardDataProvider,
+  useHealthCardDataContext,
+};
