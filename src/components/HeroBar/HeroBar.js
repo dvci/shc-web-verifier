@@ -29,7 +29,7 @@ const HeroBar = ({ hasError }) => {
   return (
     <Box className={classes.heroBar}>
       {(!hasError) ? (
-        <Route path={['/qr-scan', '/display-results']}>
+        <Route path={['/qr-scan', '/display-results', '/faq', '/privacy']}>
           <IconButton
             size="small"
             onClick={() => history.push('/')}

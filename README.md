@@ -59,7 +59,7 @@ cordova build
 
 Limited scope, CQL engine based client-side validation script that executes the CDSi supporting data guidelines.
 
-Currently only validates each non-Risk type series based on allowable series age to start, dose absMinAge, allowable vaccine codes (CVX only) and begin/end age, and allowableInterval absMinInt fromPrevious.
+Currently only validates each non-Risk type series based on allowable series age to start, dose absMinAge, allowable vaccine codes (CVX only) and begin/end age, inadvertent vaccine codes (CVX only), absolute minimum preferable interval from previous dose (including effective and cessation dates), and absolute minimum allowable interval from previous dose.
 
 Does not support forecasting or any other validation, including conditional doses, recurring or seasonal doses, immunity or contradictions.
 
@@ -78,7 +78,7 @@ Requires CQFramework CQL-to-ELM Translator Java tool to be built and installed l
 Script to convert CDSi AntigenSupportingData XML format to json and write results to src/supporting-data.
 
 ```
-node ./src/supporting-data/SupportingData.js '/path/to/CDC/Version x.xx - 508/XML/AntigenSupportingData- COVID-19-508.xml'
+node ./cql/SupportingData.js '/path/to/CDC/Version x.xx - 508/XML/AntigenSupportingData- COVID-19-508.xml'
 ```
 
 Will need to be updated with each CDSi release. Primary vaccine series number of doses are defined separately in src/supporting-data/AncilarySupportingData-{antigen}.json

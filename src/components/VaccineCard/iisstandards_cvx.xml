@@ -184,9 +184,9 @@
 <CVXInfo><ShortDescription>COVID-19, mRNA, LNP-S, PF, 10 mcg/0.2 mL dose, tris-sucrose</ShortDescription>
 <FullVaccinename>SARS-COV-2 (COVID-19) vaccine, mRNA, spike protein, LNP, preservative free, 10 mcg/0.2mL dose, tris-sucrose formulation</FullVaccinename>
 <CVXCode>218       </CVXCode>
-<Notes>Potential FDA EUA, Pfizer tris-sucrose vaccine for 5 through 11 years of age</Notes>
+<Notes>FDA EUA 01/03/2022, Pfizer tris-sucrose vaccine for 5 through 11 years of age</Notes>
 <Status>Active</Status>
-<LastUpdated>9/13/2021</LastUpdated>
+<LastUpdated>3/29/2022</LastUpdated>
 </CVXInfo>
 <CVXInfo><ShortDescription>COVID-19, mRNA, LNP-S, PF, 100 mcg/0.5mL dose or 50 mcg/0.25mL dose</ShortDescription>
 <FullVaccinename>SARS-COV-2 (COVID-19) vaccine, mRNA, spike protein, LNP, preservative free, 100 mcg/0.5mL dose or 50 mcg/0.25mL dose</FullVaccinename>
@@ -219,9 +219,9 @@
 <CVXInfo><ShortDescription>COVID-19, mRNA, LNP-S, PF, 50 mcg/0.5 mL dose</ShortDescription>
 <FullVaccinename>SARS-COV-2 (COVID-19) vaccine, mRNA, spike protein, LNP, preservative free, 50 mcg/0.5 mL dose</FullVaccinename>
 <CVXCode>221       </CVXCode>
-<Notes>Pre-EUA Authorization -  Moderna booster dose 2.5mL vial presentation only</Notes>
+<Notes>FDA EUA 03/29/2022, Moderna booster dose 2.5mL vial presentation only</Notes>
 <Status>Active</Status>
-<LastUpdated>3/10/2022</LastUpdated>
+<LastUpdated>3/29/2022</LastUpdated>
 </CVXInfo>
 <CVXInfo><ShortDescription>COVID-19, subunit, rS-nanoparticle+Matrix-M1 Adjuvant, PF, 0.5 mL</ShortDescription>
 <FullVaccinename>SARS-COV-2 (COVID-19) vaccine, subunit, recombinant spike protein-nanoparticle+Matrix-M1 Adjuvant, preservative free, 0.5mL dose</FullVaccinename>

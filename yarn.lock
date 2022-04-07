@@ -4037,7 +4037,7 @@ cql-exec-fhir@^2.0.0:
   dependencies:
     xml2js "~0.4.23"
 
-cql-execution@^2.2.0, cql-execution@^2.3.2:
+cql-execution@^2.2.0, cql-execution@^2.4.0:
   version "2.4.0"
   resolved "https://registry.npmjs.org/cql-execution/-/cql-execution-2.4.0.tgz#b471017a1ecff1450e030f75533e668201ca1f77"
   integrity sha512-XgjoPnn3IFys2t2wwi7aT5sXsS+h7/CvqI7dtdDQtSsiK6ePCfnWPT4CRuapiiW3OBrPvqD1oYmvy6X2xvvMlA==
