@@ -60,7 +60,7 @@ Will need to be updated with each CDSi release. Primary vaccine series number of
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/dvci/health_cards. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/dvci/health_cards/blob/main/CODE_OF_CONDUCT.md).
+Bug reports and pull requests are welcome on GitHub at https://github.com/dvci/shc-web-verifier. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/dvci/shc-web-verifier/blob/main/CODE_OF_CONDUCT.md).
 
 ## License
 
