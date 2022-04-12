@@ -86,6 +86,41 @@ const healthCardPattern = /^shc:\/(?<multipleChunks>(?<chunkIndex>[0-9]+)\/(?<ch
 
 let qrScan;
 
+const cameraPermission = async () => {
+  if (window.cordova) {
+    if (window.cordova.platformId === 'android' || window.cordova.platformId === 'ios') {
+      if (window.cordova.platformId === 'ios') {
+        window.cordova.plugins.iosrtc.registerGlobals();
+      }
+      const { diagnostic } = window.cordova.plugins;
+      diagnostic.enableDebug();
+      return new Promise((resolve, reject) => {
+        diagnostic.getCameraAuthorizationStatus(
+          (status) => {
+            if (status === diagnostic.permissionStatus.GRANTED) {
+              resolve(true);
+            } else {
+              diagnostic.requestCameraAuthorization(
+                (requestedStatus) => {
+                  if (requestedStatus === diagnostic.permissionStatus.GRANTED) {
+                    resolve(true);
+                  } else { resolve(false); }
+                },
+                (requestedError) => {
+                  reject(requestedError);
+                }, false
+              );
+            }
+          }, (error) => {
+            reject(error);
+          }, false
+        );
+      });
+    }
+  }
+  return Promise.resolve(true);
+}
+
 const QrScan = () => {
   const history = useHistory();
   const classes = useStyles();
@@ -143,12 +178,19 @@ const QrScan = () => {
           videoRef.current.srcObject = stream;
         }
       } catch (err) {
-        throw Error('Cannot access video.');
+        throw Error(`Cannot access video: ${err.message}.`);
       }
     };
-    getUserMedia().then(() => {
-      createQrScanner(videoRef.current);
-    });
+
+    cameraPermission()
+      .then((granted) => {
+        if (granted) {
+          getUserMedia().then(() => {
+            createQrScanner(videoRef.current);
+          });
+        }
+      })
+
     return () => {
       if (runningQrScanner.current) runningQrScanner.current.stop();
     };
