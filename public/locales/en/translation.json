@@ -71,7 +71,7 @@
       },
       {
         "header": "INFORMATION COLLECTED FROM WEB TRAFFIC REPORTING TOOLS",
-        "content": "When a GitHub Pages site is visited, the visitor's IP address is logged and stored for security purposes, regardless of whether the visitor has signed into GitHub or not. For more information about GitHub's security practices, see <a href=\"https://docs.github.com/en/github/site-policy/github-privacy-statement\" class=\"dotcom-only\">GitHub Privacy Statement</a>."
+        "content": "When a GitHub Pages site is visited, the visitor's IP address is logged and stored for security purposes, regardless of whether the visitor has signed into GitHub or not. For more information about GitHub's security practices, see <a target=\"top\" href=\"https://docs.github.com/en/github/site-policy/github-privacy-statement\" class=\"dotcom-only\">GitHub Privacy Statement</a>."
       },
       {
         "header": "COOKIES",
@@ -91,7 +91,7 @@
       },
       {
         "header": "QUESTIONS AND COMMENTS",
-        "content": "Please feel free to send your privacy-related comments or questions to Privacy@MITRE.org. We will do our best to respond to all reasonable inquiries in a timely manner. For all other VCI™ related questions and comments, please contact us at vaccination@mitre.org."
+        "content": "Please feel free to send your privacy-related comments or questions to Privacy@MITRE.org. We will do our best to respond to all reasonable inquiries in a timely manner. For all other application related questions and comments, please contact us at vci-developers@mitre.org."
       }
     ]
   },  
