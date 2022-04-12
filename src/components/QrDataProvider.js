@@ -74,7 +74,7 @@ const QrDataProvider = ({ children }) => {
         const results = Validator.execute(patientBundle, JSON.parse(payload).vc.type);
         if (results) {
           setValidPrimarySeries(
-            results.some((series) => series.complete.length > 0)
+            results.some((series) => series.validPrimarySeries)
           );
         } else setValidPrimarySeries(null);
       } catch {

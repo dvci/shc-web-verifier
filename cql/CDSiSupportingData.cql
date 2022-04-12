@@ -1,4 +1,4 @@
-library CDSiSupportingData version '1'
+library CDSiSupportingData version '1.0'
 
 using FHIR version '4.0.0'
 using CDSI version '1.0.0'
@@ -15,14 +15,16 @@ define "Immunizations":
 	sort by (occurrence as FHIR.dateTime) asc
 
 define "Run":
-	"EvaluateAllSeries"
+	EvaluateAllSeries
 
 define "EvaluateAllSeries":
 	AntigenSupportingData.series series
-	where series.seriesType != 'Risk'
+		let evaluations: "EvaluateSeries"(series.seriesName, series.selectSeries, series.seriesDose)
+		where series.seriesType != 'Risk'	
 	return Tuple {
 		seriesName: series.seriesName,
-		complete: ("EvaluateSeries"(series.seriesName, series.selectSeries, series.seriesDose)).where(validPrimarySeries = true)
+		validPrimarySeries: exists evaluations.where(validPrimarySeries = true),
+		evaluations: evaluations
 	}
 
 define function "EvaluateSeries" (seriesName String,
@@ -33,12 +35,12 @@ define function "EvaluateSeries" (seriesName String,
             R union ({
             immunization X
                 let startingImmunizationIndex: Count(R),
-				doseEvaluations: "EvaluateSeriesDoses"(selectSeries, seriesDoses, startingImmunizationIndex)
+				doseEvaluations: flatten("EvaluateSeriesDoses"(selectSeries, seriesDoses, startingImmunizationIndex))
                  return(
 					Tuple {
-                    	startingImmunizationIndex: startingImmunizationIndex,                 
+                    	startingImmunizationIndex: startingImmunizationIndex,
                     	validPrimarySeries: IsValidPrimarySeries(seriesName, seriesDoses, doseEvaluations),
-						doses: doseEvaluations.where(validDose = true)
+						doseEvaluations: doseEvaluations
                     }
                 )
             }) 
@@ -47,84 +49,79 @@ define function "EvaluateSeriesDoses" (selectSeries CDSI.SelectSeries,
 		seriesDoses List<CDSI.SeriesDose>,
         startingImmunizationIndex Integer):
 	seriesDoses seriesDose  
-        aggregate all R starting (List{} as List<Tuple{immunizationIndex Integer, doseIndex Integer, doseNumber String, validDose Boolean }>): 
+        aggregate all R starting (List{} as List<List<Tuple{immunizationIndex Integer, doseIndex Integer, doseNumber String, validDose Boolean }>>): 
             R union ({
             seriesDose X
-                let previousValidDoseIndex: if Count(R)>0 then (Last(R.where(validDose = true))).doseIndex else -1,
-                previousValidImmunizationIndex: if Count(R)>0 then (Last(R.where(validDose = true))).immunizationIndex else -1,
+                let previousValidDoseIndex: (Last((flatten(R)).where(validDose = true))).doseIndex,
+                previousValidImmunizationIndex: (Last((flatten(R)).where(validDose = true))).immunizationIndex,
                 currentDoseIndex: Count(R),
 				doseImmunizationEvaluations: "EvaluateSeriesDose"(selectSeries, seriesDose, currentDoseIndex, startingImmunizationIndex, previousValidDoseIndex, previousValidImmunizationIndex)
                 return(
-					if First(doseImmunizationEvaluations.where(validDose = true)) is not null
-					then First(doseImmunizationEvaluations.where(validDose = true))
-					else if First(doseImmunizationEvaluations.where(validDose is not null and validDose = false)) is not null
-					then First(doseImmunizationEvaluations.where(validDose is not null and validDose = false))
-					else if previousValidImmunizationIndex is not null and First(doseImmunizationEvaluations.where(immunizationIndex > previousValidImmunizationIndex)) is not null
-					then First(doseImmunizationEvaluations.where(immunizationIndex > previousValidImmunizationIndex))
-					else First(doseImmunizationEvaluations)
+					if exists doseImmunizationEvaluations.where(validDose is not null)
+					then doseImmunizationEvaluations.where(validDose is not null)
+					else {Tuple { 
+						doseNumber: seriesDose.doseNumber,
+						doseIndex: currentDoseIndex,
+						immunizationIndex: null,   
+						immunization: null,
+						validDose: null
+					}}
 				)
             })
 
 define function "EvaluateSeriesDose" (selectSeries CDSI.SelectSeries,
 		seriesDose CDSI.SeriesDose,
         currentDoseIndex Integer, startingImmunizationIndex Integer, previousValidDoseIndex Integer, previousValidImmunizationIndex Integer):
-    ("Immunizations".skip(startingImmunizationIndex)) immunization      
+    ("Immunizations".skip(if exists previousValidImmunizationIndex then previousValidImmunizationIndex + 1 else startingImmunizationIndex)) immunization
         aggregate all R starting (List{} as List<Tuple{doseNumber String, doseIndex Integer, immunizationIndex Integer, immunization FHIR.Immunization, validDose Boolean }>): 
             R union ({
             immunization X
-                let currentImmunizationIndex: Count(R) + startingImmunizationIndex
+                let currentImmunizationIndex: if exists previousValidImmunizationIndex then Count(R) + previousValidImmunizationIndex + 1 else Count(R) + startingImmunizationIndex,
+				currentValidImmunizationIndex: (Last(R.where(validDose = true))).immunizationIndex
                 return(
-					EvaluateSeriesDoseImmunization(selectSeries, seriesDose, currentDoseIndex, currentImmunizationIndex, previousValidDoseIndex, previousValidImmunizationIndex)
+					if exists currentValidImmunizationIndex
+						or (currentDoseIndex > 0 and not exists previousValidDoseIndex)
+					then Tuple {
+						doseNumber: seriesDose.doseNumber,
+						doseIndex: currentDoseIndex,
+						immunizationIndex: currentImmunizationIndex,   
+						immunization: "Immunizations"[currentImmunizationIndex],
+						validDose: null
+					}
+					else
+						EvaluateSeriesDoseImmunization(selectSeries, seriesDose, currentDoseIndex, currentImmunizationIndex, previousValidDoseIndex, previousValidImmunizationIndex)
                 )
             }) 		
 
 define function "EvaluateSeriesDoseImmunization" (selectSeries CDSI.SelectSeries,
 		seriesDose CDSI.SeriesDose,
         currentDoseIndex Integer, currentImmunizationIndex Integer, previousValidDoseIndex Integer, previousValidImmunizationIndex Integer):  
-	if currentImmunizationIndex >= Count("Immunizations")
-		then Tuple {
-			doseNumber: seriesDose.doseNumber,
-			doseIndex: currentDoseIndex,
-			immunizationIndex: null,   
-			immunization: null,
-			validDose: null
-		}
-	else if previousValidDoseIndex is null or (previousValidImmunizationIndex is not null and currentImmunizationIndex <= previousValidImmunizationIndex)
-		then Tuple {
-			doseNumber: seriesDose.doseNumber,
-			doseIndex: currentDoseIndex,
-			immunizationIndex: currentImmunizationIndex,   
-			immunization: "Immunizations"[currentImmunizationIndex],
-			validDose: null
-		}			
-	else
-		Tuple {
-			doseNumber: seriesDose.doseNumber,
-			doseIndex: currentDoseIndex,
-			immunizationIndex: currentImmunizationIndex,   
-			immunization: "Immunizations"[currentImmunizationIndex],
-			validDose: "IsValidSeriesDose"(selectSeries, seriesDose, "Immunizations"[currentImmunizationIndex], "Immunizations"[previousValidImmunizationIndex])
-		}						
+	Tuple {
+		doseNumber: seriesDose.doseNumber,
+		doseIndex: currentDoseIndex,
+		immunizationIndex: currentImmunizationIndex,   
+		immunization: "Immunizations"[currentImmunizationIndex],
+		validDose: "IsValidSeriesDose"(selectSeries, seriesDose, "Immunizations"[currentImmunizationIndex], 
+			if currentImmunizationIndex > 0 then "Immunizations"[currentImmunizationIndex - 1] else null)
+	}						
 
 define function "IsValidSeriesDose" (selectSeries CDSI.SelectSeries,
 		seriesDose CDSI.SeriesDose,
 		immunization FHIR.Immunization,
 		previousImmunization FHIR.Immunization):
 	(previousImmunization is not null or "IsValidSeriesAgeToStart"(selectSeries, immunization))
+	and "IsValidAge"(seriesDose.age, immunization)
+	and "IsValidInterval"(seriesDose.interval, immunization, previousImmunization)
+	and "IsValidInterval"(seriesDose.allowableInterval, immunization, previousImmunization)
 	and "IsValidAllowableVaccine"(seriesDose.allowableVaccine, immunization)
-	and "IsValidAllowableInterval"(seriesDose.allowableInterval, immunization, previousImmunization)
-	and "IsValidAllowableAge"(seriesDose.age, immunization)
+	and "IsNotInadvertentVaccine"(seriesDose.inadvertentVaccine, immunization)
 
 define function "IsValidSeriesAgeToStart"(selectSeries CDSI.SelectSeries,
 		immunization FHIR.Immunization):
-	if (selectSeries.minAgeToStart.value is not null and selectSeries.minAgeToStart.unit is null) 
-		or (selectSeries.maxAgeToStart.value is not null and selectSeries.maxAgeToStart.unit is null)
-	then null		
-	else 
-		(selectSeries.minAgeToStart.value is null 
-			or AgeInUnitsAt(selectSeries.minAgeToStart.unit, immunization.occurrence) >= selectSeries.minAgeToStart.value)
-		and (selectSeries.maxAgeToStart.value is null 
-			or AgeInUnitsAt(selectSeries.maxAgeToStart.unit, immunization.occurrence) < selectSeries.maxAgeToStart.value)
+	((not exists selectSeries.minAgeToStart)
+		or immunization.occurrence >= DateAsOfAge(selectSeries.minAgeToStart))
+	and ((not exists selectSeries.maxAgeToStart)
+		or immunization.occurrence < DateAsOfAge(selectSeries.maxAgeToStart))
 
 define function "IsValidAllowableVaccine" (allowableVaccine List<CDSI.SeriesDose.AllowableVaccine>, 
 		immunization FHIR.Immunization) returns Boolean:
@@ -133,44 +130,37 @@ define function "IsValidAllowableVaccine" (allowableVaccine List<CDSI.SeriesDose
 			where coding.system = 'http://hl7.org/fhir/sid/cvx'
 			return(allowableVaccine av
       			where coding.code = av.cvx
-      			and (av.beginAge.value is null 
-					or AgeInUnitsAt(av.beginAge.unit, immunization.occurrence) >= av.beginAge.value)
-				and (av.endAge.value is null 
-					or AgeInUnitsAt(av.endAge.unit, immunization.occurrence) < av.endAge.value)
+      			and ((not exists av.beginAge)
+					or immunization.occurrence >= DateAsOfAge(av.beginAge))
+				and ((not exists av.endAge)
+					or immunization.occurrence < DateAsOfAge(av.endAge))
     		)
 		)	
 	)
 
-define function "IsValidAllowableInterval" (allowableInterval List<CDSI.SeriesDose.AllowableInterval>, 
+define function "IsNotInadvertentVaccine" (inadvertentVaccine List<CDSI.SeriesDose.InadvertentVaccine>, 
+		immunization FHIR.Immunization) returns Boolean:
+	not exists(
+		flatten(immunization.vaccineCode.coding coding
+			where coding.system = 'http://hl7.org/fhir/sid/cvx'
+			return(inadvertentVaccine iv
+      			where coding.code = iv.cvx
+    		)
+		)	
+	)	
+
+define function "IsValidInterval" (intervals List<CDSI.SeriesDose.DoseInterval>, 
 		immunization FHIR.Immunization,
 		previousImmunization FHIR.Immunization) returns Boolean:
-	if Count(allowableInterval) = 0 
-		or Count(First(allowableInterval.where(fromPrevious = 'Y'))) = 0 
-		or First(allowableInterval.where(fromPrevious = 'Y')).absMinInt.value is null
+	if ApplicableInterval(intervals, immunization) is null
 		or previousImmunization is null
-	then
-		true
-	else
-		case First(allowableInterval.where(fromPrevious = 'Y')).absMinInt.unit
-			when 'd' then difference in days between (previousImmunization.occurrence as FHIR.dateTime) and (immunization.occurrence as FHIR.dateTime) 
-				>= First(allowableInterval.where(fromPrevious = 'Y')).absMinInt.value
-			when 'wk' then difference in weeks between (previousImmunization.occurrence as FHIR.dateTime) and (immunization.occurrence as FHIR.dateTime) 
-				>= First(allowableInterval.where(fromPrevious = 'Y')).absMinInt.value				
-			when 'mo' then difference in months between (previousImmunization.occurrence as FHIR.dateTime) and (immunization.occurrence as FHIR.dateTime) 
-				>= First(allowableInterval.where(fromPrevious = 'Y')).absMinInt.value				
-			when 'a' then difference in years between (previousImmunization.occurrence as FHIR.dateTime) and (immunization.occurrence as FHIR.dateTime) 
-				>= First(allowableInterval.where(fromPrevious = 'Y')).absMinInt.value
-			else null
-		end
+	then true
+	else immunization.occurrence as FHIR.dateTime >= DateTimeAsOf(previousImmunization.occurrence as FHIR.dateTime, ApplicableInterval(intervals, immunization).absMinInt)
 
-define function "IsValidAllowableAge" (age CDSI.SeriesDose.Age, 
+define function "IsValidAge" (age CDSI.SeriesDose.Age, 
 		immunization FHIR.Immunization):
-	if Count(age) = 0 
-		or age.absMinAge.value is null
-	then true		
-	else if age.absMinAge.unit is not null 
-	then AgeInUnitsAt(age.absMinAge.unit, immunization.occurrence) >= age.absMinAge.value
-	else null
+	(not exists age.absMinAge)
+		or immunization.occurrence >= DateAsOfAge(age.absMinAge)
 
 define function "IsValidPrimarySeries" (primarySeriesName String,
 		seriesDoses List<CDSI.SeriesDose>,
@@ -178,11 +168,25 @@ define function "IsValidPrimarySeries" (primarySeriesName String,
 		immunizationIndex Integer, validDose Boolean }>):
 	Count(doseEvaluations.where(validDose = true)) >= First(AntigenAncillaryData.series.where(seriesName = primarySeriesName)).primarySeriesNumberDoses
 
-define function "AgeInUnitsAt"(unit String, atDate FHIR.dateTime):
-	case unit
-		when 'd' then AgeInDaysAt(atDate as FHIR.dateTime)
-		when 'wk' then AgeInWeeksAt(atDate as FHIR.dateTime)
-		when 'mo' then AgeInMonthsAt(atDate as FHIR.dateTime)
-		when 'a' then AgeInYearsAt(atDate as FHIR.dateTime)
-		else null
-	end
+define function "ApplicableInterval" (intervals List<CDSI.SeriesDose.DoseInterval>, 
+		immunization FHIR.Immunization) returns CDSI.SeriesDose.DoseInterval:
+	First(
+		intervals i
+			where i.fromPrevious = 'Y'
+			and ((not exists i.effectiveDate) or immunization.occurrence as FHIR.dateTime >= i.effectiveDate)
+			and ((not exists i.cessationDate) or immunization.occurrence as FHIR.dateTime <= i.cessationDate)
+			and exists i.absMinInt
+	)
+
+define function "DateAsOfAge"(ageWithGracePeriod List<System.Quantity>):
+	DateAsOf(Patient.birthDate, ageWithGracePeriod)
+
+define function "DateAsOf"(startDate FHIR.date, intervalWithGracePeriod List<System.Quantity>):
+	if Length(intervalWithGracePeriod) = 1
+	then startDate + First(intervalWithGracePeriod)
+	else startDate + First(intervalWithGracePeriod) + intervalWithGracePeriod[1]
+
+define function "DateTimeAsOf"(startDate FHIR.dateTime, intervalWithGracePeriod List<System.Quantity>):
+	if Length(intervalWithGracePeriod) = 1
+	then startDate + First(intervalWithGracePeriod)
+	else startDate + First(intervalWithGracePeriod) + intervalWithGracePeriod[1]

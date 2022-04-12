@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="org.mitre.shcverifier" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+    <name>SMART Health Card Verifier</name>
+    <description>SMART Health Card Verifier</description>
+    <author email="vci@mitre.org" href="https://mitre.org">
+        MITRE
+    </author>
+    <content src="index.html" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+
+    <preference name="cordova.plugins.diagnostic.modules" value="WIFI CAMERA EXTERNAL_STORAGE" />
+
+    <platform name="android">
+        <config-file target="AndroidManifest.xml" parent="/*" mode="merge">
+            <uses-permission android:name="android.permission.CAMERA" />
+            <uses-feature android:name="android.hardware.camera" />
+            <uses-feature android:name="android.hardware.camera.autofocus" />
+            <uses-feature android:name="android.hardware.camera2.full" />
+            <uses-feature android:name="android.hardware.camera2.autofocus" />
+            <uses-permission android:name="android.permission.INTERNET" />
+            <uses-permission android:name="android.webkit.PermissionRequest" />
+        </config-file>
+    </platform>
+
+    <platform name="ios">
+        <edit-config target="NSCameraUsageDescription" file="*-Info.plist" mode="merge">
+            <string>Camera is used for scanning QR codes.</string>
+        </edit-config>
+    </platform>
+</widget>
