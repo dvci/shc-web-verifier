@@ -74,4 +74,4 @@ Unless required by applicable law or agreed to in writing, software distributed 
 
 ## Code of Conduct
 
-Everyone interacting with the project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/dvci/health_cards/blob/main/CODE_OF_CONDUCT.md).
+Everyone interacting with the project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/dvci/shc-web-verifier/blob/main/CODE_OF_CONDUCT.md).
