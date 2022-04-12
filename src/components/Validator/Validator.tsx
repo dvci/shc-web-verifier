@@ -1,10 +1,31 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import cql from '../../output-elm/CDSiSupportingData.json';
 import fhirhelpers from '../../output-elm/FHIRHelpers-4.0.0.json';
+import { supportingData, ancillaryData } from '../../supporting-data';
 
 const { Repository, CodeService, PatientContext } = require('cql-execution');
 const { PatientSource } = require('cql-exec-fhir');
-const { supportingData, ancillaryData } = require('../../supporting-data');
+
+interface IAntigenData {
+  vcTypes: string[];
+  antigen: string;
+  supportingData: any;
+  ancillaryData: any
+}
+
+const antigenData: IAntigenData[] = [
+  {
+    vcTypes: ["https://smarthealth.cards#covid19", "https://smarthealth.cards#health-card", "https://smarthealth.cards#immunization"], 
+    antigen: 'COVID-19',
+    supportingData: supportingData['COVID-19'].antigenSupportingData,
+    ancillaryData: ancillaryData['COVID-19'].antigenAncillaryData
+  }
+];
+
+const getAntigenData = (vcTypes: string[]) : IAntigenData | undefined => {
+  vcTypes.sort((a, b) => a.localeCompare(b));
+  return antigenData.find(antigen => antigen.vcTypes.length === vcTypes.length && vcTypes.every((type, index) => antigen.vcTypes[index] === type ));
+};
 
 export interface IValidationResult {
   seriesName: string;
@@ -40,11 +61,11 @@ export class Validator {
    */
   public static execute(
     patientBundle: any,
-    antigen: string,
+    vcTypes: string[],
     valueSetMap: any,
     elmJSONs: any[] = [cql, fhirhelpers],
     libraryID: string = 'CDSiSupportingData',
-  ): [IValidationResult] {
+  ): [IValidationResult] | null {
     const mainELM = elmJSONs.find((e) => e.library.identifier.id === libraryID);
     if (!mainELM) {
       throw Error(`Cannot find ELM library with library id ${libraryID}`);
@@ -57,9 +78,11 @@ export class Validator {
     );
 
     const codeService = new CodeService(valueSetMap);
+    const antigen = getAntigenData(vcTypes);
+    if(!antigen) return null;
     const parameters = { 
-      AntigenSupportingData: supportingData[antigen].antigenSupportingData,
-      AntigenAncillaryData: ancillaryData[antigen].antigenAncillaryData 
+      AntigenSupportingData: antigen.supportingData,
+      AntigenAncillaryData: antigen.ancillaryData 
     };
 
     // Load array of patient bundles
