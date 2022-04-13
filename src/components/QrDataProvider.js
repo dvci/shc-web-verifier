@@ -42,8 +42,8 @@ const QrDataProvider = ({ children }) => {
         const status = await issuerVerify(iss, abortController);
         setIssuerVerified(status);
         if (status === true) {
-          getIssuerDisplayName(qrCodes, abortController)
-            .then((result) => setIssuerDisplayName(result));
+          // eslint-disable-next-line max-len
+          getIssuerDisplayName(qrCodes, abortController).then((result) => setIssuerDisplayName(result));
         }
       } catch (error) {
         if (error.name !== 'AbortError') {
@@ -83,8 +83,8 @@ const QrDataProvider = ({ children }) => {
     }
 
     return () => {
-      abortController.abort()
-    }
+      abortController.abort();
+    };
   }, [qrCodes]);
 
   return (

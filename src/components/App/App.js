@@ -3,7 +3,10 @@ import './App.css';
 import React from 'react';
 import { CssBaseline } from '@mui/material';
 import {
-  HashRouter as Router, Redirect, Route, Switch
+  HashRouter as Router,
+  Redirect,
+  Route,
+  Switch,
 } from 'react-router-dom';
 import HealthCardDisplay from 'components/HealthCardDisplay';
 import ThemeProvider from 'components/ThemeProvider';
@@ -15,7 +18,7 @@ import FAQ from 'components/FAQ';
 import StaticDisplay from 'components/StaticDisplay';
 import QrScan from 'components/QrScan';
 import { QrDataProvider } from 'components/QrDataProvider';
-import { ErrorBoundary } from 'react-error-boundary'
+import { ErrorBoundary } from 'react-error-boundary';
 import { ErrorFallback } from 'utils/errorHelper';
 
 const App = () => (

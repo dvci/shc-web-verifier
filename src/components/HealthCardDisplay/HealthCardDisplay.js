@@ -1,9 +1,6 @@
 import React from 'react';
 import {
-  Box,
-  Container,
-  Grid,
-  Typography,
+  Box, Container, Grid, Typography
 } from '@mui/material';
 import { useHistory } from 'react-router-dom';
 import { makeStyles } from '@mui/styles';
@@ -114,10 +111,7 @@ const HealthCardDisplay = () => {
   const history = useHistory();
   const { t } = useTranslation();
   const {
-    qrCodes,
-    healthCardVerified,
-    issuerVerified,
-    validPrimarySeries,
+    qrCodes, healthCardVerified, issuerVerified, validPrimarySeries
   } = useQrDataContext();
   const patientData = getPatientData(qrCodes);
 
@@ -129,14 +123,17 @@ const HealthCardDisplay = () => {
   let topBannerIcon;
   let topBannerText;
   let bottomBannerStyle;
+  let errorText;
   if (!patientData) {
     topBannerStyle = styles.bannerError;
     topBannerIcon = exclamationRedIcon;
     topBannerText = t('healthcarddisplay.Invalid SMART Health Card');
+    errorText = 'healthcarddisplay.Only valid SMART Health Card QR Codes are currently supported.';
   } else if (!healthCardVerified.verified && healthCardVerified.error) {
     topBannerStyle = styles.bannerError;
     topBannerIcon = exclamationRedIcon;
     topBannerText = t('healthcarddisplay.Not verified');
+    errorText = 'healthcarddisplay.This SMART Health Card cannot be verified.';
   } else if (healthCardVerified.verified && issuerVerified) {
     topBannerStyle = styles.topBannerValid;
     topBannerIcon = checkIcon;
@@ -154,19 +151,13 @@ const HealthCardDisplay = () => {
       <Grid container className={styles.bannerRoot}>
         <Grid item xs={12} className={topBannerStyle} width="100%">
           <Container style={{ width: 'fit-content' }}>
-            <Box
-              className={styles.flexRow}
-              pt={2}
-              pb={2}
-            >
+            <Box className={styles.flexRow} pt={2} pb={2}>
               <img
                 src={topBannerIcon}
                 alt="Banner Icon"
                 style={{ height: '2rem', marginRight: '1rem' }}
               />
-              <Typography variant="h4">
-                {topBannerText}
-              </Typography>
+              <Typography variant="h4">{topBannerText}</Typography>
             </Box>
           </Container>
         </Grid>
@@ -176,7 +167,10 @@ const HealthCardDisplay = () => {
             xs={12}
             className={bottomBannerStyle}
             style={{
-              marginBottom: '2rem', display: 'flex', justifyContent: 'center', width: '100%'
+              marginBottom: '2rem',
+              display: 'flex',
+              justifyContent: 'center',
+              width: '100%',
             }}
           >
             <Box pt={1} pb={1} className={styles.flexCol} width="fit-content">
@@ -190,15 +184,26 @@ const HealthCardDisplay = () => {
                   {t('healthcarddisplay.Valid SMART Health Card')}
                 </Typography>
               </Box>
-              {(validPrimarySeries !== null) ? (
+              {validPrimarySeries !== null ? (
                 <Box className={styles.flexRow}>
                   <img
                     src={validPrimarySeries ? checkIcon : xIcon}
                     alt="Bottom Banner Series Icon"
                     style={{ height: '1.5rem', marginRight: '1rem' }}
                   />
-                  <Typography variant="h6" className={validPrimarySeries ? styles.verifiedText : styles.unverifiedText}>
-                    {validPrimarySeries ? t('healthcarddisplay.Valid vaccination series') : t('healthcarddisplay.Cannot determine vaccination status')}
+                  <Typography
+                    variant="h6"
+                    className={
+                      validPrimarySeries
+                        ? styles.verifiedText
+                        : styles.unverifiedText
+                    }
+                  >
+                    {validPrimarySeries
+                      ? t('healthcarddisplay.Valid vaccination series')
+                      : t(
+                        'healthcarddisplay.Cannot determine vaccination status'
+                      )}
                   </Typography>
                 </Box>
               ) : (
@@ -210,39 +215,67 @@ const HealthCardDisplay = () => {
                   alt="Bottom Banner Issuer Icon"
                   style={{ height: '1.5rem', marginRight: '1rem' }}
                 />
-                <Typography variant="h6" className={issuerVerified ? styles.verifiedText : styles.unverifiedText}>
-                  {issuerVerified ? t('healthcarddisplay.Issuer recognized') : t('healthcarddisplay.Issuer not recognized')}
+                <Typography
+                  variant="h6"
+                  className={
+                    issuerVerified ? styles.verifiedText : styles.unverifiedText
+                  }
+                >
+                  {issuerVerified
+                    ? t('healthcarddisplay.Issuer recognized')
+                    : t('healthcarddisplay.Issuer not recognized')}
                 </Typography>
               </Box>
             </Box>
           </Grid>
         )}
       </Grid>
-      {(!patientData || !bottomBannerStyle) ? (
+      {!patientData || !bottomBannerStyle ? (
         <Grid container className={styles.errorRoot}>
           <Grid item md={6} display="flex" justifyContent="center">
-            <img src={errorIllustration} alt="Error Illustration" width="100%" />
+            <img
+              src={errorIllustration}
+              alt="Error Illustration"
+              width="100%"
+            />
           </Grid>
-          <Grid item container md={6} className={styles.errorGrid} rowSpacing={{ xs: '1rem', md: '2rem' }}>
+          <Grid
+            item
+            container
+            md={6}
+            className={styles.errorGrid}
+            rowSpacing={{ xs: '1rem', md: '2rem' }}
+          >
             <Grid item>
               <Typography textAlign="center" variant="h4" color="primary.main">
                 <Trans
-                  i18nKey="healthcarddisplay.Only valid SMART Health Card QR Codes are currently supported."
+                  i18nKey={errorText}
                   components={[
-                    <span className={styles.shcText}> SMART&reg; Health Card </span>
+                    <span className={styles.shcText}>
+                      {' '}
+                      SMART&reg; Health Card
+                      {' '}
+                    </span>,
                   ]}
                 />
               </Typography>
             </Grid>
             <Grid item>
-              <QrScanButton onClick={handleScan} styles={{ width: '100%' }} mt={10} />
+              <QrScanButton
+                onClick={handleScan}
+                styles={{ width: '100%' }}
+                mt={10}
+              />
             </Grid>
           </Grid>
         </Grid>
       ) : (
         <Grid item className={styles.flexCard}>
           <VaccineCard padding="1rem" width="100%" />
-          <QrScanButton onClick={handleScan} styles={{ padding: '1rem', width: '100%' }} />
+          <QrScanButton
+            onClick={handleScan}
+            styles={{ padding: '1rem', width: '100%' }}
+          />
         </Grid>
       )}
     </Grid>
