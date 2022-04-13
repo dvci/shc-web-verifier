@@ -331,7 +331,9 @@ const HealthCardDisplay = () => {
                   <Router>
                     <Switch>
                       <Link to="/qr-scan" onClick={handleScanWithMultipleHC}>
-                        {t('healthcarddisplay.Multiple SMART Health Cards')}
+                        {t(
+                          'healthcarddisplay.Add another SMART Health Card for same person'
+                        )}
                       </Link>
                     </Switch>
                   </Router>
