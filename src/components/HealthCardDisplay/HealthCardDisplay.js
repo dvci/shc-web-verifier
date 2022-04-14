@@ -17,6 +17,7 @@ import exclamationRedIcon from 'assets/exclamation-red-icon.png';
 import exclamationOrangeIcon from 'assets/exclamation-orange-icon.png';
 import VaccineCard from 'components/VaccineCard';
 import QrScanButton from 'components/QrScanButton';
+import { ErrorBoundary } from 'react-error-boundary'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -114,40 +115,114 @@ const HealthCardDisplay = () => {
   const history = useHistory();
   const { t } = useTranslation();
   const {
+    qrError,
     jws,
-    validationStatus,
   } = useQrDataContext();
 
   const handleScan = () => {
     history.push('qr-scan');
   };
 
-  const Banners = ({ cardJws, cardsValidPrimarySeries }) => {
+  const TopBanner = ({
+    img, alt, style, text
+  }) => (
+    <Grid item xs={12} className={style} width="100%">
+      <Container style={{ width: 'fit-content' }}>
+        <Box
+          className={styles.flexRow}
+          pt={2}
+          pb={2}
+        >
+          <img
+            src={img}
+            alt={alt}
+            style={{ height: '2rem', marginRight: '1rem' }}
+          />
+          <Typography variant="h4">
+            {text}
+          </Typography>
+        </Box>
+      </Container>
+    </Grid>
+  );
+
+  const ErrorFallback = ({ error }) => {
+    let bannerError;
+    let userError;
+
+    if (error.message === 'UNVERIFIED') {
+      bannerError = t('healthcarddisplay.Not verified');
+      userError = (
+        <Trans
+          i18nKey="healthcarddisplay.Only valid SMART Health Card QR Codes are currently supported."
+          components={[
+            <span className={styles.shcText}> SMART&reg; Health Card </span>
+          ]}
+        />
+      )
+    } else {
+      bannerError = t('healthcarddisplay.Invalid SMART Health Card');
+      userError = (
+        <Trans
+          i18nKey="healthcarddisplay.Only valid SMART Health Card QR Codes are currently supported."
+          components={[
+            <span className={styles.shcText}> SMART&reg; Health Card </span>
+          ]}
+        />
+      )
+    }
+
+    return (
+      <>
+        <Grid container className={styles.bannerRoot}>
+          <TopBanner
+            img={exclamationRedIcon}
+            alt="Banner Icon"
+            style={styles.bannerError}
+            text={bannerError}
+          />
+        </Grid>
+        <Grid container className={styles.errorRoot}>
+          <Grid item md={6} display="flex" justifyContent="center">
+            <img src={errorIllustration} alt="Error Illustration" width="100%" />
+          </Grid>
+          <Grid item container md={6} className={styles.errorGrid} rowSpacing={{ xs: '1rem', md: '2rem' }}>
+            <Grid item>
+              <Typography textAlign="center" variant="h4" color="primary.main">
+                {userError}
+              </Typography>
+            </Grid>
+            <Grid item>
+              <QrScanButton onClick={handleScan} styles={{ width: '100%' }} mt={10} />
+            </Grid>
+          </Grid>
+        </Grid>
+      </>
+    );
+  }
+
+  const Banners = () => {
     const {
-      setJws,
       healthCardSupported,
       healthCardVerified,
       issuerVerified,
     } = useHealthCardDataContext();
+    const {
+      validationStatus,
+    } = useQrDataContext();
     const [topBannerStyle, setTopBannerStyle] = useState(null);
     const [topBannerIcon, setTopBannerIcon] = useState(null);
     const [topBannerText, setTopBannerText] = useState(null);
     const [bottomBannerStyle, setBottomBannerStyle] = useState(null);
 
     useEffect(() => {
-      setJws(cardJws);
-    }, [cardJws, setJws]);
+      if (healthCardVerified.error) {
+        throw new Error('UNVERIFIED');
+      } else if (healthCardSupported.error) {
+        throw new Error('UNSUPPORTED');
+      }
 
-    useEffect(() => {
-      if (!healthCardSupported.status) {
-        setTopBannerStyle(styles.bannerError);
-        setTopBannerIcon(exclamationRedIcon);
-        setTopBannerText(t('healthcarddisplay.Invalid SMART Health Card'));
-      } else if (!healthCardVerified.verified && healthCardVerified.error) {
-        setTopBannerStyle(styles.bannerError);
-        setTopBannerIcon(exclamationRedIcon);
-        setTopBannerText(t('healthcarddisplay.Not verified'));
-      } else if (healthCardVerified.verified && issuerVerified) {
+      if (healthCardVerified.verified && issuerVerified) {
         setTopBannerStyle(styles.topBannerValid);
         setTopBannerIcon(checkIcon);
         setTopBannerText(t('healthcarddisplay.Verified'));
@@ -158,31 +233,9 @@ const HealthCardDisplay = () => {
         setTopBannerText(t('healthcarddisplay.Partially Verified'));
         setBottomBannerStyle(styles.bottomBannerPartial);
       }
-    }, [healthCardSupported.status, healthCardVerified.error,
-      healthCardVerified.verified, issuerVerified]);
-
-    const TopBanner = ({
-      img, alt, style, text
-    }) => (
-      <Grid item xs={12} className={style} width="100%">
-        <Container style={{ width: 'fit-content' }}>
-          <Box
-            className={styles.flexRow}
-            pt={2}
-            pb={2}
-          >
-            <img
-              src={img}
-              alt={alt}
-              style={{ height: '2rem', marginRight: '1rem' }}
-            />
-            <Typography variant="h4">
-              {text}
-            </Typography>
-          </Box>
-        </Container>
-      </Grid>
-    );
+    }, [healthCardSupported.error, healthCardSupported.status,
+      healthCardVerified.error, healthCardVerified.verified,
+      issuerVerified]);
 
     const BottomBanner = ({
       img, alt, style, text
@@ -207,7 +260,6 @@ const HealthCardDisplay = () => {
           style={topBannerStyle}
           text={topBannerText}
         />
-        {bottomBannerStyle && (
         <Grid
           item
           xs={12}
@@ -224,10 +276,12 @@ const HealthCardDisplay = () => {
               text={t('healthcarddisplay.Valid SMART Health Card')}
             />
             <BottomBanner
-              img={cardsValidPrimarySeries ? checkIcon : xIcon}
+              img={validationStatus.validPrimarySeries ? checkIcon : xIcon}
               alt="Bottom Banner Series Icon"
-              style={cardsValidPrimarySeries ? styles.verifiedText : styles.unverifiedText}
-              text={cardsValidPrimarySeries ? t('healthcarddisplay.Valid vaccination series') : t('healthcarddisplay.Cannot determine vaccination status')}
+              style={validationStatus.validPrimarySeries
+                ? styles.verifiedText : styles.unverifiedText}
+              text={validationStatus.validPrimarySeries
+                ? t('healthcarddisplay.Valid vaccination series') : t('healthcarddisplay.Cannot determine vaccination status')}
             />
             <BottomBanner
               img={issuerVerified ? checkIcon : xIcon}
@@ -237,62 +291,26 @@ const HealthCardDisplay = () => {
             />
           </Box>
         </Grid>
-        )}
       </Grid>
-    );
-  };
-
-  const Content = ({ cardJws }) => {
-    const {
-      setJws,
-      healthCardSupported,
-      healthCardVerified,
-    } = useHealthCardDataContext();
-
-    useEffect(() => {
-      setJws(cardJws);
-    }, [cardJws, setJws]);
-
-    return (
-      <>
-        {(!healthCardSupported.status || (!healthCardVerified.verified && healthCardVerified.error))
-          ? (
-            <Grid container className={styles.errorRoot}>
-              <Grid item md={6} display="flex" justifyContent="center">
-                <img src={errorIllustration} alt="Error Illustration" width="100%" />
-              </Grid>
-              <Grid item container md={6} className={styles.errorGrid} rowSpacing={{ xs: '1rem', md: '2rem' }}>
-                <Grid item>
-                  <Typography textAlign="center" variant="h4" color="primary.main">
-                    <Trans
-                      i18nKey="healthcarddisplay.Only valid SMART Health Card QR Codes are currently supported."
-                      components={[
-                        <span className={styles.shcText}> SMART&reg; Health Card </span>
-                      ]}
-                    />
-                  </Typography>
-                </Grid>
-                <Grid item>
-                  <QrScanButton onClick={handleScan} styles={{ width: '100%' }} mt={10} />
-                </Grid>
-              </Grid>
-            </Grid>
-          ) : (
-            <Grid item className={styles.flexCard}>
-              <VaccineCard padding="1rem" width="100%" />
-              <QrScanButton onClick={handleScan} styles={{ padding: '1rem', width: '100%' }} />
-            </Grid>
-          )}
-      </>
     );
   };
 
   return (
     <Grid container className={styles.root}>
-      <HealthCardDataProvider>
-        <Banners cardJws={jws} cardsValidPrimarySeries={validationStatus.validPrimarySeries} />
-        <Content cardJws={jws} />
-      </HealthCardDataProvider>
+      {(qrError)
+        ? (
+          <ErrorFallback error={new Error(qrError)} />
+        ) : (
+          <ErrorBoundary FallbackComponent={ErrorFallback}>
+            <HealthCardDataProvider healthCardJws={jws}>
+              <Banners />
+              <Grid item className={styles.flexCard}>
+                <VaccineCard padding="1rem" width="100%" />
+                <QrScanButton onClick={handleScan} styles={{ padding: '1rem', width: '100%' }} />
+              </Grid>
+            </HealthCardDataProvider>
+          </ErrorBoundary>
+        )}
     </Grid>
   );
 };

@@ -12,7 +12,7 @@ import { healthCardVerify, issuerVerify } from 'utils/verifyHelpers';
 
 const HealthCardDataContext = createContext();
 
-const HealthCardDataProvider = ({ children }) => {
+const HealthCardDataProvider = ({ healthCardJws, children }) => {
   const [jws, setJws] = useState(null);
   const [healthCardSupported, setHealthCardSupported] = useState({
     status: null,
@@ -26,12 +26,12 @@ const HealthCardDataProvider = ({ children }) => {
   const [issuerDisplayName, setIssuerDisplayName] = useState(null);
 
   useEffect(() => {
-    const isHealthCardSupported = () => {
+    const isHealthCardSupported = (cardJws) => {
       let vc;
       try {
-        vc = getCredential(jws);
+        vc = getCredential(cardJws);
       } catch {
-        setHealthCardSupported({ status: false, error: 'MALFORMED_CREDENTIAL' })
+        setHealthCardSupported({ status: false, error: 'UNSUPPORTED_MALFORMED_CREDENTIAL' })
         return false;
       }
       if (!vc.type.some((type) => type === 'https://smarthealth.cards#health-card')) {
@@ -44,8 +44,8 @@ const HealthCardDataProvider = ({ children }) => {
         return false;
       }
 
-      if (!getPatientData(jws)) {
-        setHealthCardSupported({ status: false, error: 'INVALID_PROFILE_MISSING_PATIENT' })
+      if (!getPatientData(cardJws)) {
+        setHealthCardSupported({ status: false, error: 'UNSUPPORTED_INVALID_PROFILE_MISSING_PATIENT' })
         return false;
       }
 
@@ -56,19 +56,19 @@ const HealthCardDataProvider = ({ children }) => {
       try {
         const status = await healthCardVerify(agent, cardJws, iss, abortController);
         if (status) setHealthCardVerified({ verified: true, error: null });
-        else setHealthCardVerified({ verified: false, error: 'Not Verified' });
+        else setHealthCardVerified({ verified: false, error: 'Not verified' });
       } catch (error) {
         if (error.name !== 'AbortError') {
           setHealthCardVerified({ verified: false, error: error.message });
         }
       }
     }
-    async function verifyIssuer(iss, abortController) {
+    async function verifyIssuer(iss, cardJws, abortController) {
       try {
         const status = await issuerVerify(iss, abortController);
         setIssuerVerified(status);
         if (status === true) {
-          getIssuerDisplayName(jws, abortController)
+          getIssuerDisplayName(cardJws, abortController)
             .then((result) => setIssuerDisplayName(result));
         }
       } catch (error) {
@@ -80,25 +80,26 @@ const HealthCardDataProvider = ({ children }) => {
 
     const abortController = new AbortController();
 
-    if (jws) {
+    setJws(healthCardJws);
+    if (healthCardJws) {
       // check jws
-      isHealthCardSupported()
+      isHealthCardSupported(healthCardJws);
 
       // Verify health card signature
-      const iss = getIssuer(jws);
+      const iss = getIssuer(healthCardJws);
       const agent = new https.Agent({
         rejectUnauthorized: false,
       });
-      verifyHealthCard(agent, jws, iss, abortController);
+      verifyHealthCard(agent, healthCardJws, iss, abortController);
 
       // Verify issuer
-      verifyIssuer(iss, abortController);
+      verifyIssuer(iss, healthCardJws, abortController);
     }
 
     return () => {
       abortController.abort()
     }
-  }, [jws]);
+  }, [healthCardJws]);
 
   return (
     <HealthCardDataContext.Provider

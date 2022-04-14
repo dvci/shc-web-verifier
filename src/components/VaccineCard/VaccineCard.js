@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Box,
   Card,
@@ -27,13 +27,24 @@ const VaccineCard = () => {
     issuerVerified,
     issuerDisplayName
   } = useHealthCardDataContext();
-  const patientData = getPatientData(jws);
+  const [patientData, setPatientData] = useState(
+    {
+      name: '',
+      immunizations: []
+    }
+  );
   const [tradenames, setTradenames] = useState({});
   const [cvxCodes, setCvxCodes] = useState({});
   const [showDateOfBirth, setShowDateOfBirth] = useState(false);
   const handleError = useErrorHandler();
 
-  React.useEffect(() => {
+  useEffect(() => {
+    if (jws) {
+      setPatientData(getPatientData(jws));
+    }
+  }, [jws]);
+
+  useEffect(() => {
     async function getTradenames() {
       try {
         const tn = await fetchTradenames();
