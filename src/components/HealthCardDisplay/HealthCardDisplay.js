@@ -207,13 +207,7 @@ const HealthCardDisplay = () => {
       healthCardVerified,
       issuerVerified,
     } = useHealthCardDataContext();
-    const {
-      validationStatus,
-    } = useQrDataContext();
-    const [topBannerStyle, setTopBannerStyle] = useState(null);
-    const [topBannerIcon, setTopBannerIcon] = useState(null);
-    const [topBannerText, setTopBannerText] = useState(null);
-    const [bottomBannerStyle, setBottomBannerStyle] = useState(null);
+    const { validationStatus } = useQrDataContext();
 
     useEffect(() => {
       if (healthCardVerified.error) {
@@ -221,21 +215,7 @@ const HealthCardDisplay = () => {
       } else if (healthCardSupported.error) {
         throw new Error('UNSUPPORTED');
       }
-
-      if (healthCardVerified.verified && issuerVerified) {
-        setTopBannerStyle(styles.topBannerValid);
-        setTopBannerIcon(checkIcon);
-        setTopBannerText(t('healthcarddisplay.Verified'));
-        setBottomBannerStyle(styles.bottomBannerValid);
-      } else {
-        setTopBannerStyle(styles.topBannerPartial);
-        setTopBannerIcon(exclamationOrangeIcon);
-        setTopBannerText(t('healthcarddisplay.Partially Verified'));
-        setBottomBannerStyle(styles.bottomBannerPartial);
-      }
-    }, [healthCardSupported.error, healthCardSupported.status,
-      healthCardVerified.error, healthCardVerified.verified,
-      issuerVerified]);
+    }, [healthCardSupported.error, healthCardVerified.error]);
 
     const BottomBanner = ({
       img, alt, style, text
@@ -254,16 +234,28 @@ const HealthCardDisplay = () => {
 
     return (
       <Grid container className={styles.bannerRoot}>
-        <TopBanner
-          img={topBannerIcon}
-          alt="Banner Icon"
-          style={topBannerStyle}
-          text={topBannerText}
-        />
+        {(healthCardVerified.verified && issuerVerified)
+          ? (
+            <TopBanner
+              img={checkIcon}
+              alt="Banner Icon"
+              style={styles.topBannerValid}
+              text={t('healthcarddisplay.Verified')}
+            />
+          )
+          : (
+            <TopBanner
+              img={exclamationOrangeIcon}
+              alt="Banner Icon"
+              style={styles.topBannerPartial}
+              text={t('healthcarddisplay.Partially Verified')}
+            />
+          )}
         <Grid
           item
           xs={12}
-          className={bottomBannerStyle}
+          className={(healthCardVerified.verified && issuerVerified)
+            ? styles.bottomBannerValid : styles.bottomBannerPartial}
           style={{
             marginBottom: '2rem', display: 'flex', justifyContent: 'center', width: '100%'
           }}
