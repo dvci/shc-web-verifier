@@ -78,7 +78,7 @@ test('renders health card banner series invalid', () => {
 test('renders health card banner invalid', () => {
   renderHealthCardDisplay(
     false,
-    new Error('UNSUPPORTED'),
+    'UNSUPPORTED',
     false,
     null,
     false,
@@ -90,35 +90,13 @@ test('renders health card banner invalid', () => {
 });
 
 test('renders health card banner unverified', () => {
-  renderHealthCardDisplay(
-    false,
-    null,
-    false,
-    new Error('UNVERIFIED'),
-    false,
-    false,
-    null
-  );
+  renderHealthCardDisplay(false, null, false, 'UNVERIFIED', false, false, null);
   expect(screen.getByText(/Not verified/i)).toBeInTheDocument();
   expect(screen.getByText(/SCAN QR CODE/i)).toBeInTheDocument();
 });
 
-test('renders health card banner qr error', () => {
-  renderHealthCardDisplay(
-    false,
-    null,
-    false,
-    null,
-    false,
-    false,
-    new Error('UNSUPPORTED_QR_NOT_SHC')
-  );
-  expect(screen.getByText(/Invalid SMART® Health Card/i)).toBeInTheDocument();
-  expect(screen.getByText(/SCAN QR CODE/i)).toBeInTheDocument();
-});
-
 test('renders health card banner verified without series status', () => {
-  renderHealthCardDisplay(true, null, true, null, true, null, null);
+  renderHealthCardDisplay(true, null, null, true, null, null, null);
   expect(
     screen.queryByText(/Valid vaccination series/i)
   ).not.toBeInTheDocument();
