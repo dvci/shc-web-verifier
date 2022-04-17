@@ -69,6 +69,13 @@
 <Status>Non-US</Status>
 <LastUpdated>6/17/2016</LastUpdated>
 </CVXInfo>
+<CVXInfo><ShortDescription>COV-2 COVID-19 Inactivated Non-US Vaccine Product (Minhai Biotechnology Co, KCONVAC)</ShortDescription>
+<FullVaccinename>SARS-COV-2 COVID-19 Inactivated Non-US Vaccine Product (Minhai Biotechnology Co, KCONVAC)</FullVaccinename>
+<CVXCode>516       </CVXCode>
+<Notes>Pandemic Non-US Vaccine not Authorized by WHO - not counted toward immunity in US</Notes>
+<Status>Non-US</Status>
+<LastUpdated>4/12/2022</LastUpdated>
+</CVXInfo>
 <CVXInfo><ShortDescription>COVID-19 IV Non-US Vaccine (BIBP, Sinopharm)</ShortDescription>
 <FullVaccinename>SARS-COV-2 COVID-19 Inactivated Virus Non-US Vaccine Product (BIBP, Sinopharm)</FullVaccinename>
 <CVXCode>510       </CVXCode>
@@ -222,6 +229,20 @@
 <Notes>FDA EUA 03/29/2022, Moderna booster dose 2.5mL vial presentation only</Notes>
 <Status>Active</Status>
 <LastUpdated>3/29/2022</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>COVID-19, mRNA, LNP-S, PF, pediatric 25 mcg/0.25 mL dose</ShortDescription>
+<FullVaccinename>SARS-COV-2 (COVID-19) vaccine, mRNA, spike protein, LNP, preservative free, pediatric 25 mcg/0.25 mL dose</FullVaccinename>
+<CVXCode>228       </CVXCode>
+<Notes>Pre-EUA Moderna Pediatric 6mo to&lt;6yr 2.5 mL vial, 25 mcg/0.25 mL dose</Notes>
+<Status>Active</Status>
+<LastUpdated>4/12/2022</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>COVID-19, mRNA, LNP-S, PF, pediatric 50 mcg/0.5 mL dose</ShortDescription>
+<FullVaccinename>SARS-COV-2 (COVID-19) vaccine, mRNA, spike protein, LNP, preservative free, pediatric 50 mcg/0.5 mL dose</FullVaccinename>
+<CVXCode>227       </CVXCode>
+<Notes>Pre-EUA Moderna Pediatric 6yr to&lt;12 yr vaccine 2.5 mL vial, 50 mcg/0.5 mL dose</Notes>
+<Status>Active</Status>
+<LastUpdated>4/12/2022</LastUpdated>
 </CVXInfo>
 <CVXInfo><ShortDescription>COVID-19, subunit, rS-nanoparticle+Matrix-M1 Adjuvant, PF, 0.5 mL</ShortDescription>
 <FullVaccinename>SARS-COV-2 (COVID-19) vaccine, subunit, recombinant spike protein-nanoparticle+Matrix-M1 Adjuvant, preservative free, 0.5mL dose</FullVaccinename>
@@ -1217,6 +1238,41 @@
 <Status>Inactive</Status>
 <LastUpdated>7/31/2021</LastUpdated>
 </CVXInfo>
+<CVXInfo><ShortDescription>SARS-COV-2 COVID-19 DNA Non-US Vaccine (Zydus Cadila, ZyCoV-D)</ShortDescription>
+<FullVaccinename>SARS-COV-2 COVID-19 DNA Non-US Vaccine Product (Zydus Cadila, ZyCoV-D)</FullVaccinename>
+<CVXCode>514       </CVXCode>
+<Notes>Pandemic Non-US Vaccine not Authorized by WHO - not counted toward immunity in US</Notes>
+<Status>Non-US</Status>
+<LastUpdated>4/12/2022</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>SARS-COV-2 COVID-19 PS Non-US Vaccine (Anhui Zhifei Longcom, Zifivax)</ShortDescription>
+<FullVaccinename>SARS-COV-2 COVID-19 Protein Subunit Non-US Vaccine Product (Anhui Zhifei Longcom, Zifivax)</FullVaccinename>
+<CVXCode>513       </CVXCode>
+<Notes>Pandemic Non-US Vaccine not Authorized by WHO - not counted toward immunity in US</Notes>
+<Status>Non-US</Status>
+<LastUpdated>4/12/2022</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>SARS-COV-2 COVID-19 PS Non-US Vaccine (Biological E Limited, Corbevax)</ShortDescription>
+<FullVaccinename>SARS-COV-2 COVID-19 Protein Subunit Non-US Vaccine Product (Biological E Limited, Corbevax)</FullVaccinename>
+<CVXCode>517       </CVXCode>
+<Notes>Pandemic Non-US Vaccine not Authorized by WHO - not counted toward immunity in US</Notes>
+<Status>Non-US</Status>
+<LastUpdated>4/12/2022</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>SARS-COV-2 COVID-19 PS Non-US Vaccine (Medigen, MVC-COV1901)</ShortDescription>
+<FullVaccinename>SARS-COV-2 COVID-19 Protein Subunit Non-US Vaccine Product (Medigen, MVC-COV1901)</FullVaccinename>
+<CVXCode>515       </CVXCode>
+<Notes>Pandemic Non-US Vaccine not Authorized by WHO - not counted toward immunity in US</Notes>
+<Status>Non-US</Status>
+<LastUpdated>4/12/2022</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>SARS-COV-2 COVID-19 VLP Non-US Vaccine (Medicago, Covifenz)</ShortDescription>
+<FullVaccinename>SARS-COV-2 COVID-19 Virus Like Particle (VLP) Non-US Vaccine Product (Medicago, Covifenz)</FullVaccinename>
+<CVXCode>512       </CVXCode>
+<Notes>Pandemic Non-US Vaccine not Authorized by WHO - ACIP does recognize towards immunity in US</Notes>
+<Status>Non-US</Status>
+<LastUpdated>4/12/2022</LastUpdated>
+</CVXInfo>
 <CVXInfo><ShortDescription>Smallpox monkeypox vaccine (National Stockpile)</ShortDescription>
 <FullVaccinename>Vaccinia, smallpox monkeypox vaccine, live attenuated, preservative free (National Stockpile)</FullVaccinename>
 <CVXCode>206       </CVXCode>
@@ -1313,7 +1369,7 @@
 <CVXCode>222       </CVXCode>
 <Notes>Unspecified Code - should only be used when specific vaccine administered is unknown</Notes>
 <Status>Inactive</Status>
-<LastUpdated>3/3/2022</LastUpdated>
+<LastUpdated>3/16/2022</LastUpdated>
 </CVXInfo>
 <CVXInfo><ShortDescription>tularemia vaccine</ShortDescription>
 <FullVaccinename>tularemia vaccine</FullVaccinename>
