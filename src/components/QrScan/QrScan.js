@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
       maxHeight: '550px',
       maxWidth: '650px',
       margin: '2rem',
-    }
+    },
   },
   gridContainerMultiple: {
     display: 'flex',
@@ -88,7 +88,10 @@ let qrScan;
 
 const cameraPermission = async () => {
   if (window.cordova) {
-    if (window.cordova.platformId === 'android' || window.cordova.platformId === 'ios') {
+    if (
+      window.cordova.platformId === 'android'
+      || window.cordova.platformId === 'ios'
+    ) {
       if (window.cordova.platformId === 'ios') {
         window.cordova.plugins.iosrtc.registerGlobals();
       }
@@ -104,22 +107,27 @@ const cameraPermission = async () => {
                 (requestedStatus) => {
                   if (requestedStatus === diagnostic.permissionStatus.GRANTED) {
                     resolve(true);
-                  } else { resolve(false); }
+                  } else {
+                    resolve(false);
+                  }
                 },
                 (requestedError) => {
                   reject(requestedError);
-                }, false
+                },
+                false
               );
             }
-          }, (error) => {
+          },
+          (error) => {
             reject(error);
-          }, false
+          },
+          false
         );
       });
     }
   }
   return Promise.resolve(true);
-}
+};
 
 const QrScan = () => {
   const history = useHistory();
@@ -182,14 +190,13 @@ const QrScan = () => {
       }
     };
 
-    cameraPermission()
-      .then((granted) => {
-        if (granted) {
-          getUserMedia().then(() => {
-            createQrScanner(videoRef.current);
-          });
-        }
-      })
+    cameraPermission().then((granted) => {
+      if (granted) {
+        getUserMedia().then(() => {
+          createQrScanner(videoRef.current);
+        });
+      }
+    });
 
     return () => {
       if (runningQrScanner.current) runningQrScanner.current.stop();

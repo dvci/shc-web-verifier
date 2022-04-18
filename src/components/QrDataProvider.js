@@ -1,5 +1,9 @@
 import React, {
-  createContext, useContext, useEffect, useState
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+  useRef,
 } from 'react';
 import https from 'https';
 import {
@@ -24,6 +28,7 @@ const QrDataProvider = ({ children }) => {
   const [issuerVerified, setIssuerVerified] = useState(false);
   const [validPrimarySeries, setValidPrimarySeries] = useState(null);
   const [issuerDisplayName, setIssuerDisplayName] = useState(null);
+  const qrProviderUpdated = useRef(null);
 
   useEffect(() => {
     async function verifyHealthCard(agent, jws, iss, abortController) {
@@ -71,7 +76,10 @@ const QrDataProvider = ({ children }) => {
       try {
         const payload = getPayload(qrCodes);
         const patientBundle = JSON.parse(payload).vc.credentialSubject.fhirBundle;
-        const results = Validator.execute(patientBundle, JSON.parse(payload).vc.type);
+        const results = Validator.execute(
+          patientBundle,
+          JSON.parse(payload).vc.type
+        );
         if (results) {
           setValidPrimarySeries(
             results.some((series) => series.validPrimarySeries)
@@ -80,6 +88,9 @@ const QrDataProvider = ({ children }) => {
       } catch {
         setValidPrimarySeries(null);
       }
+
+      // Used to avoid multiple display re-renders
+      qrProviderUpdated.current = true;
     }
 
     return () => {
@@ -91,11 +102,15 @@ const QrDataProvider = ({ children }) => {
     <QrDataContext.Provider
       value={{
         healthCardVerified,
+        setHealthCardVerified,
         issuerVerified,
+        setIssuerVerified,
         issuerDisplayName,
         qrCodes,
         setQrCodes,
         validPrimarySeries,
+        setValidPrimarySeries,
+        qrProviderUpdated,
       }}
     >
       {children}
