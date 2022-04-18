@@ -19,23 +19,23 @@ const patientData = {
           coding: [
             {
               system: 'http://hl7.org/fhir/sid/cvx',
-              code: '208'
-            }
-          ]
+              code: '208',
+            },
+          ],
         },
         patient: {
-          reference: 'resource:0'
+          reference: 'resource:0',
         },
         occurrenceDateTime: '2021-01-01',
         performer: [
           {
             actor: {
-              display: 'ABC General Hospital'
-            }
-          }
+              display: 'ABC General Hospital',
+            },
+          },
         ],
-        lotNumber: '0000001'
-      }
+        lotNumber: '0000001',
+      },
     },
     {
       fullUrl: 'resource:2',
@@ -46,17 +46,17 @@ const patientData = {
           coding: [
             {
               system: 'http://hl7.org/fhir/sid/cvx',
-              code: '213'
-            }
-          ]
+              code: '213',
+            },
+          ],
         },
         patient: {
-          reference: 'resource:0'
+          reference: 'resource:0',
         },
-        occurrenceDateTime: '2021-02-01'
-      }
-    }
-  ]
+        occurrenceDateTime: '2021-02-01',
+      },
+    },
+  ],
 };
 
 jest.mock('../VaccineCard', () => ({ children }) => <>{children}</>);
@@ -83,16 +83,23 @@ const renderHealthCardDisplay = (
         value={{
           qrCodes: [],
           setQrCode: jest.fn(),
-          healthCardVerified: { verified: healthCardVerified, error: healthCardVerifiedError },
+          healthCardVerified: {
+            verified: healthCardVerified,
+            error: healthCardVerifiedError,
+          },
+          setHealthCardVerified: jest.fn(),
           issuerVerified,
+          setIssuerVerified: jest.fn(),
           validPrimarySeries,
+          setValidPrimarySeries: jest.fn(),
+          qrProviderUpdated: { current: true },
         }}
       >
         <HealthCardDisplay />
       </QrDataContext.Provider>
     </ThemeProvider>
   );
-}
+};
 
 test('renders health card banner verified', () => {
   renderHealthCardDisplay(patientData, true, null, true, true);
@@ -108,7 +115,9 @@ test('renders health card banner partially verified', () => {
   expect(screen.getByText(/Partially Verified/i)).toBeInTheDocument();
   expect(screen.getByText(/Valid SMART® Health Card/i)).toBeInTheDocument();
   expect(screen.getByText(/Issuer not recognized/i)).toBeInTheDocument();
-  expect(screen.getByText(/Cannot determine vaccination status/i)).toBeInTheDocument();
+  expect(
+    screen.getByText(/Cannot determine vaccination status/i)
+  ).toBeInTheDocument();
   expect(screen.getByText(/SCAN QR CODE/i)).toBeInTheDocument();
 });
 
@@ -117,7 +126,9 @@ test('renders health card banner series invalid', () => {
   expect(screen.getByText(/Verified/i)).toBeInTheDocument();
   expect(screen.getByText(/Valid SMART® Health Card/i)).toBeInTheDocument();
   expect(screen.getByText(/Issuer recognized/i)).toBeInTheDocument();
-  expect(screen.getByText(/Cannot determine vaccination status/i)).toBeInTheDocument();
+  expect(
+    screen.getByText(/Cannot determine vaccination status/i)
+  ).toBeInTheDocument();
   expect(screen.getByText(/SCAN QR CODE/i)).toBeInTheDocument();
 });
 
@@ -129,6 +140,10 @@ test('renders health card banner invalid', () => {
 
 test('renders health card banner verified without series status', () => {
   renderHealthCardDisplay(patientData, true, null, true, null);
-  expect(screen.queryByText(/Valid vaccination series/i)).not.toBeInTheDocument();
-  expect(screen.queryByText(/Cannot determine vaccination status/i)).not.toBeInTheDocument();
+  expect(
+    screen.queryByText(/Valid vaccination series/i)
+  ).not.toBeInTheDocument();
+  expect(
+    screen.queryByText(/Cannot determine vaccination status/i)
+  ).not.toBeInTheDocument();
 });
