@@ -152,7 +152,7 @@ const HealthCardDisplay = () => {
         bannerError = t('healthcarddisplay.Not verified');
         userError = (
           <Trans
-            i18nKey="'healthcarddisplay.This SMART Health Card cannot be verified.'"
+            i18nKey="healthcarddisplay.This SMART Health Card cannot be verified."
             components={[
               <span className={styles.shcText}> SMART&reg; Health Card </span>
             ]}

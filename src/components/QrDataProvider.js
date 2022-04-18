@@ -11,7 +11,7 @@ import { Validator } from 'components/Validator/Validator.tsx';
 const QrDataContext = createContext();
 
 const initialState = {
-  qrCodes: JSON.parse(localStorage.getItem('qrCodes')),
+  qrCodes: null,
   qrError: null,
   jws: null,
   validationStatus: {
@@ -70,7 +70,8 @@ const reducer = (state, action) => {
 };
 
 const QrDataProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [state, dispatch] = useReducer(reducer,
+    reducer(initialState, { type: actions.SET_QR_CODES, qrCodes: JSON.parse(localStorage.getItem('qrCodes')) }));
 
   const value = {
     qrCodes: state.qrCodes,
