@@ -506,6 +506,24 @@
  </prodInfo>
  <prodInfo>
  <Name>CDC Product Name</Name>
+ <Value>Covifenz</Value>
+ <Name>Short Description</Name>
+ <Value>SARS-COV-2 COVID-19 VLP Non-US Vaccine (Medicago, Covifenz)</Value>
+ <Name>CVXCode</Name>
+ <Value>512       </Value>
+ <Name>Manufacturer</Name>
+ <Value>Medicago, Inc</Value>
+ <Name>MVX Code</Name>
+ <Value>MDO       </Value>
+ <Name>MVX Status</Name>
+ <Value>Active</Value>
+ <Name>Product name Status</Name>
+ <Value>Active</Value>
+ <Name>Last Updated</Name>
+ <Value>4/11/2022</Value>
+ </prodInfo>
+ <prodInfo>
+ <Name>CDC Product Name</Name>
  <Value>DAPTACEL</Value>
  <Name>Short Description</Name>
  <Value>DTaP, 5 pertussis antigens</Value>
@@ -1496,24 +1514,6 @@
  </prodInfo>
  <prodInfo>
  <Name>CDC Product Name</Name>
- <Value>Ixiaro</Value>
- <Name>Short Description</Name>
- <Value>Japanese Encephalitis IM</Value>
- <Name>CVXCode</Name>
- <Value>134       </Value>
- <Name>Manufacturer</Name>
- <Value>Valneva</Value>
- <Name>MVX Code</Name>
- <Value>VAL       </Value>
- <Name>MVX Status</Name>
- <Value>Active</Value>
- <Name>Product name Status</Name>
- <Value>Active</Value>
- <Name>Last Updated</Name>
- <Value>7/19/2016</Value>
- </prodInfo>
- <prodInfo>
- <Name>CDC Product Name</Name>
  <Value>IXIARO</Value>
  <Name>Short Description</Name>
  <Value>Japanese Encephalitis IM</Value>
@@ -1529,6 +1529,24 @@
  <Value>Active</Value>
  <Name>Last Updated</Name>
  <Value>12/4/2017</Value>
+ </prodInfo>
+ <prodInfo>
+ <Name>CDC Product Name</Name>
+ <Value>Ixiaro</Value>
+ <Name>Short Description</Name>
+ <Value>Japanese Encephalitis IM</Value>
+ <Name>CVXCode</Name>
+ <Value>134       </Value>
+ <Name>Manufacturer</Name>
+ <Value>Valneva</Value>
+ <Name>MVX Code</Name>
+ <Value>VAL       </Value>
+ <Name>MVX Status</Name>
+ <Value>Active</Value>
+ <Name>Product name Status</Name>
+ <Value>Active</Value>
+ <Name>Last Updated</Name>
+ <Value>7/19/2016</Value>
  </prodInfo>
  <prodInfo>
  <Name>CDC Product Name</Name>
@@ -1786,6 +1804,42 @@
  <Name>CDC Product Name</Name>
  <Value>Moderna COVID-19 Vaccine (non-US Spikevax)</Value>
  <Name>Short Description</Name>
+ <Value>COVID-19, mRNA, LNP-S, PF, pediatric 50 mcg/0.5 mL dose</Value>
+ <Name>CVXCode</Name>
+ <Value>227       </Value>
+ <Name>Manufacturer</Name>
+ <Value>Moderna US, Inc.</Value>
+ <Name>MVX Code</Name>
+ <Value>MOD       </Value>
+ <Name>MVX Status</Name>
+ <Value>Active</Value>
+ <Name>Product name Status</Name>
+ <Value>Active</Value>
+ <Name>Last Updated</Name>
+ <Value>7/13/2021</Value>
+ </prodInfo>
+ <prodInfo>
+ <Name>CDC Product Name</Name>
+ <Value>Moderna COVID-19 Vaccine (non-US Spikevax)</Value>
+ <Name>Short Description</Name>
+ <Value>COVID-19, mRNA, LNP-S, PF, pediatric 25 mcg/0.25 mL dose</Value>
+ <Name>CVXCode</Name>
+ <Value>228       </Value>
+ <Name>Manufacturer</Name>
+ <Value>Moderna US, Inc.</Value>
+ <Name>MVX Code</Name>
+ <Value>MOD       </Value>
+ <Name>MVX Status</Name>
+ <Value>Active</Value>
+ <Name>Product name Status</Name>
+ <Value>Active</Value>
+ <Name>Last Updated</Name>
+ <Value>7/13/2021</Value>
+ </prodInfo>
+ <prodInfo>
+ <Name>CDC Product Name</Name>
+ <Value>Moderna COVID-19 Vaccine (non-US Spikevax)</Value>
+ <Name>Short Description</Name>
  <Value>COVID-19, mRNA, LNP-S, PF, 100 mcg/0.5mL dose or 50 mcg/0.25mL dose</Value>
  <Name>CVXCode</Name>
  <Value>207       </Value>
@@ -1862,6 +1916,24 @@
  <Name>CVXCode</Name>
  <Value>127       </Value>
  <Name>Manufacturer</Name>
+ <Value>Sanofi Pasteur</Value>
+ <Name>MVX Code</Name>
+ <Value>PMC       </Value>
+ <Name>MVX Status</Name>
+ <Value>Active</Value>
+ <Name>Product name Status</Name>
+ <Value>Inactive</Value>
+ <Name>Last Updated</Name>
+ <Value>8/27/2015</Value>
+ </prodInfo>
+ <prodInfo>
+ <Name>CDC Product Name</Name>
+ <Value>Novel influenza-H1N1-09</Value>
+ <Name>Short Description</Name>
+ <Value>Novel influenza-H1N1-09</Value>
+ <Name>CVXCode</Name>
+ <Value>127       </Value>
+ <Name>Manufacturer</Name>
  <Value>bioCSL</Value>
  <Name>MVX Code</Name>
  <Value>CSL       </Value>
@@ -1885,24 +1957,6 @@
  <Value>NOV       </Value>
  <Name>MVX Status</Name>
  <Value>Inactive</Value>
- <Name>Product name Status</Name>
- <Value>Inactive</Value>
- <Name>Last Updated</Name>
- <Value>8/27/2015</Value>
- </prodInfo>
- <prodInfo>
- <Name>CDC Product Name</Name>
- <Value>Novel influenza-H1N1-09</Value>
- <Name>Short Description</Name>
- <Value>Novel influenza-H1N1-09</Value>
- <Name>CVXCode</Name>
- <Value>127       </Value>
- <Name>Manufacturer</Name>
- <Value>Sanofi Pasteur</Value>
- <Name>MVX Code</Name>
- <Value>PMC       </Value>
- <Name>MVX Status</Name>
- <Value>Active</Value>
  <Name>Product name Status</Name>
  <Value>Inactive</Value>
  <Name>Last Updated</Name>
@@ -1934,11 +1988,11 @@
  <Name>CVXCode</Name>
  <Value>126       </Value>
  <Name>Manufacturer</Name>
- <Value>Novartis Pharmaceutical Corporation</Value>
+ <Value>Sanofi Pasteur</Value>
  <Name>MVX Code</Name>
- <Value>NOV       </Value>
+ <Value>PMC       </Value>
  <Name>MVX Status</Name>
- <Value>Inactive</Value>
+ <Value>Active</Value>
  <Name>Product name Status</Name>
  <Value>Inactive</Value>
  <Name>Last Updated</Name>
@@ -1970,11 +2024,11 @@
  <Name>CVXCode</Name>
  <Value>126       </Value>
  <Name>Manufacturer</Name>
- <Value>Sanofi Pasteur</Value>
+ <Value>Novartis Pharmaceutical Corporation</Value>
  <Name>MVX Code</Name>
- <Value>PMC       </Value>
+ <Value>NOV       </Value>
  <Name>MVX Status</Name>
- <Value>Active</Value>
+ <Value>Inactive</Value>
  <Name>Product name Status</Name>
  <Value>Inactive</Value>
  <Name>Last Updated</Name>
@@ -2330,13 +2384,13 @@
  <Name>CVXCode</Name>
  <Value>176       </Value>
  <Name>Manufacturer</Name>
- <Value>GlaxoSmithKline</Value>
+ <Value>Novartis Pharmaceutical Corporation</Value>
  <Name>MVX Code</Name>
- <Value>SKB       </Value>
+ <Value>NOV       </Value>
  <Name>MVX Status</Name>
- <Value>Active</Value>
+ <Value>Inactive</Value>
  <Name>Product name Status</Name>
- <Value>Active</Value>
+ <Value>Inactive</Value>
  <Name>Last Updated</Name>
  <Value>10/19/2016</Value>
  </prodInfo>
@@ -2348,13 +2402,13 @@
  <Name>CVXCode</Name>
  <Value>176       </Value>
  <Name>Manufacturer</Name>
- <Value>Novartis Pharmaceutical Corporation</Value>
+ <Value>GlaxoSmithKline</Value>
  <Name>MVX Code</Name>
- <Value>NOV       </Value>
+ <Value>SKB       </Value>
  <Name>MVX Status</Name>
- <Value>Inactive</Value>
+ <Value>Active</Value>
  <Name>Product name Status</Name>
- <Value>Inactive</Value>
+ <Value>Active</Value>
  <Name>Last Updated</Name>
  <Value>10/19/2016</Value>
  </prodInfo>
@@ -2558,24 +2612,6 @@
  </prodInfo>
  <prodInfo>
  <Name>CDC Product Name</Name>
- <Value>Td, adsorbed</Value>
- <Name>Short Description</Name>
- <Value>Td (adult), 2 Lf tetanus toxoid, preservative free, adsorbed</Value>
- <Name>CVXCode</Name>
- <Value>09        </Value>
- <Name>Manufacturer</Name>
- <Value>Massachusetts Biologic Laboratories</Value>
- <Name>MVX Code</Name>
- <Value>MBL       </Value>
- <Name>MVX Status</Name>
- <Value>Active</Value>
- <Name>Product name Status</Name>
- <Value>Inactive</Value>
- <Name>Last Updated</Name>
- <Value>5/21/2019</Value>
- </prodInfo>
- <prodInfo>
- <Name>CDC Product Name</Name>
  <Value>Td, adsorbed </Value>
  <Name>Short Description</Name>
  <Value>Td (adult), 2 Lf tetanus toxoid, preservative free, adsorbed</Value>
@@ -2585,6 +2621,24 @@
  <Value>Grifols</Value>
  <Name>MVX Code</Name>
  <Value>GRF       </Value>
+ <Name>MVX Status</Name>
+ <Value>Active</Value>
+ <Name>Product name Status</Name>
+ <Value>Inactive</Value>
+ <Name>Last Updated</Name>
+ <Value>5/21/2019</Value>
+ </prodInfo>
+ <prodInfo>
+ <Name>CDC Product Name</Name>
+ <Value>Td, adsorbed</Value>
+ <Name>Short Description</Name>
+ <Value>Td (adult), 2 Lf tetanus toxoid, preservative free, adsorbed</Value>
+ <Name>CVXCode</Name>
+ <Value>09        </Value>
+ <Name>Manufacturer</Name>
+ <Value>Massachusetts Biologic Laboratories</Value>
+ <Name>MVX Code</Name>
+ <Value>MBL       </Value>
  <Name>MVX Status</Name>
  <Value>Active</Value>
  <Name>Product name Status</Name>

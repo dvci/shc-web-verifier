@@ -1,9 +1,6 @@
 import React, { useEffect } from 'react';
 import {
-  Box,
-  Container,
-  Grid,
-  Typography,
+  Box, Container, Grid, Typography
 } from '@mui/material';
 import { useHistory } from 'react-router-dom';
 import { makeStyles } from '@mui/styles';
@@ -155,7 +152,7 @@ const HealthCardDisplay = () => {
         bannerError = t('healthcarddisplay.Not verified');
         userError = (
           <Trans
-            i18nKey="healthcarddisplay.Only valid SMART Health Card QR Codes are currently supported."
+            i18nKey="'healthcarddisplay.This SMART Health Card cannot be verified.'"
             components={[
               <span className={styles.shcText}> SMART&reg; Health Card </span>
             ]}
@@ -189,16 +186,30 @@ const HealthCardDisplay = () => {
         </Grid>
         <Grid container className={styles.errorRoot}>
           <Grid item md={6} display="flex" justifyContent="center">
-            <img src={errorIllustration} alt="Error Illustration" width="100%" />
+            <img
+              src={errorIllustration}
+              alt="Error Illustration"
+              width="100%"
+            />
           </Grid>
-          <Grid item container md={6} className={styles.errorGrid} rowSpacing={{ xs: '1rem', md: '2rem' }}>
+          <Grid
+            item
+            container
+            md={6}
+            className={styles.errorGrid}
+            rowSpacing={{ xs: '1rem', md: '2rem' }}
+          >
             <Grid item>
               <Typography textAlign="center" variant="h4" color="primary.main">
                 {userError}
               </Typography>
             </Grid>
             <Grid item>
-              <QrScanButton onClick={handleScan} styles={{ width: '100%' }} mt={10} />
+              <QrScanButton
+                onClick={handleScan}
+                styles={{ width: '100%' }}
+                mt={10}
+              />
             </Grid>
           </Grid>
         </Grid>
