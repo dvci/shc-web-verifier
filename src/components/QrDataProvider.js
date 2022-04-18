@@ -1,5 +1,5 @@
 import React, {
-  createContext, useContext, useEffect, useState
+  createContext, useContext, useReducer
 } from 'react';
 import {
   parseHealthCardQr,
@@ -10,60 +10,83 @@ import { Validator } from 'components/Validator/Validator.tsx';
 
 const QrDataContext = createContext();
 
-const QrDataProvider = ({ children }) => {
-  const [qrCodes, setQrCodes] = useState(
-    JSON.parse(localStorage.getItem('qrCodes'))
-  );
-  const [jws, setJws] = useState(null);
-  const [qrError, setQrError] = useState(null);
-  const [validationStatus, setValidationStatus] = useState({
+const initialState = {
+  qrCodes: JSON.parse(localStorage.getItem('qrCodes')),
+  qrError: null,
+  jws: null,
+  validationStatus: {
     validPrimarySeries: null,
     error: null,
-  });
+  }
+};
 
-  useEffect(() => {
-    localStorage.setItem('qrCodes', JSON.stringify(qrCodes));
+const actions = {
+  SET_QR_CODES: 'SET_QR_CODES',
+  RESET_QR_CODES: 'RESET_QR_CODES'
+};
 
-    let cardJws;
-    if (qrCodes) {
+const reducer = (state, action) => {
+  switch (action.type) {
+    case actions.SET_QR_CODES: {
+      const newState = {};
+      localStorage.setItem('qrCodes', JSON.stringify(action.qrCodes));
+
+      if (action.qrCodes) {
       // check valid SHC QR
-      const validShcQr = qrCodes.every((c) => parseHealthCardQr(c) !== null);
-      if (!validShcQr) {
-        setQrError('UNSUPPORTED_QR_NOT_SHC');
-        setJws(null);
-      } else {
-        cardJws = getJws(qrCodes);
-        setJws(cardJws);
-      }
-    } else setJws(null);
+        const validShcQr = action.qrCodes.every((c) => parseHealthCardQr(c) !== null);
+        if (!validShcQr) {
+          newState.qrError = 'UNSUPPORTED_QR_NOT_SHC';
+          newState.jws = null;
+        } else {
+          newState.jws = getJws(action.qrCodes);
+        }
+      } else newState.jws = null;
 
-    if (cardJws) {
+      if (newState.jws) {
       // Validate vaccine series
-      try {
-        const payload = getPayload(cardJws);
-        const patientBundle = JSON.parse(payload).vc.credentialSubject.fhirBundle;
-        const results = Validator.execute(patientBundle, 'COVID-19');
-        setValidationStatus(
-          { validPrimarySeries: results.some((series) => series.validPrimarySeries), error: null }
-        );
-      } catch {
-        setValidationStatus(
-          { validPrimarySeries: false, error: 'VALIDATION_ERROR' }
-        );
+        try {
+          const payload = getPayload(newState.jws);
+          const patientBundle = JSON.parse(payload).vc.credentialSubject.fhirBundle;
+          const results = Validator.execute(patientBundle, 'COVID-19');
+          newState.validationStatus = {
+            validPrimarySeries: results.some((series) => series.validPrimarySeries),
+            error: null
+          };
+        } catch {
+          newState.validationStatus = { validPrimarySeries: false, error: 'VALIDATION_ERROR' };
+        }
       }
+      return {
+        ...state,
+        ...newState
+      };
     }
-  }, [qrCodes]);
+    case actions.RESET_QR_CODES: {
+      return initialState;
+    }
+    default:
+      return state;
+  }
+};
+
+const QrDataProvider = ({ children }) => {
+  const [state, dispatch] = useReducer(reducer, initialState);
+
+  const value = {
+    qrCodes: state.qrCodes,
+    jws: state.jws,
+    qrError: state.qrError,
+    validationStatus: state.validationStatus,
+    setQrCodes: (qrCodes) => {
+      dispatch({ type: actions.SET_QR_CODES, qrCodes });
+    },
+    resetQrCodes: () => {
+      dispatch({ type: actions.RESET_QR_CODES });
+    }
+  };
 
   return (
-    <QrDataContext.Provider
-      value={{
-        qrCodes,
-        setQrCodes,
-        qrError,
-        jws,
-        validationStatus,
-      }}
-    >
+    <QrDataContext.Provider value={value}>
       {children}
     </QrDataContext.Provider>
   );

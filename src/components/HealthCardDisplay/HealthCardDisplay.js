@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import {
   Box,
   Container,
@@ -150,26 +150,31 @@ const HealthCardDisplay = () => {
     let bannerError;
     let userError;
 
-    if (error.message === 'UNVERIFIED') {
-      bannerError = t('healthcarddisplay.Not verified');
-      userError = (
-        <Trans
-          i18nKey="healthcarddisplay.Only valid SMART Health Card QR Codes are currently supported."
-          components={[
-            <span className={styles.shcText}> SMART&reg; Health Card </span>
-          ]}
-        />
-      )
-    } else {
-      bannerError = t('healthcarddisplay.Invalid SMART Health Card');
-      userError = (
-        <Trans
-          i18nKey="healthcarddisplay.Only valid SMART Health Card QR Codes are currently supported."
-          components={[
-            <span className={styles.shcText}> SMART&reg; Health Card </span>
-          ]}
-        />
-      )
+    switch (error.message) {
+      case 'UNVERIFIED':
+        bannerError = t('healthcarddisplay.Not verified');
+        userError = (
+          <Trans
+            i18nKey="healthcarddisplay.Only valid SMART Health Card QR Codes are currently supported."
+            components={[
+              <span className={styles.shcText}> SMART&reg; Health Card </span>
+            ]}
+          />
+        )
+        break;
+      case 'UNSUPPORTED':
+        bannerError = t('healthcarddisplay.Invalid SMART Health Card');
+        userError = (
+          <Trans
+            i18nKey="healthcarddisplay.Only valid SMART Health Card QR Codes are currently supported."
+            components={[
+              <span className={styles.shcText}> SMART&reg; Health Card </span>
+            ]}
+          />
+        )
+        break;
+      default:
+        throw error;
     }
 
     return (
