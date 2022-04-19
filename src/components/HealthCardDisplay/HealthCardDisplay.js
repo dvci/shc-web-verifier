@@ -147,31 +147,28 @@ const HealthCardDisplay = () => {
     let bannerError;
     let userError;
 
-    switch (error.message) {
-      case 'UNVERIFIED':
-        bannerError = t('healthcarddisplay.Not verified');
-        userError = (
-          <Trans
-            i18nKey="healthcarddisplay.This SMART Health Card cannot be verified."
-            components={[
-              <span className={styles.shcText}> SMART&reg; Health Card </span>
-            ]}
-          />
-        )
-        break;
-      case 'UNSUPPORTED':
-        bannerError = t('healthcarddisplay.Invalid SMART Health Card');
-        userError = (
-          <Trans
-            i18nKey="healthcarddisplay.Only valid SMART Health Card QR Codes are currently supported."
-            components={[
-              <span className={styles.shcText}> SMART&reg; Health Card </span>
-            ]}
-          />
-        )
-        break;
-      default:
-        throw error;
+    if (error.message.startsWith('UNVERIFIED')) {
+      bannerError = t('healthcarddisplay.Not verified');
+      userError = (
+        <Trans
+          i18nKey="healthcarddisplay.This SMART Health Card cannot be verified."
+          components={[
+            <span className={styles.shcText}> SMART&reg; Health Card </span>
+          ]}
+        />
+      )
+    } else if (error.message.startsWith('UNSUPPORTED')) {
+      bannerError = t('healthcarddisplay.Invalid SMART Health Card');
+      userError = (
+        <Trans
+          i18nKey="healthcarddisplay.Only valid SMART Health Card QR Codes are currently supported."
+          components={[
+            <span className={styles.shcText}> SMART&reg; Health Card </span>
+          ]}
+        />
+      )
+    } else {
+      throw error;
     }
 
     return (
@@ -227,11 +224,13 @@ const HealthCardDisplay = () => {
 
     useEffect(() => {
       if (healthCardVerified.error) {
-        throw new Error('UNVERIFIED');
+        throw healthCardVerified.error;
       } else if (healthCardSupported.error) {
-        throw new Error('UNSUPPORTED');
+        throw healthCardSupported.error;
+      } else if (healthCardVerified.verified !== null && !healthCardVerified.verified) {
+        throw new Error('UNVERIFIED');
       }
-    }, [healthCardSupported.error, healthCardVerified.error]);
+    }, [healthCardSupported.error, healthCardVerified.error, healthCardVerified.verified]);
 
     const BottomBanner = ({
       img, alt, style, text
@@ -283,6 +282,7 @@ const HealthCardDisplay = () => {
               style={styles.verifiedText}
               text={t('healthcarddisplay.Valid SMART Health Card')}
             />
+            {validationStatus.validPrimarySeries !== null && (
             <BottomBanner
               img={validationStatus.validPrimarySeries ? checkIcon : xIcon}
               alt="Bottom Banner Series Icon"
@@ -291,6 +291,7 @@ const HealthCardDisplay = () => {
               text={validationStatus.validPrimarySeries
                 ? t('healthcarddisplay.Valid vaccination series') : t('healthcarddisplay.Cannot determine vaccination status')}
             />
+            )}
             <BottomBanner
               img={issuerVerified ? checkIcon : xIcon}
               alt="Bottom Banner Issuer Icon"
@@ -307,7 +308,7 @@ const HealthCardDisplay = () => {
     <Grid container className={styles.root}>
       {(qrError)
         ? (
-          <ErrorFallback error={new Error(qrError)} />
+          <ErrorFallback error={qrError} />
         ) : (
           <ErrorBoundary FallbackComponent={ErrorFallback}>
             <HealthCardDataProvider healthCardJws={jws}>
