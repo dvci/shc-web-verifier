@@ -31,7 +31,7 @@ const reducer = (state, action) => {
           (c) => parseHealthCardQr(c) !== null
         );
         if (!validShcQr) {
-          newState.qrError = 'UNSUPPORTED_QR_NOT_SHC';
+          newState.qrError = new Error('UNSUPPORTED_QR_NOT_SHC');
           newState.jws = null;
         } else {
           newState.jws = getJws(action.qrCodes);
@@ -43,17 +43,20 @@ const reducer = (state, action) => {
         try {
           const payload = getPayload(newState.jws);
           const patientBundle = JSON.parse(payload).vc.credentialSubject.fhirBundle;
-          const results = Validator.execute(patientBundle, 'COVID-19');
+          const results = Validator.execute(
+            patientBundle,
+            JSON.parse(payload).vc.type
+          );
           newState.validationStatus = {
-            validPrimarySeries: results.some(
-              (series) => series.validPrimarySeries
-            ),
+            validPrimarySeries: results
+              ? results.some((series) => series.validPrimarySeries)
+              : null,
             error: null,
           };
         } catch {
           newState.validationStatus = {
             validPrimarySeries: false,
-            error: 'VALIDATION_ERROR',
+            error: new Error('VALIDATION_ERROR'),
           };
         }
       }
@@ -71,8 +74,13 @@ const reducer = (state, action) => {
 };
 
 const QrDataProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(reducer,
-    reducer(initialState, { type: actions.SET_QR_CODES, qrCodes: JSON.parse(localStorage.getItem('qrCodes')) }));
+  const [state, dispatch] = useReducer(
+    reducer,
+    reducer(initialState, {
+      type: actions.SET_QR_CODES,
+      qrCodes: JSON.parse(localStorage.getItem('qrCodes')),
+    })
+  );
 
   const value = {
     qrCodes: state.qrCodes,
