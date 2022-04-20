@@ -15,7 +15,6 @@ import HeroBar from 'components/HeroBar';
 import Landing from 'components/Landing';
 import Footer from 'components/Footer';
 import FAQ from 'components/FAQ';
-import StaticDisplay from 'components/StaticDisplay';
 import QrScan from 'components/QrScan';
 import { QrDataProvider } from 'components/QrDataProvider';
 import { ErrorBoundary } from 'react-error-boundary';
@@ -39,9 +38,10 @@ const App = () => (
               <FAQ />
             </Route>
 
-            <Route exact path="/privacy">
+            {/* TODO: Add privacy page, once approved */}
+            {/* <Route exact path="/privacy">
               <StaticDisplay section="privacy" />
-            </Route>
+            </Route> */}
 
             <QrDataProvider>
               <Route exact path="/qr-scan">
