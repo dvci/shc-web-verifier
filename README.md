@@ -62,7 +62,7 @@ cordova build
 
 ## Client-side CDC CDSi validator
 
-The SMART Health Card verification process uses a limited-scope, CQL engine-based, client-side [validation script](https://github.com/dvci/shc-web-verifier/blob/main/cql/CDSiSupportingData.cql) that executes the Clinical Decision Support for Immunization (CDSi) Supporting Data guidelines.
+The SMART Health Card verification process uses a limited-scope, Clinical Quality Language (CQL) engine-based, client-side [validation script](https://github.com/dvci/shc-web-verifier/blob/main/cql/CDSiSupportingData.cql) that executes the Clinical Decision Support for Immunization (CDSi) Supporting Data guidelines.
 
 ### CDSi Supporting Data
 
@@ -72,7 +72,7 @@ See the [CDSi Logic Specification and Supporting Data Guidelines](https://www.cd
 
 ### Using the CDSi Supporting Data
 
-The web verifier utilizes the CDSi Supporting Data guidelines to easily stay up-to-date with the evolving ACIP recommendations. The CDSi Supporting Data are used as input to the [CQL](https://ecqi.healthit.gov/cql) engine. If the scanned SMART Health Card contains COVID-19 vaccination credentials, the SMART Health Card data will undergo CQL validation based on the CDSi Supporting Data. This validation determines whether the vaccine series contained in the SMART Health Card is valid - the results of this validation appear on the display page after the SMART Health Card QR code is scanned.
+The web verifier utilizes the CDSi Supporting Data guidelines to easily stay up-to-date with the evolving ACIP recommendations. The CDSi Supporting Data are used as input to the [CQL](https://ecqi.healthit.gov/cql) engine. To run CQL validation, the SMART Health Card’s payload must contain the `#immunization` and `#covid19` Verifiable Credential (VC) types. This validation determines whether the vaccine series contained in the SMART Health Card is valid, using the CDSi Supporting Data. The results of the CQL validation appear on the display page after the SMART Health Card QR code is scanned. If the SMART Health Card does not contain these VC types, CQL validation is skipped. For more information on the VC types, see the [SMART Health Card specifications](https://spec.smarthealth.cards/vocabulary/).
 
 The web application currently validates each non-Risk type series based on the following:
 
