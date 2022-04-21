@@ -95,7 +95,7 @@ The Supporting Data guidelines are used to validate the vaccine series using the
   - **Valid age for the vaccine to be administered**, based off the absolute minimum age for the vaccine dose administered to be considered valid
   - **Valid interval** between the immunization and previous immunization, if applicable
   - **Valid allowable interval** between the immunization and previous immunization, if applicable
-  - **Valid allowable vaccine**, which may be administer outside the preferable vaccine recommendations but still counts toward immunity
+  - **Valid allowable vaccine**, which may be administered outside the preferable vaccine recommendations but still counts toward immunity
   - **Not an inadvertent vaccine**
 - After evaluating all the doses, the CQL will return whether the series is a valid primary series. To be a valid primary series, the number of valid doses must be greater than or equal to the minimum number of primary series doses specified for the series name in the [Antigen Ancillary Data](https://github.com/dvci/shc-web-verifier/blob/main/src/supporting-data/AntigenAncillaryData-COVID-19.json).
 
