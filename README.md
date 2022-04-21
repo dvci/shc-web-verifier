@@ -62,7 +62,7 @@ cordova build
 
 ## Client-side CDC CDSi validator
 
-The SMART Health Card verification process uses a limited-scope, CQL engine-based, client-side validation script that executes the Clinical Decision Support for Immunization (CDSi) Supporting Data guidelines.
+The SMART Health Card verification process uses a limited-scope, CQL engine-based, client-side [validation script](https://github.com/dvci/shc-web-verifier/blob/main/cql/CDSiSupportingData.cql) that executes the Clinical Decision Support for Immunization (CDSi) Supporting Data guidelines.
 
 ### CDSi Supporting Data
 
