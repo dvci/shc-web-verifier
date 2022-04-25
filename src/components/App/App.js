@@ -19,6 +19,7 @@ import QrScan from 'components/QrScan';
 import { QrDataProvider } from 'components/QrDataProvider';
 import { ErrorBoundary } from 'react-error-boundary';
 import { ErrorFallback } from 'utils/errorHelper';
+import { HealthCardDataProvider } from 'components/HealthCardDataProvider';
 
 const App = () => (
   <ThemeProvider>
@@ -47,10 +48,11 @@ const App = () => (
               <Route exact path="/qr-scan">
                 <QrScan />
               </Route>
-
-              <Route exact path="/display-results">
-                <HealthCardDisplay />
-              </Route>
+              <HealthCardDataProvider>
+                <Route exact path="/display-results">
+                  <HealthCardDisplay />
+                </Route>
+              </HealthCardDataProvider>
             </QrDataProvider>
           </Switch>
         </ErrorBoundary>

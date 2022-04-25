@@ -134,6 +134,9 @@ const HealthCardDataProvider = ({ healthCardJws, children }) => {
         issuerDisplayName,
         jws,
         setJws,
+        setHealthCardSupported,
+        setHealthCardVerified,
+        setIssuerVerified,
       }}
     >
       {children}
