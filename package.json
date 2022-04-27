@@ -70,6 +70,7 @@
     "cordova-browser": "^6.0.0",
     "cordova-ios": "^6.2.0",
     "cordova-plugin-iosrtc": "^8.0.1",
+    "cordova-plugin-splashscreen": "^6.0.1",
     "cordova.plugins.diagnostic": "^6.1.1",
     "cql-exec-fhir": "^2.0.0",
     "cql-execution": "^2.4.0",
@@ -100,7 +101,8 @@
       },
       "cordova-plugin-iosrtc": {
         "MANUAL_INIT_AUDIO_DEVICE": "FALSE"
-      }
+      },
+      "cordova-plugin-splashscreen": {}
     }
   }
 }

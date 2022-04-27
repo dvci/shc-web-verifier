@@ -12,14 +12,11 @@
     <icon src="src/assets/qr-vaccine-icon.png" />
 
     <preference name="cordova.plugins.diagnostic.modules" value="WIFI CAMERA EXTERNAL_STORAGE" />
-    <preference name="AutoHideSplashScreen" value="true" />
-    <preference name="SplashMaintainAspectRatio" value="true" />
-    <preference name="SplashShowOnlyFirstTime" value="true" />
-    <preference name="SplashScreen" value="screen" />
-    <preference name="SplashScreenDelay" value="1000" />
+    <!-- disable splash screen -->
+    <preference name="SplashScreenDelay" value="0"/>
+    <preference name="FadeSplashScreenDuration" value="0"/>
 
     <platform name="android">
-        <splash src="src/assets/qr-code-illustration.png"/>
         <config-file target="AndroidManifest.xml" parent="/*" mode="merge">
             <uses-permission android:name="android.permission.CAMERA" />
             <uses-feature android:name="android.hardware.camera" />
@@ -32,7 +29,6 @@
     </platform>
 
     <platform name="ios">
-        <splash src="src/assets/qr-code-illustration.png"/>
         <edit-config target="NSCameraUsageDescription" file="*-Info.plist" mode="merge">
             <string>Camera is used for scanning QR codes.</string>
         </edit-config>
