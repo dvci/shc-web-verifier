@@ -125,7 +125,7 @@ const QrScan = () => {
   const history = useHistory();
   const classes = useStyles();
   const handleErrorFallback = useErrorHandler();
-  const { setQrCodes } = useQrDataContext();
+  const { setQrCodes, resetQrCodes } = useQrDataContext();
   const [scannedCodes, setScannedCodes] = useState([]);
   const [scannedData, setScannedData] = useState('');
   const runningQrScanner = useRef(null);
@@ -214,12 +214,14 @@ const QrScan = () => {
         }
 
         if (tempScannedCodes.every((code) => code)) {
+          resetQrCodes();
           setQrCodes(tempScannedCodes);
           history.push('/display-results');
         }
         setScannedCodes(tempScannedCodes);
         scannedCodesRef.current = tempScannedCodes;
       } else {
+        resetQrCodes();
         setQrCodes([data]);
         history.push('/display-results');
       }
