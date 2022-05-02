@@ -55,6 +55,14 @@ cordova prepare
 cordova build
 ```
 
+### Create mobile icons
+Ionic utility to create required icon densities for supported platforms from source 1024x0124 icon.
+Will add files to resources folder and update config.xml file with icon paths.
+```
+yarn global add cordova-res
+cordova-res --type icon --icon-source "src/assets/icon.png"
+```
+
 ## Client-side CDC CDSi validator
 
 Limited scope, CQL engine based client-side validation script that executes the CDSi supporting data guidelines.

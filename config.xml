@@ -9,8 +9,6 @@
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
 
-    <icon src="src/assets/qr-vaccine-icon.png" />
-
     <preference name="cordova.plugins.diagnostic.modules" value="WIFI CAMERA EXTERNAL_STORAGE" />
     <!-- disable splash screen -->
     <preference name="SplashScreenDelay" value="0"/>
