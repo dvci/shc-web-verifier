@@ -45,14 +45,15 @@ const App = () => (
             </Route> */}
 
             <QrDataProvider>
-              <Route exact path="/qr-scan">
-                <QrScan />
-              </Route>
               <HealthCardDataProvider>
-                <Route exact path="/display-results">
-                  <HealthCardDisplay />
+                <Route exact path="/qr-scan">
+                  <QrScan />
                 </Route>
               </HealthCardDataProvider>
+
+              <Route exact path="/display-results">
+                <HealthCardDisplay />
+              </Route>
             </QrDataProvider>
           </Switch>
         </ErrorBoundary>
