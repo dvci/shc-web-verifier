@@ -1,103 +1,94 @@
 import React, {
-  createContext, useContext, useEffect, useState
+  createContext, useContext, useReducer
 } from 'react';
-import https from 'https';
 import {
-  getIssuer,
+  parseHealthCardQr,
   getJws,
   getPayload,
-  getIssuerDisplayName,
 } from 'utils/qrHelpers';
-import { healthCardVerify, issuerVerify } from 'utils/verifyHelpers';
 import { Validator } from 'components/Validator/Validator.tsx';
 
 const QrDataContext = createContext();
 
-const QrDataProvider = ({ children }) => {
-  const [qrCodes, setQrCodes] = useState(
-    JSON.parse(localStorage.getItem('qrCodes'))
-  );
-  const [healthCardVerified, setHealthCardVerified] = useState({
-    verified: false,
+const initialState = {
+  qrCodes: null,
+  qrError: null,
+  jws: null,
+  validationStatus: {
+    validPrimarySeries: null,
     error: null,
-  });
-  const [issuerVerified, setIssuerVerified] = useState(false);
-  const [validPrimarySeries, setValidPrimarySeries] = useState(null);
-  const [issuerDisplayName, setIssuerDisplayName] = useState(null);
+  }
+};
 
-  useEffect(() => {
-    async function verifyHealthCard(agent, jws, iss, abortController) {
-      try {
-        const status = await healthCardVerify(agent, jws, iss, abortController);
-        if (status) setHealthCardVerified({ verified: true, error: null });
-        else setHealthCardVerified({ verified: false, error: 'Not Verified' });
-      } catch (error) {
-        if (error.name !== 'AbortError') {
-          setHealthCardVerified({ verified: false, error: error.message });
+const actions = {
+  SET_QR_CODES: 'SET_QR_CODES',
+  RESET_QR_CODES: 'RESET_QR_CODES'
+};
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    case actions.SET_QR_CODES: {
+      const newState = {};
+      localStorage.setItem('qrCodes', JSON.stringify(action.qrCodes));
+
+      if (action.qrCodes) {
+      // check valid SHC QR
+        const validShcQr = action.qrCodes.every((c) => parseHealthCardQr(c) !== null);
+        if (!validShcQr) {
+          newState.qrError = new Error('UNSUPPORTED_QR_NOT_SHC');
+          newState.jws = null;
+        } else {
+          newState.jws = getJws(action.qrCodes);
         }
-      }
-    }
-    async function verifyIssuer(iss, abortController) {
-      try {
-        const status = await issuerVerify(iss, abortController);
-        setIssuerVerified(status);
-        if (status === true) {
-          // eslint-disable-next-line max-len
-          getIssuerDisplayName(qrCodes, abortController).then((result) => setIssuerDisplayName(result));
-        }
-      } catch (error) {
-        if (error.name !== 'AbortError') {
-          setIssuerVerified(false);
-        }
-      }
-    }
+      } else newState.jws = null;
 
-    localStorage.setItem('qrCodes', JSON.stringify(qrCodes));
-    const abortController = new AbortController();
-
-    if (qrCodes) {
-      // Verify health card signature
-      const jws = getJws(qrCodes);
-      const iss = getIssuer(qrCodes);
-      const agent = new https.Agent({
-        rejectUnauthorized: false,
-      });
-      verifyHealthCard(agent, jws, iss, abortController);
-
-      // Verify issuer
-      verifyIssuer(iss, abortController);
-
+      if (newState.jws) {
       // Validate vaccine series
-      try {
-        const payload = getPayload(qrCodes);
-        const patientBundle = JSON.parse(payload).vc.credentialSubject.fhirBundle;
-        const results = Validator.execute(patientBundle, JSON.parse(payload).vc.type);
-        if (results) {
-          setValidPrimarySeries(
-            results.some((series) => series.validPrimarySeries)
-          );
-        } else setValidPrimarySeries(null);
-      } catch {
-        setValidPrimarySeries(null);
+        try {
+          const payload = getPayload(newState.jws);
+          const patientBundle = JSON.parse(payload).vc.credentialSubject.fhirBundle;
+          const results = Validator.execute(patientBundle, JSON.parse(payload).vc.type);
+          newState.validationStatus = {
+            validPrimarySeries:
+                results ? results.some((series) => series.validPrimarySeries) : null,
+            error: null
+          };
+        } catch {
+          newState.validationStatus = { validPrimarySeries: false, error: new Error('VALIDATION_ERROR') };
+        }
       }
+      return {
+        ...state,
+        ...newState
+      };
     }
+    case actions.RESET_QR_CODES: {
+      return initialState;
+    }
+    default:
+      return state;
+  }
+};
 
-    return () => {
-      abortController.abort();
-    };
-  }, [qrCodes]);
+const QrDataProvider = ({ children }) => {
+  const [state, dispatch] = useReducer(reducer,
+    reducer(initialState, { type: actions.SET_QR_CODES, qrCodes: JSON.parse(localStorage.getItem('qrCodes')) }));
+
+  const value = {
+    qrCodes: state.qrCodes,
+    jws: state.jws,
+    qrError: state.qrError,
+    validationStatus: state.validationStatus,
+    setQrCodes: (qrCodes) => {
+      dispatch({ type: actions.SET_QR_CODES, qrCodes });
+    },
+    resetQrCodes: () => {
+      dispatch({ type: actions.RESET_QR_CODES });
+    }
+  };
 
   return (
-    <QrDataContext.Provider
-      value={{
-        healthCardVerified,
-        issuerVerified,
-        issuerDisplayName,
-        qrCodes,
-        setQrCodes,
-        validPrimarySeries,
-      }}
-    >
+    <QrDataContext.Provider value={value}>
       {children}
     </QrDataContext.Provider>
   );

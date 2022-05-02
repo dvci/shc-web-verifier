@@ -59,7 +59,7 @@ test('verifies vc error invalid issuer url', async () => {
   const falseIss = 6;
   await expect(callHealthCardVerify({ issValue: falseIss }))
     .rejects
-    .toThrow('Invalid issuer.')
+    .toThrow('UNVERIFIED_INVALID_ISSUER')
   expect(axiosSpy).not.toHaveBeenCalled();
 });
 
@@ -67,7 +67,7 @@ test('verifies vc error non-existent issuer key url', async () => {
   const falseIss = 'http://ww.example.com';
   await expect(callHealthCardVerify({ issValue: falseIss }))
     .rejects
-    .toThrow('Error retrieving issuer key URL.')
+    .toThrow('UNVERIFIED_ERROR_RETRIEVING_KEY_URL')
   expect(axiosSpy).toHaveBeenCalledTimes(1);
 });
 
@@ -75,7 +75,7 @@ test('verifies vc error 404 issuer key url', async () => {
   const falseIss = 'https://spec.smarthealth.cards/issuer/.well-known/jwks.json';
   await expect(callHealthCardVerify({ issValue: falseIss }))
     .rejects
-    .toThrow('Error retrieving issuer key URL.')
+    .toThrow('UNVERIFIED_ERROR_RETRIEVING_KEY_URL')
   expect(axiosSpy).toHaveBeenCalledTimes(1);
 });
 
@@ -84,7 +84,7 @@ test('verifies vc error bad keystore', async () => {
   axiosSpy.mockResolvedValue({ data: badJwks });
   await expect(callHealthCardVerify({}))
     .rejects
-    .toThrow('Error processing issuer keys.')
+    .toThrow('UNVERIFIED_ISSUER_KEY_FORMAT_ERROR')
   expect(axiosSpy).toHaveBeenCalledTimes(1);
 });
 
@@ -93,6 +93,6 @@ test('verifies vc error validating signature', async () => {
   axiosSpy.mockResolvedValue({ data: jwks });
   await expect(callHealthCardVerify({ jwsValue: falseJws }))
     .rejects
-    .toThrow('Error validating signature.')
+    .toThrow('UNVERIFIED_ERROR_VALIDATING_SIGNATURE')
   expect(axiosSpy).toHaveBeenCalledTimes(1);
 });
