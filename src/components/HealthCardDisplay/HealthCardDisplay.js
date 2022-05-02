@@ -114,21 +114,9 @@ const HealthCardDisplay = () => {
   const styles = useStyles();
   const history = useHistory();
   const { t } = useTranslation();
-  const { qrError, jws, resetQrCodes } = useQrDataContext();
-  // eslint-disable-next-line max-len
-  const { setHealthCardVerified, setHealthCardSupported, setIssuerVerified } = useHealthCardDataContext();
+  const { qrError, jws } = useQrDataContext();
 
   const handleScan = () => {
-    setHealthCardVerified({
-      verified: null,
-      error: null,
-    });
-    setIssuerVerified(false);
-    setHealthCardSupported({
-      status: null,
-      error: null,
-    });
-    resetQrCodes();
     history.push('qr-scan');
   };
 

@@ -10,6 +10,7 @@ import { useQrDataContext } from 'components/QrDataProvider';
 import { parseHealthCardQr } from 'utils/qrHelpers';
 import QrScanner from 'qr-scanner';
 import { useErrorHandler } from 'react-error-boundary';
+import { useHealthCardDataContext } from 'components/HealthCardDataProvider';
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -139,6 +140,8 @@ const QrScan = () => {
   const [scannedData, setScannedData] = useState('');
   const runningQrScanner = useRef(null);
   const scannedCodesRef = useRef([]);
+  // eslint-disable-next-line max-len
+  const { setHealthCardVerified, setHealthCardSupported, setIssuerVerified } = useHealthCardDataContext();
 
   const handleError = useCallback(() => {
     history.push('/display-results');
@@ -223,6 +226,15 @@ const QrScan = () => {
 
         if (tempScannedCodes.every((code) => code)) {
           resetQrCodes();
+          setHealthCardVerified({
+            verified: null,
+            error: null,
+          });
+          setIssuerVerified(false);
+          setHealthCardSupported({
+            status: null,
+            error: null,
+          });
           setQrCodes(tempScannedCodes);
           history.push('/display-results');
         }
@@ -230,6 +242,15 @@ const QrScan = () => {
         scannedCodesRef.current = tempScannedCodes;
       } else {
         resetQrCodes();
+        setHealthCardVerified({
+          verified: null,
+          error: null,
+        });
+        setIssuerVerified(false);
+        setHealthCardSupported({
+          status: null,
+          error: null,
+        });
         setQrCodes([data]);
         history.push('/display-results');
       }
@@ -242,7 +263,16 @@ const QrScan = () => {
         handleError();
       }
     }
-  }, [scannedData, handleError, history, setQrCodes, resetQrCodes]);
+  }, [
+    scannedData,
+    handleError,
+    history,
+    setQrCodes,
+    resetQrCodes,
+    setHealthCardVerified,
+    setIssuerVerified,
+    setHealthCardSupported,
+  ]);
 
   return (
     <Box className={classes.box}>
