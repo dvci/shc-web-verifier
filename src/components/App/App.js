@@ -49,11 +49,11 @@ const App = () => (
                 <Route exact path="/qr-scan">
                   <QrScan />
                 </Route>
-              </HealthCardDataProvider>
 
-              <Route exact path="/display-results">
-                <HealthCardDisplay />
-              </Route>
+                <Route exact path="/display-results">
+                  <HealthCardDisplay />
+                </Route>
+              </HealthCardDataProvider>
             </QrDataProvider>
           </Switch>
         </ErrorBoundary>
