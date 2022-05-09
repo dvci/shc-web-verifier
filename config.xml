@@ -10,6 +10,9 @@
     <allow-intent href="https://*/*" />
 
     <preference name="cordova.plugins.diagnostic.modules" value="WIFI CAMERA EXTERNAL_STORAGE" />
+    <!-- disable splash screen -->
+    <preference name="SplashScreenDelay" value="0"/>
+    <preference name="FadeSplashScreenDuration" value="0"/>
 
     <platform name="android">
         <config-file target="AndroidManifest.xml" parent="/*" mode="merge">

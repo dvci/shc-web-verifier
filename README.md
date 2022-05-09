@@ -60,6 +60,14 @@ cordova prepare
 cordova build
 ```
 
+### Create mobile icons
+Ionic utility to create required icon densities for supported platforms from source 1024x0124 icon.
+Will add files to resources folder and update config.xml file with icon paths.
+```
+yarn global add cordova-res
+cordova-res --type icon --icon-source "src/assets/icon.png"
+```
+
 ## Client-side CDC CDSi validator
 
 The SMART Health Card verification process uses a limited-scope, Clinical Quality Language (CQL) engine-based, client-side [validation script](https://github.com/dvci/shc-web-verifier/blob/main/cql/CDSiSupportingData.cql) that executes the Clinical Decision Support for Immunization (CDSi) Supporting Data guidelines.
