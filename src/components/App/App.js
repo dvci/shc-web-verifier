@@ -2,12 +2,7 @@ import './App.css';
 
 import React from 'react';
 import { CssBaseline } from '@mui/material';
-import {
-  HashRouter as Router,
-  Redirect,
-  Route,
-  Switch,
-} from 'react-router-dom';
+import { HashRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
 import HealthCardDisplay from 'components/HealthCardDisplay';
 import ThemeProvider from 'components/ThemeProvider';
 import Header from 'components/Header';

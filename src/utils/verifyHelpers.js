@@ -37,22 +37,22 @@ const healthCardVerify = async (httpsAgent, jws, iss, controller) => {
   }
 };
 
-const issuerVerify = async (iss, controller) => getIssuerDirectories(controller)
-  .then((fetchedDirectories) => fetchedDirectories.some((d) => {
-    if (d.issuers && !d.error) {
-      const issName = d.issuers?.participating_issuers
-        .filter((issuer) => issuer.iss === iss)
-        .map((issuer) => issuer.name)[0];
-      if (issName) {
-        return true;
-      }
-    }
+const issuerVerify = async (iss, controller) =>
+  getIssuerDirectories(controller)
+    .then((fetchedDirectories) =>
+      fetchedDirectories.some((d) => {
+        if (d.issuers && !d.error) {
+          const issName = d.issuers?.participating_issuers
+            .filter((issuer) => issuer.iss === iss)
+            .map((issuer) => issuer.name)[0];
+          if (issName) {
+            return true;
+          }
+        }
 
-    return false;
-  }))
-  .catch(() => false);
+        return false;
+      })
+    )
+    .catch(() => false);
 
-export {
-  healthCardVerify,
-  issuerVerify,
-};
+export { healthCardVerify, issuerVerify };

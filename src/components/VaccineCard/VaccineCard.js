@@ -1,15 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {
-  Box,
-  Card,
-  CardContent,
-  Grid,
-  Typography,
-  Divider,
-  IconButton,
-  List,
-  ListItem,
-} from '@mui/material';
+import { Box, Card, CardContent, Grid, Typography, Divider, IconButton, List, ListItem } from '@mui/material';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import { useHealthCardDataContext } from 'components/HealthCardDataProvider';
 import { getPatientData } from 'utils/qrHelpers';
@@ -25,7 +15,7 @@ const VaccineCard = () => {
   const { jws, issuerVerified, issuerDisplayName } = useHealthCardDataContext();
   const [patientData, setPatientData] = useState({
     name: '',
-    immunizations: [],
+    immunizations: []
   });
   const [tradenames, setTradenames] = useState({});
   const [cvxCodes, setCvxCodes] = useState({});
@@ -92,12 +82,9 @@ const VaccineCard = () => {
           <Grid item xs={9} sm={10} className={styles.gridItem}>
             <Typography>
               <Box component="span" fontWeight="700">
-                {immunization.vaccineCode
-                  ? immunizationDisplayName(immunization.vaccineCode.coding)
-                  : ''}
+                {immunization.vaccineCode ? immunizationDisplayName(immunization.vaccineCode.coding) : ''}
               </Box>
-              {immunization.lotNumber
-                && ` ${t('healthcarddisplay.Lot')} #${immunization.lotNumber}`}
+              {immunization.lotNumber && ` ${t('healthcarddisplay.Lot')} #${immunization.lotNumber}`}
             </Typography>
           </Grid>
         </Grid>
@@ -106,9 +93,7 @@ const VaccineCard = () => {
             <Typography>{t('healthcarddisplay.Date')}</Typography>
           </Grid>
           <Grid item xs={9} sm={10} className={styles.gridItem}>
-            <Typography className={styles.date}>
-              {immunization.occurrenceDateTime}
-            </Typography>
+            <Typography className={styles.date}>{immunization.occurrenceDateTime}</Typography>
           </Grid>
         </Grid>
         <Grid container item className={styles.gridRow} spacing={0}>
@@ -130,27 +115,16 @@ const VaccineCard = () => {
       <Card display="flex" className={styles.card}>
         <CardContent className={styles.cardContent}>
           <Box className={[styles.flexCol, styles.patientData].join(' ')}>
-            <Typography className={styles.nameLabel}>
-              {t('healthcarddisplay.NAME')}
-            </Typography>
+            <Typography className={styles.nameLabel}>{t('healthcarddisplay.NAME')}</Typography>
             <Typography className={styles.name}>{patientData.name}</Typography>
           </Box>
           <Box className={[styles.flexCol, styles.patientData].join(' ')}>
-            <Typography className={styles.dateOfBirthLabel}>
-              {t('healthcarddisplay.DATE OF BIRTH')}
-            </Typography>
+            <Typography className={styles.dateOfBirthLabel}>{t('healthcarddisplay.DATE OF BIRTH')}</Typography>
             <Box className={styles.dateOfBirthRow}>
-              <Typography
-                className={styles.dateOfBirth}
-                hidden={!showDateOfBirth}
-                id="dateOfBirth"
-              >
+              <Typography className={styles.dateOfBirth} hidden={!showDateOfBirth} id="dateOfBirth">
                 {patientData.dateOfBirth}
               </Typography>
-              <Typography
-                className={styles.dateOfBirth}
-                hidden={showDateOfBirth}
-              >
+              <Typography className={styles.dateOfBirth} hidden={showDateOfBirth}>
                 {'**/**/****'}
               </Typography>
               <IconButton
@@ -163,9 +137,7 @@ const VaccineCard = () => {
             </Box>
           </Box>
           <Divider className={styles.line} />
-          <Box
-            className={[styles.flexCol, styles.vaccinationRecordBox].join(' ')}
-          >
+          <Box className={[styles.flexCol, styles.vaccinationRecordBox].join(' ')}>
             <Box className={styles.vaccinationRecordLabel}>
               <Typography className={styles.vaccinationRecordLabelText}>
                 {t('healthcarddisplay.VACCINATION RECORD')}
@@ -181,23 +153,10 @@ const VaccineCard = () => {
               ))}
             </List>
           </Box>
-          <Grid
-            item
-            maxWidth="xs"
-            xs={10.5}
-            justifyContent="left"
-            alignItems="flex-end"
-          >
-            <Box
-              display="flex"
-              alignItems="center"
-              justifyContent="left"
-              flexDirection="row"
-            >
+          <Grid item maxWidth="xs" xs={10.5} justifyContent="left" alignItems="flex-end">
+            <Box display="flex" alignItems="center" justifyContent="left" flexDirection="row">
               {issuerVerified ? (
-                <Typography className={styles.covid19Vaccination}>
-                  {issuerDisplayName}
-                </Typography>
+                <Typography className={styles.covid19Vaccination}>{issuerDisplayName}</Typography>
               ) : (
                 <>
                   <img
@@ -205,7 +164,7 @@ const VaccineCard = () => {
                     alt="Bottom Banner Issuer Icon"
                     style={{
                       height: '1.5rem',
-                      marginRight: '1rem',
+                      marginRight: '1rem'
                     }}
                   />
                   <Typography variant="h6" className={styles.unverifiedText}>

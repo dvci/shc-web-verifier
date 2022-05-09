@@ -15,16 +15,16 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    flexWrap: 'nowrap',
+    flexWrap: 'nowrap'
   },
   logo: {
     objectFit: 'contain',
     [theme.breakpoints.up('md')]: {
-      width: '120px',
+      width: '120px'
     },
     [theme.breakpoints.down('md')]: {
-      width: '80px',
-    },
+      width: '80px'
+    }
   }
 }));
 
@@ -36,7 +36,11 @@ const Header = () => {
     <header className={classes.header}>
       <Box className={classes.container} padding={{ xs: 2, md: 4 }}>
         <Box className={classes.logo}>
-          <img src={logo} alt="Placeholder Mitre logo" style={{ width: '100%', height: '100%', verticalAlign: 'middle' }} />
+          <img
+            src={logo}
+            alt="Placeholder Mitre logo"
+            style={{ width: '100%', height: '100%', verticalAlign: 'middle' }}
+          />
         </Box>
         <Box ml={{ xs: 2, md: 4 }}>
           <Typography variant="h6" component="h1">

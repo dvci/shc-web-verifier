@@ -6,12 +6,12 @@ interface ISupportingData {
 }
 
 const supportingData = {
-  'COVID-19': COVID,
+  'COVID-19': COVID
 } as ISupportingData;
 
 const ancillaryData = {
-  'COVID-19': ancillaryCOVID,
+  'COVID-19': ancillaryCOVID
 } as ISupportingData;
 
-export { supportingData, ancillaryData };  
+export { supportingData, ancillaryData };
 export type { ISupportingData };

@@ -15,13 +15,8 @@ const ValidatorDisplay = ({ bundle, action }) => {
   const [validPrimarySeries, setValidPrimarySeries] = useState(null);
 
   useEffect(() => {
-    const validationResults = Validator.execute(
-      bundle,
-      action
-    );
-    setValidPrimarySeries(
-      validationResults.some((series) => series.validPrimarySeries)
-    );
+    const validationResults = Validator.execute(bundle, action);
+    setValidPrimarySeries(validationResults.some((series) => series.validPrimarySeries));
   }, [action, bundle]);
 
   return (

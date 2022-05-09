@@ -15,10 +15,10 @@ function encodeEntity(xmlString) {
 
 async function fetchCdcXml(file) {
   const response = await axios.get(file, {
-    Accept: 'application/xml',
+    Accept: 'application/xml'
   });
   let data = await response.data;
-  data = encodeEntity(data)
+  data = encodeEntity(data);
   const parser = new DOMParser();
   const xmlDoc = parser.parseFromString(data, 'application/xml');
   if (xmlDoc.getElementsByTagName('parsererror').length > 0) {
@@ -51,17 +51,12 @@ function processTradenames(xmlDoc) {
 }
 
 function processCvx(xmlDoc) {
-  const prodInfos = xmlDoc.evaluate(
-    '//CVXCodes/CVXInfo',
-    xmlDoc,
-    null,
-    XPathResult.ORDERED_NODE_ITERATOR_TYPE,
-    null
-  );
+  const prodInfos = xmlDoc.evaluate('//CVXCodes/CVXInfo', xmlDoc, null, XPathResult.ORDERED_NODE_ITERATOR_TYPE, null);
   let prodInfo = prodInfos.iterateNext();
   const cvxDesc = {};
   while (prodInfo) {
-    cvxDesc[prodInfo.getElementsByTagName('CVXCode')[0].textContent.trim()] = prodInfo.getElementsByTagName('ShortDescription')[0].textContent;
+    cvxDesc[prodInfo.getElementsByTagName('CVXCode')[0].textContent.trim()] =
+      prodInfo.getElementsByTagName('ShortDescription')[0].textContent;
     prodInfo = prodInfos.iterateNext();
   }
   return cvxDesc;
@@ -69,8 +64,7 @@ function processCvx(xmlDoc) {
 
 function fetchTradenames() {
   if (!tradenames) {
-    tradenames = fetchCdcXml(tradenamesXml)
-      .then((xmlDoc) => processTradenames(xmlDoc))
+    tradenames = fetchCdcXml(tradenamesXml).then((xmlDoc) => processTradenames(xmlDoc));
   }
 
   return tradenames;
@@ -78,8 +72,7 @@ function fetchTradenames() {
 
 function fetchCvx() {
   if (!cvx) {
-    cvx = fetchCdcXml(cvxXml)
-      .then((xmlDoc) => processCvx(xmlDoc))
+    cvx = fetchCdcXml(cvxXml).then((xmlDoc) => processCvx(xmlDoc));
   }
 
   return cvx;

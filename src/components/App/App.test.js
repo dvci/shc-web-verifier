@@ -7,7 +7,7 @@ jest.mock('react', () => ({
   ...jest.requireActual('react'),
   useState: jest.fn(),
   useEffect: jest.fn()
-}))
+}));
 
 beforeAll(() => {
   React.useEffect.mockImplementation(() => {});

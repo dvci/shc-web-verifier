@@ -1,7 +1,5 @@
 import React from 'react';
-import {
-  Box, Accordion, AccordionSummary, AccordionDetails, Typography
-} from '@mui/material';
+import { Box, Accordion, AccordionSummary, AccordionDetails, Typography } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { makeStyles } from '@mui/styles';
 import { useTranslation } from 'react-i18next';
@@ -12,15 +10,15 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   box: {
     width: '100%',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
-    padding: '8px',
-  },
+    padding: '8px'
+  }
 }));
 
 const FAQ = () => {
@@ -34,11 +32,7 @@ const FAQ = () => {
         {t('faq.items', { returnObjects: true }).map((item, i) => (
           // eslint-disable-next-line react/no-array-index-key
           <Accordion key={i}>
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel1a-content"
-              id="panel1a-header"
-            >
+            <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
               <Typography>{item.question}</Typography>
             </AccordionSummary>
             <AccordionDetails>

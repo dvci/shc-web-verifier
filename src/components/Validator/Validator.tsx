@@ -10,38 +10,45 @@ interface IAntigenData {
   vcTypes: string[];
   antigen: string;
   supportingData: any;
-  ancillaryData: any
+  ancillaryData: any;
 }
 
 const antigenData: IAntigenData[] = [
   {
-    vcTypes: ["https://smarthealth.cards#covid19", "https://smarthealth.cards#health-card", "https://smarthealth.cards#immunization"], 
+    vcTypes: [
+      'https://smarthealth.cards#covid19',
+      'https://smarthealth.cards#health-card',
+      'https://smarthealth.cards#immunization'
+    ],
     antigen: 'COVID-19',
     supportingData: supportingData['COVID-19'].antigenSupportingData,
     ancillaryData: ancillaryData['COVID-19'].antigenAncillaryData
   }
 ];
 
-const getAntigenData = (vcTypes: string[]) : IAntigenData | undefined => {
+const getAntigenData = (vcTypes: string[]): IAntigenData | undefined => {
   vcTypes.sort((a, b) => a.localeCompare(b));
-  return antigenData.find(antigen => antigen.vcTypes.length === vcTypes.length && vcTypes.every((type, index) => antigen.vcTypes[index] === type ));
+  return antigenData.find(
+    (antigen) =>
+      antigen.vcTypes.length === vcTypes.length && vcTypes.every((type, index) => antigen.vcTypes[index] === type)
+  );
 };
 
 export interface IValidationResult {
   seriesName: string;
-  validPrimarySeries: boolean,
+  validPrimarySeries: boolean;
   evaluations: [
     startingImmunizationIndex: number,
     validPrimarySeries: boolean,
     doseEvaluations: [
       {
-        doseNumber: string,
-        doseIndex: number,
-        immunizationIndex: number,
-        immunization: any,
-        validDose: boolean
-      },
-    ],
+        doseNumber: string;
+        doseIndex: number;
+        immunizationIndex: number;
+        immunization: any;
+        validDose: boolean;
+      }
+    ]
   ];
 }
 
@@ -64,7 +71,7 @@ export class Validator {
     vcTypes: string[],
     valueSetMap: any,
     elmJSONs: any[] = [cql, fhirhelpers],
-    libraryID: string = 'CDSiSupportingData',
+    libraryID: string = 'CDSiSupportingData'
   ): [IValidationResult] | null {
     const mainELM = elmJSONs.find((e) => e.library.identifier.id === libraryID);
     if (!mainELM) {
@@ -72,29 +79,21 @@ export class Validator {
     }
     // Resolve dependencies
     const repository = new Repository(elmJSONs);
-    const library = repository.resolve(
-      libraryID,
-      mainELM.library.identifier.version
-    );
+    const library = repository.resolve(libraryID, mainELM.library.identifier.version);
 
     const codeService = new CodeService(valueSetMap);
     const antigen = getAntigenData(vcTypes);
-    if(!antigen) return null;
-    const parameters = { 
+    if (!antigen) return null;
+    const parameters = {
       AntigenSupportingData: antigen.supportingData,
-      AntigenAncillaryData: antigen.ancillaryData 
+      AntigenAncillaryData: antigen.ancillaryData
     };
 
     // Load array of patient bundles
     const patientSource = new PatientSource.FHIRv400();
     patientSource.loadBundles([patientBundle]);
     const expr = library.expressions.Run;
-    const patientContext = new PatientContext(
-      library,
-      patientSource.currentPatient(),
-      codeService,
-      parameters,
-    );
+    const patientContext = new PatientContext(library, patientSource.currentPatient(), codeService, parameters);
     return expr.execute(patientContext);
   }
 }

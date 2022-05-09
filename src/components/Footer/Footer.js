@@ -1,8 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@mui/styles';
-import {
-  AppBar, Box, Container, Toolbar, IconButton, Menu, MenuItem, Button, Typography
-} from '@mui/material';
+import { AppBar, Box, Container, Toolbar, IconButton, Menu, MenuItem, Button, Typography } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import EmailIcon from '@mui/icons-material/Email';
 import { useHistory } from 'react-router-dom';
@@ -14,14 +12,14 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.primary.main,
     backgroundColor: theme.palette.common.grayLight,
     position: 'static',
-    marginTop: '2em',
+    marginTop: '2em'
   },
   link: {
-    fontWeight: 700,
+    fontWeight: 700
   },
   logo: {
     objectFit: 'contain',
-    height: '3.5em',
+    height: '3.5em'
   }
 }));
 
@@ -62,17 +60,17 @@ const Footer = () => {
               anchorEl={anchorElNav}
               anchorOrigin={{
                 vertical: 'bottom',
-                horizontal: 'left',
+                horizontal: 'left'
               }}
               keepMounted
               transformOrigin={{
                 vertical: 'top',
-                horizontal: 'left',
+                horizontal: 'left'
               }}
               open={Boolean(anchorElNav)}
               onClose={() => handleCloseNavMenu(null)}
               sx={{
-                display: { xs: 'block', md: 'none' },
+                display: { xs: 'block', md: 'none' }
               }}
             >
               {pages.map((page) => (
@@ -83,15 +81,16 @@ const Footer = () => {
             </Menu>
           </Box>
           <Box sx={{ flexGrow: { xs: 1, md: 0 } }}>
-            <img src={logo} alt="Placeholder Mitre logo" style={{ width: '100px' }} sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }} />
+            <img
+              src={logo}
+              alt="Placeholder Mitre logo"
+              style={{ width: '100px' }}
+              sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
+            />
           </Box>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={() => handleCloseNavMenu(page)}
-                sx={{ my: 2, display: 'block' }}
-              >
+              <Button key={page} onClick={() => handleCloseNavMenu(page)} sx={{ my: 2, display: 'block' }}>
                 {t(`footer.${page}`)}
               </Button>
             ))}
@@ -106,7 +105,11 @@ const Footer = () => {
               href="mailto:vci-developers@mitre.org"
             >
               <EmailIcon />
-              <Typography variant="button" style={{ fontSize: '0.69rem' }} sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+              <Typography
+                variant="button"
+                style={{ fontSize: '0.69rem' }}
+                sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}
+              >
                 vci-developers@mitre.org
               </Typography>
             </IconButton>

@@ -21,16 +21,15 @@ i18n
     debug: true,
 
     interpolation: {
-      escapeValue: false, // not needed for react as it escapes by default
+      escapeValue: false // not needed for react as it escapes by default
     },
     backend: {
-      backends: [
-        Backend,
-        resourcesToBackend(bundledResources)
-      ],
-      backendOptions: [{
-        loadPath: `${process.env.PUBLIC_URL}/locales/{{lng}}/{{ns}}.json`
-      }]
+      backends: [Backend, resourcesToBackend(bundledResources)],
+      backendOptions: [
+        {
+          loadPath: `${process.env.PUBLIC_URL}/locales/{{lng}}/{{ns}}.json`
+        }
+      ]
     }
   });
 

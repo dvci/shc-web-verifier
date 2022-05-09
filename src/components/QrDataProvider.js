@@ -10,13 +10,13 @@ const initialState = {
   jws: null,
   validationStatus: {
     validPrimarySeries: null,
-    error: null,
-  },
+    error: null
+  }
 };
 
 const actions = {
   SET_QR_CODES: 'SET_QR_CODES',
-  RESET_QR_CODES: 'RESET_QR_CODES',
+  RESET_QR_CODES: 'RESET_QR_CODES'
 };
 
 const reducer = (state, action) => {
@@ -27,9 +27,7 @@ const reducer = (state, action) => {
 
       if (action.qrCodes) {
         // check valid SHC QR
-        const validShcQr = action.qrCodes.every(
-          (c) => parseHealthCardQr(c) !== null
-        );
+        const validShcQr = action.qrCodes.every((c) => parseHealthCardQr(c) !== null);
         if (!validShcQr) {
           newState.qrError = new Error('UNSUPPORTED_QR_NOT_SHC');
           newState.jws = null;
@@ -43,26 +41,21 @@ const reducer = (state, action) => {
         try {
           const payload = getPayload(newState.jws);
           const patientBundle = JSON.parse(payload).vc.credentialSubject.fhirBundle;
-          const results = Validator.execute(
-            patientBundle,
-            JSON.parse(payload).vc.type
-          );
+          const results = Validator.execute(patientBundle, JSON.parse(payload).vc.type);
           newState.validationStatus = {
-            validPrimarySeries: results
-              ? results.some((series) => series.validPrimarySeries)
-              : null,
-            error: null,
+            validPrimarySeries: results ? results.some((series) => series.validPrimarySeries) : null,
+            error: null
           };
         } catch {
           newState.validationStatus = {
             validPrimarySeries: false,
-            error: new Error('VALIDATION_ERROR'),
+            error: new Error('VALIDATION_ERROR')
           };
         }
       }
       return {
         ...state,
-        ...newState,
+        ...newState
       };
     }
     case actions.RESET_QR_CODES: {
@@ -78,7 +71,7 @@ const QrDataProvider = ({ children }) => {
     reducer,
     reducer(initialState, {
       type: actions.SET_QR_CODES,
-      qrCodes: JSON.parse(localStorage.getItem('qrCodes')),
+      qrCodes: JSON.parse(localStorage.getItem('qrCodes'))
     })
   );
 
@@ -92,12 +85,10 @@ const QrDataProvider = ({ children }) => {
     },
     resetQrCodes: () => {
       dispatch({ type: actions.RESET_QR_CODES });
-    },
+    }
   };
 
-  return (
-    <QrDataContext.Provider value={value}>{children}</QrDataContext.Provider>
-  );
+  return <QrDataContext.Provider value={value}>{children}</QrDataContext.Provider>;
 };
 
 const useQrDataContext = () => useContext(QrDataContext);
