@@ -26,12 +26,12 @@ i18n
     backend: {
       backends: [
         Backend,
-        resourcesToBackend(bundledResources),
+        resourcesToBackend(bundledResources)
       ],
       backendOptions: [{
-        loadPath: `${process.env.PUBLIC_URL}/locales/{{lng}}/{{ns}}.json`,
-      }],
-    },
+        loadPath: `${process.env.PUBLIC_URL}/locales/{{lng}}/{{ns}}.json`
+      }]
+    }
   });
 
 export default i18n;

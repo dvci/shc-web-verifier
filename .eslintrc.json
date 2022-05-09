@@ -20,7 +20,7 @@
     "jsx-a11y"
   ],
   "rules": {
-    "comma-dangle": "error",
+    "comma-dangle": "off",
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "react/prop-types": "off",
     "semi": "off"

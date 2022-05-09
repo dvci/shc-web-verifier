@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@mui/styles';
 import {
-  AppBar, Box, Container, Toolbar, IconButton, Menu, MenuItem, Button, Typography,
+  AppBar, Box, Container, Toolbar, IconButton, Menu, MenuItem, Button, Typography
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import EmailIcon from '@mui/icons-material/Email';
@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
   logo: {
     objectFit: 'contain',
     height: '3.5em',
-  },
+  }
 }));
 
 const pages = ['FAQ']; // TODO: Add Privacy page, once approved

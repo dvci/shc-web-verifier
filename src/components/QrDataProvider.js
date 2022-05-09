@@ -28,7 +28,7 @@ const reducer = (state, action) => {
       if (action.qrCodes) {
         // check valid SHC QR
         const validShcQr = action.qrCodes.every(
-          (c) => parseHealthCardQr(c) !== null,
+          (c) => parseHealthCardQr(c) !== null
         );
         if (!validShcQr) {
           newState.qrError = new Error('UNSUPPORTED_QR_NOT_SHC');
@@ -45,7 +45,7 @@ const reducer = (state, action) => {
           const patientBundle = JSON.parse(payload).vc.credentialSubject.fhirBundle;
           const results = Validator.execute(
             patientBundle,
-            JSON.parse(payload).vc.type,
+            JSON.parse(payload).vc.type
           );
           newState.validationStatus = {
             validPrimarySeries: results
@@ -79,7 +79,7 @@ const QrDataProvider = ({ children }) => {
     reducer(initialState, {
       type: actions.SET_QR_CODES,
       qrCodes: JSON.parse(localStorage.getItem('qrCodes')),
-    }),
+    })
   );
 
   const value = {

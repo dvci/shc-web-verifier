@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Box, Accordion, AccordionSummary, AccordionDetails, Typography,
+  Box, Accordion, AccordionSummary, AccordionDetails, Typography
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { makeStyles } from '@mui/styles';
@@ -44,7 +44,7 @@ const FAQ = () => {
             <AccordionDetails>
               <Typography
                 dangerouslySetInnerHTML={{
-                  __html: item.answer,
+                  __html: item.answer
                 }}
               />
             </AccordionDetails>

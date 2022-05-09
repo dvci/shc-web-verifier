@@ -59,7 +59,7 @@ const lightTheme = responsiveFontSizes(createTheme({
         },
         '&:hover': {
           backgroundColor: paletteBase.common.blueGreenDark,
-        },
+        }
       },
     },
     MuiInputBase: {
@@ -103,7 +103,7 @@ const lightTheme = responsiveFontSizes(createTheme({
       },
       shrink: {
         transform: 'none',
-      },
+      }
     },
     MuiTextField: {
       root: {

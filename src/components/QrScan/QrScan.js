@@ -1,5 +1,5 @@
 import React, {
-  useState, useRef, useEffect, useCallback,
+  useState, useRef, useEffect, useCallback
 } from 'react';
 import { Button, Grid, Box } from '@mui/material';
 import { makeStyles } from '@mui/styles';
@@ -116,14 +116,14 @@ const cameraPermission = async () => {
                 (requestedError) => {
                   reject(requestedError);
                 },
-                false,
+                false
               );
             }
           },
           (error) => {
             reject(error);
           },
-          false,
+          false
         );
       });
     }
@@ -171,7 +171,7 @@ const QrScan = () => {
           width: video.videoWidth,
           height: video.videoHeight,
         }),
-      },
+      }
     );
     runningQrScanner.current = qrScan;
     qrScan.start().then(() => {

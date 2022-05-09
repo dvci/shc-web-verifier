@@ -31,7 +31,7 @@ const fetchIssuerDirectories = async (controller) => Promise.all(
       return directory;
     }
     return directory;
-  }),
+  })
 );
 
 export default function getIssuerDirectories(controller) {

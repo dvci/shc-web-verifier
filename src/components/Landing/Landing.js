@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Box, Button, Link, Typography, useTheme, useMediaQuery,
+  Box, Button, Link, Typography, useTheme, useMediaQuery
 } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { useHistory } from 'react-router-dom';
@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
   logo: {
     objectFit: 'contain',
     height: '3.5em',
-  },
+  }
 }));
 
 const Landing = () => {
@@ -81,7 +81,7 @@ const Landing = () => {
                   color="secondary"
                   target="_blank"
                   rel="noopener"
-                />,
+                />
               ]}
             />
           </Typography>
@@ -137,7 +137,7 @@ const Landing = () => {
                   rel="noopener"
                 >
                   https://smarthealth.cards/
-                </Link>,
+                </Link>
               ]}
             />
           </Typography>
