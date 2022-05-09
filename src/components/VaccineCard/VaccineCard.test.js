@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import axios from 'axios';
 import { act } from 'react-dom/test-utils';
 import ThemeProvider from 'components/ThemeProvider';
-import { QrDataContext } from 'components/QrDataProvider';
+import { HealthCardDataContext } from 'components/HealthCardDataProvider';
 import * as qrHelpers from 'utils/qrHelpers';
 import VaccineCard from './VaccineCard';
 import '../../i18nTest';
@@ -122,52 +122,56 @@ const cvxCodes = `<?xml version='1.0' encoding='ISO-8859-1'?><CVXCodes>
 
 jest.mock('axios');
 
-beforeAll(() => {
-  jest.spyOn(React, 'useEffect').mockImplementation((f) => f());
-});
-
-afterEach(() => {
-  jest.spyOn(React, 'useEffect').mockImplementation((f) => f());
-});
-
 const renderHealthCardDisplay = () => {
   qrHelpers.getPatientData = jest.fn().mockReturnValue(patientData);
   return render(
     <ThemeProvider>
-      <QrDataContext.Provider
+      <HealthCardDataContext.Provider
         value={{
-          qrCodes: [],
-          setQrCode: jest.fn(),
+          jws: 'eqowid',
+          healthCardSupported: { status: true, error: null },
           healthCardVerified: { verified: false, error: null },
           issuerVerified: false,
+          issuerDisplayName: null
         }}
       >
         <VaccineCard />
-      </QrDataContext.Provider>
+      </HealthCardDataContext.Provider>
     </ThemeProvider>
   );
 }
 
-test('renders health card', () => {
-  renderHealthCardDisplay();
-  const patientName = screen.getByText(/John B. Anyperson/i);
-  expect(patientName).toBeInTheDocument();
-  const immunizationDate = screen.getByText(/2021-01-01/i);
-  expect(immunizationDate).toBeInTheDocument();
+test('renders health card', async () => {
+  await act(async () => {
+    renderHealthCardDisplay();
+    await axios.get.mockImplementation((url) => {
+      if (url === 'iisstandards_tradename.xml') {
+        return { data: tradenames };
+      }
+      return { data: cvxCodes };
+    });
+    expect(await screen.findAllByText(/John B. Anyperson/i, {}, { timeout: 3000 })).toHaveLength(1);
+    expect(screen.getByText(/2021-01-01/i)).toBeInTheDocument();
+  });
 });
 
-test('renders health card without performer', () => {
+test('renders health card without performer', async () => {
   // Remove performer from immunization
   delete patientData.immunizations[0].resource.performer;
-  renderHealthCardDisplay();
-  const patientName = screen.getByText(/John B. Anyperson/i);
-  expect(patientName).toBeInTheDocument();
-  const immunizationDate = screen.getByText(/2021-01-01/i);
-  expect(immunizationDate).toBeInTheDocument();
+  await act(async () => {
+    renderHealthCardDisplay();
+    await axios.get.mockImplementation((url) => {
+      if (url === 'iisstandards_tradename.xml') {
+        return { data: tradenames };
+      }
+      return { data: cvxCodes };
+    });
+    expect(await screen.findAllByText(/John B. Anyperson/i, {}, { timeout: 3000 })).toHaveLength(1);
+    expect(screen.getByText(/2021-01-01/i)).toBeInTheDocument();
+  });
 });
 
 test('renders immunization display', async () => {
-  React.useEffect.mockRestore();
   await act(async () => {
     renderHealthCardDisplay();
     await axios.get.mockImplementation((url) => {

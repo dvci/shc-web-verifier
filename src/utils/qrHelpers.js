@@ -2,6 +2,16 @@ import { Base64 } from 'js-base64';
 import pako from 'pako';
 import getIssuerDirectories from './IssuerDirectories';
 
+const healthCardPattern = /^shc:\/(?<multipleChunks>(?<chunkIndex>[0-9]+)\/(?<chunkCount>[0-9]+)\/)?(?<payload>[0-9]+)$/;
+
+const parseHealthCardQr = (qrCode) => {
+  if (healthCardPattern.test(qrCode)) {
+    const match = qrCode.match(healthCardPattern);
+    return match.groups;
+  }
+  return null;
+}
+
 const getJws = (qrCodes) => qrCodes
   .map((c) => {
     const sliceIndex = c.lastIndexOf('/');
@@ -13,9 +23,8 @@ const getJws = (qrCodes) => qrCodes
   })
   .join('');
 
-const getPayload = (qrCodes) => {
-  const jwsString = getJws(qrCodes);
-  const dataString = jwsString.split('.')[1];
+const getPayload = (jws) => {
+  const dataString = jws.split('.')[1];
   const decodedPayload = Base64.toUint8Array(dataString);
   const inflatedPayload = pako.inflateRaw(decodedPayload);
   const payload = new TextDecoder().decode(inflatedPayload);
@@ -59,12 +68,12 @@ const extractPatientData = (card) => {
   return { name, dateOfBirth, immunizations };
 };
 
-const getPatientData = (qrCodes) => {
-  if (!qrCodes || qrCodes.length === 0) {
+const getPatientData = (jws) => {
+  if (!jws) {
     return null;
   }
   try {
-    const decodedQr = getPayload(qrCodes);
+    const decodedQr = getPayload(jws);
     const patientData = extractPatientData(decodedQr);
     return patientData;
   } catch {
@@ -72,16 +81,13 @@ const getPatientData = (qrCodes) => {
   }
 };
 
-const getIssuer = (qrCodes) => {
-  if (!qrCodes || qrCodes.length === 0) {
-    return null;
-  }
-  const payload = JSON.parse(getPayload(qrCodes));
+const getIssuer = (jws) => {
+  const payload = JSON.parse(getPayload(jws));
   return payload.iss;
 };
 
-const getIssuerDisplayName = async (qrCodes, controller) => {
-  const issuer = getIssuer(qrCodes);
+const getIssuerDisplayName = async (jws, controller) => {
+  const issuer = getIssuer(jws);
   // use VCI directory to resolve name
   const issuerDirectories = await getIssuerDirectories(controller);
   const participatingIssuers = issuerDirectories[0].issuers.participating_issuers;
@@ -91,7 +97,13 @@ const getIssuerDisplayName = async (qrCodes, controller) => {
   return issuerDisplayName;
 };
 
+const getCredential = (jws) => {
+  const payload = JSON.parse(getPayload(jws));
+  return payload.vc;
+};
+
 export {
+  parseHealthCardQr,
   extractImmunizations,
   extractPatientData,
   extractPatientName,
@@ -99,5 +111,6 @@ export {
   getJws,
   getPatientData,
   getPayload,
+  getCredential,
   getIssuerDisplayName,
 };

@@ -7,7 +7,9 @@ import { useHistory } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import frame from 'assets/frame.png';
 import { useQrDataContext } from 'components/QrDataProvider';
+import { parseHealthCardQr } from 'utils/qrHelpers';
 import QrScanner from 'qr-scanner';
+import { useErrorHandler } from 'react-error-boundary';
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -38,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
       maxHeight: '550px',
       maxWidth: '650px',
       margin: '2rem',
-    }
+    },
   },
   gridContainerMultiple: {
     display: 'flex',
@@ -69,9 +71,10 @@ const useStyles = makeStyles((theme) => ({
     zIndex: '2',
   },
   qrScanner: {
-    objectFit: 'contain',
+    objectFit: 'cover',
     position: 'absolute',
     width: '90%',
+    height: '90%',
     zIndex: '1',
     '& section': {
       position: 'unset !important',
@@ -82,13 +85,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const healthCardPattern = /^shc:\/(?<multipleChunks>(?<chunkIndex>[0-9]+)\/(?<chunkCount>[0-9]+)\/)?[0-9]+$/;
-
 let qrScan;
 
 const cameraPermission = async () => {
   if (window.cordova) {
-    if (window.cordova.platformId === 'android' || window.cordova.platformId === 'ios') {
+    if (
+      window.cordova.platformId === 'android'
+      || window.cordova.platformId === 'ios'
+    ) {
       if (window.cordova.platformId === 'ios') {
         window.cordova.plugins.iosrtc.registerGlobals();
       }
@@ -104,27 +108,33 @@ const cameraPermission = async () => {
                 (requestedStatus) => {
                   if (requestedStatus === diagnostic.permissionStatus.GRANTED) {
                     resolve(true);
-                  } else { resolve(false); }
+                  } else {
+                    resolve(false);
+                  }
                 },
                 (requestedError) => {
                   reject(requestedError);
-                }, false
+                },
+                false
               );
             }
-          }, (error) => {
+          },
+          (error) => {
             reject(error);
-          }, false
+          },
+          false
         );
       });
     }
   }
   return Promise.resolve(true);
-}
+};
 
 const QrScan = () => {
   const history = useHistory();
   const classes = useStyles();
-  const { setQrCodes } = useQrDataContext();
+  const handleErrorFallback = useErrorHandler();
+  const { setQrCodes, resetQrCodes } = useQrDataContext();
   const [scannedCodes, setScannedCodes] = useState([]);
   const [scannedData, setScannedData] = useState('');
   const runningQrScanner = useRef(null);
@@ -182,50 +192,45 @@ const QrScan = () => {
       }
     };
 
-    cameraPermission()
-      .then((granted) => {
-        if (granted) {
-          getUserMedia().then(() => {
-            createQrScanner(videoRef.current);
-          });
-        }
-      })
+    cameraPermission().then((granted) => {
+      if (granted) {
+        getUserMedia().then(() => {
+          createQrScanner(videoRef.current);
+        }, handleErrorFallback);
+      }
+    });
 
     return () => {
       if (runningQrScanner.current) runningQrScanner.current.stop();
     };
-  }, []);
+  }, [handleErrorFallback]);
 
   useEffect(() => {
     const handleScan = (data) => {
-      if (healthCardPattern.test(data)) {
-        const match = data.match(healthCardPattern);
-        if (match.groups.multipleChunks) {
-          const chunkCount = +match.groups.chunkCount;
-          const currentChunkIndex = +match.groups.chunkIndex;
-          let tempScannedCodes = [...scannedCodesRef.current];
-          if (tempScannedCodes.length !== chunkCount) {
-            tempScannedCodes = new Array(chunkCount);
-            tempScannedCodes.fill(null, 0, chunkCount);
-          }
+      const qrData = parseHealthCardQr(data);
+      if (qrData && qrData.multipleChunks) {
+        const chunkCount = +qrData.chunkCount;
+        const currentChunkIndex = +qrData.chunkIndex;
+        let tempScannedCodes = [...scannedCodesRef.current];
+        if (tempScannedCodes.length !== chunkCount) {
+          tempScannedCodes = new Array(chunkCount);
+          tempScannedCodes.fill(null, 0, chunkCount);
+        }
 
-          if (tempScannedCodes[currentChunkIndex - 1] === null) {
-            tempScannedCodes[currentChunkIndex - 1] = data;
-          }
+        if (tempScannedCodes[currentChunkIndex - 1] === null) {
+          tempScannedCodes[currentChunkIndex - 1] = data;
+        }
 
-          if (tempScannedCodes.every((code) => code)) {
-            setQrCodes(tempScannedCodes);
-            history.push('/display-results');
-          }
-          setScannedCodes(tempScannedCodes);
-          scannedCodesRef.current = tempScannedCodes;
-        } else {
-          setQrCodes([data]);
+        if (tempScannedCodes.every((code) => code)) {
+          resetQrCodes();
+          setQrCodes(tempScannedCodes);
           history.push('/display-results');
         }
+        setScannedCodes(tempScannedCodes);
+        scannedCodesRef.current = tempScannedCodes;
       } else {
-        // non-SHC compliant QR code
-        setQrCodes(null);
+        resetQrCodes();
+        setQrCodes([data]);
         history.push('/display-results');
       }
     };
@@ -237,7 +242,7 @@ const QrScan = () => {
         handleError();
       }
     }
-  }, [scannedData, handleError, history, setQrCodes]);
+  }, [scannedData, handleError, history, setQrCodes, resetQrCodes]);
 
   return (
     <Box className={classes.box}>

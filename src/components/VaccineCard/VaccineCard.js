@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Box,
   Card,
@@ -11,9 +11,10 @@ import {
   ListItem,
 } from '@mui/material';
 import VisibilityIcon from '@mui/icons-material/Visibility';
-import { useQrDataContext } from 'components/QrDataProvider';
+import { useHealthCardDataContext } from 'components/HealthCardDataProvider';
 import { getPatientData } from 'utils/qrHelpers';
 import { useTranslation } from 'react-i18next';
+import { useErrorHandler } from 'react-error-boundary'
 import xIcon from 'assets/x-icon.png';
 import useStyles from './styles';
 import { fetchTradenames, fetchCvx } from './iisstandards';
@@ -22,29 +23,49 @@ const VaccineCard = () => {
   const styles = useStyles();
   const { t } = useTranslation();
   const {
-    qrCodes,
+    jws,
     issuerVerified,
-    issuerDisplayName,
-  } = useQrDataContext();
-  const patientData = getPatientData(qrCodes);
+    issuerDisplayName
+  } = useHealthCardDataContext();
+  const [patientData, setPatientData] = useState(
+    {
+      name: '',
+      immunizations: []
+    }
+  );
   const [tradenames, setTradenames] = useState({});
   const [cvxCodes, setCvxCodes] = useState({});
   const [showDateOfBirth, setShowDateOfBirth] = useState(false);
+  const handleError = useErrorHandler();
 
-  React.useEffect(() => {
+  useEffect(() => {
+    if (jws) {
+      setPatientData(getPatientData(jws));
+    }
+  }, [jws]);
+
+  useEffect(() => {
     async function getTradenames() {
-      const tn = await fetchTradenames();
-      setTradenames(tn);
+      try {
+        const tn = await fetchTradenames();
+        setTradenames(tn);
+      } catch (e) {
+        handleError(e);
+      }
     }
 
     async function getCvx() {
-      const cvx = await fetchCvx();
-      setCvxCodes(cvx);
+      try {
+        const cvx = await fetchCvx();
+        setCvxCodes(cvx);
+      } catch (e) {
+        handleError(e);
+      }
     }
 
     getTradenames();
     getCvx();
-  }, []);
+  }, [handleError]);
 
   const toggleShowDateOfBirth = () => {
     setShowDateOfBirth(!showDateOfBirth);
