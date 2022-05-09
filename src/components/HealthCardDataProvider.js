@@ -1,6 +1,10 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, {
+  createContext, useContext, useEffect, useState
+} from 'react';
 import https from 'https';
-import { getPatientData, getIssuer, getIssuerDisplayName, getCredential } from 'utils/qrHelpers';
+import {
+  getPatientData, getIssuer, getIssuerDisplayName, getCredential
+} from 'utils/qrHelpers';
 import { healthCardVerify, issuerVerify } from 'utils/verifyHelpers';
 
 const HealthCardDataContext = createContext();
@@ -72,7 +76,9 @@ const HealthCardDataProvider = ({ healthCardJws, children }) => {
         const status = await issuerVerify(iss, abortController);
         setIssuerVerified(status);
         if (status === true) {
-          getIssuerDisplayName(cardJws, abortController).then((result) => setIssuerDisplayName(result));
+          getIssuerDisplayName(cardJws, abortController).then(
+            (result) => setIssuerDisplayName(result)
+          );
         }
       } catch (error) {
         if (error.name !== 'AbortError') {

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Card, CardContent, Grid, Typography, Divider, IconButton, List, ListItem } from '@mui/material';
+import {
+  Box, Card, CardContent, Grid, Typography, Divider, IconButton, List, ListItem
+} from '@mui/material';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import { useHealthCardDataContext } from 'components/HealthCardDataProvider';
 import { getPatientData } from 'utils/qrHelpers';

@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Container, Grid, Typography } from '@mui/material';
+import {
+  Box, Container, Grid, Typography
+} from '@mui/material';
 import { useHistory } from 'react-router-dom';
 import { makeStyles } from '@mui/styles';
 import { useQrDataContext } from 'components/QrDataProvider';
@@ -120,7 +122,9 @@ const HealthCardDisplay = () => {
     history.push('qr-scan');
   };
 
-  const TopBanner = ({ img, alt, style, text }) => (
+  const TopBanner = ({
+    img, alt, style, text
+  }) => (
     <Grid item xs={12} className={style} width="100%">
       <Container style={{ width: 'fit-content' }}>
         <Box className={styles.flexRow} pt={2} pb={2}>
@@ -197,9 +201,14 @@ const HealthCardDisplay = () => {
         // Signal that vaccine card should be displayed
         setBannersUpdated(true);
       }
-    }, [healthCardSupported.error, healthCardSupported.status, healthCardVerified.error, healthCardVerified.verified]);
+    }, [healthCardSupported.error,
+      healthCardSupported.status,
+      healthCardVerified.error,
+      healthCardVerified.verified]);
 
-    const BottomBanner = ({ img, alt, style, text }) => (
+    const BottomBanner = ({
+      img, alt, style, text
+    }) => (
       <Box className={styles.flexRow}>
         <img src={img} alt={alt} style={{ height: '1.5rem', marginRight: '1rem' }} />
         <Typography variant="h6" className={style}>
@@ -231,7 +240,8 @@ const HealthCardDisplay = () => {
               item
               xs={12}
               className={
-                healthCardVerified.verified && issuerVerified ? styles.bottomBannerValid : styles.bottomBannerPartial
+                healthCardVerified.verified && issuerVerified
+                  ? styles.bottomBannerValid : styles.bottomBannerPartial
               }
               style={{
                 marginBottom: '2rem',
@@ -251,7 +261,8 @@ const HealthCardDisplay = () => {
                   <BottomBanner
                     img={validationStatus.validPrimarySeries ? checkIcon : xIcon}
                     alt="Bottom Banner Series Icon"
-                    style={validationStatus.validPrimarySeries ? styles.verifiedText : styles.unverifiedText}
+                    style={validationStatus.validPrimarySeries
+                      ? styles.verifiedText : styles.unverifiedText}
                     text={
                       validationStatus.validPrimarySeries
                         ? t('healthcarddisplay.Valid vaccination series')

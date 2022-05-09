@@ -55,8 +55,7 @@ function processCvx(xmlDoc) {
   let prodInfo = prodInfos.iterateNext();
   const cvxDesc = {};
   while (prodInfo) {
-    cvxDesc[prodInfo.getElementsByTagName('CVXCode')[0].textContent.trim()] =
-      prodInfo.getElementsByTagName('ShortDescription')[0].textContent;
+    cvxDesc[prodInfo.getElementsByTagName('CVXCode')[0].textContent.trim()] = prodInfo.getElementsByTagName('ShortDescription')[0].textContent;
     prodInfo = prodInfos.iterateNext();
   }
   return cvxDesc;

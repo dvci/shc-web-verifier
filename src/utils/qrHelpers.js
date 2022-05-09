@@ -2,8 +2,7 @@ import { Base64 } from 'js-base64';
 import pako from 'pako';
 import getIssuerDirectories from './IssuerDirectories';
 
-const healthCardPattern =
-  /^shc:\/(?<multipleChunks>(?<chunkIndex>[0-9]+)\/(?<chunkCount>[0-9]+)\/)?(?<payload>[0-9]+)$/;
+const healthCardPattern = /^shc:\/(?<multipleChunks>(?<chunkIndex>[0-9]+)\/(?<chunkCount>[0-9]+)\/)?(?<payload>[0-9]+)$/;
 
 const parseHealthCardQr = (qrCode) => {
   if (healthCardPattern.test(qrCode)) {
@@ -13,15 +12,14 @@ const parseHealthCardQr = (qrCode) => {
   return null;
 };
 
-const getJws = (qrCodes) =>
-  qrCodes
-    .map((c) => {
-      const sliceIndex = c.lastIndexOf('/');
-      const rawPayload = c.slice(sliceIndex + 1);
-      const encodingChars = rawPayload.match(/\d\d/g);
-      return encodingChars.map((charPair) => String.fromCharCode(+charPair + 45)).join('');
-    })
-    .join('');
+const getJws = (qrCodes) => qrCodes
+  .map((c) => {
+    const sliceIndex = c.lastIndexOf('/');
+    const rawPayload = c.slice(sliceIndex + 1);
+    const encodingChars = rawPayload.match(/\d\d/g);
+    return encodingChars.map((charPair) => String.fromCharCode(+charPair + 45)).join('');
+  })
+  .join('');
 
 const getPayload = (jws) => {
   const dataString = jws.split('.')[1];

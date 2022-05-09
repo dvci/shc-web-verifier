@@ -1,5 +1,7 @@
 import React from 'react';
-import { Box, Accordion, AccordionSummary, AccordionDetails, Typography } from '@mui/material';
+import {
+  Box, Accordion, AccordionSummary, AccordionDetails, Typography
+} from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { makeStyles } from '@mui/styles';
 import { useTranslation } from 'react-i18next';

@@ -1,4 +1,6 @@
-import React, { useState, useRef, useEffect, useCallback } from 'react';
+import React, {
+  useState, useRef, useEffect, useCallback
+} from 'react';
 import { Button, Grid, Box } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { useHistory } from 'react-router-dom';
@@ -135,7 +137,11 @@ const QrScan = () => {
   const [scannedData, setScannedData] = useState('');
   const runningQrScanner = useRef(null);
   const scannedCodesRef = useRef([]);
-  const { setHealthCardVerified, setHealthCardSupported, setIssuerVerified } = useHealthCardDataContext();
+  const {
+    setHealthCardVerified,
+    setHealthCardSupported,
+    setIssuerVerified
+  } = useHealthCardDataContext();
 
   const handleError = useCallback(() => {
     history.push('/display-results');

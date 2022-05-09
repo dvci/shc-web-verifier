@@ -1,5 +1,7 @@
 import React from 'react';
-import { Box, Button, Link, Typography, useTheme, useMediaQuery } from '@mui/material';
+import {
+  Box, Button, Link, Typography, useTheme, useMediaQuery
+} from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { useHistory } from 'react-router-dom';
 import checkIcon from 'assets/check-icon.png';

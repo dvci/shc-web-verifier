@@ -43,7 +43,8 @@ const reducer = (state, action) => {
           const patientBundle = JSON.parse(payload).vc.credentialSubject.fhirBundle;
           const results = Validator.execute(patientBundle, JSON.parse(payload).vc.type);
           newState.validationStatus = {
-            validPrimarySeries: results ? results.some((series) => series.validPrimarySeries) : null,
+            validPrimarySeries: results
+              ? results.some((series) => series.validPrimarySeries) : null,
             error: null
           };
         } catch {
