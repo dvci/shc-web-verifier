@@ -5,8 +5,8 @@ import { Validator } from './Validator.tsx';
 
 const useStyles = makeStyles({
   bold: {
-    fontWeight: 'bold'
-  }
+    fontWeight: 'bold',
+  },
 });
 
 const ValidatorDisplay = ({ bundle, action }) => {
@@ -17,10 +17,10 @@ const ValidatorDisplay = ({ bundle, action }) => {
   useEffect(() => {
     const validationResults = Validator.execute(
       bundle,
-      action
+      action,
     );
     setValidPrimarySeries(
-      validationResults.some((series) => series.validPrimarySeries)
+      validationResults.some((series) => series.validPrimarySeries),
     );
   }, [action, bundle]);
 

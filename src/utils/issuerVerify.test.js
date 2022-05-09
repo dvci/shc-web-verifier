@@ -6,13 +6,13 @@ const directory = {
   participating_issuers: [
     {
       iss: 'https://spec.smarthealth.cards/examples/issuer',
-      name: 'SMART Spec issuer'
+      name: 'SMART Spec issuer',
     },
     {
       iss: 'https://example.com',
-      name: 'Bad issuer'
-    }
-  ]
+      name: 'Bad issuer',
+    },
+  ],
 };
 
 axios.defaults.adapter = require('axios/lib/adapters/http'); // xhr adapter causes network error

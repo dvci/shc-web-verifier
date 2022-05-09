@@ -1,5 +1,5 @@
 import React, {
-  createContext, useContext, useEffect, useState
+  createContext, useContext, useEffect, useState,
 } from 'react';
 import https from 'https';
 import {
@@ -39,7 +39,7 @@ const HealthCardDataProvider = ({ healthCardJws, children }) => {
       }
       if (
         !vc.type.some(
-          (type) => type === 'https://smarthealth.cards#health-card'
+          (type) => type === 'https://smarthealth.cards#health-card',
         )
       ) {
         setHealthCardSupported({
@@ -51,7 +51,7 @@ const HealthCardDataProvider = ({ healthCardJws, children }) => {
 
       if (
         !vc.type.some(
-          (type) => type === 'https://smarthealth.cards#immunization'
+          (type) => type === 'https://smarthealth.cards#immunization',
         )
       ) {
         setHealthCardSupported({
@@ -78,7 +78,7 @@ const HealthCardDataProvider = ({ healthCardJws, children }) => {
           agent,
           cardJws,
           iss,
-          abortController
+          abortController,
         );
         setHealthCardVerified({ verified: status, error: null });
       } catch (error) {

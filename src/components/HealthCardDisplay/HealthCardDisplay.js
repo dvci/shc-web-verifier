@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {
-  Box, Container, Grid, Typography
+  Box, Container, Grid, Typography,
 } from '@mui/material';
 import { useHistory } from 'react-router-dom';
 import { makeStyles } from '@mui/styles';
@@ -126,7 +126,7 @@ const HealthCardDisplay = () => {
   };
 
   const TopBanner = ({
-    img, alt, style, text
+    img, alt, style, text,
   }) => (
     <Grid item xs={12} className={style} width="100%">
       <Container style={{ width: 'fit-content' }}>
@@ -247,7 +247,7 @@ const HealthCardDisplay = () => {
     ]);
 
     const BottomBanner = ({
-      img, alt, style, text
+      img, alt, style, text,
     }) => (
       <Box className={styles.flexRow}>
         <img
@@ -318,7 +318,7 @@ const HealthCardDisplay = () => {
                       validationStatus.validPrimarySeries
                         ? t('healthcarddisplay.Valid vaccination series')
                         : t(
-                          'healthcarddisplay.Cannot determine vaccination status'
+                          'healthcarddisplay.Cannot determine vaccination status',
                         )
                     }
                   />

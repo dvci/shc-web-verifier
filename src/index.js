@@ -12,7 +12,7 @@ const renderReactDom = () => {
         <App />
       </Suspense>
     </React.StrictMode>,
-    document.getElementById('root')
+    document.getElementById('root'),
   );
 }
 

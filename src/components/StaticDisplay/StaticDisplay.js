@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Box, Typography
+  Box, Typography,
 } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { useTranslation } from 'react-i18next';
@@ -38,7 +38,7 @@ const StaticDisplay = ({ section }) => {
               variant="body1"
               gutterBottom
               dangerouslySetInnerHTML={{
-                __html: item.content
+                __html: item.content,
               }}
             />
           </div>

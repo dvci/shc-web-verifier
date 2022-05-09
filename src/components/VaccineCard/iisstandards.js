@@ -34,7 +34,7 @@ function processTradenames(xmlDoc) {
     xmlDoc,
     null,
     XPathResult.ORDERED_NODE_ITERATOR_TYPE,
-    null
+    null,
   );
   let prodInfo = prodInfos.iterateNext();
   const tn = {};
@@ -56,7 +56,7 @@ function processCvx(xmlDoc) {
     xmlDoc,
     null,
     XPathResult.ORDERED_NODE_ITERATOR_TYPE,
-    null
+    null,
   );
   let prodInfo = prodInfos.iterateNext();
   const cvxDesc = {};

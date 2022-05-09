@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.primary.main,
     height: '6em',
     display: 'flex',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   container: {
     display: 'flex',
@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('md')]: {
       width: '80px',
     },
-  }
+  },
 }));
 
 const Header = () => {

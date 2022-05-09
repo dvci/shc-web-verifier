@@ -50,7 +50,7 @@ const extractPatientName = (patient) => {
 
 const extractImmunizations = (bundle) => {
   const immunizationResources = bundle.entry.filter(
-    (entry) => entry.resource.resourceType === 'Immunization'
+    (entry) => entry.resource.resourceType === 'Immunization',
   );
 
   return immunizationResources;
@@ -59,7 +59,7 @@ const extractImmunizations = (bundle) => {
 const extractPatientData = (card) => {
   const bundle = JSON.parse(card).vc.credentialSubject.fhirBundle;
   const patient = bundle.entry.find(
-    (entry) => entry.resource.resourceType === 'Patient'
+    (entry) => entry.resource.resourceType === 'Patient',
   ).resource;
 
   const name = extractPatientName(patient);
@@ -92,7 +92,7 @@ const getIssuerDisplayName = async (jws, controller) => {
   const issuerDirectories = await getIssuerDirectories(controller);
   const participatingIssuers = issuerDirectories[0].issuers.participating_issuers;
   const issuerDisplayName = participatingIssuers.find(
-    (issObj) => issObj.iss === issuer
+    (issObj) => issObj.iss === issuer,
   ).name;
   return issuerDisplayName;
 };

@@ -137,7 +137,7 @@ const renderHealthCardDisplay = () => {
       >
         <VaccineCard />
       </HealthCardDataContext.Provider>
-    </ThemeProvider>
+    </ThemeProvider>,
   );
 };
 
@@ -151,7 +151,7 @@ test('renders health card', async () => {
       return { data: cvxCodes };
     });
     expect(
-      await screen.findAllByText(/John B. Anyperson/i, {}, { timeout: 3000 })
+      await screen.findAllByText(/John B. Anyperson/i, {}, { timeout: 3000 }),
     ).toHaveLength(1);
     expect(screen.getByText(/2021-01-01/i)).toBeInTheDocument();
   });
@@ -169,7 +169,7 @@ test('renders health card without performer', async () => {
       return { data: cvxCodes };
     });
     expect(
-      await screen.findAllByText(/John B. Anyperson/i, {}, { timeout: 3000 })
+      await screen.findAllByText(/John B. Anyperson/i, {}, { timeout: 3000 }),
     ).toHaveLength(1);
     expect(screen.getByText(/2021-01-01/i)).toBeInTheDocument();
   });
@@ -188,11 +188,11 @@ test('renders immunization display', async () => {
       await screen.findAllByText(
         'Pfizer-BioNTech COVID-19 Vaccine (Non-US COMIRNATY)',
         {},
-        { timeout: 3000 }
-      )
+        { timeout: 3000 },
+      ),
     ).toHaveLength(1);
     expect(
-      screen.getByText('SARS-COV-2 (COVID-19) vaccine, UNSPECIFIED')
+      screen.getByText('SARS-COV-2 (COVID-19) vaccine, UNSPECIFIED'),
     ).toBeInTheDocument();
   });
 });

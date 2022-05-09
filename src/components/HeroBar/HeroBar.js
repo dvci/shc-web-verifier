@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@mui/styles';
 import {
-  Box, Container, IconButton, Typography
+  Box, Container, IconButton, Typography,
 } from '@mui/material';
 import { Route, useHistory } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('md')]: {
       padding: '1em',
     },
-  }
+  },
 }));
 
 const HeroBar = ({ hasError }) => {

@@ -8,15 +8,15 @@ const vcTypes = ['https://smarthealth.cards#covid19', 'https://smarthealth.cards
 const createPatientBundle = (birthDate, vaccineDoses) => {
   const bundle = {
     resourceType: 'Bundle',
-    entry: [{ resource: { resourceType: 'Patient', birthDate: `${birthDate.toISOString().substring(0, 10)}` } }]
+    entry: [{ resource: { resourceType: 'Patient', birthDate: `${birthDate.toISOString().substring(0, 10)}` } }],
   };
   const immunizations = vaccineDoses.map((dose) => ({
     resource: {
       resourceType: 'Immunization',
       status: 'completed',
       occurrenceDateTime: dose.dateAdministered,
-      vaccineCode: { coding: [{ system: 'http://hl7.org/fhir/sid/cvx', code: dose.cvx }] }
-    }
+      vaccineCode: { coding: [{ system: 'http://hl7.org/fhir/sid/cvx', code: dose.cvx }] },
+    },
   }));
   bundle.entry = [...bundle.entry, ...immunizations];
   return bundle;
