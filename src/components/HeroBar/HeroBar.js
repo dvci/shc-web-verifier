@@ -16,8 +16,8 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'row',
     padding: '2em',
     [theme.breakpoints.down('md')]: {
-      padding: '1em',
-    },
+      padding: '1em'
+    }
   }
 }));
 
@@ -28,22 +28,17 @@ const HeroBar = ({ hasError }) => {
 
   return (
     <Box className={classes.heroBar}>
-      {(!hasError) ? (
+      {!hasError ? (
         <Route path={['/qr-scan', '/display-results', '/faq', '/privacy']}>
-          <IconButton
-            size="small"
-            onClick={() => history.push('/')}
-          >
+          <IconButton size="small" onClick={() => history.push('/')}>
             <img src={backIcon} alt="Back icon" style={{ height: '3rem' }} />
           </IconButton>
         </Route>
-      ) : <></>}
+      ) : (
+        <></>
+      )}
       <Container>
-        <Box
-          display="flex"
-          alignItems="center"
-          flexDirection="column"
-        >
+        <Box display="flex" alignItems="center" flexDirection="column">
           <Typography variant="h3" component="h2" textAlign="center" fontSize={{ xs: '1.3rem', sm: '3rem' }}>
             {t('herobar.SMART Health Card Verifier')}
           </Typography>

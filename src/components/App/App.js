@@ -3,10 +3,7 @@ import './App.css';
 import React from 'react';
 import { CssBaseline } from '@mui/material';
 import {
-  HashRouter as Router,
-  Redirect,
-  Route,
-  Switch,
+  HashRouter as Router, Redirect, Route, Switch
 } from 'react-router-dom';
 import HealthCardDisplay from 'components/HealthCardDisplay';
 import ThemeProvider from 'components/ThemeProvider';
@@ -19,6 +16,7 @@ import QrScan from 'components/QrScan';
 import { QrDataProvider } from 'components/QrDataProvider';
 import { ErrorBoundary } from 'react-error-boundary';
 import { ErrorFallback } from 'utils/errorHelper';
+import { HealthCardDataProvider } from 'components/HealthCardDataProvider';
 
 const App = () => (
   <ThemeProvider>
@@ -44,13 +42,15 @@ const App = () => (
             </Route> */}
 
             <QrDataProvider>
-              <Route exact path="/qr-scan">
-                <QrScan />
-              </Route>
+              <HealthCardDataProvider>
+                <Route exact path="/qr-scan">
+                  <QrScan />
+                </Route>
 
-              <Route exact path="/display-results">
-                <HealthCardDisplay />
-              </Route>
+                <Route exact path="/display-results">
+                  <HealthCardDisplay />
+                </Route>
+              </HealthCardDataProvider>
             </QrDataProvider>
           </Switch>
         </ErrorBoundary>

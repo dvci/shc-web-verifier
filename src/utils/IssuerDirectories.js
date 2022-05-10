@@ -6,12 +6,12 @@ let directories = null;
 const defaultIssuerDirectories = [
   {
     name: 'VCI',
-    URL: 'https://raw.githubusercontent.com/the-commons-project/vci-directory/main/vci-issuers.json',
-  },
+    URL: 'https://raw.githubusercontent.com/the-commons-project/vci-directory/main/vci-issuers.json'
+  }
 ];
 
 const agent = new https.Agent({
-  rejectUnauthorized: false,
+  rejectUnauthorized: false
 });
 
 const fetchIssuerDirectories = async (controller) => Promise.all(

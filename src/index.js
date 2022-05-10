@@ -14,12 +14,16 @@ const renderReactDom = () => {
     </React.StrictMode>,
     document.getElementById('root')
   );
-}
+};
 
 if (window.cordova) {
-  document.addEventListener('deviceready', () => {
-    renderReactDom();
-  }, false);
+  document.addEventListener(
+    'deviceready',
+    () => {
+      renderReactDom();
+    },
+    false
+  );
 } else {
   renderReactDom();
 }

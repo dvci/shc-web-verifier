@@ -28,7 +28,7 @@ afterEach(() => {
   axiosSpy.mockRestore();
 });
 
-const callIssuerVerify = async ({ issValue = iss }) => (issuerVerify(issValue));
+const callIssuerVerify = async ({ issValue = iss }) => issuerVerify(issValue);
 
 test('verifies issuer true', async () => {
   axiosSpy.mockResolvedValueOnce({ data: directory });

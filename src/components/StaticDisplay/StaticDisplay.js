@@ -1,7 +1,5 @@
 import React from 'react';
-import {
-  Box, Typography
-} from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { useTranslation } from 'react-i18next';
 
@@ -11,15 +9,15 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   box: {
     width: '100%',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
-    padding: '8px',
-  },
+    padding: '8px'
+  }
 }));
 
 const StaticDisplay = ({ section }) => {
@@ -33,7 +31,9 @@ const StaticDisplay = ({ section }) => {
         {t(`${section}.items`, { returnObjects: true, interpolation: { escapeValue: false } }).map((item, i) => (
           // eslint-disable-next-line react/no-array-index-key
           <div key={i}>
-            <Typography variant="subtitle1" gutterBottom component="div">{item.header}</Typography>
+            <Typography variant="subtitle1" gutterBottom component="div">
+              {item.header}
+            </Typography>
             <Typography
               variant="body1"
               gutterBottom

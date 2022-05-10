@@ -17,13 +17,17 @@ const renderHealthCardDisplay = (
   validPrimarySeries,
   qrError
 ) => {
-  healthCardDataProviders.useHealthCardDataContext = jest.fn().mockReturnValue(
-    {
-      healthCardSupported: { status: healthCardSupported, error: healthCardSupportedError },
-      healthCardVerified: { verified: healthCardVerified, error: healthCardVerifiedError },
-      issuerVerified
-    }
-  );
+  healthCardDataProviders.useHealthCardDataContext = jest.fn().mockReturnValue({
+    healthCardSupported: {
+      status: healthCardSupported,
+      error: healthCardSupportedError
+    },
+    healthCardVerified: {
+      verified: healthCardVerified,
+      error: healthCardVerifiedError
+    },
+    issuerVerified
+  });
 
   return render(
     <ThemeProvider>
@@ -38,7 +42,7 @@ const renderHealthCardDisplay = (
       </QrDataContext.Provider>
     </ThemeProvider>
   );
-}
+};
 
 test('renders health card banner verified', () => {
   renderHealthCardDisplay(true, null, true, null, true, true, null);

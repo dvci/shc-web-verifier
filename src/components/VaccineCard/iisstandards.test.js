@@ -11,7 +11,7 @@ const testEncode = `<?xml version='1.0' encoding='ISO-8859-1'?><CVXCodes>
 <Notes>This vaccine is administered as 2 tablets.</Notes>
 <Status>Active</Status>
 <LastUpdated>3/20/2011</LastUpdated>
-</CVXInfo></CVXCodes>`
+</CVXInfo></CVXCodes>`;
 
 const testEncoded = `<?xml version='1.0' encoding='ISO-8859-1'?><CVXCodes>
 <CVXInfo><ShortDescription>Adenovirus &amp; types &quot; 4 and 7&apos;</ShortDescription>
@@ -20,7 +20,7 @@ const testEncoded = `<?xml version='1.0' encoding='ISO-8859-1'?><CVXCodes>
 <Notes>This vaccine is administered as 2 tablets.</Notes>
 <Status>Active</Status>
 <LastUpdated>3/20/2011</LastUpdated>
-</CVXInfo></CVXCodes>`
+</CVXInfo></CVXCodes>`;
 
 beforeEach(() => {
   jest.isolateModules(() => {
@@ -37,7 +37,9 @@ test('fetches CVX codes', async () => {
 });
 
 test('fetches tradenames', async () => {
-  axios.get.mockImplementationOnce(() => ({ data: fs.readFileSync(`${__dirname}/iisstandards_tradename.xml`, 'utf8') }));
+  axios.get.mockImplementationOnce(() => ({
+    data: fs.readFileSync(`${__dirname}/iisstandards_tradename.xml`, 'utf8')
+  }));
   const tradenames = await iisstandards.fetchTradenames();
   expect(Object.keys(tradenames).length).toBeGreaterThan(0);
 });

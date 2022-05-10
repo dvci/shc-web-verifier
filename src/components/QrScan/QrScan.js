@@ -10,19 +10,20 @@ import { useQrDataContext } from 'components/QrDataProvider';
 import { parseHealthCardQr } from 'utils/qrHelpers';
 import QrScanner from 'qr-scanner';
 import { useErrorHandler } from 'react-error-boundary';
+import { useHealthCardDataContext } from 'components/HealthCardDataProvider';
 
 const useStyles = makeStyles((theme) => ({
   button: {
     '&:hover': {
-      cursor: 'default',
-    },
+      cursor: 'default'
+    }
   },
   box: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
     width: '100%',
-    marginTop: '2em',
+    marginTop: '2em'
   },
   grid: {
     display: 'flex',
@@ -34,20 +35,20 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('md')]: {
       maxHeight: '550px',
       maxWidth: '300px',
-      margin: '1rem',
+      margin: '1rem'
     },
     [theme.breakpoints.up('md')]: {
       maxHeight: '550px',
       maxWidth: '650px',
-      margin: '2rem',
-    },
+      margin: '2rem'
+    }
   },
   gridContainerMultiple: {
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'right',
     justifyContent: 'right',
-    paddingBottom: '1rem',
+    paddingBottom: '1rem'
   },
   gridItem: {
     display: 'flex',
@@ -55,20 +56,20 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     justifyContent: 'center',
     width: '100%',
-    height: '100%',
+    height: '100%'
   },
   frame: {
     position: 'relative',
     [theme.breakpoints.down('md')]: {
       maxHeight: '550px',
-      maxWidth: '300px',
+      maxWidth: '300px'
     },
     [theme.breakpoints.up('md')]: {
       maxHeight: '550px',
-      maxWidth: '650px',
+      maxWidth: '650px'
     },
     objectFit: 'contain',
-    zIndex: '2',
+    zIndex: '2'
   },
   qrScanner: {
     objectFit: 'cover',
@@ -79,20 +80,17 @@ const useStyles = makeStyles((theme) => ({
     '& section': {
       position: 'unset !important',
       '& div': {
-        boxShadow: 'unset !important',
-      },
-    },
-  },
+        boxShadow: 'unset !important'
+      }
+    }
+  }
 }));
 
 let qrScan;
 
 const cameraPermission = async () => {
   if (window.cordova) {
-    if (
-      window.cordova.platformId === 'android'
-      || window.cordova.platformId === 'ios'
-    ) {
+    if (window.cordova.platformId === 'android' || window.cordova.platformId === 'ios') {
       if (window.cordova.platformId === 'ios') {
         window.cordova.plugins.iosrtc.registerGlobals();
       }
@@ -139,6 +137,11 @@ const QrScan = () => {
   const [scannedData, setScannedData] = useState('');
   const runningQrScanner = useRef(null);
   const scannedCodesRef = useRef([]);
+  const {
+    setHealthCardVerified,
+    setHealthCardSupported,
+    setIssuerVerified
+  } = useHealthCardDataContext();
 
   const handleError = useCallback(() => {
     history.push('/display-results');
@@ -166,8 +169,8 @@ const QrScan = () => {
           x: 0,
           y: 0,
           width: video.videoWidth,
-          height: video.videoHeight,
-        }),
+          height: video.videoHeight
+        })
       }
     );
     runningQrScanner.current = qrScan;
@@ -183,7 +186,7 @@ const QrScan = () => {
       try {
         if (videoRef.current) {
           const stream = await navigator.mediaDevices.getUserMedia({
-            video: true,
+            video: true
           });
           videoRef.current.srcObject = stream;
         }
@@ -223,6 +226,15 @@ const QrScan = () => {
 
         if (tempScannedCodes.every((code) => code)) {
           resetQrCodes();
+          setHealthCardVerified({
+            verified: null,
+            error: null
+          });
+          setIssuerVerified(false);
+          setHealthCardSupported({
+            status: null,
+            error: null
+          });
           setQrCodes(tempScannedCodes);
           history.push('/display-results');
         }
@@ -230,6 +242,15 @@ const QrScan = () => {
         scannedCodesRef.current = tempScannedCodes;
       } else {
         resetQrCodes();
+        setHealthCardVerified({
+          verified: null,
+          error: null
+        });
+        setIssuerVerified(false);
+        setHealthCardSupported({
+          status: null,
+          error: null
+        });
         setQrCodes([data]);
         history.push('/display-results');
       }
@@ -242,7 +263,16 @@ const QrScan = () => {
         handleError();
       }
     }
-  }, [scannedData, handleError, history, setQrCodes, resetQrCodes]);
+  }, [
+    scannedData,
+    handleError,
+    history,
+    setQrCodes,
+    resetQrCodes,
+    setHealthCardVerified,
+    setIssuerVerified,
+    setHealthCardSupported
+  ]);
 
   return (
     <Box className={classes.box}>

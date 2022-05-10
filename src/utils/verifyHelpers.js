@@ -52,7 +52,4 @@ const issuerVerify = async (iss, controller) => getIssuerDirectories(controller)
   }))
   .catch(() => false);
 
-export {
-  healthCardVerify,
-  issuerVerify,
-};
+export { healthCardVerify, issuerVerify };

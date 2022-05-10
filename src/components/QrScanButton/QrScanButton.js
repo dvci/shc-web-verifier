@@ -16,11 +16,7 @@ const QrScanButton = ({ onClick, styles }) => {
         onClick={onClick}
         style={{ fontSize: '150%', width: '100%' }}
       >
-        <img
-          src={scanIcon}
-          alt="Scan Icon"
-          style={{ height: '2.5rem', marginRight: '10px' }}
-        />
+        <img src={scanIcon} alt="Scan Icon" style={{ height: '2.5rem', marginRight: '10px' }} />
         {t('healthcarddisplay.SCAN QR CODE')}
       </Button>
     </Box>

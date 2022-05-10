@@ -17,11 +17,11 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     padding: '8px',
     [theme.breakpoints.down('md')]: {
-      flexDirection: 'column',
+      flexDirection: 'column'
     },
     [theme.breakpoints.up('md')]: {
-      flexDirection: 'row',
-    },
+      flexDirection: 'row'
+    }
   },
   boxqrillustration: {
     display: 'flex',
@@ -29,12 +29,12 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     maxWidth: '650px',
     [theme.breakpoints.up('md')]: {
-      width: '650px',
-    },
+      width: '650px'
+    }
   },
   logo: {
     objectFit: 'contain',
-    height: '3.5em',
+    height: '3.5em'
   }
 }));
 
@@ -51,11 +51,7 @@ const Landing = () => {
 
   const BoxQrIllustration = () => (
     <Box className={classes.boxqrillustration}>
-      <img
-        src={qrIllustration}
-        alt="Scan QR Code"
-        style={{ width: '100%', height: '100%' }}
-      />
+      <img src={qrIllustration} alt="Scan QR Code" style={{ width: '100%', height: '100%' }} />
     </Box>
   );
 
@@ -64,25 +60,11 @@ const Landing = () => {
       {!singleCol && BoxQrIllustration()}
       <Box display="flex" flexDirection="column" sx={{ maxWidth: '750px' }} width="100%" alignItems="center">
         <Box display="flex" flexDirection="row">
-          <img
-            src={qrIcon}
-            alt="QR Vaccine Icon"
-            style={{ height: '5rem' }}
-          />
-          <Typography
-            variant="h6"
-            style={{ marginTop: '5px', marginLeft: '25px' }}
-          >
+          <img src={qrIcon} alt="QR Vaccine Icon" style={{ height: '5rem' }} />
+          <Typography variant="h6" style={{ marginTop: '5px', marginLeft: '25px' }}>
             <Trans
               i18nKey="landing.Verify a SMART Health Card QR code in a safe and privacy-preserving way."
-              components={[
-                <Link
-                  href="https://smarthealth.cards/"
-                  color="secondary"
-                  target="_blank"
-                  rel="noopener"
-                />
-              ]}
+              components={[<Link href="https://smarthealth.cards/" color="secondary" target="_blank" rel="noopener" />]}
             />
           </Typography>
         </Box>
@@ -97,30 +79,18 @@ const Landing = () => {
             onClick={handleScan}
             style={{ fontSize: '150%' }}
           >
-            <img
-              src={scanIcon}
-              alt="Scan Icon"
-              style={{ height: '2.5rem', marginRight: '10px' }}
-            />
+            <img src={scanIcon} alt="Scan Icon" style={{ height: '2.5rem', marginRight: '10px' }} />
             {t('landing.SCAN QR CODE')}
           </Button>
         </Box>
         <Box width="inherit" mt={{ xs: 4, md: 10 }}>
           <Typography variant="h6">{t('landing.What is a SMART Health Card?')}</Typography>
           <Typography>
-            <img
-              src={checkIcon}
-              alt="Check Icon"
-              style={{ height: '1rem', marginRight: '10px' }}
-            />
+            <img src={checkIcon} alt="Check Icon" style={{ height: '1rem', marginRight: '10px' }} />
             {t('landing.Holds important vaccination or lab report data.')}
           </Typography>
           <Typography>
-            <img
-              src={checkIcon}
-              alt="Check Icon"
-              style={{ height: '1rem', marginRight: '10px' }}
-            />
+            <img src={checkIcon} alt="Check Icon" style={{ height: '1rem', marginRight: '10px' }} />
             {t('landing.Can be scanned to verify that the information has not been tampered with.')}
           </Typography>
         </Box>
@@ -130,12 +100,7 @@ const Landing = () => {
               i18nKey="landing.For more information on SMART Health Cards, please visit"
               values={{ url: 'https://smarthealth.cards/' }}
               components={[
-                <Link
-                  href="https://smarthealth.cards/"
-                  color="secondary"
-                  target="_blank"
-                  rel="noopener"
-                >
+                <Link href="https://smarthealth.cards/" color="secondary" target="_blank" rel="noopener">
                   https://smarthealth.cards/
                 </Link>
               ]}

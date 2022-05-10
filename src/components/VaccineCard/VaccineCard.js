@@ -1,20 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import {
-  Box,
-  Card,
-  CardContent,
-  Grid,
-  Typography,
-  Divider,
-  IconButton,
-  List,
-  ListItem,
+  Box, Card, CardContent, Grid, Typography, Divider, IconButton, List, ListItem
 } from '@mui/material';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import { useHealthCardDataContext } from 'components/HealthCardDataProvider';
 import { getPatientData } from 'utils/qrHelpers';
 import { useTranslation } from 'react-i18next';
-import { useErrorHandler } from 'react-error-boundary'
+import { useErrorHandler } from 'react-error-boundary';
 import xIcon from 'assets/x-icon.png';
 import useStyles from './styles';
 import { fetchTradenames, fetchCvx } from './iisstandards';
@@ -22,17 +14,11 @@ import { fetchTradenames, fetchCvx } from './iisstandards';
 const VaccineCard = () => {
   const styles = useStyles();
   const { t } = useTranslation();
-  const {
-    jws,
-    issuerVerified,
-    issuerDisplayName
-  } = useHealthCardDataContext();
-  const [patientData, setPatientData] = useState(
-    {
-      name: '',
-      immunizations: []
-    }
-  );
+  const { jws, issuerVerified, issuerDisplayName } = useHealthCardDataContext();
+  const [patientData, setPatientData] = useState({
+    name: '',
+    immunizations: []
+  });
   const [tradenames, setTradenames] = useState({});
   const [cvxCodes, setCvxCodes] = useState({});
   const [showDateOfBirth, setShowDateOfBirth] = useState(false);
@@ -100,7 +86,7 @@ const VaccineCard = () => {
               <Box component="span" fontWeight="700">
                 {immunization.vaccineCode ? immunizationDisplayName(immunization.vaccineCode.coding) : ''}
               </Box>
-              {immunization.lotNumber && (` ${t('healthcarddisplay.Lot')} #${immunization.lotNumber}`)}
+              {immunization.lotNumber && ` ${t('healthcarddisplay.Lot')} #${immunization.lotNumber}`}
             </Typography>
           </Grid>
         </Grid>
@@ -114,15 +100,11 @@ const VaccineCard = () => {
         </Grid>
         <Grid container item className={styles.gridRow} spacing={0}>
           <Grid item xs={3} sm={2} className={styles.gridLabel}>
-            <Typography>
-              {t('healthcarddisplay.Vaccinator')}
-            </Typography>
+            <Typography>{t('healthcarddisplay.Vaccinator')}</Typography>
           </Grid>
           <Grid item xs={9} sm={10} className={styles.gridItem}>
-            {(immunization.performer && immunization.performer.length > 0) && (
-            <Typography>
-              {immunization.performer[0].actor.display}
-            </Typography>
+            {immunization.performer && immunization.performer.length > 0 && (
+              <Typography>{immunization.performer[0].actor.display}</Typography>
             )}
           </Grid>
         </Grid>
@@ -139,21 +121,12 @@ const VaccineCard = () => {
             <Typography className={styles.name}>{patientData.name}</Typography>
           </Box>
           <Box className={[styles.flexCol, styles.patientData].join(' ')}>
-            <Typography className={styles.dateOfBirthLabel}>
-              {t('healthcarddisplay.DATE OF BIRTH')}
-            </Typography>
+            <Typography className={styles.dateOfBirthLabel}>{t('healthcarddisplay.DATE OF BIRTH')}</Typography>
             <Box className={styles.dateOfBirthRow}>
-              <Typography
-                className={styles.dateOfBirth}
-                hidden={!showDateOfBirth}
-                id="dateOfBirth"
-              >
+              <Typography className={styles.dateOfBirth} hidden={!showDateOfBirth} id="dateOfBirth">
                 {patientData.dateOfBirth}
               </Typography>
-              <Typography
-                className={styles.dateOfBirth}
-                hidden={showDateOfBirth}
-              >
+              <Typography className={styles.dateOfBirth} hidden={showDateOfBirth}>
                 {'**/**/****'}
               </Typography>
               <IconButton
@@ -182,23 +155,10 @@ const VaccineCard = () => {
               ))}
             </List>
           </Box>
-          <Grid
-            item
-            maxWidth="xs"
-            xs={10.5}
-            justifyContent="left"
-            alignItems="flex-end"
-          >
-            <Box
-              display="flex"
-              alignItems="center"
-              justifyContent="left"
-              flexDirection="row"
-            >
+          <Grid item maxWidth="xs" xs={10.5} justifyContent="left" alignItems="flex-end">
+            <Box display="flex" alignItems="center" justifyContent="left" flexDirection="row">
               {issuerVerified ? (
-                <Typography className={styles.covid19Vaccination}>
-                  {issuerDisplayName}
-                </Typography>
+                <Typography className={styles.covid19Vaccination}>{issuerDisplayName}</Typography>
               ) : (
                 <>
                   <img
@@ -206,13 +166,10 @@ const VaccineCard = () => {
                     alt="Bottom Banner Issuer Icon"
                     style={{
                       height: '1.5rem',
-                      marginRight: '1rem',
+                      marginRight: '1rem'
                     }}
                   />
-                  <Typography
-                    variant="h6"
-                    className={styles.unverifiedText}
-                  >
+                  <Typography variant="h6" className={styles.unverifiedText}>
                     {t('healthcarddisplay.Issuer not recognized')}
                   </Typography>
                 </>

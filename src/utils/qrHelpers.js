@@ -10,16 +10,14 @@ const parseHealthCardQr = (qrCode) => {
     return match.groups;
   }
   return null;
-}
+};
 
 const getJws = (qrCodes) => qrCodes
   .map((c) => {
     const sliceIndex = c.lastIndexOf('/');
     const rawPayload = c.slice(sliceIndex + 1);
     const encodingChars = rawPayload.match(/\d\d/g);
-    return encodingChars
-      .map((charPair) => String.fromCharCode(+charPair + 45))
-      .join('');
+    return encodingChars.map((charPair) => String.fromCharCode(+charPair + 45)).join('');
   })
   .join('');
 
@@ -49,18 +47,14 @@ const extractPatientName = (patient) => {
 };
 
 const extractImmunizations = (bundle) => {
-  const immunizationResources = bundle.entry.filter(
-    (entry) => entry.resource.resourceType === 'Immunization'
-  );
+  const immunizationResources = bundle.entry.filter((entry) => entry.resource.resourceType === 'Immunization');
 
   return immunizationResources;
 };
 
 const extractPatientData = (card) => {
   const bundle = JSON.parse(card).vc.credentialSubject.fhirBundle;
-  const patient = bundle.entry.find(
-    (entry) => entry.resource.resourceType === 'Patient'
-  ).resource;
+  const patient = bundle.entry.find((entry) => entry.resource.resourceType === 'Patient').resource;
 
   const name = extractPatientName(patient);
   const dateOfBirth = patient.birthDate;
@@ -91,9 +85,7 @@ const getIssuerDisplayName = async (jws, controller) => {
   // use VCI directory to resolve name
   const issuerDirectories = await getIssuerDirectories(controller);
   const participatingIssuers = issuerDirectories[0].issuers.participating_issuers;
-  const issuerDisplayName = participatingIssuers.find(
-    (issObj) => issObj.iss === issuer
-  ).name;
+  const issuerDisplayName = participatingIssuers.find((issObj) => issObj.iss === issuer).name;
   return issuerDisplayName;
 };
 
@@ -112,5 +104,5 @@ export {
   getPatientData,
   getPayload,
   getCredential,
-  getIssuerDisplayName,
+  getIssuerDisplayName
 };

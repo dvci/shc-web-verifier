@@ -16,17 +16,9 @@ const ErrorFallback = ({ resetErrorBoundary }) => {
   return (
     <>
       <HeroBar hasError />
-      <Box
-        display="flex"
-        width="100%"
-        flexDirection="column"
-        alignItems="center"
-        marginTop="2em"
-      >
+      <Box display="flex" width="100%" flexDirection="column" alignItems="center" marginTop="2em">
         <Box sx={{ maxWidth: '750px' }}>
-          <Typography variant="h6">
-            {t('error.An unexpected error occurred.')}
-          </Typography>
+          <Typography variant="h6">{t('error.An unexpected error occurred.')}</Typography>
           <Button
             type="button"
             onClick={() => {
