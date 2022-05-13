@@ -2,43 +2,35 @@
     "antigenAncillaryData": {
         "series": [
             {
-                "seriesName": "2-dose 5-17 Pfizer Series",
+                "seriesName": "5-17 yrs Pfizer series",
                 "primarySeriesNumberDoses": 2
             },
             {
-                "seriesName": "3-dose Pfizer series",
+                "seriesName": "18 yrs+ Pfizer series",
                 "primarySeriesNumberDoses": 2
             },
             {
-                "seriesName": "3-dose Moderna series",
+                "seriesName": "18 yrs+ Moderna series",
                 "primarySeriesNumberDoses": 2
             },
             {
-                "seriesName": "2-dose Janssen series",
+                "seriesName": "18 yrs+ Janssen series",
                 "primarySeriesNumberDoses": 1
             },
             {
-                "seriesName": "3-dose mRNA series",
+                "seriesName": "18 yrs+ Janssen Primary and Booster series",
+                "primarySeriesNumberDoses": 1
+            },
+            {
+                "seriesName": "5 yrs+ Mixed Product series",
                 "primarySeriesNumberDoses": 2
             },
             {
-                "seriesName": "2-dose AstraZeneca Series",
+                "seriesName": "WHO-Authorized Series",
                 "primarySeriesNumberDoses": 2
             },
             {
-                "seriesName": "2-dose BIBP Sinopharm Series",
-                "primarySeriesNumberDoses": 2
-            },
-            {
-                "seriesName": "2-dose CoronaVac Sinovac Series",
-                "primarySeriesNumberDoses": 2
-            },
-            {
-                "seriesName": "2-dose Novavax Series",
-                "primarySeriesNumberDoses": 2
-            },
-            {
-                "seriesName": "2-dose COVAXIN Series",
+                "seriesName": "18 yrs+ Medicago Clinical Trial",
                 "primarySeriesNumberDoses": 2
             }
         ]
