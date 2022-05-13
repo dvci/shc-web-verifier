@@ -139,7 +139,15 @@ const HealthCardDisplay = () => {
     let bannerError;
     let userError;
 
-    if (error.message.startsWith('UNVERIFIED')) {
+    if (error.message === 'UNVERIFIED_ERROR_RETRIEVING_KEY_URL') {
+      bannerError = t('healthcarddisplay.Not verified');
+      userError = (
+        <Trans
+          i18nKey="healthcarddisplay.Unable to verify issuer."
+          components={[<span className={styles.shcText}> SMART&reg; Health Card </span>]}
+        />
+      );
+    } else if (error.message.startsWith('UNVERIFIED')) {
       bannerError = t('healthcarddisplay.Not verified');
       userError = (
         <Trans

@@ -30,6 +30,7 @@
     "Issuer not recognized": "Issuer not recognized",
     "Only valid SMART Health Card QR Codes are currently supported.": "Only valid <0>SMART\u00AE Health Card</0> QR Codes<br/>are currently supported.",
     "This SMART Health Card cannot be verified.": "This <0>SMART\u00AE Health Card</0> cannot be<br/>verified. It may have been corrupted.",
+    "Unable to verify issuer.": "Unable to verify <0>SMART\u00AE Health Card</0> issuer. Please check internet access and try again later.",
     "SCAN QR CODE": "SCAN QR CODE",
     "NAME": "NAME",
     "DATE OF BIRTH": "DATE OF BIRTH",
