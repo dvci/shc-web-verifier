@@ -136,10 +136,19 @@ const HealthCardDisplay = () => {
   );
 
   const ErrorFallback = ({ error }) => {
+    // Refactor with switch statement
     let bannerError;
     let userError;
 
-    if (error.message === 'UNVERIFIED_ERROR_RETRIEVING_KEY_URL') {
+    if (error.message === 'UNSUPPORTED_MALFORMED_CREDENTIAL') {
+      bannerError = t('healthcarddisplay.Not verified');
+      userError = (
+        <Trans
+          i18nKey="healthcarddisplay.This SMART Health Card contains a malformed payload."
+          components={[<span className={styles.shcText}> SMART&reg; Health Card </span>]}
+        />
+      );
+    } else if (error.message === 'UNVERIFIED_ERROR_RETRIEVING_KEY_URL') {
       bannerError = t('healthcarddisplay.Not verified');
       userError = (
         <Trans
