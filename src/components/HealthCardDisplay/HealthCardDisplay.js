@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {
-  Box, Container, Grid, Typography
+  Box, Container, Grid, Link, Typography
 } from '@mui/material';
 import { useHistory } from 'react-router-dom';
 import { makeStyles } from '@mui/styles';
@@ -140,12 +140,26 @@ const HealthCardDisplay = () => {
     let bannerError;
     let userError;
 
-    if (error.message === 'UNSUPPORTED_MALFORMED_CREDENTIAL') {
+    if (error.message === 'UNSUPPORTED_HEALTH_CARD') {
+      bannerError = t('healthcarddisplay.Not verified');
+      userError = (
+        <Trans
+          i18nKey="healthcarddisplay.Only SMART Health Cards of type immunization are currently supported."
+          components={[
+            <span className={styles.shcText}> SMART&reg; Health Card </span>,
+            <Link href="https://spec.smarthealth.cards/vocabulary/" color="secondary" target="_blank" rel="noopener">
+              Click here
+            </Link>
+          ]}
+        />
+      );
+    } else if (error.message === 'UNSUPPORTED_MALFORMED_CREDENTIAL') {
       bannerError = t('healthcarddisplay.Not verified');
       userError = (
         <Trans
           i18nKey="healthcarddisplay.This SMART Health Card contains a malformed payload."
-          components={[<span className={styles.shcText}> SMART&reg; Health Card </span>]}
+          components={[<span className={styles.shcText}> SMART&reg; Health Card </span>,
+          ]}
         />
       );
     } else if (error.message === 'UNVERIFIED_ERROR_RETRIEVING_KEY_URL') {
