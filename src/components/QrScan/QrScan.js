@@ -1,16 +1,19 @@
 import React, {
   useState, useRef, useEffect, useCallback
 } from 'react';
-import { Button, Grid, Box } from '@mui/material';
+import {
+  Button, Grid, Box, IconButton
+} from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { useHistory } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import frame from 'assets/frame.png';
 import { useQrDataContext } from 'components/QrDataProvider';
 import { parseHealthCardQr } from 'utils/qrHelpers';
+import { cameraPermission, switchCamera } from 'utils/cameraHelper';
 import QrScanner from 'qr-scanner';
 import { useErrorHandler } from 'react-error-boundary';
-import { useHealthCardDataContext } from 'components/HealthCardDataProvider';
+import CameraswitchIcon from '@mui/icons-material/Cameraswitch';
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -46,6 +49,7 @@ const useStyles = makeStyles((theme) => ({
   gridContainerMultiple: {
     display: 'flex',
     flexDirection: 'row',
+    flexGrow: 1,
     alignItems: 'right',
     justifyContent: 'right',
     paddingBottom: '1rem'
@@ -88,46 +92,6 @@ const useStyles = makeStyles((theme) => ({
 
 let qrScan;
 
-const cameraPermission = async () => {
-  if (window.cordova) {
-    if (window.cordova.platformId === 'android' || window.cordova.platformId === 'ios') {
-      if (window.cordova.platformId === 'ios') {
-        window.cordova.plugins.iosrtc.registerGlobals();
-      }
-      const { diagnostic } = window.cordova.plugins;
-      diagnostic.enableDebug();
-      return new Promise((resolve, reject) => {
-        diagnostic.getCameraAuthorizationStatus(
-          (status) => {
-            if (status === diagnostic.permissionStatus.GRANTED) {
-              resolve(true);
-            } else {
-              diagnostic.requestCameraAuthorization(
-                (requestedStatus) => {
-                  if (requestedStatus === diagnostic.permissionStatus.GRANTED) {
-                    resolve(true);
-                  } else {
-                    resolve(false);
-                  }
-                },
-                (requestedError) => {
-                  reject(requestedError);
-                },
-                false
-              );
-            }
-          },
-          (error) => {
-            reject(error);
-          },
-          false
-        );
-      });
-    }
-  }
-  return Promise.resolve(true);
-};
-
 const QrScan = () => {
   const history = useHistory();
   const classes = useStyles();
@@ -135,17 +99,19 @@ const QrScan = () => {
   const { setQrCodes, resetQrCodes } = useQrDataContext();
   const [scannedCodes, setScannedCodes] = useState([]);
   const [scannedData, setScannedData] = useState('');
+  const [cameraDeviceId, setCameraDeviceId] = useState('');
   const runningQrScanner = useRef(null);
   const scannedCodesRef = useRef([]);
-  const {
-    setHealthCardVerified,
-    setHealthCardSupported,
-    setIssuerVerified
-  } = useHealthCardDataContext();
 
   const handleError = useCallback(() => {
     history.push('/display-results');
   }, [history]);
+
+  useEffect(() => {
+    if (runningQrScanner.current) {
+      runningQrScanner.current.setCamera(cameraDeviceId);
+    }
+  }, [cameraDeviceId]);
 
   /**
    * Create QrScanner instance using video element and specify result/error conditions
@@ -164,6 +130,7 @@ const QrScan = () => {
         setScannedData(results.data);
       },
       {
+        preferredCamera: 'environment',
         calculateScanRegion: (video) => ({
           // define scan region for QrScanner
           x: 0,
@@ -226,15 +193,6 @@ const QrScan = () => {
 
         if (tempScannedCodes.every((code) => code)) {
           resetQrCodes();
-          setHealthCardVerified({
-            verified: null,
-            error: null
-          });
-          setIssuerVerified(false);
-          setHealthCardSupported({
-            status: null,
-            error: null
-          });
           setQrCodes(tempScannedCodes);
           history.push('/display-results');
         }
@@ -242,15 +200,6 @@ const QrScan = () => {
         scannedCodesRef.current = tempScannedCodes;
       } else {
         resetQrCodes();
-        setHealthCardVerified({
-          verified: null,
-          error: null
-        });
-        setIssuerVerified(false);
-        setHealthCardSupported({
-          status: null,
-          error: null
-        });
         setQrCodes([data]);
         history.push('/display-results');
       }
@@ -268,16 +217,20 @@ const QrScan = () => {
     handleError,
     history,
     setQrCodes,
-    resetQrCodes,
-    setHealthCardVerified,
-    setIssuerVerified,
-    setHealthCardSupported
+    resetQrCodes
   ]);
 
   return (
     <Box className={classes.box}>
       <Grid container className={classes.grid}>
-        {scannedCodes.length > 0 && (
+        <Grid container item flexWrap="nowrap" width="100%" height="100%">
+          <IconButton
+            onClick={() => switchCamera(cameraDeviceId)
+              .then((newDeviceId) => setCameraDeviceId(newDeviceId))}
+          >
+            <CameraswitchIcon fontSize="large" />
+          </IconButton>
+          {scannedCodes.length > 0 && (
           <Grid container item className={classes.gridContainerMultiple}>
             {scannedCodes.map((code, i) => (
               <Button
@@ -292,7 +245,8 @@ const QrScan = () => {
               </Button>
             ))}
           </Grid>
-        )}
+          )}
+        </Grid>
         <Grid item className={classes.gridItem}>
           <video muted id="test" className={classes.qrScanner} ref={videoRef} />
           <img alt="Scan Frame" className={classes.frame} src={frame} />
