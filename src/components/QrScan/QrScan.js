@@ -107,6 +107,13 @@ const QrScan = () => {
     history.push('/display-results');
   }, [history]);
 
+  const handleCameraSwitch = () => {
+    switchCamera(cameraDeviceId)
+      .then((newDeviceId) => {
+        if (newDeviceId !== null) { setCameraDeviceId(newDeviceId); }
+      })
+  };
+
   useEffect(() => {
     if (runningQrScanner.current) {
       runningQrScanner.current.setCamera(cameraDeviceId);
@@ -224,10 +231,7 @@ const QrScan = () => {
     <Box className={classes.box}>
       <Grid container className={classes.grid}>
         <Grid container item flexWrap="nowrap" width="100%" height="100%">
-          <IconButton
-            onClick={() => switchCamera(cameraDeviceId)
-              .then((newDeviceId) => setCameraDeviceId(newDeviceId))}
-          >
+          <IconButton onClick={() => handleCameraSwitch()}>
             <CameraswitchIcon fontSize="large" />
           </IconButton>
           {scannedCodes.length > 0 && (

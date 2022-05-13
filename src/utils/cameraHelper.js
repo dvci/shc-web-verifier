@@ -40,20 +40,28 @@ const cameraPermission = async () => {
   return Promise.resolve(true);
 };
 
-const switchCamera = async (currentDeviceId) => {
+const hasMultipleCameras = async () => {
   const cameras = await QrScanner.listCameras(true);
+  if (cameras.length > 1) return true;
+  return false;
+}
+
+const switchCamera = async (currentDeviceId) => {
+  const cameras = await QrScanner.listCameras();
   let nextDeviceId = null;
-  if (currentDeviceId === null && cameras.length > 0) {
-    nextDeviceId = cameras[0].id;
-  } else {
-    cameras.forEach((camera, idx) => {
-      if (camera.id === currentDeviceId) {
-        nextDeviceId = (idx === (cameras.length - 1))
-          ? cameras[0].id : cameras[idx + 1].id;
-      }
-    })
+  if (cameras.length > 1) {
+    if (!currentDeviceId) {
+      nextDeviceId = cameras[1].id; // assume initialized with camera[0]
+    } else {
+      cameras.forEach((camera, idx) => {
+        if (camera.id === currentDeviceId) {
+          nextDeviceId = (idx === (cameras.length - 1))
+            ? cameras[0].id : cameras[idx + 1].id;
+        }
+      })
+    }
   }
   return nextDeviceId;
 }
 
-export { cameraPermission, switchCamera };
+export { cameraPermission, hasMultipleCameras, switchCamera };
