@@ -139,7 +139,7 @@ const HealthCardDisplay = () => {
     let bannerErrorText;
     let userErrorText;
 
-    // Set banner text and default user error  text
+    // Set banner text and default user error text
     if (error.message.startsWith('UNVERIFIED')) {
       bannerErrorText = 'Not verified';
       userErrorText = 'This SMART Health Card cannot be verified.';
@@ -147,7 +147,7 @@ const HealthCardDisplay = () => {
       bannerErrorText = 'Invalid SMART Health Card';
       userErrorText = 'Only valid SMART Health Card QR Codes are currently supported.';
     } else {
-      throw error
+      throw error;
     }
 
     // Set specific user error text
