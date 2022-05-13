@@ -136,59 +136,47 @@ const HealthCardDisplay = () => {
   );
 
   const ErrorFallback = ({ error }) => {
-    // Refactor with switch statement
-    let bannerError;
-    let userError;
+    let bannerErrorText;
+    let userErrorText;
 
-    if (error.message === 'UNSUPPORTED_HEALTH_CARD') {
-      bannerError = t('healthcarddisplay.Not verified');
-      userError = (
-        <Trans
-          i18nKey="healthcarddisplay.Only SMART Health Cards of type immunization are currently supported."
-          components={[
-            <span className={styles.shcText}> SMART&reg; Health Card </span>,
-            <Link href="https://spec.smarthealth.cards/vocabulary/" color="secondary" target="_blank" rel="noopener">
-              Click here
-            </Link>
-          ]}
-        />
-      );
-    } else if (error.message === 'UNSUPPORTED_MALFORMED_CREDENTIAL') {
-      bannerError = t('healthcarddisplay.Not verified');
-      userError = (
-        <Trans
-          i18nKey="healthcarddisplay.This SMART Health Card contains a malformed payload."
-          components={[<span className={styles.shcText}> SMART&reg; Health Card </span>,
-          ]}
-        />
-      );
-    } else if (error.message === 'UNVERIFIED_ERROR_RETRIEVING_KEY_URL') {
-      bannerError = t('healthcarddisplay.Not verified');
-      userError = (
-        <Trans
-          i18nKey="healthcarddisplay.Unable to verify issuer."
-          components={[<span className={styles.shcText}> SMART&reg; Health Card </span>]}
-        />
-      );
-    } else if (error.message.startsWith('UNVERIFIED')) {
-      bannerError = t('healthcarddisplay.Not verified');
-      userError = (
-        <Trans
-          i18nKey="healthcarddisplay.This SMART Health Card cannot be verified."
-          components={[<span className={styles.shcText}> SMART&reg; Health Card </span>]}
-        />
-      );
+    // Set banner text and default user error  text
+    if (error.message.startsWith('UNVERIFIED')) {
+      bannerErrorText = 'Not verified';
+      userErrorText = 'This SMART Health Card cannot be verified.';
     } else if (error.message.startsWith('UNSUPPORTED')) {
-      bannerError = t('healthcarddisplay.Invalid SMART Health Card');
-      userError = (
-        <Trans
-          i18nKey="healthcarddisplay.Only valid SMART Health Card QR Codes are currently supported."
-          components={[<span className={styles.shcText}> SMART&reg; Health Card </span>]}
-        />
-      );
+      bannerErrorText = 'Invalid SMART Health Card';
+      userErrorText = 'Only valid SMART Health Card QR Codes are currently supported.';
     } else {
-      throw error;
+      throw error
     }
+
+    // Set specific user error text
+    switch (error.message) {
+      case 'UNSUPPORTED_HEALTH_CARD':
+        userErrorText = 'Only SMART Health Cards of type immunization are currently supported.';
+        break;
+      case 'UNSUPPORTED_MALFORMED_CREDENTIAL':
+        userErrorText = 'This SMART Health Card contains a malformed payload.';
+        break;
+      case 'UNVERIFIED_ERROR_RETRIEVING_KEY_URL':
+        userErrorText = 'Unable to verify issuer.';
+        break;
+      default:
+        // Do nothing.
+    }
+
+    const bannerError = t(`healthcarddisplay.${bannerErrorText}`)
+    const userError = (
+      <Trans
+        i18nKey={`healthcarddisplay.${userErrorText}`}
+        components={[
+          <span className={styles.shcText}> SMART&reg; Health Card </span>,
+          <Link href="https://spec.smarthealth.cards/vocabulary/" color="secondary" target="_blank" rel="noopener">
+            Click here
+          </Link>
+        ]}
+      />
+    );
 
     return (
       <>
