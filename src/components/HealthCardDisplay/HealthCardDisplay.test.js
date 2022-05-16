@@ -34,7 +34,7 @@ const renderHealthCardDisplay = (
       <QrDataContext.Provider
         value={{
           qrError,
-          jws: null,
+          jws: [],
           validationStatus: { validPrimarySeries, error: null }
         }}
       >

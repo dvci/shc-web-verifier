@@ -35,7 +35,8 @@ const reducer = (state, action) => {
         } else {
           newState.jws = [];
           action.qrCodes.forEach((c) => {
-            const jws = getJws([c]);
+            // change this based on whether already or not?
+            const jws = getJws((c instanceof Array ? c : [c]));
             newState.jws.push(jws);
           });
         }
@@ -52,6 +53,7 @@ const reducer = (state, action) => {
               resourceType: 'Bundle',
               entry: [],
             };
+            let types = [];
             newState.jws.forEach((jws) => {
               const payload = getPayload(jws);
               const patientBundle = JSON.parse(payload).vc.credentialSubject.fhirBundle;
@@ -69,9 +71,10 @@ const reducer = (state, action) => {
                   patientBundles.entry.push(e);
                 }
               });
+              types = [...types, ...JSON.parse(payload).vc.type];
             });
-
-            const results = Validator.execute(patientBundles, 'COVID-19');
+            types = [...new Set(types)];
+            const results = Validator.execute(patientBundles, types);
             newState.validationStatus = {
               validPrimarySeries: results
                 ? results.some((series) => series.validPrimarySeries) : null,

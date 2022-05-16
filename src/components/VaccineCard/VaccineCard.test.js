@@ -8,60 +8,58 @@ import * as qrHelpers from 'utils/qrHelpers';
 import VaccineCard from './VaccineCard';
 import '../../i18nTest';
 
-const patientData = [
-  {
-    name: 'John B. Anyperson',
-    dateOfBirth: '1951-01-20',
-    immunizations: [
-      {
-        fullUrl: 'resource:1',
-        resource: {
-          resourceType: 'Immunization',
-          status: 'completed',
-          vaccineCode: {
-            coding: [
-              {
-                system: 'http://hl7.org/fhir/sid/cvx',
-                code: '208',
-              },
-            ],
-          },
-          patient: {
-            reference: 'resource:0',
-          },
-          occurrenceDateTime: '2021-01-01',
-          performer: [
+const patientData = {
+  name: 'John B. Anyperson',
+  dateOfBirth: '1951-01-20',
+  immunizations: [
+    {
+      fullUrl: 'resource:1',
+      resource: {
+        resourceType: 'Immunization',
+        status: 'completed',
+        vaccineCode: {
+          coding: [
             {
-              actor: {
-                display: 'ABC General Hospital',
-              },
+              system: 'http://hl7.org/fhir/sid/cvx',
+              code: '208',
             },
           ],
-          lotNumber: '0000001',
         },
-      },
-      {
-        fullUrl: 'resource:2',
-        resource: {
-          resourceType: 'Immunization',
-          status: 'completed',
-          vaccineCode: {
-            coding: [
-              {
-                system: 'http://hl7.org/fhir/sid/cvx',
-                code: '213',
-              },
-            ],
-          },
-          patient: {
-            reference: 'resource:0',
-          },
-          occurrenceDateTime: '2021-02-01',
+        patient: {
+          reference: 'resource:0',
         },
+        occurrenceDateTime: '2021-01-01',
+        performer: [
+          {
+            actor: {
+              display: 'ABC General Hospital',
+            },
+          },
+        ],
+        lotNumber: '0000001',
       },
-    ],
-  },
-];
+    },
+    {
+      fullUrl: 'resource:2',
+      resource: {
+        resourceType: 'Immunization',
+        status: 'completed',
+        vaccineCode: {
+          coding: [
+            {
+              system: 'http://hl7.org/fhir/sid/cvx',
+              code: '213',
+            },
+          ],
+        },
+        patient: {
+          reference: 'resource:0',
+        },
+        occurrenceDateTime: '2021-02-01',
+      },
+    },
+  ],
+}
 
 const tradenames = `<?xml version="1.0"?>
 <productnames>

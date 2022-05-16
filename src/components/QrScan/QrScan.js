@@ -201,7 +201,6 @@ const QrScan = () => {
         if (tempScannedCodes[currentChunkIndex - 1] === null) {
           tempScannedCodes[currentChunkIndex - 1] = data;
         }
-
         if (tempScannedCodes.every((code) => code)) {
           if (location.state === 'link') {
             // append to running list of scanned qr codes
@@ -245,7 +244,7 @@ const QrScan = () => {
           </IconButton>
           {scannedCodes.length > 0 && (
           <Grid container item className={classes.gridContainerMultiple}>
-            {scannedCodes[scannedCodes.length - 1].map((code, i) => (
+            {scannedCodes.map((code, i) => (
               <Button
                 className={classes.button}
                 key={code || uuidv4()}
@@ -254,7 +253,7 @@ const QrScan = () => {
                 disableRipple
                 style={{ marginRight: '0.5rem' }}
               >
-                {`${i + 1}/${scannedCodes[scannedCodes.length - 1].length}`}
+                {`${i + 1}/${scannedCodes.length}`}
               </Button>
             ))}
           </Grid>
