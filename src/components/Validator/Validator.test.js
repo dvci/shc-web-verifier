@@ -343,7 +343,7 @@ test('2022-0009: Dose #1 and Dose #2 are Non-WHO Approved Covid-19 Vaccine', () 
 test('2022-0016: Patient is 65 years and has been administered a 2nd Pfizer Covid-19 booster vaccine dose', () => {
   const patientBundle = createPatientBundle(new Date(1956, 5, 5), [
     { dateAdministered: '2021-05-05', cvx: '208' },
-    { dateAdministered: '2021-05-06', cvx: '208' }
+    { dateAdministered: '2021-05-26', cvx: '208' }
   ]);
   const values = Validator.execute(patientBundle, vcTypes);
   expect(validPrimarySeries(values)).toBe(true);
