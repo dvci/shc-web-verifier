@@ -399,7 +399,7 @@ test('2022-0021: 3rd dose of Covid-19 Vaccine different product (Pfizer ) than s
 
 test('2022-0022: Dose #1 is AstraZeneca Dose #2 is Sinovac Covid-19 and Vaccine #3 is Pfizer', () => {
   const patientBundle = createPatientBundle(new Date(1958, 9, 5), [
-    { dateAdministered: '2021-10-05', cvx: '208' },
+    { dateAdministered: '2021-10-05', cvx: '210' },
     { dateAdministered: '2021-11-02', cvx: '511' },
     { dateAdministered: '2022-04-05', cvx: '208' }
   ]);
