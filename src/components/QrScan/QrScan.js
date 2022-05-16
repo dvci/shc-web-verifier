@@ -5,7 +5,7 @@ import {
   Button, Grid, Box, IconButton
 } from '@mui/material';
 import { makeStyles } from '@mui/styles';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import frame from 'assets/frame.png';
 import { useQrDataContext } from 'components/QrDataProvider';
@@ -94,9 +94,10 @@ let qrScan;
 
 const QrScan = () => {
   const history = useHistory();
+  const location = useLocation();
   const classes = useStyles();
   const handleErrorFallback = useErrorHandler();
-  const { setQrCodes, resetQrCodes, multipleHC } = useQrDataContext();
+  const { setQrCodes, resetQrCodes, qrCodes } = useQrDataContext();
   const [scannedCodes, setScannedCodes] = useState([]);
   const [scannedData, setScannedData] = useState('');
   const [cameraDeviceId, setCameraDeviceId] = useState('');
@@ -187,9 +188,10 @@ const QrScan = () => {
   useEffect(() => {
     const handleScan = (data) => {
       const qrData = parseHealthCardQr(data);
-      if (qrData && qrData.multipleChunks && !multipleHC) {
+      if (qrData && qrData.multipleChunks) {
         const chunkCount = +qrData.chunkCount;
         const currentChunkIndex = +qrData.chunkIndex;
+        // assume scannedCodesRef for single, current shc
         let tempScannedCodes = [...scannedCodesRef.current];
         if (tempScannedCodes.length !== chunkCount) {
           tempScannedCodes = new Array(chunkCount);
@@ -201,50 +203,27 @@ const QrScan = () => {
         }
 
         if (tempScannedCodes.every((code) => code)) {
-          resetQrCodes();
-          setQrCodes(tempScannedCodes);
+          if (location.state === 'link') {
+            // append to running list of scanned qr codes
+            setQrCodes([...qrCodes, [tempScannedCodes]]);
+          } else {
+            resetQrCodes();
+            setQrCodes([tempScannedCodes]);
+          }
           history.push('/display-results');
         }
         setScannedCodes(tempScannedCodes);
         scannedCodesRef.current = tempScannedCodes;
       } else {
-        resetQrCodes();
-        setQrCodes([data]);
-        history.push('/display-results');
-      }
-      if (multipleHC) {
-        if (qrData && qrData.multipleChunks) {
-          const chunkCount = +qrData.chunkCount;
-          const currentChunkIndex = +qrData.chunkIndex;
-          const temps = [
-            ...new Set([...qrData, ...scannedCodesRef.current]),
-          ];
-          if (temps[temps.length - 1].length !== chunkCount) {
-            temps.push(new Array(chunkCount));
-            temps[temps.length - 1].fill(null, 0, chunkCount);
-          }
-          if (temps[temps.length - 1][currentChunkIndex - 1] === null) {
-            temps[temps.length - 1][currentChunkIndex - 1] = data;
-          }
-
-          if (temps[temps.length - 1].every((code) => code)) {
-            setScannedCodes(temps);
-            history.push('/display-results');
-          }
-          setScannedCodes(temps);
-          scannedCodesRef.current = temps;
+        if (qrCodes && location.state === 'link') {
+          const newCodes = JSON.parse(localStorage.getItem('qrCodes'));
+          newCodes.push(data);
+          setQrCodes(newCodes);
         } else {
-          const tempScannedCodes = [
-            ...qrData,
-            ...scannedCodesRef.current,
-            [data],
-          ];
           resetQrCodes();
-          setQrCodes(tempScannedCodes);
-          history.push('/display-results');
-          setScannedCodes(tempScannedCodes);
-          scannedCodesRef.current = tempScannedCodes;
+          setQrCodes([data]);
         }
+        history.push('/display-results');
       }
     }
 
@@ -255,13 +234,7 @@ const QrScan = () => {
         handleError();
       }
     }
-  }, [
-    scannedData,
-    handleError,
-    history,
-    setQrCodes,
-    resetQrCodes
-  ]);
+  }, [scannedData, handleError, history, location, setQrCodes, resetQrCodes, qrCodes]);
 
   return (
     <Box className={classes.box}>

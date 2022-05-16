@@ -6,7 +6,7 @@ import config from './App/App.config';
 const QrDataContext = createContext();
 
 const initialState = {
-  qrCodes: null,
+  qrCodes: [],
   qrError: null,
   jws: null,
   validationStatus: {
@@ -28,12 +28,16 @@ const reducer = (state, action) => {
 
       if (action.qrCodes) {
         // check valid SHC QR
-        const validShcQr = action.qrCodes.every((c) => parseHealthCardQr(c) !== null);
+        const validShcQr = action.qrCodes.flat().every((c) => parseHealthCardQr(c) !== null);
         if (!validShcQr) {
           newState.qrError = new Error('UNSUPPORTED_QR_NOT_SHC');
           newState.jws = null;
         } else {
-          newState.jws = getJws(action.qrCodes);
+          newState.jws = [];
+          action.qrCodes.forEach((c) => {
+            const jws = getJws([c]);
+            newState.jws.push(jws);
+          });
         }
       } else newState.jws = null;
 
@@ -48,8 +52,7 @@ const reducer = (state, action) => {
               resourceType: 'Bundle',
               entry: [],
             };
-            action.qrCodes.forEach((healthCardQR) => {
-              const jws = getJws(healthCardQR);
+            newState.jws.forEach((jws) => {
               const payload = getPayload(jws);
               const patientBundle = JSON.parse(payload).vc.credentialSubject.fhirBundle;
               // use one patient bundle for validation
@@ -67,6 +70,7 @@ const reducer = (state, action) => {
                 }
               });
             });
+
             const results = Validator.execute(patientBundles, 'COVID-19');
             newState.validationStatus = {
               validPrimarySeries: results

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Link,
   HashRouter as Router,
@@ -123,13 +123,8 @@ const HealthCardDisplay = () => {
   const { qrError, jws } = useQrDataContext();
   const [bannersUpdated, setBannersUpdated] = useState(false);
 
-  const handleScan = () => {
-    setMultipleHC(false);
-    history.push('qr-scan');
-  };
-
-  const handleScanWithMultipleHC = () => {
-    setMultipleHC(true);
+  const handleScan = (propertyName) => {
+    history.push({ pathname: 'qr-scan', state: propertyName })
   };
 
   const TopBanner = ({
@@ -324,24 +319,37 @@ const HealthCardDisplay = () => {
           <ErrorFallback error={qrError} />
         ) : (
           <ErrorBoundary FallbackComponent={ErrorFallback}>
-            <HealthCardDataProvider healthCardJws={jws}>
+            <HealthCardDataProvider healthCardJws={jws[jws.length - 1]}>
               <Banners />
-              <Grid item className={styles.flexCard}>
-                <Box>
-                  <Router>
-                    <Switch>
-                      <Link to="/qr-scan" onClick={handleScanWithMultipleHC}>
-                        {t(
-                          'healthcarddisplay.Add another SMART Health Card for same person'
-                        )}
-                      </Link>
-                    </Switch>
-                  </Router>
-                </Box>
-                <VaccineCard padding="1rem" width="100%" />
-                <QrScanButton onClick={handleScan} styles={{ padding: '1rem', width: '100%' }} />
-              </Grid>
             </HealthCardDataProvider>
+            <Grid item className={styles.flexCard}>
+              <Box>
+                <Router>
+                  <Switch>
+                    <Link
+                      to="/qr-scan"
+                      state="link"
+                      replace
+                      onClick={() => handleScan('link')}
+                    >
+                      {t(
+                        'healthcarddisplay.Add another SMART Health Card for same person'
+                      )}
+                    </Link>
+                  </Switch>
+                </Router>
+              </Box>
+              {bannersUpdated && (
+                <>
+                  {jws.map((hcJws) => (
+                    <HealthCardDataProvider healthCardJws={hcJws}>
+                      <VaccineCard padding="1rem" width="100%" />
+                    </HealthCardDataProvider>
+                  ))}
+                  <QrScanButton onClick={() => handleScan('qr-button')} styles={{ padding: '1rem', width: '100%' }} />
+                </>
+              )}
+            </Grid>
           </ErrorBoundary>
         )}
     </Grid>

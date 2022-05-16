@@ -13,7 +13,7 @@ const parseHealthCardQr = (qrCode) => {
 };
 
 const getJws = (qrCodes) => qrCodes
-  .map((c) => {
+  .flatMap((c) => {
     const sliceIndex = c.lastIndexOf('/');
     const rawPayload = c.slice(sliceIndex + 1);
     const encodingChars = rawPayload.match(/\d\d/g);
@@ -75,13 +75,13 @@ const getPatientData = (jws) => {
   }
 };
 
-const getAllPatientData = (qrCodes) => {
+const getAllPatientData = ([jwsArray]) => {
   const patientDataArray = [];
-  qrCodes.forEach((healthCardQR) => {
-    const jws = getJws(healthCardQR);
+  jwsArray.forEach((jws) => {
     const patientData = getPatientData(jws);
     patientDataArray.push(patientData);
   })
+  return patientDataArray;
 }
 
 const getIssuer = (jws) => {
