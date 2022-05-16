@@ -191,7 +191,6 @@ const QrScan = () => {
       if (qrData && qrData.multipleChunks) {
         const chunkCount = +qrData.chunkCount;
         const currentChunkIndex = +qrData.chunkIndex;
-        // assume scannedCodesRef for single, current shc
         let tempScannedCodes = [...scannedCodesRef.current];
         if (tempScannedCodes.length !== chunkCount) {
           tempScannedCodes = new Array(chunkCount);
@@ -203,7 +202,7 @@ const QrScan = () => {
         }
         if (tempScannedCodes.every((code) => code)) {
           if (location.state === 'link') {
-            // append to running list of scanned qr codes
+            // Append to running list of scanned qr codes
             setQrCodes([...qrCodes, [tempScannedCodes]]);
           } else {
             resetQrCodes();
