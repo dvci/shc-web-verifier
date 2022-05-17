@@ -1,19 +1,19 @@
 {
   "files": {
     "main.css": "./static/css/main.42d418a6.chunk.css",
-    "main.js": "./static/js/main.7dd483c9.chunk.js",
-    "main.js.map": "./static/js/main.7dd483c9.chunk.js.map",
-    "runtime-main.js": "./static/js/runtime-main.31b7b7c2.js",
-    "runtime-main.js.map": "./static/js/runtime-main.31b7b7c2.js.map",
-    "static/js/2.f22cfd43.chunk.js": "./static/js/2.f22cfd43.chunk.js",
-    "static/js/2.f22cfd43.chunk.js.map": "./static/js/2.f22cfd43.chunk.js.map",
-    "static/js/3.175823b0.chunk.js": "./static/js/3.175823b0.chunk.js",
-    "static/js/3.175823b0.chunk.js.map": "./static/js/3.175823b0.chunk.js.map",
-    "static/js/4.17d0c31b.chunk.js": "./static/js/4.17d0c31b.chunk.js",
-    "static/js/4.17d0c31b.chunk.js.map": "./static/js/4.17d0c31b.chunk.js.map",
+    "main.js": "./static/js/main.d811922d.chunk.js",
+    "main.js.map": "./static/js/main.d811922d.chunk.js.map",
+    "runtime-main.js": "./static/js/runtime-main.60ab09a7.js",
+    "runtime-main.js.map": "./static/js/runtime-main.60ab09a7.js.map",
+    "static/js/2.7e49f518.chunk.js": "./static/js/2.7e49f518.chunk.js",
+    "static/js/2.7e49f518.chunk.js.map": "./static/js/2.7e49f518.chunk.js.map",
+    "static/js/3.215f36d9.chunk.js": "./static/js/3.215f36d9.chunk.js",
+    "static/js/3.215f36d9.chunk.js.map": "./static/js/3.215f36d9.chunk.js.map",
+    "static/js/4.9ee55a7b.chunk.js": "./static/js/4.9ee55a7b.chunk.js",
+    "static/js/4.9ee55a7b.chunk.js.map": "./static/js/4.9ee55a7b.chunk.js.map",
     "index.html": "./index.html",
     "static/css/main.42d418a6.chunk.css.map": "./static/css/main.42d418a6.chunk.css.map",
-    "static/js/2.f22cfd43.chunk.js.LICENSE.txt": "./static/js/2.f22cfd43.chunk.js.LICENSE.txt",
+    "static/js/2.7e49f518.chunk.js.LICENSE.txt": "./static/js/2.7e49f518.chunk.js.LICENSE.txt",
     "static/media/error-illustration.9c7db9b8.png": "./static/media/error-illustration.9c7db9b8.png",
     "static/media/frame.b05edd9c.png": "./static/media/frame.b05edd9c.png",
     "static/media/getFetch.cjs": "./static/media/getFetch.582d29c4.cjs",
@@ -23,9 +23,9 @@
     "static/media/qr-code-illustration.732bf9a3.png": "./static/media/qr-code-illustration.732bf9a3.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.31b7b7c2.js",
-    "static/js/2.f22cfd43.chunk.js",
+    "static/js/runtime-main.60ab09a7.js",
+    "static/js/2.7e49f518.chunk.js",
     "static/css/main.42d418a6.chunk.css",
-    "static/js/main.7dd483c9.chunk.js"
+    "static/js/main.d811922d.chunk.js"
   ]
 }
