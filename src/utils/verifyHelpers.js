@@ -1,13 +1,25 @@
 import axios from 'axios';
 import jose from 'node-jose';
+import { verify, ErrorCode, low, Context
+} from 'smart-health-card-decoder/src';
+import {
+  getPatientData
+} from 'utils/qrHelpers';
 import getIssuerDirectories from './IssuerDirectories';
 
 const healthCardVerify = async (httpsAgent, jws, iss, controller) => {
   let response;
   let verifier;
 
-  if (!iss || typeof iss !== 'string') {
-    throw Error('UNVERIFIED_INVALID_ISSUER');
+  const directories = await getIssuerDirectories(controller);
+  const result = await verify(jws, directories);
+  if (result.context?.signature?.verified) return result.context.signature.verified;
+
+  const isValidated = !(result.context.errors ?? [])
+    .filter((logEntry) => logEntry.code < ErrorCode.DIRECTORY_ERROR).length;
+
+  if (!isValidated) {
+    throw Error('UNSUPPORTED_MALFORMED_CREDENTIAL');
   }
 
   try {
@@ -20,7 +32,7 @@ const healthCardVerify = async (httpsAgent, jws, iss, controller) => {
 
   try {
     const keySet = await response.data;
-    const keyStore = await jose.JWK.asKeyStore(keySet).then((result) => result);
+    const keyStore = await jose.JWK.asKeyStore(keySet).then((res) => res);
     verifier = jose.JWS.createVerify(keyStore);
   } catch (err) {
     // key format error
@@ -38,18 +50,52 @@ const healthCardVerify = async (httpsAgent, jws, iss, controller) => {
 };
 
 const issuerVerify = async (iss, controller) => getIssuerDirectories(controller)
-  .then((fetchedDirectories) => fetchedDirectories.some((d) => {
-    if (d.issuers && !d.error) {
-      const issName = d.issuers?.participating_issuers
-        .filter((issuer) => issuer.iss === iss)
-        .map((issuer) => issuer.name)[0];
-      if (issName) {
-        return true;
-      }
-    }
-
+  .then((fetchedDirectories) => {
+    if (fetchedDirectories.find(iss)) return true;
     return false;
-  }))
+  })
   .catch(() => false);
 
-export { healthCardVerify, issuerVerify };
+const healthCardSupported = (cardJws) => {
+  const context = new Context();
+  try {
+    context.compact = cardJws;
+    low.validate.jws.compact(context);
+    if (context.errors.length > 0) {
+      return {
+        status: false,
+        error: new Error('UNSUPPORTED_MALFORMED_CREDENTIAL')
+      };
+    }
+  } catch {
+    return {
+      status: false,
+      error: new Error('UNSUPPORTED_MALFORMED_CREDENTIAL')
+    };
+  }
+  const vc = context.jws.payload;
+  if (!vc.type.some((type) => type === 'https://smarthealth.cards#health-card')) {
+    return {
+      status: false,
+      error: new Error('UNSUPPORTED_CREDENTIAL')
+    };
+  }
+
+  if (!vc.type.some((type) => type === 'https://smarthealth.cards#immunization')) {
+    return {
+      status: false,
+      error: new Error('UNSUPPORTED_HEALTH_CARD')
+    };
+  }
+
+  if (!getPatientData(cardJws)) {
+    return {
+      status: false,
+      error: new Error('UNSUPPORTED_INVALID_PROFILE_MISSING_PATIENT')
+    };
+  }
+
+  return { status: true, error: null };
+};
+
+export { healthCardVerify, issuerVerify, healthCardSupported };

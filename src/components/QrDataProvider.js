@@ -40,8 +40,8 @@ const reducer = (state, action) => {
         // Validate vaccine series
         try {
           const payload = getPayload(newState.jws);
-          const patientBundle = JSON.parse(payload).vc.credentialSubject.fhirBundle;
-          const results = Validator.execute(patientBundle, JSON.parse(payload).vc.type);
+          const patientBundle = payload.vc.credentialSubject.fhirBundle;
+          const results = Validator.execute(patientBundle, payload.vc.type);
           newState.validationStatus = {
             validPrimarySeries: results
               ? results.some((series) => series.validPrimarySeries) : null,

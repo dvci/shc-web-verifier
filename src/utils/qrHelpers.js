@@ -1,6 +1,5 @@
-import { Base64 } from 'js-base64';
-import pako from 'pako';
 import getIssuerDirectories from './IssuerDirectories';
+import { low, Context } from 'smart-health-card-decoder/src';
 
 const healthCardPattern = /^shc:\/(?<multipleChunks>(?<chunkIndex>[0-9]+)\/(?<chunkCount>[0-9]+)\/)?(?<payload>[0-9]+)$/;
 
@@ -22,11 +21,10 @@ const getJws = (qrCodes) => qrCodes
   .join('');
 
 const getPayload = (jws) => {
-  const dataString = jws.split('.')[1];
-  const decodedPayload = Base64.toUint8Array(dataString);
-  const inflatedPayload = pako.inflateRaw(decodedPayload);
-  const payload = new TextDecoder().decode(inflatedPayload);
-  return payload;
+  const context = new Context();
+  context.compact = jws;
+  low.decode.jws.compact(context);
+  return context.jws.payload;
 };
 
 const extractPatientName = (patient) => {
@@ -53,7 +51,7 @@ const extractImmunizations = (bundle) => {
 };
 
 const extractPatientData = (card) => {
-  const bundle = JSON.parse(card).vc.credentialSubject.fhirBundle;
+  const bundle = card.vc.credentialSubject.fhirBundle;
   const patient = bundle.entry.find((entry) => entry.resource.resourceType === 'Patient').resource;
 
   const name = extractPatientName(patient);
@@ -76,7 +74,7 @@ const getPatientData = (jws) => {
 };
 
 const getIssuer = (jws) => {
-  const payload = JSON.parse(getPayload(jws));
+  const payload = getPayload(jws);
   return payload.iss;
 };
 
@@ -90,7 +88,7 @@ const getIssuerDisplayName = async (jws, controller) => {
 };
 
 const getCredential = (jws) => {
-  const payload = JSON.parse(getPayload(jws));
+  const payload = getPayload(jws);
   return payload.vc;
 };
 

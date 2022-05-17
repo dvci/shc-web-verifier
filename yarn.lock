@@ -1655,6 +1655,13 @@
     mkdirp "^1.0.4"
     rimraf "^3.0.2"
 
+"@nuintun/qrcode@^3.1.1":
+  version "3.3.0"
+  resolved "https://registry.npmjs.org/@nuintun/qrcode/-/qrcode-3.3.0.tgz#13320457f95038837bc640917e490dca6c9dfebf"
+  integrity sha512-DJ8vmYyRdq8oX2l1/sGNmJjAD1KGaVvhtNUtHPJLbXpe5GoZut5UFQLM4FoFK9eyoZA1Y7chJEmEkNfs9Bdjrw==
+  dependencies:
+    tslib "^2.4.0"
+
 "@pmmmwh/react-refresh-webpack-plugin@0.4.3":
   version "0.4.3"
   resolved "https://registry.npmjs.org/@pmmmwh/react-refresh-webpack-plugin/-/react-refresh-webpack-plugin-0.4.3.tgz"
@@ -2807,6 +2814,13 @@ axios@^0.21.1:
   dependencies:
     follow-redirects "^1.14.0"
 
+axios@^0.26.1:
+  version "0.26.1"
+  resolved "https://registry.npmjs.org/axios/-/axios-0.26.1.tgz#1ede41c51fcf51bbbd6fd43669caaa4f0495aaa9"
+  integrity sha512-fPwcX4EvnSHuInCMItEhAGnaSEXRBjtzh9fOtsE6E1G6p7vl7edEeZe11QHf18+6+9gR5PbKV/sGKNaD8YaMeA==
+  dependencies:
+    follow-redirects "^1.14.8"
+
 axobject-query@^2.2.0:
   version "2.2.0"
   resolved "https://registry.npmjs.org/axobject-query/-/axobject-query-2.2.0.tgz"
@@ -3196,6 +3210,11 @@ brorand@^1.0.1, brorand@^1.1.0:
   version "1.1.0"
   resolved "https://registry.npmjs.org/brorand/-/brorand-1.1.0.tgz"
   integrity sha1-EsJe/kCkXjwyPrhnWgoM5XsiNx8=
+
+browser-or-node@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.npmjs.org/browser-or-node/-/browser-or-node-2.0.0.tgz#808ea90282a670931cdc0ea98166538a50dd0d89"
+  integrity sha512-3Lrks/Okgof+/cRguUNG+qRXSeq79SO3hY4QrXJayJofwJwHiGC0qi99uDjsfTwULUFSr1OGVsBkdIkygKjTUA==
 
 browser-process-hrtime@^1.0.0:
   version "1.0.0"
@@ -4610,6 +4629,11 @@ diffie-hellman@^5.0.0:
     miller-rabin "^4.0.0"
     randombytes "^2.0.0"
 
+dijkstrajs@^1.0.1:
+  version "1.0.2"
+  resolved "https://registry.npmjs.org/dijkstrajs/-/dijkstrajs-1.0.2.tgz#2e48c0d3b825462afe75ab4ad5e829c8ece36257"
+  integrity sha512-QV6PMaHTCNmKSeP6QoXhVTw9snc9VD8MulTT0Bd99Pacp4SS1cjcrYPgBPmibqKVtMJJfqC6XvOXgPMEEPH/fg==
+
 dir-glob@^3.0.1:
   version "3.0.1"
   resolved "https://registry.npmjs.org/dir-glob/-/dir-glob-3.0.1.tgz"
@@ -4858,6 +4882,11 @@ emojis-list@^3.0.0:
   version "3.0.0"
   resolved "https://registry.npmjs.org/emojis-list/-/emojis-list-3.0.0.tgz"
   integrity sha512-/kyM18EfinwXZbno9FyUGeFh87KC8HRQBQGildHZbEuRyWFOmv1U10o9BBp8XVZDVNNuQKyIGIu5ZYAAXJ0V2Q==
+
+encode-utf8@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.npmjs.org/encode-utf8/-/encode-utf8-1.0.3.tgz#f30fdd31da07fb596f281beb2f6b027851994cda"
+  integrity sha512-ucAnuBEhUK4boH2HjVYG5Q2mQyPorvv0u/ocS+zhdw0S8AlHYY+GOFhP1Gio5z4icpP2ivFSvhtFjQi8+T9ppw==
 
 encodeurl@~1.0.2:
   version "1.0.2"
@@ -5562,6 +5591,11 @@ fb-watchman@^2.0.0:
   dependencies:
     bser "2.1.1"
 
+fflate@^0.7.3:
+  version "0.7.3"
+  resolved "https://registry.npmjs.org/fflate/-/fflate-0.7.3.tgz#288b034ff0e9c380eaa2feff48c787b8371b7fa5"
+  integrity sha512-0Zz1jOzJWERhyhsimS54VTqOteCNwRtIlh8isdL0AXLo0g7xNTfTL7oWrkmCnPhZGocKIkWHBistBrrpoNH3aw==
+
 figgy-pudding@^3.5.1:
   version "3.5.2"
   resolved "https://registry.npmjs.org/figgy-pudding/-/figgy-pudding-3.5.2.tgz"
@@ -5711,6 +5745,11 @@ follow-redirects@^1.0.0, follow-redirects@^1.14.0:
   version "1.14.9"
   resolved "https://registry.npmjs.org/follow-redirects/-/follow-redirects-1.14.9.tgz"
   integrity sha512-MQDfihBQYMcyy5dhRDJUHcw7lb2Pv/TuE6xP1vyraLukNDHKbDxDNaOE3NbCAdKQApno+GPRyo1YAp89yCjK4w==
+
+follow-redirects@^1.14.8:
+  version "1.15.0"
+  resolved "https://registry.npmjs.org/follow-redirects/-/follow-redirects-1.15.0.tgz#06441868281c86d0dda4ad8bdaead2d02dca89d4"
+  integrity sha512-aExlJShTV4qOUOL7yF1U5tvLCB0xQuudbf6toyYA0E/acBNw71mvjFTnLaRp50aQaYocMR0a/RMMBIHeZnGyjQ==
 
 for-in@^1.0.2:
   version "1.0.2"
@@ -9091,6 +9130,11 @@ plist@^3.0.1, plist@^3.0.4:
     base64-js "^1.5.1"
     xmlbuilder "^9.0.7"
 
+pngjs@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.npmjs.org/pngjs/-/pngjs-5.0.0.tgz#e79dd2b215767fd9c04561c01236df960bce7fbb"
+  integrity sha512-40QW5YalBNfQo5yRYmiw7Yz6TKKVr3h6970B2YE+3fQpsWcrbj1PzJgxeJ19DRQjhMbKPIuMY8rFaXc8moolVw==
+
 pnp-webpack-plugin@1.6.4:
   version "1.6.4"
   resolved "https://registry.npmjs.org/pnp-webpack-plugin/-/pnp-webpack-plugin-1.6.4.tgz"
@@ -9977,6 +10021,16 @@ qr-scanner@^1.4.0:
   integrity sha512-xiR90NONHTfTwaFgW/ihlqjGMIZg6ExHDOvGQRba1TvV+WVw7GoDArIOt21e+RO+9WiO4AJJq+mwc5f4BnGH3w==
   dependencies:
     "@types/offscreencanvas" "^2019.6.4"
+
+qrcode@^1.5.0:
+  version "1.5.0"
+  resolved "https://registry.npmjs.org/qrcode/-/qrcode-1.5.0.tgz#95abb8a91fdafd86f8190f2836abbfc500c72d1b"
+  integrity sha512-9MgRpgVc+/+47dFvQeD6U2s0Z92EsKzcHogtum4QB+UNd025WOJSHvn/hjk9xmzj7Stj95CyUAs31mrjxliEsQ==
+  dependencies:
+    dijkstrajs "^1.0.1"
+    encode-utf8 "^1.0.3"
+    pngjs "^5.0.0"
+    yargs "^15.3.1"
 
 qs@6.9.7:
   version "6.9.7"
@@ -11020,6 +11074,17 @@ slice-ansi@^4.0.0:
     astral-regex "^2.0.0"
     is-fullwidth-code-point "^3.0.0"
 
+"smart-health-card-decoder@github:smart-on-fhir/smart-health-card-decoder":
+  version "1.0.0"
+  resolved "https://codeload.github.com/smart-on-fhir/smart-health-card-decoder/tar.gz/d131056d629b563b153c942d9ce13a2e338b63be"
+  dependencies:
+    "@nuintun/qrcode" "^3.1.1"
+    axios "^0.26.1"
+    browser-or-node "^2.0.0"
+    fflate "^0.7.3"
+    qrcode "^1.5.0"
+    tslib "^2.3.1"
+
 snapdragon-node@^2.0.1:
   version "2.1.1"
   resolved "https://registry.npmjs.org/snapdragon-node/-/snapdragon-node-2.1.1.tgz"
@@ -11829,6 +11894,11 @@ tslib@^2.0.3:
   version "2.3.1"
   resolved "https://registry.npmjs.org/tslib/-/tslib-2.3.1.tgz"
   integrity sha512-77EbyPPpMz+FRFRuAFlWMtmgUWGe9UOG2Z25NqCwiIjRhOf5iKGuzSe5P2w1laq+FkRy4p+PCuVkJSGkzTEKVw==
+
+tslib@^2.3.1, tslib@^2.4.0:
+  version "2.4.0"
+  resolved "https://registry.npmjs.org/tslib/-/tslib-2.4.0.tgz#7cecaa7f073ce680a05847aa77be941098f36dc3"
+  integrity sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ==
 
 tsutils@^3.17.1, tsutils@^3.21.0:
   version "3.21.0"
@@ -12779,7 +12849,7 @@ yargs@^13.3.2:
     y18n "^4.0.0"
     yargs-parser "^13.1.2"
 
-yargs@^15.4.1:
+yargs@^15.3.1, yargs@^15.4.1:
   version "15.4.1"
   resolved "https://registry.npmjs.org/yargs/-/yargs-15.4.1.tgz"
   integrity sha512-aePbxDmcYW++PaqBsJ+HYUFwCdv4LVvdnhBy78E57PIor8/OVvhMrADFFEDh8DHDFRv/O9i3lPhsENjO7QX0+A==
