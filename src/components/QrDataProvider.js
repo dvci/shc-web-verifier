@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useReducer } from 'react';
 import { parseHealthCardQr, getJws, getPayload } from 'utils/qrHelpers';
 import { Validator } from 'components/Validator/Validator.tsx';
+import config from './App/App.config';
 
 const QrDataContext = createContext();
 
@@ -37,21 +38,25 @@ const reducer = (state, action) => {
       } else newState.jws = null;
 
       if (newState.jws) {
-        // Validate vaccine series
-        try {
-          const payload = getPayload(newState.jws);
-          const patientBundle = JSON.parse(payload).vc.credentialSubject.fhirBundle;
-          const results = Validator.execute(patientBundle, JSON.parse(payload).vc.type);
-          newState.validationStatus = {
-            validPrimarySeries: results
-              ? results.some((series) => series.validPrimarySeries) : null,
-            error: null
-          };
-        } catch {
-          newState.validationStatus = {
-            validPrimarySeries: false,
-            error: new Error('VALIDATION_ERROR')
-          };
+        if (!config.ENABLE_VALIDATION) {
+          newState.validationStatus = null;
+        } else {
+          // Validate vaccine series
+          try {
+            const payload = getPayload(newState.jws);
+            const patientBundle = JSON.parse(payload).vc.credentialSubject.fhirBundle;
+            const results = Validator.execute(patientBundle, JSON.parse(payload).vc.type);
+            newState.validationStatus = {
+              validPrimarySeries: results
+                ? results.some((series) => series.validPrimarySeries) : null,
+              error: null
+            };
+          } catch {
+            newState.validationStatus = {
+              validPrimarySeries: false,
+              error: new Error('VALIDATION_ERROR')
+            };
+          }
         }
       }
       return {
