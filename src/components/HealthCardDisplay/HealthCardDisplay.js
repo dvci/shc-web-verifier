@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {
-  Box, Container, Grid, Link, Typography
+  Box, Container, Grid, Typography
 } from '@mui/material';
 import { useHistory } from 'react-router-dom';
 import { makeStyles } from '@mui/styles';
@@ -139,12 +139,10 @@ const HealthCardDisplay = () => {
     let bannerErrorText;
     let userErrorText;
 
-    // Set banner text and user error text
+    // Set banner text and default user error text
     if (error.message.startsWith('UNVERIFIED')) {
       bannerErrorText = 'Not verified';
-      userErrorText = (error.message === 'UNVERIFIED_ERROR_RETRIEVING_KEY_URL')
-        ? 'This SMART Health Card cannot be verified. Please check internet access and try again later.'
-        : 'This SMART Health Card cannot be verified. It may have been corrupted.';
+      userErrorText = 'This SMART Health Card cannot be verified.';
     } else if (error.message.startsWith('UNSUPPORTED')) {
       bannerErrorText = 'Invalid SMART Health Card';
       userErrorText = 'Only valid SMART Health Card QR codes are currently supported.';
@@ -152,15 +150,28 @@ const HealthCardDisplay = () => {
       throw error;
     }
 
+    // Set specific user error text
+    switch (error.message) {
+      case 'UNVERIFIED_ERROR_RETRIEVING_KEY_URL':
+        userErrorText = 'Unable to verify issuer.';
+        break;
+      case 'UNSUPPORTED_MALFORMED_CREDENTIAL':
+        userErrorText = 'This SMART Health Card was not properly created.';
+        break;
+      case 'UNSUPPORTED_HEALTH_CARD':
+        userErrorText = 'Only SMART Health Cards containing immunization data are currently supported.';
+        break;
+
+      default:
+        // Do nothing.
+    }
+
     const bannerError = t(`healthcarddisplay.${bannerErrorText}`)
     const userError = (
       <Trans
         i18nKey={`healthcarddisplay.${userErrorText}`}
         components={[
-          <span className={styles.shcText}> SMART&reg; Health Card </span>,
-          <Link href="https://spec.smarthealth.cards/vocabulary/" color="secondary" target="_blank" rel="noopener">
-            Click here
-          </Link>
+          <span className={styles.shcText}> SMART&reg; Health Card </span>
         ]}
       />
     );
