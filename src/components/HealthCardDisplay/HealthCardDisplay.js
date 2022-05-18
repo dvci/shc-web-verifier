@@ -341,11 +341,16 @@ const HealthCardDisplay = () => {
               </Box>
               {bannersUpdated && (
                 <>
-                  {jws.map((hcJws) => (
-                    <HealthCardDataProvider healthCardJws={hcJws}>
-                      <VaccineCard padding="1rem" width="100%" />
-                    </HealthCardDataProvider>
-                  ))}
+                  {
+                    // Display cards in reverse order that they were scanned
+                    jws.slice(0).reverse().map((hcJws) => (
+                      <HealthCardDataProvider healthCardJws={hcJws}>
+                        <Box m={2}>
+                          <VaccineCard padding="1rem" width="100%" />
+                        </Box>
+                      </HealthCardDataProvider>
+                    ))
+                  }
                   <QrScanButton onClick={() => handleScan('qr-button')} styles={{ padding: '1rem', width: '100%' }} />
                 </>
               )}
