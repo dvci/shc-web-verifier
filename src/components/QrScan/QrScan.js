@@ -202,8 +202,10 @@ const QrScan = () => {
         }
         if (tempScannedCodes.every((code) => code)) {
           if (location.state === 'link') {
-            // Append to running list of scanned qr codes
-            setQrCodes([...qrCodes, [tempScannedCodes]]);
+            const previousQrCodes = qrCodes;
+            resetQrCodes();
+            // Append to running list of scanned QR codes
+            setQrCodes([...previousQrCodes, [tempScannedCodes]]);
           } else {
             resetQrCodes();
             setQrCodes([tempScannedCodes]);
@@ -214,9 +216,10 @@ const QrScan = () => {
         scannedCodesRef.current = tempScannedCodes;
       } else {
         if (qrCodes && location.state === 'link') {
-          const newCodes = JSON.parse(localStorage.getItem('qrCodes'));
-          newCodes.push(data);
-          setQrCodes(newCodes);
+          const allQrCodes = qrCodes;
+          resetQrCodes();
+          allQrCodes.push(data);
+          setQrCodes(allQrCodes);
         } else {
           resetQrCodes();
           setQrCodes([data]);

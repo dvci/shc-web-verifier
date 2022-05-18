@@ -27,6 +27,7 @@ const reducer = (state, action) => {
       localStorage.setItem('qrCodes', JSON.stringify(action.qrCodes));
 
       if (action.qrCodes) {
+        newState.qrCodes = action.qrCodes;
         // check valid SHC QR
         const validShcQr = action.qrCodes.flat().every((c) => parseHealthCardQr(c) !== null);
         if (!validShcQr) {
@@ -94,6 +95,7 @@ const reducer = (state, action) => {
       };
     }
     case actions.RESET_QR_CODES: {
+      localStorage.setItem('qrCodes', null);
       return initialState;
     }
     default:
