@@ -156,12 +156,11 @@ const HealthCardDisplay = () => {
         userErrorText = 'Unable to verify issuer.';
         break;
       case 'UNSUPPORTED_MALFORMED_CREDENTIAL':
-        userErrorText = 'This SMART Health Card was not properly created.';
+        userErrorText = 'Only valid SMART Health Card QR codes are currently supported. Please contact your issuer for assistance.';
         break;
       case 'UNSUPPORTED_HEALTH_CARD':
         userErrorText = 'Only SMART Health Cards containing immunization data are currently supported.';
         break;
-
       default:
         // Do nothing.
     }

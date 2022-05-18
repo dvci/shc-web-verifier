@@ -31,7 +31,7 @@
     "Only valid SMART Health Card QR codes are currently supported.": "Only valid <0>SMART\u00AE Health Card</0> QR codes<br/>are currently supported.",
     "This SMART Health Card cannot be verified.": "This <0>SMART\u00AE Health Card</0> cannot be<br/>verified. It may have been corrupted.",
     "Unable to verify issuer.": "Unable to verify <0>SMART\u00AE Health Card</0> issuer. Please check internet access and try again later.",
-    "This SMART Health Card was not properly created.": "This <0>SMART\u00AE Health Card</0> was not properly created. Please retrieve a new QR code from your issuer.",
+    "Only valid SMART Health Card QR codes are currently supported. Please contact your issuer for assistance.": "Only valid <0>SMART\u00AE Health Card</0> QR codes are currently supported. Please contact your issuer for assistance.",
     "Only SMART Health Cards containing immunization data are currently supported.": "Only <0>SMART\u00AE Health Cards</0> containing immunization data are currently supported.",
     "SCAN QR CODE": "SCAN QR CODE",
     "NAME": "NAME",
