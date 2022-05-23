@@ -127,6 +127,16 @@ node ./cql/SupportingData.js '/path/to/CDC/Version x.xx - 508/XML/AntigenSupport
 
 Will need to be updated with each CDSi release. Primary vaccine series number of doses are defined separately in src/supporting-data/AncilarySupportingData-{antigen}.json
 
+### Disable CDSi supporting data execution
+
+Tp prevent the CDSi logic from executing and validating health cards, update the following configuration setting in src/components/App/App.config.js.
+
+```
+const config = {
+  ENABLE_VALIDATION: false,
+};
+```
+
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/dvci/shc-web-verifier. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/dvci/shc-web-verifier/blob/main/CODE_OF_CONDUCT.md).
