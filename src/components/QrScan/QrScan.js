@@ -159,9 +159,11 @@ const QrScan = () => {
     const getUserMedia = async () => {
       try {
         if (videoRef.current) {
-          const stream = await navigator.mediaDevices.getUserMedia({
-            video: true
-          });
+          const stream = await navigator.mediaDevices.getUserMedia(
+            cameraDeviceId !== '' ? { audio: false, video: { deviceId: { exact: cameraDeviceId } } }
+              : { audio: false, video: { facingMode: 'environment' } }
+          );
+          setCameraDeviceId(stream.getVideoTracks()[0].getSettings().deviceId);
           videoRef.current.srcObject = stream;
         }
       } catch (err) {
