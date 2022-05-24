@@ -257,7 +257,7 @@ const HealthCardDisplay = () => {
                   style={styles.verifiedText}
                   text={t('healthcarddisplay.Valid SMART Health Card')}
                 />
-                {validationStatus.validPrimarySeries !== null && (
+                {validationStatus?.validPrimarySeries != null && (
                   <BottomBanner
                     img={validationStatus.validPrimarySeries ? checkIcon : xIcon}
                     alt="Bottom Banner Series Icon"
