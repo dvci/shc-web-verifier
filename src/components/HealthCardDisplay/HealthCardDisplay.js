@@ -153,13 +153,13 @@ const HealthCardDisplay = () => {
     // Set specific user error text
     switch (error.message) {
       case 'UNVERIFIED_ERROR_RETRIEVING_KEY_URL':
-        userErrorText = 'Unable to verify issuer.';
+        userErrorText = 'Unable to verify SMART Health Card issuer. Please check internet access and try again later.';
         break;
       case 'UNSUPPORTED_MALFORMED_CREDENTIAL':
-        userErrorText = 'Only valid SMART Health Card QR codes are currently supported. Please contact your issuer for assistance.';
+        userErrorText = 'Only valid SMART Health Card QR codes are currently supported. Please contact the issuer of your Health Card for assistance.';
         break;
       case 'UNSUPPORTED_HEALTH_CARD':
-        userErrorText = 'Only SMART Health Cards containing immunization data are currently supported.';
+        userErrorText = 'Only SMART Health Cards containing immunizations are currently supported.';
         break;
       default:
         // Do nothing.
