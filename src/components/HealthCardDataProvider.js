@@ -27,6 +27,7 @@ const HealthCardDataProvider = ({ healthCardJws, children }) => {
       let vc;
       try {
         vc = getCredential(cardJws);
+        if (!vc?.credentialSubject?.fhirBundle) throw Error('Payload is missing a FHIR Bundle');
       } catch {
         setHealthCardSupported({
           status: false,
@@ -34,7 +35,7 @@ const HealthCardDataProvider = ({ healthCardJws, children }) => {
         });
         return false;
       }
-      if (!vc.type.some((type) => type === 'https://smarthealth.cards#health-card')) {
+      if (!vc.type?.some((type) => type === 'https://smarthealth.cards#health-card')) {
         setHealthCardSupported({
           status: false,
           error: new Error('UNSUPPORTED_CREDENTIAL')
