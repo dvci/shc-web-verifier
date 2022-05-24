@@ -129,7 +129,7 @@ Will need to be updated with each CDSi release. Primary vaccine series number of
 
 ### Disable CDSi supporting data execution
 
-Tp prevent the CDSi logic from executing and validating health cards, update the following configuration setting in src/components/App/App.config.js.
+To prevent the CDSi logic from executing and validating health cards, update the following configuration setting in src/components/App/App.config.js.
 
 ```
 const config = {
