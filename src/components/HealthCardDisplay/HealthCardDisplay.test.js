@@ -69,7 +69,7 @@ const renderHealthCardDisplayNoValidation = (
       <QrDataContext.Provider
         value={{
           qrError,
-          jws: null,
+          jws: [],
           validationStatus: null
         }}
       >
