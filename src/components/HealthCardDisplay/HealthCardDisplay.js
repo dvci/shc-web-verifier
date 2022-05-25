@@ -323,7 +323,7 @@ const HealthCardDisplay = () => {
               <Banners />
             </HealthCardDataProvider>
             <Grid item className={styles.flexCard}>
-              <Box>
+              <Box style={{ textAlign: 'center' }}>
                 <Router>
                   <Switch>
                     <Link
