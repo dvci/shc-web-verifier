@@ -1,0 +1,87 @@
+{
+    "resourceType": "ValueSet",
+    "id": "qualitative-lab-results-loinc",
+    "text": {
+      "status": "generated",
+      "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><ul><li>Include these codes as defined in <a href=\"http://loinc.org\"><code>http://loinc.org</code></a><table class=\"none\"><tr><td style=\"white-space:nowrap\"><b>Code</b></td><td><b>Display</b></td></tr><tr><td><a href=\"http://details.loinc.org/LOINC/LA11882-0.html\">LA11882-0</a></td><td>Detected</td></tr><tr><td><a href=\"http://details.loinc.org/LOINC/LA11883-8.html\">LA11883-8</a></td><td>Not detected</td></tr><tr><td><a href=\"http://details.loinc.org/LOINC/LA11885-3.html\">LA11885-3</a></td><td>Equivocal</td></tr><tr><td><a href=\"http://details.loinc.org/LOINC/LA9663-1.html\">LA9663-1</a></td><td>Inconclusive</td></tr><tr><td><a href=\"http://details.loinc.org/LOINC/LA13548-5.html\">LA13548-5</a></td><td>Specimen unsatisfactory for evaluation</td></tr><tr><td><a href=\"http://details.loinc.org/LOINC/LA6577-6.html\">LA6577-6</a></td><td>Negative</td></tr><tr><td><a href=\"http://details.loinc.org/LOINC/LA4259-3.html\">LA4259-3</a></td><td>Borderline</td></tr><tr><td><a href=\"http://details.loinc.org/LOINC/LA6576-8.html\">LA6576-8</a></td><td>Positive</td></tr><tr><td><a href=\"http://details.loinc.org/LOINC/LA18996-1.html\">LA18996-1</a></td><td>Strong positive</td></tr></table></li></ul></div>"
+    },
+    "url": "http://hl7.org/fhir/uv/shc-vaccination/ValueSet/qualitative-lab-results-loinc",
+    "version": "0.6.2",
+    "name": "QualitativeLabResultsLOINC",
+    "title": "Qualitative lab results - LOINC",
+    "status": "active",
+    "date": "2021-12-31T12:36:49+00:00",
+    "publisher": "HL7 International - Public Health Work Group",
+    "contact": [
+      {
+        "name": "HL7 International - Public Health Work Group",
+        "telecom": [
+          {
+            "system": "url",
+            "value": "http://www.hl7.org/Special/committees/pher"
+          },
+          {
+            "system": "email",
+            "value": "vci-ig@mitre.org"
+          }
+        ]
+      }
+    ],
+    "description": "This value set includes codes from LOINC answer lists with roughly equivalent meanings to the codes in this [value set of COVID-19-related SNOMED CT codes](https://vsac.nlm.nih.gov/valueset/2.16.840.1.113762.1.4.1114.10/expansion).",
+    "jurisdiction": [
+      {
+        "coding": [
+          {
+            "system": "http://unstats.un.org/unsd/methods/m49/m49.htm",
+            "code": "001"
+          }
+        ]
+      }
+    ],
+    "copyright": "This material contains content from LOINC (http://loinc.org). LOINC is copyright © 1995-2020, Regenstrief Institute, Inc. and the Logical Observation Identifiers Names and Codes (LOINC) Committee and is available at no cost under the license at http://loinc.org/license. LOINC® is a registered United States trademark of Regenstrief Institute, Inc",
+    "compose": {
+      "include": [
+        {
+          "system": "http://loinc.org",
+          "concept": [
+            {
+              "code": "LA11882-0",
+              "display": "Detected"
+            },
+            {
+              "code": "LA11883-8",
+              "display": "Not detected"
+            },
+            {
+              "code": "LA11885-3",
+              "display": "Equivocal"
+            },
+            {
+              "code": "LA9663-1",
+              "display": "Inconclusive"
+            },
+            {
+              "code": "LA13548-5",
+              "display": "Specimen unsatisfactory for evaluation"
+            },
+            {
+              "code": "LA6577-6",
+              "display": "Negative"
+            },
+            {
+              "code": "LA4259-3",
+              "display": "Borderline"
+            },
+            {
+              "code": "LA6576-8",
+              "display": "Positive"
+            },
+            {
+              "code": "LA18996-1",
+              "display": "Strong positive"
+            }
+          ]
+        }
+      ]
+    }
+  }
