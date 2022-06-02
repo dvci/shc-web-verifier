@@ -55,9 +55,27 @@ const reducer = (state, action) => {
               entry: [],
             };
             let types = [];
+            
+            // store names from patient resources for comparison
+            const givenNames = [];
+            const familyNames = [];
+            const birthDates = [];
             newState.jws.forEach((jws) => {
               const payload = getPayload(jws);
               const patientBundle = JSON.parse(payload).vc.credentialSubject.fhirBundle;
+              const patientResource = patientBundle.entry.find((e) => e.resource.resourceType === 'Patient');
+
+              // store first given name that appears in array
+              givenNames.push(patientResource.resource.name[0].given[0]);
+              familyNames.push(patientResource.resource.name[0].family);
+              birthDates.push(patientResource.resource.birthDate);
+
+              const showPatientDataWarning = givenNames.every((name) => name === givenNames[0])
+              && familyNames.every((name) => name === familyNames[0])
+              && birthDates.every((name) => name === birthDates[0]);
+
+              newState.showPatientDataWarning = showPatientDataWarning;
+
               // use one patient bundle for validation
               const existingPatientResource = patientBundles.entry.find(
                 (e) => e.resource.resourceType === 'Patient'
