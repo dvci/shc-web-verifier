@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import {
   Link,
   HashRouter as Router,
-  Switch,
   useHistory,
 } from 'react-router-dom';
 import {
@@ -325,18 +324,16 @@ const HealthCardDisplay = () => {
             <Grid item className={styles.flexCard}>
               <Box style={{ textAlign: 'center' }}>
                 <Router>
-                  <Switch>
-                    <Link
-                      to="/qr-scan"
-                      state="link"
-                      replace
-                      onClick={() => handleScan('link')}
-                    >
-                      {t(
-                        'healthcarddisplay.Add another SMART Health Card for same person'
-                      )}
-                    </Link>
-                  </Switch>
+                  <Link
+                    to="/qr-scan"
+                    state="link"
+                    replace
+                    onClick={() => handleScan('link')}
+                  >
+                    {t(
+                      'healthcarddisplay.Add another SMART Health Card for same person'
+                    )}
+                  </Link>
                 </Router>
               </Box>
               {bannersUpdated && (
