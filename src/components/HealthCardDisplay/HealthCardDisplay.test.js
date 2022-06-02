@@ -34,7 +34,7 @@ const renderHealthCardDisplay = (
       <QrDataContext.Provider
         value={{
           qrError,
-          jws: null,
+          jws: [],
           validationStatus: { validPrimarySeries, error: null }
         }}
       >
@@ -69,7 +69,7 @@ const renderHealthCardDisplayNoValidation = (
       <QrDataContext.Provider
         value={{
           qrError,
-          jws: null,
+          jws: [],
           validationStatus: null
         }}
       >
@@ -93,7 +93,9 @@ test('renders health card banner partially verified', () => {
   expect(screen.getByText(/Partially Verified/i)).toBeInTheDocument();
   expect(screen.getByText(/Valid SMART® Health Card/i)).toBeInTheDocument();
   expect(screen.getByText(/Issuer not recognized/i)).toBeInTheDocument();
-  expect(screen.getByText(/Cannot determine vaccination status/i)).toBeInTheDocument();
+  expect(
+    screen.getByText(/Cannot determine vaccination status/i)
+  ).toBeInTheDocument();
   expect(screen.getByText(/SCAN QR CODE/i)).toBeInTheDocument();
 });
 
@@ -102,7 +104,9 @@ test('renders health card banner series invalid', () => {
   expect(screen.getByText(/Verified/i)).toBeInTheDocument();
   expect(screen.getByText(/Valid SMART® Health Card/i)).toBeInTheDocument();
   expect(screen.getByText(/Issuer recognized/i)).toBeInTheDocument();
-  expect(screen.getByText(/Cannot determine vaccination status/i)).toBeInTheDocument();
+  expect(
+    screen.getByText(/Cannot determine vaccination status/i)
+  ).toBeInTheDocument();
   expect(screen.getByText(/SCAN QR CODE/i)).toBeInTheDocument();
 });
 

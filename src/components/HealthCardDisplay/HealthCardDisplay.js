@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import {
+  Link,
+  HashRouter as Router,
+  useHistory,
+} from 'react-router-dom';
+import {
   Box, Container, Grid, Typography
 } from '@mui/material';
-import { useHistory } from 'react-router-dom';
 import { makeStyles } from '@mui/styles';
 import { useQrDataContext } from 'components/QrDataProvider';
 import { useHealthCardDataContext, HealthCardDataProvider } from 'components/HealthCardDataProvider';
@@ -118,8 +122,8 @@ const HealthCardDisplay = () => {
   const { qrError, jws } = useQrDataContext();
   const [bannersUpdated, setBannersUpdated] = useState(false);
 
-  const handleScan = () => {
-    history.push('qr-scan');
+  const handleScan = (propertyName) => {
+    history.push({ pathname: 'qr-scan', state: propertyName })
   };
 
   const TopBanner = ({
@@ -309,23 +313,47 @@ const HealthCardDisplay = () => {
 
   return (
     <Grid container className={styles.root}>
-      {qrError ? (
-        <ErrorFallback error={qrError} />
-      ) : (
-        <ErrorBoundary FallbackComponent={ErrorFallback}>
-          <HealthCardDataProvider healthCardJws={jws}>
-            <Banners />
+      {(qrError)
+        ? (
+          <ErrorFallback error={qrError} />
+        ) : (
+          <ErrorBoundary FallbackComponent={ErrorFallback}>
+            <HealthCardDataProvider healthCardJws={jws[jws.length - 1]}>
+              <Banners />
+            </HealthCardDataProvider>
             <Grid item className={styles.flexCard}>
+              <Box style={{ textAlign: 'center' }}>
+                <Router>
+                  <Link
+                    to="/qr-scan"
+                    state="link"
+                    replace
+                    onClick={() => handleScan('link')}
+                  >
+                    {t(
+                      'healthcarddisplay.Add another SMART Health Card for same person'
+                    )}
+                  </Link>
+                </Router>
+              </Box>
               {bannersUpdated && (
                 <>
-                  <VaccineCard padding="1rem" width="100%" />
-                  <QrScanButton onClick={handleScan} styles={{ padding: '1rem', width: '100%' }} />
+                  {
+                    // Display cards in reverse order that they were scanned
+                    jws.slice(0).reverse().map((hcJws) => (
+                      <HealthCardDataProvider key={Math.random()} healthCardJws={hcJws}>
+                        <Box m={2}>
+                          <VaccineCard padding="1rem" width="100%" />
+                        </Box>
+                      </HealthCardDataProvider>
+                    ))
+                  }
+                  <QrScanButton onClick={() => handleScan('qr-button')} styles={{ padding: '1rem', width: '100%' }} />
                 </>
               )}
             </Grid>
-          </HealthCardDataProvider>
-        </ErrorBoundary>
-      )}
+          </ErrorBoundary>
+        )}
     </Grid>
   );
 };
