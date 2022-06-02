@@ -341,7 +341,7 @@ const HealthCardDisplay = () => {
                   {
                     // Display cards in reverse order that they were scanned
                     jws.slice(0).reverse().map((hcJws) => (
-                      <HealthCardDataProvider healthCardJws={hcJws}>
+                      <HealthCardDataProvider key={Math.random()} healthCardJws={hcJws}>
                         <Box m={2}>
                           <VaccineCard padding="1rem" width="100%" />
                         </Box>
