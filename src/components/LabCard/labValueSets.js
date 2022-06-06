@@ -20,7 +20,8 @@ const mapValueSets = () => {
           valueSets[valueSetId][include.system] = {};
           include.concept.forEach((concept) => {
             if (concept.code) {
-              valueSets[valueSetId][include.system][concept.code] = concept.display;
+              valueSets[valueSetId][include.system][concept.code] = (concept.display
+                ? concept.display : null);
             }
           });
         }
