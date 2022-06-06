@@ -97,7 +97,9 @@ const QrScan = () => {
   const location = useLocation();
   const classes = useStyles();
   const handleErrorFallback = useErrorHandler();
-  const { setQrCodes, resetQrCodes, setQrError, qrCodes } = useQrDataContext();
+  const {
+    setQrCodes, resetQrCodes, setQrError, qrCodes
+  } = useQrDataContext();
   const [scannedCodes, setScannedCodes] = useState([]);
   const [scannedData, setScannedData] = useState('');
   const [cameraDeviceId, setCameraDeviceId] = useState('');
