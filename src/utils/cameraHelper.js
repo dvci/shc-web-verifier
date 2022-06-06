@@ -11,12 +11,17 @@ const cameraPermission = async () => {
       return new Promise((resolve, reject) => {
         diagnostic.getCameraAuthorizationStatus(
           (status) => {
-            if (status === diagnostic.permissionStatus.GRANTED) {
+            if (status === diagnostic.permissionStatus.GRANTED
+              || status === diagnostic.permissionStatus.GRANTED_WHEN_IN_USE) {
               resolve(true);
+            } else if (status === diagnostic.permissionStatus.DENIED_ALWAYS
+              || status === diagnostic.permissionStatus.RESTRICTED) {
+              resolve(false);
             } else {
               diagnostic.requestCameraAuthorization(
                 (requestedStatus) => {
-                  if (requestedStatus === diagnostic.permissionStatus.GRANTED) {
+                  if (requestedStatus === diagnostic.permissionStatus.GRANTED
+                    || requestedStatus === diagnostic.permissionStatus.GRANTED_WHEN_IN_USE) {
                     resolve(true);
                   } else {
                     resolve(false);
