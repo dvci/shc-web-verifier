@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import {
+  Link,
+  HashRouter as Router,
+  useHistory,
+} from 'react-router-dom';
+import {
   Box, Container, Grid, Typography
 } from '@mui/material';
-import { useHistory } from 'react-router-dom';
 import { makeStyles } from '@mui/styles';
 import { useQrDataContext } from 'components/QrDataProvider';
 import { useHealthCardDataContext, HealthCardDataProvider } from 'components/HealthCardDataProvider';
@@ -118,8 +122,8 @@ const HealthCardDisplay = () => {
   const { qrError, jws } = useQrDataContext();
   const [bannersUpdated, setBannersUpdated] = useState(false);
 
-  const handleScan = () => {
-    history.push('qr-scan');
+  const handleScan = (propertyName) => {
+    history.push({ pathname: 'qr-scan', state: propertyName })
   };
 
   const TopBanner = ({
@@ -136,28 +140,44 @@ const HealthCardDisplay = () => {
   );
 
   const ErrorFallback = ({ error }) => {
-    let bannerError;
-    let userError;
+    let bannerErrorText;
+    let userErrorText;
 
+    // Set banner text and default user error text
     if (error.message.startsWith('UNVERIFIED')) {
-      bannerError = t('healthcarddisplay.Not verified');
-      userError = (
-        <Trans
-          i18nKey="healthcarddisplay.This SMART Health Card cannot be verified."
-          components={[<span className={styles.shcText}> SMART&reg; Health Card </span>]}
-        />
-      );
+      bannerErrorText = 'Not verified';
+      userErrorText = 'This SMART Health Card cannot be verified.';
     } else if (error.message.startsWith('UNSUPPORTED')) {
-      bannerError = t('healthcarddisplay.Invalid SMART Health Card');
-      userError = (
-        <Trans
-          i18nKey="healthcarddisplay.Only valid SMART Health Card QR Codes are currently supported."
-          components={[<span className={styles.shcText}> SMART&reg; Health Card </span>]}
-        />
-      );
+      bannerErrorText = 'Invalid SMART Health Card';
+      userErrorText = 'Only valid SMART Health Card QR codes are currently supported.';
     } else {
       throw error;
     }
+
+    // Set specific user error text
+    switch (error.message) {
+      case 'UNVERIFIED_ERROR_RETRIEVING_KEY_URL':
+        userErrorText = 'Unable to verify SMART Health Card issuer. Please check internet access and try again later.';
+        break;
+      case 'UNSUPPORTED_MALFORMED_CREDENTIAL':
+        userErrorText = 'Only valid SMART Health Card QR codes are currently supported. Please contact the issuer of your Health Card for assistance.';
+        break;
+      case 'UNSUPPORTED_HEALTH_CARD':
+        userErrorText = 'Only SMART Health Cards containing immunizations are currently supported.';
+        break;
+      default:
+        // Do nothing.
+    }
+
+    const bannerError = t(`healthcarddisplay.${bannerErrorText}`)
+    const userError = (
+      <Trans
+        i18nKey={`healthcarddisplay.${userErrorText}`}
+        components={[
+          <span className={styles.shcText}> SMART&reg; Health Card </span>
+        ]}
+      />
+    );
 
     return (
       <>
@@ -257,7 +277,7 @@ const HealthCardDisplay = () => {
                   style={styles.verifiedText}
                   text={t('healthcarddisplay.Valid SMART Health Card')}
                 />
-                {validationStatus.validPrimarySeries !== null && (
+                {validationStatus?.validPrimarySeries != null && (
                   <BottomBanner
                     img={validationStatus.validPrimarySeries ? checkIcon : xIcon}
                     alt="Bottom Banner Series Icon"
@@ -293,23 +313,47 @@ const HealthCardDisplay = () => {
 
   return (
     <Grid container className={styles.root}>
-      {qrError ? (
-        <ErrorFallback error={qrError} />
-      ) : (
-        <ErrorBoundary FallbackComponent={ErrorFallback}>
-          <HealthCardDataProvider healthCardJws={jws}>
-            <Banners />
+      {(qrError)
+        ? (
+          <ErrorFallback error={qrError} />
+        ) : (
+          <ErrorBoundary FallbackComponent={ErrorFallback}>
+            <HealthCardDataProvider healthCardJws={jws[jws.length - 1]}>
+              <Banners />
+            </HealthCardDataProvider>
             <Grid item className={styles.flexCard}>
+              <Box style={{ textAlign: 'center' }}>
+                <Router>
+                  <Link
+                    to="/qr-scan"
+                    state="link"
+                    replace
+                    onClick={() => handleScan('link')}
+                  >
+                    {t(
+                      'healthcarddisplay.Add another SMART Health Card for same person'
+                    )}
+                  </Link>
+                </Router>
+              </Box>
               {bannersUpdated && (
                 <>
-                  <VaccineCard padding="1rem" width="100%" />
-                  <QrScanButton onClick={handleScan} styles={{ padding: '1rem', width: '100%' }} />
+                  {
+                    // Display cards in reverse order that they were scanned
+                    jws.slice(0).reverse().map((hcJws) => (
+                      <HealthCardDataProvider key={Math.random()} healthCardJws={hcJws}>
+                        <Box m={2}>
+                          <VaccineCard padding="1rem" width="100%" />
+                        </Box>
+                      </HealthCardDataProvider>
+                    ))
+                  }
+                  <QrScanButton onClick={() => handleScan('qr-button')} styles={{ padding: '1rem', width: '100%' }} />
                 </>
               )}
             </Grid>
-          </HealthCardDataProvider>
-        </ErrorBoundary>
-      )}
+          </ErrorBoundary>
+        )}
     </Grid>
   );
 };

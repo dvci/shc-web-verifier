@@ -21,23 +21,23 @@ const patientData = {
           coding: [
             {
               system: 'http://hl7.org/fhir/sid/cvx',
-              code: '208'
-            }
-          ]
+              code: '208',
+            },
+          ],
         },
         patient: {
-          reference: 'resource:0'
+          reference: 'resource:0',
         },
         occurrenceDateTime: '2021-01-01',
         performer: [
           {
             actor: {
-              display: 'ABC General Hospital'
-            }
-          }
+              display: 'ABC General Hospital',
+            },
+          },
         ],
-        lotNumber: '0000001'
-      }
+        lotNumber: '0000001',
+      },
     },
     {
       fullUrl: 'resource:2',
@@ -48,18 +48,18 @@ const patientData = {
           coding: [
             {
               system: 'http://hl7.org/fhir/sid/cvx',
-              code: '213'
-            }
-          ]
+              code: '213',
+            },
+          ],
         },
         patient: {
-          reference: 'resource:0'
+          reference: 'resource:0',
         },
-        occurrenceDateTime: '2021-02-01'
-      }
-    }
-  ]
-};
+        occurrenceDateTime: '2021-02-01',
+      },
+    },
+  ],
+}
 
 const tradenames = `<?xml version="1.0"?>
 <productnames>

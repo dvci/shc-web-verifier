@@ -34,8 +34,43 @@ const renderHealthCardDisplay = (
       <QrDataContext.Provider
         value={{
           qrError,
-          jws: null,
+          jws: [],
           validationStatus: { validPrimarySeries, error: null }
+        }}
+      >
+        <HealthCardDisplay />
+      </QrDataContext.Provider>
+    </ThemeProvider>
+  );
+};
+
+const renderHealthCardDisplayNoValidation = (
+  healthCardSupported,
+  healthCardSupportedError,
+  healthCardVerified,
+  healthCardVerifiedError,
+  issuerVerified,
+  qrError
+) => {
+  healthCardDataProviders.useHealthCardDataContext = jest.fn().mockReturnValue({
+    healthCardSupported: {
+      status: healthCardSupported,
+      error: healthCardSupportedError
+    },
+    healthCardVerified: {
+      verified: healthCardVerified,
+      error: healthCardVerifiedError
+    },
+    issuerVerified
+  });
+
+  return render(
+    <ThemeProvider>
+      <QrDataContext.Provider
+        value={{
+          qrError,
+          jws: [],
+          validationStatus: null
         }}
       >
         <HealthCardDisplay />
@@ -58,7 +93,9 @@ test('renders health card banner partially verified', () => {
   expect(screen.getByText(/Partially Verified/i)).toBeInTheDocument();
   expect(screen.getByText(/Valid SMART® Health Card/i)).toBeInTheDocument();
   expect(screen.getByText(/Issuer not recognized/i)).toBeInTheDocument();
-  expect(screen.getByText(/Cannot determine vaccination status/i)).toBeInTheDocument();
+  expect(
+    screen.getByText(/Cannot determine vaccination status/i)
+  ).toBeInTheDocument();
   expect(screen.getByText(/SCAN QR CODE/i)).toBeInTheDocument();
 });
 
@@ -67,7 +104,9 @@ test('renders health card banner series invalid', () => {
   expect(screen.getByText(/Verified/i)).toBeInTheDocument();
   expect(screen.getByText(/Valid SMART® Health Card/i)).toBeInTheDocument();
   expect(screen.getByText(/Issuer recognized/i)).toBeInTheDocument();
-  expect(screen.getByText(/Cannot determine vaccination status/i)).toBeInTheDocument();
+  expect(
+    screen.getByText(/Cannot determine vaccination status/i)
+  ).toBeInTheDocument();
   expect(screen.getByText(/SCAN QR CODE/i)).toBeInTheDocument();
 });
 
@@ -92,5 +131,13 @@ test('renders health card banner qr error', () => {
 test('renders health card banner verified without series status', () => {
   renderHealthCardDisplay(true, null, true, null, true, null, null);
   expect(screen.queryByText(/Valid vaccination series/i)).not.toBeInTheDocument();
+  expect(screen.queryByText(/Cannot determine vaccination status/i)).not.toBeInTheDocument();
+});
+
+test('renders health card banner verified without validation status', () => {
+  renderHealthCardDisplayNoValidation(true, null, true, null, true, null);
+  expect(screen.getByText(/Verified/i)).toBeInTheDocument();
+  expect(screen.getByText(/Valid SMART® Health Card/i)).toBeInTheDocument();
+  expect(screen.getByText(/Issuer recognized/i)).toBeInTheDocument();
   expect(screen.queryByText(/Cannot determine vaccination status/i)).not.toBeInTheDocument();
 });
