@@ -137,6 +137,10 @@ const config = {
 };
 ```
 
+## Analytics
+
+The deployed version of the SMART Health Card Verifier at https://dvci.github.io/shc-web-verifier uses Google Analytics to track usage. This is done in a privacy-preserving way, and does not involve cookies. If you would like to remove or add your own tracking ID for local use, you may modify the `REACT_APP_MEASUREMENT_ID` environment variable in `.env`.
+
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/dvci/shc-web-verifier. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/dvci/shc-web-verifier/blob/main/CODE_OF_CONDUCT.md).
