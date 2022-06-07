@@ -2,7 +2,6 @@ import React, { createContext, useContext, useReducer } from 'react';
 import { parseHealthCardQr, getJws, getPayload } from 'utils/qrHelpers';
 import { Validator } from 'components/Validator/Validator.tsx';
 import config from './App/App.config';
-import { match } from 'assert';
 
 const QrDataContext = createContext();
 
@@ -39,7 +38,7 @@ const reducer = (state, action) => {
           newState.jws = [];
           action.qrCodes.forEach((c) => {
             // change this based on whether already or not?
-            const jws = getJws((c instanceof Array ? c : [c]));
+            const jws = getJws(c instanceof Array ? c : [c]);
             newState.jws.push(jws);
           });
         }
@@ -54,7 +53,7 @@ const reducer = (state, action) => {
             const patientBundles = {
               type: 'collection',
               resourceType: 'Bundle',
-              entry: [],
+              entry: []
             };
             let types = [];
 
@@ -75,14 +74,11 @@ const reducer = (state, action) => {
               demographicData.push(patientDemographicData);
 
               // use one patient bundle for validation
-              const existingPatientResource = patientBundles.entry.find(
-                (e) => e.resource.resourceType === 'Patient'
-              );
+              const existingPatientResource = patientBundles.entry.find((e) => e.resource.resourceType === 'Patient');
               patientBundle.entry.forEach((e) => {
                 if (
-                  (e.resource.resourceType === 'Patient'
-                    && !existingPatientResource)
-                  || e.resource.resourceType !== 'Patient'
+                  (e.resource.resourceType === 'Patient' && !existingPatientResource) ||
+                  e.resource.resourceType !== 'Patient'
                 ) {
                   e.fullUrl = `resource:${patientBundles.entry.length}`;
                   patientBundles.entry.push(e);
@@ -93,8 +89,7 @@ const reducer = (state, action) => {
             types = [...new Set(types)];
             const results = Validator.execute(patientBundles, types);
             newState.validationStatus = {
-              validPrimarySeries: results
-                ? results.some((series) => series.validPrimarySeries) : null,
+              validPrimarySeries: results ? results.some((series) => series.validPrimarySeries) : null,
               error: null
             };
             const matchingDemographicData = demographicData.every(
