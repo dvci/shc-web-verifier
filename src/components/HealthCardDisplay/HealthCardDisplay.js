@@ -112,6 +112,10 @@ const useStyles = makeStyles((theme) => ({
   },
   shcText: {
     color: theme.palette.secondary.main
+  },
+  mismatchDemographicDataText: {
+    color: theme.palette.common.redDark,
+    textAlign: 'center'
   }
 }));
 
@@ -322,11 +326,16 @@ const HealthCardDisplay = () => {
               <Banners />
             </HealthCardDataProvider>
             <Grid item className={styles.flexCard}>
-              <Box style={{ textAlign: 'center' }}>
+              <Box className={styles.mismatchDemographicDataText}>
                 {
                   (matchingDemographicData) ? '' : (
-                    t('Name and/or date of birth are not consistent across all scanned cards. Verify that these cards are for the same person.')) 
+                    <Trans
+                      i18nKey={'healthcarddisplay.Name and/or date of birth are not consistent across all the scanned SMART Health Cards.'}
+                    />
+                  )
                 }
+              </Box>
+              <Box style={{ textAlign: 'center' }}>
                 <Router>
                   <Link
                     to="/qr-scan"

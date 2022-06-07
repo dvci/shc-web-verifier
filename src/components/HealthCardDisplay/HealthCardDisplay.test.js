@@ -15,7 +15,8 @@ const renderHealthCardDisplay = (
   healthCardVerifiedError,
   issuerVerified,
   validPrimarySeries,
-  qrError
+  qrError,
+  matchingDemographicData
 ) => {
   healthCardDataProviders.useHealthCardDataContext = jest.fn().mockReturnValue({
     healthCardSupported: {
@@ -35,7 +36,8 @@ const renderHealthCardDisplay = (
         value={{
           qrError,
           jws: [],
-          validationStatus: { validPrimarySeries, error: null }
+          validationStatus: { validPrimarySeries, error: null },
+          matchingDemographicData
         }}
       >
         <HealthCardDisplay />
@@ -140,4 +142,14 @@ test('renders health card banner verified without validation status', () => {
   expect(screen.getByText(/Valid SMART® Health Card/i)).toBeInTheDocument();
   expect(screen.getByText(/Issuer recognized/i)).toBeInTheDocument();
   expect(screen.queryByText(/Cannot determine vaccination status/i)).not.toBeInTheDocument();
+});
+
+test('renders matching card demographic data warning when demographic data differs between scanned cards', () => {
+  renderHealthCardDisplay(true, null, true, null, true, true, null, false);
+  expect(screen.queryByText(/Name and\/or date of birth are not consistent across all the scanned cards./i)).toBeInTheDocument();
+});
+
+test('does not render matching card demographic data warning when demographic data is the same across scanned cards', () => {
+  renderHealthCardDisplay(true, null, true, null, true, true, null, true);
+  expect(screen.queryByText(/Name and\/or date of birth are not consistent across all the scanned cards./i)).not.toBeInTheDocument();
 });

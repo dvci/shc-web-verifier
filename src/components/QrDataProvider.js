@@ -2,6 +2,7 @@ import React, { createContext, useContext, useReducer } from 'react';
 import { parseHealthCardQr, getJws, getPayload } from 'utils/qrHelpers';
 import { Validator } from 'components/Validator/Validator.tsx';
 import config from './App/App.config';
+import { match } from 'assert';
 
 const QrDataContext = createContext();
 
@@ -58,24 +59,20 @@ const reducer = (state, action) => {
             let types = [];
 
             // store names from patient resources for comparison
-            const givenNames = [];
-            const familyNames = [];
-            const birthDates = [];
+            const demographicData = [];
             newState.jws.forEach((jws) => {
               const payload = getPayload(jws);
               const patientBundle = JSON.parse(payload).vc.credentialSubject.fhirBundle;
               const patientResource = patientBundle.entry.find((e) => e.resource.resourceType === 'Patient');
 
+              const patientDemographicData = {
+                names: [],
+                birthDates: []
+              };
               // store first given name that appears in array
-              givenNames.push(patientResource.resource.name[0].given[0]);
-              familyNames.push(patientResource.resource.name[0].family);
-              birthDates.push(patientResource.resource.birthDate);
-
-              const matchingDemographicData = (givenNames.every((name) => name === givenNames[0]))
-              && (familyNames.every((name) => name === familyNames[0]))
-              && (birthDates.every((name) => name === birthDates[0]));
-
-              newState.matchingDemographicData = matchingDemographicData;
+              patientDemographicData.names.push(patientResource.resource.name);
+              patientDemographicData.birthDates.push(patientResource.resource.birthDate);
+              demographicData.push(patientDemographicData);
 
               // use one patient bundle for validation
               const existingPatientResource = patientBundles.entry.find(
@@ -100,6 +97,11 @@ const reducer = (state, action) => {
                 ? results.some((series) => series.validPrimarySeries) : null,
               error: null
             };
+            const matchingDemographicData = demographicData.every(
+              (card) => JSON.stringify(card) === JSON.stringify(demographicData[0])
+            );
+
+            newState.matchingDemographicData = matchingDemographicData;
           } catch {
             newState.validationStatus = {
               validPrimarySeries: false,

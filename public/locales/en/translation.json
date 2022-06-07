@@ -38,7 +38,7 @@
     "DATE OF BIRTH": "DATE OF BIRTH",
     "VACCINATION RECORD": "VACCINATION RECORD",
     "Add another SMART Health Card for same person": "Add another SMART\u00AE Health Card for same person",
-    "Name and/or date of birth are not consistent across all scanned cards. Verify that these cards are for the same person.": "Name and/or date of birth are not consistent across all scanned cards. Verify that these cards are for the same person."
+    "Name and/or date of birth are not consistent across all the scanned SMART Health Cards.": "Name and/or date of birth are not consistent across all the scanned cards.<br/>Check that all the scanned <0>SMART\u00AE Health Cards</0> belong to the same person."
   },
   "footer": {
     "FAQ": "FAQ",
