@@ -119,7 +119,7 @@ const HealthCardDisplay = () => {
   const styles = useStyles();
   const history = useHistory();
   const { t } = useTranslation();
-  const { qrError, jws } = useQrDataContext();
+  const { qrError, jws, matchingDemographicData } = useQrDataContext();
   const [bannersUpdated, setBannersUpdated] = useState(false);
 
   const handleScan = (propertyName) => {
@@ -323,6 +323,10 @@ const HealthCardDisplay = () => {
             </HealthCardDataProvider>
             <Grid item className={styles.flexCard}>
               <Box style={{ textAlign: 'center' }}>
+                {
+                  (matchingDemographicData) ? '' : (
+                    t('Name and/or date of birth are not consistent across all scanned cards. Verify that these cards are for the same person.')) 
+                }
                 <Router>
                   <Link
                     to="/qr-scan"

@@ -12,7 +12,8 @@ const initialState = {
   validationStatus: {
     validPrimarySeries: null,
     error: null
-  }
+  },
+  matchingDemographicData: null
 };
 
 const actions = {
@@ -55,7 +56,7 @@ const reducer = (state, action) => {
               entry: [],
             };
             let types = [];
-            
+
             // store names from patient resources for comparison
             const givenNames = [];
             const familyNames = [];
@@ -70,11 +71,11 @@ const reducer = (state, action) => {
               familyNames.push(patientResource.resource.name[0].family);
               birthDates.push(patientResource.resource.birthDate);
 
-              const showPatientDataWarning = givenNames.every((name) => name === givenNames[0])
-              && familyNames.every((name) => name === familyNames[0])
-              && birthDates.every((name) => name === birthDates[0]);
+              const matchingDemographicData = (givenNames.every((name) => name === givenNames[0]))
+              && (familyNames.every((name) => name === familyNames[0]))
+              && (birthDates.every((name) => name === birthDates[0]));
 
-              newState.showPatientDataWarning = showPatientDataWarning;
+              newState.matchingDemographicData = matchingDemographicData;
 
               // use one patient bundle for validation
               const existingPatientResource = patientBundles.entry.find(
@@ -135,6 +136,7 @@ const QrDataProvider = ({ children }) => {
     jws: state.jws,
     qrError: state.qrError,
     validationStatus: state.validationStatus,
+    matchingDemographicData: state.matchingDemographicData,
     setQrCodes: (qrCodes) => {
       dispatch({ type: actions.SET_QR_CODES, qrCodes });
     },
