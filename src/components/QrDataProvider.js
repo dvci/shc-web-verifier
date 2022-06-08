@@ -41,16 +41,22 @@ const reducer = (state, action) => {
         if (!config.ENABLE_VALIDATION) {
           newState.validationStatus = null;
         } else {
-          // Validate vaccine series
           try {
             const payload = getPayload(newState.jws);
-            const patientBundle = JSON.parse(payload).vc.credentialSubject.fhirBundle;
-            const results = Validator.execute(patientBundle, JSON.parse(payload).vc.type);
-            newState.validationStatus = {
-              validPrimarySeries: results
-                ? results.some((series) => series.validPrimarySeries) : null,
-              error: null
-            };
+            const { vc } = JSON.parse(payload);
+            // Validation for lab results is not currently supported
+            if (vc.type.includes('https://smarthealth.cards#laboratory')) {
+              newState.validationStatus = null;
+            } else {
+              // Validate vaccine series
+              const patientBundle = vc.credentialSubject.fhirBundle;
+              const results = Validator.execute(patientBundle, JSON.parse(payload).vc.type);
+              newState.validationStatus = {
+                validPrimarySeries: results
+                  ? results.some((series) => series.validPrimarySeries) : null,
+                error: null
+              };
+            }
           } catch {
             newState.validationStatus = {
               validPrimarySeries: false,
