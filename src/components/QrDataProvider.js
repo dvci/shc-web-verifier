@@ -77,8 +77,8 @@ const reducer = (state, action) => {
               const existingPatientResource = patientBundles.entry.find((e) => e.resource.resourceType === 'Patient');
               patientBundle.entry.forEach((e) => {
                 if (
-                  (e.resource.resourceType === 'Patient' && !existingPatientResource) ||
-                  e.resource.resourceType !== 'Patient'
+                  (e.resource.resourceType === 'Patient' && !existingPatientResource)
+                  || e.resource.resourceType !== 'Patient'
                 ) {
                   e.fullUrl = `resource:${patientBundles.entry.length}`;
                   patientBundles.entry.push(e);
@@ -89,7 +89,8 @@ const reducer = (state, action) => {
             types = [...new Set(types)];
             const results = Validator.execute(patientBundles, types);
             newState.validationStatus = {
-              validPrimarySeries: results ? results.some((series) => series.validPrimarySeries) : null,
+              validPrimarySeries: results
+                ? results.some((series) => series.validPrimarySeries) : null,
               error: null
             };
             const matchingDemographicData = demographicData.every(

@@ -1,9 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {
-  Link,
-  HashRouter as Router,
-  useHistory,
-} from 'react-router-dom';
+import { Link, HashRouter as Router, useHistory } from 'react-router-dom';
 import {
   Box, Container, Grid, Typography
 } from '@mui/material';
@@ -127,7 +123,7 @@ const HealthCardDisplay = () => {
   const [bannersUpdated, setBannersUpdated] = useState(false);
 
   const handleScan = (propertyName) => {
-    history.push({ pathname: 'qr-scan', state: propertyName })
+    history.push({ pathname: 'qr-scan', state: propertyName });
   };
 
   const TopBanner = ({
@@ -170,16 +166,14 @@ const HealthCardDisplay = () => {
         userErrorText = 'Only SMART Health Cards containing immunizations are currently supported.';
         break;
       default:
-        // Do nothing.
+      // Do nothing.
     }
 
-    const bannerError = t(`healthcarddisplay.${bannerErrorText}`)
+    const bannerError = t(`healthcarddisplay.${bannerErrorText}`);
     const userError = (
       <Trans
         i18nKey={`healthcarddisplay.${userErrorText}`}
-        components={[
-          <span className={styles.shcText}> SMART&reg; Health Card </span>
-        ]}
+        components={[<span className={styles.shcText}> SMART&reg; Health Card </span>]}
       />
     );
 
@@ -317,56 +311,49 @@ const HealthCardDisplay = () => {
 
   return (
     <Grid container className={styles.root}>
-      {(qrError)
-        ? (
-          <ErrorFallback error={qrError} />
-        ) : (
-          <ErrorBoundary FallbackComponent={ErrorFallback}>
-            <HealthCardDataProvider healthCardJws={jws[jws.length - 1]}>
-              <Banners />
-            </HealthCardDataProvider>
-            <Grid item className={styles.flexCard}>
-              <Box className={styles.mismatchDemographicDataText}>
+      {qrError ? (
+        <ErrorFallback error={qrError} />
+      ) : (
+        <ErrorBoundary FallbackComponent={ErrorFallback}>
+          <HealthCardDataProvider healthCardJws={jws[jws.length - 1]}>
+            <Banners />
+          </HealthCardDataProvider>
+          <Grid item className={styles.flexCard}>
+            <Box className={styles.mismatchDemographicDataText}>
+              {matchingDemographicData ? (
+                ''
+              ) : (
+                <Trans i18nKey="healthcarddisplay.Name and/or date of birth are not consistent across all the scanned SMART Health Cards." />
+              )}
+            </Box>
+            <Box style={{ textAlign: 'center' }}>
+              <Router>
+                <Link to="/qr-scan" state="link" replace onClick={() => handleScan('link')}>
+                  {t('healthcarddisplay.Add another SMART Health Card for same person')}
+                </Link>
+              </Router>
+            </Box>
+            {bannersUpdated && (
+              <>
                 {
-                  (matchingDemographicData) ? '' : (
-                    <Trans
-                      i18nKey={'healthcarddisplay.Name and/or date of birth are not consistent across all the scanned SMART Health Cards.'}
-                    />
-                  )
-                }
-              </Box>
-              <Box style={{ textAlign: 'center' }}>
-                <Router>
-                  <Link
-                    to="/qr-scan"
-                    state="link"
-                    replace
-                    onClick={() => handleScan('link')}
-                  >
-                    {t(
-                      'healthcarddisplay.Add another SMART Health Card for same person'
-                    )}
-                  </Link>
-                </Router>
-              </Box>
-              {bannersUpdated && (
-                <>
-                  {
-                    // Display cards in reverse order that they were scanned
-                    jws.slice(0).reverse().map((hcJws) => (
+                  // Display cards in reverse order that they were scanned
+                  jws
+                    .slice(0)
+                    .reverse()
+                    .map((hcJws) => (
                       <HealthCardDataProvider key={Math.random()} healthCardJws={hcJws}>
                         <Box m={2}>
                           <VaccineCard padding="1rem" width="100%" />
                         </Box>
                       </HealthCardDataProvider>
                     ))
-                  }
-                  <QrScanButton onClick={() => handleScan('qr-button')} styles={{ padding: '1rem', width: '100%' }} />
-                </>
-              )}
-            </Grid>
-          </ErrorBoundary>
-        )}
+                }
+                <QrScanButton onClick={() => handleScan('qr-button')} styles={{ padding: '1rem', width: '100%' }} />
+              </>
+            )}
+          </Grid>
+        </ErrorBoundary>
+      )}
     </Grid>
   );
 };
