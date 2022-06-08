@@ -159,7 +159,7 @@ const HealthCardDisplay = () => {
         userErrorText = 'Only valid SMART Health Card QR codes are currently supported. Please contact the issuer of your Health Card for assistance.';
         break;
       case 'UNSUPPORTED_HEALTH_CARD':
-        userErrorText = 'Only SMART Health Cards containing immunizations are currently supported.';
+        userErrorText = 'Only SMART Health Cards containing immunizations or lab results are currently supported.';
         break;
       default:
         // Do nothing.

@@ -43,7 +43,7 @@ const HealthCardDataProvider = ({ healthCardJws, children }) => {
         return false;
       }
 
-      if (!vc.type.some((type) => type === 'https://smarthealth.cards#immunization')) {
+      if (!vc.type.some((type) => type === 'https://smarthealth.cards#immunization' || 'https://smarthealth.cards#laboratory')) {
         setHealthCardSupported({
           status: false,
           error: new Error('UNSUPPORTED_HEALTH_CARD')
