@@ -323,7 +323,12 @@ const HealthCardDisplay = () => {
               {matchingDemographicData ? (
                 ''
               ) : (
-                <Trans i18nKey="healthcarddisplay.Name and/or date of birth are not consistent across all the scanned SMART Health Cards." />
+                <>
+                  <Box>
+                    <img src={exclamationRedIcon} alt="Demographic Data Icon" style={{ height: '2rem', marginRight: '1rem' }} />
+                  </Box>
+                  <Trans i18nKey="healthcarddisplay.Name and/or date of birth are not consistent across all the scanned SMART Health Cards." />
+                </>
               )}
             </Box>
             <Box style={{ textAlign: 'center' }}>
