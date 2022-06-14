@@ -4034,17 +4034,25 @@ cosmiconfig@^7.0.0:
     path-type "^4.0.0"
     yaml "^1.10.0"
 
-cql-exec-fhir@^2.0.0:
+cql-exec-fhir@^2.0.0, cql-exec-fhir@^2.0.2:
   version "2.0.2"
-  resolved "https://registry.npmjs.org/cql-exec-fhir/-/cql-exec-fhir-2.0.2.tgz"
+  resolved "https://registry.npmjs.org/cql-exec-fhir/-/cql-exec-fhir-2.0.2.tgz#63a85ece9e87aedc53709938e8dc0b995c347983"
   integrity sha512-INuCgCl9zKPXI0JS8edugf66/PfVhCkozdaoMa7EAnLCUzJDRozcz7Q7UY/qyOP2ZuJmIHHYsou/E+WNcjIwjA==
   dependencies:
     xml2js "~0.4.23"
 
-cql-execution@^2.2.0, cql-execution@^2.4.0:
+cql-execution@^2.2.0:
   version "2.4.0"
   resolved "https://registry.npmjs.org/cql-execution/-/cql-execution-2.4.0.tgz"
   integrity sha512-XgjoPnn3IFys2t2wwi7aT5sXsS+h7/CvqI7dtdDQtSsiK6ePCfnWPT4CRuapiiW3OBrPvqD1oYmvy6X2xvvMlA==
+  dependencies:
+    "@lhncbc/ucum-lhc" "^4.1.3"
+    luxon "^1.25.0"
+
+cql-execution@^2.4.1:
+  version "2.4.1"
+  resolved "https://registry.npmjs.org/cql-execution/-/cql-execution-2.4.1.tgz#864e6b80f45cc2de4ed0dd475ca7f13fa50a1cfd"
+  integrity sha512-1FRAPEy3zdQcN4dy9NyBcXoCoR3ubhrKyD+Og/4sxsahJx7U+ZAQbnJ5eFbfPxjvVnO/feWpMyXW8odvK1GCbQ==
   dependencies:
     "@lhncbc/ucum-lhc" "^4.1.3"
     luxon "^1.25.0"
