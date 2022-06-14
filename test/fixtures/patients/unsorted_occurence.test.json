@@ -1,0 +1,52 @@
+{
+  "type": "collection",
+  "resourceType": "Bundle",
+  "entry": [
+    {
+      "fullUrl": "resource:0",
+      "resource": {
+        "resourceType": "Patient",
+        "name": [
+          {
+            "family": "Anyperson",
+            "given": [
+              "John",
+              "B."
+            ]
+          }
+        ],
+        "birthDate": "2001-02-01"
+      }
+    },
+    {
+      "fullUrl": "resource:1",
+      "resource": {
+        "resourceType": "Immunization",
+        "status": "completed",
+        "vaccineCode": { "coding": [{ "system": "http://hl7.org/fhir/sid/cvx", "code": "207" }] },
+        "patient": { "reference": "resource:0" },
+        "occurrenceDateTime": "2021-12-03"
+      }
+    },
+    {
+      "fullUrl": "resource:2",
+      "resource": {
+        "resourceType": "Immunization",
+        "status": "completed",
+        "vaccineCode": { "coding": [{ "system": "http://hl7.org/fhir/sid/cvx", "code": "207" }] },
+        "patient": { "reference": "resource:0" },
+        "occurrenceDateTime": "2021-05-16"
+      }
+    },
+    {
+      "fullUrl": "resource:3",
+      "resource": {
+        "resourceType": "Immunization",
+        "status": "completed",
+        "vaccineCode": { "coding": [{ "system": "http://hl7.org/fhir/sid/cvx", "code": "207" }] },
+        "patient": { "reference": "resource:0" },
+        "occurrenceDateTime": "2021-04-18"
+      }
+    }
+  ]
+}
