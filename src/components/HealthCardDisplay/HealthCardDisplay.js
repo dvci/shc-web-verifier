@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, HashRouter as Router, useHistory } from 'react-router-dom';
-import {
-  Box, Container, Grid, Typography
-} from '@mui/material';
+import { Box, Container, Grid, Typography } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { useQrDataContext } from 'components/QrDataProvider';
 import { useHealthCardDataContext, HealthCardDataProvider } from 'components/HealthCardDataProvider';
@@ -110,8 +108,7 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.secondary.main
   },
   mismatchDemographicDataText: {
-    color: theme.palette.common.redDark,
-    textAlign: 'center'
+    color: theme.palette.common.redDark
   }
 }));
 
@@ -126,9 +123,7 @@ const HealthCardDisplay = () => {
     history.push({ pathname: 'qr-scan', state: propertyName });
   };
 
-  const TopBanner = ({
-    img, alt, style, text
-  }) => (
+  const TopBanner = ({ img, alt, style, text }) => (
     <Grid item xs={12} className={style} width="100%">
       <Container style={{ width: 'fit-content' }}>
         <Box className={styles.flexRow} pt={2} pb={2}>
@@ -160,7 +155,8 @@ const HealthCardDisplay = () => {
         userErrorText = 'Unable to verify SMART Health Card issuer. Please check internet access and try again later.';
         break;
       case 'UNSUPPORTED_MALFORMED_CREDENTIAL':
-        userErrorText = 'Only valid SMART Health Card QR codes are currently supported. Please contact the issuer of your Health Card for assistance.';
+        userErrorText =
+          'Only valid SMART Health Card QR codes are currently supported. Please contact the issuer of your Health Card for assistance.';
         break;
       case 'UNSUPPORTED_HEALTH_CARD':
         userErrorText = 'Only SMART Health Cards containing immunizations are currently supported.';
@@ -201,6 +197,19 @@ const HealthCardDisplay = () => {
     );
   };
 
+  const DemographicDataError = () => (
+    <Grid item xs={12} width="100%">
+      <Container style={{ width: 'fit-content' }}>
+        <Box pt={1} pb={1} className={styles.flexRow}>
+          <img src={exclamationRedIcon} alt="Demographic Data Icon" style={{ height: '2rem', marginRight: '1rem' }} />
+          <Box className={styles.mismatchDemographicDataText}>
+            <Trans i18nKey="healthcarddisplay.Name and/or date of birth are not consistent across all the scanned cards." />
+          </Box>
+        </Box>
+      </Container>
+    </Grid>
+  );
+
   const Banners = () => {
     const { healthCardSupported, healthCardVerified, issuerVerified } = useHealthCardDataContext();
     const { validationStatus } = useQrDataContext();
@@ -219,14 +228,9 @@ const HealthCardDisplay = () => {
         // Signal that vaccine card should be displayed
         setBannersUpdated(true);
       }
-    }, [healthCardSupported.error,
-      healthCardSupported.status,
-      healthCardVerified.error,
-      healthCardVerified.verified]);
+    }, [healthCardSupported.error, healthCardSupported.status, healthCardVerified.error, healthCardVerified.verified]);
 
-    const BottomBanner = ({
-      img, alt, style, text
-    }) => (
+    const BottomBanner = ({ img, alt, style, text }) => (
       <Box className={styles.flexRow}>
         <img src={img} alt={alt} style={{ height: '1.5rem', marginRight: '1rem' }} />
         <Typography variant="h6" className={style}>
@@ -318,19 +322,8 @@ const HealthCardDisplay = () => {
           <HealthCardDataProvider healthCardJws={jws[jws.length - 1]}>
             <Banners />
           </HealthCardDataProvider>
+          {matchingDemographicData ? <></> : <DemographicDataError />}
           <Grid item className={styles.flexCard}>
-            <Box className={styles.mismatchDemographicDataText}>
-              {matchingDemographicData ? (
-                <></>
-              ) : (
-                <>
-                  <Box>
-                    <img src={exclamationRedIcon} alt="Demographic Data Icon" style={{ height: '2rem', marginRight: '1rem' }} />
-                  </Box>
-                  <Trans i18nKey="healthcarddisplay.Name and/or date of birth are not consistent across all the scanned cards." />
-                </>
-              )}
-            </Box>
             <Box style={{ textAlign: 'center' }}>
               <Router>
                 <Link to="/qr-scan" state="link" replace onClick={() => handleScan('link')}>
