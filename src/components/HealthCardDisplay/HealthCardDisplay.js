@@ -321,7 +321,7 @@ const HealthCardDisplay = () => {
           <Grid item className={styles.flexCard}>
             <Box className={styles.mismatchDemographicDataText}>
               {matchingDemographicData ? (
-                ''
+                <></>
               ) : (
                 <>
                   <Box>
