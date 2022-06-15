@@ -106,12 +106,6 @@ const QrScan = () => {
   const runningQrScanner = useRef(null);
   const scannedCodesRef = useRef([]);
 
-  window.onorientationchange = window.cordova.plugins.iosrtc.refreshVideos();
-  window.addEventListener('touchstart', window.cordova.plugins.iosrtc.refreshVideos());
-  window.addEventListener('click', window.cordova.plugins.iosrtc.refreshVideos());
-  window.addEventListener('touchmove', window.cordova.plugins.iosrtc.refreshVideos());
-  window.addEventListener('touchend', window.cordova.plugins.iosrtc.refreshVideos());
-
   const handleError = useCallback(() => {
     history.push('/display-results');
   }, [history]);
@@ -120,7 +114,7 @@ const QrScan = () => {
     switchCamera(cameraDeviceId)
       .then((newDeviceId) => {
         if (newDeviceId !== null) { setCameraDeviceId(newDeviceId); }
-      })
+      });
   };
 
   useEffect(() => {
@@ -172,7 +166,7 @@ const QrScan = () => {
             cameraDeviceId !== '' ? { audio: false, video: { deviceId: { exact: cameraDeviceId } } }
               : { audio: false, video: { facingMode: 'environment' } }
           );
-          setCameraDeviceId(stream.getVideoTracks()[0].getSettings().deviceId);
+          setCameraDeviceId(cameraDeviceId !== '' ? cameraDeviceId : stream.getVideoTracks()[0].getSettings().deviceId )
           videoRef.current.srcObject = stream;
         }
       } catch (err) {
@@ -195,7 +189,7 @@ const QrScan = () => {
     return () => {
       if (runningQrScanner.current) runningQrScanner.current.stop();
     };
-  }, [handleErrorFallback]);
+  }, [handleErrorFallback, cameraDeviceId]);
 
   useEffect(() => {
     const handleScan = (data) => {
