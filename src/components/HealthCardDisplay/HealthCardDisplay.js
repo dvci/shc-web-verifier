@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Link, HashRouter as Router, useHistory } from 'react-router-dom';
-import { Box, Container, Grid, Typography } from '@mui/material';
+import {
+  Box, Container, Grid, Typography
+} from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { useQrDataContext } from 'components/QrDataProvider';
 import { useHealthCardDataContext, HealthCardDataProvider } from 'components/HealthCardDataProvider';
@@ -123,7 +125,9 @@ const HealthCardDisplay = () => {
     history.push({ pathname: 'qr-scan', state: propertyName });
   };
 
-  const TopBanner = ({ img, alt, style, text }) => (
+  const TopBanner = ({
+    img, alt, style, text
+  }) => (
     <Grid item xs={12} className={style} width="100%">
       <Container style={{ width: 'fit-content' }}>
         <Box className={styles.flexRow} pt={2} pb={2}>
@@ -155,8 +159,7 @@ const HealthCardDisplay = () => {
         userErrorText = 'Unable to verify SMART Health Card issuer. Please check internet access and try again later.';
         break;
       case 'UNSUPPORTED_MALFORMED_CREDENTIAL':
-        userErrorText =
-          'Only valid SMART Health Card QR codes are currently supported. Please contact the issuer of your Health Card for assistance.';
+        userErrorText = 'Only valid SMART Health Card QR codes are currently supported. Please contact the issuer of your Health Card for assistance.';
         break;
       case 'UNSUPPORTED_HEALTH_CARD':
         userErrorText = 'Only SMART Health Cards containing immunizations are currently supported.';
@@ -228,9 +231,14 @@ const HealthCardDisplay = () => {
         // Signal that vaccine card should be displayed
         setBannersUpdated(true);
       }
-    }, [healthCardSupported.error, healthCardSupported.status, healthCardVerified.error, healthCardVerified.verified]);
+    }, [healthCardSupported.error,
+      healthCardSupported.status,
+      healthCardVerified.error,
+      healthCardVerified.verified]);
 
-    const BottomBanner = ({ img, alt, style, text }) => (
+    const BottomBanner = ({
+      img, alt, style, text
+    }) => (
       <Box className={styles.flexRow}>
         <img src={img} alt={alt} style={{ height: '1.5rem', marginRight: '1rem' }} />
         <Typography variant="h6" className={style}>
