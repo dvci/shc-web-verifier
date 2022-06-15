@@ -56,21 +56,21 @@ const reducer = (state, action) => {
               entry: []
             };
             let types = [];
-
-            // store names from patient resources for comparison
+            // store names and birth dates from patient resources for comparison
             const demographicData = [];
+
             newState.jws.forEach((jws) => {
               const payload = getPayload(jws);
               const patientBundle = JSON.parse(payload).vc.credentialSubject.fhirBundle;
               const patientResource = patientBundle.entry.find((e) => e.resource.resourceType === 'Patient');
 
               const patientDemographicData = {
-                names: [],
-                birthDates: []
+                // store first given name that appears in array
+                givenName: patientResource.resource.name[0].given[0],
+                familyName: patientResource.resource.name[0].family,
+                birthDate: patientResource.resource.birthDate
               };
-              // store first given name that appears in array
-              patientDemographicData.names.push(patientResource.resource.name);
-              patientDemographicData.birthDates.push(patientResource.resource.birthDate);
+
               demographicData.push(patientDemographicData);
 
               // use one patient bundle for validation
@@ -93,8 +93,11 @@ const reducer = (state, action) => {
                 ? results.some((series) => series.validPrimarySeries) : null,
               error: null
             };
+
             const matchingDemographicData = demographicData.every(
-              (card) => JSON.stringify(card) === JSON.stringify(demographicData[0])
+              (card) => card.givenName === demographicData[0].givenName
+                && card.familyName === demographicData[0].familyName
+                && card.birthDate === demographicData[0].birthDate
             );
 
             newState.matchingDemographicData = matchingDemographicData;
