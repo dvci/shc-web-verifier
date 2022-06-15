@@ -36,7 +36,7 @@ test('Null if not COVID-19 immunization vc type', () => {
 });
 
 test('Unsorted immunization occurenceDateTimes', () => {
-  const patientBundle = loadJSONFixture('./test/fixtures/patients/unsorted_occurence.test.json');
+  const patientBundle = loadJSONFixture('./test/fixtures/patients/unsorted_occurrence.test.json');
   const values = Validator.execute(patientBundle, vcTypes);
   expect(validPrimarySeries(values)).toBe(true);
 });
