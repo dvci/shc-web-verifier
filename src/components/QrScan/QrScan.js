@@ -106,12 +106,6 @@ const QrScan = () => {
   const runningQrScanner = useRef(null);
   const scannedCodesRef = useRef([]);
 
-  window.onorientationchange = window.cordova.plugins.iosrtc.refreshVideos();
-  window.addEventListener('touchstart', window.cordova.plugins.iosrtc.refreshVideos());
-  window.addEventListener('click', window.cordova.plugins.iosrtc.refreshVideos());
-  window.addEventListener('touchmove', window.cordova.plugins.iosrtc.refreshVideos());
-  window.addEventListener('touchend', window.cordova.plugins.iosrtc.refreshVideos());
-
   const handleError = useCallback(() => {
     history.push('/display-results');
   }, [history]);
