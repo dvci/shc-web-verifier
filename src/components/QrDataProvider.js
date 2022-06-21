@@ -66,9 +66,10 @@ const reducer = (state, action) => {
 
               const patientDemographicData = {
                 // store first given name that appears in array
-                givenName: patientResource.resource.name[0].given[0],
+                givenName: patientResource.resource.name[0].given?.join(' '),
                 familyName: patientResource.resource.name[0].family,
-                birthDate: patientResource.resource.birthDate
+                birthDate: patientResource.resource.birthDate,
+                text: patientResource.resource.name[0].text
               };
 
               demographicData.push(patientDemographicData);
@@ -94,9 +95,11 @@ const reducer = (state, action) => {
               error: null
             };
 
+            // check that text strings match across all cards if given/family names are not provided
             const matchingDemographicData = demographicData.every(
-              (card) => card.givenName === demographicData[0].givenName
-                && card.familyName === demographicData[0].familyName
+              (card) => ((card.givenName === demographicData[0].givenName
+                && card.familyName === demographicData[0].familyName)
+                || (card.text === demographicData[0].text))
                 && card.birthDate === demographicData[0].birthDate
             );
 
