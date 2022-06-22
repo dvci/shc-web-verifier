@@ -133,7 +133,7 @@ const VaccineCard = () => {
                 {patientData.dateOfBirth}
               </Typography>
               <Typography className={styles.dateOfBirth} hidden={showDateOfBirth}>
-                '**/**/****'
+                {'**/**/****'}
               </Typography>
               <IconButton
                 className={styles.eyeOutline}
