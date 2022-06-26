@@ -77,7 +77,7 @@
       },
       {
         "header": "INFORMATION WE COLLECT AUTOMATICALLY",
-        "content": "We use Google Analytics, a third-party web analytics service, to help us understand and analyze how the Verifier web application is used. This service is configured so that it does not use cookies, which are data that may be sent to your web browser and stored on your computer.<br/>For more information on how Google Analytics uses data collected through the Verifier, visit: <a target=\"top\" href=\"https://www.google.com/policies/privacy/partners/\" class=\"dotcom-only\">https://www.google.com/policies/privacy/partners/</a>. To opt out of Google analytics, visit the <a target=\"top\" href=\"https://tools.google.com/dlpage/gaoptout\" class=\"dotcom-only\">Google Analytics Opt-out Browser Add-on Download Page</a>."
+        "content": "We use Clicky, a third-party web analytics service, to help us understand and analyze how the Verifier web application is used. This service is configured so that it does not use cookies, which are data that may be sent to your web browser and stored on your computer.<br/>For more information on how Clicky uses data collected through the Verifier, visit: <a target=\"top\" href=\"https://clicky.com/terms/privacy\" class=\"dotcom-only\">https://clicky.com/terms/privacy</a>. To opt out of Clicky, visit the <a target=\"top\" href=\"https://clicky.com/optout\" class=\"dotcom-only\">Clicky Opt-out page</a>."
       },
       {
         "header": "COOKIES",
