@@ -12,7 +12,8 @@ import checkIcon from 'assets/check-icon.png';
 import xIcon from 'assets/x-icon.png';
 import exclamationRedIcon from 'assets/exclamation-red-icon.png';
 import exclamationOrangeIcon from 'assets/exclamation-orange-icon.png';
-import VaccineCard from 'components/VaccineCard';
+// import VaccineCard from 'components/VaccineCard';
+import LabCard from 'components/LabCard';
 import QrScanButton from 'components/QrScanButton';
 import { ErrorBoundary } from 'react-error-boundary';
 
@@ -318,7 +319,11 @@ const HealthCardDisplay = () => {
             <Grid item className={styles.flexCard}>
               {bannersUpdated && (
                 <>
-                  <VaccineCard padding="1rem" width="100%" />
+                  {/* We'll want both Lab Result and Vaccine Result
+                  to be inside a general Health Card Result */}
+                  {/* After further discussion, this will trigger an error -
+                      It should onle be one, other */}
+                  <LabCard padding="1rem" width="100%" />
                   <QrScanButton onClick={handleScan} styles={{ padding: '1rem', width: '100%' }} />
                 </>
               )}

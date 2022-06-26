@@ -18,6 +18,10 @@
     "Lot": "Lot",
     "Date": "Date",
     "Vaccinator": "Vaccinator",
+    "Laboratory Test": "Laboratory Test",
+    "Laboratory Organization": "Laboratory Organization",
+    "Reference Range": "Reference Range",
+    "Test Result": "Test Result",
     "Invalid SMART Health Card": "Invalid SMART\u00AE Health Card",
     "Not verified": "Not verified",
     "Verified": "Verified",
@@ -36,7 +40,8 @@
     "SCAN QR CODE": "SCAN QR CODE",
     "NAME": "NAME",
     "DATE OF BIRTH": "DATE OF BIRTH",
-    "VACCINATION RECORD": "VACCINATION RECORD"
+    "VACCINATION RECORD": "VACCINATION RECORD",
+    "LAB RESULT RECORD": "LAB RESULT RECORD"
   },
   "footer": {
     "FAQ": "FAQ",
