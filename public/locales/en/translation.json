@@ -68,24 +68,32 @@
     "title": "Privacy Policy",
     "items": [
       {
-        "header": "Effective Date: March 7th, 2022",
-        "content": "The MITRE Corporation (\"MITRE\") respects the privacy of its website users.<br/><br/>This Privacy Policy explains the types of information collected from website visitors or that you provide to MITRE through other means, such as MITRE applications, (collectively \"Site\"), and how MITRE uses, shares, protects, and retains that information; and the choices you are provided with respect to the use of this information. By visiting the Site, you understand and agree to terms outlined in this Privacy Policy."
+        "header": "Effective Date: June 23rd, 2022",
+        "content": "The MITRE Corporation (\"MITRE,\" \"we,\" \"our,\" \"us\") respects the privacy of its SMART Health Card Verifier (“Verifier”) users."
       },
       {
-        "header": "INFORMATION COLLECTED FROM WEB TRAFFIC REPORTING TOOLS",
-        "content": "When a GitHub Pages site is visited, the visitor's IP address is logged and stored for security purposes, regardless of whether the visitor has signed into GitHub or not. For more information about GitHub's security practices, see <a target=\"top\" href=\"https://docs.github.com/en/github/site-policy/github-privacy-statement\" class=\"dotcom-only\">GitHub Privacy Statement</a>."
+        "header": "INFORMATION COLLECTED BY GITHUB",
+        "content": "The Verifier is hosted on GitHub, which provides internet hosting for software development and version control. When GitHub is visited, the visitor's IP address is logged and stored for security purposes, regardless of whether the visitor has signed into GitHub or not. For more information about GitHub's privacy and security practices, see the <a target=\"top\" href=\"https://docs.github.com/en/github/site-policy/github-privacy-statement\" class=\"dotcom-only\">GitHub Privacy Statement</a>."
+      },
+      {
+        "header": "INFORMATION WE COLLECT AUTOMATICALLY",
+        "content": "We use Google Analytics, a third-party web analytics service, to help us understand and analyze how the Verifier web application is used. This service is configured so that it does not use cookies, which are data that may be sent to your web browser and stored on your computer.<br/>For more information on how Google Analytics uses data collected through the Verifier, visit: <a target=\"top\" href=\"https://www.google.com/policies/privacy/partners/\" class=\"dotcom-only\">https://www.google.com/policies/privacy/partners/</a>. To opt out of Google analytics, visit the <a target=\"top\" href=\"https://tools.google.com/dlpage/gaoptout\" class=\"dotcom-only\">Google Analytics Opt-out Browser Add-on Download Page</a>."
       },
       {
         "header": "COOKIES",
-        "content": "“Cookies” are data that may be sent to your web browser and stored on your computer. This Site does not use cookies."
+        "content": "The Verifier web application does not use cookies."
       },
       {
-        "header": "PERSONAL INFORMATION",
-        "content": "“Personal Information” means information that identifies you or could reasonably be used to identify you. This Site does not collect personal information."
+        "header": "PERSONALLY IDENTIFIABLE INFORMATION",
+        "content": "Personally Identifiable Information or PII means information that identifies you or could reasonably be used to identify you. The Verifier web application does not collect PII and does not use PII for advertising or marketing purposes, or share it with third parties outside of the purpose of this web application."
       },
       {
         "header": "LINKS TO OTHER SITES",
-        "content": "Though the MITRE Site may contain links to other websites, MITRE is not responsible for the content, links, or privacy on any of those websites. It is recommended that you review the privacy policy applicable to those websites before accessing them."
+        "content": "Although the Verifier web pages on GitHub may contain links to other websites, MITRE is not responsible for the content, links, or privacy practices of those websites. It is recommended that you review the privacy policies applicable to those websites before accessing them."
+      },
+      {
+        "header": "USER RETENTION OF PERSONAL DATA",
+        "content": "When the Verifier web application is used to scan SMART® Health Cards, cardholders’ personal data—name, date of birth, and vaccination information—is temporarily displayed for verification purposes. By using the Verifier, users agree that if they have a business need to retain this information, they must first obtain the cardholder’s consent. Users agree not to record this personal data through “screen-scraping” or any other means of capturing, storing, or externally transferring cardholders’ data without consent."
       },
       {
         "header": "CHANGES TO OUR PRIVACY POLICY",
@@ -93,7 +101,7 @@
       },
       {
         "header": "QUESTIONS AND COMMENTS",
-        "content": "Please feel free to send your privacy-related comments or questions to Privacy@MITRE.org. We will do our best to respond to all reasonable inquiries in a timely manner. For all other application related questions and comments, please contact us at vci-developers@mitre.org."
+        "content": "Please send your privacy-related comments or questions regarding use of the Verifier to <a href=\"mailto:Privacy@MITRE.org\">Privacy@MITRE.org</a>. We will do our best to respond to all reasonable inquiries in a timely manner. For application-related questions and comments, please contact us at <a href=\"mailto:vci-developers@mitre.org\">vci-developers@mitre.org</a>."
       }
     ]
   },
