@@ -23,7 +23,8 @@
     "comma-dangle": "off",
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "react/prop-types": "off",
-    "semi": "off"
+    "semi": "off",
+    "linebreak-style": [0 ,"error", "windows"]
   },
   "settings": {
     "import/resolver": {
