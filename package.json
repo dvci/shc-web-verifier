@@ -44,7 +44,7 @@
     "eject": "react-scripts eject",
     "predeploy": "yarn run build",
     "deploy": "gh-pages -d www",
-    "lint": "eslint './src/**/*.{js,jsx,ts,tsx}'",
+    "lint": "eslint \"**/*.{js,jsx,ts,tsx}\"",
     "lint:fix": "eslint './src/**/*.{js,jsx,ts,tsx}' --fix",
     "prettier": "prettier --check \"**/*.{js,ts,tsx}\"",
     "prettier:fix": "prettier --write \"**/*.{js,ts,tsx}\""
