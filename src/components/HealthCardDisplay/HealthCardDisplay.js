@@ -150,6 +150,9 @@ const HealthCardDisplay = () => {
     } else if (error.message.startsWith('UNSUPPORTED')) {
       bannerErrorText = 'Invalid SMART Health Card';
       userErrorText = 'Only valid SMART Health Card QR codes are currently supported.';
+    } else if (error.message.startsWith('SCAN')) {
+      bannerErrorText = 'QR code scan failed';
+      userErrorText = 'Unable to scan SMART Health Card QR code.';
     } else {
       throw error;
     }
@@ -164,6 +167,9 @@ const HealthCardDisplay = () => {
         break;
       case 'UNSUPPORTED_HEALTH_CARD':
         userErrorText = 'Only SMART Health Cards containing immunizations are currently supported.';
+        break;
+      case 'SCAN_CAMERA_UNAVAILABLE':
+        userErrorText = 'Camera permission is restricted or was not granted. Please check your application settings to allow camera access.';
         break;
       default:
         // Do nothing.

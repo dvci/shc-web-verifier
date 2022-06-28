@@ -17,7 +17,8 @@ const initialState = {
 
 const actions = {
   SET_QR_CODES: 'SET_QR_CODES',
-  RESET_QR_CODES: 'RESET_QR_CODES'
+  RESET_QR_CODES: 'RESET_QR_CODES',
+  SET_QR_ERROR: 'SET_QR_ERROR'
 };
 
 const reducer = (state, action) => {
@@ -98,6 +99,15 @@ const reducer = (state, action) => {
       localStorage.setItem('qrCodes', null);
       return initialState;
     }
+    case actions.SET_QR_ERROR: {
+      if (action.qrError) {
+        return {
+          ...state,
+          qrError: action.qrError
+        };
+      }
+      return state;
+    }
     default:
       return state;
   }
@@ -122,6 +132,9 @@ const QrDataProvider = ({ children }) => {
     },
     resetQrCodes: () => {
       dispatch({ type: actions.RESET_QR_CODES });
+    },
+    setQrError: (qrError) => {
+      dispatch({ type: actions.SET_QR_ERROR, qrError });
     }
   };
 
