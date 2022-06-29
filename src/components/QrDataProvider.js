@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useReducer } from 'react';
-import { parseHealthCardQr, getJws, getPayload } from 'utils/qrHelpers';
+import { parseHealthCardQr, getJws, getPayload, extractImmunizations, filterDuplicateEntries } from 'utils/qrHelpers';
 import { Validator } from 'components/Validator/Validator.tsx';
 import config from './App/App.config';
 
@@ -51,7 +51,8 @@ const reducer = (state, action) => {
         } else {
           // Validate vaccine series
           try {
-            const patientBundles = {
+            // create bundle from all QRs that are scanned for a given person
+            const combinedPatientBundle = {
               type: 'collection',
               resourceType: 'Bundle',
               entry: []
@@ -76,20 +77,21 @@ const reducer = (state, action) => {
               demographicData.push(patientDemographicData);
 
               // use one patient bundle for validation
-              const existingPatientResource = patientBundles.entry.find((e) => e.resource.resourceType === 'Patient');
+              const existingPatientResource = combinedPatientBundle.entry.find((e) => e.resource.resourceType === 'Patient');
               patientBundle.entry.forEach((e) => {
                 if (
                   (e.resource.resourceType === 'Patient' && !existingPatientResource)
                   || e.resource.resourceType !== 'Patient'
                 ) {
-                  e.fullUrl = `resource:${patientBundles.entry.length}`;
-                  patientBundles.entry.push(e);
+                  e.fullUrl = `resource:${combinedPatientBundle.entry.length}`;
+                  combinedPatientBundle.entry.push(e);
                 }
               });
+              filterDuplicateEntries(extractImmunizations(combinedPatientBundle));
               types = [...types, ...JSON.parse(payload).vc.type];
             });
             types = [...new Set(types)];
-            const results = Validator.execute(patientBundles, types);
+            const results = Validator.execute(combinedPatientBundle, types);
             newState.validationStatus = {
               validPrimarySeries: results
                 ? results.some((series) => series.validPrimarySeries) : null,

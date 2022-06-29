@@ -52,6 +52,10 @@ const extractImmunizations = (bundle) => {
   return immunizationResources;
 };
 
+const filterDuplicateEntries = (immunizationResources) => {
+  // filter/reduce to get unique occurrenceDateTime/vaccine code
+};
+
 const extractPatientData = (card) => {
   const bundle = JSON.parse(card).vc.credentialSubject.fhirBundle;
   const patient = bundle.entry.find((entry) => entry.resource.resourceType === 'Patient').resource;
@@ -104,5 +108,6 @@ export {
   getPatientData,
   getPayload,
   getCredential,
-  getIssuerDisplayName
+  getIssuerDisplayName,
+  filterDuplicateEntries
 };
