@@ -188,6 +188,13 @@
 <Status>Active</Status>
 <LastUpdated>3/10/2022</LastUpdated>
 </CVXInfo>
+<CVXInfo><ShortDescription>COVID-19, mRNA, LNP-S, bivalent, PF, 50 mcg/0.5 mL dose</ShortDescription>
+<FullVaccinename>SARS-COV-2 (COVID-19) vaccine, mRNA, spike protein, LNP, bivalent, preservative free, 50 mcg/0.5 mL dose</FullVaccinename>
+<CVXCode>229       </CVXCode>
+<Notes>Pre-EUA Moderna bivalent adult booster original strain + omicron strain</Notes>
+<Status>Active</Status>
+<LastUpdated>6/15/2022</LastUpdated>
+</CVXInfo>
 <CVXInfo><ShortDescription>COVID-19, mRNA, LNP-S, PF, 10 mcg/0.2 mL dose, tris-sucrose</ShortDescription>
 <FullVaccinename>SARS-COV-2 (COVID-19) vaccine, mRNA, spike protein, LNP, preservative free, 10 mcg/0.2mL dose, tris-sucrose formulation</FullVaccinename>
 <CVXCode>218       </CVXCode>
@@ -198,9 +205,9 @@
 <CVXInfo><ShortDescription>COVID-19, mRNA, LNP-S, PF, 100 mcg/0.5mL dose or 50 mcg/0.25mL dose</ShortDescription>
 <FullVaccinename>SARS-COV-2 (COVID-19) vaccine, mRNA, spike protein, LNP, preservative free, 100 mcg/0.5mL dose or 50 mcg/0.25mL dose</FullVaccinename>
 <CVXCode>207       </CVXCode>
-<Notes>FDA EUA 12/18/2020, 2-dose vaccine.  Used to record Moderna vaccines administered in the US and in non-US locations (includes tradename Spikevax)</Notes>
+<Notes>FDA EUA and BLA, 2-dose vaccine.  Used to record Moderna vaccines administered in the US and in non-US locations (includes tradename Spikevax)</Notes>
 <Status>Active</Status>
-<LastUpdated>2/9/2022</LastUpdated>
+<LastUpdated>5/18/2022</LastUpdated>
 </CVXInfo>
 <CVXInfo><ShortDescription>COVID-19, mRNA, LNP-S, PF, 3 mcg/0.2 mL dose, tris-sucrose</ShortDescription>
 <FullVaccinename>SARS-COV-2 (COVID-19) vaccine, mRNA, spike protein, LNP, preservative free, 3 mcg/0.2mL dose, tris-sucrose formulation</FullVaccinename>
@@ -212,9 +219,9 @@
 <CVXInfo><ShortDescription>COVID-19, mRNA, LNP-S, PF, 30 mcg/0.3 mL dose</ShortDescription>
 <FullVaccinename>SARS-COV-2 (COVID-19) vaccine, mRNA, spike protein, LNP, preservative free, 30 mcg/0.3mL dose</FullVaccinename>
 <CVXCode>208       </CVXCode>
-<Notes>FDA BLA 08/23/2021 for adult dose (16+ years). Still under EUA for adolescent doses and presentations. EUA 12/11/2020, 2-dose vaccine. Used to record Pfizer vaccines administered in the US and in non-US locations (includes tradename Comirnaty)</Notes>
+<Notes>FDA BLA 08/23/2021 for Pfizer adult dose (16+ years). Still under EUA for adolescent doses and presentations. EUA 12/11/2020, 2-dose vaccine. Used to record Pfizer vaccines administered in the US and in non-US locations (includes tradename Comirnaty)</Notes>
 <Status>Active</Status>
-<LastUpdated>9/10/2021</LastUpdated>
+<LastUpdated>5/18/2022</LastUpdated>
 </CVXInfo>
 <CVXInfo><ShortDescription>COVID-19, mRNA, LNP-S, PF, 30 mcg/0.3 mL dose, tris-sucrose</ShortDescription>
 <FullVaccinename>SARS-COV-2 (COVID-19) vaccine, mRNA, spike protein, LNP, preservative free, 30 mcg/0.3mL dose, tris-sucrose formulation</FullVaccinename>
@@ -226,9 +233,9 @@
 <CVXInfo><ShortDescription>COVID-19, mRNA, LNP-S, PF, 50 mcg/0.5 mL dose</ShortDescription>
 <FullVaccinename>SARS-COV-2 (COVID-19) vaccine, mRNA, spike protein, LNP, preservative free, 50 mcg/0.5 mL dose</FullVaccinename>
 <CVXCode>221       </CVXCode>
-<Notes>FDA EUA 03/29/2022, Moderna booster dose 2.5mL vial presentation only</Notes>
+<Notes>FDA EUA Moderna 2.5mL use for both adult booster dose +  Peds 6yr to &lt;12 Primary Series</Notes>
 <Status>Active</Status>
-<LastUpdated>3/29/2022</LastUpdated>
+<LastUpdated>6/15/2022</LastUpdated>
 </CVXInfo>
 <CVXInfo><ShortDescription>COVID-19, mRNA, LNP-S, PF, pediatric 25 mcg/0.25 mL dose</ShortDescription>
 <FullVaccinename>SARS-COV-2 (COVID-19) vaccine, mRNA, spike protein, LNP, preservative free, pediatric 25 mcg/0.25 mL dose</FullVaccinename>
@@ -240,9 +247,9 @@
 <CVXInfo><ShortDescription>COVID-19, mRNA, LNP-S, PF, pediatric 50 mcg/0.5 mL dose</ShortDescription>
 <FullVaccinename>SARS-COV-2 (COVID-19) vaccine, mRNA, spike protein, LNP, preservative free, pediatric 50 mcg/0.5 mL dose</FullVaccinename>
 <CVXCode>227       </CVXCode>
-<Notes>Pre-EUA Moderna Pediatric 6yr to&lt;12 yr vaccine 2.5 mL vial, 50 mcg/0.5 mL dose</Notes>
-<Status>Active</Status>
-<LastUpdated>4/12/2022</LastUpdated>
+<Notes>Temporarily inactivated -  Use CVX code 221 for EUA Moderna Pediatric 6yr to&lt;12 yr vaccine 2.5 mL vial, 50 mcg/0.5 mL dose</Notes>
+<Status>Inactive</Status>
+<LastUpdated>6/15/2022</LastUpdated>
 </CVXInfo>
 <CVXInfo><ShortDescription>COVID-19, subunit, rS-nanoparticle+Matrix-M1 Adjuvant, PF, 0.5 mL</ShortDescription>
 <FullVaccinename>SARS-COV-2 (COVID-19) vaccine, subunit, recombinant spike protein-nanoparticle+Matrix-M1 Adjuvant, preservative free, 0.5mL dose</FullVaccinename>
@@ -254,9 +261,9 @@
 <CVXInfo><ShortDescription>dengue fever</ShortDescription>
 <FullVaccinename>dengue fever vaccine</FullVaccinename>
 <CVXCode>56        </CVXCode>
-<Notes>Applies to dengue tetravalent product (e.g. DENGVAXIA)</Notes>
+<Notes>Applies to tetravalent product (e.g. DENGVAXIA)</Notes>
 <Status>Active</Status>
-<LastUpdated>9/24/2019</LastUpdated>
+<LastUpdated>5/19/2022</LastUpdated>
 </CVXInfo>
 <CVXInfo><ShortDescription>DT (pediatric)</ShortDescription>
 <FullVaccinename>diphtheria and tetanus toxoids, adsorbed for pediatric use</FullVaccinename>
@@ -1273,13 +1280,6 @@
 <Status>Non-US</Status>
 <LastUpdated>4/12/2022</LastUpdated>
 </CVXInfo>
-<CVXInfo><ShortDescription>Smallpox monkeypox vaccine (National Stockpile)</ShortDescription>
-<FullVaccinename>Vaccinia, smallpox monkeypox vaccine, live attenuated, preservative free (National Stockpile)</FullVaccinename>
-<CVXCode>206       </CVXCode>
-<Notes>National Stockpile Only. FDA US Licensed products JYNNEOS (also brandnames IMVAMUNE, IMVANEX) </Notes>
-<Status>Active</Status>
-<LastUpdated>3/4/2022</LastUpdated>
-</CVXInfo>
 <CVXInfo><ShortDescription>Td (adult)</ShortDescription>
 <FullVaccinename>tetanus and diphtheria toxoids, not adsorbed, for adult use</FullVaccinename>
 <CVXCode>138       </CVXCode>
@@ -1440,6 +1440,13 @@
 <Notes></Notes>
 <Status>Inactive</Status>
 <LastUpdated>5/28/2010</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>Vaccinia, smallpox monkeypox vaccine live, PF</ShortDescription>
+<FullVaccinename>Vaccinia, smallpox monkeypox vaccine, live attenuated, preservative free</FullVaccinename>
+<CVXCode>206       </CVXCode>
+<Notes>Associated to FDA US Licensed products JYNNEOS (may also be associated to other national stockpile products)</Notes>
+<Status>Active</Status>
+<LastUpdated>5/20/2022</LastUpdated>
 </CVXInfo>
 <CVXInfo><ShortDescription>varicella</ShortDescription>
 <FullVaccinename>varicella virus vaccine</FullVaccinename>

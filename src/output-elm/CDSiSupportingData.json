@@ -106,16 +106,21 @@
                      "direction" : "asc",
                      "type" : "ByExpression",
                      "expression" : {
-                        "strict" : false,
-                        "type" : "As",
-                        "operand" : {
-                           "name" : "occurrence",
-                           "type" : "IdentifierRef"
-                        },
-                        "asTypeSpecifier" : {
-                           "name" : "{http://hl7.org/fhir}dateTime",
-                           "type" : "NamedTypeSpecifier"
-                        }
+                        "name" : "ToDateTime",
+                        "libraryName" : "FHIRHelpers",
+                        "type" : "FunctionRef",
+                        "operand" : [ {
+                           "strict" : false,
+                           "type" : "As",
+                           "operand" : {
+                              "name" : "occurrence",
+                              "type" : "IdentifierRef"
+                           },
+                           "asTypeSpecifier" : {
+                              "name" : "{http://hl7.org/fhir}dateTime",
+                              "type" : "NamedTypeSpecifier"
+                           }
+                        } ]
                      }
                   } ]
                }
@@ -1064,58 +1069,73 @@
                }
             } ]
          }, {
-            "name" : "IsValidSeriesDose",
+            "name" : "ValidSeriesDoseReason",
             "context" : "Patient",
             "accessLevel" : "Public",
             "type" : "FunctionDef",
             "expression" : {
-               "type" : "And",
-               "operand" : [ {
-                  "type" : "And",
-                  "operand" : [ {
-                     "type" : "And",
+               "type" : "If",
+               "condition" : {
+                  "type" : "Not",
+                  "operand" : {
+                     "type" : "Or",
                      "operand" : [ {
-                        "type" : "And",
+                        "type" : "Not",
+                        "operand" : {
+                           "type" : "IsNull",
+                           "operand" : {
+                              "name" : "previousImmunization",
+                              "type" : "OperandRef"
+                           }
+                        }
+                     }, {
+                        "name" : "IsValidSeriesAgeToStart",
+                        "type" : "FunctionRef",
                         "operand" : [ {
-                           "type" : "And",
-                           "operand" : [ {
-                              "type" : "Or",
-                              "operand" : [ {
-                                 "type" : "Not",
-                                 "operand" : {
-                                    "type" : "IsNull",
-                                    "operand" : {
-                                       "name" : "previousImmunization",
-                                       "type" : "OperandRef"
-                                    }
-                                 }
-                              }, {
-                                 "name" : "IsValidSeriesAgeToStart",
-                                 "type" : "FunctionRef",
-                                 "operand" : [ {
-                                    "name" : "selectSeries",
-                                    "type" : "OperandRef"
-                                 }, {
-                                    "name" : "immunization",
-                                    "type" : "OperandRef"
-                                 } ]
-                              } ]
-                           }, {
-                              "name" : "IsValidAge",
-                              "type" : "FunctionRef",
-                              "operand" : [ {
-                                 "path" : "age",
-                                 "type" : "Property",
-                                 "source" : {
-                                    "name" : "seriesDose",
-                                    "type" : "OperandRef"
-                                 }
-                              }, {
-                                 "name" : "immunization",
-                                 "type" : "OperandRef"
-                              } ]
-                           } ]
+                           "name" : "selectSeries",
+                           "type" : "OperandRef"
                         }, {
+                           "name" : "immunization",
+                           "type" : "OperandRef"
+                        } ]
+                     } ]
+                  }
+               },
+               "then" : {
+                  "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                  "value" : "InvalidSeriesAgeToStart",
+                  "type" : "Literal"
+               },
+               "else" : {
+                  "type" : "If",
+                  "condition" : {
+                     "type" : "Not",
+                     "operand" : {
+                        "name" : "IsValidAge",
+                        "type" : "FunctionRef",
+                        "operand" : [ {
+                           "path" : "age",
+                           "type" : "Property",
+                           "source" : {
+                              "name" : "seriesDose",
+                              "type" : "OperandRef"
+                           }
+                        }, {
+                           "name" : "immunization",
+                           "type" : "OperandRef"
+                        } ]
+                     }
+                  },
+                  "then" : {
+                     "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                     "value" : "InvalidAge",
+                     "type" : "Literal"
+                  },
+                  "else" : {
+                     "type" : "If",
+                     "condition" : {
+                        "type" : "Not",
+                        "operand" : {
                            "name" : "IsValidInterval",
                            "type" : "FunctionRef",
                            "operand" : [ {
@@ -1132,55 +1152,101 @@
                               "name" : "previousImmunization",
                               "type" : "OperandRef"
                            } ]
-                        } ]
-                     }, {
-                        "name" : "IsValidInterval",
-                        "type" : "FunctionRef",
-                        "operand" : [ {
-                           "path" : "allowableInterval",
-                           "type" : "Property",
-                           "source" : {
-                              "name" : "seriesDose",
-                              "type" : "OperandRef"
-                           }
-                        }, {
-                           "name" : "immunization",
-                           "type" : "OperandRef"
-                        }, {
-                           "name" : "previousImmunization",
-                           "type" : "OperandRef"
-                        } ]
-                     } ]
-                  }, {
-                     "name" : "IsValidAllowableVaccine",
-                     "type" : "FunctionRef",
-                     "operand" : [ {
-                        "path" : "allowableVaccine",
-                        "type" : "Property",
-                        "source" : {
-                           "name" : "seriesDose",
-                           "type" : "OperandRef"
                         }
-                     }, {
-                        "name" : "immunization",
-                        "type" : "OperandRef"
-                     } ]
-                  } ]
-               }, {
-                  "name" : "IsNotInadvertentVaccine",
-                  "type" : "FunctionRef",
-                  "operand" : [ {
-                     "path" : "inadvertentVaccine",
-                     "type" : "Property",
-                     "source" : {
-                        "name" : "seriesDose",
-                        "type" : "OperandRef"
+                     },
+                     "then" : {
+                        "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                        "value" : "InvalidInterval",
+                        "type" : "Literal"
+                     },
+                     "else" : {
+                        "type" : "If",
+                        "condition" : {
+                           "type" : "Not",
+                           "operand" : {
+                              "name" : "IsValidInterval",
+                              "type" : "FunctionRef",
+                              "operand" : [ {
+                                 "path" : "allowableInterval",
+                                 "type" : "Property",
+                                 "source" : {
+                                    "name" : "seriesDose",
+                                    "type" : "OperandRef"
+                                 }
+                              }, {
+                                 "name" : "immunization",
+                                 "type" : "OperandRef"
+                              }, {
+                                 "name" : "previousImmunization",
+                                 "type" : "OperandRef"
+                              } ]
+                           }
+                        },
+                        "then" : {
+                           "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                           "value" : "InvalidAllowableInterval",
+                           "type" : "Literal"
+                        },
+                        "else" : {
+                           "type" : "If",
+                           "condition" : {
+                              "type" : "Not",
+                              "operand" : {
+                                 "name" : "IsValidAllowableVaccine",
+                                 "type" : "FunctionRef",
+                                 "operand" : [ {
+                                    "path" : "allowableVaccine",
+                                    "type" : "Property",
+                                    "source" : {
+                                       "name" : "seriesDose",
+                                       "type" : "OperandRef"
+                                    }
+                                 }, {
+                                    "name" : "immunization",
+                                    "type" : "OperandRef"
+                                 } ]
+                              }
+                           },
+                           "then" : {
+                              "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                              "value" : "InvalidAllowableVaccine",
+                              "type" : "Literal"
+                           },
+                           "else" : {
+                              "type" : "If",
+                              "condition" : {
+                                 "type" : "Not",
+                                 "operand" : {
+                                    "name" : "IsNotInadvertentVaccine",
+                                    "type" : "FunctionRef",
+                                    "operand" : [ {
+                                       "path" : "inadvertentVaccine",
+                                       "type" : "Property",
+                                       "source" : {
+                                          "name" : "seriesDose",
+                                          "type" : "OperandRef"
+                                       }
+                                    }, {
+                                       "name" : "immunization",
+                                       "type" : "OperandRef"
+                                    } ]
+                                 }
+                              },
+                              "then" : {
+                                 "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                                 "value" : "InadvertentVaccine",
+                                 "type" : "Literal"
+                              },
+                              "else" : {
+                                 "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                                 "value" : "Valid",
+                                 "type" : "Literal"
+                              }
+                           }
+                        }
                      }
-                  }, {
-                     "name" : "immunization",
-                     "type" : "OperandRef"
-                  } ]
-               } ]
+                  }
+               }
             },
             "operand" : [ {
                "name" : "selectSeries",
@@ -1251,7 +1317,73 @@
                }, {
                   "name" : "validDose",
                   "value" : {
-                     "name" : "IsValidSeriesDose",
+                     "type" : "Equal",
+                     "operand" : [ {
+                        "name" : "ValidSeriesDoseReason",
+                        "type" : "FunctionRef",
+                        "operand" : [ {
+                           "name" : "selectSeries",
+                           "type" : "OperandRef"
+                        }, {
+                           "name" : "seriesDose",
+                           "type" : "OperandRef"
+                        }, {
+                           "type" : "Indexer",
+                           "operand" : [ {
+                              "name" : "Immunizations",
+                              "type" : "ExpressionRef"
+                           }, {
+                              "name" : "currentImmunizationIndex",
+                              "type" : "OperandRef"
+                           } ]
+                        }, {
+                           "type" : "If",
+                           "condition" : {
+                              "type" : "Greater",
+                              "operand" : [ {
+                                 "name" : "currentImmunizationIndex",
+                                 "type" : "OperandRef"
+                              }, {
+                                 "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
+                                 "value" : "0",
+                                 "type" : "Literal"
+                              } ]
+                           },
+                           "then" : {
+                              "type" : "Indexer",
+                              "operand" : [ {
+                                 "name" : "Immunizations",
+                                 "type" : "ExpressionRef"
+                              }, {
+                                 "type" : "Subtract",
+                                 "operand" : [ {
+                                    "name" : "currentImmunizationIndex",
+                                    "type" : "OperandRef"
+                                 }, {
+                                    "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
+                                    "value" : "1",
+                                    "type" : "Literal"
+                                 } ]
+                              } ]
+                           },
+                           "else" : {
+                              "asType" : "{http://hl7.org/fhir}Immunization",
+                              "type" : "As",
+                              "operand" : {
+                                 "type" : "Null"
+                              }
+                           }
+                        } ]
+                     }, {
+                        "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                        "value" : "Valid",
+                        "type" : "Literal"
+                     } ]
+                  }
+               }, {
+                  "name" : "validDoseReason",
+                  "value" : {
+                     "name" : "ValidSeriesDoseReason",
                      "type" : "FunctionRef",
                      "operand" : [ {
                         "name" : "selectSeries",
@@ -1578,6 +1710,11 @@
                                        "value" : {
                                           "type" : "Null"
                                        }
+                                    }, {
+                                       "name" : "validDoseReason",
+                                       "value" : {
+                                          "type" : "Null"
+                                       }
                                     } ]
                                  },
                                  "else" : {
@@ -1646,6 +1783,12 @@
                               "name" : "validDose",
                               "elementType" : {
                                  "name" : "{urn:hl7-org:elm-types:r1}Boolean",
+                                 "type" : "NamedTypeSpecifier"
+                              }
+                           }, {
+                              "name" : "validDoseReason",
+                              "elementType" : {
+                                 "name" : "{urn:hl7-org:elm-types:r1}String",
                                  "type" : "NamedTypeSpecifier"
                               }
                            } ]
@@ -1749,6 +1892,12 @@
                                           "name" : "{urn:hl7-org:elm-types:r1}Boolean",
                                           "type" : "NamedTypeSpecifier"
                                        }
+                                    }, {
+                                       "name" : "validDoseReason",
+                                       "elementType" : {
+                                          "name" : "{urn:hl7-org:elm-types:r1}String",
+                                          "type" : "NamedTypeSpecifier"
+                                       }
                                     } ]
                                  }
                               }, {
@@ -1781,6 +1930,12 @@
                                        }
                                     }, {
                                        "name" : "validDose",
+                                       "elementType" : {
+                                          "name" : "{urn:hl7-org:elm-types:r1}Any",
+                                          "type" : "NamedTypeSpecifier"
+                                       }
+                                    }, {
+                                       "name" : "validDoseReason",
                                        "elementType" : {
                                           "name" : "{urn:hl7-org:elm-types:r1}Any",
                                           "type" : "NamedTypeSpecifier"
@@ -1987,6 +2142,11 @@
                                              "value" : {
                                                 "type" : "Null"
                                              }
+                                          }, {
+                                             "name" : "validDoseReason",
+                                             "value" : {
+                                                "type" : "Null"
+                                             }
                                           } ]
                                        } ]
                                     }
@@ -2026,6 +2186,12 @@
                                           "name" : "{urn:hl7-org:elm-types:r1}Boolean",
                                           "type" : "NamedTypeSpecifier"
                                        }
+                                    }, {
+                                       "name" : "validDoseReason",
+                                       "elementType" : {
+                                          "name" : "{urn:hl7-org:elm-types:r1}String",
+                                          "type" : "NamedTypeSpecifier"
+                                       }
                                     } ]
                                  }
                               }, {
@@ -2058,6 +2224,12 @@
                                        }
                                     }, {
                                        "name" : "validDose",
+                                       "elementType" : {
+                                          "name" : "{urn:hl7-org:elm-types:r1}Any",
+                                          "type" : "NamedTypeSpecifier"
+                                       }
+                                    }, {
+                                       "name" : "validDoseReason",
                                        "elementType" : {
                                           "name" : "{urn:hl7-org:elm-types:r1}Any",
                                           "type" : "NamedTypeSpecifier"
@@ -2103,6 +2275,12 @@
                                  "name" : "validDose",
                                  "elementType" : {
                                     "name" : "{urn:hl7-org:elm-types:r1}Boolean",
+                                    "type" : "NamedTypeSpecifier"
+                                 }
+                              }, {
+                                 "name" : "validDoseReason",
+                                 "elementType" : {
+                                    "name" : "{urn:hl7-org:elm-types:r1}String",
                                     "type" : "NamedTypeSpecifier"
                                  }
                               } ]
@@ -2243,6 +2421,12 @@
                            "name" : "{urn:hl7-org:elm-types:r1}Boolean",
                            "type" : "NamedTypeSpecifier"
                         }
+                     }, {
+                        "name" : "validDoseReason",
+                        "elementType" : {
+                           "name" : "{urn:hl7-org:elm-types:r1}String",
+                           "type" : "NamedTypeSpecifier"
+                        }
                      } ]
                   }
                }
@@ -2336,6 +2520,12 @@
                                                 "name" : "{urn:hl7-org:elm-types:r1}Boolean",
                                                 "type" : "NamedTypeSpecifier"
                                              }
+                                          }, {
+                                             "name" : "validDoseReason",
+                                             "elementType" : {
+                                                "name" : "{urn:hl7-org:elm-types:r1}String",
+                                                "type" : "NamedTypeSpecifier"
+                                             }
                                           } ]
                                        }
                                     }
@@ -2422,6 +2612,12 @@
                                                       "name" : "validDose",
                                                       "elementType" : {
                                                          "name" : "{urn:hl7-org:elm-types:r1}Boolean",
+                                                         "type" : "NamedTypeSpecifier"
+                                                      }
+                                                   }, {
+                                                      "name" : "validDoseReason",
+                                                      "elementType" : {
+                                                         "name" : "{urn:hl7-org:elm-types:r1}String",
                                                          "type" : "NamedTypeSpecifier"
                                                       }
                                                    } ]
@@ -2530,6 +2726,12 @@
                                              "name" : "validDose",
                                              "elementType" : {
                                                 "name" : "{urn:hl7-org:elm-types:r1}Boolean",
+                                                "type" : "NamedTypeSpecifier"
+                                             }
+                                          }, {
+                                             "name" : "validDoseReason",
+                                             "elementType" : {
+                                                "name" : "{urn:hl7-org:elm-types:r1}String",
                                                 "type" : "NamedTypeSpecifier"
                                              }
                                           } ]
@@ -2699,6 +2901,150 @@
                "name" : "EvaluateAllSeries",
                "type" : "ExpressionRef"
             }
+         }, {
+            "name" : "IsValidSeriesDose",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "type" : "FunctionDef",
+            "expression" : {
+               "type" : "And",
+               "operand" : [ {
+                  "type" : "And",
+                  "operand" : [ {
+                     "type" : "And",
+                     "operand" : [ {
+                        "type" : "And",
+                        "operand" : [ {
+                           "type" : "And",
+                           "operand" : [ {
+                              "type" : "Or",
+                              "operand" : [ {
+                                 "type" : "Not",
+                                 "operand" : {
+                                    "type" : "IsNull",
+                                    "operand" : {
+                                       "name" : "previousImmunization",
+                                       "type" : "OperandRef"
+                                    }
+                                 }
+                              }, {
+                                 "name" : "IsValidSeriesAgeToStart",
+                                 "type" : "FunctionRef",
+                                 "operand" : [ {
+                                    "name" : "selectSeries",
+                                    "type" : "OperandRef"
+                                 }, {
+                                    "name" : "immunization",
+                                    "type" : "OperandRef"
+                                 } ]
+                              } ]
+                           }, {
+                              "name" : "IsValidAge",
+                              "type" : "FunctionRef",
+                              "operand" : [ {
+                                 "path" : "age",
+                                 "type" : "Property",
+                                 "source" : {
+                                    "name" : "seriesDose",
+                                    "type" : "OperandRef"
+                                 }
+                              }, {
+                                 "name" : "immunization",
+                                 "type" : "OperandRef"
+                              } ]
+                           } ]
+                        }, {
+                           "name" : "IsValidInterval",
+                           "type" : "FunctionRef",
+                           "operand" : [ {
+                              "path" : "interval",
+                              "type" : "Property",
+                              "source" : {
+                                 "name" : "seriesDose",
+                                 "type" : "OperandRef"
+                              }
+                           }, {
+                              "name" : "immunization",
+                              "type" : "OperandRef"
+                           }, {
+                              "name" : "previousImmunization",
+                              "type" : "OperandRef"
+                           } ]
+                        } ]
+                     }, {
+                        "name" : "IsValidInterval",
+                        "type" : "FunctionRef",
+                        "operand" : [ {
+                           "path" : "allowableInterval",
+                           "type" : "Property",
+                           "source" : {
+                              "name" : "seriesDose",
+                              "type" : "OperandRef"
+                           }
+                        }, {
+                           "name" : "immunization",
+                           "type" : "OperandRef"
+                        }, {
+                           "name" : "previousImmunization",
+                           "type" : "OperandRef"
+                        } ]
+                     } ]
+                  }, {
+                     "name" : "IsValidAllowableVaccine",
+                     "type" : "FunctionRef",
+                     "operand" : [ {
+                        "path" : "allowableVaccine",
+                        "type" : "Property",
+                        "source" : {
+                           "name" : "seriesDose",
+                           "type" : "OperandRef"
+                        }
+                     }, {
+                        "name" : "immunization",
+                        "type" : "OperandRef"
+                     } ]
+                  } ]
+               }, {
+                  "name" : "IsNotInadvertentVaccine",
+                  "type" : "FunctionRef",
+                  "operand" : [ {
+                     "path" : "inadvertentVaccine",
+                     "type" : "Property",
+                     "source" : {
+                        "name" : "seriesDose",
+                        "type" : "OperandRef"
+                     }
+                  }, {
+                     "name" : "immunization",
+                     "type" : "OperandRef"
+                  } ]
+               } ]
+            },
+            "operand" : [ {
+               "name" : "selectSeries",
+               "operandTypeSpecifier" : {
+                  "name" : "{https://www.cdc.gov/vaccines/programs/iis/cdsi}SelectSeries",
+                  "type" : "NamedTypeSpecifier"
+               }
+            }, {
+               "name" : "seriesDose",
+               "operandTypeSpecifier" : {
+                  "name" : "{https://www.cdc.gov/vaccines/programs/iis/cdsi}SeriesDose",
+                  "type" : "NamedTypeSpecifier"
+               }
+            }, {
+               "name" : "immunization",
+               "operandTypeSpecifier" : {
+                  "name" : "{http://hl7.org/fhir}Immunization",
+                  "type" : "NamedTypeSpecifier"
+               }
+            }, {
+               "name" : "previousImmunization",
+               "operandTypeSpecifier" : {
+                  "name" : "{http://hl7.org/fhir}Immunization",
+                  "type" : "NamedTypeSpecifier"
+               }
+            } ]
          } ]
       }
    }

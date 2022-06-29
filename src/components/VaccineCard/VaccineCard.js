@@ -84,7 +84,9 @@ const VaccineCard = () => {
           <Grid item xs={9} sm={10} className={styles.gridItem}>
             <Typography>
               <Box component="span" fontWeight="700">
-                {immunization.vaccineCode ? immunizationDisplayName(immunization.vaccineCode.coding) : ''}
+                {immunization.vaccineCode
+                  ? immunizationDisplayName(immunization.vaccineCode.coding)
+                  : ''}
               </Box>
               {immunization.lotNumber && ` ${t('healthcarddisplay.Lot')} #${immunization.lotNumber}`}
             </Typography>
@@ -95,7 +97,9 @@ const VaccineCard = () => {
             <Typography>{t('healthcarddisplay.Date')}</Typography>
           </Grid>
           <Grid item xs={9} sm={10} className={styles.gridItem}>
-            <Typography className={styles.date}>{immunization.occurrenceDateTime}</Typography>
+            <Typography className={styles.date}>
+              {immunization.occurrenceDateTime}
+            </Typography>
           </Grid>
         </Grid>
         <Grid container item className={styles.gridRow} spacing={0}>
@@ -117,7 +121,9 @@ const VaccineCard = () => {
       <Card display="flex" className={styles.card}>
         <CardContent className={styles.cardContent}>
           <Box className={[styles.flexCol, styles.patientData].join(' ')}>
-            <Typography className={styles.nameLabel}>{t('healthcarddisplay.NAME')}</Typography>
+            <Typography className={styles.nameLabel}>
+              {t('healthcarddisplay.NAME')}
+            </Typography>
             <Typography className={styles.name}>{patientData.name}</Typography>
           </Box>
           <Box className={[styles.flexCol, styles.patientData].join(' ')}>
@@ -127,7 +133,7 @@ const VaccineCard = () => {
                 {patientData.dateOfBirth}
               </Typography>
               <Typography className={styles.dateOfBirth} hidden={showDateOfBirth}>
-                {'**/**/****'}
+                xxxx-xx-xx
               </Typography>
               <IconButton
                 className={styles.eyeOutline}
@@ -139,7 +145,9 @@ const VaccineCard = () => {
             </Box>
           </Box>
           <Divider className={styles.line} />
-          <Box className={[styles.flexCol, styles.vaccinationRecordBox].join(' ')}>
+          <Box
+            className={[styles.flexCol, styles.vaccinationRecordBox].join(' ')}
+          >
             <Box className={styles.vaccinationRecordLabel}>
               <Typography className={styles.vaccinationRecordLabelText}>
                 {t('healthcarddisplay.VACCINATION RECORD')}
