@@ -12,7 +12,8 @@ const initialState = {
   validationStatus: {
     validPrimarySeries: null,
     error: null
-  }
+  },
+  matchingDemographicData: null
 };
 
 const actions = {
@@ -38,7 +39,7 @@ const reducer = (state, action) => {
           newState.jws = [];
           action.qrCodes.forEach((c) => {
             // change this based on whether already or not?
-            const jws = getJws((c instanceof Array ? c : [c]));
+            const jws = getJws(c instanceof Array ? c : [c]);
             newState.jws.push(jws);
           });
         }
@@ -53,20 +54,32 @@ const reducer = (state, action) => {
             const patientBundles = {
               type: 'collection',
               resourceType: 'Bundle',
-              entry: [],
+              entry: []
             };
             let types = [];
+            // store names and birth dates from patient resources for comparison
+            const demographicData = [];
+
             newState.jws.forEach((jws) => {
               const payload = getPayload(jws);
               const patientBundle = JSON.parse(payload).vc.credentialSubject.fhirBundle;
+              const patientResource = patientBundle.entry.find((e) => e.resource.resourceType === 'Patient');
+
+              const patientDemographicData = {
+                // store first given name that appears in array
+                givenName: patientResource.resource.name[0].given?.join(' '),
+                familyName: patientResource.resource.name[0].family,
+                birthDate: patientResource.resource.birthDate,
+                text: patientResource.resource.name[0].text
+              };
+
+              demographicData.push(patientDemographicData);
+
               // use one patient bundle for validation
-              const existingPatientResource = patientBundles.entry.find(
-                (e) => e.resource.resourceType === 'Patient'
-              );
+              const existingPatientResource = patientBundles.entry.find((e) => e.resource.resourceType === 'Patient');
               patientBundle.entry.forEach((e) => {
                 if (
-                  (e.resource.resourceType === 'Patient'
-                    && !existingPatientResource)
+                  (e.resource.resourceType === 'Patient' && !existingPatientResource)
                   || e.resource.resourceType !== 'Patient'
                 ) {
                   e.fullUrl = `resource:${patientBundles.entry.length}`;
@@ -82,6 +95,16 @@ const reducer = (state, action) => {
                 ? results.some((series) => series.validPrimarySeries) : null,
               error: null
             };
+
+            // check that text strings match across all cards if given/family names are not provided
+            const matchingDemographicData = demographicData.every(
+              (card) => ((card.givenName === demographicData[0].givenName
+                && card.familyName === demographicData[0].familyName)
+                || (card.text === demographicData[0].text))
+                && card.birthDate === demographicData[0].birthDate
+            );
+
+            newState.matchingDemographicData = matchingDemographicData;
           } catch {
             newState.validationStatus = {
               validPrimarySeries: false,
@@ -127,6 +150,7 @@ const QrDataProvider = ({ children }) => {
     jws: state.jws,
     qrError: state.qrError,
     validationStatus: state.validationStatus,
+    matchingDemographicData: state.matchingDemographicData,
     setQrCodes: (qrCodes) => {
       dispatch({ type: actions.SET_QR_CODES, qrCodes });
     },
