@@ -40,7 +40,8 @@
     "NAME": "NAME",
     "DATE OF BIRTH": "DATE OF BIRTH",
     "VACCINATION RECORD": "VACCINATION RECORD",
-    "Add another SMART Health Card for same person": "Add another SMART\u00AE Health Card for same person"
+    "Add another SMART Health Card for same person": "Add another SMART\u00AE Health Card for same person",
+    "Name and/or date of birth are not consistent across all the scanned cards.": "Name and/or date of birth are not consistent across all the scanned cards.<br/>Check that all the scanned <0>SMART\u00AE Health Cards</0> belong to the same person."
   },
   "footer": {
     "FAQ": "FAQ",
@@ -80,7 +81,7 @@
       },
       {
         "header": "INFORMATION COLLECTED FROM WEB TRAFFIC REPORTING TOOLS",
-        "content": "When a GitHub Pages site is visited, the visitor's IP address is logged and stored for security purposes, regardless of whether the visitor has signed into GitHub or not. For more information about GitHub's security practices, see <a target=\"top\" href=\"https://docs.github.com/en/github/site-policy/github-privacy-statement\" class=\"dotcom-only\">GitHub Privacy Statement</a>. </br>This application sends web beacons to Google Analytics for measurement services when an individual visits the site. We do not store any cookies, nor do we share personal information with Google nor any third-party provider."
+        "content": "When a GitHub Pages site is visited, the visitor's IP address is logged and stored for security purposes, regardless of whether the visitor has signed into GitHub or not. For more information about GitHub's security practices, see <a target=\"top\" href=\"https://docs.github.com/en/github/site-policy/github-privacy-statement\" class=\"dotcom-only\">GitHub Privacy Statement</a>. </br>This application sends web beacons to Clicky web analytics for measurement services when an individual visits the site. We do not store any cookies, nor do we share personal information with Clicky nor any third-party provider."
       },
       {
         "header": "COOKIES",
