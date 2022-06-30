@@ -1,4 +1,4 @@
-import { filterDuplicateEntries } from './qrHelpers';
+import { filterDuplicateImmunizations } from './qrHelpers';
 
 const TEST_RESOURCE_ARRAY = [
   {
@@ -21,23 +21,23 @@ const TEST_RESOURCE_ARRAY = [
         coding: [
           {
             system: 'http://hl7.org/fhir/sid/cvx',
-            code: '208',
-          },
-        ],
+            code: '208'
+          }
+        ]
       },
       patient: {
-        reference: 'resource:0',
+        reference: 'resource:0'
       },
       occurrenceDateTime: '2021-01-01',
       performer: [
         {
           actor: {
-            display: 'ABC General Hospital',
-          },
-        },
+            display: 'ABC General Hospital'
+          }
+        }
       ],
-      lotNumber: '0000001',
-    },
+      lotNumber: '0000001'
+    }
   },
   {
     fullUrl: 'resource:2',
@@ -48,15 +48,15 @@ const TEST_RESOURCE_ARRAY = [
         coding: [
           {
             system: 'http://hl7.org/fhir/sid/cvx',
-            code: '213',
-          },
-        ],
+            code: '213'
+          }
+        ]
       },
       patient: {
-        reference: 'resource:0',
+        reference: 'resource:0'
       },
-      occurrenceDateTime: '2021-02-01',
-    },
+      occurrenceDateTime: '2021-02-01'
+    }
   },
   {
     fullUrl: 'resource:3',
@@ -67,25 +67,28 @@ const TEST_RESOURCE_ARRAY = [
         coding: [
           {
             system: 'http://hl7.org/fhir/sid/cvx',
-            code: '213',
-          },
-        ],
+            code: '213'
+          }
+        ]
       },
       patient: {
-        reference: 'resource:0',
+        reference: 'resource:0'
       },
-      occurrenceDateTime: '2021-02-01',
-    },
-  },
+      occurrenceDateTime: '2021-02-01'
+    }
+  }
 ];
-describe('filterDuplicateEntries', () => {
+
+describe('filterDuplicateImmunizations', () => {
   test('returns array of resources with unique immunization vaccine codes/occurrence dates', () => {
-    const filteredResources = filterDuplicateEntries(TEST_RESOURCE_ARRAY);
+    const filteredResources = filterDuplicateImmunizations(TEST_RESOURCE_ARRAY);
     expect(filteredResources.length).toEqual(3);
-    expect(filteredResources).not.toEqual(expect.arrayContaining([
-      expect.objectContaining({
-        fullUrl: 'resource:3'
-      })
-    ]))
+    expect(filteredResources).not.toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          fullUrl: 'resource:3'
+        })
+      ])
+    );
   });
 });

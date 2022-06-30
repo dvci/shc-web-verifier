@@ -2,7 +2,8 @@ import { Base64 } from 'js-base64';
 import pako from 'pako';
 import getIssuerDirectories from './IssuerDirectories';
 
-const healthCardPattern = /^shc:\/(?<multipleChunks>(?<chunkIndex>[0-9]+)\/(?<chunkCount>[0-9]+)\/)?(?<payload>[0-9]+)$/;
+const healthCardPattern =
+  /^shc:\/(?<multipleChunks>(?<chunkIndex>[0-9]+)\/(?<chunkCount>[0-9]+)\/)?(?<payload>[0-9]+)$/;
 
 const parseHealthCardQr = (qrCode) => {
   if (healthCardPattern.test(qrCode)) {
@@ -12,14 +13,15 @@ const parseHealthCardQr = (qrCode) => {
   return null;
 };
 
-const getJws = (qrCodes) => qrCodes
-  .map((c) => {
-    const sliceIndex = c.lastIndexOf('/');
-    const rawPayload = c.slice(sliceIndex + 1);
-    const encodingChars = rawPayload.match(/\d\d/g);
-    return encodingChars.map((charPair) => String.fromCharCode(+charPair + 45)).join('');
-  })
-  .join('');
+const getJws = (qrCodes) =>
+  qrCodes
+    .map((c) => {
+      const sliceIndex = c.lastIndexOf('/');
+      const rawPayload = c.slice(sliceIndex + 1);
+      const encodingChars = rawPayload.match(/\d\d/g);
+      return encodingChars.map((charPair) => String.fromCharCode(+charPair + 45)).join('');
+    })
+    .join('');
 
 const getPayload = (jws) => {
   const dataString = jws.split('.')[1];
@@ -52,13 +54,17 @@ const extractImmunizations = (bundle) => {
   return immunizationResources;
 };
 
-const filterDuplicateEntries = (resources) => {
-  // filter immunization resources to those with unique vaccine code/occurrence dates
-  const filteredResources = resources.filter((r, index, self) => r.resource.resourceType
-      !== 'Immunization' || self.findIndex((e) => e.resource.occurrenceDateTime
-      === r.resource.occurrenceDateTime
-      && e.resource.vaccineCode.coding[0].code.coding
-      === r.resource.vaccineCode.coding[0].code.coding) === index);
+const filterDuplicateImmunizations = (resources) => {
+  // filter immunization resources to those with unique vaccine codes/occurrence dates
+  const filteredResources = resources.filter(
+    (r, index, self) =>
+      r.resource.resourceType !== 'Immunization' ||
+      self.findIndex(
+        (e) =>
+          e.resource.occurrenceDateTime === r.resource.occurrenceDateTime &&
+          e.resource.vaccineCode.coding[0].code.coding === r.resource.vaccineCode.coding[0].code.coding
+      ) === index
+  );
   return filteredResources;
 };
 
@@ -115,5 +121,5 @@ export {
   getPayload,
   getCredential,
   getIssuerDisplayName,
-  filterDuplicateEntries
+  filterDuplicateImmunizations
 };
