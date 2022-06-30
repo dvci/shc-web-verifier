@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useReducer } from 'react';
 import {
-  parseHealthCardQr, getJws, getPayload, filterDuplicateEntries
+  parseHealthCardQr, getJws, getPayload, filterDuplicateImmunizations
 } from 'utils/qrHelpers';
 import { Validator } from 'components/Validator/Validator.tsx';
 import config from './App/App.config';
@@ -90,7 +90,7 @@ const reducer = (state, action) => {
             const combinedPatientBundle = {
               type: 'collection',
               resourceType: 'Bundle',
-              entry: filterDuplicateEntries(combinedQRResources)
+              entry: filterDuplicateImmunizations(combinedQRResources)
             };
             const results = Validator.execute(combinedPatientBundle, types);
 
