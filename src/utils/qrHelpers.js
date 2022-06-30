@@ -52,8 +52,14 @@ const extractImmunizations = (bundle) => {
   return immunizationResources;
 };
 
-const filterDuplicateEntries = (immunizationResources) => {
-  // filter/reduce to get unique occurrenceDateTime/vaccine code
+const filterDuplicateEntries = (resources) => {
+  // filter immunization resources to those with unique vaccine code/occurrence dates
+  const filteredResources = resources.filter((r, index, self) => r.resource.resourceType
+      !== 'Immunization' || self.findIndex((e) => e.resource.occurrenceDateTime
+      === r.resource.occurrenceDateTime
+      && e.resource.vaccineCode.coding[0].code.coding
+      === r.resource.vaccineCode.coding[0].code.coding) === index);
+  return filteredResources;
 };
 
 const extractPatientData = (card) => {
