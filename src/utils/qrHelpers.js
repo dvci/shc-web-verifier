@@ -53,14 +53,17 @@ const extractImmunizations = (bundle) => {
 };
 
 const filterDuplicateImmunizations = (resources) => {
-  // filter immunization resources to those with unique vaccine codes/occurrence dates
+  // filter immunization resources to those with unique
+  // code, system, and occurrence dates
   const filteredResources = resources.filter(
     (r, index, self) => r.resource.resourceType !== 'Immunization'
       || self.findIndex(
         (e) => e.resource.occurrenceDateTime
         === r.resource.occurrenceDateTime
-        && e.resource.vaccineCode.coding[0].code.coding
-        === r.resource.vaccineCode.coding[0].code.coding
+        && e.resource.vaccineCode.coding[0].code
+        === r.resource.vaccineCode.coding[0].code
+        && e.resource.vaccineCode.coding[0].system
+        === r.resource.vaccineCode.coding[0].system
       ) === index
   );
   return filteredResources;
