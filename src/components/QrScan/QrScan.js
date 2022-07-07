@@ -80,7 +80,8 @@ const useStyles = makeStyles((theme) => ({
     position: 'absolute',
     width: '90%',
     height: '90%',
-    zIndex: '1',
+    zIndex: '-1',
+    background: '',
     '& section': {
       position: 'unset !important',
       '& div': {
@@ -105,6 +106,9 @@ const QrScan = () => {
   const [cameraDeviceId, setCameraDeviceId] = useState('');
   const runningQrScanner = useRef(null);
   const scannedCodesRef = useRef([]);
+
+  document.body.style.background = 'transparent';
+  document.documentElement.style.background = 'transparent';
 
   const handleError = useCallback(() => {
     history.push('/display-results');
