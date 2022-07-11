@@ -10,7 +10,7 @@
     <allow-intent href="https://*/*" />
 
     <preference name="cordova.plugins.diagnostic.modules" value="WIFI CAMERA EXTERNAL_STORAGE" />
-    <preference name="DisallowOverscroll" value="true" />
+    
     <!-- disable splash screen -->
     <preference name="SplashScreenDelay" value="0"/>
     <preference name="FadeSplashScreenDuration" value="0"/>
@@ -31,5 +31,8 @@
         <edit-config target="NSCameraUsageDescription" file="*-Info.plist" mode="merge">
             <string>Camera is used for scanning QR codes.</string>
         </edit-config>
+        <preference name="DisallowOverscroll" value="true" />
+        <preference name="SuppressesLongPressGesture" value="true" />
+        <preference name="Orientation" value="all" />
     </platform>
 </widget>
