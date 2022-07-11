@@ -81,7 +81,6 @@ const useStyles = makeStyles((theme) => ({
     width: '90%',
     height: '90%',
     zIndex: '-1',
-    background: '',
     '& section': {
       position: 'unset !important',
       '& div': {
@@ -107,8 +106,32 @@ const QrScan = () => {
   const runningQrScanner = useRef(null);
   const scannedCodesRef = useRef([]);
 
+  // set background to transparent to allow image frame placement over video
+  // for iOS
   document.body.style.background = 'transparent';
   document.documentElement.style.background = 'transparent';
+
+  // Scan every 500ms for refreshing video tag position and on various user events.
+  let scanVideoTagTimer;
+  const scanVideoTagInterval = 500;
+
+  function scanVideoTag() {
+    clearTimeout(scanVideoTagTimer);
+    const shouldRefreshingVideos = window.document.querySelectorAll('video').length > 0;
+    if (shouldRefreshingVideos) {
+      window.cordova.plugins.iosrtc.refreshVideos();
+    }
+    scanVideoTagTimer = setTimeout(scanVideoTag, scanVideoTagInterval);
+  }
+
+  // Start scanVideoTag
+  scanVideoTagTimer = setTimeout(scanVideoTag, scanVideoTagInterval);
+
+  window.onorientationchange = scanVideoTag;
+  window.addEventListener('touchstart', scanVideoTag);
+  window.addEventListener('click', scanVideoTag);
+  window.addEventListener('touchmove', scanVideoTag);
+  window.addEventListener('touchend', scanVideoTag);
 
   const handleError = useCallback(() => {
     history.push('/display-results');
