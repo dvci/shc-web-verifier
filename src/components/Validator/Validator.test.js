@@ -414,3 +414,200 @@ test('2022-0022: Dose #1 is AstraZeneca Dose #2 is Sinovac Covid-19 and Vaccine 
   const values = Validator.execute(patientBundle, vcTypes);
   expect(validPrimarySeries(values)).toBe(true);
 });
+
+test('2022-0023: Patient is 5 years and has been administered a primary series and a booster dose of the Pfizer Covid-19 vaccine', () => {
+  const patientBundle = createPatientBundle(new Date(2017, 0, 6), [
+    { dateAdministered: '2022-01-06', cvx: '218' },
+    { dateAdministered: '2022-01-27', cvx: '218' },
+    { dateAdministered: '2022-06-27', cvx: '218' }
+  ]);
+  const values = Validator.execute(patientBundle, vcTypes);
+  expect(validPrimarySeries(values)).toBe(true);
+});
+
+test('2022-0024: Patient is 6 years of age and is administered Jansen as dose #1 and administered doses #2 and #3 as Pfizer Covid-19 vaccine', () => {
+  const patientBundle = createPatientBundle(new Date(2015, 11, 30), [
+    { dateAdministered: '2021-12-30', cvx: '212' },
+    { dateAdministered: '2022-01-27', cvx: '208' },
+    { dateAdministered: '2022-06-27', cvx: '218' }
+  ]);
+  const values = Validator.execute(patientBundle, vcTypes);
+  expect(validPrimarySeries(values)).toBe(true);
+});
+
+test('2022-0025: Patient is 10 years and has been administered dose #1 as the Moderna Covid-19 vaccine and dose #2 as the Pfizer Covid-19', () => {
+  const patientBundle = createPatientBundle(new Date(2012, 4, 30), [
+    { dateAdministered: '2022-05-30', cvx: '207' },
+    { dateAdministered: '2022-06-27', cvx: '218' }
+  ]);
+  const values = Validator.execute(patientBundle, vcTypes);
+  expect(validPrimarySeries(values)).toBe(true);
+});
+
+test('2022-0026: Patient is 10 years and has been administered dose #1 as the Moderna Covid-19 vaccine and dose #2 and #3 as the Pfizer Covid-19 vaccine', () => {
+  const patientBundle = createPatientBundle(new Date(2011, 11, 30), [
+    { dateAdministered: '2021-12-30', cvx: '207' },
+    { dateAdministered: '2022-01-27', cvx: '218' },
+    { dateAdministered: '2022-06-27', cvx: '218' }
+  ]);
+  const values = Validator.execute(patientBundle, vcTypes);
+  expect(validPrimarySeries(values)).toBe(true);
+});
+
+test('2022-0027: Patient is 6 months of age and has been administered the first dose of the Pfizer Covid-19 vaccine', () => {
+  const patientBundle = createPatientBundle(new Date(2021, 11, 27), [
+    { dateAdministered: '2022-06-27', cvx: '219' }
+  ]);
+  const values = Validator.execute(patientBundle, vcTypes);
+  expect(validPrimarySeries(values)).toBe(false);
+});
+
+test('2022-0028: Patient is 6 months of age and has been administered the second dose of the Pfizer Covid-19 vaccine', () => {
+  const patientBundle = createPatientBundle(new Date(2021, 11, 6), [
+    { dateAdministered: '2022-06-06', cvx: '219' },
+    { dateAdministered: '2022-06-27', cvx: '219' }
+  ]);
+  const values = Validator.execute(patientBundle, vcTypes);
+  expect(validPrimarySeries(values)).toBe(true);
+});
+
+test('2022-0029: Patient is 6 months of age and has been administered the third dose of the Pfizer Covid-19 vaccine', () => {
+  const patientBundle = createPatientBundle(new Date(2021, 9, 11), [
+    { dateAdministered: '2022-04-11', cvx: '219' },
+    { dateAdministered: '2022-05-02', cvx: '219' },
+    { dateAdministered: '2022-06-27', cvx: '219' }
+  ]);
+  const values = Validator.execute(patientBundle, vcTypes);
+  expect(validPrimarySeries(values)).toBe(true);
+});
+
+test('2022-0030: Patient is 12 years of age and has been administered CVX 221 of the Moderna Covid-19 vaccine as the first dose', () => {
+  const patientBundle = createPatientBundle(new Date(2010, 5, 27), [
+    { dateAdministered: '2022-06-27', cvx: '221' }
+  ]);
+  const values = Validator.execute(patientBundle, vcTypes);
+  expect(validPrimarySeries(values)).toBe(false);
+});
+
+test('2022-0031: Patient is 12 years of age and has been administered Moderna\'s (CVX 221) Covid-19 vaccine for the first and second dose', () => {
+  const patientBundle = createPatientBundle(new Date(2020, 4, 30), [
+    { dateAdministered: '2022-05-30', cvx: '221' },
+    { dateAdministered: '2022-06-27', cvx: '221' }
+  ]);
+  const values = Validator.execute(patientBundle, vcTypes);
+  expect(validPrimarySeries(values)).toBe(true);
+});
+
+test('2022-0032: Patient is 15 months of age and has been administered the first dose of the Moderna Covid-19 (CVX 228) vaccine', () => {
+  const patientBundle = createPatientBundle(new Date(2021, 2, 27), [
+    { dateAdministered: '2022-06-27', cvx: '218' }
+  ]);
+  const values = Validator.execute(patientBundle, vcTypes);
+  expect(validPrimarySeries(values)).toBe(false);
+});
+
+test('2022-0033: Patient is 15 months of age and has been administered the second dose of the Moderna Covid-19 (CVX 228) vaccine', () => {
+  const patientBundle = createPatientBundle(new Date(2021, 1, 28), [
+    { dateAdministered: '2022-05-28', cvx: '218' },
+    { dateAdministered: '2022-06-25', cvx: '218' }
+  ]);
+  const values = Validator.execute(patientBundle, vcTypes);
+  expect(validPrimarySeries(values)).toBe(true);
+});
+
+test('2022-0034: Patient is 2 years of age and has been administered the Pfizer Covid-19 vaccine as a first dose and Moderna as second dose for the Covid-19 vaccine', () => {
+  const patientBundle = createPatientBundle(new Date(2020, 5, 30), [
+    { dateAdministered: '2022-05-30', cvx: '219' },
+    { dateAdministered: '2022-06-27', cvx: '228' }
+  ]);
+  const values = Validator.execute(patientBundle, vcTypes);
+  expect(validPrimarySeries(values)).toBe(true);
+});
+
+test('2022-0035: Patient was age 5 years but turns 6 years old and was administered CVX Code 219 for both Covid-19 doses', () => {
+  const patientBundle = createPatientBundle(new Date(2016, 5, 17), [
+    { dateAdministered: '2022-06-06', cvx: '219' },
+    { dateAdministered: '2022-06-27', cvx: '219' }
+  ]);
+  const values = Validator.execute(patientBundle, vcTypes);
+  expect(validPrimarySeries(values)).toBe(false);
+});
+
+test('2022-0036: Patient was age 6 years but turns 7 years old and was administered CVX 228 for both Covid-19 doses', () => {
+  const patientBundle = createPatientBundle(new Date(2015, 5, 17), [
+    { dateAdministered: '2022-05-30', cvx: '228' },
+    { dateAdministered: '2022-06-27', cvx: '228' }
+  ]);
+  const values = Validator.execute(patientBundle, vcTypes);
+  expect(validPrimarySeries(values)).toBe(false);
+});
+
+test('2022-0037: Patient is 4 months of age and has been administered a dose of the Pfizer Covid-19 vaccine', () => {
+  const patientBundle = createPatientBundle(new Date(2022, 1, 27), [
+    { dateAdministered: '2022-06-27', cvx: '219' }
+  ]);
+  const values = Validator.execute(patientBundle, vcTypes);
+  expect(validPrimarySeries(values)).toBe(false);
+});
+
+test('2022-0038: Patient is 2 years of age and has been administered a third dose of the Covid-19 vaccine', () => {
+  const patientBundle = createPatientBundle(new Date(2020, 2, 21), [
+    { dateAdministered: '2022-03-21', cvx: '219' },
+    { dateAdministered: '2022-04-18', cvx: '228' },
+    { dateAdministered: '2022-06-13', cvx: '228' }
+  ]);
+  const values = Validator.execute(patientBundle, vcTypes);
+  expect(validPrimarySeries(values)).toBe(true);
+});
+
+test('2022-0039: Patient is 3 years of age and has been administered a third dose of a Covid-19 vaccine at 8 weeks - 5 days', () => {
+  const patientBundle = createPatientBundle(new Date(2019, 2, 21), [
+    { dateAdministered: '2022-03-21', cvx: '219' },
+    { dateAdministered: '2022-04-11', cvx: '219' },
+    { dateAdministered: '2022-06-01', cvx: '219' }
+  ]);
+  const values = Validator.execute(patientBundle, vcTypes);
+  expect(validPrimarySeries(values)).toBe(true);
+});
+
+test('2022-0040: Patient is 5 years of age and is administered Pfizer\'s Covid-19 (CVX219) vaccine as a first dose.', () => {
+  const patientBundle = createPatientBundle(new Date(2017, 5, 27), [
+    { dateAdministered: '2022-06-27', cvx: '219' }
+  ]);
+  const values = Validator.execute(patientBundle, vcTypes);
+  expect(validPrimarySeries(values)).toBe(false);
+});
+
+test('2022-0041: Patient is 6 years of age and is administered Pfizer\'s Covid-19 (CVX219) vaccine as a first dose.', () => {
+  const patientBundle = createPatientBundle(new Date(2016, 5, 27), [
+    { dateAdministered: '2022-06-27', cvx: '219' }
+  ]);
+  const values = Validator.execute(patientBundle, vcTypes);
+  expect(validPrimarySeries(values)).toBe(false);
+});
+
+test('2022-0043: Patient is 9 years of age and is administered Moderna\'s Covid-19 (CVX221) vaccine as a first dose.', () => {
+  const patientBundle = createPatientBundle(new Date(2013, 5, 27), [
+    { dateAdministered: '2022-06-27', cvx: '221' }
+  ]);
+  const values = Validator.execute(patientBundle, vcTypes);
+  expect(validPrimarySeries(values)).toBe(false);
+});
+
+test('2022-0044: Patient is 9 years of age and is administered Moderna\'s Covid-19 (CVX 221) vaccine as a second dose at an interval of 8 weeks', () => {
+  const patientBundle = createPatientBundle(new Date(2013, 4, 2), [
+    { dateAdministered: '2022-05-02', cvx: '221' },
+    { dateAdministered: '2022-06-27', cvx: '221' }
+  ]);
+  const values = Validator.execute(patientBundle, vcTypes);
+  expect(validPrimarySeries(values)).toBe(true);
+});
+
+test('2022-0046: Patient was age 11 years but turns 12 years old and was administered two different Moderna Covid-19 vaccines.', () => {
+  const patientBundle = createPatientBundle(new Date(2010, 5, 17), [
+    { dateAdministered: '2022-05-30', cvx: '221' },
+    { dateAdministered: '2022-06-27', cvx: '207' }
+  ]);
+  const values = Validator.execute(patientBundle, vcTypes);
+  expect(validPrimarySeries(values)).toBe(true);
+});

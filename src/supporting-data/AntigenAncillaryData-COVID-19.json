@@ -2,7 +2,7 @@
     "antigenAncillaryData": {
         "series": [
             {
-                "seriesName": "5-17 yrs Pfizer series",
+                "seriesName": "Start at 6 mo - 17 yrs Pfizer series",
                 "primarySeriesNumberDoses": 2
             },
             {
@@ -10,7 +10,7 @@
                 "primarySeriesNumberDoses": 2
             },
             {
-                "seriesName": "18 yrs+ Moderna series",
+                "seriesName": "6 mo+ Moderna series",
                 "primarySeriesNumberDoses": 2
             },
             {
@@ -22,7 +22,7 @@
                 "primarySeriesNumberDoses": 1
             },
             {
-                "seriesName": "5 yrs+ Mixed Product series",
+                "seriesName": "6 mo+ Mixed Product series",
                 "primarySeriesNumberDoses": 2
             },
             {
