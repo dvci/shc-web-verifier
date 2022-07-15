@@ -80,7 +80,7 @@ const LabCard = () => {
       <Grid container className={styles.grid}>
         <Grid container item className={styles.gridRow} spacing={0}>
           <Grid item xs={3} sm={2} className={styles.gridLabel}>
-            <Typography>{t('healthcarddisplay.Laboratory Test')}</Typography>
+            <Typography>{t('healthcarddisplay.Lab Test')}</Typography>
           </Grid>
           <Grid item xs={9} sm={10} className={styles.gridItem}>
             <Typography>
@@ -92,15 +92,17 @@ const LabCard = () => {
             </Typography>
           </Grid>
         </Grid>
-  
+
         <Grid container item className={styles.gridRow} spacing={0}>
           <Grid item xs={3} sm={2} className={styles.gridLabel}>
             <Typography>{t('healthcarddisplay.Date')}</Typography>
           </Grid>
           <Grid item xs={9} sm={10} className={styles.gridItem}>
+            {/* Add displayDateTime function */}
             <Typography className={styles.date}>{labResult.effectiveDateTime}</Typography>
           </Grid>
         </Grid>
+
         <Grid container item className={styles.gridRow} spacing={0}>
           <Grid item xs={3} sm={2} className={styles.gridLabel}>
             <Typography>{t('healthcarddisplay.Test Result')}</Typography>
@@ -112,14 +114,26 @@ const LabCard = () => {
             <Typography>{labResult.valueCodeableConcept.coding[0].code}</Typography>
           </Grid>
         </Grid>
-        {/* Add Reference Range here */}
+
         <Grid container item className={styles.gridRow} spacing={0}>
           <Grid item xs={3} sm={2} className={styles.gridLabel}>
-            <Typography>{t('healthcarddisplay.Laboratory Organization')}</Typography>
+            <Typography>{t('healthcarddisplay.Ref. Range')}</Typography>
+          </Grid>
+          <Grid item xs={9} sm={10} className={styles.gridItem}>
+          {/* Add displayReferenceRange function */}
+            {labResult.referenceRange && labResult.performer.length > 0 && (
+              <Typography>{labResult.referenceRange[0].text}</Typography>
+            )}
+          </Grid>
+        </Grid>
+
+        <Grid container item className={styles.gridRow} spacing={0}>
+          <Grid item xs={3} sm={2} className={styles.gridLabel}>
+            <Typography>{t('healthcarddisplay.Lab Performer')}</Typography>
           </Grid>
           <Grid item xs={9} sm={10} className={styles.gridItem}>
             {labResult.performer && labResult.performer.length > 0 && (
-              <Typography>{labResult.performer[0].actor.display}</Typography>
+              <Typography>{labResult.performer[0].display}</Typography>
             )}
           </Grid>
         </Grid>
