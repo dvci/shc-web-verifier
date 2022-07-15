@@ -10,6 +10,7 @@ import { useTranslation } from 'react-i18next';
 import xIcon from 'assets/x-icon.png';
 import useStyles from './styles';
 // import { fetchTradenames, fetchCvx } from './iisstandards';
+import { getLabTestCodeDisplay, getLabTestResultCodeDisplay } from './labValueSets';
 
 const LabCard = () => {
   const styles = useStyles();
@@ -72,6 +73,20 @@ const LabCard = () => {
   //   return tradenames[coding.code];
   // };
 
+  const displayLabTestCode = (coding) => {
+    if (coding.system && coding.code) {
+      return getLabTestCodeDisplay(coding.system, coding.code) || `${coding.system}#${coding.code}`;
+    }
+    return coding.code || '';
+  }
+
+  const displayLabTestResultCode = (coding) => {
+    if (coding.system && coding.code) {
+      return getLabTestResultCodeDisplay(coding.system, coding.code) || `${coding.system}#${coding.code}`;
+    }
+    return coding.code || '';
+  }
+
   const HealthCardLabResult = ({ labResult }) => (
     <Box className={[styles.flexCol, styles.vaccinationRoot].join(' ')}>
       <Box className={styles.divider}>
@@ -85,7 +100,7 @@ const LabCard = () => {
           <Grid item xs={9} sm={10} className={styles.gridItem}>
             <Typography>
               <Box component="span" fontWeight="700">
-                {labResult.code.coding[0].code}
+                {displayLabTestCode(labResult.code.coding[0])}
                 {/* ? immunizationDisplayName(immunization.vaccineCode.coding) : ''} */}
               </Box>
               {/* {immunization.lotNumber && ` ${t('healthcarddisplay.Lot')} #${immunization.lotNumber}`} */}
@@ -111,7 +126,7 @@ const LabCard = () => {
             {/* {immunization.performer && immunization.performer.length > 0 && (
               <Typography>{immunization.performer[0].actor.display}</Typography>
             )} */}
-            <Typography>{labResult.valueCodeableConcept.coding[0].code}</Typography>
+            <Typography>{displayLabTestResultCode(labResult.valueCodeableConcept.coding[0])}</Typography>
           </Grid>
         </Grid>
 
