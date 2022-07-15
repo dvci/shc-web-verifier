@@ -48,11 +48,21 @@ const LabCard = () => {
   }
 
   const displayDateTime = (dateTimeString) => {
-    const [date, time] = dateTimeString.split('T')
+    const [date, time] = dateTimeString.split('T');
     if (!time) return date;
-    const d = new Date(dateTimeString)
+    const d = new Date(dateTimeString);
     const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
     return (`${date} ${d.toLocaleTimeString('en-US')} (${timezone})`);
+  }
+
+  const displayReferenceRange = (referenceRange) => {
+    if (referenceRange.text) return referenceRange.text;
+    const lowVal = referenceRange.low;
+    const highVal = referenceRange.high;
+    if (lowVal && highVal) return (`${lowVal.value} ${lowVal.unit} - ${highVal.value} ${highVal.unit}`);
+    if (lowVal) return (`$>= ${lowVal.value} ${lowVal.unit}`);
+    if (highVal) return (`$<= ${highVal.value} ${highVal.unit}`);
+    return '';
   }
 
   const HealthCardLabResult = ({ labResult }) => (
@@ -102,8 +112,8 @@ const LabCard = () => {
           </Grid>
           <Grid item xs={9} sm={10} className={styles.gridItem}>
             {/* Add displayReferenceRange function */}
-            {labResult.referenceRange && labResult.performer.length > 0 && (
-              <Typography>{labResult.referenceRange[0].text}</Typography>
+            {labResult.referenceRange && labResult.referenceRange.length > 0 && (
+              <Typography>{displayReferenceRange(labResult.referenceRange[0])}</Typography>
             )}
           </Grid>
         </Grid>
