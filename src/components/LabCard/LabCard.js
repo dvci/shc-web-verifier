@@ -47,6 +47,14 @@ const LabCard = () => {
     return coding.code || '';
   }
 
+  const displayDateTime = (dateTimeString) => {
+    const [date, time] = dateTimeString.split('T')
+    if (!time) return date;
+    const d = new Date(dateTimeString)
+    const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    return (`${date} ${d.toLocaleTimeString('en-US')} (${timezone})`);
+  }
+
   const HealthCardLabResult = ({ labResult }) => (
     <Box className={[styles.flexCol, styles.vaccinationRoot].join(' ')}>
       <Box className={styles.divider}>
@@ -71,8 +79,9 @@ const LabCard = () => {
             <Typography>{t('healthcarddisplay.Date')}</Typography>
           </Grid>
           <Grid item xs={9} sm={10} className={styles.gridItem}>
-            {/* Add displayDateTime function */}
-            <Typography className={styles.date}>{labResult.effectiveDateTime}</Typography>
+            <Typography className={styles.date}>
+              {displayDateTime(labResult.effectiveDateTime)}
+            </Typography>
           </Grid>
         </Grid>
 

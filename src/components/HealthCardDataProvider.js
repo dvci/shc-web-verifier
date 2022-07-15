@@ -50,6 +50,7 @@ const HealthCardDataProvider = ({ healthCardJws, children }) => {
         });
         return false;
       }
+      // Add error for "It cannot be both"
 
       if (!getPatientData(cardJws)) {
         setHealthCardSupported({
