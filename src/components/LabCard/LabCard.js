@@ -21,10 +21,7 @@ const LabCard = () => {
     immunizations: [],
     labResults: [],
   });
-  // const [tradenames, setTradenames] = useState({});
-  // const [cvxCodes, setCvxCodes] = useState({});
   const [showDateOfBirth, setShowDateOfBirth] = useState(false);
-  // const handleError = useErrorHandler();
 
   useEffect(() => {
     if (jws) {
@@ -32,46 +29,9 @@ const LabCard = () => {
     }
   }, [jws]);
 
-  // useEffect(() => {
-  //   async function getTradenames() {
-  //     try {
-  //       const tn = await fetchTradenames();
-  //       setTradenames(tn);
-  //     } catch (e) {
-  //       handleError(e);
-  //     }
-  //   }
-
-  //   async function getCvx() {
-  //     try {
-  //       const cvx = await fetchCvx();
-  //       setCvxCodes(cvx);
-  //     } catch (e) {
-  //       handleError(e);
-  //     }
-  //   }
-
-  //   getTradenames();
-  //   getCvx();
-  // }, [handleError]);
-
   const toggleShowDateOfBirth = () => {
     setShowDateOfBirth(!showDateOfBirth);
   };
-
-  // const immunizationDisplayName = (codings) => {
-  //   if (codings.length === 0) return '';
-
-  //   const coding = codings[0];
-
-  //   if (!tradenames[coding.code]) {
-  //     if (!cvxCodes[coding.code]) {
-  //       return coding.system ? `${coding.system}#${coding.code}` : coding.code;
-  //     }
-  //     return cvxCodes[coding.code];
-  //   }
-  //   return tradenames[coding.code];
-  // };
 
   const displayLabTestCode = (coding) => {
     if (coding.system && coding.code) {
@@ -100,10 +60,8 @@ const LabCard = () => {
           <Grid item xs={9} sm={10} className={styles.gridItem}>
             <Typography>
               <Box component="span" fontWeight="700">
-                {displayLabTestCode(labResult.code.coding[0])}
-                {/* ? immunizationDisplayName(immunization.vaccineCode.coding) : ''} */}
+                {displayLabTestCode(labResult.code?.coding[0])}
               </Box>
-              {/* {immunization.lotNumber && ` ${t('healthcarddisplay.Lot')} #${immunization.lotNumber}`} */}
             </Typography>
           </Grid>
         </Grid>
@@ -123,10 +81,9 @@ const LabCard = () => {
             <Typography>{t('healthcarddisplay.Test Result')}</Typography>
           </Grid>
           <Grid item xs={9} sm={10} className={styles.gridItem}>
-            {/* {immunization.performer && immunization.performer.length > 0 && (
-              <Typography>{immunization.performer[0].actor.display}</Typography>
-            )} */}
-            <Typography>{displayLabTestResultCode(labResult.valueCodeableConcept.coding[0])}</Typography>
+            <Typography>
+              {displayLabTestResultCode(labResult.valueCodeableConcept?.coding[0])}
+            </Typography>
           </Grid>
         </Grid>
 
@@ -135,7 +92,7 @@ const LabCard = () => {
             <Typography>{t('healthcarddisplay.Ref. Range')}</Typography>
           </Grid>
           <Grid item xs={9} sm={10} className={styles.gridItem}>
-          {/* Add displayReferenceRange function */}
+            {/* Add displayReferenceRange function */}
             {labResult.referenceRange && labResult.performer.length > 0 && (
               <Typography>{labResult.referenceRange[0].text}</Typography>
             )}
