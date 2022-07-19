@@ -1,0 +1,19 @@
+name: Clicky Download
+
+on:
+  workflow dispatch: //this means it can run manually i think
+  schedule:
+-	cron: “0 0 * * 0” weekly on Sunday
+-	cron: “0 0 1 * *” monthly on the 1st
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        run: clickyDownloadAPICall.py
+
+            
+
+            
+
