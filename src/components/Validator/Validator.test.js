@@ -490,7 +490,7 @@ test('2022-0030: Patient is 12 years of age and has been administered CVX 221 of
 });
 
 test('2022-0031: Patient is 12 years of age and has been administered Moderna\'s (CVX 221) Covid-19 vaccine for the first and second dose', () => {
-  const patientBundle = createPatientBundle(new Date(2020, 4, 30), [
+  const patientBundle = createPatientBundle(new Date(2010, 4, 30), [
     { dateAdministered: '2022-05-30', cvx: '221' },
     { dateAdministered: '2022-06-27', cvx: '221' }
   ]);
