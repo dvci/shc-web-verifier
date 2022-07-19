@@ -500,7 +500,7 @@ test('2022-0031: Patient is 12 years of age and has been administered Moderna\'s
 
 test('2022-0032: Patient is 15 months of age and has been administered the first dose of the Moderna Covid-19 (CVX 228) vaccine', () => {
   const patientBundle = createPatientBundle(new Date(2021, 2, 27), [
-    { dateAdministered: '2022-06-27', cvx: '218' }
+    { dateAdministered: '2022-06-27', cvx: '228' }
   ]);
   const values = Validator.execute(patientBundle, vcTypes);
   expect(validPrimarySeries(values)).toBe(false);
