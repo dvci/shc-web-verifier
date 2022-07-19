@@ -516,7 +516,7 @@ test('2022-0033: Patient is 15 months of age and has been administered the secon
 });
 
 test('2022-0034: Patient is 2 years of age and has been administered the Pfizer Covid-19 vaccine as a first dose and Moderna as second dose for the Covid-19 vaccine', () => {
-  const patientBundle = createPatientBundle(new Date(2020, 5, 30), [
+  const patientBundle = createPatientBundle(new Date(2020, 4, 30), [
     { dateAdministered: '2022-05-30', cvx: '219' },
     { dateAdministered: '2022-06-27', cvx: '228' }
   ]);
