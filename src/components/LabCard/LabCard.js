@@ -40,11 +40,21 @@ const LabCard = () => {
     return coding.code || '';
   }
 
-  const displayLabTestResultCode = (coding) => {
-    if (coding.system && coding.code) {
-      return getLabTestResultCodeDisplay(coding.system, coding.code) || `${coding.system}#${coding.code}`;
+  const displayLabTestResult = (labResult) => {
+    if (labResult.valueCodeableConcept) {
+      const coding = labResult.valueCodeableConcept.coding[0];
+      if (coding.system && coding.code) {
+        return getLabTestResultCodeDisplay(coding.system, coding.code) || `${coding.system}#${coding.code}`;
+      }
+      return coding.code || '';
     }
-    return coding.code || '';
+    if (labResult.valueQuantity) {
+      if (labResult.valueQuantity.value) {
+        if (labResult.valueQuantity.unit) return `${labResult.valueQuantity.value} ${labResult.valueQuantity.unit}`;
+        return labResult.valueQuantity.code ? `${labResult.valueQuantity.value} ${labResult.valueQuantity.code}` : labResult.valueQuantity.value;
+      }
+    }
+    return labResult.valueString || '';
   }
 
   const displayDateTime = (dateTimeString) => {
@@ -101,7 +111,7 @@ const LabCard = () => {
           </Grid>
           <Grid item xs={9} sm={10} className={styles.gridItem}>
             <Typography>
-              {displayLabTestResultCode(labResult.valueCodeableConcept?.coding[0])}
+              {displayLabTestResult(labResult)}
             </Typography>
           </Grid>
         </Grid>
@@ -111,7 +121,6 @@ const LabCard = () => {
             <Typography>{t('healthcarddisplay.Ref. Range')}</Typography>
           </Grid>
           <Grid item xs={9} sm={10} className={styles.gridItem}>
-            {/* Add displayReferenceRange function */}
             {labResult.referenceRange && labResult.referenceRange.length > 0 && (
               <Typography>{displayReferenceRange(labResult.referenceRange[0])}</Typography>
             )}
