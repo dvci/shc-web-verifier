@@ -30,5 +30,8 @@
         <edit-config target="NSCameraUsageDescription" file="*-Info.plist" mode="merge">
             <string>Camera is used for scanning QR codes.</string>
         </edit-config>
+        <preference name="DisallowOverscroll" value="true" />
+        <preference name="SuppressesLongPressGesture" value="true" />
+        <preference name="Orientation" value="all" />
     </platform>
 </widget>
