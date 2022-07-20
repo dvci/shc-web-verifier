@@ -21,6 +21,7 @@ const HealthCardDataProvider = ({ healthCardJws, children }) => {
   });
   const [issuerVerified, setIssuerVerified] = useState(null);
   const [issuerDisplayName, setIssuerDisplayName] = useState(null);
+  const [credentialType, setCredentialType] = useState(null)
 
   useEffect(() => {
     const isHealthCardSupported = (cardJws) => {
@@ -43,14 +44,14 @@ const HealthCardDataProvider = ({ healthCardJws, children }) => {
         return false;
       }
 
-      if (!vc.type.some((type) => type === 'https://smarthealth.cards#immunization' || 'https://smarthealth.cards#laboratory')) {
+      if ((!vc.type.some((type) => type === 'https://smarthealth.cards#immunization' || 'https://smarthealth.cards#laboratory'))
+      || ((vc.type.includes('https://smarthealth.cards#immunization')) && (vc.type.includes('https://smarthealth.cards#laboratory')))) {
         setHealthCardSupported({
           status: false,
           error: new Error('UNSUPPORTED_HEALTH_CARD')
         });
         return false;
       }
-      // Add error for "It cannot be both"
 
       if (!getPatientData(cardJws)) {
         setHealthCardSupported({
@@ -58,6 +59,12 @@ const HealthCardDataProvider = ({ healthCardJws, children }) => {
           error: new Error('UNSUPPORTED_INVALID_PROFILE_MISSING_PATIENT')
         });
         return false;
+      }
+
+      if (vc.type.some((type) => type === 'https://smarthealth.cards#immunization')) {
+        setCredentialType('immunization')
+      } else if (vc.type.some((type) => type === 'https://smarthealth.cards#laboratory')) {
+        setCredentialType('laboratory')
       }
 
       setHealthCardSupported({ status: true, error: null });
@@ -120,6 +127,7 @@ const HealthCardDataProvider = ({ healthCardJws, children }) => {
         issuerVerified,
         issuerDisplayName,
         jws,
+        credentialType,
         setJws,
         setHealthCardSupported,
         setHealthCardVerified,
