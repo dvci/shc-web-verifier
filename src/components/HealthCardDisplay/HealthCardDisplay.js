@@ -313,7 +313,7 @@ const HealthCardDisplay = () => {
     switch (credentialType) {
       case 'laboratory':
         return <LabCard />
-      default:
+      default: // Currently defaults to 'immunization' case
         return <VaccineCard />
     }
   }

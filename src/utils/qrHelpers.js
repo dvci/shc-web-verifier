@@ -48,13 +48,11 @@ const extractPatientName = (patient) => {
 
 const extractImmunizations = (bundle) => {
   const immunizationResources = bundle.entry.filter((entry) => entry.resource.resourceType === 'Immunization');
-
   return immunizationResources;
 };
 
 const extractObservations = (bundle) => {
   const observationResources = bundle.entry.filter((entry) => entry.resource.resourceType === 'Observation');
-
   return observationResources;
 };
 

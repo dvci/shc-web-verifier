@@ -79,7 +79,6 @@ export default makeStyles((theme) => ({
     marginTop: '10px',
     minHeight: '230px',
   },
-  // Change some of these names (make them vaccination agnostic)
   vaccinationRecordLabel: {
     display: 'flex',
     alignItems: 'center',

@@ -88,7 +88,7 @@ test('renders lab result display', async () => {
   });
 });
 
-test('renders performer and reference range', async () => {
+test('renders reference range and performer', async () => {
   await act(async () => {
     renderHealthCardDisplay();
     expect(

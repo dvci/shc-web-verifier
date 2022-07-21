@@ -6,10 +6,8 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import { useHealthCardDataContext } from 'components/HealthCardDataProvider';
 import { getPatientData } from 'utils/qrHelpers';
 import { useTranslation } from 'react-i18next';
-// import { useErrorHandler } from 'react-error-boundary';
 import xIcon from 'assets/x-icon.png';
 import useStyles from './styles';
-// import { fetchTradenames, fetchCvx } from './iisstandards';
 import { getLabTestCodeDisplay, getLabTestResultCodeDisplay } from './labValueSets';
 
 const LabCard = () => {
@@ -18,7 +16,6 @@ const LabCard = () => {
   const { jws, issuerVerified, issuerDisplayName } = useHealthCardDataContext();
   const [patientData, setPatientData] = useState({
     name: '',
-    immunizations: [],
     labResults: [],
   });
   const [showDateOfBirth, setShowDateOfBirth] = useState(false);
@@ -69,9 +66,9 @@ const LabCard = () => {
     if (referenceRange.text) return referenceRange.text;
     const lowVal = referenceRange.low;
     const highVal = referenceRange.high;
-    if (lowVal && highVal) return (`${lowVal.value} ${lowVal.unit} - ${highVal.value} ${highVal.unit}`);
-    if (lowVal) return (`$>= ${lowVal.value} ${lowVal.unit}`);
-    if (highVal) return (`$<= ${highVal.value} ${highVal.unit}`);
+    if (lowVal && highVal) return (`${lowVal.value} ${lowVal.unit || ''} - ${highVal.value} ${highVal.unit || ''}`);
+    if (lowVal) return (`$>= ${lowVal.value} ${lowVal.unit || ''}`);
+    if (highVal) return (`$<= ${highVal.value} ${highVal.unit || ''}`);
     return '';
   }
 
@@ -169,8 +166,6 @@ const LabCard = () => {
             </Box>
           </Box>
           <Divider className={styles.line} />
-          {/* Make above this a separate component (also used in VaccineCard) */}
-
           <Box className={[styles.flexCol, styles.vaccinationRecordBox].join(' ')}>
             <Box className={styles.vaccinationRecordLabel}>
               <Typography className={styles.vaccinationRecordLabelText}>
@@ -178,7 +173,6 @@ const LabCard = () => {
               </Typography>
             </Box>
             <List className={styles.vaccinationRecordList}>
-              {console.log(patientData)}
               {patientData.labResults.map((item) => (
                 <div key={item.fullUrl}>
                   <ListItem className={styles.vaccinationRecordListItem}>
