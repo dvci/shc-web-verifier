@@ -52,38 +52,39 @@ uniqueVisitors = uniqueVisitorList.length()
 newDict = {
     'numTotalVisitors':0,
     'numUniqueVisitors':0,
-    'ipAddresses':[
-        
-    ]
-}
+    'ipAddresses':{
+    }
+    }
+
 
 #not sure on the syntax here, would need to either look it up or test it to be sure
 #brief googling says this is off, gonna need some editing
 # things to fix:
     #incrementing -done
-    #accessing the items
-    #adding the ipaddresses
+    #accessing the items -done?
+    #adding the ipaddresses -done?
 for item in dataDict[dates][items]:
-    newDict['numTotalVisitors'].get('numTotalVisitors', 0) + 1
+        newDict['numTotalVisitors'].get('numTotalVisitors', 0) + 1
         if item not in newDict['ipAddresses']:
-            newDict['ipAddresses'].append(item['ip_address'])
             newDict['numUniqueVisitors'].get('numUniqueVisitors', 0) + 1
+            newDict['ipAddresses'][newDict['numTotalVisitors'].get('numUniqueVisitors')] = item.get('ip_address')
+            
 
-
+#forgot to do something about the date
 '''
 now new dict should look like this I think?:
 newDict = {
     'numTotalVisitors':4,
     'numUniqueVisitors':4,
     'ipAddresses':[
-        "ip_address":"24.34.108.0",
-        "ip_address":"24.34.108.0",
-        "ip_address":"73.149.20.0",
-        "ip_address":"216.10.170.0"
+        1:"24.34.108.0",
+        2":"24.34.108.0",
+        3:"73.149.20.0",
+        4:"216.10.170.0"
     ]
 }
 '''
-#i think that I need to change the ip address part to be a dictionary but maybe not, i think pandas supports
-#making a df from a list 
-
+#I'm not sure how the whole, convert a dictionary within a dictionary to a df with go
+#but I will have to decide how I want to display the data overall before going any further 
+#so it's time to finally decide that ahhh
 
