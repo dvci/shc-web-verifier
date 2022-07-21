@@ -1,24 +1,34 @@
 import requests
-from pandas.io.json import json_normalize
+import json
 import pandas as pd
 from datetime import date
   
-# api-endpoint
+# don't need to instansiate it, can directly modify the json takin in from previous pulls
+
+
+### this loads in the old information and stores it in clickyData
+with open("clickyData.json", "r") as read_file:
+    clickyData = json.load(read_file.read())
+
+# get old data and combine it with the new data here, old data is a dictionary 
+#example might be like this: think about how I would save it first before thinking about
+# how to reload it
+'''
+clickyData = {
+    visitorData = {
+        'numTotalVisitors':[3,12,5],
+        'numUniqueVisitors':[2,10,5],
+    }
+    date = ['2022-7-3','2022-7-10','2022-7-17']
+}
+'''
+### this pulls in the new information from the clicky link
 url = "https://api.clicky.com/api/stats/4?site_id=101369228&sitekey=6d6a506f44d45a59&type=visitors-list&date=last-week&output=json"
-
-# sending get request and saving the response as response object
-df = pd.read_json(url)
-r - requests.get(url = url)
-# extracting data in json format // change this
-pd.json_normalize(df, record_path=[items])
-
-# idea: construct the df as I go, add lines for every unique entry
-# so kinda like: check if it exists, if no add and increment all if yes increment total
-# nvm that got confusing REAL fast
-# ok new game plan, bring in json, make into dict, edit dict, make dict into df, make df into excel, make graph from the excel info
+r = requests.get(url = url)
 data = r.json()
 jsonString = data.loads()
 dataDict = json.loads(jsonString)
+
 '''what it should look like right now: [
   [
   {
@@ -36,55 +46,35 @@ dataDict = json.loads(jsonString)
     ]
   }
 ]'''
-#below is problematic cause it would delete dates as well I think, new plan is transfer the info i want to a new dictionary instead of trying to delete selectively 
 
-uniqueVisitorList = []
-for item in dataDict.items():
-    if item != (ip_address | items):
-        del dataDict[item]
-        if !uniqueVisitorList.contains(dataDict.get(item)):
-            uniqueVisitorList.append(dataDict.get(item))
-totalVisitors = dataDict[items].length()
-uniqueVisitors = uniqueVisitorList.length()
-
-##################################################################################################33
-
-newDict = {
-    'numTotalVisitors':0,
-    'numUniqueVisitors':0,
-    'ipAddresses':{
-    }
-    }
-
-
-#not sure on the syntax here, would need to either look it up or test it to be sure
-#brief googling says this is off, gonna need some editing
-# things to fix:
-    #incrementing -done
-    #accessing the items -done?
-    #adding the ipaddresses -done?
+### this calculates and adds the new information to the old information 
+uniqueVisitors = []
+totalVisitors = 0
+clickyData[visitorData][numTotalVisitors].append(len(dataDict[dates][items]))
 for item in dataDict[dates][items]:
-        newDict['numTotalVisitors'].get('numTotalVisitors', 0) + 1
-        if item not in newDict['ipAddresses']:
-            newDict['numUniqueVisitors'].get('numUniqueVisitors', 0) + 1
-            newDict['ipAddresses'][newDict['numTotalVisitors'].get('numUniqueVisitors')] = item.get('ip_address')
-            
+        if item not in uniqueVisitors:
+            uniqueVisitors.append(item)
+clickyData[visitorData][numUniqueVisitors].append(len(uniqueVisitors))
+clickyData[date].append(date.today())
 
-#forgot to do something about the date
 '''
+
 now new dict should look like this I think?:
-newDict = {
-    'numTotalVisitors':4,
-    'numUniqueVisitors':4,
-    'ipAddresses':[
-        1:"24.34.108.0",
-        2":"24.34.108.0",
-        3:"73.149.20.0",
-        4:"216.10.170.0"
-    ]
+clickyData = {
+    visitorData = {
+        'numTotalVisitors':[3,12,5,4],
+        'numUniqueVisitors':[2,10,5,4],
+    }
+    date = ['2022-7-3','2022-7-10','2022-7-17','2022-7-24']
 }
 '''
-#I'm not sure how the whole, convert a dictionary within a dictionary to a df with go
-#but I will have to decide how I want to display the data overall before going any further 
-#so it's time to finally decide that ahhh
 
+df = pd.DataFrame(visitorData, index = date)
+lines = df.plot.line()
+
+# save graph somewhere? yea that would make sense since this is automated and someone would want to 
+# be able to just check it when they need to
+
+# save the info as json somewhere
+with open("ClickyData", "w") as fp:
+    json.dump(clickyData, fp) 
