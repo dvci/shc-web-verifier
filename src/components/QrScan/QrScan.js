@@ -105,6 +105,7 @@ const QrScan = () => {
   const [cameraDeviceId, setCameraDeviceId] = useState('');
   const runningQrScanner = useRef(null);
   const scannedCodesRef = useRef([]);
+  const cameraDeviceIdRef = useRef('');
 
   const handleError = useCallback(() => {
     history.push('/display-results');
@@ -113,47 +114,13 @@ const QrScan = () => {
   const handleCameraSwitch = () => {
     switchCamera(cameraDeviceId)
       .then((newDeviceId) => {
-        if (newDeviceId !== null) { setCameraDeviceId(newDeviceId); }
+        if (newDeviceId !== null) {
+          setCameraDeviceId(newDeviceId);
+          if (runningQrScanner.current) {
+            runningQrScanner.current.setCamera(newDeviceId);
+          }
+        }
       })
-  };
-
-  /**
-   * Create QrScanner instance using video element and specify result/error conditions
-   * @param {*} videoElement HTML video element
-   */
-  const createQrScanner = async (videoElement) => {
-    if (!videoElement) {
-      if (runningQrScanner.current) {
-        qrScan.destroy();
-      }
-      return;
-    }
-    qrScan = new QrScanner(
-      videoElement,
-      (results) => {
-        setScannedData(results.data);
-      },
-      {
-        preferredCamera: 'environment',
-        calculateScanRegion: (video) => ({
-          // define scan region for QrScanner
-          x: 0,
-          y: 0,
-          width: video.videoWidth,
-          height: video.videoHeight
-        })
-      }
-    );
-    runningQrScanner.current = qrScan;
-    await runningQrScanner.current.stop();
-
-    const startPromise = qrScan.start();
-    if (startPromise !== undefined) {
-      startPromise.then(async () => {
-        qrScan.hasCamera = true;
-        await runningQrScanner.current.setCamera(cameraDeviceId);
-      });
-    }
   };
 
   const videoRef = useRef(null);
@@ -163,14 +130,55 @@ const QrScan = () => {
       try {
         if (videoRef.current) {
           const stream = await navigator.mediaDevices.getUserMedia(
-            cameraDeviceId !== '' ? { audio: false, video: { deviceId: { exact: cameraDeviceId } } }
+            cameraDeviceIdRef.current !== '' ? { audio: false, video: { deviceId: { exact: cameraDeviceIdRef.current } } }
               : { audio: false, video: { facingMode: 'environment' } }
           );
-          setCameraDeviceId(stream.getVideoTracks()[0].getSettings().deviceId);
           videoRef.current.srcObject = stream;
         }
       } catch (err) {
         throw Error(`Cannot access video: ${err.message}.`);
+      }
+    };
+
+    /**
+   * Create QrScanner instance using video element and specify result/error conditions
+   * @param {*} videoElement HTML video element
+   */
+    const createQrScanner = async (videoElement) => {
+      if (!videoElement) {
+        if (runningQrScanner.current) {
+          qrScan.destroy();
+        }
+        return;
+      }
+      qrScan = new QrScanner(
+        videoElement,
+        (results) => {
+          // runningQrScanner.current.stop();
+          setScannedData(results.data);
+        },
+        {
+          preferredCamera: 'environment',
+          calculateScanRegion: (video) => ({
+          // define scan region for QrScanner
+            x: 0,
+            y: 0,
+            width: video.videoWidth,
+            height: video.videoHeight
+          })
+        }
+      );
+      runningQrScanner.current = qrScan;
+      // await runningQrScanner.current.stop();
+
+      const startPromise = qrScan.start();
+      if (startPromise !== undefined) {
+        startPromise.then(() => {
+          qrScan.hasCamera = true;
+          const videoTrack = videoElement.srcObject.getVideoTracks()[0].getSettings().deviceId
+          setCameraDeviceId(videoTrack);
+          cameraDeviceIdRef.current = videoTrack;
+        });
       }
     };
 
@@ -187,9 +195,11 @@ const QrScan = () => {
     });
 
     return () => {
-      if (runningQrScanner.current) runningQrScanner.current.stop();
+      if (runningQrScanner.current) {
+        runningQrScanner.current.stop();
+      }
     };
-  }, [cameraDeviceId, createQrScanner, handleErrorFallback, history, resetQrCodes, setQrError]);
+  }, [handleErrorFallback, history, resetQrCodes, setQrError]);
 
   useEffect(() => {
     const handleScan = (data) => {
