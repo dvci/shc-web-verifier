@@ -105,7 +105,6 @@ const QrScan = () => {
   const [cameraDeviceId, setCameraDeviceId] = useState('');
   const runningQrScanner = useRef(null);
   const scannedCodesRef = useRef([]);
-  const cameraDeviceIdRef = useRef('');
 
   const handleError = useCallback(() => {
     history.push('/display-results');
@@ -123,6 +122,12 @@ const QrScan = () => {
       })
   };
 
+  useEffect(() => () => {
+    if (runningQrScanner.current) {
+      runningQrScanner.current.stop();
+    }
+  }, [])
+
   const videoRef = useRef(null);
   // Get user media when the page first renders, and feed into createQrScanner()
   useEffect(() => {
@@ -130,7 +135,7 @@ const QrScan = () => {
       try {
         if (videoRef.current) {
           const stream = await navigator.mediaDevices.getUserMedia(
-            cameraDeviceIdRef.current !== '' ? { audio: false, video: { deviceId: { exact: cameraDeviceIdRef.current } } }
+            cameraDeviceId !== '' ? { audio: false, video: { deviceId: { exact: cameraDeviceId } } }
               : { audio: false, video: { facingMode: 'environment' } }
           );
           videoRef.current.srcObject = stream;
@@ -169,37 +174,31 @@ const QrScan = () => {
         }
       );
       runningQrScanner.current = qrScan;
-      // await runningQrScanner.current.stop();
 
       const startPromise = qrScan.start();
       if (startPromise !== undefined) {
         startPromise.then(() => {
           qrScan.hasCamera = true;
-          const videoTrack = videoElement.srcObject.getVideoTracks()[0].getSettings().deviceId
-          setCameraDeviceId(videoTrack);
-          cameraDeviceIdRef.current = videoTrack;
+          const videoTrack = videoElement.srcObject.getVideoTracks()[0].getSettings().deviceId;
+          setCameraDeviceId(cameraDeviceId !== '' ? cameraDeviceId : videoTrack);
         });
       }
     };
 
-    cameraPermission().then((granted) => {
-      if (granted) {
-        getUserMedia().then(async () => {
-          await createQrScanner(videoRef.current);
-        }, handleErrorFallback);
-      } else {
-        resetQrCodes();
-        setQrError(new Error('SCAN_CAMERA_UNAVAILABLE'));
-        history.push('/display-results');
-      }
-    });
-
-    return () => {
-      if (runningQrScanner.current) {
-        runningQrScanner.current.stop();
-      }
-    };
-  }, [handleErrorFallback, history, resetQrCodes, setQrError]);
+    if (!runningQrScanner.current || (window.cordova && window.cordova.platformId === 'ios')) {
+      cameraPermission().then((granted) => {
+        if (granted) {
+          getUserMedia().then(async () => {
+            await createQrScanner(videoRef.current);
+          }, handleErrorFallback);
+        } else {
+          resetQrCodes();
+          setQrError(new Error('SCAN_CAMERA_UNAVAILABLE'));
+          history.push('/display-results');
+        }
+      });
+    }
+  }, [handleErrorFallback, history, resetQrCodes, setQrError, cameraDeviceId]);
 
   useEffect(() => {
     const handleScan = (data) => {
