@@ -13,7 +13,7 @@ url = "https://api.clicky.com/api/stats/4?site_id=101369228&sitekey=6d6a506f44d4
 # ways to change this: add the file name as a param, return the json instead of assigning it
 # figure out where to store the clicky info in the repo and also how
 def getOldData():
-    with open("clickyData.json", "r") as read_file:
+    with open("clickyJSON.json", "r") as read_file:
     clickyData = json.load(read_file.read())  
     # make dictionary - that's what load does, it takes json and makes it a dictionary
     return clickyData
@@ -96,10 +96,14 @@ def plotData(allData):
 # be able to just check it when they need to
 
 # save the info as json somewhere
-def saveJson():
-    with open("ClickyData", "w") as fp:
+def saveJson(allData):
+    with open("clickyJSON", "w") as fp:
         json.dump(clickyData, fp) 
 
+
+def saveAll(allInfo):
+    plotData(allInfo)
+    saveJson(allInfo)
 
 # things left to do: 
     # clean up code
@@ -110,4 +114,4 @@ def saveJson():
 
 # example call: 
     # combinedData = mergeData(getNewData(url), getOldData())
-    # plotData(combinedData)
+    # saveAll(combinedData)

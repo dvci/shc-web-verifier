@@ -11,5 +11,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      # replace with actual path when you know where to keep it
-        run: clickyDownloadAPICall.py
+      # something like that? will need to make changes though 
+        run: .github\clicky\scriptTester.py
