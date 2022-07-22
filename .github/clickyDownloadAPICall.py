@@ -2,17 +2,18 @@ import requests
 import json
 import pandas as pd
 from datetime import date
-  
-# don't need to instansiate it, can directly modify the json takin in from previous pulls
 
 
-### this loads in the old information and stores it in clickyData
-with open("clickyData.json", "r") as read_file:
-    clickyData = json.load(read_file.read())
-
+# ways to change this: add the file name as a param, return the json instead of assigning it
+# figure out where to store the clicky info in the repo and also how
+def getOldData():
+    with open("clickyData.json", "r") as read_file:
+    clickyData = json.load(read_file.read())  
 # get old data and combine it with the new data here, old data is a dictionary 
-#example might be like this: think about how I would save it first before thinking about
+# example might be like this: think about how I would save it first before thinking about
 # how to reload it
+
+
 '''
 clickyData = {
     visitorData = {
@@ -22,12 +23,17 @@ clickyData = {
     date = ['2022-7-3','2022-7-10','2022-7-17']
 }
 '''
+
+
+# ways to change: make link param, return dict
+def getNewData():
+    url = "https://api.clicky.com/api/stats/4?site_id=101369228&sitekey=6d6a506f44d45a59&type=visitors-list&date=last-week&output=json"
+    r = requests.get(url = url)
+    data = r.json()
+    jsonString = data.loads()
+    dataDict = json.loads(jsonString)
 ### this pulls in the new information from the clicky link
-url = "https://api.clicky.com/api/stats/4?site_id=101369228&sitekey=6d6a506f44d45a59&type=visitors-list&date=last-week&output=json"
-r = requests.get(url = url)
-data = r.json()
-jsonString = data.loads()
-dataDict = json.loads(jsonString)
+
 
 '''what it should look like right now: [
   [
@@ -47,18 +53,21 @@ dataDict = json.loads(jsonString)
   }
 ]'''
 
-### this calculates and adds the new information to the old information 
-uniqueVisitors = []
-totalVisitors = 0
-clickyData[visitorData][numTotalVisitors].append(len(dataDict[dates][items]))
-for item in dataDict[dates][items]:
+
+# things to change: pass in new and old data as params, return the new collection maybe?
+def mergeData():
+    uniqueVisitors = []
+    totalVisitors = 0
+    clickyData[visitorData][numTotalVisitors].append(len(dataDict[dates][items]))
+    for item in dataDict[dates][items]:
         if item not in uniqueVisitors:
             uniqueVisitors.append(item)
-clickyData[visitorData][numUniqueVisitors].append(len(uniqueVisitors))
-clickyData[date].append(date.today())
+    clickyData[visitorData][numUniqueVisitors].append(len(uniqueVisitors))
+    clickyData[date].append(date.today())
+### this calculates and adds the new information to the old information 
+
 
 '''
-
 now new dict should look like this I think?:
 clickyData = {
     visitorData = {
@@ -69,12 +78,25 @@ clickyData = {
 }
 '''
 
-df = pd.DataFrame(visitorData, index = date)
-lines = df.plot.line()
+
+# things to change: pass in visitorData and date
+def plotData():
+    df = pd.DataFrame(visitorData, index = date)
+    lines = df.plot.line()
+
+
 
 # save graph somewhere? yea that would make sense since this is automated and someone would want to 
 # be able to just check it when they need to
 
 # save the info as json somewhere
-with open("ClickyData", "w") as fp:
-    json.dump(clickyData, fp) 
+def saveJson():
+    with open("ClickyData", "w") as fp:
+        json.dump(clickyData, fp) 
+
+
+# things left to do: 
+    # clean up code
+    # figure out where/how to store the graph
+    # clean up where everything is stored
+    # test
