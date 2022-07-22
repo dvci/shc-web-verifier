@@ -3,12 +3,20 @@ import json
 import pandas as pd
 from datetime import date
 
+# things to pass in/define outside:
+    # the name of the old data file
+    # the link to the new clicky data
+    # the name that you are saving to (graph and json)
+
+url = "https://api.clicky.com/api/stats/4?site_id=101369228&sitekey=6d6a506f44d45a59&type=visitors-list&date=last-week&output=json"
 
 # ways to change this: add the file name as a param, return the json instead of assigning it
 # figure out where to store the clicky info in the repo and also how
 def getOldData():
     with open("clickyData.json", "r") as read_file:
     clickyData = json.load(read_file.read())  
+    # make dictionary - that's what load does, it takes json and makes it a dictionary
+    return clickyData
 # get old data and combine it with the new data here, old data is a dictionary 
 # example might be like this: think about how I would save it first before thinking about
 # how to reload it
@@ -25,13 +33,11 @@ clickyData = {
 '''
 
 
-# ways to change: make link param, return dict
-def getNewData():
-    url = "https://api.clicky.com/api/stats/4?site_id=101369228&sitekey=6d6a506f44d45a59&type=visitors-list&date=last-week&output=json"
-    r = requests.get(url = url)
-    data = r.json()
-    jsonString = data.loads()
-    dataDict = json.loads(jsonString)
+# ways to change: make link param, return dict - check
+def getNewData(clickyUrl):
+    response = requests.get(clickyUrl)
+    dataDict = json.load(response.json)
+    return dataDict
 ### this pulls in the new information from the clicky link
 
 
@@ -55,15 +61,15 @@ def getNewData():
 
 
 # things to change: pass in new and old data as params, return the new collection maybe?
-def mergeData():
+def mergeData(newData, oldData):
     uniqueVisitors = []
-    totalVisitors = 0
-    clickyData[visitorData][numTotalVisitors].append(len(dataDict[dates][items]))
-    for item in dataDict[dates][items]:
+    newData[visitorData][numTotalVisitors].append(len(oldData[dates][items]))
+    for item in oldData[dates][items]:
         if item not in uniqueVisitors:
             uniqueVisitors.append(item)
-    clickyData[visitorData][numUniqueVisitors].append(len(uniqueVisitors))
-    clickyData[date].append(date.today())
+    newData[visitorData][numUniqueVisitors].append(len(uniqueVisitors))
+    newData[date].append(date.today())
+    return newData # ?
 ### this calculates and adds the new information to the old information 
 
 
@@ -80,8 +86,8 @@ clickyData = {
 
 
 # things to change: pass in visitorData and date
-def plotData():
-    df = pd.DataFrame(visitorData, index = date)
+def plotData(allData):
+    df = pd.DataFrame(allData[visitorData], index = allData[date])
     lines = df.plot.line()
 
 
@@ -100,3 +106,8 @@ def saveJson():
     # figure out where/how to store the graph
     # clean up where everything is stored
     # test
+
+
+# example call: 
+    # combinedData = mergeData(getNewData(url), getOldData())
+    # plotData(combinedData)
