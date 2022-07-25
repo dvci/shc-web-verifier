@@ -14,7 +14,7 @@ url = "https://api.clicky.com/api/stats/4?site_id=101369228&sitekey=6d6a506f44d4
 # figure out where to store the clicky info in the repo and also how
 def getOldData():
     with open("clickyJSON.json", "r") as read_file:
-    clickyData = json.load(read_file.read())  
+        clickyData = json.load(read_file.read())  
     # make dictionary - that's what load does, it takes json and makes it a dictionary
     return clickyData
 # get old data and combine it with the new data here, old data is a dictionary 
