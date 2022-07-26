@@ -5,7 +5,7 @@ import {
   Button, Grid, Box, IconButton
 } from '@mui/material';
 import { makeStyles } from '@mui/styles';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import frame from 'assets/frame.png';
 import { useQrDataContext } from 'components/QrDataProvider';
@@ -94,9 +94,12 @@ let qrScan;
 
 const QrScan = () => {
   const history = useHistory();
+  const location = useLocation();
   const classes = useStyles();
   const handleErrorFallback = useErrorHandler();
-  const { setQrCodes, resetQrCodes } = useQrDataContext();
+  const {
+    setQrCodes, resetQrCodes, setQrError, qrCodes
+  } = useQrDataContext();
   const [scannedCodes, setScannedCodes] = useState([]);
   const [scannedData, setScannedData] = useState('');
   const [cameraDeviceId, setCameraDeviceId] = useState('');
@@ -176,6 +179,10 @@ const QrScan = () => {
         getUserMedia().then(() => {
           createQrScanner(videoRef.current);
         }, handleErrorFallback);
+      } else {
+        resetQrCodes();
+        setQrError(new Error('SCAN_CAMERA_UNAVAILABLE'));
+        history.push('/display-results');
       }
     });
 
@@ -199,20 +206,33 @@ const QrScan = () => {
         if (tempScannedCodes[currentChunkIndex - 1] === null) {
           tempScannedCodes[currentChunkIndex - 1] = data;
         }
-
         if (tempScannedCodes.every((code) => code)) {
-          resetQrCodes();
-          setQrCodes(tempScannedCodes);
+          if (location.state === 'link') {
+            const previousQrCodes = qrCodes;
+            resetQrCodes();
+            // Append to running list of scanned QR codes
+            setQrCodes([...previousQrCodes, [tempScannedCodes]]);
+          } else {
+            resetQrCodes();
+            setQrCodes([tempScannedCodes]);
+          }
           history.push('/display-results');
         }
         setScannedCodes(tempScannedCodes);
         scannedCodesRef.current = tempScannedCodes;
       } else {
-        resetQrCodes();
-        setQrCodes([data]);
+        if (qrCodes && location.state === 'link') {
+          const allQrCodes = qrCodes;
+          resetQrCodes();
+          allQrCodes.push(data);
+          setQrCodes(allQrCodes);
+        } else {
+          resetQrCodes();
+          setQrCodes([data]);
+        }
         history.push('/display-results');
       }
-    };
+    }
 
     if (scannedData) {
       try {
@@ -221,13 +241,7 @@ const QrScan = () => {
         handleError();
       }
     }
-  }, [
-    scannedData,
-    handleError,
-    history,
-    setQrCodes,
-    resetQrCodes
-  ]);
+  }, [scannedData, handleError, history, location, setQrCodes, resetQrCodes, qrCodes]);
 
   return (
     <Box className={classes.box}>

@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const pages = ['FAQ']; // TODO: Add Privacy page, once approved
+const pages = ['FAQ', 'Privacy'];
 
 const Footer = () => {
   const classes = useStyles();

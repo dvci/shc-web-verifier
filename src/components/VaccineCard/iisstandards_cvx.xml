@@ -188,6 +188,13 @@
 <Status>Active</Status>
 <LastUpdated>3/10/2022</LastUpdated>
 </CVXInfo>
+<CVXInfo><ShortDescription>COVID-19, mRNA, LNP-S, bivalent, PF, 50 mcg/0.5 mL dose</ShortDescription>
+<FullVaccinename>SARS-COV-2 (COVID-19) vaccine, mRNA, spike protein, LNP, bivalent, preservative free, 50 mcg/0.5 mL dose</FullVaccinename>
+<CVXCode>229       </CVXCode>
+<Notes>Pre-EUA Moderna bivalent adult booster original strain + omicron strain</Notes>
+<Status>Active</Status>
+<LastUpdated>6/15/2022</LastUpdated>
+</CVXInfo>
 <CVXInfo><ShortDescription>COVID-19, mRNA, LNP-S, PF, 10 mcg/0.2 mL dose, tris-sucrose</ShortDescription>
 <FullVaccinename>SARS-COV-2 (COVID-19) vaccine, mRNA, spike protein, LNP, preservative free, 10 mcg/0.2mL dose, tris-sucrose formulation</FullVaccinename>
 <CVXCode>218       </CVXCode>
@@ -226,23 +233,23 @@
 <CVXInfo><ShortDescription>COVID-19, mRNA, LNP-S, PF, 50 mcg/0.5 mL dose</ShortDescription>
 <FullVaccinename>SARS-COV-2 (COVID-19) vaccine, mRNA, spike protein, LNP, preservative free, 50 mcg/0.5 mL dose</FullVaccinename>
 <CVXCode>221       </CVXCode>
-<Notes>FDA EUA 03/29/2022, Moderna booster dose 2.5mL vial presentation only</Notes>
+<Notes>FDA EUA Moderna 2.5mL use for both adult booster dose +  Peds 6yr to &lt;12 Primary Series</Notes>
 <Status>Active</Status>
-<LastUpdated>3/29/2022</LastUpdated>
+<LastUpdated>6/15/2022</LastUpdated>
 </CVXInfo>
 <CVXInfo><ShortDescription>COVID-19, mRNA, LNP-S, PF, pediatric 25 mcg/0.25 mL dose</ShortDescription>
 <FullVaccinename>SARS-COV-2 (COVID-19) vaccine, mRNA, spike protein, LNP, preservative free, pediatric 25 mcg/0.25 mL dose</FullVaccinename>
 <CVXCode>228       </CVXCode>
-<Notes>Pre-EUA Moderna Pediatric 6mo to &lt;6yr 2.5 mL vial, 25 mcg/0.25 mL dose</Notes>
+<Notes>Pre-EUA Moderna Pediatric 6mo to&lt;6yr 2.5 mL vial, 25 mcg/0.25 mL dose</Notes>
 <Status>Active</Status>
 <LastUpdated>4/12/2022</LastUpdated>
 </CVXInfo>
 <CVXInfo><ShortDescription>COVID-19, mRNA, LNP-S, PF, pediatric 50 mcg/0.5 mL dose</ShortDescription>
 <FullVaccinename>SARS-COV-2 (COVID-19) vaccine, mRNA, spike protein, LNP, preservative free, pediatric 50 mcg/0.5 mL dose</FullVaccinename>
 <CVXCode>227       </CVXCode>
-<Notes>Pre-EUA Moderna Pediatric 6yr to&lt;12 yr vaccine 2.5 mL vial, 50 mcg/0.5 mL dose</Notes>
-<Status>Active</Status>
-<LastUpdated>4/12/2022</LastUpdated>
+<Notes>Temporarily inactivated -  Use CVX code 221 for EUA Moderna Pediatric 6yr to&lt;12 yr vaccine 2.5 mL vial, 50 mcg/0.5 mL dose</Notes>
+<Status>Inactive</Status>
+<LastUpdated>6/15/2022</LastUpdated>
 </CVXInfo>
 <CVXInfo><ShortDescription>COVID-19, subunit, rS-nanoparticle+Matrix-M1 Adjuvant, PF, 0.5 mL</ShortDescription>
 <FullVaccinename>SARS-COV-2 (COVID-19) vaccine, subunit, recombinant spike protein-nanoparticle+Matrix-M1 Adjuvant, preservative free, 0.5mL dose</FullVaccinename>

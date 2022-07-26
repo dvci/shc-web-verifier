@@ -56,6 +56,23 @@ const extractObservations = (bundle) => {
   return observationResources;
 };
 
+const filterDuplicateImmunizations = (resources) => {
+  // filter immunization resources to those with unique
+  // code, system, and occurrence dates
+  const filteredResources = resources.filter(
+    (r, index, self) => r.resource.resourceType !== 'Immunization'
+      || self.findIndex(
+        (e) => e.resource.occurrenceDateTime
+        === r.resource.occurrenceDateTime
+        && e.resource.vaccineCode.coding[0].code
+        === r.resource.vaccineCode.coding[0].code
+        && e.resource.vaccineCode.coding[0].system
+        === r.resource.vaccineCode.coding[0].system
+      ) === index
+  );
+  return filteredResources;
+};
+
 const extractPatientData = (card) => {
   const bundle = JSON.parse(card).vc.credentialSubject.fhirBundle;
   const patient = bundle.entry.find((entry) => entry.resource.resourceType === 'Patient').resource;
@@ -112,5 +129,6 @@ export {
   getPatientData,
   getPayload,
   getCredential,
-  getIssuerDisplayName
+  getIssuerDisplayName,
+  filterDuplicateImmunizations
 };
