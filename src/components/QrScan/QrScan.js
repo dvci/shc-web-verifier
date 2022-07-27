@@ -159,7 +159,6 @@ const QrScan = () => {
       qrScan = new QrScanner(
         videoElement,
         (results) => {
-          // runningQrScanner.current.stop();
           setScannedData(results.data);
         },
         {
@@ -249,6 +248,10 @@ const QrScan = () => {
       } catch (e) {
         handleError();
       }
+    }
+
+    return () => {
+      setScannedData('');
     }
   }, [scannedData, handleError, history, location, setQrCodes, resetQrCodes, qrCodes]);
 
