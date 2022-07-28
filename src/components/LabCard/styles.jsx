@@ -142,7 +142,7 @@ export default makeStyles((theme) => ({
     letterSpacing: '0',
     lineHeight: '16px',
     minHeight: '19px',
-    minWidth: '76px',
+    minWidth: '130px',
     textAlign: 'right',
     whiteSpace: 'nowrap',
     marginLeft: '0px',
@@ -151,7 +151,7 @@ export default makeStyles((theme) => ({
     letterSpacing: '0',
     lineHeight: '16px',
     minHeight: '19px',
-    paddingLeft: '3.5em',
+    paddingLeft: '2em',
     [theme.breakpoints.down('md')]: {
       paddingLeft: '1em',
     },
