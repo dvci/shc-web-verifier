@@ -108,6 +108,17 @@ const LabCard = () => {
 
         <Grid container item className={styles.gridRow} spacing={0}>
           <Grid item xs={3} sm={2} className={styles.gridLabel}>
+            <Typography>{t('healthcarddisplay.Lab Performer')}</Typography>
+          </Grid>
+          <Grid item xs={9} sm={10} className={styles.gridItem}>
+            {labResult.performer && labResult.performer.length > 0 && (
+              <Typography>{labResult.performer[0].display}</Typography>
+            )}
+          </Grid>
+        </Grid>
+
+        <Grid container item className={styles.gridRow} spacing={0}>
+          <Grid item xs={3} sm={2} className={styles.gridLabel}>
             <Typography>{t('healthcarddisplay.Test Result')}</Typography>
           </Grid>
           <Grid item xs={9} sm={10} className={styles.gridItem}>
@@ -117,27 +128,16 @@ const LabCard = () => {
           </Grid>
         </Grid>
 
-        <Grid container item className={styles.gridRow} spacing={0}>
-          <Grid item xs={3} sm={2} className={styles.gridLabel}>
-            <Typography>{t('healthcarddisplay.Reference Range')}</Typography>
-          </Grid>
-          <Grid item xs={9} sm={10} className={styles.gridItem}>
-            {labResult.referenceRange && labResult.referenceRange.length > 0 && (
+        {labResult.referenceRange && labResult.referenceRange.length > 0 && (
+          <Grid container item className={styles.gridRow} spacing={0}>
+            <Grid item xs={3} sm={2} className={styles.gridLabel}>
+              <Typography>{t('healthcarddisplay.Reference Range')}</Typography>
+            </Grid>
+            <Grid item xs={9} sm={10} className={styles.gridItem}>
               <Typography>{displayReferenceRange(labResult.referenceRange[0])}</Typography>
-            )}
+            </Grid>
           </Grid>
-        </Grid>
-
-        <Grid container item className={styles.gridRow} spacing={0}>
-          <Grid item xs={3} sm={2} className={styles.gridLabel}>
-            <Typography>{t('healthcarddisplay.Lab Performer')}</Typography>
-          </Grid>
-          <Grid item xs={9} sm={10} className={styles.gridItem}>
-            {labResult.performer && labResult.performer.length > 0 && (
-              <Typography>{labResult.performer[0].display}</Typography>
-            )}
-          </Grid>
-        </Grid>
+        )}
 
       </Grid>
     </Box>
