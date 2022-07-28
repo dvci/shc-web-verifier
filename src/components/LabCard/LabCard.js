@@ -30,11 +30,15 @@ const LabCard = () => {
     setShowDateOfBirth(!showDateOfBirth);
   };
 
-  const displayLabTestCode = (coding) => {
-    if (coding.system && coding.code) {
-      return getLabTestCodeDisplay(coding.system, coding.code) || `${coding.system}#${coding.code}`;
+  const displayLabTestCode = (code) => {
+    if (code?.coding && code?.coding.length >= 0) {
+      const coding = code.coding[0]
+      if (coding.system && coding.code) {
+        return getLabTestCodeDisplay(coding.system, coding.code) || `${coding.system}#${coding.code}`;
+      }
+      return coding.code || '';
     }
-    return coding.code || '';
+    return '';
   }
 
   const displayLabTestResult = (labResult) => {
@@ -85,7 +89,7 @@ const LabCard = () => {
           <Grid item xs={9} sm={10} className={styles.gridItem}>
             <Typography>
               <Box component="span" fontWeight="700">
-                {displayLabTestCode(labResult.code?.coding[0])}
+                {displayLabTestCode(labResult.code)}
               </Box>
             </Typography>
           </Grid>
