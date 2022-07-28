@@ -67,8 +67,8 @@ const LabCard = () => {
     const lowVal = referenceRange.low;
     const highVal = referenceRange.high;
     if (lowVal && highVal) return (`${lowVal.value} ${lowVal.unit || ''} - ${highVal.value} ${highVal.unit || ''}`);
-    if (lowVal) return (`$>= ${lowVal.value} ${lowVal.unit || ''}`);
-    if (highVal) return (`$<= ${highVal.value} ${highVal.unit || ''}`);
+    if (lowVal) return (`>= ${lowVal.value} ${lowVal.unit || ''}`);
+    if (highVal) return (`<= ${highVal.value} ${highVal.unit || ''}`);
     return '';
   }
 
