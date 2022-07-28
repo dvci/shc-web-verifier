@@ -73,7 +73,7 @@ const LabCard = () => {
   }
 
   const HealthCardLabResult = ({ labResult }) => (
-    <Box className={[styles.flexCol, styles.vaccinationRoot].join(' ')}>
+    <Box className={[styles.flexCol, styles.labRoot].join(' ')}>
       <Box className={styles.divider}>
         <Divider className={styles.line2} />
       </Box>
@@ -166,16 +166,16 @@ const LabCard = () => {
             </Box>
           </Box>
           <Divider className={styles.line} />
-          <Box className={[styles.flexCol, styles.vaccinationRecordBox].join(' ')}>
-            <Box className={styles.vaccinationRecordLabel}>
-              <Typography className={styles.vaccinationRecordLabelText}>
+          <Box className={[styles.flexCol, styles.labRecordBox].join(' ')}>
+            <Box className={styles.labRecordLabel}>
+              <Typography className={styles.labRecordLabelText}>
                 {t('healthcarddisplay.LAB RESULT RECORD')}
               </Typography>
             </Box>
-            <List className={styles.vaccinationRecordList}>
+            <List className={styles.labRecordList}>
               {patientData.labResults.map((item) => (
                 <div key={item.fullUrl}>
-                  <ListItem className={styles.vaccinationRecordListItem}>
+                  <ListItem className={styles.labRecordListItem}>
                     <HealthCardLabResult labResult={item.resource} />
                   </ListItem>
                 </div>
@@ -185,7 +185,7 @@ const LabCard = () => {
           <Grid item maxWidth="xs" xs={10.5} justifyContent="left" alignItems="flex-end">
             <Box display="flex" alignItems="center" justifyContent="left" flexDirection="row">
               {issuerVerified ? (
-                <Typography className={styles.covid19Vaccination}>{issuerDisplayName}</Typography>
+                <Typography className={styles.covid19lab}>{issuerDisplayName}</Typography>
               ) : (
                 <>
                   <img

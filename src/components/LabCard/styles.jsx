@@ -74,12 +74,12 @@ export default makeStyles((theme) => ({
     height: '19px',
     width: '100%',
   },
-  vaccinationRecordBox: {
+  labRecordBox: {
     alignItems: 'center',
     marginTop: '10px',
     minHeight: '230px',
   },
-  vaccinationRecordLabel: {
+  labRecordLabel: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -89,7 +89,7 @@ export default makeStyles((theme) => ({
     width: '100%',
     padding: '1px',
   },
-  vaccinationRecordLabelText: {
+  labRecordLabelText: {
     color: 'var(--mako)',
     fontSize: 'var(--font-size-l2)',
     fontWeight: '600',
@@ -97,14 +97,14 @@ export default makeStyles((theme) => ({
     minHeight: '19px',
     whiteSpace: 'nowrap',
   },
-  vaccinationRecordList: {
+  labRecordList: {
     width: '100%',
   },
-  vaccinationRecordListItem: {
+  labRecordListItem: {
     paddingLeft: '0px',
     paddingRight: '0px',
   },
-  vaccinationRoot: {
+  labRoot: {
     minHeight: '79px',
     width: '100%',
     marginLeft: '0px',
