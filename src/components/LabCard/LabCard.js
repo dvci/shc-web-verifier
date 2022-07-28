@@ -115,7 +115,7 @@ const LabCard = () => {
 
         <Grid container item className={styles.gridRow} spacing={0}>
           <Grid item xs={3} sm={2} className={styles.gridLabel}>
-            <Typography>{t('healthcarddisplay.Ref. Range')}</Typography>
+            <Typography>{t('healthcarddisplay.Reference Range')}</Typography>
           </Grid>
           <Grid item xs={9} sm={10} className={styles.gridItem}>
             {labResult.referenceRange && labResult.referenceRange.length > 0 && (

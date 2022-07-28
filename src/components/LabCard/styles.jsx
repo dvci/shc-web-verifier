@@ -151,7 +151,7 @@ export default makeStyles((theme) => ({
     letterSpacing: '0',
     lineHeight: '16px',
     minHeight: '19px',
-    paddingLeft: '2em',
+    paddingLeft: '3.5em',
     [theme.breakpoints.down('md')]: {
       paddingLeft: '1em',
     },
