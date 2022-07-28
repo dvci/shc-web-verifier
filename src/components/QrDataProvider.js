@@ -97,11 +97,8 @@ const reducer = (state, action) => {
         );
         newState.matchingDemographicData = matchingDemographicData;
 
-        // Skip validation if it is disabled in App.config.js
-        if (!config.ENABLE_VALIDATION) {
-          newState.validationStatus = null;
-        // Validation for lab results is not currently supported
-        } else if (types.includes('https://smarthealth.cards#laboratory')) {
+        // Skip validation if it is disabled in App.config.js, or if a lab card is being scanned.
+        if (!config.ENABLE_VALIDATION || types.includes('https://smarthealth.cards#laboratory')) {
           newState.validationStatus = null;
         } else {
           try {
