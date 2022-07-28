@@ -13,13 +13,13 @@ url = "https://api.clicky.com/api/stats/4?site_id=101369228&sitekey=6d6a506f44d4
 # ways to change this: add the file name as a param, return the json instead of assigning it
 # figure out where to store the clicky info in the repo and also how
 def getOldData():
-    with open("clickyJSON.json", "r") as read_file:
-        clickyData = json.load(read_file.read())  
-    # make dictionary - that's what load does, it takes json and makes it a dictionary
+    with open('ClickyJson.json') as json_file:
+        clickyData = json.dumps(json.load(json_file))
     return clickyData
 # get old data and combine it with the new data here, old data is a dictionary 
 # example might be like this: think about how I would save it first before thinking about
 # how to reload it
+
 
 
 '''
@@ -32,10 +32,12 @@ clickyData = {
 }
 '''
 
-
+#### this method gets the most recent weeks clicky data, you pass in the url ####
 # ways to change: make link param, return dict - check
 def getNewData(clickyUrl):
+    # this uses the url to get the data
     response = requests.get(clickyUrl)
+    # takes the request response and converts it to json and then a python dict
     dataDict = json.load(response.json)
     return dataDict
 ### this pulls in the new information from the clicky link
@@ -97,8 +99,8 @@ def plotData(allData):
 
 # save the info as json somewhere
 def saveJson(allData):
-    with open("clickyJSON", "w") as fp:
-        json.dump(clickyData, fp) 
+    with open('ClickyJson.json', 'w') as json_file:
+        json.dump(allData, json_file)
 
 
 def saveAll(allInfo):
