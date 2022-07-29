@@ -148,7 +148,9 @@ const LabCard = () => {
       <Card display="flex" className={styles.card}>
         <CardContent className={styles.cardContent}>
           <Box className={[styles.flexCol, styles.patientData].join(' ')}>
-            <Typography className={styles.nameLabel}>{t('healthcarddisplay.NAME')}</Typography>
+            <Typography className={styles.nameLabel}>
+              {t('healthcarddisplay.NAME')}
+            </Typography>
             <Typography className={styles.name}>{patientData.name}</Typography>
           </Box>
           <Box className={[styles.flexCol, styles.patientData].join(' ')}>
@@ -158,7 +160,7 @@ const LabCard = () => {
                 {patientData.dateOfBirth}
               </Typography>
               <Typography className={styles.dateOfBirth} hidden={showDateOfBirth}>
-                {'**/**/****'}
+                xxxx-xx-xx
               </Typography>
               <IconButton
                 className={styles.eyeOutline}
