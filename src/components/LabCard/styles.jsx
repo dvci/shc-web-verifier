@@ -14,7 +14,6 @@ export default makeStyles((theme) => ({
     boxShadow: '0px 4px 8px #00000080',
     width: '100%',
     minHeight: '480px',
-    minWidth: '586px',
     padding: '28px 34.5px;',
   },
   cardContent: {
