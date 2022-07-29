@@ -2,6 +2,11 @@ import requests
 import json
 import pandas as pd
 from datetime import date
+from matplotlib import pyplot
+from os.path import exists
+import matplotlib.pyplot as plt 
+ 
+
 
 # things to pass in/define outside:
     # the name of the old data file
@@ -10,15 +15,14 @@ from datetime import date
 
 url = "https://api.clicky.com/api/stats/4?site_id=101369228&sitekey=6d6a506f44d45a59&type=visitors-list&date=last-week&output=json"
 
-# ways to change this: add the file name as a param, return the json instead of assigning it
-# figure out where to store the clicky info in the repo and also how
+# successfully handles if there is no file existing
 def getOldData():
-    with open('ClickyJson.json') as json_file:
-        clickyData = json.dumps(json.load(json_file))
-    return clickyData
-# get old data and combine it with the new data here, old data is a dictionary 
-# example might be like this: think about how I would save it first before thinking about
-# how to reload it
+    if exists('ClickyJson.json'):
+        with open('ClickyJson.json') as json_file:
+            data = json.load(json_file)
+            print("This is the old data", data)
+        return data
+
 
 
 
@@ -28,22 +32,18 @@ clickyData = {
         'numTotalVisitors':[3,12,5],
         'numUniqueVisitors':[2,10,5],
     }
-    date = ['2022-7-3','2022-7-10','2022-7-17']
+    dates = ['2022-7-3','2022-7-10','2022-7-17']
 }
 '''
 
-#### this method gets the most recent weeks clicky data, you pass in the url ####
-# ways to change: make link param, return dict - check
+# still broken because of the SSL issue
 def getNewData(clickyUrl):
-    # this uses the url to get the data
     response = requests.get(clickyUrl)
-    # takes the request response and converts it to json and then a python dict
     dataDict = json.load(response.json)
     return dataDict
-### this pulls in the new information from the clicky link
 
 
-'''what it should look like right now: [
+'''what it should look like right now: 
   [
   {
     "type": "visitors-list",
@@ -62,35 +62,57 @@ def getNewData(clickyUrl):
 ]'''
 
 
-# things to change: pass in new and old data as params, return the new collection maybe?
+# this needs some work, it's a bit weird since I can't see how newData interacts with it
 def mergeData(newData, oldData):
     uniqueVisitors = []
-    newData[visitorData][numTotalVisitors].append(len(oldData[dates][items]))
+    # print(oldData.keys())
+    newData['visitorData']['numTotalVisitors'].append(len(oldData['dates']['items']))
     for item in oldData[dates][items]:
         if item not in uniqueVisitors:
-            uniqueVisitors.append(item)
-    newData[visitorData][numUniqueVisitors].append(len(uniqueVisitors))
-    newData[date].append(date.today())
+            'uniqueVisitors'.append(item)
+    newData["visitorData"]['numUniqueVisitors'].append(len('uniqueVisitors'))
+    newData['dates'].append(date.today())
     return newData # ?
 ### this calculates and adds the new information to the old information 
+
+# kind of just testing here with accessing the right parts of the dictionary 
+# steps: take new data and extract the info you need
+# add it to the old data 
+def newMerge(newData, oldData):
+    print(oldData["dates"])
+    print(newData["dates"])
 
 
 '''
 now new dict should look like this I think?:
 clickyData = {
-    visitorData = {
+    "visitorData": {
         'numTotalVisitors':[3,12,5,4],
         'numUniqueVisitors':[2,10,5,4],
-    }
-    date = ['2022-7-3','2022-7-10','2022-7-17','2022-7-24']
+    },
+    "dates": ['2022-7-3','2022-7-10','2022-7-17','2022-7-24']
 }
 '''
 
-
-# things to change: pass in visitorData and date
+# allData["visitorData"]['numTotalVisitors']  this does access the right numbers
+# this seems to work but I haven't saved it anywhere, check out that link you saw the other day
+# and see if that works
 def plotData(allData):
-    df = pd.DataFrame(allData[visitorData], index = allData[date])
-    lines = df.plot.line()
+    # Declaring the points for first line plot
+    X1 = allData['dates']
+    Y1 = allData["visitorData"]['numTotalVisitors']
+    fig = plt.figure(figsize=(10,5))
+    plt.plot(X1, Y1, label = "Total Visits") 
+    X2 = allData['dates']
+    Y2 = allData["visitorData"]['numUniqueVisitors']
+    plt.plot(X2, Y2, label = "Unique Visits") 
+    plt.xlabel('Date') 
+    plt.ylabel('Number of Visits') 
+    plt.title('SHC Verifier Use') 
+    plt.legend() 
+    fig.savefig('clickyGraph.jpg', bbox_inches='tight', dpi=150)
+    # remove after testing
+    plt.show() 
 
 
 
@@ -102,7 +124,7 @@ def saveJson(allData):
     with open('ClickyJson.json', 'w') as json_file:
         json.dump(allData, json_file)
 
-
+# call the saves all at once
 def saveAll(allInfo):
     plotData(allInfo)
     saveJson(allInfo)
