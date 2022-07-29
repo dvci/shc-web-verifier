@@ -46,7 +46,7 @@ testJson2 = {
 # need to make allowances for if a file doesn't exist, could work around it by making a file 
 # beforehand, if even just for testing purposes
 
-url = "https://api.clicky.com/api/stats/4?site_id=101369228&sitekey=6d6a506f44d45a59&type=visitors-list&date=last-week&output=json"
+url = "https://api.clicky.com/api/stats/4?site_id=101369228&sitekey=6d6a506f44d45a59&type=visitors-list&date=last-month&output=json"
 
 
 
@@ -55,12 +55,14 @@ url = "https://api.clicky.com/api/stats/4?site_id=101369228&sitekey=6d6a506f44d4
 
 # combinedData = mergeData(getNewData(url), getOldData())
 # saveAll(combinedData)
-# getNewData(url)
-getOldData()
-saveJson(testJson)
+#getNewData(url)
+# getOldData()
+combine = newMerge(getNewData(url), getOldData())
+print(combine)
+# saveJson(combine)
 # combinedJson = newMerge(testJson2, getOldData())
 # plotting is working but isn't saved yet
-plotData(testJson)
+# plotData(testJson)
 
 
 
@@ -75,3 +77,5 @@ ok things to do:
 - my plan: do nothing if the file doesn't exist and just use an empty template
     - save some json and work based on that result
 '''
+# something to consider: what to do if there are no entries at all? handle it so it is 0 for both I guess
+# need to check ip directly? yes because time could change so need to check ip specifically 
