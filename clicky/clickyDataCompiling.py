@@ -35,15 +35,6 @@ def getOldData():
 
 
 
-'''
-clickyData = {
-    visitorData = {
-        'numTotalVisitors':[3,12,5],
-        'numUniqueVisitors':[2,10,5],
-    }
-    dates = ['2022-7-3','2022-7-10','2022-7-17']
-}
-'''
 
 # still broken because of the SSL issue
 def getNewData(clickyUrl):
@@ -65,24 +56,11 @@ def getNewData(clickyUrl):
 '''
 
 
-# this needs some work, it's a bit weird since I can't see how newData interacts with it
-def mergeData(newData, oldData):
-    uniqueVisitors = []
-    # print(oldData.keys())
-    newData['visitorData']['numTotalVisitors'].append(len(oldData['dates']['items']))
-    for item in oldData[dates][items]:
-        if item not in uniqueVisitors:
-            'uniqueVisitors'.append(item)
-    newData["visitorData"]['numUniqueVisitors'].append(len('uniqueVisitors'))
-    newData['dates'].append(date.today())
-    print(newData)
-    return newData # ?
-### this calculates and adds the new information to the old information 
 
 # kind of just testing here with accessing the right parts of the dictionary 
 # steps: take new data and extract the info you need
 # add it to the old data 
-def newMerge(newData, oldData):
+def merge(newData, oldData):
     uniqueVisitors = []
     oldData["visitorData"]['numTotalVisitors'].append(len(newData))
     for i in newData:
@@ -90,7 +68,9 @@ def newMerge(newData, oldData):
         if ipAddress not in uniqueVisitors:
             uniqueVisitors.append(ipAddress)
     oldData["visitorData"]['numUniqueVisitors'].append(len(uniqueVisitors))
-    oldData["dates"].append(date.today())
+    t = date.today()
+    d = str(t.year) + '-' + str(t.month) + '-' + str(t.day)
+    oldData["dates"].append(d)
     return oldData       
 
 

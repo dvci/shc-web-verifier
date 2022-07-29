@@ -57,12 +57,12 @@ url = "https://api.clicky.com/api/stats/4?site_id=101369228&sitekey=6d6a506f44d4
 # saveAll(combinedData)
 #getNewData(url)
 # getOldData()
-combine = newMerge(getNewData(url), getOldData())
+combine = merge(getNewData(url), getOldData())
 print(combine)
-# saveJson(combine)
+saveJson(combine)
 # combinedJson = newMerge(testJson2, getOldData())
 # plotting is working but isn't saved yet
-# plotData(testJson)
+# plotData(combine)
 
 
 
