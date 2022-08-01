@@ -1,16 +1,16 @@
 from clickyDataCompiling import *
 
-print("made it in tester---------------------------------")
+print("made it in tester--------------------------------------------------------------------")
 
 
 
-url = "https://api.clicky.com/api/stats/4?site_id=101369228&sitekey=6d6a506f44d45a59&type=visitors-list&date=last-week&output=json"
-combine = merge(getNewData(url), getOldData())
-print(combine)
-saveJson(combine)
-plotData(combine)
+clickyUrl = "https://api.clicky.com/api/stats/4?site_id=101369228&sitekey=6d6a506f44d45a59&type=visitors-list&date=last-week&output=json"
+def main(url):
+    combinedData = merge(getNewData(url), getOldData())
+    print(combinedData)
+    saveAll(combinedData)
 
-
+main(clickyUrl)
 
 '''
 full list now:
@@ -19,8 +19,9 @@ full list now:
     done - merge the two
     done - save the result to json
     done - save the information as a graph
-    - make graph more legible
+    done - make graph more legible
     - fix SSL issue
-    - clean up
-    - recomment
+    done - clean up
+    done - recomment
 '''
+# if ClickyJson exists and is empty, throws an error: shouldn't run into it though
