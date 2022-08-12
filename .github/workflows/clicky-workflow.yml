@@ -11,5 +11,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      # something like that? will need to make changes though 
-        run: .github\clicky\scriptTester.py
+        run: .github\clicky\runClickyScript.py
