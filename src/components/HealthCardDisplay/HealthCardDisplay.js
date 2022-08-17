@@ -12,8 +12,9 @@ import checkIcon from 'assets/check-icon.png';
 import xIcon from 'assets/x-icon.png';
 import exclamationRedIcon from 'assets/exclamation-red-icon.png';
 import exclamationOrangeIcon from 'assets/exclamation-orange-icon.png';
-import VaccineCard from 'components/VaccineCard';
-import LabCard from 'components/LabCard';
+// import VaccineCard from 'components/VaccineCard';
+// import LabCard from 'components/LabCard';
+import HealthCard from 'components/HealthCard';
 import QrScanButton from 'components/QrScanButton';
 import { ErrorBoundary } from 'react-error-boundary';
 
@@ -328,16 +329,6 @@ const HealthCardDisplay = () => {
     );
   };
 
-  const Card = () => {
-    const { credentialType } = useHealthCardDataContext();
-    switch (credentialType) {
-      case 'laboratory':
-        return <LabCard />
-      default: // Currently defaults to 'immunization' case
-        return <VaccineCard />
-    }
-  }
-
   return (
     <Grid container className={styles.root}>
       {qrError ? (
@@ -366,7 +357,7 @@ const HealthCardDisplay = () => {
                     .map((hcJws) => (
                       <HealthCardDataProvider key={Math.random()} healthCardJws={hcJws}>
                         <Box m={2}>
-                          <Card padding="1rem" width="100%" />
+                          <HealthCard padding="1rem" width="100%" />
                         </Box>
                       </HealthCardDataProvider>
                     ))
