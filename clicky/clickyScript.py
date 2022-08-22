@@ -34,7 +34,7 @@ Returns: python list containing new data from the clicky url
 def getNewData(clickyUrl):
     # this is a bandaid solution for the SSL, requires further attention
     # would need the certificates to be in place and removal of "verify=False"
-    response = requests.get(clickyUrl, verify=False)
+    response = requests.get(clickyUrl)
     json = response.json()
     newDataList = json[0]['dates'][0]['items']
     return newDataList
