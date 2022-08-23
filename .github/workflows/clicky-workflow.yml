@@ -3,9 +3,8 @@ name: Clicky Download
 on:
   workflow dispatch:
   schedule:
-    -	cron: '0 0 * * 0' # run each Sunday
-    # Why does this also run on the first of each month? That may cause the graph to have innacurately scaled date intervals
-    -	cron: '*/5 * * * *' # run every 5 minutes
+    -	cron: '0 0 * * 0'
+    -	cron: '* * * * *'
 
 jobs:
   build:
