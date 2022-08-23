@@ -47,4 +47,4 @@ jobs:
           body: Workflow auto-generated PR
           branch: update-cdc-metadata
           branch-suffix: timestamp
-          reviewers: nkarip
+          reviewers: mickohanlon23
