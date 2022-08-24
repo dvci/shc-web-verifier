@@ -40,6 +40,7 @@ function processTradenames(xmlDoc) {
   const tn = {};
   while (prodInfo) {
     if (tn[prodInfo.children[5].textContent.trim()]) {
+      // if >1 tradename for a cvx, then use short description which should be same across all
       tn[prodInfo.children[5].textContent.trim()] = prodInfo.children[3].textContent;
     } else {
       tn[prodInfo.children[5].textContent.trim()] = prodInfo.children[1].textContent;
