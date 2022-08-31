@@ -64,6 +64,15 @@ const VaccineCard = () => {
     return tradenames[coding.code];
   };
 
+  const orderImmunizations = (immunizationsArray) => {
+    // sort immunizations in ascending order based on occurrence date
+    const sortedAsc = immunizationsArray.sort(
+      (imm1, imm2) => new Date(imm1.resource.occurrenceDateTime)
+       - new Date(imm2.resource.occurrenceDateTime),
+    );
+    return sortedAsc;
+  };
+
   const HealthCardVaccination = ({ immunization }) => (
     <Box className={[styles.flexCol, styles.vaccinationRoot].join(' ')}>
       <Box className={styles.divider}>
@@ -117,7 +126,7 @@ const VaccineCard = () => {
         </Typography>
       </Box>
       <List className={styles.vaccinationRecordList}>
-        {patientData.immunizations.map((item) => (
+        {orderImmunizations(patientData.immunizations).map((item) => (
           <div key={item.fullUrl}>
             <ListItem className={styles.vaccinationRecordListItem}>
               <HealthCardVaccination immunization={item.resource} />

@@ -80,7 +80,7 @@ const useStyles = makeStyles((theme) => ({
     position: 'absolute',
     width: '90%',
     height: '90%',
-    zIndex: '1',
+    zIndex: '-1',
     '& section': {
       position: 'unset !important',
       '& div': {
@@ -105,6 +105,35 @@ const QrScan = () => {
   const [cameraDeviceId, setCameraDeviceId] = useState('');
   const runningQrScanner = useRef(null);
   const scannedCodesRef = useRef([]);
+
+  // set background to transparent to allow image frame placement over video for iOS
+  document.body.style.background = 'transparent';
+  document.documentElement.style.background = 'transparent';
+
+  // workaround for refreshing video tag position on various user events in landscape mode (iOS)
+  // https://github.com/cordova-rtc/cordova-plugin-iosrtc/issues/478#issuecomment-600001710
+  let scanVideoTagTimer;
+  const scanVideoTagInterval = 100;
+
+  const scanVideoTag = () => {
+    clearTimeout(scanVideoTagTimer);
+    const shouldRefreshVideos = window.document.querySelectorAll('video').length > 0;
+    if (shouldRefreshVideos && window.cordova && window.cordova.platformId === 'ios') {
+      window.cordova.plugins.iosrtc.refreshVideos();
+    }
+    scanVideoTagTimer = setTimeout(scanVideoTag, scanVideoTagInterval);
+  }
+
+  if (window.cordova && window.cordova.platformId === 'ios') {
+    // Start scanVideoTag
+    scanVideoTagTimer = setTimeout(scanVideoTag, scanVideoTagInterval);
+
+    window.onorientationchange = scanVideoTag;
+    window.addEventListener('touchstart', scanVideoTag);
+    window.addEventListener('click', scanVideoTag);
+    window.addEventListener('touchmove', scanVideoTag);
+    window.addEventListener('touchend', scanVideoTag);
+  }
 
   const handleError = useCallback(() => {
     history.push('/display-results');
