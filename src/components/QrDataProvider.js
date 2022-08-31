@@ -48,50 +48,61 @@ const reducer = (state, action) => {
       } else newState.jws = null;
 
       if (newState.jws) {
-        if (!config.ENABLE_VALIDATION) {
+        const combinedQRResources = [];
+        let types = [];
+        // store names and birth dates from patient resources for comparison
+        const demographicData = [];
+
+        newState.jws.forEach((jws) => {
+          const payload = getPayload(jws);
+          const patientBundle = JSON.parse(payload).vc.credentialSubject.fhirBundle;
+          const patientResource = patientBundle.entry.find((e) => e.resource.resourceType === 'Patient');
+
+          const patientDemographicData = {
+            // store first given name that appears in array
+            givenName: patientResource.resource.name[0].given?.join(' '),
+            familyName: patientResource.resource.name[0].family,
+            birthDate: patientResource.resource.birthDate,
+            text: patientResource.resource.name[0].text
+          };
+
+          demographicData.push(patientDemographicData);
+
+          // use one patient bundle for validation
+          const existingPatientResource = combinedQRResources.find((e) => e.resource.resourceType === 'Patient');
+          patientBundle.entry.forEach((e) => {
+            if (
+              (e.resource.resourceType === 'Patient' && !existingPatientResource)
+              || e.resource.resourceType !== 'Patient'
+            ) {
+              e.fullUrl = `resource:${combinedQRResources.length}`;
+              combinedQRResources.push(e);
+            }
+          });
+          types = [...types, ...JSON.parse(payload).vc.type];
+        });
+        types = [...new Set(types)];
+        const combinedPatientBundle = {
+          type: 'collection',
+          resourceType: 'Bundle',
+          entry: filterDuplicateImmunizations(combinedQRResources)
+        };
+
+        // check that text strings match across all cards if given/family names are not provided
+        const matchingDemographicData = demographicData.every(
+          (card) => ((card.givenName === demographicData[0].givenName
+            && card.familyName === demographicData[0].familyName)
+            || (card.text === demographicData[0].text))
+            && card.birthDate === demographicData[0].birthDate
+        );
+        newState.matchingDemographicData = matchingDemographicData;
+
+        // Skip validation if it is disabled in App.config.js, or if a lab card is being scanned.
+        if (!config.ENABLE_VALIDATION || types.includes('https://smarthealth.cards#laboratory')) {
           newState.validationStatus = null;
         } else {
-          // Validate vaccine series
           try {
-            const combinedQRResources = [];
-            let types = [];
-            // store names and birth dates from patient resources for comparison
-            const demographicData = [];
-
-            newState.jws.forEach((jws) => {
-              const payload = getPayload(jws);
-              const patientBundle = JSON.parse(payload).vc.credentialSubject.fhirBundle;
-              const patientResource = patientBundle.entry.find((e) => e.resource.resourceType === 'Patient');
-
-              const patientDemographicData = {
-                // store first given name that appears in array
-                givenName: patientResource.resource.name[0].given?.join(' '),
-                familyName: patientResource.resource.name[0].family,
-                birthDate: patientResource.resource.birthDate,
-                text: patientResource.resource.name[0].text
-              };
-
-              demographicData.push(patientDemographicData);
-
-              // use one patient bundle for validation
-              const existingPatientResource = combinedQRResources.find((e) => e.resource.resourceType === 'Patient');
-              patientBundle.entry.forEach((e) => {
-                if (
-                  (e.resource.resourceType === 'Patient' && !existingPatientResource)
-                  || e.resource.resourceType !== 'Patient'
-                ) {
-                  e.fullUrl = `resource:${combinedQRResources.length}`;
-                  combinedQRResources.push(e);
-                }
-              });
-              types = [...types, ...JSON.parse(payload).vc.type];
-            });
-            types = [...new Set(types)];
-            const combinedPatientBundle = {
-              type: 'collection',
-              resourceType: 'Bundle',
-              entry: filterDuplicateImmunizations(combinedQRResources)
-            };
+            // Validate vaccine series
             const results = Validator.execute(combinedPatientBundle, types);
 
             newState.validationStatus = {
@@ -99,16 +110,6 @@ const reducer = (state, action) => {
                 ? results.some((series) => series.validPrimarySeries) : null,
               error: null
             };
-
-            // check that text strings match across all cards if given/family names are not provided
-            const matchingDemographicData = demographicData.every(
-              (card) => ((card.givenName === demographicData[0].givenName
-                && card.familyName === demographicData[0].familyName)
-                || (card.text === demographicData[0].text))
-                && card.birthDate === demographicData[0].birthDate
-            );
-
-            newState.matchingDemographicData = matchingDemographicData;
           } catch {
             newState.validationStatus = {
               validPrimarySeries: false,

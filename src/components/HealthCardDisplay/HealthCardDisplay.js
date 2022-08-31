@@ -13,6 +13,8 @@ import xIcon from 'assets/x-icon.png';
 import exclamationRedIcon from 'assets/exclamation-red-icon.png';
 import exclamationOrangeIcon from 'assets/exclamation-orange-icon.png';
 import VaccineCard from 'components/VaccineCard';
+import LabCard from 'components/LabCard';
+import HealthCard from 'components/HealthCard';
 import QrScanButton from 'components/QrScanButton';
 import { ErrorBoundary } from 'react-error-boundary';
 
@@ -165,7 +167,7 @@ const HealthCardDisplay = () => {
         userErrorText = 'Only valid SMART Health Card QR codes are currently supported. Please contact the issuer of your Health Card for assistance.';
         break;
       case 'UNSUPPORTED_HEALTH_CARD':
-        userErrorText = 'Only SMART Health Cards containing immunizations are currently supported.';
+        userErrorText = 'Only SMART Health Cards containing immunizations or lab results are currently supported.';
         break;
       case 'SCAN_CAMERA_UNAVAILABLE':
         userErrorText = 'Camera permission is restricted or was not granted. Please check your application settings to allow camera access.';
@@ -327,6 +329,16 @@ const HealthCardDisplay = () => {
     );
   };
 
+  const HealthCardContents = () => {
+    const { credentialType } = useHealthCardDataContext();
+    switch (credentialType) {
+      case 'laboratory':
+        return <LabCard />
+      default: // Currently defaults to 'immunization' case
+        return <VaccineCard />
+    }
+  }
+
   return (
     <Grid container className={styles.root}>
       {qrError ? (
@@ -355,7 +367,9 @@ const HealthCardDisplay = () => {
                     .map((hcJws) => (
                       <HealthCardDataProvider key={Math.random()} healthCardJws={hcJws}>
                         <Box m={2}>
-                          <VaccineCard padding="1rem" width="100%" />
+                          <HealthCard padding="1rem" width="100%">
+                            {HealthCardContents}
+                          </HealthCard>
                         </Box>
                       </HealthCardDataProvider>
                     ))

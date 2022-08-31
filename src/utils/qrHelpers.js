@@ -48,8 +48,12 @@ const extractPatientName = (patient) => {
 
 const extractImmunizations = (bundle) => {
   const immunizationResources = bundle.entry.filter((entry) => entry.resource.resourceType === 'Immunization');
-
   return immunizationResources;
+};
+
+const extractObservations = (bundle) => {
+  const observationResources = bundle.entry.filter((entry) => entry.resource.resourceType === 'Observation');
+  return observationResources;
 };
 
 const filterDuplicateImmunizations = (resources) => {
@@ -76,7 +80,10 @@ const extractPatientData = (card) => {
   const name = extractPatientName(patient);
   const dateOfBirth = patient.birthDate;
   const immunizations = extractImmunizations(bundle);
-  return { name, dateOfBirth, immunizations };
+  const labResults = extractObservations(bundle);
+  return {
+    name, dateOfBirth, immunizations, labResults
+  };
 };
 
 const getPatientData = (jws) => {
@@ -114,6 +121,7 @@ const getCredential = (jws) => {
 export {
   parseHealthCardQr,
   extractImmunizations,
+  extractObservations,
   extractPatientData,
   extractPatientName,
   getIssuer,

@@ -5,6 +5,7 @@ import { act } from 'react-dom/test-utils';
 import ThemeProvider from 'components/ThemeProvider';
 import { HealthCardDataContext } from 'components/HealthCardDataProvider';
 import * as qrHelpers from 'utils/qrHelpers';
+import HealthCard from '../HealthCard/HealthCard';
 import VaccineCard from './VaccineCard';
 import '../../i18nTest';
 
@@ -132,10 +133,13 @@ const renderHealthCardDisplay = () => {
           healthCardSupported: { status: true, error: null },
           healthCardVerified: { verified: false, error: null },
           issuerVerified: false,
-          issuerDisplayName: null
+          issuerDisplayName: null,
+          credentialType: 'immunization'
         }}
       >
-        <VaccineCard />
+        <HealthCard>
+          {VaccineCard}
+        </HealthCard>
       </HealthCardDataContext.Provider>
     </ThemeProvider>
   );
