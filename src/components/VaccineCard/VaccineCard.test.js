@@ -6,6 +6,7 @@ import ThemeProvider from 'components/ThemeProvider';
 import { HealthCardDataContext } from 'components/HealthCardDataProvider';
 import * as qrHelpers from 'utils/qrHelpers';
 import HealthCard from '../HealthCard/HealthCard';
+import VaccineCard from './VaccineCard';
 import '../../i18nTest';
 
 const patientData = {
@@ -136,7 +137,9 @@ const renderHealthCardDisplay = () => {
           credentialType: 'immunization'
         }}
       >
-        <HealthCard />
+        <HealthCard>
+          {VaccineCard}
+        </HealthCard>
       </HealthCardDataContext.Provider>
     </ThemeProvider>
   );

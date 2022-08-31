@@ -4,7 +4,8 @@ import { act } from 'react-dom/test-utils';
 import ThemeProvider from 'components/ThemeProvider';
 import { HealthCardDataContext } from 'components/HealthCardDataProvider';
 import * as qrHelpers from 'utils/qrHelpers';
-import HealthCard from '../HealthCard/HealthCard'
+import HealthCard from '../HealthCard/HealthCard';
+import LabCard from './LabCard';
 import '../../i18nTest';
 
 const exampleLab = {
@@ -140,7 +141,9 @@ const renderHealthCardDisplay = (patient) => {
           credentialType: 'laboratory'
         }}
       >
-        <HealthCard />
+        <HealthCard>
+          {LabCard}
+        </HealthCard>
       </HealthCardDataContext.Provider>
     </ThemeProvider>
   );

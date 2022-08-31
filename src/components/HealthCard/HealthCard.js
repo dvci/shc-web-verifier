@@ -7,11 +7,10 @@ import { useHealthCardDataContext } from 'components/HealthCardDataProvider';
 import { getPatientData } from 'utils/qrHelpers';
 import { useTranslation } from 'react-i18next';
 import xIcon from 'assets/x-icon.png';
-import VaccineCard from 'components/VaccineCard';
-import LabCard from 'components/LabCard';
 import useStyles from './styles';
 
-const HealthCard = () => {
+const HealthCard = ({ children }) => {
+  const HealthCardContents = children;
   const styles = useStyles();
   const { t } = useTranslation();
   const { jws, issuerVerified, issuerDisplayName } = useHealthCardDataContext();
@@ -30,16 +29,6 @@ const HealthCard = () => {
   const toggleShowDateOfBirth = () => {
     setShowDateOfBirth(!showDateOfBirth);
   };
-
-  const HealthCardContents = () => {
-    const { credentialType } = useHealthCardDataContext();
-    switch (credentialType) {
-      case 'laboratory':
-        return <LabCard />
-      default: // Currently defaults to 'immunization' case
-        return <VaccineCard />
-    }
-  }
 
   return (
     <Box display="flex" className={styles.healthCard}>
