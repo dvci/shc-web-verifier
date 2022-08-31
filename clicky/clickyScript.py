@@ -1,3 +1,4 @@
+# Unused?
 import requests
 import json
 from datetime import date
@@ -32,11 +33,11 @@ Retrieves the new visitor data from the Clicky url.
 Returns: python list containing new data from the clicky url
 '''
 def getNewData(clickyUrl):
-    # this is a bandaid solution for the SSL, requires further attention
-    # would need the certificates to be in place and removal of "verify=False"
-    response = requests.get(clickyUrl)
+    # Add a try/catch to throw a user friendly error if there is an error connecting to the Clicky network
+    response = requests.get(clickyUrl, verify=False)
     json = response.json()
     newDataList = json[0]['dates'][0]['items']
+    # print(newDataList)
     return newDataList
 
 '''
@@ -49,10 +50,17 @@ Returns: the merged data
 '''
 def merge(newData, oldData):
     numUniqueVisits = []
+    # I think we might want to store the unique IP address somehwere in the stored clickyData.json. I don't think we necesarilly care how many unique visitors
+    # visit within each week's span, but rather how many new visitors visit each week. Otherwise put, comparing each newData entry to the entire list of ipAddresses
+    # that have every visited the site versus just the new week's IP Addresses.
+
+    # Note would also require changing the label in the plotData() function to something like "New Visits"
     oldData["visitData"]['numTotalVisits'].append(len(newData))
     for i in newData:
         ipAddress = i["ip_address"]
+
         if ipAddress not in numUniqueVisits:
+            print(ipAddress)
             numUniqueVisits.append(ipAddress)
     oldData["visitData"]['numUniqueVisits'].append(len(numUniqueVisits))
     t = date.today()
@@ -78,13 +86,13 @@ def plotData(allData):
     plt.title('SHC Verifier Use') 
     plt.legend() 
     plt.grid()
-    fig.savefig('clickyGraph.jpg', bbox_inches='tight', dpi=150)
+    fig.savefig('clickyGraph.jpg', bbox_inches='tight', dpi=150) # Same with exact file path comment below
 
 '''
 Saves the data to a json file.
 '''
 def saveJson(allData):
-    with open('clickyData.json', 'w') as json_file:
+    with open('clickyData.json', 'w') as json_file: #This may need to be a more specific filepath. If this is being run from the .github/workflows folder, I believe the file will be created there (check this)
         json.dump(allData, json_file, indent=4)
 
 '''
