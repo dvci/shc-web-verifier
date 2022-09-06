@@ -26,7 +26,7 @@ jobs:
         name: "Run clicky script"
         working-directory: "clicky"
         run: |
-            python clickyScript.py
+            python runClickyScript.py
       - 
         name: Check dirty files
         id: check

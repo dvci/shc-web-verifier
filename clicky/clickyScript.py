@@ -21,7 +21,8 @@ def getOldData():
         oldDataDict = { 
             'visitData': {
                 'numTotalVisits':[],
-                'numUniqueVisits':[],
+                'numNewVisitors':[],
+                'ipAddress':[]
             },
             'dates': []}
     return oldDataDict
@@ -32,9 +33,13 @@ Retrieves the new visitor data from the Clicky url.
 Returns: python list containing new data from the clicky url
 '''
 def getNewData(clickyUrl):
-    # this is a bandaid solution for the SSL, requires further attention
-    # would need the certificates to be in place and removal of "verify=False"
-    response = requests.get(clickyUrl)
+    try:
+        # allow Timeout exception to be raised if server has not issued
+        # a response in 100 seconds
+        response = requests.get(clickyUrl, timeout = 100)
+    # catch the base-class exception for requests
+    except requests.exceptions.RequestException as e:
+        raise SystemExit(e)
     json = response.json()
     newDataList = json[0]['dates'][0]['items']
     return newDataList
@@ -48,16 +53,17 @@ the dates of the new visits.
 Returns: the merged data
 '''
 def merge(newData, oldData):
-    numUniqueVisits = []
-    oldData["visitData"]['numTotalVisits'].append(len(newData))
+    newVisitors = 0
+    oldData['visitData']['numTotalVisits'].append(len(newData))
     for i in newData:
-        ipAddress = i["ip_address"]
-        if ipAddress not in numUniqueVisits:
-            numUniqueVisits.append(ipAddress)
-    oldData["visitData"]['numUniqueVisits'].append(len(numUniqueVisits))
+        ipAddress = i['ip_address']
+        if ipAddress not in oldData['visitData']['ipAddress']:
+            newVisitors += 1
+            oldData['visitData']['ipAddress'].append(ipAddress)
+    oldData['visitData']['numNewVisitors'].append(newVisitors)
     t = date.today()
     d = str(t.year) + '-' + str(t.month) + '-' + str(t.day)
-    oldData["dates"].append(d)
+    oldData['dates'].append(d)
     return oldData       
 
 '''
@@ -70,8 +76,8 @@ def plotData(allData):
     plt.plot(X1, Y1, 'o-', label = 'Total Visits') 
 
     X2 = allData['dates']
-    Y2 = allData['visitData']['numUniqueVisits']
-    plt.plot(X2, Y2, 'o-', label = 'Unique Visits') 
+    Y2 = allData['visitData']['numNewVisitors']
+    plt.plot(X2, Y2, 'o-', label = 'New Visitors') 
     
     plt.xlabel('Date') 
     plt.ylabel('Number of Visits') 
