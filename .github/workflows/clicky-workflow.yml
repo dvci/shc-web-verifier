@@ -28,15 +28,6 @@ jobs:
         run: |
             python runClickyScript.py
       - 
-        name: Check dirty files
-        id: check
-        run: |
-          if git diff --exit-code; then
-            echo "::set-output name=diff::false"
-          else
-            echo "::set-output name=diff::true"
-          fi
-      - 
         name: "Push changes"
         run: |-
             git config user.name github-actions
