@@ -37,11 +37,11 @@ def getNewData(clickyUrl):
         # allow Timeout exception to be raised if server has not issued
         # a response in 100 seconds
         response = requests.get(clickyUrl, timeout = 100)
+        json = response.json()
+        newDataList = json[0]['dates'][0]['items']
     # catch the base-class exception for requests
     except requests.exceptions.RequestException as e:
         raise SystemExit(e)
-    json = response.json()
-    newDataList = json[0]['dates'][0]['items']
     return newDataList
 
 '''
@@ -73,15 +73,15 @@ def plotData(allData):
     X1 = allData['dates']
     Y1 = allData['visitData']['numTotalVisits']
     fig = plt.figure(figsize=(10,5))
-    plt.plot(X1, Y1, 'o-', label = 'Total Visits') 
+    plt.plot(X1, Y1, 'o-', label = 'Total Weekly Visits') 
 
     X2 = allData['dates']
     Y2 = allData['visitData']['numNewVisitors']
     plt.plot(X2, Y2, 'o-', label = 'New Visitors') 
     
     plt.xlabel('Date') 
-    plt.ylabel('Number of Visits') 
-    plt.title('SHC Verifier Use') 
+    plt.ylabel('Number of Weekly Visits') 
+    plt.title('Weekly SHC Verifier Use') 
     plt.legend() 
     plt.grid()
     fig.savefig('clickyGraph.jpg', bbox_inches='tight', dpi=150)
