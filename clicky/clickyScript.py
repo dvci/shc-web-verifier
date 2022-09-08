@@ -41,6 +41,10 @@ def getNewData(clickyUrl):
         newDataList = json[0]['dates'][0]['items']
     # catch the base-class exception for requests
     except requests.exceptions.RequestException as e:
+        print('Unable to access Clicky server.')
+        raise SystemExit(e)
+    except Exception as e:
+        print('Unexpected response from Clicky server. Unable to process site visit data.')
         raise SystemExit(e)
     return newDataList
 
