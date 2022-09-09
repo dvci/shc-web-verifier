@@ -149,9 +149,9 @@
 <CVXInfo><ShortDescription>COVID-19 vaccine, vector-nr, rS-ChAdOx1, PF, 0.5 mL </ShortDescription>
 <FullVaccinename>SARS-COV-2 (COVID-19) vaccine, vector non-replicating, recombinant spike protein-ChAdOx1, preservative free, 0.5 mL </FullVaccinename>
 <CVXCode>210       </CVXCode>
-<Notes>Potential FDA EUA, 2-dose vaccine. AstraZeneca vaccine is authorized by the WHO and recognized towards immunity in the US. Non-US WHO authorized tradenames/identifiers include VAXZEVRIA, AZD1222, ChAdOx1 nCoV-19, COVISHIELD</Notes>
+<Notes>Submission for FDA EUA withdrawn, 2-dose vaccine. AstraZeneca vaccine is authorized by the WHO and recognized towards immunity in the US. Non-US WHO authorized tradenames/identifiers include VAXZEVRIA, AZD1222, ChAdOx1 nCoV-19, COVISHIELD</Notes>
 <Status>Non-US</Status>
-<LastUpdated>9/8/2021</LastUpdated>
+<LastUpdated>9/6/2022</LastUpdated>
 </CVXInfo>
 <CVXInfo><ShortDescription>COVID-19 VVnr Non-US Vaccine (CanSino Biological Inc./Beijing Institute of Biotechnology)</ShortDescription>
 <FullVaccinename>SARS-COV-2 COVID-19 Viral Vector Non-replicating Non-US Vaccine Product (CanSino Biological Inc./Beijing Institute of Biotechnology)</FullVaccinename>
@@ -191,72 +191,72 @@
 <CVXInfo><ShortDescription>COVID-19, mRNA, LNP-S, bivalent booster, PF, 10 mcg/0.2 mL dose</ShortDescription>
 <FullVaccinename>SARS-COV-2 (COVID-19) vaccine, mRNA, spike protein, LNP, bivalent booster, preservative free, 10 mcg/0.2 mL dose, tris-sucrose formulation</FullVaccinename>
 <CVXCode>301       </CVXCode>
-<Notes>Pre-EUA Pfizer bivalent booster, ages 5-11 yrs, original strain + omicron BA.4/BA.5</Notes>
+<Notes>Pre-EUA (5 yrs through 11 yrs) Pfizer bivalent booster, original strain + omicron BA.4/BA.5</Notes>
 <Status>Active</Status>
-<LastUpdated>8/17/2022</LastUpdated>
+<LastUpdated>9/6/2022</LastUpdated>
 </CVXInfo>
 <CVXInfo><ShortDescription>COVID-19, mRNA, LNP-S, bivalent booster, PF, 30 mcg/0.3 mL dose</ShortDescription>
 <FullVaccinename>SARS-COV-2 (COVID-19) vaccine, mRNA, spike protein, LNP, bivalent booster, preservative free, 30 mcg/0.3 mL dose, tris-sucrose formulation</FullVaccinename>
 <CVXCode>300       </CVXCode>
-<Notes>Pre-EUA Pfizer bivalent booster, ages adult 12+, original strain + omicron BA.4/BA.5</Notes>
+<Notes>FDA EUA 08/31/2022 (12+ yrs) Pfizer adult bivalent booster, original strain + omicron BA.4/BA.5</Notes>
 <Status>Active</Status>
-<LastUpdated>8/17/2022</LastUpdated>
+<LastUpdated>9/6/2022</LastUpdated>
 </CVXInfo>
 <CVXInfo><ShortDescription>COVID-19, mRNA, LNP-S, bivalent booster, PF, 50 mcg/0.5 mL or 25mcg/0.25 mL dose</ShortDescription>
 <FullVaccinename>SARS-COV-2 (COVID-19) vaccine, mRNA, spike protein, LNP, bivalent booster, preservative free, 50 mcg/0.5 mL or 25 mcg/0.25 mL dose</FullVaccinename>
 <CVXCode>229       </CVXCode>
-<Notes>Pre-EUA Moderna bivalent booster, ages 6yr+ as authorized, original strain + omicron BA.4/BA.5</Notes>
+<Notes>FDA EUA 8/31/2022 (18+ yrs) Moderna bivalent booster, EUA pending for ages 6 yrs through 11 yrs, original strain + omicron BA.4/BA.5</Notes>
 <Status>Active</Status>
-<LastUpdated>8/17/2022</LastUpdated>
+<LastUpdated>9/7/2022</LastUpdated>
 </CVXInfo>
 <CVXInfo><ShortDescription>COVID-19, mRNA, LNP-S, PF, 10 mcg/0.2 mL dose, tris-sucrose</ShortDescription>
 <FullVaccinename>SARS-COV-2 (COVID-19) vaccine, mRNA, spike protein, LNP, preservative free, 10 mcg/0.2mL dose, tris-sucrose formulation</FullVaccinename>
 <CVXCode>218       </CVXCode>
-<Notes>FDA EUA 01/03/2022, Pfizer tris-sucrose vaccine for 5 through 11 years of age</Notes>
+<Notes>FDA EUA (5 yrs through 11 yrs), Pfizer tris-sucrose pediatric primary series, IC, and booster </Notes>
 <Status>Active</Status>
-<LastUpdated>3/29/2022</LastUpdated>
+<LastUpdated>9/6/2022</LastUpdated>
 </CVXInfo>
 <CVXInfo><ShortDescription>COVID-19, mRNA, LNP-S, PF, 100 mcg/0.5mL dose or 50 mcg/0.25mL dose</ShortDescription>
 <FullVaccinename>SARS-COV-2 (COVID-19) vaccine, mRNA, spike protein, LNP, preservative free, 100 mcg/0.5mL dose or 50 mcg/0.25mL dose</FullVaccinename>
 <CVXCode>207       </CVXCode>
-<Notes>FDA EUA and BLA, 2-dose vaccine.  Used to record Moderna vaccines administered in the US and in non-US locations (includes tradename Spikevax)</Notes>
+<Notes>FDA EUA and BLA (18+ yrs), Moderna adult primary series and IC dose. EUA 8/31/2022 rescinded monovalent booster dose. Used to record Moderna vaccines administered in the US and in non-US locations (includes tradename Spikevax)</Notes>
 <Status>Active</Status>
-<LastUpdated>5/18/2022</LastUpdated>
+<LastUpdated>9/7/2022</LastUpdated>
 </CVXInfo>
 <CVXInfo><ShortDescription>COVID-19, mRNA, LNP-S, PF, 3 mcg/0.2 mL dose, tris-sucrose</ShortDescription>
 <FullVaccinename>SARS-COV-2 (COVID-19) vaccine, mRNA, spike protein, LNP, preservative free, 3 mcg/0.2mL dose, tris-sucrose formulation</FullVaccinename>
 <CVXCode>219       </CVXCode>
-<Notes>Potential FDA EUA, Pfizer tris-sucrose vaccine for 6 mo through 4 years of age</Notes>
+<Notes>FDA EUA (6 mo through 4 yrs), Pfizer tris-sucrose pediatric primary series </Notes>
 <Status>Active</Status>
-<LastUpdated>2/10/2022</LastUpdated>
+<LastUpdated>9/6/2022</LastUpdated>
 </CVXInfo>
 <CVXInfo><ShortDescription>COVID-19, mRNA, LNP-S, PF, 30 mcg/0.3 mL dose</ShortDescription>
 <FullVaccinename>SARS-COV-2 (COVID-19) vaccine, mRNA, spike protein, LNP, preservative free, 30 mcg/0.3mL dose</FullVaccinename>
 <CVXCode>208       </CVXCode>
-<Notes>FDA BLA 08/23/2021 for Pfizer adult dose (16+ years). Still under EUA for adolescent doses and presentations. EUA 12/11/2020, 2-dose vaccine. Used to record Pfizer vaccines administered in the US and in non-US locations (includes tradename Comirnaty)</Notes>
+<Notes>FDA EUA (12+ yrs) and BLA (16+ yrs), Pfizer adult primary series and IC dose original formulation. EUA 8/31/2022 rescinded monovalent booster dose. Used to record Pfizer vaccines administered in the US and in non-US locations (includes tradename Comirnaty)</Notes>
 <Status>Active</Status>
-<LastUpdated>5/18/2022</LastUpdated>
+<LastUpdated>9/7/2022</LastUpdated>
 </CVXInfo>
 <CVXInfo><ShortDescription>COVID-19, mRNA, LNP-S, PF, 30 mcg/0.3 mL dose, tris-sucrose</ShortDescription>
 <FullVaccinename>SARS-COV-2 (COVID-19) vaccine, mRNA, spike protein, LNP, preservative free, 30 mcg/0.3mL dose, tris-sucrose formulation</FullVaccinename>
 <CVXCode>217       </CVXCode>
-<Notes>EUA 12+ yrs, BLA 16+ yrs Pfizer tris-sucrose formulation vaccine for ages 12 and older</Notes>
+<Notes>FDA EUA (12+ yrs) and BLA (16+ yrs), Pfizer adult primary series and IC dose tris-sucrose formulation. EUA 8/31/2022 rescinded monovalent booster dose</Notes>
 <Status>Active</Status>
-<LastUpdated>2/14/2022</LastUpdated>
+<LastUpdated>9/6/2022</LastUpdated>
 </CVXInfo>
 <CVXInfo><ShortDescription>COVID-19, mRNA, LNP-S, PF, 50 mcg/0.5 mL dose</ShortDescription>
 <FullVaccinename>SARS-COV-2 (COVID-19) vaccine, mRNA, spike protein, LNP, preservative free, 50 mcg/0.5 mL dose</FullVaccinename>
 <CVXCode>221       </CVXCode>
-<Notes>FDA EUA Moderna 2.5mL use for both adult booster dose +  Peds 6yr to &lt;12 Primary Series</Notes>
+<Notes>FDA EUA Moderna, EUA 8/31/2022 rescinded use of this product for adult monovalent booster dose.  Vaccine now only authorized for 6 yrs through 11 primary series and IC doses</Notes>
 <Status>Active</Status>
-<LastUpdated>6/15/2022</LastUpdated>
+<LastUpdated>9/7/2022</LastUpdated>
 </CVXInfo>
 <CVXInfo><ShortDescription>COVID-19, mRNA, LNP-S, PF, pediatric 25 mcg/0.25 mL dose</ShortDescription>
 <FullVaccinename>SARS-COV-2 (COVID-19) vaccine, mRNA, spike protein, LNP, preservative free, pediatric 25 mcg/0.25 mL dose</FullVaccinename>
 <CVXCode>228       </CVXCode>
-<Notes>Pre-EUA Moderna Pediatric 6mo to&lt;6yr 2.5 mL vial, 25 mcg/0.25 mL dose</Notes>
+<Notes>FDA EUA Authorized (6 mo through 5 yrs), Moderna pediatric primary series and IC dose</Notes>
 <Status>Active</Status>
-<LastUpdated>4/12/2022</LastUpdated>
+<LastUpdated>9/6/2022</LastUpdated>
 </CVXInfo>
 <CVXInfo><ShortDescription>COVID-19, mRNA, LNP-S, PF, pediatric 50 mcg/0.5 mL dose</ShortDescription>
 <FullVaccinename>SARS-COV-2 (COVID-19) vaccine, mRNA, spike protein, LNP, preservative free, pediatric 50 mcg/0.5 mL dose</FullVaccinename>
@@ -268,9 +268,9 @@
 <CVXInfo><ShortDescription>COVID-19, subunit, rS-nanoparticle+Matrix-M1 Adjuvant, PF, 0.5 mL</ShortDescription>
 <FullVaccinename>SARS-COV-2 (COVID-19) vaccine, subunit, recombinant spike protein-nanoparticle+Matrix-M1 Adjuvant, preservative free, 0.5mL dose</FullVaccinename>
 <CVXCode>211       </CVXCode>
-<Notes>EUA Authorized - Novavax Primary Series adult dose</Notes>
+<Notes>FDA EUA Authorized, Novavax primary series adult dose</Notes>
 <Status>Active</Status>
-<LastUpdated>8/10/2022</LastUpdated>
+<LastUpdated>9/6/2022</LastUpdated>
 </CVXInfo>
 <CVXInfo><ShortDescription>dengue fever</ShortDescription>
 <FullVaccinename>dengue fever vaccine</FullVaccinename>
