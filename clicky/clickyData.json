@@ -1,0 +1,18 @@
+{
+    "visitData": {
+        "numTotalVisits": [
+            5
+        ],
+        "numNewVisitors": [
+            3
+        ],
+        "ipAddress": [
+            "100.10.14.0",
+            "192.160.51.0",
+            "71.179.90.0"
+        ]
+    },
+    "dates": [
+        "2022-9-22"
+    ]
+}
