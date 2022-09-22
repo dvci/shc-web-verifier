@@ -28,10 +28,13 @@ jobs:
         run: |
             python runClickyScript.py
       - 
-        name: "Push changes"
-        run: |-
-            git config user.name github-actions
-            git config user.email github-actions@github.com
-            git add .
-            git commit -m "Update Clicky Analytics"
-            git push
+        name: "Create pull request"
+        uses: peter-evans/create-pull-request@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: Update Clicky visitor data
+          title: Update Clicky visitor data
+          body: Workflow auto-generated PR
+          branch: update-clicky-data
+          branch-suffix: timestamp
+          reviewers: sarahmcdougall
