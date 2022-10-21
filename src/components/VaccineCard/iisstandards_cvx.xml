@@ -177,37 +177,51 @@
 <CVXInfo><ShortDescription>COVID-19, D614, recomb, preS dTM, AS03 adjuvant add, PF, 10mcg/0.5mL</ShortDescription>
 <FullVaccinename>SARS-COV-2 (COVID-19) vaccine, D614, prefusion spike recombinant protein subunit (CoV2 preS dTM), AS03 adjuvant added, preservative free, 10mcg/0.5mL dose</FullVaccinename>
 <CVXCode>226       </CVXCode>
-<Notes>Pre-EUA Authorization, Sanofi Primary Series dose - requires addition of AS03 adjuvant</Notes>
-<Status>Pending</Status>
-<LastUpdated>3/10/2022</LastUpdated>
+<Notes>EUA submission withdrawn by Sanofi</Notes>
+<Status>Never Active</Status>
+<LastUpdated>10/18/2022</LastUpdated>
 </CVXInfo>
 <CVXInfo><ShortDescription>COVID-19, D614, recomb, preS dTM, AS03 adjuvant add, PF, 5mcg/0.5mL</ShortDescription>
 <FullVaccinename>SARS-COV-2 (COVID-19) vaccine, D614, prefusion spike recombinant protein subunit (CoV2 preS dTM), AS03 adjuvant added, preservative free, 5mcg/0.5mL dose</FullVaccinename>
 <CVXCode>225       </CVXCode>
-<Notes>Pre-EUA Authorization, Sanofi Booster dose - requires addition of AS03 adjuvant</Notes>
+<Notes>EUA submission withdrawn by Sanofi</Notes>
+<Status>Never Active</Status>
+<LastUpdated>10/18/2022</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>COVID-19, mRNA, LNP-S, bivalent booster, PF, 10 mcg/0.2 mL</ShortDescription>
+<FullVaccinename>SARS-COV-2 (COVID-19) vaccine, mRNA, spike protein, LNP, bivalent booster, preservative free, 10 mcg/0.2 mL dose</FullVaccinename>
+<CVXCode>230       </CVXCode>
+<Notes>Pre-EUA Moderna bivalent booster (ages 6 mo through 5 yrs), original strain + omicron BA.4/BA.5</Notes>
 <Status>Active</Status>
-<LastUpdated>3/10/2022</LastUpdated>
+<LastUpdated>10/14/2022</LastUpdated>
 </CVXInfo>
 <CVXInfo><ShortDescription>COVID-19, mRNA, LNP-S, bivalent booster, PF, 10 mcg/0.2 mL dose</ShortDescription>
 <FullVaccinename>SARS-COV-2 (COVID-19) vaccine, mRNA, spike protein, LNP, bivalent booster, preservative free, 10 mcg/0.2 mL dose, tris-sucrose formulation</FullVaccinename>
 <CVXCode>301       </CVXCode>
-<Notes>Pre-EUA (5 yrs through 11 yrs) Pfizer bivalent booster, original strain + omicron BA.4/BA.5</Notes>
+<Notes>EUA authorized (5 yrs through 11 yrs) Pfizer bivalent booster, original strain + omicron BA.4/BA.5</Notes>
 <Status>Active</Status>
-<LastUpdated>9/6/2022</LastUpdated>
+<LastUpdated>10/13/2022</LastUpdated>
 </CVXInfo>
 <CVXInfo><ShortDescription>COVID-19, mRNA, LNP-S, bivalent booster, PF, 30 mcg/0.3 mL dose</ShortDescription>
 <FullVaccinename>SARS-COV-2 (COVID-19) vaccine, mRNA, spike protein, LNP, bivalent booster, preservative free, 30 mcg/0.3 mL dose, tris-sucrose formulation</FullVaccinename>
 <CVXCode>300       </CVXCode>
-<Notes>FDA EUA 08/31/2022 (12+ yrs) Pfizer adult bivalent booster, original strain + omicron BA.4/BA.5</Notes>
+<Notes>EUA authorized Pfizer adult bivalent booster ages 12+ yrs, original strain + omicron BA.4/BA.5</Notes>
 <Status>Active</Status>
-<LastUpdated>9/6/2022</LastUpdated>
+<LastUpdated>10/14/2022</LastUpdated>
 </CVXInfo>
 <CVXInfo><ShortDescription>COVID-19, mRNA, LNP-S, bivalent booster, PF, 50 mcg/0.5 mL or 25mcg/0.25 mL dose</ShortDescription>
 <FullVaccinename>SARS-COV-2 (COVID-19) vaccine, mRNA, spike protein, LNP, bivalent booster, preservative free, 50 mcg/0.5 mL or 25 mcg/0.25 mL dose</FullVaccinename>
 <CVXCode>229       </CVXCode>
-<Notes>FDA EUA 8/31/2022 (18+ yrs) Moderna bivalent booster, EUA pending for ages 6 yrs through 11 yrs, original strain + omicron BA.4/BA.5</Notes>
+<Notes>EUA authorized Moderna bivalent booster 2 dose levels: ages 6 yrs thru 11 yrs 0.25mL dose; 12 years and older 0.5mL dose</Notes>
 <Status>Active</Status>
-<LastUpdated>9/7/2022</LastUpdated>
+<LastUpdated>10/14/2022</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>COVID-19, mRNA, LNP-S, bivalent, PF, 3 mcg/0.2 mL dose</ShortDescription>
+<FullVaccinename>SARS-COV-2 (COVID-19) vaccine, mRNA, spike protein, LNP, bivalent, preservative free, 3 mcg/0.2 mL dose, tris-sucrose formulation</FullVaccinename>
+<CVXCode>302       </CVXCode>
+<Notes>Pre-EUA Pfizer bivalent (ages 6 mo through 4 yrs), original strain + omicron BA.4/BA.5</Notes>
+<Status>Active</Status>
+<LastUpdated>10/19/2022</LastUpdated>
 </CVXInfo>
 <CVXInfo><ShortDescription>COVID-19, mRNA, LNP-S, PF, 10 mcg/0.2 mL dose, tris-sucrose</ShortDescription>
 <FullVaccinename>SARS-COV-2 (COVID-19) vaccine, mRNA, spike protein, LNP, preservative free, 10 mcg/0.2mL dose, tris-sucrose formulation</FullVaccinename>
