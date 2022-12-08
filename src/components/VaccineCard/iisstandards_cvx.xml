@@ -76,19 +76,26 @@
 <Status>Non-US</Status>
 <LastUpdated>4/12/2022</LastUpdated>
 </CVXInfo>
+<CVXInfo><ShortDescription>COVID-19 Inactivated, Non-US Vaccine (VLA2001, Valneva)</ShortDescription>
+<FullVaccinename>SARS-COV-2 COVID-19 Inactivated, Non-US Vaccine (VLA2001, Valneva)</FullVaccinename>
+<CVXCode>518       </CVXCode>
+<Notes>Pandemic Non-US Vaccine not Authorized by WHO - not counted toward immunity in US</Notes>
+<Status>Non-US</Status>
+<LastUpdated>11/17/2022</LastUpdated>
+</CVXInfo>
 <CVXInfo><ShortDescription>COVID-19 IV Non-US Vaccine (BIBP, Sinopharm)</ShortDescription>
 <FullVaccinename>SARS-COV-2 COVID-19 Inactivated Virus Non-US Vaccine Product (BIBP, Sinopharm)</FullVaccinename>
 <CVXCode>510       </CVXCode>
-<Notes>WHO authorized pandemic vaccine.  Recognized towards immunity in US</Notes>
+<Notes>Pandemic Non-US Vaccine. Authorized by WHO - Counted toward immunity in US</Notes>
 <Status>Non-US</Status>
-<LastUpdated>7/15/2021</LastUpdated>
+<LastUpdated>11/15/2022</LastUpdated>
 </CVXInfo>
 <CVXInfo><ShortDescription>COVID-19 IV Non-US Vaccine (CoronaVac, Sinovac)</ShortDescription>
 <FullVaccinename>SARS-COV-2 COVID-19 Inactivated Virus Non-US Vaccine Product (CoronaVac, Sinovac)</FullVaccinename>
 <CVXCode>511       </CVXCode>
-<Notes>WHO authorized pandemic vaccine.  Recognized towards immunity in US</Notes>
+<Notes>Pandemic Non-US Vaccine. Authorized by WHO - Counted toward immunity in US</Notes>
 <Status>Non-US</Status>
-<LastUpdated>7/15/2021</LastUpdated>
+<LastUpdated>11/15/2022</LastUpdated>
 </CVXInfo>
 <CVXInfo><ShortDescription>COVID-19 IV Non-US Vaccine (COVAXIN)</ShortDescription>
 <FullVaccinename>SARS-COV-2 COVID-19 Inactivated Virus Non-US Vaccine Product (COVAXIN)</FullVaccinename>
@@ -110,6 +117,20 @@
 <Notes>Pandemic Non-US Vaccine not Authorized by WHO - not counted toward  immunity in US</Notes>
 <Status>Non-US</Status>
 <LastUpdated>7/15/2021</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>COVID-19 mRNA, bivalent, original/Omicron BA.1, Non-US Vaccine (Spikevax Bivalent), Moderna</ShortDescription>
+<FullVaccinename>SARS-COV-2 COVID-19 mRNA, bivalent, original/Omicron BA.1, Non-US Vaccine (Spikevax Bivalent), Moderna</FullVaccinename>
+<CVXCode>519       </CVXCode>
+<Notes>Pandemic Non-US Vaccine not Authorized by WHO - Is authorized by EU and counted toward immunity in US</Notes>
+<Status>Non-US</Status>
+<LastUpdated>11/17/2022</LastUpdated>
+</CVXInfo>
+<CVXInfo><ShortDescription>COVID-19 mRNA, bivalent, original/Omicron BA.1, Non-US Vaccine Product (Comirnaty Bivalent), Pfizer-BioNTech</ShortDescription>
+<FullVaccinename>SARS-COV-2 COVID-19 mRNA, bivalent, original/Omicron BA.1, Non-US Vaccine Product (Comirnaty Bivalent), Pfizer-BioNTech</FullVaccinename>
+<CVXCode>520       </CVXCode>
+<Notes>Pandemic Non-US Vaccine. Authorized by WHO - counted toward immunity in US</Notes>
+<Status>Non-US</Status>
+<LastUpdated>11/17/2022</LastUpdated>
 </CVXInfo>
 <CVXInfo><ShortDescription>COVID-19 Non-US Vaccine, Product Unknown</ShortDescription>
 <FullVaccinename>SARS-COV-2 COVID-19 Non-US Vaccine, Specific Product Unknown</FullVaccinename>
@@ -149,16 +170,16 @@
 <CVXInfo><ShortDescription>COVID-19 vaccine, vector-nr, rS-ChAdOx1, PF, 0.5 mL </ShortDescription>
 <FullVaccinename>SARS-COV-2 (COVID-19) vaccine, vector non-replicating, recombinant spike protein-ChAdOx1, preservative free, 0.5 mL </FullVaccinename>
 <CVXCode>210       </CVXCode>
-<Notes>Submission for FDA EUA withdrawn, 2-dose vaccine. AstraZeneca vaccine is authorized by the WHO and recognized towards immunity in the US. Non-US WHO authorized tradenames/identifiers include VAXZEVRIA, AZD1222, ChAdOx1 nCoV-19, COVISHIELD</Notes>
+<Notes>WHO authorized pandemic vaccine.  Recognized towards immunity in US.  AstraZeneca vaccine non-US WHO authorized tradenames/identifiers include VAXZEVRIA, AZD1222, ChAdOx1 nCoV-19, COVISHIELD</Notes>
 <Status>Non-US</Status>
-<LastUpdated>9/6/2022</LastUpdated>
+<LastUpdated>11/16/2022</LastUpdated>
 </CVXInfo>
-<CVXInfo><ShortDescription>COVID-19 VVnr Non-US Vaccine (CanSino Biological Inc./Beijing Institute of Biotechnology)</ShortDescription>
-<FullVaccinename>SARS-COV-2 COVID-19 Viral Vector Non-replicating Non-US Vaccine Product (CanSino Biological Inc./Beijing Institute of Biotechnology)</FullVaccinename>
+<CVXInfo><ShortDescription>COVID-19 VVnr Non-US Vaccine (CONVIDECIA), CanSino Biological Inc./Beijing Institute of Biotechnology)</ShortDescription>
+<FullVaccinename>SARS-COV-2 COVID-19 Viral Vector Non-replicating Non-US Vaccine Product (CONVIDECIA), CanSino Biological Inc./Beijing Institute of Biotechnology</FullVaccinename>
 <CVXCode>506       </CVXCode>
-<Notes>Pandemic Non-US Vaccine not Authorized by WHO - not counted toward  immunity in US</Notes>
+<Notes>Pandemic Non-US Vaccine. Authorized by WHO 5/19/2022 - Counted toward immunity in US</Notes>
 <Status>Non-US</Status>
-<LastUpdated>7/15/2021</LastUpdated>
+<LastUpdated>11/16/2022</LastUpdated>
 </CVXInfo>
 <CVXInfo><ShortDescription>COVID-19 VVnr Non-US Vaccine (Sputnik Light)</ShortDescription>
 <FullVaccinename>SARS-COV-2 COVID-19 Viral Vector Non-replicating Non-US Vaccine Product (Sputnik Light)</FullVaccinename>
@@ -191,9 +212,9 @@
 <CVXInfo><ShortDescription>COVID-19, mRNA, LNP-S, bivalent booster, PF, 10 mcg/0.2 mL</ShortDescription>
 <FullVaccinename>SARS-COV-2 (COVID-19) vaccine, mRNA, spike protein, LNP, bivalent booster, preservative free, 10 mcg/0.2 mL dose</FullVaccinename>
 <CVXCode>230       </CVXCode>
-<Notes>Pre-EUA Moderna bivalent booster (ages 6 mo through 5 yrs), original strain + omicron BA.4/BA.5</Notes>
+<Notes>Pre-EUA Moderna bivalent booster original strain + omicron BA.4/BA.5 (ages 6 mo through 5 yrs), original strain + omicron BA.4/BA.5</Notes>
 <Status>Active</Status>
-<LastUpdated>10/14/2022</LastUpdated>
+<LastUpdated>11/17/2022</LastUpdated>
 </CVXInfo>
 <CVXInfo><ShortDescription>COVID-19, mRNA, LNP-S, bivalent booster, PF, 10 mcg/0.2 mL dose</ShortDescription>
 <FullVaccinename>SARS-COV-2 (COVID-19) vaccine, mRNA, spike protein, LNP, bivalent booster, preservative free, 10 mcg/0.2 mL dose, tris-sucrose formulation</FullVaccinename>
@@ -205,23 +226,23 @@
 <CVXInfo><ShortDescription>COVID-19, mRNA, LNP-S, bivalent booster, PF, 30 mcg/0.3 mL dose</ShortDescription>
 <FullVaccinename>SARS-COV-2 (COVID-19) vaccine, mRNA, spike protein, LNP, bivalent booster, preservative free, 30 mcg/0.3 mL dose, tris-sucrose formulation</FullVaccinename>
 <CVXCode>300       </CVXCode>
-<Notes>EUA authorized Pfizer adult bivalent booster ages 12+ yrs, original strain + omicron BA.4/BA.5</Notes>
+<Notes>EUA authorized Pfizer adult bivalent booster ages 12+ yrs, original strain + omicron BA.4/BA.5.  Not Authorized by WHO.  Non-US Tradename for same formulation (Comirnaty Bivalent) counted toward immunity in US</Notes>
 <Status>Active</Status>
-<LastUpdated>10/14/2022</LastUpdated>
+<LastUpdated>11/30/2022</LastUpdated>
 </CVXInfo>
 <CVXInfo><ShortDescription>COVID-19, mRNA, LNP-S, bivalent booster, PF, 50 mcg/0.5 mL or 25mcg/0.25 mL dose</ShortDescription>
 <FullVaccinename>SARS-COV-2 (COVID-19) vaccine, mRNA, spike protein, LNP, bivalent booster, preservative free, 50 mcg/0.5 mL or 25 mcg/0.25 mL dose</FullVaccinename>
 <CVXCode>229       </CVXCode>
-<Notes>EUA authorized Moderna bivalent booster 2 dose levels: ages 6 yrs thru 11 yrs 0.25mL dose; 12 years and older 0.5mL dose</Notes>
+<Notes>EUA authorized Moderna bivalent booster original strain + omicron BA.4/BA.5 2 dose levels: ages 6 yrs thru 11 yrs 0.25mL dose; 12 years and older 0.5mL dose. Non-US Tradename for same formulation (Spikevax Bivalent) - not authorized by WHO - is authorized by EU and counted toward US immunity</Notes>
 <Status>Active</Status>
-<LastUpdated>10/14/2022</LastUpdated>
+<LastUpdated>11/17/2022</LastUpdated>
 </CVXInfo>
 <CVXInfo><ShortDescription>COVID-19, mRNA, LNP-S, bivalent, PF, 3 mcg/0.2 mL dose</ShortDescription>
 <FullVaccinename>SARS-COV-2 (COVID-19) vaccine, mRNA, spike protein, LNP, bivalent, preservative free, 3 mcg/0.2 mL dose, tris-sucrose formulation</FullVaccinename>
 <CVXCode>302       </CVXCode>
-<Notes>Pre-EUA Pfizer bivalent (ages 6 mo through 4 yrs), original strain + omicron BA.4/BA.5</Notes>
+<Notes>Pre-EUA Pfizer bivalent original + omicron BA.4/BA.5 (ages 6 mo through 4 yrs), original strain + omicron BA.4/BA.5</Notes>
 <Status>Active</Status>
-<LastUpdated>10/19/2022</LastUpdated>
+<LastUpdated>11/17/2022</LastUpdated>
 </CVXInfo>
 <CVXInfo><ShortDescription>COVID-19, mRNA, LNP-S, PF, 10 mcg/0.2 mL dose, tris-sucrose</ShortDescription>
 <FullVaccinename>SARS-COV-2 (COVID-19) vaccine, mRNA, spike protein, LNP, preservative free, 10 mcg/0.2mL dose, tris-sucrose formulation</FullVaccinename>
@@ -282,9 +303,9 @@
 <CVXInfo><ShortDescription>COVID-19, subunit, rS-nanoparticle+Matrix-M1 Adjuvant, PF, 0.5 mL</ShortDescription>
 <FullVaccinename>SARS-COV-2 (COVID-19) vaccine, subunit, recombinant spike protein-nanoparticle+Matrix-M1 Adjuvant, preservative free, 0.5mL dose</FullVaccinename>
 <CVXCode>211       </CVXCode>
-<Notes>FDA EUA Authorized, Novavax primary series adult dose</Notes>
+<Notes>EUA 07/13/2022, 2-dose vaccine. Used to record Novavax vaccines administered in the US and in non-US locations (includes tradenames NUVAXOVID, COVOVAX)</Notes>
 <Status>Active</Status>
-<LastUpdated>9/6/2022</LastUpdated>
+<LastUpdated>11/29/2022</LastUpdated>
 </CVXInfo>
 <CVXInfo><ShortDescription>dengue fever</ShortDescription>
 <FullVaccinename>dengue fever vaccine</FullVaccinename>
