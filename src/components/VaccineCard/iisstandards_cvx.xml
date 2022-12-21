@@ -125,12 +125,12 @@
 <Status>Non-US</Status>
 <LastUpdated>11/17/2022</LastUpdated>
 </CVXInfo>
-<CVXInfo><ShortDescription>COVID-19 mRNA, bivalent, original/Omicron BA.1, Non-US Vaccine Product (Comirnaty Bivalent), Pfizer-BioNTech</ShortDescription>
+<CVXInfo><ShortDescription>COVID-19 mRNA, bivalent, original/Omicron BA.1, Non-US Vaccine Product, Pfizer-BioNTech</ShortDescription>
 <FullVaccinename>SARS-COV-2 COVID-19 mRNA, bivalent, original/Omicron BA.1, Non-US Vaccine Product (Comirnaty Bivalent), Pfizer-BioNTech</FullVaccinename>
 <CVXCode>520       </CVXCode>
-<Notes>Pandemic Non-US Vaccine. Authorized by WHO - counted toward immunity in US</Notes>
+<Notes>Pandemic Non-US Vaccine. Authorized by WHO 10/19/2022 - Counted toward immunity in US</Notes>
 <Status>Non-US</Status>
-<LastUpdated>11/17/2022</LastUpdated>
+<LastUpdated>12/19/2022</LastUpdated>
 </CVXInfo>
 <CVXInfo><ShortDescription>COVID-19 Non-US Vaccine, Product Unknown</ShortDescription>
 <FullVaccinename>SARS-COV-2 COVID-19 Non-US Vaccine, Specific Product Unknown</FullVaccinename>
@@ -174,12 +174,12 @@
 <Status>Non-US</Status>
 <LastUpdated>11/16/2022</LastUpdated>
 </CVXInfo>
-<CVXInfo><ShortDescription>COVID-19 VVnr Non-US Vaccine (CONVIDECIA), CanSino Biological Inc./Beijing Institute of Biotechnology)</ShortDescription>
+<CVXInfo><ShortDescription>COVID-19 VVnr Non-US Vaccine (CanSino Biological Inc./Beijing Institute of Biotechnology</ShortDescription>
 <FullVaccinename>SARS-COV-2 COVID-19 Viral Vector Non-replicating Non-US Vaccine Product (CONVIDECIA), CanSino Biological Inc./Beijing Institute of Biotechnology</FullVaccinename>
 <CVXCode>506       </CVXCode>
 <Notes>Pandemic Non-US Vaccine. Authorized by WHO 5/19/2022 - Counted toward immunity in US</Notes>
 <Status>Non-US</Status>
-<LastUpdated>11/16/2022</LastUpdated>
+<LastUpdated>12/16/2022</LastUpdated>
 </CVXInfo>
 <CVXInfo><ShortDescription>COVID-19 VVnr Non-US Vaccine (Sputnik Light)</ShortDescription>
 <FullVaccinename>SARS-COV-2 COVID-19 Viral Vector Non-replicating Non-US Vaccine Product (Sputnik Light)</FullVaccinename>
@@ -429,9 +429,9 @@
 <CVXInfo><ShortDescription>Ebola Zaire vaccine, live, recombinant, 1mL dose</ShortDescription>
 <FullVaccinename>Ebola Zaire vaccine, live, recombinant, 1mL dose </FullVaccinename>
 <CVXCode>204       </CVXCode>
-<Notes>FDA Approval Pending</Notes>
+<Notes>FDA Approved ERVEBO Vaccine.  NDCs and SPL not yet listed</Notes>
 <Status>Active</Status>
-<LastUpdated>4/6/2021</LastUpdated>
+<LastUpdated>12/19/2022</LastUpdated>
 </CVXInfo>
 <CVXInfo><ShortDescription>Ebola, unspecified</ShortDescription>
 <FullVaccinename>Ebola, unspecified</FullVaccinename>
@@ -737,9 +737,9 @@
 <CVXInfo><ShortDescription>influenza, intradermal, quadrivalent, preservative free</ShortDescription>
 <FullVaccinename>influenza, intradermal, quadrivalent, preservative free, injectable</FullVaccinename>
 <CVXCode>166       </CVXCode>
-<Notes></Notes>
-<Status>Active</Status>
-<LastUpdated>12/15/2014</LastUpdated>
+<Notes>No US product available since 2017/2018 flu season</Notes>
+<Status>Inactive</Status>
+<LastUpdated>12/15/2022</LastUpdated>
 </CVXInfo>
 <CVXInfo><ShortDescription>influenza, live, intranasal</ShortDescription>
 <FullVaccinename>influenza virus vaccine, live, attenuated, for intranasal use</FullVaccinename>
@@ -779,16 +779,16 @@
 <CVXInfo><ShortDescription>Influenza, seasonal, injectable, preservative free</ShortDescription>
 <FullVaccinename>Influenza, seasonal, injectable, preservative free</FullVaccinename>
 <CVXCode>140       </CVXCode>
-<Notes>IIV3. This vaccine code is one of two which replace CVX 15, influenza, split virus.</Notes>
-<Status>Active</Status>
-<LastUpdated>7/17/2013</LastUpdated>
+<Notes>IIV3. No US product available since 2018/2019 flu season. This vaccine code is one of two which replace CVX 15, influenza, split virus.</Notes>
+<Status>Inactive</Status>
+<LastUpdated>12/15/2022</LastUpdated>
 </CVXInfo>
 <CVXInfo><ShortDescription>influenza, seasonal, intradermal, preservative free</ShortDescription>
 <FullVaccinename>seasonal influenza, intradermal, preservative free</FullVaccinename>
 <CVXCode>144       </CVXCode>
-<Notes>IIV3</Notes>
-<Status>Active</Status>
-<LastUpdated>7/17/2013</LastUpdated>
+<Notes>IIV3. No US product available since 2014/2015 flu season</Notes>
+<Status>Inactive</Status>
+<LastUpdated>12/15/2022</LastUpdated>
 </CVXInfo>
 <CVXInfo><ShortDescription>Influenza, Southern Hemisphere</ShortDescription>
 <FullVaccinename>influenza, Southern Hemisphere, unspecified formulation</FullVaccinename>
