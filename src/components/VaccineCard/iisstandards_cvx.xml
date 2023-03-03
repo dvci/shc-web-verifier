@@ -160,6 +160,13 @@
 <Status>Non-US</Status>
 <LastUpdated>7/15/2021</LastUpdated>
 </CVXInfo>
+<CVXInfo><ShortDescription>COVID-19 SP, protein-based, adjuvanted (VidPrevtyn Beta), Sanofi-GSK</ShortDescription>
+<FullVaccinename>SARS-COV-2 (COVID-19) vaccine SP, protein-based, adjuvanted, B.1.351 strain (VidPrevtyn Beta), Sanofi-GSK </FullVaccinename>
+<CVXCode>521       </CVXCode>
+<Notes>Pandemic Non-US Vaccine not Authorized by WHO - not counted toward immunity in US</Notes>
+<Status>Non-US</Status>
+<LastUpdated>2/22/2023</LastUpdated>
+</CVXInfo>
 <CVXInfo><ShortDescription>COVID-19 vaccine, vector-nr, rS-Ad26, PF, 0.5 mL</ShortDescription>
 <FullVaccinename>SARS-COV-2 (COVID-19) vaccine, vector non-replicating, recombinant spike protein-Ad26, preservative free, 0.5 mL</FullVaccinename>
 <CVXCode>212       </CVXCode>
@@ -307,12 +314,12 @@
 <Status>Active</Status>
 <LastUpdated>11/29/2022</LastUpdated>
 </CVXInfo>
-<CVXInfo><ShortDescription>dengue fever</ShortDescription>
-<FullVaccinename>dengue fever vaccine</FullVaccinename>
+<CVXInfo><ShortDescription>dengue fever tetravalent</ShortDescription>
+<FullVaccinename>dengue fever vaccine, tetravalent</FullVaccinename>
 <CVXCode>56        </CVXCode>
 <Notes>Applies to tetravalent product (e.g. DENGVAXIA)</Notes>
 <Status>Active</Status>
-<LastUpdated>5/19/2022</LastUpdated>
+<LastUpdated>2/16/2023</LastUpdated>
 </CVXInfo>
 <CVXInfo><ShortDescription>DT (pediatric)</ShortDescription>
 <FullVaccinename>diphtheria and tetanus toxoids, adsorbed for pediatric use</FullVaccinename>
@@ -986,6 +993,13 @@
 <Status>Inactive</Status>
 <LastUpdated>5/11/2018</LastUpdated>
 </CVXInfo>
+<CVXInfo><ShortDescription>meningococcal conjugate quadrivalent, MenACWY-TT (MCV4)</ShortDescription>
+<FullVaccinename>meningococcal polysaccharide (groups A, C, Y, W-135) tetanus toxoid conjugate vaccine 0.5mL dose, preservative free</FullVaccinename>
+<CVXCode>203       </CVXCode>
+<Notes></Notes>
+<Status>Active</Status>
+<LastUpdated>1/26/2023</LastUpdated>
+</CVXInfo>
 <CVXInfo><ShortDescription>meningococcal MCV4, unspecified formulation</ShortDescription>
 <FullVaccinename>Meningococcal, MCV4, unspecified conjugate formulation(groups A, C, Y and W-135)</FullVaccinename>
 <CVXCode>147       </CVXCode>
@@ -1013,13 +1027,6 @@
 <Notes></Notes>
 <Status>Inactive</Status>
 <LastUpdated>10/27/2017</LastUpdated>
-</CVXInfo>
-<CVXInfo><ShortDescription>meningococcal polysaccharide (groups A, C, Y, W-135) TT conjugate</ShortDescription>
-<FullVaccinename>meningococcal polysaccharide (groups A, C, Y, W-135) tetanus toxoid conjugate vaccine 0.5mL dose, preservative free</FullVaccinename>
-<CVXCode>203       </CVXCode>
-<Notes></Notes>
-<Status>Active</Status>
-<LastUpdated>1/17/2023</LastUpdated>
 </CVXInfo>
 <CVXInfo><ShortDescription>meningococcal, unknown serogroups</ShortDescription>
 <FullVaccinename>meningococcal vaccine of unknown formulation and unknown serogroups</FullVaccinename>
@@ -1490,12 +1497,12 @@
 <Status>Inactive</Status>
 <LastUpdated>5/28/2010</LastUpdated>
 </CVXInfo>
-<CVXInfo><ShortDescription>Vaccinia, smallpox monkeypox vaccine live, PF, SQ or ID injection</ShortDescription>
+<CVXInfo><ShortDescription>Vaccinia, smallpox Mpox vaccine live, PF, SQ or ID injection</ShortDescription>
 <FullVaccinename>Vaccinia, smallpox monkeypox vaccine, live attenuated, preservative free, subcutaneous or intradermal injection</FullVaccinename>
 <CVXCode>206       </CVXCode>
 <Notes>Associated to FDA US Licensed product JYNNEOS, non-US tradenames IMVANEX, IMVAMUNE. Review CDC &amp; FDA guidance for updates regarding administration</Notes>
 <Status>Active</Status>
-<LastUpdated>8/17/2022</LastUpdated>
+<LastUpdated>2/14/2023</LastUpdated>
 </CVXInfo>
 <CVXInfo><ShortDescription>varicella</ShortDescription>
 <FullVaccinename>varicella virus vaccine</FullVaccinename>
